@@ -1,0 +1,7 @@
+<div class="content">
+  <div class="bike-tile" *ngFor="let ride of rides$ | async">
+    <img src="{{ ride.image_file }}" />
+    <span>{{ride.brand}}</span>
+    <span>{{ride.name}}</span>
+  </div>
+</div>
