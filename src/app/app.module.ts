@@ -12,6 +12,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {CoreModule} from "./core/core.module";
 import {SharedModule} from "./shared/shared.module";
 import {ApiService} from "./core/services/api.service";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ApiService} from "./core/services/api.service";
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
+    NoopAnimationsModule,
   ],
   providers: [
     ApiService,
