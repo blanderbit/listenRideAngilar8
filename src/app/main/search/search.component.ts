@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from './search.service';
 import * as SearchActions from './store/search.actions';
-import SearchModel from "./search.types";
+import { SearchModel, Location } from "./search.types";
 import {select, Store} from "@ngrx/store";
 import {filter, map, tap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
-import {getBikes} from "./store";
+import {getBikes, getLocations} from "./store";
 
 @Component({
   selector: 'app-search',
@@ -14,6 +14,8 @@ import {getBikes} from "./store";
 })
 export class SearchComponent implements OnInit {
   private rides$: Observable<any>;
+  public location: Location;
+  public pins;
 
   constructor(private SearchService: SearchService, private store: Store<SearchModel>) {
   }
@@ -25,6 +27,17 @@ export class SearchComponent implements OnInit {
       select(getBikes),
       filter((bikes) => !!bikes)
       )
-      .subscribe(bikes => this.rides$ = of(bikes));
+      .subscribe(bikes => {
+        this.pins = bikes.map(bike => {
+          return bike.location;
+        });
+        this.rides$ = of(bikes)
+      });
+
+    this.store.pipe(
+      select(getLocations),
+      filter((locations) => !!locations.geometry)
+    )
+      .subscribe(locations => this.location = locations.geometry.location);
   }
 }

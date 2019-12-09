@@ -1,6 +1,9 @@
 :host {
 
-
+  agm-map {
+    height: 500px!important;
+    width: 1200px;
+  }
   .content {
     display: flex;
     flex-wrap: wrap;

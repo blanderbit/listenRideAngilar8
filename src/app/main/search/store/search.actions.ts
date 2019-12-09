@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import SearchModel from '../search.types';
+import { SearchModel } from '../search.types';
 
 export const GetBikes = createAction('[Search] - Get Rides');
 

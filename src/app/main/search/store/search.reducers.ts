@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as SearchActions from './search.actions';
-import SearchModel from '../search.types';
+import { SearchModel } from '../search.types';
 
 export const initialState: SearchModel = {
   bikes: [],
