@@ -14,7 +14,7 @@ const reducer = createReducer(
   initialState,
   on(SearchActions.GetBikes, state => state),
   on(SearchActions.SuccessGetBikes, (state: SearchModel,  payload ) => {
-    return { ...state, ...payload };
+    return { ...initialState, ...payload };
   }),
   on(SearchActions.ErrorGetBikes, (state: SearchModel, error: Error) => {
     console.log(error);
