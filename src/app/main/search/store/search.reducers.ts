@@ -4,7 +4,10 @@ import { SearchModel } from '../search.types';
 
 export const initialState: SearchModel = {
   bikes: [],
-  location: []
+  displayBikes: [],
+  location: [],
+  offset: 0,
+  limit: 10
 };
 
 const reducer = createReducer(
@@ -16,7 +19,15 @@ const reducer = createReducer(
   on(SearchActions.ErrorGetBikes, (state: SearchModel, error: Error) => {
     console.log(error);
     return { ...state, error: error };
-  })
+  }),
+  on(SearchActions.GetBikesPage, (state: SearchModel,  payload ) => {
+    return { ...state, ...payload };
+  }),
+  on(SearchActions.GetBikesPageSuccess, (state: SearchModel,  payload ) => {
+    const nextState = {...state};
+    nextState.displayBikes = nextState.displayBikes.concat(payload.bikes);
+    return nextState;
+  }),
 );
 
 export function SearchReducer(state: SearchModel = initialState, action: Action) {
