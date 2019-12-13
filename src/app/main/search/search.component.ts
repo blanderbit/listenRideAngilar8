@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
       select(getDisplayBikes),
       filter((bikes) => !!bikes)
     )
-      .subscribe(bikes => {console.log(bikes); this.displayBikes$ = of(bikes)});
+      .subscribe(bikes =>  this.displayBikes$ = of(bikes));
 
 
     this.store.pipe(
