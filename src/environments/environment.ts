@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://listnride-staging.herokuapp.com/v2/'
+  apiUrl: 'https://listnride-staging.herokuapp.com/v2/',
+  googleMaps: 'AIzaSyDJIFlj66qnMlaFvjjuaEQd_pqx9d-oHek'
 };
 
 /*

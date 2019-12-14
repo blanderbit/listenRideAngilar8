@@ -6,6 +6,10 @@ import {SearchRoutingModule} from "./search-routing.module";
 import {SearchComponent} from "./search.component";
 import {EffectsModule} from "@ngrx/effects";
 import {SearchEffects} from "./store/search.effects";
+import {AgmCoreModule} from "@agm/core";
+import {environment} from "../../../environments/environment";
+import {MatGoogleMapsAutocompleteModule} from "@angular-material-extensions/google-maps-autocomplete";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -15,7 +19,13 @@ import {SearchEffects} from "./store/search.effects";
     CommonModule,
     SearchRoutingModule,
     StoreModule.forFeature('search', SearchReducer),
-    EffectsModule.forFeature([SearchEffects])
+    EffectsModule.forFeature([SearchEffects]),
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMaps,
+      libraries: ["places", "geometry"]
+    }),
+    MatGoogleMapsAutocompleteModule.forRoot(),
+    InfiniteScrollModule
   ]
 })
 export class SearchModule { }
