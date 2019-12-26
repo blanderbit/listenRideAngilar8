@@ -15,6 +15,15 @@
 </div>
 </div>
 
-<div class="map-container"><agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15">
-  <agm-marker *ngFor="let pin of pins" [latitude]="pin.lat_rnd" [longitude]="pin.lng_rnd"></agm-marker>
-</agm-map></div>
+<div class="map-container">
+  <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15" [styles]="mapStyles">
+    <agm-marker-cluster [minimumClusterSize]= "2" [styles]="clusterStyles">
+      <agm-marker *ngFor="let pin of pins"
+                  [latitude]="pin.lat_rnd"
+                  [longitude]="pin.lng_rnd"
+                  [iconUrl]="{url:'./assets/ui_icons/map/pin_map.png'}"
+                  [label]="{text: pin.price + '€', color: 'white', fontSize: '13px', fontWeight: 'bold'}"
+      ></agm-marker>
+    </agm-marker-cluster>
+</agm-map>
+</div>

@@ -11,6 +11,7 @@ import {environment} from "../../../environments/environment";
 import {MatGoogleMapsAutocompleteModule} from "@angular-material-extensions/google-maps-autocomplete";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {SharedModule} from "../../shared/shared.module";
+import {AgmJsMarkerClustererModule} from "@agm/js-marker-clusterer";
 
 
 
@@ -27,6 +28,7 @@ import {SharedModule} from "../../shared/shared.module";
       libraries: ["places", "geometry"]
     }),
     MatGoogleMapsAutocompleteModule.forRoot(),
+    AgmJsMarkerClustererModule,
     InfiniteScrollModule
   ]
 })
