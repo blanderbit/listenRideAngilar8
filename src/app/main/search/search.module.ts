@@ -10,6 +10,7 @@ import {AgmCoreModule} from "@agm/core";
 import {environment} from "../../../environments/environment";
 import {MatGoogleMapsAutocompleteModule} from "@angular-material-extensions/google-maps-autocomplete";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {SharedModule} from "../../shared/shared.module";
 
 
 
@@ -18,6 +19,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   imports: [
     CommonModule,
     SearchRoutingModule,
+    SharedModule,
     StoreModule.forFeature('search', SearchReducer),
     EffectsModule.forFeature([SearchEffects]),
     AgmCoreModule.forRoot({

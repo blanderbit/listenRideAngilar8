@@ -1,15 +1,20 @@
-<div class="content" infinite-scroll [infiniteScrollDistance]="2" (scrolled)="onScrollDown($event)">
-  <mat-google-maps-autocomplete
-    (onAutocompleteSelected)="onAutocompleteSelected($event)">
-  </mat-google-maps-autocomplete>
+<div class="content" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="false" (scrolled)="onScrollDown($event)">
+  <div class="toolbar">
+    <mat-google-maps-autocomplete
+      (onAutocompleteSelected)="onAutocompleteSelected($event)">
+    </mat-google-maps-autocomplete>
 
-  <div class="map-container"><agm-map [latitude]="location.lat" [longitude]="location.lng">
-    <agm-marker *ngFor="let pin of pins" [latitude]="pin.lat_rnd" [longitude]="pin.lng_rnd"></agm-marker>
-  </agm-map></div>
-
+    <app-filters></app-filters>
+  </div>
+<div class="bike-grid">
   <div class="bike-tile" *ngFor="let ride of displayBikes$ | async">
     <img src="{{ ride.image_file }}" />
     <span>{{ride.brand}}</span>
     <span>{{ride.name}}</span>
   </div>
 </div>
+</div>
+
+<div class="map-container"><agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15">
+  <agm-marker *ngFor="let pin of pins" [latitude]="pin.lat_rnd" [longitude]="pin.lng_rnd"></agm-marker>
+</agm-map></div>
