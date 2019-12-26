@@ -6,6 +6,7 @@ import {select, Store} from "@ngrx/store";
 import {filter, map, tap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {getBikes, getDisplayBikes, getLocations} from "./store";
+import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from "../../core/constants/map-config";
 
 @Component({
   selector: 'app-search',
@@ -19,12 +20,9 @@ export class SearchComponent implements OnInit {
   public pageAmount = 10;
   public pins;
 
-  public location: Location = {
-    lat: 0,
-    lng: 0,
-    type: 'satellite',
-    zoom: 5
-  };
+  public location: Location = mapDefaultOptions;
+  public mapStyles = mapColorScheme;
+  public clusterStyles = mapClusterStyle;
 
   constructor(private SearchService: SearchService, private store: Store<SearchModel>) {
   }
@@ -38,7 +36,8 @@ export class SearchComponent implements OnInit {
       filter((bikes) => !!bikes)
       )
       .subscribe(bikes => {
-        this.pins = bikes.map(bike => bike.location);
+        this.pins = bikes.map(bike => { return { price: Math.ceil(bike.price_from).toString(), ...bike.location} });
+        console.log(this.pins);
       });
 
     this.store.pipe(
