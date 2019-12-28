@@ -1,6 +1,19 @@
-# ListnrideFrontendNew
+# Listnride new Frontend (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+_This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19._
+
+## Prerequisites
+Required software: `npm`, `node`
+
+These packages should be global for env settings: `ts-node typescript`
+
+## Install
+```
+>> git clone git@github.com:listnride/listnride-frontend-new.git
+>> npm ci
+>> npm install -g ts-node typescript
+>> cp .env.example .env
+```
 
 ## Development server
 
