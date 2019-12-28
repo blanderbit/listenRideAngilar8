@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FiltersComponent } from './filters/filters.component';
+// import { FiltersComponent } from './filters/filters.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   MatAutocompleteModule,
@@ -76,7 +76,7 @@ export const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  declarations: [FiltersComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -86,7 +86,7 @@ export const MATERIAL_MODULES = [
     MATERIAL_MODULES,
   ],
   exports: [
-    FiltersComponent,
+    // FiltersComponent,
     FormsModule,
     ReactiveFormsModule,
     SatDatepickerModule,
