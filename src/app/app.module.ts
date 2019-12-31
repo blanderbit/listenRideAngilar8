@@ -41,8 +41,11 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
       logOnly: environment.production // Restrict extension to log-only mode
     }),
     NoopAnimationsModule,
-    MatGoogleMapsAutocompleteModule,
-    AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMaps,
+      libraries: ['places', 'geometry']
+    }),
+    MatGoogleMapsAutocompleteModule.forRoot(),
   ],
   providers: [
     ApiService,

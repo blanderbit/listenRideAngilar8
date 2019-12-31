@@ -1,26 +1,47 @@
+@import "../../../assets/scss/variables";
+
+$mobile: 480px;
+$tablet: 768px;
+
 :host {
   display: flex;
   flex-direction: row;
 
-  mat-google-maps-autocomplete {
-    width: 100%;
-    display: flex;
-    flex: 0 0 1;
+  @media only screen and (max-width: $device-xs) {
+    flex-direction: column;
   }
-  agm-map {
-    display: flex;
-    flex: 1;
-    height: calc(100vh - 50px);
-    width: 50vh;
+
+  .map-container {
+    flex: 0 0 40%;
+
+    @media only screen and (max-width: $device-xs) {
+      flex: 1;
+    }
+
+    agm-map {
+      display: flex;
+      height: calc(100vh - 50px);
+      width: 40vw;
+
+      @media only screen and (max-width: $device-xs) {
+        flex: 1;
+        width: 100vw;
+      }
+    }
   }
 
   .content {
     display: flex;
+    flex: 0 0 60%;
     flex-direction: column;
     height: calc(100vh - 50px);
-    max-width: 1200px;
     margin: 0 auto;
     overflow: scroll;
+
+    @media only screen and (max-width: $device-xs) {
+      flex: 0 0 100%;
+      height: auto;
+    }
 
     .toolbar {
       width: 100%;
@@ -29,6 +50,71 @@
       flex: 1;
       flex-direction: column;
       margin: 0 auto;
+
+      .bikes-to-rent {
+        color: $dark-text-color;
+        font-weight: 500;
+        padding: 15px;
+      }
+
+      @media only screen and (max-width: $device-xs) {
+        display: flex;
+        margin-top: 60px;
+        border-top: 1px solid #ccc;
+      }
+    }
+
+    .mobile-toolbar {
+      width: 95vw;
+      justify-content: space-between;
+      flex-direction: row;
+      padding: 15px 5px;
+
+      .toggle {
+        display: flex;
+        flex-direction: row;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        width: 75px;
+        padding: 10px 5px;
+        cursor: pointer;
+
+        span {
+          margin-top: 5px;
+          margin-left: 5px;
+          color: #4D5166;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 14px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+      }
+
+      .toggle-filters {
+        align-self: flex-start;
+
+        .mat-icon {
+          color: #5FC693;
+        }
+      }
+
+      .toggle-map {
+        align-self: flex-end;
+
+        .mat-icon {
+          color: #74AFFF;
+        }
+      }
+
+      @media only screen and (max-width: $device-xs) {
+        display: flex;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        z-index: 3;
+      }
     }
 
     .bike-grid {
@@ -38,4 +124,6 @@
       flex-direction: row;
     }
   }
+
+
 }

@@ -14,6 +14,9 @@ import { SharedModule } from "../../shared/shared.module";
 import { AgmJsMarkerClustererModule } from "@agm/js-marker-clusterer";
 import { MatIconModule } from '@angular/material/icon';
 import { BikeTileComponent } from '../bike-tile/bike-tile.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
+
 
 @NgModule({
   declarations: [
@@ -27,13 +30,11 @@ import { BikeTileComponent } from '../bike-tile/bike-tile.component';
     MatIconModule,
     StoreModule.forFeature('search', SearchReducer),
     EffectsModule.forFeature([SearchEffects]),
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMaps,
-      libraries: ['places', 'geometry']
-    }),
-    MatGoogleMapsAutocompleteModule.forRoot(),
+    AgmCoreModule,
+    MatGoogleMapsAutocompleteModule,
     AgmJsMarkerClustererModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    DeviceDetectorModule.forRoot()
   ]
 })
 export class SearchModule {

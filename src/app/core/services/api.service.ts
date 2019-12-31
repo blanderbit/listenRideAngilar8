@@ -29,7 +29,7 @@ export class ApiService {
   private readonly authUrl: string;
 
   constructor( private http: HttpClient) {
-      this.apiUrl = environment.apiUrl;
+      this.apiUrl = `${environment.apiUrl}/`;
       this.authUrl = environment.apiUrl;
 
   }

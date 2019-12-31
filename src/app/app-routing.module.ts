@@ -3,8 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  // <TODO> change to normal routing after homepage's created
   {
     path: '',
+    redirectTo: 'main/search',
+    pathMatch: 'full'
+  },
+  {
+    path: 'main',
     loadChildren: './main/main.module#MainModule',
   },
   {

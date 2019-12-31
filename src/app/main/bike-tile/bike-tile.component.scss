@@ -1,4 +1,7 @@
 @import "../../../assets/scss/variables";
+:host {
+  width: calc(100%/3 - 1rem);
+}
 
 .bike-tile {
   background-color: white;
@@ -6,7 +9,7 @@
   border: 1px solid $light-grey;
   border-radius: 4px;
   margin: 1rem;
-  width: 100%;
+ // width: 100%;
   height: auto;
 
   .bike-available {
@@ -57,6 +60,9 @@
 }
 
 @media screen and (max-width: $device-xs) {
+  :host {
+    width: 100%;
+  }
   .bike-tile {
     flex-direction: row;
 
@@ -71,7 +77,7 @@
 
       &_price-xs {
         display: flex;
-        direction: column;
+        flex-direction: column;
         float: right;
         margin: 0;
         padding-bottom: 16px;
