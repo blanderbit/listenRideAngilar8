@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import {StoreModule} from "@ngrx/store";
+import { StoreModule } from "@ngrx/store";
 
 @NgModule({
   declarations: [MainComponent],
@@ -12,5 +12,6 @@ import {StoreModule} from "@ngrx/store";
     MainRoutingModule,
     StoreModule.forFeature('main', {}),
   ],
+  exports: [],
 })
 export class MainModule { }

@@ -37,17 +37,5 @@
       flex-wrap: wrap;
       flex-direction: row;
     }
-
-    .bike-tile {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid #ccc;
-      margin: 1rem;
-      width: calc(29%);
-
-      img {
-        width: 100%;
-      }
-    }
   }
 }

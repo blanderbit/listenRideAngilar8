@@ -7,11 +7,22 @@
     <!-- <app-filters></app-filters> -->
   </div>
 <div class="bike-grid">
-  <div class="bike-tile" *ngFor="let ride of displayBikes$ | async">
-    <img src="{{ ride.image_file }}" />
-    <span>{{ride.brand}}</span>
-    <span>{{ride.name}}</span>
+  <div *ngFor="let ride of displayBikes$ | async">
+    <app-bike-tile
+      [brand]="ride.brand"
+      [bikeName]="ride.name"
+      [image]="ride.image_file"
+      [size]="ride.size"
+      [price]="ride.price_from"
+      [rating]="ride.rating_average"
+      [distance]="ride.distance"
+      [clusterParams]="ride.cluster"
+      [amount]="ride.cluster ? ride.cluster.variations.length : null"
+    ></app-bike-tile>
+    <!--    TODO add bike height-->
+    <!--    [bikeHeight]="ride.cluster.sizes.size"-->
   </div>
+
 </div>
 </div>
 

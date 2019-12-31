@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
     this.store.dispatch(SearchActions.StartGetBikes({location: 'berlin'}));
-
     this.store.pipe(
       select(getBikes),
       filter((bikes) => !!bikes)

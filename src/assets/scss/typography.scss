@@ -1,0 +1,65 @@
+@import "variables";
+
+h1 {
+  font-size: $h1-fontsize;
+}
+
+h2 {
+  font-size: $h2-fontsize;
+}
+
+h3 {
+  font-size: $h3-fontsize;
+}
+
+h4 {
+  font-size: $h4-fontsize;
+}
+
+h5 {
+  font-size: $h5-fontsize;
+}
+
+h6 {
+  font-size: $h6-fontsize;
+}
+
+.heading-1 {
+  font-size: $h1-fontsize;
+}
+
+.heading-2 {
+  font-size: $h2-fontsize;
+}
+
+.heading-3 {
+  font-size: $h3-fontsize;
+}
+
+.heading-4 {
+  font-size: $h4-fontsize;
+}
+
+.heading-5 {
+  font-size: $h5-fontsize;
+}
+
+.heading-6 {
+  font-size: $h6-fontsize;
+}
+
+.thin {
+  font-weight: 100;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}

@@ -2,11 +2,22 @@
 @import "~@angular/material/theming";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~saturn-datepicker/theming';
+@import "assets/scss/variables";
+@import "assets/scss/typography";
+@import "assets/scss/flexbox-helper";
+@import "assets/scss/padding-helper";
+
 @include mat-core();
 
+html,
+body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 :not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
 .cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
@@ -61,3 +72,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .hdd-datepicker.mat-calendar {
   height: 320px !important;
 }
+

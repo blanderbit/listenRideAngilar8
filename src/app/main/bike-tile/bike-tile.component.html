@@ -1,0 +1,41 @@
+<div class="bike-tile flex direction-column">
+  <img src="{{image}}"
+       alt=""
+  />
+  <div class="bike-info">
+    <div *ngIf="clusterParams" class="bike-available regular">
+      {{amount}} Variants available
+    </div>
+    <div class="flex direction-row align-items-center content-between">
+      <div class="flex direction-column m-b-12">
+        <span class="bike-info_brand medium">{{brand}}</span>
+        <span class="bike-info_name p-t-8">{{bikeName}}</span>
+      </div>
+      <div class="bike-info_price flex direction-column m-b-12">
+        <span class="bike-info_price-day p-b-8 medium">{{price | number: '1.0-0'}} €/day </span>
+        <span>{{(price * 7)  | number: '1.0-0'}} €/week </span>
+      </div>
+    </div>
+    <div class="flex direction-row align-items-center content-between bike-info_size">
+      <div>
+        <span class="">Size {{size ? size : bikeHeight}}</span>
+        <div class="flex direction-row align-items-center"
+             *ngIf="distance"
+        >
+          <mat-icon class="heading-6" aria-hidden="false" aria-label="">room</mat-icon>
+          <span>{{distance}} km</span>
+        </div>
+      </div>
+      <div class="rating flex direction-row align-items-center"
+           *ngIf="rating"
+      >
+        <mat-icon class="heading-6" aria-hidden="false" aria-label="">grade</mat-icon>
+        <span>({{rating}})</span>
+      </div>
+    </div>
+    <div class="bike-info_price-xs flex direction-column m-b-12">
+      <span class="bike-info_price-day p-b-8 medium">{{price | number: '1.0-0'}} €/day </span>
+      <span>{{price * 7 | number: '1.0-0'}} €/week </span>
+    </div>
+  </div>
+</div>

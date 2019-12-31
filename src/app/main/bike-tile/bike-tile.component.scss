@@ -1,0 +1,104 @@
+@import "../../../assets/scss/variables";
+
+.bike-tile {
+  background-color: white;
+  position: relative;
+  border: 1px solid $light-grey;
+  border-radius: 4px;
+  margin: 1rem;
+  width: 100%;
+  height: auto;
+
+  .bike-available {
+    background-color: rgba($grey-background, 0.8);
+    border-radius: 4px;
+    padding: 4px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: $white-font-color;
+  }
+
+  .mat-icon {
+    height: 16px;
+  }
+
+  .bike-info {
+    padding: $magic-padding/2;
+
+    &_brand {
+      font-size: $h5-fontsize;
+      color: $dark-text-color;
+    }
+
+    &_name {
+      font-size: $h6-fontsize;
+      color: black;
+    }
+
+    &_size {
+      font-size: $h6-fontsize;
+      color: $light-text-color;
+    }
+
+    &_price-day {
+      color: $main-blue;
+      font-size: $h5-fontsize;
+    }
+
+    &_price-xs {
+      display: none;
+    }
+  }
+
+  img {
+    max-height: 15rem;
+  }
+}
+
+@media screen and (max-width: $device-xs) {
+  .bike-tile {
+    flex-direction: row;
+
+    .bike-available {
+      top: 2px;
+      right: initial;
+      left: 2px;
+    }
+
+    .bike-info {
+      width: 60%;
+
+      &_price-xs {
+        display: flex;
+        direction: column;
+        float: right;
+        margin: 0;
+        padding-bottom: 16px;
+      }
+
+      &_price-day {
+        padding-bottom: 4px;
+      }
+
+      &_price {
+        display: none;
+      }
+
+
+      &_brand {
+        padding-top: 16px;
+      }
+
+    }
+
+    img {
+      width: 40%;
+      object-fit: cover;
+    }
+
+    .rating {
+      display: none;
+    }
+  }
+}

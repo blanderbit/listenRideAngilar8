@@ -1,0 +1,51 @@
+$sizes: (0, 4, 8, 12, 16, 24, 32, 48, 64, 100);
+
+@each $size in $sizes {
+  //margin
+
+  .m-#{$size} {
+    margin: #{$size}px;
+  }
+
+  .m-t-#{$size} {
+    margin-top: #{$size}px;
+  }
+
+  .m-b-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+
+  .m-r-#{$size} {
+    margin-right: #{$size}px;
+  }
+
+  .m-l-#{$size} {
+    margin-left: #{$size}px;
+  }
+
+  //padding
+
+  .p-#{$size} {
+    padding: #{$size}px;
+  }
+
+  .p-t-#{$size} {
+    padding-top: #{$size}px;
+  }
+
+  .p-b-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+
+  .p-r-#{$size} {
+    padding-right: #{$size}px;
+  }
+
+  .p-l-#{$size} {
+    padding-left: #{$size}px;
+  }
+}
+
+.m-auto {
+  margin: 0 auto;
+}
