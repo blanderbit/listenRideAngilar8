@@ -5,7 +5,7 @@ import { SearchModel, Location } from "./search.types";
 import {select, Store} from "@ngrx/store";
 import {filter, map, tap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
-import {getBikes, getDisplayBikes, getLocations} from "./store";
+import {getBikes, getDisplayBikes, getFilterToggle, getLocations} from "./store";
 import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from "../../core/constants/map-config";
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   public pageAmount = 10;
   public pins;
   public mapToggle = false;
-  public filterToggle = false;
+  public showFilter = false;
   public isMobile = false;
 
   public location: Location = mapDefaultOptions;
@@ -62,10 +62,9 @@ export class SearchComponent implements OnInit {
         console.log(locations);
         this.location = {city: locations.formatted_address, ...locations.geometry.location}
       });
-  }
 
-  onAutocompleteSelected(selection) {
-    this.store.dispatch(SearchActions.StartGetBikes({location: selection.formatted_address}));
+    this.store.pipe(select(getFilterToggle))
+      .subscribe(showFilter => this.showFilter = showFilter);
   }
 
   onScrollDown(ev) {
@@ -82,6 +81,6 @@ export class SearchComponent implements OnInit {
 
   toggleFilters() {
     console.log('toggled filter');
-    this.filterToggle = !this.filterToggle;
+    this.store.dispatch(SearchActions.setSearchFilterToggle({showFilter: !this.showFilter}));
   }
 }

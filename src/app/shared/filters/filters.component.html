@@ -1,33 +1,66 @@
-<form [formGroup]="filtersForm">
-  <mat-form-field appearance="outline">
-    <input matInput
-           placeholder="Choose a date"
-           formControlName="date"
-           [max]="maxDate"
-           [satDatepicker]="resultPicker"
-           (dateInput)="onDateInput($event)"
-           (dateChange)="onDateChange($event)">
-    <sat-datepicker panelClass="hdd-datepicker"
-                    #resultPicker [rangeMode]="true">
-    </sat-datepicker>
-    <sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
-  </mat-form-field>
-  <mat-form-field  appearance="outline">
-    <mat-label>Size</mat-label>
-    <mat-select placeholder="Size" formControlName="size">
-      <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Type</mat-label>
-    <mat-select placeholder="Type" formControlName="type" multiple>
-      <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Brand</mat-label>
-    <mat-select placeholder="Type" formControlName="type" multiple>
-      <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
+<div class="container">
+  <div class="row filters-toolbar">
+    <div class="col-2 justify-content-start">
+      <div class="filters-close" (click) = close() >X</div>
+    </div>
+    <div class="col-8 filters-label">
+      <span>FILTERS</span>
+    </div>
+    <div class="col-2">
+      <span (click) = reset() >Reset</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="filtersForm">
+        <div class="row">
+        <mat-form-field appearance="outline">
+          <input matInput
+                 placeholder="Choose a date"
+                 formControlName="date"
+                 [max]="maxDate"
+                 [satDatepicker]="resultPicker"
+                 (dateInput)="onDateInput($event)"
+                 (dateChange)="onDateChange($event)">
+          <sat-datepicker panelClass="hdd-datepicker"
+                          #resultPicker [rangeMode]="true">
+          </sat-datepicker>
+          <sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
+        </mat-form-field>
+
+        <mat-form-field  appearance="outline">
+          <mat-label>Size</mat-label>
+          <mat-select placeholder="Size" formControlName="size">
+            <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select placeholder="Type" formControlName="type" multiple>
+            <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Brand</mat-label>
+          <mat-select placeholder="Type" formControlName="type" multiple>
+            <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        <div class="row submit-container">
+          <button
+            mat-flat-button
+            class= "btn-filter-submit"
+            color="primary"
+          (click) = applyFilters()>
+            Apply
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

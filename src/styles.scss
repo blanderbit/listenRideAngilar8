@@ -2,10 +2,12 @@
 @import "~@angular/material/theming";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~saturn-datepicker/theming';
+@import '~bootstrap-4-grid/scss/grid.scss';
 @import "assets/scss/variables";
 @import "assets/scss/typography";
 @import "assets/scss/flexbox-helper";
 @import "assets/scss/padding-helper";
+
 
 @include mat-core();
 

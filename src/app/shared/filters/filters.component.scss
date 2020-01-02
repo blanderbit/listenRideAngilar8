@@ -6,6 +6,48 @@
   width: 100%;
   margin-top: 1rem;
 
+  @media screen and (max-width: $device-xs) {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    padding: 1rem 0;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 29px 23px 50px rgba(86, 89, 96, 0.76);
+    background-color: #fff;
+    width: 100%;
+  }
+
+  .filters-toolbar {
+    display: none;
+
+    @media screen and (max-width: $device-xs) {
+      display: flex;
+    }
+
+    .filters-label, .filters-close {
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  .submit-container {
+    display: none;
+
+    .btn-filter-submit {
+      flex: 1;
+      text-align: center;
+      background-color: $submit-button-color;
+      height: 50px;
+      margin: auto 1rem;
+    }
+
+    @media screen and (max-width: $device-xs) {
+      display: flex;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: row;
@@ -13,17 +55,31 @@
     @media screen and (max-width: $device-xs) {
       flex-direction: column;
       margin-top: 1.5rem;
+
+      .row {
+        justify-content: center;
+      }
     }
 
     mat-form-field {
       display: flex;
       flex: 0 0 10%;
       margin-left: 0.1rem;
-      text-align: center;
 
       @media screen and (max-width: $device-xs) {
-        margin-left: 3rem;
-        margin-top: -1rem;
+        flex: 1;
+        margin: auto 1rem;
+        border-bottom: 1px solid #ccc;
+
+        ::ng-deep .mat-form-field-wrapper {
+          width: 100%;
+          margin: 0.5rem 0;
+          padding: 0.5rem 0;
+        }
+      }
+
+      &:nth-last-child(1) {
+        border: none;
       }
     }
   }

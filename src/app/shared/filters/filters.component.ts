@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as SearchActions from "../../main/search/store/search.actions";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {SearchModel} from "../../main/search/search.types";
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from "saturn-datepicker";
+import {getFilterToggle} from "../../main/search/store";
 
 @Component({
   selector: 'app-filters',
@@ -12,6 +13,7 @@ import {SatDatepickerInputEvent, SatDatepickerRangeValue} from "saturn-datepicke
 })
 export class FiltersComponent implements OnInit {
  public filtersForm: FormGroup;
+ public showFilter: boolean;
  public sizeList = [
    {
      text: 'All Sizes',
@@ -64,19 +66,41 @@ export class FiltersComponent implements OnInit {
       brand: ['Test']
     });
 
-  this.filtersForm.valueChanges.subscribe(val => {
-    console.log(val.date);
-    if (val.date) {
-     const filterPayload = {
-       startDate: val.date.begin,
-       duration: Math.round((new Date(val.date.end).getTime() - new Date(val.date.begin).getTime())/1000)
-     };
+    this.store.pipe(select(getFilterToggle))
+      .subscribe(showFilter => this.showFilter = showFilter);
 
-     this.store.dispatch(SearchActions.GetUnavailableBikes(filterPayload));
-    }
-    // this.store.dispatch(SearchActions.StartGetBikes({location: 'Berlin', sizes: val.size}));
-  });
+    this.filtersForm.valueChanges.subscribe(val => {
+       this.store.dispatch(SearchActions.GetUnavailableBikes(this.formatPayload(val)));
+    });
 
+  }
+
+  formatPayload(formData) {
+    let filterPayload =  {
+      startDate: null,
+      duration: null
+    };
+      if(formData.date) {
+        filterPayload.startDate = formData.date.begin;
+        filterPayload.duration =  Math.round((new Date(formData.date.end).getTime() - new Date(formData.date.begin).getTime())/1000);
+      }
+
+      return filterPayload;
+  }
+
+  reset() {
+    this.filtersForm.markAsUntouched();
+    this.filtersForm.reset();
+  }
+
+  close() {
+    this.store.dispatch(SearchActions.setSearchFilterToggle({showFilter: false}));
+  }
+
+  applyFilters() {
+    let filterPayload = { ...this.filtersForm.getRawValue() };
+    this.store.dispatch(SearchActions.GetUnavailableBikes(this.formatPayload(filterPayload)));
+    this.close();
   }
 
 }

@@ -7,7 +7,6 @@ import { SearchComponent } from "./search.component";
 import { EffectsModule } from "@ngrx/effects";
 import { SearchEffects } from "./store/search.effects";
 import { AgmCoreModule } from "@agm/core";
-import { environment } from "../../../environments/environment";
 import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from "../../shared/shared.module";

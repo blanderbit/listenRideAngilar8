@@ -9,7 +9,8 @@ export const initialState: SearchModel = {
   displayBikes: [],
   location: [],
   offset: 0,
-  limit: 10
+  limit: 10,
+  showFilter: false
 };
 
 const reducer = createReducer(
@@ -35,6 +36,9 @@ const reducer = createReducer(
   on(SearchActions.SuccessGetUnavailableBikes, (state: SearchModel,  payload ) => {
     const nextState = {...state};
 
+    return { ...state, ...payload };
+  }),
+  on(SearchActions.setSearchFilterToggle, (state: SearchModel,  payload ) => {
     return { ...state, ...payload };
   }),
 );

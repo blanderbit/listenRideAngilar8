@@ -13,4 +13,4 @@ export const ErrorGetUnavailableBikes = createAction('[Search] - Error Get unava
 export const GetBikesPage = createAction('[Search] - Get Bikes Page', props<{offset: number, limit: number}>());
 export const GetBikesPageSuccess = createAction('[Search] - Get Bikes Page Success', props<{ bikes: any }>());
 
-
+export const setSearchFilterToggle = createAction('[Search] Toggle Filters', props<{showFilter: boolean}>());

@@ -1,6 +1,6 @@
 <div class="content" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isMobile" (scrolled)="onScrollDown($event)">
   <div class="toolbar">
-    <app-filters *ngIf="!isMobile || isMobile && filterToggle"></app-filters>
+    <app-filters *ngIf="!isMobile || isMobile && showFilter"></app-filters>
     <div *ngIf="!isMobile || isMobile && !mapToggle" class="bikes-to-rent">Bikes to rent in {{location.city}} {{bikes.length}}</div>
   </div>
 
