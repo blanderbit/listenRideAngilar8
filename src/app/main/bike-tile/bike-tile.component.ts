@@ -10,7 +10,7 @@ export class BikeTileComponent implements OnInit {
   @Input() brand = '';
   @Input() bikeName = '';
   @Input() size = '';
-  @Input() price = '';
+  @Input() price: number;
   @Input() rating = '';
   @Input() distance = '';
   @Input() bikeHeight = '';

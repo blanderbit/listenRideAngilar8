@@ -13,4 +13,5 @@ export interface Location {
   lng: number;
   type?: string;
   zoom?: number;
+  city?: string;
 }
