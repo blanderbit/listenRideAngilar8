@@ -9,6 +9,9 @@
       <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
       <span >Filters</span>
     </div>
+    <div class="toggle toggle-sorting" (click)="toggleFilters()">
+      <mat-icon aria-hidden="false" aria-label="toggle icon">sort</mat-icon>
+    </div>
 
     <div class="toggle toggle-map" (click)="toggleMap()">
       <mat-icon *ngIf="!mapToggle" aria-hidden="false" aria-label="toggle icon">map</mat-icon>

@@ -64,7 +64,12 @@
     mat-form-field {
       display: flex;
       flex: 0 0 10%;
-      margin-left: 0.1rem;
+      margin-left: 0.2rem;
+
+      ::ng-deep .mat-form-field-infix {
+        width: 120px;
+        padding: 0.7em 0 0.7em 0;
+      }
 
       @media screen and (max-width: $device-xs) {
         flex: 1;
@@ -76,10 +81,41 @@
           margin: 0.5rem 0;
           padding: 0.5rem 0;
         }
+
+        ::ng-deep .mat-form-field-infix {
+          width: 150px;
+        }
       }
 
       &:nth-last-child(1) {
         border: none;
+      }
+    }
+
+    .sorting-filter {
+      @media screen and (max-width: $device-xs) {
+        display: none;
+      }
+    }
+    .btn-clear-filters {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #6e0e08;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 0.2rem;
+      height: 50px;
+      padding-top: 10px;
+
+      mat-icon {
+        margin-top: -10px;
+      }
+
+      @media screen and (max-width: $device-xs) {
+        display: none;
       }
     }
   }

@@ -12,7 +12,7 @@ $tablet: 768px;
   }
 
   .map-container {
-    flex: 0 0 40%;
+    flex: 0 0 30%;
 
     @media only screen and (max-width: $device-xs) {
       flex: 1;
@@ -21,7 +21,7 @@ $tablet: 768px;
     agm-map {
       display: flex;
       height: calc(100vh - 50px);
-      width: 40vw;
+      width: 30vw;
 
       @media only screen and (max-width: $device-xs) {
         flex: 1;
@@ -32,7 +32,7 @@ $tablet: 768px;
 
   .content {
     display: flex;
-    flex: 0 0 60%;
+    flex: 0 0 70%;
     flex-direction: column;
     height: calc(100vh - 50px);
     margin: 0 auto;
@@ -53,7 +53,8 @@ $tablet: 768px;
 
       .bikes-to-rent {
         color: $dark-text-color;
-        font-weight: 500;
+        font-weight: 400;
+        font-size: 18px;
         padding: 15px;
       }
 
@@ -66,7 +67,6 @@ $tablet: 768px;
 
     .mobile-toolbar {
       width: 100vw;
-      justify-content: space-between;
       flex-direction: row;
       padding: 15px 5px;
 
@@ -100,8 +100,19 @@ $tablet: 768px;
         }
       }
 
+      .toggle-sorting {
+        width: 50px;
+        align-self: flex-start;
+        margin-left: 1rem;
+
+        .mat-icon {
+          color: #5FC693;
+        }
+      }
+
       .toggle-map {
         align-self: flex-end;
+        margin-left: auto;
 
         .mat-icon {
           color: #74AFFF;

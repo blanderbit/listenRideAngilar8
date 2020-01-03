@@ -16,6 +16,7 @@
         <div class="row">
         <mat-form-field appearance="outline">
           <input matInput
+                 class="filter-input"
                  placeholder="Choose a date"
                  formControlName="date"
                  [max]="maxDate"
@@ -48,6 +49,19 @@
             <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+          <mat-form-field appearance="outline" class="sorting-filter">
+            <mat-label>Sorting</mat-label>
+            <mat-select placeholder="Type" formControlName="sorting">
+              <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <button
+              mat-flat-button
+              class="btn-clear-filters"
+              (click) = reset()>
+              Clear Filters
+            </button>
         </div>
         <div class="row submit-container">
           <button

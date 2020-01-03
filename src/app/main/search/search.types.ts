@@ -6,7 +6,7 @@ export interface SearchModel {
   location: any;
   offset?: number;
   limit?: number;
-  showFilter: boolean;
+  showFilter?: boolean;
 }
 
 export interface Location {

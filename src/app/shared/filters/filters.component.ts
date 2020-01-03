@@ -63,7 +63,8 @@ export class FiltersComponent implements OnInit {
       date: [this.date],
       size: [[]],
       type: [[]],
-      brand: ['Test']
+      brand: ['Test'],
+      sorting: [[]]
     });
 
     this.store.pipe(select(getFilterToggle))
