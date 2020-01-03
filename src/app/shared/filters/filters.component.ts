@@ -30,6 +30,26 @@ export class FiltersComponent implements OnInit {
    {
      text: '165-175',
      value: 165
+   },
+   {
+     text: '165-175',
+     value: 165
+   },
+   {
+     text: '175-185',
+     value: 175
+   },
+   {
+     text: '185-195',
+     value: 185
+   },
+   {
+     text: '195-205',
+     value: 195
+   },
+   {
+     text: '85-95',
+     value: 85
    }
  ];
  public typeList = [{
@@ -37,17 +57,51 @@ export class FiltersComponent implements OnInit {
    value: 10,
  },
    {
-     text: 'Urban2',
-     value: 11,
+     text: 'E-bike',
+     value: 20,
    },
    {
-     text: 'Urban3',
-     value: 12
+     text: 'Road',
+     value: 30
    },
    {
-     text: 'Urban4',
-     value: 13
+     text: 'All-terrain',
+     value: 40
+   },
+   {
+     text: 'Cargo',
+     value: 40
+   },
+   {
+     text: 'Kids',
+     value: 40
    }];
+
+ public brandList = [
+   {
+     text: '8bar',
+     value:'8bar',
+  },
+   {
+     text: 'Benveno',
+     value: 'Benveno'
+   }];
+
+  public sortList = [
+    {
+      text: 'Newest',
+      value: 1,
+    },
+    {
+      text: 'Price: High to low',
+      value: 2
+    },
+    {
+      text: 'Price: Low to High',
+      value: 3
+    }
+  ];
+
   date: SatDatepickerRangeValue<Date> ;
   lastDateInput: SatDatepickerRangeValue<Date>  | null;
   lastDateChange: SatDatepickerRangeValue<Date>  | null;
@@ -90,6 +144,7 @@ export class FiltersComponent implements OnInit {
   }
 
   reset() {
+    this.store.dispatch(SearchActions.StartGetBikes({location: 'berlin'}));
     this.filtersForm.markAsUntouched();
     this.filtersForm.reset();
   }

@@ -20,7 +20,6 @@
       <span *ngIf="mapToggle">List</span>
     </div>
   </div>
-
 <div *ngIf="!isMobile || isMobile && !mapToggle" class="bike-grid">
     <app-bike-tile *ngFor="let ride of displayBikes$ | async"
       [brand]="ride.brand"

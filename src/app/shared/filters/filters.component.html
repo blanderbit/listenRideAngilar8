@@ -46,14 +46,14 @@
         <mat-form-field appearance="outline">
           <mat-label>Brand</mat-label>
           <mat-select placeholder="Type" formControlName="type" multiple>
-            <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+            <mat-option *ngFor="let brand of brandList" [value]="brand.value">{{brand.text}}</mat-option>
           </mat-select>
         </mat-form-field>
 
           <mat-form-field appearance="outline" class="sorting-filter">
             <mat-label>Sorting</mat-label>
             <mat-select placeholder="Type" formControlName="sorting">
-              <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+              <mat-option *ngFor="let sort of sortList" [value]="sort.value">{{sort.text}}</mat-option>
             </mat-select>
           </mat-form-field>
             <button
