@@ -7,13 +7,13 @@
       {{amount}} Variants available
     </div>
     <div class="flex direction-row align-items-center content-between">
-      <div class="flex direction-column m-b-12">
+      <div class="bike-info_content flex direction-column m-b-12">
         <span class="bike-info_brand medium">{{brand}}</span>
         <span class="bike-info_name p-t-8">{{bikeName}}</span>
       </div>
       <div class="bike-info_price flex direction-column m-b-12">
         <span class="bike-info_price-day p-b-8 medium">{{price | number: '1.0-0'}} €/day </span>
-        <span>{{(price * 7)  | number: '1.0-0'}} €/week </span>
+        <span class="bike-info_price-week">{{(price * 7)  | number: '1.0-0'}} €/week </span>
       </div>
     </div>
     <div class="flex direction-row align-items-center content-between bike-info_size">
