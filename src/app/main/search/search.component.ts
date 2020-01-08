@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
 import * as SearchActions from './store/search.actions';
-import { SearchModel, Location } from "./search.types";
-import {select, Store} from "@ngrx/store";
-import {filter, map, tap} from "rxjs/operators";
-import {Observable, of} from "rxjs";
-import {getBikes, getDisplayBikes, getFilterToggle, getLocations} from "./store";
-import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from "../../core/constants/map-config";
-import { DeviceDetectorService } from 'ngx-device-detector';
+import {SearchModel, Location} from './search.types';
+import {select, Store} from '@ngrx/store';
+import {filter, map, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {getBikes, getDisplayBikes, getFilterToggle, getLocations} from './store';
+import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '../../core/constants/map-config';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-search',
@@ -29,6 +29,7 @@ export class SearchComponent implements OnInit {
   public mapStyles = mapColorScheme;
   public clusterStyles = mapClusterStyle;
 
+  // tslint:disable-next-line:no-shadowed-variable
   constructor(private SearchService: SearchService,
               private store: Store<SearchModel>,
               private deviceService: DeviceDetectorService ) {
@@ -46,7 +47,7 @@ export class SearchComponent implements OnInit {
       .subscribe(bikes => {
         this.bikes = bikes.map(bike => { return {
           price: Math.ceil(bike.price_from).toString(),
-          ...bike} });
+          ...bike}; });
       });
 
     this.displayBikes$ = this.store.pipe(
@@ -60,7 +61,7 @@ export class SearchComponent implements OnInit {
     )
       .subscribe(locations => {
         console.log(locations);
-        this.location = {city: locations.formatted_address, ...locations.geometry.location}
+        this.location = {city: locations.formatted_address, ...locations.geometry.location};
       });
 
     this.store.pipe(select(getFilterToggle))
@@ -68,7 +69,7 @@ export class SearchComponent implements OnInit {
   }
 
   onScrollDown(ev) {
-    console.log("scrolled");
+    console.log('scrolled');
     this.pagingOffset += this.pageAmount;
     this.pagingLimit += this.pageAmount;
     this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));

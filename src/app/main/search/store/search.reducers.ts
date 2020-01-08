@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import * as SearchActions from './search.actions';
-import { SearchModel } from '../search.types';
+import {SearchModel} from '../search.types';
 
 export const initialState: SearchModel = {
   bikes: [],
@@ -16,30 +16,30 @@ export const initialState: SearchModel = {
 const reducer = createReducer(
   initialState,
   on(SearchActions.GetBikes, state => state),
-  on(SearchActions.SuccessGetBikes, (state: SearchModel,  payload ) => {
-    return { ...initialState, ...payload };
+  on(SearchActions.SuccessGetBikes, (state: SearchModel, payload) => {
+    return {...initialState, ...payload};
   }),
   on(SearchActions.ErrorGetBikes, (state: SearchModel, error: Error) => {
     console.log(error);
-    return { ...state, error: error };
+    return {...state, error};
   }),
 
-  on(SearchActions.GetBikesPage, (state: SearchModel,  payload ) => {
-    return { ...state, ...payload };
+  on(SearchActions.GetBikesPage, (state: SearchModel, payload) => {
+    return {...state, ...payload};
   }),
-  on(SearchActions.GetBikesPageSuccess, (state: SearchModel,  payload ) => {
+  on(SearchActions.GetBikesPageSuccess, (state: SearchModel, payload) => {
     const nextState = {...state};
     nextState.displayBikes = nextState.displayBikes.concat(payload.bikes);
     return nextState;
   }),
 
-  on(SearchActions.SuccessGetUnavailableBikes, (state: SearchModel,  payload ) => {
+  on(SearchActions.SuccessGetUnavailableBikes, (state: SearchModel, payload) => {
     const nextState = {...state};
 
-    return { ...state, ...payload };
+    return {...state, ...payload};
   }),
-  on(SearchActions.setSearchFilterToggle, (state: SearchModel,  payload ) => {
-    return { ...state, ...payload };
+  on(SearchActions.setSearchFilterToggle, (state: SearchModel, payload) => {
+    return {...state, ...payload};
   }),
 );
 

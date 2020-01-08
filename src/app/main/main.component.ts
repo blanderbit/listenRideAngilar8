@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import * as SearchActions from "./search/store/search.actions";
-import {Store} from "@ngrx/store";
-import {SearchModel} from "./search/search.types";
-import {DomSanitizer} from "@angular/platform-browser";
-import {MatIconRegistry} from "@angular/material";
+import {Component, OnInit} from '@angular/core';
+import * as SearchActions from './search/store/search.actions';
+import {Store} from '@ngrx/store';
+import {SearchModel} from './search/search.types';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -12,13 +12,15 @@ import {MatIconRegistry} from "@angular/material";
 })
 export class MainComponent implements OnInit {
   public appearance = 'outline';
+  public isLoggedIn = false;
+
   constructor(private store: Store<SearchModel>,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
 
     this.matIconRegistry.addSvgIcon(
-      "lnr-filter",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/ui_icons/list_icon.svg")
+      'lnr-filter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/list_icon.svg')
     );
 
   }

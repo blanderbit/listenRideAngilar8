@@ -5,15 +5,14 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import {SearchReducer} from "../main/search/store/search.reducers";
+import {environment} from '../../environments/environment';
+import {SearchReducer} from '../main/search/store/search.reducers';
 
-export interface State {
-
-}
+// tslint:disable-next-line:no-empty-interface
+export interface State {}
 
 export const reducers: ActionReducerMap<State> = {
-  //SearchReducer
+  // SearchReducer
 };
 
 

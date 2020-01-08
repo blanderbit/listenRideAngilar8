@@ -1,8 +1,5 @@
 @import "../../../assets/scss/variables";
 
-$mobile: 480px;
-$tablet: 768px;
-
 :host {
   display: flex;
   flex-direction: row;
@@ -135,6 +132,11 @@ $tablet: 768px;
       flex-direction: row;
     }
   }
+}
 
-
+@media (min-width: $device-xl) {
+  .bike-tile-grid {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
 }

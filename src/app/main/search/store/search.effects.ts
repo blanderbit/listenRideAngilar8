@@ -1,18 +1,18 @@
-import {Injectable} from "@angular/core";
-import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, map, switchMap, withLatestFrom} from "rxjs/operators";
-import {SearchService} from "../search.service";
-import {of} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {SearchService} from '../search.service';
+import {of} from 'rxjs';
 import {
   SuccessGetBikes,
   ErrorGetBikes,
   StartGetBikes,
   GetBikesPage,
   GetBikesPageSuccess, GetUnavailableBikes, SuccessGetUnavailableBikes
-} from "./search.actions";
-import {Store} from "@ngrx/store";
-import {SearchModel} from "../search.types";
-import {getBikes, getSearchState} from "./index";
+} from './search.actions';
+import {Store} from '@ngrx/store';
+import {SearchModel} from '../search.types';
+import {getBikes, getSearchState} from './index';
 
 @Injectable()
 export class SearchEffects {
@@ -25,17 +25,17 @@ export class SearchEffects {
         return this.searchService.getRide(action.location, action.sizes)
         .pipe(
           switchMap(results => {
-            if(results.bikes) {
+            if (results.bikes) {
               results.bikesMap = {};
               results.bikes.forEach(bike => results.bikesMap[bike.id] = bike);
             }
             return [
               SuccessGetBikes(results),
               GetBikesPageSuccess({bikes: results.bikes.slice(state.offset, state.limit)})
-            ]
+            ];
           }),
           catchError((error) => of(ErrorGetBikes(error)))
-        )
+        );
       }
       )
     )
@@ -64,15 +64,15 @@ export class SearchEffects {
                 const bikeIds = Object.keys(state.bikesMap);
 
                 bikeIds.map(bikeId => {
-                  if (results.ids.indexOf(bikeId) === -1){
-                    filteredBikes.push(state.bikesMap[bikeId])
+                  if (results.ids.indexOf(bikeId) === -1) {
+                    filteredBikes.push(state.bikesMap[bikeId]);
                   }
                   }
                 );
 
-                return of(SuccessGetUnavailableBikes({filteredBikes: filteredBikes}))
+                return of(SuccessGetUnavailableBikes({filteredBikes}));
               }),
-              catchError((error) => of(ErrorGetBikes(error))))
+              catchError((error) => of(ErrorGetBikes(error))));
         }
       )
     )

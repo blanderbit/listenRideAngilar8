@@ -1,7 +1,7 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { HttpClient, HttpParameterCodec, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {environment} from "../../../environments/environment";
+import {Inject, Injectable, InjectionToken} from '@angular/core';
+import {HttpClient, HttpParameterCodec, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 class CustomEncoder implements HttpParameterCodec {
   encodeKey(key: string): string {
@@ -28,9 +28,9 @@ export class ApiService {
   private readonly apiUrl: string;
   private readonly authUrl: string;
 
-  constructor( private http: HttpClient) {
-      this.apiUrl = `${environment.apiUrl}/`;
-      this.authUrl = environment.apiUrl;
+  constructor(private http: HttpClient) {
+    this.apiUrl = `${environment.apiUrl}/`;
+    this.authUrl = environment.apiUrl;
 
   }
 
@@ -44,8 +44,8 @@ export class ApiService {
 
   /**
    * Generic Function to GET list of Items
-   * @param path
-   * @param options
+   * @param path TODO: add description
+   * @param options TODO: add description
    * @returns Observable<any[]>
    */
   public getList(path: string, options?): Observable<any> {
@@ -54,9 +54,9 @@ export class ApiService {
 
   /**
    * Generic Function to CREATE One Item by ID
-   * @param path
-   * @param data
-   * @param options
+   * @param path TODO: add description
+   * @param data TODO: add description
+   * @param options TODO: add description
    * @returns Observable<any>
    */
   public createSingle(path: string, data: any, options?): Observable<any> {
@@ -65,9 +65,9 @@ export class ApiService {
 
   /**
    * Generic Function to GET One Item by ID
-   * @param path
-   * @param id
-   * @param options
+   * @param path TODO: add description
+   * @param id TODO: add description
+   * @param options TODO: add description
    * @returns Observable<any>
    */
   public getSingle(path: string, id: string, options?): Observable<any> {
@@ -76,10 +76,10 @@ export class ApiService {
 
   /**
    * Generic Function to UPDATE One Item by ID
-   * @param path
-   * @param id
-   * @param data
-   * @param options
+   * @param path TODO: add description
+   * @param id TODO: add description
+   * @param data TODO: add description
+   * @param options TODO: add description
    * @returns Observable<any>
    */
   public updateSingle(path: string, id: string, data: any, options?): Observable<any> {
@@ -88,12 +88,13 @@ export class ApiService {
 
   /**
    *
-   * @param  path
-   * @param data
-   * @param options
-   * @param _apiUrl
+   * @param  path TODO: add description
+   * @param data TODO: add description
+   * @param options TODO: add description
+   * @param _apiUrl TODO: add description
    * @returns Observable<any>
    */
+  // tslint:disable-next-line:variable-name
   public create(path: string, data: any, options?, _apiUrl?: string): Observable<any> {
     return this.http.post<any>(`${_apiUrl || this.apiUrl}${path}`, data, options);
   }

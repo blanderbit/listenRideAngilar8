@@ -1,48 +1,48 @@
-$sizes: (0, 4, 8, 12, 16, 24, 32, 48, 64, 100);
+$sizes: (0, 1, 2);
 
 @each $size in $sizes {
   //margin
 
   .m-#{$size} {
-    margin: #{$size}px;
+    margin: #{$size}rem;
   }
 
   .m-t-#{$size} {
-    margin-top: #{$size}px;
+    margin-top: #{$size}rem;
   }
 
   .m-b-#{$size} {
-    margin-bottom: #{$size}px;
+    margin-bottom: #{$size}rem;
   }
 
   .m-r-#{$size} {
-    margin-right: #{$size}px;
+    margin-right: #{$size}rem;
   }
 
   .m-l-#{$size} {
-    margin-left: #{$size}px;
+    margin-left: #{$size}rem;
   }
 
   //padding
 
   .p-#{$size} {
-    padding: #{$size}px;
+    padding: #{$size}rem;
   }
 
   .p-t-#{$size} {
-    padding-top: #{$size}px;
+    padding-top: #{$size}rem;
   }
 
   .p-b-#{$size} {
-    padding-bottom: #{$size}px;
+    padding-bottom: #{$size}rem;
   }
 
   .p-r-#{$size} {
-    padding-right: #{$size}px;
+    padding-right: #{$size}rem;
   }
 
   .p-l-#{$size} {
-    padding-left: #{$size}px;
+    padding-left: #{$size}rem;
   }
 }
 

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FiltersComponent } from './filters/filters.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FiltersComponent} from './filters/filters.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -37,7 +37,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import {SatDatepickerModule, SatNativeDateModule} from "saturn-datepicker";
+import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 
 export const MATERIAL_MODULES = [
   MatAutocompleteModule,
@@ -96,4 +96,5 @@ export const MATERIAL_MODULES = [
     MATERIAL_MODULES
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

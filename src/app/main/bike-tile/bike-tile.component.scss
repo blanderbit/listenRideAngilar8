@@ -1,67 +1,59 @@
 @import "../../../assets/scss/variables";
 
-:host {
-  width: calc(100% / 3);
-}
-
 .bike-tile {
   background-color: white;
   position: relative;
-  border: 1px solid $light-grey;
-  border-radius: 4px;
-  margin: 0.6rem;
-  // width: 100%;
+  border: 0.1rem solid $light-grey;
+  border-radius: 0.4rem;
   height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
-    border-radius: 4px;
-    padding: 4px;
+    border-radius: 0.4rem;
+    padding: 0.4rem;
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 1rem;
+    right: 1rem;
+    font-size: $small-fontsize;
     color: $white-font-color;
   }
 
   .mat-icon {
-    height: 16px;
+    height: 1.8rem;
   }
 
   .bike-info {
-    padding: $magic-padding/2;
-
-    &_price {
-      max-width: 30%;
-    }
-
-    &_content {
-      max-width: 70%;
-    }
+    padding: 1rem;
 
     &_brand {
-      font-size: $h5-fontsize;
+      font-size: $h4-fontsize;
       color: $dark-text-color;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
-    &_name {
-      font-size: $h6-fontsize;
-      color: black;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    &_price {
+      text-align: right;
+    }
+
+    &_name, &_price-week {
+      font-size: $small-fontsize;
     }
 
     &_size {
-      font-size: $h6-fontsize;
+      font-size: $small-fontsize;
+      color: $light-text-color;
+    }
+
+    &_rating {
+      font-size: $small-fontsize;
       color: $light-text-color;
     }
 
     &_price-day {
       color: $main-blue;
-      font-size: $h5-fontsize;
+      font-size: $h4-fontsize;
       white-space: nowrap;
     }
 
@@ -75,23 +67,22 @@
   }
 
   img {
-    max-height: 12rem;
+    max-height: 18rem;
     object-fit: cover;
-    object-position: top;
   }
 }
 
-@media screen and (max-width: $device-xs) {
-  :host {
-    width: 100%;
-  }
+@media screen and (max-width: $device-sm) {
   .bike-tile {
     flex-direction: row;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     .bike-available {
-      top: 2px;
+      top: 0.2rem;
       right: initial;
-      left: 2px;
+      left: 0.2rem;
     }
 
     .bike-info {
@@ -106,29 +97,79 @@
         flex-direction: column;
         float: right;
         margin: 0;
-        padding-bottom: 16px;
       }
 
       &_price-day {
-        padding-bottom: 4px;
+        padding-bottom: 0.4rem;
       }
 
       &_price {
         display: none;
       }
 
-      &_brand {
-        padding-top: 16px;
+      &_rating {
+        display: none;
       }
-
     }
 
     img {
       width: 40%;
     }
+  }
+}
 
-    .rating {
-      display: none;
+@media only screen and (min-width: $device-md) and (max-width: $device-lg) {
+  .bike-info {
+    &_price {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    &_content {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+}
+
+@media only screen and (min-width: $device-lg) and (max-width: $device-xl - 250px) {
+  .bike-info {
+    &_price {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    &_content {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+  }
+}
+
+@media only screen and (min-width: $device-sm) and (max-width: $device-md) {
+  .bike-info {
+    &_price {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    &_content {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+  }
+}
+
+@media (min-width: $device-xl) and (max-width: $device-xl + 300px) {
+  .bike-info {
+    &_price {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    &_content {
+      flex: 0 0 60%;
+      max-width: 60%;
     }
   }
 }

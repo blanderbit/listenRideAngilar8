@@ -1,5 +1,13 @@
 @import "variables";
 
+html {
+  font-size: 62.5%; /* default 10px = 1rem! */
+}
+
+body {
+  font-size: $h5-fontsize;
+}
+
 h1 {
   font-size: $h1-fontsize;
 }
@@ -62,4 +70,10 @@ h6 {
 
 .bold {
   font-weight: 700;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
