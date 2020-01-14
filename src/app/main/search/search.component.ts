@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
   public mapToggle = false;
   public showFilter = false;
   public isMobile = false;
+  public scrolled = false;
 
   public location: Location = mapDefaultOptions;
   public mapStyles = mapColorScheme;
@@ -69,7 +70,18 @@ export class SearchComponent implements OnInit {
   }
 
   onScrollDown(ev) {
-    console.log('scrolled');
+    console.log('scrolled', ev);
+    this.scrolled = true;
+    console.log(this.scrolled);
+    this.pagingOffset += this.pageAmount;
+    this.pagingLimit += this.pageAmount;
+    this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
+  }
+
+  onScrollUp(ev) {
+    console.log('scrolled up', ev);
+    this.scrolled = false;
+    console.log(this.scrolled);
     this.pagingOffset += this.pageAmount;
     this.pagingLimit += this.pageAmount;
     this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));

@@ -1,5 +1,10 @@
 @import "../../../assets/scss/variables";
 
+::ng-deep .category {
+  outline: 1px solid black;
+  background: black;
+}
+
 :host {
   display: flex;
   flex: 1;
@@ -64,7 +69,7 @@
     mat-form-field {
       display: flex;
       flex: 0 0 10%;
-      margin-left: 0.2rem;
+      margin-left: 0.5rem;
 
       ::ng-deep .mat-form-field-infix {
         width: 120px;
@@ -83,7 +88,7 @@
         }
 
         ::ng-deep .mat-form-field-infix {
-          width: 150px;
+          width: 250px;
         }
       }
 
@@ -103,11 +108,11 @@
       font-size: 16px;
       line-height: 19px;
       text-align: center;
-      color: #6e0e08;
-      border: 1px solid #ccc;
+      border: 1px solid #FF6E5A;
       border-radius: 4px;
-      margin: 0.2rem;
-      height: 50px;
+      margin-left: 0.5rem;
+      margin-top: 0.4rem;
+      height: 42px;
       padding-top: 10px;
 
       mat-icon {

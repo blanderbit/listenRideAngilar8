@@ -20,7 +20,17 @@ export class MainComponent implements OnInit {
 
     this.matIconRegistry.addSvgIcon(
       'lnr-filter',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/list_icon.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/filter_icon.svg')
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'lnr-reset-filter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/reset_filter_icon.svg')
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'lnr-sort',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/sort_icon.svg')
     );
 
   }

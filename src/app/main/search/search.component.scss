@@ -66,6 +66,7 @@
       width: 100vw;
       flex-direction: row;
       padding: 15px 5px;
+      transition: all ease-out 0.7s;
 
       .toggle {
         display: flex;
@@ -98,7 +99,7 @@
       }
 
       .toggle-sorting {
-        width: 50px;
+        width: 40px;
         align-self: flex-start;
         margin-left: 1rem;
 
@@ -114,6 +115,10 @@
         .mat-icon {
           color: #74AFFF;
         }
+      }
+
+      &.scrolled {
+        margin-top: -60px;
       }
 
       @media only screen and (max-width: $device-xs) {
@@ -133,6 +138,7 @@
     }
   }
 }
+
 
 @media (min-width: $device-xl) {
   .bike-tile-grid {

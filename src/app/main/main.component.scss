@@ -19,6 +19,12 @@
   background-color: $main-blue;
   color: #fff;
 
+  .login-buttons {
+    @media screen and (max-width: $device-xs) {
+     display: none;
+    }
+  }
+
   mat-google-maps-autocomplete {
     color: #fff;
     display: flex;
