@@ -8,7 +8,7 @@ import {AuthLoginDialogComponent} from '@core/modules/auth/auth-login/auth-login
 import {AuthForgotPasswordButtonComponent} from '@core/modules/auth/auth-forgot-password/auth-forgot-password-button/auth-forgot-password-button.component';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {authReducer} from '@core/modules/auth/store/reducers';
+import {AuthReducer} from '@core/modules/auth/store/reducers';
 import {AuthEffects} from '@core/modules/auth/store/effects/auth.effects';
 import {AuthLogoutButtonComponent} from '@core/modules/auth/auth-logout/auth-logout-button/auth-logout-button.component';
 
@@ -32,7 +32,7 @@ const dialogs = [
   ],
   imports: [
     SharedModule,
-    StoreModule.forFeature('auth', authReducer),
+    StoreModule.forFeature('auth', AuthReducer),
     EffectsModule.forFeature([AuthEffects])
   ],
   exports: [

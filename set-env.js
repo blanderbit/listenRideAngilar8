@@ -11,6 +11,8 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const envConfigFile = `export const environment = {
    googleMaps: '${process.env.LNR_API_KEY_GOOGLE_MAPS}',
    apiUrl: '${process.env.LNR_API_ENDPOINT}',
+   LNR_API_KEY_FACEBOOK_PLATFORM: '${process.env.LNR_API_KEY_FACEBOOK_PLATFORM}',
+   LNR_API_RECAPTCHA_V3_PUBLIC: '${process.env.LNR_API_RECAPTCHA_V3_PUBLIC}',
    production: ${process.env.NODE_ENV == 'production'}
 };
 `;

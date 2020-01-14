@@ -1,7 +1,9 @@
-import {createReducer, on} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {AuthActions} from '@core/modules/auth/store/actions';
 import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
 import {User} from '@models/user/user';
+import {SearchModel} from "../../../../../main/search/search.types";
+import {initialState} from "../../../../../main/search/store/search.reducers";
 
 export interface AuthState {
   tokens: OauthTokenResponse;
@@ -13,7 +15,7 @@ export const initialAuthState: AuthState = {
   user: undefined
 };
 
-export const authReducer = createReducer(
+const authReducer = createReducer(
   initialAuthState,
 
   on(AuthActions.SaveTokens, (state, action) => {
@@ -29,3 +31,6 @@ export const authReducer = createReducer(
   })
 );
 
+export function AuthReducer(state: AuthState = initialAuthState, action: Action) {
+  return authReducer(state, action);
+}
