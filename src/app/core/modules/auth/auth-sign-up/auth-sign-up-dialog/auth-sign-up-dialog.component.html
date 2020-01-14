@@ -1,0 +1,149 @@
+<div class="lnr-dialog-header lnr-text-align-ctr">
+  <h2 mat-dialog-title>Sign up</h2>
+  <p *ngIf="tab === TabsEnum.BUSINESS">Please fill form with company contact person information.</p>
+  <lnr-button-close (closed)="onClose()"></lnr-button-close>
+</div>
+
+<mat-dialog-content>
+
+  <mat-error *ngIf="error">
+    <lnr-http-error-message [error]="error"></lnr-http-error-message>
+  </mat-error>
+
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSave()" focusFirstInvalidField>
+
+    <div formGroupName="business" *ngIf="tab === TabsEnum.BUSINESS">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline" class="lnr-w-100">
+            <mat-label>Company name</mat-label>
+            <input formControlName="company_name"
+                   type="text"
+                   matInput
+                   placeholder="Enter your company name">
+            <mat-error *ngIf="businessForm.get('company_name').touched && businessForm.get('company_name').errors">
+              <small *ngIf="businessForm.get('company_name').errors?.required">Company name is required</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+    <div formGroupName="user">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline" class="lnr-w-100">
+            <mat-label>First Name</mat-label>
+            <input formControlName="first_name"
+                   type="text"
+                   matInput
+                   placeholder="Enter your first name"
+                   lnrAutofocus>
+            <mat-error *ngIf="userForm.get('first_name').touched && userForm.get('first_name').errors">
+              <small *ngIf="userForm.get('first_name').errors?.required">First name is required</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline" class="lnr-w-100">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="last_name"
+                   type="text"
+                   matInput
+                   placeholder="Enter your last name">
+            <mat-error *ngIf="userForm.get('last_name').touched && userForm.get('last_name').errors">
+              <small *ngIf="userForm.get('last_name').errors?.required">Last name is required</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline" class="lnr-w-100">
+            <mat-label>Email</mat-label>
+            <input formControlName="email"
+                   type="email"
+                   matInput
+                   placeholder="Enter your email">
+            <mat-error *ngIf="userForm.get('email').touched && userForm.get('email').errors">
+              <small *ngIf="userForm.get('email').errors?.required">Email is required</small>
+              <small *ngIf="userForm.get('email').errors?.wrongMail">Email is wrong</small>
+              <small *ngIf="userForm.get('email').errors?.noAt">Email need contain "@"</small>
+              <small *ngIf="userForm.get('email').errors?.noName">Wrong email format</small>
+              <small *ngIf="userForm.get('email').errors?.wrongDomain">Wrong domain</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline" class="lnr-w-100">
+            <mat-label>Password</mat-label>
+            <input formControlName="password"
+                   type="password"
+                   matInput
+                   placeholder="Password">
+            <mat-error *ngIf="userForm.get('password').touched && userForm.get('password').errors">
+              <small *ngIf="userForm.get('password').errors.required">Password is required</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div [matTooltip]="submitBtnTooltip">
+      <button mat-raised-button
+              color="primary"
+              class="lnr-w-100 lnr-mrg-btm"
+              type="submit"
+              [disabled]="userForm.get('terms').invalid"
+              [matTooltip]="submitBtnTooltip"
+      >Sign up
+        <lnr-loader-spinner-small *ngIf="loading"></lnr-loader-spinner-small>
+      </button>
+    </div>
+
+    <lnr-divider class="lnr-mrg-btm" text="or"></lnr-divider>
+
+    <div [matTooltip]="submitBtnTooltip">
+      <lnr-auth-login-facebook-button class="lnr-w-100 lnr-mrg-btm"
+                                      [disabled]="userForm.get('terms').invalid"
+      ></lnr-auth-login-facebook-button>
+    </div>
+
+    <lnr-divider class="lnr-mrg-btm" text="Accept our Terms and Conditions"></lnr-divider>
+
+    <lnr-checkbox-terms-and-conditions [parentForm]="form"
+                                       [parentFormGroupName]="'user'"
+                                       [parentFormControlName]="'terms'"
+    ></lnr-checkbox-terms-and-conditions>
+
+    <lnr-checkbox-subscribe-to-newsletter [parentForm]="form"
+                                          [parentFormGroupName]="'notification_preference'"
+                                          [parentFormControlName]="'newsletter'"
+    ></lnr-checkbox-subscribe-to-newsletter>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="lnr-d-flex lnr-space-btw">
+
+  <lnr-auth-login-button text="Already signed up?"></lnr-auth-login-button>
+
+  <button mat-raised-button
+          *ngIf="tab === TabsEnum.PRIVATE"
+          (click)="toggleTab(TabsEnum.BUSINESS)">
+    Are you managing a bike shop?
+  </button>
+
+  <button mat-raised-button
+          *ngIf="tab === TabsEnum.BUSINESS"
+          (click)="toggleTab(TabsEnum.PRIVATE)">
+    Private
+  </button>
+
+</mat-dialog-actions>

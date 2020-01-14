@@ -1,7 +1,27 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@api/*": [
+        "app/core/services/api/*"
+      ],
+      "@core/*": [
+        "app/core/*"
+      ],
+      "@environment/*": [
+        "environments/*"
+      ],
+      "@enums/*": [
+        "app/core/enums/*"
+      ],
+      "@models/*": [
+        "app/core/models/*"
+      ],
+      "@validators/*": [
+        "app/core/validators/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

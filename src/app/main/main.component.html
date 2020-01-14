@@ -1,11 +1,25 @@
 <div class="header">
-  <div class="logo">
-    <img src="../../assets/ui_icons/lnr_logo_bold.svg" alt="logo"/>
+  <!--  <div class="logo">-->
+  <!--    <img src="../../assets/ui_icons/lnr_logo_bold.svg" alt="logo"/>-->
+  <!--  </div>-->
+  <!--  <mat-google-maps-autocomplete-->
+  <!--    [appearance]="appearance"-->
+  <!--    (onAutocompleteSelected)="onAutocompleteSelected($event)">-->
+  <!--  </mat-google-maps-autocomplete>-->
+  <!--  <app-top-menu *ngIf="!isLoggedIn"></app-top-menu>-->
+  <div class="lnr-d-flex">
+    <div class="logo">
+      <img src="../../assets/ui_icons/lnr_logo_bold.svg" alt="logo"/>
+    </div>
+    <mat-google-maps-autocomplete
+      [appearance]="appearance"
+      (onAutocompleteSelected)="onAutocompleteSelected($event)">
+    </mat-google-maps-autocomplete>
   </div>
-  <mat-google-maps-autocomplete
-    [appearance]="appearance"
-    (onAutocompleteSelected)="onAutocompleteSelected($event)">
-  </mat-google-maps-autocomplete>
-<!--  <app-top-menu *ngIf="!isLoggedIn"></app-top-menu>-->
+  <div class="lnr-d-flex">
+    <lnr-auth-sign-up-button></lnr-auth-sign-up-button>
+    <lnr-auth-login-button></lnr-auth-login-button>
+    <lnr-auth-logout-button></lnr-auth-logout-button>
+  </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,7 +1,7 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {environment} from '../environments/environment';
-import {MaterialModule} from './material.module';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { environment } from '@environment/environment';
+import { MaterialModule } from './material.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,13 +10,41 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {reducers, metaReducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {CoreModule} from './core/core.module';
+import {CoreModule} from '@core/core.module';
 import {SharedModule} from './shared/shared.module';
-import {ApiService} from './core/services/api.service';
+import {ApiService} from '@core/services/api.service';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {MatMenuModule} from '@angular/material/menu';
+
+import {MatIconRegistry} from '@angular/material';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
+import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import {AuthModule} from '@core/modules/auth/auth.module';
+import {LayoutModule} from '@core/modules/layout';
+
+function provideAuthServiceConfig() {
+  return new AuthServiceConfig([
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider(`${environment.LNR_API_KEY_FACEBOOK_PLATFORM}`)
+    }
+  ]);
+}
+
+const APP_PROVIDERS = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpAuthInterceptor,
+    multi: true
+  },
+  {
+    provide: AuthServiceConfig,
+    useFactory: provideAuthServiceConfig
+  }
+];
 
 @NgModule({
   declarations: [
@@ -25,8 +53,13 @@ import {MatMenuModule} from '@angular/material/menu';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SocialLoginModule,
+
+    LayoutModule,
     MainModule,
+    // TODO: Remove CoreModule from imports
     CoreModule,
+    // TODO: Remove SharedModule from imports
     SharedModule,
     MaterialModule,
     MatMenuModule,
@@ -50,9 +83,16 @@ import {MatMenuModule} from '@angular/material/menu';
     MatGoogleMapsAutocompleteModule.forRoot(),
   ],
   providers: [
+    ...APP_PROVIDERS,
+
+    // TODO: remove ApiService from providers
     ApiService,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    // TODO: filter mdi.svg to contains just needed icons
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
+  }
 }

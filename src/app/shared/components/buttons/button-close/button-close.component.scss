@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  button, button:focus, button:active, button:hover {
+    padding-right: 0;
+    min-width: auto;
+    line-height: unset;
+    box-shadow: none!important;
+    background: transparent !important;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+}

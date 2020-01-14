@@ -1,9 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 
 const routes: Routes = [
   // <TODO> change to normal routing after homepage's created
+  {
+    path: 'terms',
+    loadChildren: () => import('./modules/terms').then(m => m.TermsModule)
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./modules/privacy').then(m => m.PrivacyModule)
+  },
   {
     path: '',
     redirectTo: 'main/search',
@@ -24,4 +32,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

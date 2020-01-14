@@ -1,15 +1,14 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatToolbarModule,
-  MatInputModule,
-  MatProgressSpinnerModule,
-  MatMenuModule,
+  MatGridListModule,
   MatIconModule,
-  MatGridListModule
+  MatInputModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatToolbarModule
 } from '@angular/material';
 
 
