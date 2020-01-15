@@ -1,0 +1,96 @@
+@import "../../../assets/scss/variables";
+
+.wrap-toolbar-component {
+  width: 100%;
+  background-color: $main-blue;
+  color: $white-font-color;
+  max-height: 6rem;
+}
+
+.logo {
+  width: 100%;
+
+  img {
+    width: 12rem;
+    height: 2rem;
+    margin: 2rem;
+  }
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field {
+  width: 40rem;
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+.search-autocomplete {
+  background: rgba($white-font-color, 0.8);
+  color: $dark-text-color;
+  width: 45rem;
+  line-height: 4rem;
+  height: 4rem;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 0.4rem;
+
+  input {
+    font-size: $small-fontsize;
+    width: 100%;
+  }
+}
+
+@media (min-width: $device-xl) {
+  ::ng-deep .search-autocomplete {
+    min-width: 60rem;
+  }
+}
+
+@media (min-width: $device-lg) {
+  .toolbar-component-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: $device-md) {
+  .toolbar-component-container {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: $device-sm) {
+  .toolbar-component-container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: $device-xs) {
+  .wrap-toolbar-component {
+    height: 5.6rem;
+  }
+
+  .toolbar-component-container {
+    max-width: 540px;
+  }
+
+  .logo img {
+    margin: 1.4rem;
+  }
+
+  .search-autocomplete {
+    width: 25rem;
+  }
+}
+
+.toolbar-component-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}

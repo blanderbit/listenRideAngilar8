@@ -3,10 +3,13 @@ import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatMenuModule,
+  MatDividerModule,
+  MatSidenavModule,
+  MatListModule,
+  MatGridListModule,
   MatProgressSpinnerModule,
   MatToolbarModule
 } from '@angular/material';
@@ -20,7 +23,10 @@ import {
     MatInputModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatSidenavModule,
     MatGridListModule,
+    MatDividerModule,
+    MatListModule,
     MatIconModule
   ],
   exports: [
@@ -31,6 +37,9 @@ import {
     MatProgressSpinnerModule,
     MatMenuModule,
     MatGridListModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule,
     MatIconModule
   ]
 })

@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import * as SearchActions from './search/store/search.actions';
-import {Store} from '@ngrx/store';
-import {SearchModel} from './search/search.types';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
 
@@ -11,11 +8,8 @@ import {MatIconRegistry} from '@angular/material';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public appearance = 'outline';
-  public isLoggedIn = false;
 
-  constructor(private store: Store<SearchModel>,
-              private matIconRegistry: MatIconRegistry,
+  constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
 
     this.matIconRegistry.addSvgIcon(
@@ -32,15 +26,10 @@ export class MainComponent implements OnInit {
       'lnr-sort',
       this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/sort_icon.svg')
     );
-
   }
 
   ngOnInit() {
 
-  }
-
-  onAutocompleteSelected(selection) {
-    this.store.dispatch(SearchActions.StartGetBikes({location: selection.formatted_address}));
   }
 
 }

@@ -6,16 +6,21 @@ import {MainComponent} from './main.component';
 import {StoreModule} from '@ngrx/store';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {TopMenuComponent} from './top-menu/top-menu.component';
+import {MaterialModule} from '../material.module';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+import {FormsModule} from '@angular/forms';
 import {AuthModule} from '@core/modules/auth/auth.module';
 
 @NgModule({
-  declarations: [MainComponent, TopMenuComponent],
+  declarations: [MainComponent, TopMenuComponent, ToolbarComponent],
   imports: [
     CommonModule,
     AuthModule,
     MainRoutingModule,
+    MaterialModule,
     StoreModule.forFeature('main', {}),
-    MatGoogleMapsAutocompleteModule
+    MatGoogleMapsAutocompleteModule,
+    FormsModule
   ],
   exports: [],
 })

@@ -72,8 +72,16 @@ h6 {
   font-weight: 700;
 }
 
+.t-align-center {
+  text-align: center;
+}
+
 .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.white {
+  color: $white-font-color;
 }

@@ -7,6 +7,10 @@
   flex-flow: row wrap;
 }
 
+.row-no-wrap {
+  flex-wrap: nowrap;
+}
+
 .direction-row {
   flex-direction: row;
 }
