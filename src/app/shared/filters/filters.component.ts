@@ -57,29 +57,56 @@ export class FiltersComponent implements OnInit {
     }
   ];
   public typeList = [{
-    text: 'Urban',
-    value: 10,
+    type: 'Urban',
+    categories: [
+      {
+        text: 'City Bike',
+        value: 10,
+      },
+      {
+        text: 'Dutch Bike',
+        value: 11,
+      },
+      {
+        text: 'Single Speed Bike',
+        value: 12,
+      },
+    ]
   },
-    {
-      text: 'E-bike',
-      value: 20,
-    },
-    {
-      text: 'Road',
-      value: 30
-    },
-    {
-      text: 'All-terrain',
-      value: 40
-    },
-    {
-      text: 'Cargo',
-      value: 40
-    },
-    {
-      text: 'Kids',
-      value: 40
-    }];
+  {
+    type: 'E-bike',
+    categories: [
+      {
+        text: 'E-City Bike',
+        value: 20,
+      },
+      {
+        text: 'E-Touring Bike',
+        value: 21,
+      },
+      {
+        text: 'E-Cargo Bike',
+        value: 22,
+      },
+      {
+        text: 'E-Mountain Bike',
+        value: 23,
+      },
+      {
+        text: 'E-Road Bike',
+        value: 24,
+      },
+      {
+        text: 'E-Folding Bike',
+        value: 25,
+      },
+      {
+        text: 'E-Scooter',
+        value: 26,
+      },
+    ]
+  },
+  ];
 
   public brandList = [
     {

@@ -12,7 +12,7 @@ import {
 } from './search.actions';
 import {Store} from '@ngrx/store';
 import {SearchModel} from '../search.types';
-import {getBikes, getSearchState} from './index';
+import {getBikes, getFilteredBikes, getSearchState} from './index';
 
 @Injectable()
 export class SearchEffects {
@@ -28,6 +28,7 @@ export class SearchEffects {
             if (results.bikes) {
               results.bikesMap = {};
               results.bikes.forEach(bike => results.bikesMap[bike.id] = bike);
+              results.filteredBikes = results.bikes;
             }
             return [
               SuccessGetBikes(results),
@@ -44,7 +45,7 @@ export class SearchEffects {
   getBikesPage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GetBikesPage),
-      withLatestFrom(this.store.select(getBikes)),
+      withLatestFrom(this.store.select(getFilteredBikes)),
       map(([action, bikes]) => {
           return GetBikesPageSuccess({bikes: bikes.slice(action.offset, action.limit)});
       }

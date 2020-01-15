@@ -6,7 +6,9 @@ export const selectAuthState =
 
 export const isLoggedIn = createSelector(
   selectAuthState,
-  auth => !!JSON.parse(localStorage.getItem('tokens'))
+ auth => !!auth.tokens
+ // auth => !!JSON.parse(localStorage.getItem('tokens'))
+
 );
 
 export const isLoggedOut = createSelector(

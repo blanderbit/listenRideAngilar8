@@ -39,8 +39,8 @@
         <mat-form-field appearance="outline">
           <mat-label>Type</mat-label>
           <mat-select placeholder="Type" formControlName="type" multiple>
-            <mat-optgroup class="category" *ngFor="let type of typeList" [label] = "type.text">
-              <mat-option *ngFor="let type of typeList" [value]="type.value">{{type.text}}</mat-option>
+            <mat-optgroup class="category" *ngFor="let type of typeList" [label] = "type.type">
+              <mat-option *ngFor="let category of type.categories" [value]="category.value">{{category.text}}</mat-option>
             </mat-optgroup>
           </mat-select>
         </mat-form-field>
