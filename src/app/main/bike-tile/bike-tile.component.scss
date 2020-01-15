@@ -72,6 +72,21 @@
   }
 }
 
+.mobile-map-bike-tile {
+  background-color: white;
+  position: relative;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  img {
+    max-height: 18rem;
+    object-fit: cover;
+  }
+}
+
+
 @media screen and (max-width: $device-sm) {
   .bike-tile {
     flex-direction: row;

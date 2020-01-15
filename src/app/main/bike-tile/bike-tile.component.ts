@@ -16,6 +16,7 @@ export class BikeTileComponent implements OnInit {
   @Input() bikeHeight = '';
   @Input() amount = 0;
   @Input() clusterParams = {};
+  @Input() isMobileMap = false;
 
   constructor() {
   }
