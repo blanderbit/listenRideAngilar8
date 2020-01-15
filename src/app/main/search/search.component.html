@@ -27,17 +27,16 @@
         [brand]="ride.brand"
         [bikeName]="ride.name"
         [image]="ride.image_file"
-        [size]="ride.size"
-        [price]="ride.price_from"
-        [rating]="ride.rating_average"
+        [size]="ride.pretty_size"
+        [price]="ride.daily_price"
+        [weeklyPrice]="ride.weekly_price"
+        [ratingAverage]="ride.rating_average"
+        [rating]="ride.ratings_total"
         [distance]="ride.distance"
         [clusterParams]="ride.cluster"
         [amount]="ride.cluster ? ride.cluster.variations.length : null"
       ></app-bike-tile>
     </div>
-
-    <!--    TODO add bike height-->
-    <!--    [bikeHeight]="ride.cluster.sizes.size"-->
   </div>
 </div>
 
@@ -60,8 +59,10 @@
             [bikeName]="bike.name"
             [image]="bike.image_file"
             [size]="bike.size"
-            [price]="bike.price_from"
-            [rating]="bike.rating_average"
+            [price]="bike.daily_price"
+            [weeklyPrice]="bike.weekly_price"
+            [ratingAverage]="bike.rating_average"
+            [rating]="bike.ratings_total"
             [distance]="bike.distance"
             [clusterParams]="bike.cluster"
             [amount]="bike.cluster ? bike.cluster.variations.length : null"
