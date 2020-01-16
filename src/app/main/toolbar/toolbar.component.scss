@@ -22,7 +22,6 @@
 }
 
 ::ng-deep .mat-form-field {
-  width: 40rem;
 
   .mat-form-field-wrapper {
     padding-bottom: 0;
@@ -42,6 +41,12 @@
   input {
     font-size: $small-fontsize;
     width: 100%;
+    background: transparent;
+    border: none;
+
+    &:focus, &:active {
+      border: none;
+    }
   }
 }
 
@@ -93,4 +98,11 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (min-width: $device-xs) and (max-width: $device-sm) {
+  .search-autocomplete {
+    width: 35rem;
+    margin: 1.2rem;
+  }
 }

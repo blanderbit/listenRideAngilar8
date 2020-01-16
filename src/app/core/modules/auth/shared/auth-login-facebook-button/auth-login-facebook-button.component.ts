@@ -1,11 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'lnr-auth-login-facebook-button',
+  selector: 'app-lnr-auth-login-facebook-button',
   templateUrl: './auth-login-facebook-button.component.html',
   styleUrls: ['../button.scss', './auth-login-facebook-button.component.scss']
 })
