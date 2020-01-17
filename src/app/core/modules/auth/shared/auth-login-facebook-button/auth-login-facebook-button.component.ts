@@ -4,7 +4,7 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-lnr-auth-login-facebook-button',
+  selector: 'lnr-auth-login-facebook-button',
   templateUrl: './auth-login-facebook-button.component.html',
   styleUrls: ['../button.scss', './auth-login-facebook-button.component.scss']
 })
