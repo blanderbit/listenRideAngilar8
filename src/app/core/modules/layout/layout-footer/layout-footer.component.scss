@@ -1,0 +1,12 @@
+@import "../../../../../assets/scss/variables";
+
+.lnr-footer {
+  background: $dark-background;
+
+  .lnr-link {
+    a {
+      color: $white-font-color;
+      height: 2.4rem;
+    }
+  }
+}

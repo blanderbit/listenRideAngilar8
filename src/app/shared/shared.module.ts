@@ -16,6 +16,8 @@ import {AutofocusDirective} from './directives/autofocus.directive';
 import {FocusFirstInvalidFieldDirective} from './directives/focus-first-invalid-field.directive';
 import {MaterialModule} from './modules/material/material.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
+import { SocialMediaImgComponent } from './components/social-media-img/social-media-img.component';
+import { SubscribeInputComponent } from './components/subscribe-input/subscribe-input.component';
 
 const components = [
   FiltersComponent,
@@ -49,7 +51,9 @@ const directives = [
     ...formControls,
     ...buttons,
     ...links,
-    ...directives
+    ...directives,
+    SocialMediaImgComponent,
+    SubscribeInputComponent
   ],
   imports: [
     CommonModule,
@@ -72,6 +76,8 @@ const directives = [
     SatDatepickerModule,
     SatNativeDateModule,
     MaterialModule,
+    SocialMediaImgComponent,
+    SubscribeInputComponent,
   ],
   entryComponents: []
 })
