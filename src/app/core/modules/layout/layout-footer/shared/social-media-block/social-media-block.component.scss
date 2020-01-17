@@ -1,0 +1,8 @@
+@import "../../../../../../../assets/scss/variables";
+
+.social-media-block {
+  &_title {
+    font-size: $small-fontsize;
+    color: $light-grey-font;
+  }
+}

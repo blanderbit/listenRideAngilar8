@@ -1,0 +1,9 @@
+@import "../../../../../../../assets/scss/variables";
+
+.footer-partners-block {
+  &_title {
+    color: $light-grey-font;
+    font-size: $small-fontsize;
+    margin: 0 0 0 -1.6rem;
+  }
+}
