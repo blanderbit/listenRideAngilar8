@@ -1,0 +1,11 @@
+<div class="select-languages">
+  <mat-form-field>
+    <mat-label>Select Languages</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let language of languages"
+                  [value]="language.value">
+        {{language.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

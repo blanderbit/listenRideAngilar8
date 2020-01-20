@@ -1,38 +1,61 @@
-<footer class="lnr-footer">
+<footer class="lnr-footer p-t-1 p-b-1">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-2">
+    <div class="lnr-footer_wrap row flex direction-row content-between">
+      <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Listnride'" [links]="links.listnride"></lnr-link-list>
       </div>
-      <div class="col-sm-2">
+      <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Learn more'" [links]="links.learnMore"></lnr-link-list>
       </div>
-      <div class="col-sm-2">
+      <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Top countries'" [links]="links.topCountries"></lnr-link-list>
       </div>
-      <div class="col-sm-2">
+      <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Legal'" [links]="links.legal"></lnr-link-list>
       </div>
-      <div class="col-sm-2">
+      <div class="lnr-footer_partner-block">
         <lnr-insurance-partners [title]="'Insurance Partner'"></lnr-insurance-partners>
         <lnr-social-media-block></lnr-social-media-block>
       </div>
-      <div class="col-sm-2">
+      <div class="lnr-footer_subscribe-form">
+        <h3 class="white thin">
+          Subscribe to our newsletter
+        </h3>
         <lnr-subscribe-input></lnr-subscribe-input>
+        <div class="lnr-footer_recapcha m-t-1 flex direction-row align-items-center">
+          <span>Protected by reCAPTCHA:</span>
+          <a class="text-decoration-none"
+             href="https://www.google.com/intl/uk/policies/privacy/"
+             target="_blank">
+            Privacy
+          </a>
+          <span>&</span>
+          <a class="text-decoration-none"
+             href="https://www.google.com/intl/uk/policies/terms/"
+             target="_blank">
+            Terms
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row m-t-2 m-b-2">
       <div class="col-sm-12">
         <mat-divider></mat-divider>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-6"></div>
-      <div class="col-sm-6"></div>
+    <div class="lnr-footer_bottom-block flex direction-row content-between">
+      <div class="flex align-items-center direction-row">
+        <img src="../../../../../assets/images/logos/mini-logo.svg"
+             alt="listnride"
+             class="m-r-1">
+        <span class="white">© 2020 <a>List and Ride GmbH.</a></span>
+      </div>
+      <div class="">
+        <lnr-select-languages></lnr-select-languages>
+      </div>
     </div>
-
   </div>
 </footer>
 
