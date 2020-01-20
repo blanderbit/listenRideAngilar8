@@ -1,5 +1,5 @@
 <div class="lnr-checkbox" [formGroup]="parentForm" *ngIf="parentFormGroupName">
-  <div class="lnr-d-flex" [formGroupName]="parentFormGroupName">
+  <div class="flex" [formGroupName]="parentFormGroupName">
     <mat-checkbox [formControlName]="parentFormControlName"></mat-checkbox>
     <p>
       <small> I hereby agree to the
@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div class="lnr-checkbox lnr-d-flex" [formGroup]="parentForm" *ngIf="!parentFormGroupName">
+<div class="lnr-checkbox flex" [formGroup]="parentForm" *ngIf="!parentFormGroupName">
   <mat-checkbox [formControlName]="parentFormControlName"></mat-checkbox>
   <p>
     <small> I hereby agree to the

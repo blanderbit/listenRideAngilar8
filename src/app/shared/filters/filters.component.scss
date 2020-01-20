@@ -1,8 +1,8 @@
 @import "../../../assets/scss/variables";
 
 ::ng-deep .category {
-  outline: 1px solid black;
-  background: black;
+  outline: 0.1rem solid $black;
+  background: $black;
 }
 
 :host {
@@ -11,7 +11,7 @@
   width: 100%;
   margin-top: 1rem;
 
-  @media screen and (max-width: $device-xs) {
+  @media (max-width: $device-xs) {
     position: fixed;
     z-index: 100;
     top: 0;
@@ -20,14 +20,14 @@
     padding: 1rem 0;
     border-radius: 0 0 12px 12px;
     box-shadow: 29px 23px 50px rgba(86, 89, 96, 0.76);
-    background-color: #fff;
+    background-color: $white-font-color;
     width: 100%;
   }
 
   .filters-toolbar {
     display: none;
 
-    @media screen and (max-width: $device-xs) {
+    @media (max-width: $device-xs) {
       display: flex;
     }
 
@@ -48,7 +48,7 @@
       margin: auto 1rem;
     }
 
-    @media screen and (max-width: $device-xs) {
+    @media (max-width: $device-xs) {
       display: flex;
     }
   }
@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: row;
 
-    @media screen and (max-width: $device-xs) {
+    @media (max-width: $device-xs) {
       flex-direction: column;
       margin-top: 1.5rem;
 
@@ -76,7 +76,7 @@
         padding: 1rem 0 1rem 0;
       }
 
-      @media screen and (max-width: $device-xs) {
+      @media (max-width: $device-xs) {
         flex: 1;
         margin: auto 1rem;
         border-bottom: 1px solid #ccc;
@@ -98,28 +98,19 @@
     }
 
     .sorting-filter {
-      @media screen and (max-width: $device-xs) {
+      @media (max-width: $device-xs) {
         display: none;
       }
     }
+
     .btn-clear-filters {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 19px;
-      text-align: center;
-      border: 1px solid #FF6E5A;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-      margin-top: 0.4rem;
-      height: 42px;
-      padding-top: 10px;
+      color: $error-color;
 
       mat-icon {
         margin-top: -10px;
       }
 
-      @media screen and (max-width: $device-xs) {
+      @media (max-width: $device-xs) {
         display: none;
       }
     }
