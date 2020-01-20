@@ -1,4 +1,4 @@
-<div class="lnr-dialog-header lnr-text-align-ctr">
+<div class="lnr-dialog-header t-align-center">
   <h2 mat-dialog-title>Log in</h2>
   <lnr-button-close (closed)="onClose()"></lnr-button-close>
 </div>
@@ -11,11 +11,11 @@
       <lnr-http-error-message [error]="error"></lnr-http-error-message>
     </mat-error>
 
-    <lnr-auth-login-facebook-button class="lnr-w-100 lnr-mrg-btm"></lnr-auth-login-facebook-button>
+    <lnr-auth-login-facebook-button class="w-p-100 m-b-2"></lnr-auth-login-facebook-button>
 
-    <lnr-divider class="lnr-mrg-btm" text="or"></lnr-divider>
+    <lnr-divider class="m-b-2" text="or"></lnr-divider>
 
-    <mat-form-field appearance="outline" class="lnr-w-100">
+    <mat-form-field appearance="outline" class="w-p-100">
       <mat-label>Email</mat-label>
       <input formControlName="email"
              type="email"
@@ -32,7 +32,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="lnr-w-100">
+    <mat-form-field appearance="outline" class="w-p-100">
       <mat-label>Password</mat-label>
       <input formControlName="password"
              type="password"
@@ -45,7 +45,7 @@
 
   </mat-dialog-content>
 
-  <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
+  <mat-dialog-actions class="flex justify-content-between">
 
     <lnr-auth-forgot-password-button></lnr-auth-forgot-password-button>
 

@@ -1,0 +1,20 @@
+$sizes: (0, 4, 8, 16, 32, 64, 100);
+
+@each $size in $sizes {
+  .w-#{$size} {
+    width: #{$size}rem;
+  }
+
+  .w-p-#{$size} {
+    width: percentage($size / 100);
+  }
+
+  .h-p-#{$size} {
+    height: percentage($size / 100);
+  }
+
+  .h-#{$size}-px {
+    height: #{$size}px;
+  }
+
+}

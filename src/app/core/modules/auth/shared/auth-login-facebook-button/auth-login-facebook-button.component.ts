@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
