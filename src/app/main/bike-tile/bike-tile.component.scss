@@ -73,28 +73,11 @@
   }
 }
 
-.mobile-map-bike-tile {
-  background-color: white;
-  position: relative;
-  height: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-
-  &_wrap-img {
-    img {
-      max-height: 18rem;
-      object-fit: cover;
-    }
-  }
-}
-
 @media (min-width: $device-sm) {
   .bike-tile {
     &_wrap-img {
       width: 100%;
       position: relative;
-      border-radius: 4px;
 
       &::before {
         content: "";
@@ -110,6 +93,8 @@
         top: 0;
         left: 0;
         position: absolute;
+        border-top-left-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
       }
     }
   }
@@ -121,6 +106,7 @@
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    max-height: 13rem;
 
     .bike-available {
       top: 0.2rem;
@@ -156,13 +142,16 @@
     }
 
     .bike-tile {
-      width: 40%;
-
       &_wrap-img {
+        width: 40%;
+
         img {
           width: 100%;
-          max-width: 19rem;
           height: 100%;
+          max-width: 19rem;
+          border-top-left-radius: 0.4rem;
+          border-top-right-radius: 0;
+          border-bottom-left-radius: 0.4rem;
         }
       }
     }
@@ -173,7 +162,7 @@
 
 @media (min-width: $device-lg) {
   .bike-tile_map-view.bike-tile {
-    width: 24rem;
+    width: 22rem;
 
     &_wrap-img {
       height: 12rem;

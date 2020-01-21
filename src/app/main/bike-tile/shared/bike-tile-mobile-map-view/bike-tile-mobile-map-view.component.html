@@ -1,15 +1,10 @@
-<div class="bike-tile text-decoration-none flex direction-column"
-     [ngClass]="{'bike-tile_map-view': isMapView}"
-     *ngIf="!isMobileMap; else mobileBikeTemplate">
+<div class="bike-tile-map-view">
   <div class="bike-tile_wrap-img">
     <img src="{{image}}"
          alt=""
     />
   </div>
   <div class="bike-info">
-    <div *ngIf="clusterParams" class="bike-available regular">
-      {{amount}} Variants available
-    </div>
     <div class="flex justify-content-between">
       <div class="bike-info_content flex direction-column">
         <span class="bike-info_brand text-ellipsis medium">{{brand}}</span>
@@ -59,17 +54,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #mobileBikeTemplate>
-  <lnr-bike-tile-mobile-map-view
-    [image]="image"
-    [brand]="brand"
-    [bikeName]="bikeName"
-    [price]="price"
-    [weeklyPrice]="weeklyPrice"
-    [rating]="rating"
-    [ratingAverage]="ratingAverage"
-    [size]="size"
-  >
-  </lnr-bike-tile-mobile-map-view>
-</ng-template>

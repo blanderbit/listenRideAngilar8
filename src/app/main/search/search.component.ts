@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   public pins;
   public mapToggle = false;
   public showFilter = false;
-  public isMobile = false;
+  public isTablet = false;
   public scrolled = false;
 
   public location: Location = mapDefaultOptions;
@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
     this.store.dispatch(SearchActions.StartGetBikes({location: 'berlin'}));
-    this.isMobile = this.deviceService.isMobile();
+    this.isTablet = this.deviceService.isTablet();
 
     this.store.pipe(
       select(getBikes),

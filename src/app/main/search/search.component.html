@@ -1,77 +1,80 @@
-<div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isMobile"
-     (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
-  <div *ngIf="isMobile" class="mobile-toolbar" [class.scrolled]="scrolled">
-    <div class="toggle toggle-filters" (click)="toggleFilters()">
-      <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
-      <span>Filters</span>
-    </div>
-    <div class="toggle toggle-sorting" (click)="toggleFilters()">
-      <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
-    </div>
+<div class="wrap-search-page-layout">
+  <div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isTablet"
+       (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
+    <div *ngIf="isTablet" class="mobile-toolbar" [class.scrolled]="scrolled">
+      <div class="toggle toggle-filters" (click)="toggleFilters()">
+        <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
+        <span>Filters</span>
+      </div>
+      <div class="toggle toggle-sorting" (click)="toggleFilters()">
+        <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
+      </div>
 
-    <div class="toggle toggle-map" (click)="toggleMap()">
-      <mat-icon *ngIf="!mapToggle" aria-hidden="false" aria-label="toggle icon">map</mat-icon>
-      <mat-icon *ngIf="mapToggle" aria-hidden="false" aria-label="toggle icon">list</mat-icon>
-      <span *ngIf="!mapToggle">Map</span>
-      <span *ngIf="mapToggle">List</span>
+      <div class="toggle toggle-map" (click)="toggleMap()">
+        <mat-icon *ngIf="!mapToggle" aria-hidden="false" aria-label="toggle icon">map</mat-icon>
+        <mat-icon *ngIf="mapToggle" aria-hidden="false" aria-label="toggle icon">list</mat-icon>
+        <span *ngIf="!mapToggle">Map</span>
+        <span *ngIf="mapToggle">List</span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <app-filters *ngIf="!isTablet || isTablet && showFilter"></app-filters>
+      <div *ngIf="!isTablet || isTablet && !mapToggle" class="bikes-to-rent">
+        Bikes to rent in {{location.city}} {{bikes.length}}</div>
+    </div>
+    <div *ngIf="!isTablet || isTablet && !mapToggle" class="flex row direction-row row-wrap m-1">
+      <div *ngFor="let ride of displayBikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
+        <app-bike-tile
+          [brand]="ride.brand"
+          [bikeName]="ride.name"
+          [image]="ride.image_file"
+          [size]="ride.pretty_size"
+          [price]="ride.daily_price"
+          [weeklyPrice]="ride.weekly_price"
+          [ratingAverage]="ride.rating_average"
+          [rating]="ride.ratings_total"
+          [distance]="ride.distance"
+          [clusterParams]="ride.cluster"
+          [amount]="ride.cluster ? ride.cluster.variations.length : null"
+        ></app-bike-tile>
+      </div>
     </div>
   </div>
-  <div class="toolbar">
-    <app-filters *ngIf="!isMobile || isMobile && showFilter"></app-filters>
-    <div *ngIf="!isMobile || isMobile && !mapToggle" class="bikes-to-rent">
-      Bikes to rent in {{location.city}} {{bikes.length}}</div>
+
+  <div *ngIf="!isTablet || isTablet && mapToggle" class="map-container">
+    <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15" [styles]="mapStyles">
+      <agm-marker-cluster [minimumClusterSize]="2" [styles]="clusterStyles">
+        <agm-marker *ngFor="let bike of bikes"
+                    [latitude]="bike.lat_rnd"
+                    [longitude]="bike.lng_rnd"
+                    [iconUrl]="{url:'./assets/ui_icons/map/pin_map_white.png', anchor: {x: 28, y: 56},labelOrigin: {x: 28, y: 22}}"
+                    [label]="{text: bike.price + '€', color: '#599EFF', fontSize: '13px', fontWeight: 'bold'}"
+        >
+          <agm-info-window
+            [isOpen]=false
+            [latitude]="bike.lat_rnd"
+            [longitude]="bike.lng_rnd">
+
+            <app-bike-tile
+              [brand]="bike.brand"
+              [bikeName]="bike.name"
+              [image]="bike.image_file"
+              [size]="bike.size"
+              [price]="bike.daily_price"
+              [weeklyPrice]="bike.weekly_price"
+              [ratingAverage]="bike.rating_average"
+              [rating]="bike.ratings_total"
+              [distance]="bike.distance"
+              [clusterParams]="bike.cluster"
+              [amount]="bike.cluster ? bike.cluster.variations.length : null"
+              [isMobileMap]="isTablet"
+              [isMapView]="true"
+            ></app-bike-tile>
+          </agm-info-window>
+
+        </agm-marker>
+      </agm-marker-cluster>
+    </agm-map>
   </div>
-  <div *ngIf="!isMobile || isMobile && !mapToggle" class="flex row direction-row row-wrap m-1">
-    <div *ngFor="let ride of displayBikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
-      <app-bike-tile
-        [brand]="ride.brand"
-        [bikeName]="ride.name"
-        [image]="ride.image_file"
-        [size]="ride.pretty_size"
-        [price]="ride.daily_price"
-        [weeklyPrice]="ride.weekly_price"
-        [ratingAverage]="ride.rating_average"
-        [rating]="ride.ratings_total"
-        [distance]="ride.distance"
-        [clusterParams]="ride.cluster"
-        [amount]="ride.cluster ? ride.cluster.variations.length : null"
-      ></app-bike-tile>
-    </div>
-  </div>
-</div>
 
-<div *ngIf="!isMobile || isMobile && mapToggle" class="map-container">
-  <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15" [styles]="mapStyles">
-    <agm-marker-cluster [minimumClusterSize]="2" [styles]="clusterStyles">
-      <agm-marker *ngFor="let bike of bikes"
-                  [latitude]="bike.lat_rnd"
-                  [longitude]="bike.lng_rnd"
-                  [iconUrl]="{url:'./assets/ui_icons/map/pin_map_white.png', anchor: {x: 28, y: 56},labelOrigin: {x: 28, y: 22}}"
-                  [label]="{text: bike.price + '€', color: '#599EFF', fontSize: '13px', fontWeight: 'bold'}"
-      >
-        <agm-info-window
-          [isOpen]=false
-          [latitude]="bike.lat_rnd"
-          [longitude]="bike.lng_rnd">
-
-          <app-bike-tile
-            [brand]="bike.brand"
-            [bikeName]="bike.name"
-            [image]="bike.image_file"
-            [size]="bike.size"
-            [price]="bike.daily_price"
-            [weeklyPrice]="bike.weekly_price"
-            [ratingAverage]="bike.rating_average"
-            [rating]="bike.ratings_total"
-            [distance]="bike.distance"
-            [clusterParams]="bike.cluster"
-            [amount]="bike.cluster ? bike.cluster.variations.length : null"
-            [isMobileMap]="isMobile"
-            [isMapView]="true"
-          ></app-bike-tile>
-        </agm-info-window>
-
-      </agm-marker>
-    </agm-marker-cluster>
-  </agm-map>
 </div>
