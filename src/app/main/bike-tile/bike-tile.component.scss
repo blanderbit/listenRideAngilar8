@@ -9,6 +9,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 100%;
+  cursor: pointer;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
@@ -70,14 +71,6 @@
       display: none;
     }
   }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-  }
 }
 
 .mobile-map-bike-tile {
@@ -88,14 +81,41 @@
   margin-bottom: 1rem;
   width: 100%;
 
-  img {
-    max-height: 18rem;
-    object-fit: cover;
+  &_wrap-img {
+    img {
+      max-height: 18rem;
+      object-fit: cover;
+    }
   }
 }
 
+@media (min-width: $device-sm) {
+  .bike-tile {
+    &_wrap-img {
+      width: 100%;
+      position: relative;
+      border-radius: 4px;
 
-@media screen and (max-width: $device-sm) {
+      &::before {
+        content: "";
+        display: block;
+        padding-top: 66.667%;
+        float: left;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+    }
+  }
+}
+
+@media (max-width: $device-sm) {
   .bike-tile {
     flex-direction: row;
     width: 100%;
@@ -135,9 +155,28 @@
       }
     }
 
-    img {
+    .bike-tile {
       width: 40%;
-      height: auto;
+
+      &_wrap-img {
+        img {
+          width: 100%;
+          max-width: 19rem;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+//Styles for bike tiles on map
+
+@media (min-width: $device-lg) {
+  .bike-tile_map-view.bike-tile {
+    width: 24rem;
+
+    &_wrap-img {
+      height: 12rem;
     }
   }
 }

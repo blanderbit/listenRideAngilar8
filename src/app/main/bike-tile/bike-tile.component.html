@@ -1,7 +1,11 @@
-<div class="bike-tile flex direction-column" *ngIf="!isMobileMap; else mobileBikeTemplate">
-  <img src="{{image}}"
-       alt=""
-  />
+<div class="bike-tile text-decoration-none flex direction-column"
+     [ngClass]="{'bike-tile_map-view': isMapView}"
+     *ngIf="!isMobileMap; else mobileBikeTemplate">
+  <div class="bike-tile_wrap-img">
+    <img src="{{image}}"
+         alt=""
+    />
+  </div>
   <div class="bike-info">
     <div *ngIf="clusterParams" class="bike-available regular">
       {{amount}} Variants available
@@ -73,5 +77,4 @@
       </div>
     </div>
   </div>
-
 </ng-template>
