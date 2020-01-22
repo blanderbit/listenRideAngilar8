@@ -1,0 +1,101 @@
+@import "../../../../../assets/scss/variables";
+
+.bike-tile-map-view {
+  background-color: white;
+  position: relative;
+  border: 0.1rem solid $light-grey;
+  border-radius: 0.4rem;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  cursor: pointer;
+
+  .bike-available {
+    background-color: rgba($grey-background, 0.8);
+    border-radius: 0.4rem;
+    padding: 0.4rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: $small-fontsize;
+    color: $white-font-color;
+  }
+
+  .mat-icon {
+    height: 1.8rem;
+  }
+
+  .bike-info {
+    padding: 0.8rem;
+
+    &_brand {
+      font-size: $h4-fontsize;
+      color: $dark-text-color;
+    }
+
+    &_name, &_price-week {
+      font-size: $small-fontsize;
+    }
+
+    &_size {
+      font-size: $small-fontsize;
+      color: $light-text-color;
+    }
+
+    &_rating {
+      font-size: $small-fontsize;
+      color: $light-text-color;
+      width: 8.4rem;
+    }
+
+    &_price {
+      width: 8.4rem;
+    }
+
+    &_content {
+      max-width: 70%;
+    }
+
+    &_price-day {
+      color: $main-blue;
+      font-size: $h4-fontsize;
+      white-space: nowrap;
+    }
+
+    &_price-week {
+      white-space: nowrap;
+    }
+
+    &_price-xs {
+      display: none;
+    }
+  }
+
+  img {
+    max-width: 30rem;
+  }
+}
+
+
+@media (max-width: $device-xs) {
+  .bike-tile-map-view {
+    img {
+      max-width: 20rem;
+    }
+
+    .bike-info {
+      &_brand, &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_name, &_price-week, &_size, &_rating {
+        font-size: $small-fontsize - 0.2rem;
+      }
+    }
+  }
+}

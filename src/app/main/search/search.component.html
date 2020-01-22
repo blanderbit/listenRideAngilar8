@@ -1,13 +1,14 @@
-<div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isMobile"
-     (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
-  <div *ngIf="isMobile" class="mobile-toolbar" [class.scrolled]="scrolled">
-    <div class="toggle toggle-filters" (click)="toggleFilters()">
-      <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
-      <span>Filters</span>
-    </div>
-    <div class="toggle toggle-sorting" (click)="toggleFilters()">
-      <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
-    </div>
+<div class="wrap-search-page-layout">
+  <div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isTablet"
+       (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
+    <div *ngIf="isTablet" class="mobile-toolbar" [class.scrolled]="scrolled">
+      <div class="toggle toggle-filters" (click)="toggleFilters()">
+        <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
+        <span>Filters</span>
+      </div>
+      <div class="toggle toggle-sorting" (click)="toggleFilters()">
+        <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
+      </div>
 
     <div class="toggle toggle-map" (click)="toggleMap()">
       <mat-icon *ngIf="!mapToggle" aria-hidden="false" aria-label="toggle icon">map</mat-icon>
@@ -17,11 +18,11 @@
     </div>
   </div>
   <div class="toolbar">
-    <lnr-filters *ngIf="!isMobile || isMobile && showFilter"></lnr-filters>
-    <div *ngIf="!isMobile || isMobile && !mapToggle" class="bikes-to-rent">
+    <lnr-filters *ngIf="!isTablet || isTablet && showFilter"></lnr-filters>
+    <div *ngIf="!isTablet || isTablet && !mapToggle" class="bikes-to-rent">
       Bikes to rent in {{location.city}} {{bikes.length}}</div>
   </div>
-  <div *ngIf="!isMobile || isMobile && !mapToggle" class="flex row direction-row row-wrap m-1">
+  <div *ngIf="!isTablet || isTablet && !mapToggle" class="flex row direction-row row-wrap m-1">
     <div *ngFor="let ride of displayBikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
       <lnr-bike-tile
         [brand]="ride.brand"
@@ -40,7 +41,7 @@
   </div>
 </div>
 
-<div *ngIf="!isMobile || isMobile && mapToggle" class="map-container">
+<div *ngIf="!isTablet || isTablet && mapToggle" class="map-container">
   <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15" [styles]="mapStyles">
     <agm-marker-cluster [minimumClusterSize]="2" [styles]="clusterStyles">
       <agm-marker *ngFor="let bike of bikes"
@@ -66,11 +67,13 @@
             [distance]="bike.distance"
             [clusterParams]="bike.cluster"
             [amount]="bike.cluster ? bike.cluster.variations.length : null"
-            [isMobileMap]="isMobile"
+            [isMobileMap]="isTablet"
+            [isMapView]="true"
           ></lnr-bike-tile>
         </agm-info-window>
 
-      </agm-marker>
-    </agm-marker-cluster>
-  </agm-map>
+        </agm-marker>
+      </agm-marker-cluster>
+    </agm-map>
+  </div>
 </div>

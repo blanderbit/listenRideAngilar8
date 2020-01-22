@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'lnr-bike-tile',
-  templateUrl: './bike-tile.component.html',
-  styleUrls: ['./bike-tile.component.scss']
+  selector: 'lnr-bike-tile-mobile-map-view',
+  templateUrl: './bike-tile-mobile-map-view.component.html',
+  styleUrls: ['./bike-tile-mobile-map-view.component.scss']
 })
-export class BikeTileComponent implements OnInit {
+export class BikeTileMobileMapViewComponent implements OnInit {
   @Input() image = '';
   @Input() brand = '';
   @Input() bikeName = '';
@@ -16,9 +16,6 @@ export class BikeTileComponent implements OnInit {
   @Input() ratingAverage: number;
   @Input() distance = '';
   @Input() amount = 0;
-  @Input() clusterParams = {};
-  @Input() isMobileMap = false;
-  @Input() isMapView = false;
 
   constructor() {
   }

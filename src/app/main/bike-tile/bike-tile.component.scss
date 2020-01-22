@@ -9,6 +9,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 100%;
+  cursor: pointer;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
@@ -45,11 +46,11 @@
     &_rating {
       font-size: $small-fontsize;
       color: $light-text-color;
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_price {
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_content {
@@ -70,37 +71,42 @@
       display: none;
     }
   }
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
+@media (min-width: $device-sm) {
+  .bike-tile {
+    &_wrap-img {
+      width: 100%;
+      position: relative;
+
+      &::before {
+        content: "";
+        display: block;
+        padding-top: 67.667%;
+        float: left;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        position: absolute;
+        border-top-left-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
+      }
+    }
   }
 }
 
-.mobile-map-bike-tile {
-  background-color: white;
-  position: relative;
-  height: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-
-  img {
-    max-height: 18rem;
-    object-fit: cover;
-  }
-}
-
-
-@media screen and (max-width: $device-sm) {
+@media (max-width: $device-sm) {
   .bike-tile {
     flex-direction: row;
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    max-height: 13rem;
 
     .bike-available {
       top: 0.2rem;
@@ -135,9 +141,49 @@
       }
     }
 
-    img {
-      width: 40%;
-      height: auto;
+    .bike-tile {
+      &_wrap-img {
+        width: 40%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          max-width: 19rem;
+          border-top-left-radius: 0.4rem;
+          border-top-right-radius: 0;
+          border-bottom-left-radius: 0.4rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $device-tablet) and (max-width: $device-lg) {
+  .bike-tile {
+    .bike-info {
+      &_brand, &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_name, &_price-week, &_size, &_rating {
+        font-size: $small-fontsize - 0.2rem;
+      }
+    }
+  }
+}
+
+//Styles for bike tiles on map
+
+@media (min-width: $device-lg) {
+  .bike-tile_map-view.bike-tile {
+    width: 21rem;
+
+    &_wrap-img {
+      height: 12rem;
     }
   }
 }
