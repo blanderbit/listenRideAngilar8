@@ -5,6 +5,7 @@ import {AuthSignUpDialogComponent} from '@core/modules/auth/auth-sign-up/auth-si
 import {AuthLoginButtonComponent} from '@core/modules/auth/auth-login/auth-login-button/auth-login-button.component';
 import {AuthLoginFacebookButtonComponent} from '@core/modules/auth/shared/auth-login-facebook-button/auth-login-facebook-button.component';
 import {AuthLoginDialogComponent} from '@core/modules/auth/auth-login/auth-login-dialog/auth-login-dialog.component';
+// tslint:disable-next-line:max-line-length
 import {AuthForgotPasswordButtonComponent} from '@core/modules/auth/auth-forgot-password/auth-forgot-password-button/auth-forgot-password-button.component';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';

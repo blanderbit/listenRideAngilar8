@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-// import { FiltersComponent } from './filters/filters.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {FiltersComponent} from './filters/filters.component';
 import {DividerComponent} from './components/dividers/divider/divider.component';
 import {LoaderSpinnerSmallComponent} from './components/loader/loader-spinner-small/loader-spinner-small.component';
 import {HttpErrorMessageComponent} from './components/http-error-message/http-error-message.component';
+// tslint:disable-next-line:max-line-length
 import {CheckboxSubscribeToNewsletterComponent} from './components/form-controls/checkboxes/checkbox-subscribe-to-newsletter/checkbox-subscribe-to-newsletter.component';
+// tslint:disable-next-line:max-line-length
 import {CheckboxTermsAndConditionsComponent} from './components/form-controls/checkboxes/checkbox-terms-and-conditions/checkbox-terms-and-conditions.component';
 import {ButtonCloseComponent} from './components/buttons/button-close/button-close.component';
 import {LinkComponent} from './components/links/link/link.component';

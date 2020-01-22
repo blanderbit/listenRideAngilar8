@@ -10,7 +10,7 @@ import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '../../core/con
 import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
-  selector: 'app-search',
+  selector: 'lnr-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })

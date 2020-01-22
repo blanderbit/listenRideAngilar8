@@ -4,7 +4,7 @@ import {SearchModel} from '../search/search.types';
 import * as SearchActions from '../search/store/search.actions';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'lnr-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })

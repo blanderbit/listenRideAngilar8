@@ -7,7 +7,7 @@ import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicke
 import {getFilterToggle} from '../../main/search/store';
 
 @Component({
-  selector: 'app-filters',
+  selector: 'lnr-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })

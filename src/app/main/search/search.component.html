@@ -17,13 +17,13 @@
     </div>
   </div>
   <div class="toolbar">
-    <app-filters *ngIf="!isMobile || isMobile && showFilter"></app-filters>
+    <lnr-filters *ngIf="!isMobile || isMobile && showFilter"></lnr-filters>
     <div *ngIf="!isMobile || isMobile && !mapToggle" class="bikes-to-rent">
       Bikes to rent in {{location.city}} {{bikes.length}}</div>
   </div>
   <div *ngIf="!isMobile || isMobile && !mapToggle" class="flex row direction-row row-wrap m-1">
     <div *ngFor="let ride of displayBikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
-      <app-bike-tile
+      <lnr-bike-tile
         [brand]="ride.brand"
         [bikeName]="ride.name"
         [image]="ride.image_file"
@@ -35,7 +35,7 @@
         [distance]="ride.distance"
         [clusterParams]="ride.cluster"
         [amount]="ride.cluster ? ride.cluster.variations.length : null"
-      ></app-bike-tile>
+      ></lnr-bike-tile>
     </div>
   </div>
 </div>
@@ -54,7 +54,7 @@
           [latitude]="bike.lat_rnd"
           [longitude]="bike.lng_rnd">
 
-          <app-bike-tile
+          <lnr-bike-tile
             [brand]="bike.brand"
             [bikeName]="bike.name"
             [image]="bike.image_file"
@@ -67,7 +67,7 @@
             [clusterParams]="bike.cluster"
             [amount]="bike.cluster ? bike.cluster.variations.length : null"
             [isMobileMap]="isMobile"
-          ></app-bike-tile>
+          ></lnr-bike-tile>
         </agm-info-window>
 
       </agm-marker>
