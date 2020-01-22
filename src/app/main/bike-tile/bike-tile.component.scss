@@ -46,11 +46,11 @@
     &_rating {
       font-size: $small-fontsize;
       color: $light-text-color;
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_price {
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_content {
@@ -82,7 +82,7 @@
       &::before {
         content: "";
         display: block;
-        padding-top: 66.667%;
+        padding-top: 67.667%;
         float: left;
       }
 
@@ -158,11 +158,29 @@
   }
 }
 
+@media (min-width: $device-tablet) and (max-width: $device-lg) {
+  .bike-tile {
+    .bike-info {
+      &_brand, &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_name, &_price-week, &_size, &_rating {
+        font-size: $small-fontsize - 0.2rem;
+      }
+    }
+  }
+}
+
 //Styles for bike tiles on map
 
 @media (min-width: $device-lg) {
   .bike-tile_map-view.bike-tile {
-    width: 22rem;
+    width: 21rem;
 
     &_wrap-img {
       height: 12rem;

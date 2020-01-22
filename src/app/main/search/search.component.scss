@@ -143,6 +143,15 @@
   .bike-tile-grid {
     flex: 0 0 33%;
     max-width: 33%;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+}
+
+@media (min-width: $device-lg) {
+  .bike-tile-grid {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
   }
 }
 

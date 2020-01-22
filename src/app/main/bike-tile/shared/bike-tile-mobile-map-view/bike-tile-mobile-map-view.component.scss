@@ -46,11 +46,11 @@
     &_rating {
       font-size: $small-fontsize;
       color: $light-text-color;
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_price {
-      width: 84px;
+      width: 8.4rem;
     }
 
     &_content {
@@ -71,6 +71,10 @@
       display: none;
     }
   }
+
+  img {
+    max-width: 30rem;
+  }
 }
 
 
@@ -78,6 +82,20 @@
   .bike-tile-map-view {
     img {
       max-width: 20rem;
+    }
+
+    .bike-info {
+      &_brand, &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_price-day {
+        font-size: $h5-fontsize;
+      }
+
+      &_name, &_price-week, &_size, &_rating {
+        font-size: $small-fontsize - 0.2rem;
+      }
     }
   }
 }
