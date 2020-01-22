@@ -1,4 +1,4 @@
-<ng-container *ngIf="!(isLoggedOut$| async)">
+<ng-container *ngIf="isLoggedOut">
   <button
           class="w-p-100 header-list-item"
           (click)="logOut()"

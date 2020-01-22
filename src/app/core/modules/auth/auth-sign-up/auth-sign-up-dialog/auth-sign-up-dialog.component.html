@@ -10,7 +10,7 @@
     <lnr-http-error-message [error]="error"></lnr-http-error-message>
   </mat-error>
 
-  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSave()" focusFirstInvalidField>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSave()" lnrFocusFirstInvalidField>
 
     <div formGroupName="business" *ngIf="tab === TabsEnum.BUSINESS">
 

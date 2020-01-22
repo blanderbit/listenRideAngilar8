@@ -2,8 +2,6 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {AuthActions} from '@core/modules/auth/store/actions';
 import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
 import {User} from '@models/user/user';
-import {SearchModel} from "../../../../../main/search/search.types";
-import {initialState} from "../../../../../main/search/store/search.reducers";
 
 export interface AuthState {
   tokens: OauthTokenResponse;

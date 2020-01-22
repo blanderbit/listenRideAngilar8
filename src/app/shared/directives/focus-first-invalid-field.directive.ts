@@ -1,7 +1,7 @@
 import {Directive, ElementRef, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[focusFirstInvalidField]'
+  selector: '[lnrFocusFirstInvalidField]'
 })
 export class FocusFirstInvalidFieldDirective {
 

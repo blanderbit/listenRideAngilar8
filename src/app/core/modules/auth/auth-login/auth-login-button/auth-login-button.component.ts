@@ -17,7 +17,7 @@ export class AuthLoginButtonComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
   @Input() text = 'Login';
   @Input() disabled = false;
-  isLoggedIn$: Observable<boolean>;
+  isLoggedIn: boolean;
 
   constructor(
     private dialog: MatDialog,
@@ -25,10 +25,11 @@ export class AuthLoginButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.store
+    this.store
       .pipe(
         select(isLoggedIn)
-      );
+      )
+      .subscribe(value => this.isLoggedIn = value);
   }
 
   ngOnDestroy(): void {

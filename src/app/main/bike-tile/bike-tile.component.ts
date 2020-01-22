@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-bike-tile',
+  selector: 'lnr-bike-tile',
   templateUrl: './bike-tile.component.html',
   styleUrls: ['./bike-tile.component.scss']
 })

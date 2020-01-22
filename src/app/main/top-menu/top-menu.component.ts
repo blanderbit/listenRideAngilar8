@@ -3,7 +3,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {MatSidenav} from '@angular/material';
 
 @Component({
-  selector: 'app-top-menu',
+  selector: 'lnr-top-menu',
   templateUrl: './top-menu.component.html',
   styleUrls: ['./top-menu.component.scss']
 })
