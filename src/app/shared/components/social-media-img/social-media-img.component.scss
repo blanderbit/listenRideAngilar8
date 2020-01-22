@@ -1,0 +1,11 @@
+@import "../../../../assets/scss/variables";
+
+.social-media-icon {
+  background: $social-media-bg;
+  border-radius: 0.4rem;
+  margin: 0 1rem 0 0;
+
+  &:hover {
+    background: $social-media-bg-hover;
+  }
+}

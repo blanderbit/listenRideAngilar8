@@ -1,0 +1,12 @@
+@import "../../../../../assets/scss/variables";
+
+.lnr-links-list {
+  &_title {
+    color: $light-grey-font;
+    font-weight: 400;
+  }
+
+  .mat-list-item {
+    height: 2.4rem;
+  }
+}

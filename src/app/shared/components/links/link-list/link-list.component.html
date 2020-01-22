@@ -1,6 +1,14 @@
-<mat-list>
-  <h3 mat-subheader *ngIf="title">{{title}}</h3>
+<mat-list class="lnr-links-list">
+  <h3 class="lnr-links-list_title"
+      mat-subheader
+      *ngIf="title">
+    {{title}}
+  </h3>
   <mat-list-item *ngFor="let link of links">
-    <lnr-link mat-line [text]="link.text" [href]="link.href"></lnr-link>
+    <lnr-link class="lnr-link"
+              mat-line
+              [text]="link.text"
+              [href]="link.href">
+    </lnr-link>
   </mat-list-item>
 </mat-list>
