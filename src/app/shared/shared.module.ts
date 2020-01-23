@@ -17,8 +17,9 @@ import {AutofocusDirective} from './directives/autofocus.directive';
 import {FocusFirstInvalidFieldDirective} from './directives/focus-first-invalid-field.directive';
 import {MaterialModule} from './modules/material/material.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
-import { SocialMediaImgComponent } from './components/social-media-img/social-media-img.component';
-import { SubscribeInputComponent } from './components/subscribe-input/subscribe-input.component';
+import {SocialMediaImgComponent} from './components/social-media-img/social-media-img.component';
+import {SubscribeInputComponent} from './components/subscribe-input/subscribe-input.component';
+import {InputComponent} from './components/inputs/input.component';
 
 const components = [
   FiltersComponent,
@@ -54,7 +55,8 @@ const directives = [
     ...links,
     ...directives,
     SocialMediaImgComponent,
-    SubscribeInputComponent
+    SubscribeInputComponent,
+    InputComponent
   ],
   imports: [
     CommonModule,
@@ -79,6 +81,7 @@ const directives = [
     MaterialModule,
     SocialMediaImgComponent,
     SubscribeInputComponent,
+    InputComponent
   ],
   entryComponents: []
 })

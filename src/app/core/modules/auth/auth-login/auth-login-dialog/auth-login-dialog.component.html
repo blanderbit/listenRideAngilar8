@@ -3,7 +3,7 @@
   <lnr-button-close (closed)="onClose()"></lnr-button-close>
 </div>
 
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" focusFirstInvalidField>
+<form *ngIf="form" (ngSubmit)="onSubmit()" focusFirstInvalidField>
 
   <mat-dialog-content>
 
@@ -14,34 +14,29 @@
     <lnr-auth-login-facebook-button class="w-p-100 m-b-2"></lnr-auth-login-facebook-button>
 
     <lnr-divider class="m-b-2" text="or"></lnr-divider>
+    <lnr-input [inputsLabel]="'Email Address'"
+               placeholder="Enter your email"
+               [group]="form"
+               required="true"
+               controlName="email"
+    ></lnr-input>
 
-    <mat-form-field appearance="outline" class="w-p-100">
-      <mat-label>Email</mat-label>
-      <input formControlName="email"
-             type="email"
-             matInput
-             placeholder="Enter your email"
-             lnrAutofocus
-      >
-      <mat-error *ngIf="form.get('email').touched && form.get('email').errors">
-        <small *ngIf="form.get('email').errors?.required">Email is required</small>
-        <small *ngIf="form.get('email').errors?.wrongMail">Email is wrong</small>
-        <small *ngIf="form.get('email').errors?.noAt">Email need contain "@"</small>
-        <small *ngIf="form.get('email').errors?.noName">Wrong email format</small>
-        <small *ngIf="form.get('email').errors?.wrongDomain">Wrong domain</small>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-p-100">
-      <mat-label>Password</mat-label>
-      <input formControlName="password"
-             type="password"
-             matInput
-             placeholder="Password">
-      <mat-error *ngIf="form.get('password').touched && form.get('password').errors">
-        <small *ngIf="form.get('password').errors.required">Password is required</small>
-      </mat-error>
-    </mat-form-field>
+    <lnr-input [inputsLabel]="'Password'"
+               placeholder="Enter your Password"
+               [group]="form"
+               required="true"
+               controlName="password"
+    ></lnr-input>
+    <!--    <mat-form-field appearance="outline" class="w-p-100">-->
+    <!--      <mat-label>Password</mat-label>-->
+    <!--      <input formControlName="password"-->
+    <!--             type="password"-->
+    <!--             matInput-->
+    <!--             placeholder="Password">-->
+    <!--      <mat-error *ngIf="form.get('password').touched && form.get('password').errors">-->
+    <!--        <small *ngIf="form.get('password').errors.required">Password is required</small>-->
+    <!--      </mat-error>-->
+    <!--    </mat-form-field>-->
 
   </mat-dialog-content>
 
