@@ -1,0 +1,51 @@
+<ng-template #arrayControl>
+  <div [formGroup]="group">
+  <mat-form-field appearance="outline"
+                  floatLabel="always"
+                  [formArrayName]="controlName"
+                  class="w-p-100 m-t-2 m-b-2">
+    <mat-label>{{inputsLabel}}</mat-label>
+    <input matInput
+           placeholder="{{placeholder}}"
+           id="{{index}}"
+           required="{{required}}"
+           type="{{controlName}}"
+           formControlName="{{controlName}}"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="required" class="first-word-capital">
+      {{controlName}} is <strong>required</strong>
+    </mat-error>
+    <!--    <mat-error *ngIf="emailFormControl.hasError('required')">-->
+    <!--      Email is <strong>required</strong>-->
+    <!--    </mat-error>-->
+    <!--    <mat-error *ngIf="form.get('email').touched && form.get('email').errors">&ndash;&gt;-->
+    <!--      <small *ngIf="form.get('email').errors?.required">Email is required</small>-->
+    <!--      <small *ngIf="form.get('email').errors?.wrongMail">Email is wrong</small>-->
+    <!--      <small *ngIf="form.get('email').errors?.noAt">Email need contain "@"</small>-->
+    <!--      <small *ngIf="form.get('email').errors?.noName">Wrong email format</small>-->
+    <!--      <small *ngIf="form.get('email').errors?.wrongDomain">Wrong domain</small>-->
+    <!--    </mat-error>-->
+  </mat-form-field>
+</div>
+</ng-template>
+
+<ng-container *ngIf="index == undefined; else arrayControl">
+  <div [formGroup]="group">
+    <mat-form-field appearance="outline"
+                    floatLabel="always"
+                    [formGroup]="group"
+                    class="w-p-100 m-t-2 m-b-2">
+      <mat-label>{{inputsLabel}}</mat-label>
+      <input matInput
+             placeholder="{{placeholder}}"
+             id="{{index}}"
+             required="{{required}}"
+             type="{{controlName}}"
+             formControlName="{{controlName}}"
+             [errorStateMatcher]="matcher">
+      <mat-error *ngIf="required" class="first-word-capital">
+        {{controlName}} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+</ng-container>
