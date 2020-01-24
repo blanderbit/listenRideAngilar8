@@ -19,7 +19,6 @@ import {MaterialModule} from './modules/material/material.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {SocialMediaImgComponent} from './components/social-media-img/social-media-img.component';
 import {SubscribeInputComponent} from './components/subscribe-input/subscribe-input.component';
-import {InputComponent} from './components/inputs/input.component';
 
 const components = [
   FiltersComponent,
@@ -55,8 +54,7 @@ const directives = [
     ...links,
     ...directives,
     SocialMediaImgComponent,
-    SubscribeInputComponent,
-    InputComponent
+    SubscribeInputComponent
   ],
   imports: [
     CommonModule,
@@ -80,8 +78,7 @@ const directives = [
     SatNativeDateModule,
     MaterialModule,
     SocialMediaImgComponent,
-    SubscribeInputComponent,
-    InputComponent
+    SubscribeInputComponent
   ],
   entryComponents: []
 })
