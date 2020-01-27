@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main.component';
-import {HomePageComponent} from './home-page/home-page.component';
+
 
 const routes: Routes = [
   {
@@ -12,10 +12,6 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: './search/search.module#SearchModule',
-      },
-      {
-        path: 'home',
-        component: HomePageComponent,
       },
     ]
   },
