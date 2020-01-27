@@ -10,7 +10,7 @@ export class FocusFirstInvalidFieldDirective {
 
   @HostListener('submit', ['$event'])
   onFormSubmit(el) {
-    const invalidElements = this.el.nativeElement.querySelectorAll('input.ng-invalid');
+    const invalidElements = this.el.nativeElement.querySelectorAll('inputs.ng-invalid');
     if (invalidElements.length > 0) {
       setTimeout(() => {
         invalidElements.item(0).focus();

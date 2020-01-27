@@ -93,3 +93,11 @@ h6 {
 .text-decoration-none {
   text-decoration: none;
 }
+
+.first-word-capital {
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}

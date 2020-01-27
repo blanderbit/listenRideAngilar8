@@ -11,9 +11,11 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
 import {FormsModule} from '@angular/forms';
 import {AuthModule} from '@core/modules/auth/auth.module';
 import { BikeTileMobileMapViewComponent } from './bike-tile/shared/bike-tile-mobile-map-view/bike-tile-mobile-map-view.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {LayoutModule} from '@core/modules/layout';
 
 @NgModule({
-  declarations: [MainComponent, TopMenuComponent, ToolbarComponent, BikeTileMobileMapViewComponent],
+  declarations: [MainComponent, TopMenuComponent, ToolbarComponent, BikeTileMobileMapViewComponent, HomePageComponent],
   imports: [
     CommonModule,
     AuthModule,
@@ -21,7 +23,8 @@ import { BikeTileMobileMapViewComponent } from './bike-tile/shared/bike-tile-mob
     MaterialModule,
     StoreModule.forFeature('main', {}),
     MatGoogleMapsAutocompleteModule,
-    FormsModule
+    FormsModule,
+    LayoutModule
   ],
     exports: [
         BikeTileMobileMapViewComponent

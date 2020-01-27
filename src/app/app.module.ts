@@ -1,7 +1,7 @@
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { environment } from '@environment/environment';
-import { MaterialModule } from './material.module';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {environment} from '@environment/environment';
+import {MaterialModule} from './material.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';

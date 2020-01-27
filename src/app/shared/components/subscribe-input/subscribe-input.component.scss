@@ -28,4 +28,12 @@
     border: none;
     width: 4rem;
   }
+
+  .mat-form-field-invalid .mat-input-element {
+    border: 0.1rem solid $error-color !important;
+  }
+
+  .mat-input-element.ng-touched.ng-valid {
+    border: 0.1rem solid $submit-button-color !important;
+  }
 }
