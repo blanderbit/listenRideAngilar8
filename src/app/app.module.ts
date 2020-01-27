@@ -24,7 +24,6 @@ import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {AuthModule} from '@core/modules/auth/auth.module';
 import {LayoutModule} from '@core/modules/layout';
-// import {MAT_LABEL_GLOBAL_OPTIONS} from '@angular/material/core';
 
 export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
@@ -45,9 +44,6 @@ export const APP_PROVIDERS = [
     provide: AuthServiceConfig,
     useFactory: provideAuthServiceConfig
   }
-  // {
-  //   provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'},
-  // }
 ];
 
 @NgModule({

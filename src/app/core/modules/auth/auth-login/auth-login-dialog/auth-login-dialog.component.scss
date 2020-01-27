@@ -10,23 +10,3 @@
   left: -0.8rem;
   font-size: $h5-fontsize;
 }
-
-::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
-  border-top-color: currentColor;
-}
-
-::ng-deep.mat-form-field-type-mat-input {
-
-  .mat-form-field-label-wrapper {
-    position: initial;
-  }
-}
-
-::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label .mat-form-field-type-mat-input {
-  transform: translateY(-3.5em) scale(0.75);
-}
-
-::ng-deep.mat-form-field.mat-form-field-type-mat-input._mat-animation-noopable .mat-form-field-label {
-  transform: translateY(-4.8rem) scale(0.9);
-  left: -1rem;
-}
