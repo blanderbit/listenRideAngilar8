@@ -1,4 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AuthService, FacebookLoginProvider} from 'angularx-social-login';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
@@ -19,8 +20,8 @@ export class AuthLoginFacebookButtonComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
+    // this.destroyed$.next();
+    // this.destroyed$.complete();
   }
 
   signInWithFB(): void {
@@ -28,8 +29,10 @@ export class AuthLoginFacebookButtonComponent implements OnDestroy {
     this.apiOauthService.loginFacebook()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((user) => {
+        debugger;
         this.loading = false;
       }, (error) => {
+        debugger;
         this.loading = false;
       });
   }

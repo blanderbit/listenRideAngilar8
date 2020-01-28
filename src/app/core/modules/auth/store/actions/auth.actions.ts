@@ -1,19 +1,20 @@
 import {createAction, props} from '@ngrx/store';
 import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
-import {OauthTokenRequest} from '@models/oauth/oauth-token-request';
-import {HttpErrorResponse} from '@angular/common/http';
+import {User} from '@models/user/user';
 
-export const SaveTokens = createAction('[Save Tokens] - Save tokens',
-  props<{ tokens: OauthTokenResponse }>());
+export const saveTokens = createAction('[Auth] Save Tokens', props<{ tokens: OauthTokenResponse }>());
+export const saveTokensSuccess = createAction('[Auth] Save Tokens Success');
+export const saveTokensError = createAction('[Auth] Save Tokens Error', props<{ exception: any }>());
 
-export const LoginWithCredentials = createAction('[Login] - Login with credentials',
-  props<{ credentials: OauthTokenRequest }>());
+export const saveMeSuccess = createAction('[Auth] Save Me Success', props<{ me: Partial<User> }>());
+export const saveMeError = createAction('[Auth] Save Me Error', props<{ exception: any }>());
 
-export const LoginWithCredentialsSuccess = createAction('[Login Success] - Login with credentials success',
-  props<{ tokens: OauthTokenResponse }>());
+export const saveUserSuccess = createAction('[Auth] Save User Success', props<{ user: User }>());
+export const saveUserError = createAction('[Auth] Save User Error', props<{ exception: any }>());
 
-export const LoginWithCredentialsError = createAction('[Login Error] - Login with credentials error',
-  props<{ error: HttpErrorResponse }>());
+export const headerOpenLoginDialog = createAction('[Header] Open Login Dialog');
+export const headerLogout = createAction('[Header] Log Out');
 
-export const LoginFacebook = createAction('[Login Dialog] - Login with facebook');
-export const Logout = createAction('[Logout Button] - Logout');
+export const headerOpenSignUpDialog = createAction('[Header] Open Sign Up Dialog');
+
+export const headerOpenSignUpBusinessDialog = createAction('[Header] Open Sign Up Business Dialog');

@@ -6,6 +6,9 @@
       "@api/*": [
         "app/core/services/api/*"
       ],
+      "@auth/*": [
+        "app/core/modules/auth/*"
+      ],
       "@core/*": [
         "app/core/*"
       ],
@@ -17,6 +20,9 @@
       ],
       "@models/*": [
         "app/core/models/*"
+      ],
+      "@user-verification/*": [
+        "app/core/modules/user-verification/*"
       ],
       "@validators/*": [
         "app/core/validators/*"

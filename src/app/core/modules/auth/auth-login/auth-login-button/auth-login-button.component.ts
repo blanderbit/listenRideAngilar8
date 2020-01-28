@@ -1,50 +1,29 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {MatDialog} from '@angular/material';
-import {takeUntil} from 'rxjs/operators';
-import {DialogConfig} from '@core/configs/dialog/dialog.config';
-import {AuthLoginDialogComponent} from '@core/modules/auth/auth-login/auth-login-dialog/auth-login-dialog.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {isLoggedIn} from '@core/modules/auth/store/auth.selectors';
-import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
+import {AuthActions} from '@core/modules/auth/store/actions';
+import * as fromAuth from '../../store/reducers';
 
 @Component({
   selector: 'lnr-auth-login-button',
   templateUrl: './auth-login-button.component.html',
-  styleUrls: ['../../shared/button.scss', './auth-login-button.component.scss']
+  styleUrls: ['../../button.scss', './auth-login-button.component.scss']
 })
-export class AuthLoginButtonComponent implements OnInit, OnDestroy {
-  private destroyed$ = new Subject();
+export class AuthLoginButtonComponent implements OnInit {
   @Input() text = 'Login';
   @Input() disabled = false;
-  isLoggedIn: boolean;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(
-    private dialog: MatDialog,
-    private store: Store<OauthTokenResponse>) {
+  constructor(private store: Store<fromAuth.State>) {
   }
 
   ngOnInit(): void {
-    this.store
-      .pipe(
-        select(isLoggedIn)
-      )
-      .subscribe(value => this.isLoggedIn = value);
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
+    this.isLoggedIn$ = this.store.pipe(select(fromAuth.isLoggedIn));
+    // this.store.dispatch(AuthActions.headerOpenLoginDialog());
   }
 
   openDialog(): void {
-    const dialogConfig = new DialogConfig('400px');
-
-    this.dialog.open(AuthLoginDialogComponent, dialogConfig)
-      .afterClosed()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => {
-      });
+    this.store.dispatch(AuthActions.headerOpenLoginDialog());
   }
 
 }

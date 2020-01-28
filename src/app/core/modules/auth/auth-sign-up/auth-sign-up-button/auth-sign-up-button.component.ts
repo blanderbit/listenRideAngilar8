@@ -1,36 +1,22 @@
-import {Component, Input, OnDestroy} from '@angular/core';
-import {Subject} from 'rxjs';
-import {MatDialog} from '@angular/material';
-import {takeUntil} from 'rxjs/operators';
-import {AuthSignUpDialogComponent} from '@core/modules/auth/auth-sign-up/auth-sign-up-dialog/auth-sign-up-dialog.component';
-import {DialogConfig} from '@core/configs/dialog/dialog.config';
+import {Component, Input} from '@angular/core';
+import {AuthActions} from '@core/modules/auth/store/actions';
+import {Store} from '@ngrx/store';
+import * as fromAuth from '@core/modules/auth/store/reducers';
 
 @Component({
   selector: 'lnr-auth-sign-up-button',
   templateUrl: './auth-sign-up-button.component.html',
-  styleUrls: ['../../shared/button.scss', './auth-sign-up-button.component.scss']
+  styleUrls: ['../../button.scss', './auth-sign-up-button.component.scss']
 })
-export class AuthSignUpButtonComponent implements OnDestroy {
-  private destroyed$ = new Subject();
+export class AuthSignUpButtonComponent {
   @Input() text = 'Sign up';
   @Input() disabled = false;
 
-  constructor(private dialog: MatDialog) {
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
+  constructor(private store: Store<fromAuth.State>) {
   }
 
   openDialog(): void {
-    const dialogConfig = new DialogConfig();
-
-    this.dialog.open(AuthSignUpDialogComponent, dialogConfig)
-      .afterClosed()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => {
-      });
+    this.store.dispatch(AuthActions.headerOpenSignUpDialog());
   }
 
 }

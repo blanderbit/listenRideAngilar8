@@ -23,14 +23,14 @@ export class HttpErrorMessageComponent implements OnInit, OnChanges {
 
   private setErrorMessage() {
     if (this.error) {
-      if (this.error.hasOwnProperty('error') && this.error.error.hasOwnProperty('errors')) {
+      if (this.error.hasOwnProperty('error') && this.error.error && this.error.error.hasOwnProperty('errors')) {
         const err0 = this.error.error.errors[0];
         this.message = err0.source.pointer + ' ' + err0.detail;
-      } else if (this.error.hasOwnProperty('message')) {
-        this.message = 'Something wrong';
       } else {
         this.message = 'Something wrong';
       }
+    } else {
+      this.message = null;
     }
   }
 }

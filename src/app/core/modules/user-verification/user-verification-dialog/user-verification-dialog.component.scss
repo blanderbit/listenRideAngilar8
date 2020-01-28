@@ -1,0 +1,49 @@
+:host {
+  position: relative;
+  display: block;
+  padding-top: 90px;
+
+  text-align: center;
+
+  mat-dialog-content {
+    min-height: 400px;
+  }
+
+  .lnr-dialog-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 500px;
+    margin: auto;
+    padding: 4px;
+
+    .mat-horizontal-stepper-header {
+      padding: 5px;
+
+      &:before, &:after {
+        top: 16px;
+      }
+
+      .mat-step-label {
+        padding: 0;
+        font-size: 12px;
+      }
+    }
+
+    .mat-stepper-horizontal-line {
+      top: 16px;
+    }
+  }
+}
+
+::ng-deep .step-content {
+  min-height: 350px;
+}

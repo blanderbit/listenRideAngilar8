@@ -1,17 +1,13 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpErrorResponse} from '@angular/common/http';
 import {OauthTokenRequest} from '@models/oauth/oauth-token-request';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
 import {OauthGrantTypeEnum} from '@enums/oauth-grant-type.enum';
-import {ValidatorsLnr} from '@validators/validators-lnr';
-import {Store} from '@ngrx/store';
-import {User} from '@models/user/user';
-import {AuthActions} from '@core/modules/auth/store/actions';
-import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
+import {select, Store} from '@ngrx/store';
+import {LoginDialogActions} from '@core/modules/auth/store/actions';
+import * as fromAuth from '../../store/reducers';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'lnr-auth-login-dialog',
@@ -21,19 +17,17 @@ import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
 export class AuthLoginDialogComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
   form: FormGroup;
-  loading = false;
-  error: HttpErrorResponse;
+  pending$ = this.store.pipe(select(fromAuth.selectLoginDialogPending));
+  error$ = this.store.pipe(select(fromAuth.selectLoginDialogError));
 
-  constructor(private dialogRef: MatDialogRef<AuthLoginDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) data,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private apiOauthService: ApiOauthService,
-              private store: Store<OauthTokenResponse>
-  ) {
+              private store: Store<fromAuth.State>) {
   }
 
   ngOnInit(): void {
     this.form = this.getForm();
+    this.pending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
   }
 
   ngOnDestroy(): void {
@@ -41,39 +35,24 @@ export class AuthLoginDialogComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  onClose() {
-    this.dialogRef.close();
-  }
-
-  onSubmit() {
-
+  submit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.loading = true;
-    const oauthTokenRequest: OauthTokenRequest = {
-      ...this.form.value,
-    };
+    const oauthTokenRequest: OauthTokenRequest = {...this.form.value};
+    this.store.dispatch(LoginDialogActions.login({credentials: oauthTokenRequest}));
+  }
 
-    this.apiOauthService.token(oauthTokenRequest)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((tokens) => {
-        this.store.dispatch(AuthActions.SaveTokens({tokens}));
-        this.loading = false;
-        this.onClose();
-      }, (error) => {
-        this.loading = false;
-        this.error = error;
-      });
-
+  close() {
+    this.store.dispatch(LoginDialogActions.close());
   }
 
   private getForm() {
     const formControls = {
-      email: ['', [Validators.required]],
-      password: ['', Validators.required],
-      grant_type: [OauthGrantTypeEnum.PASSWORD, Validators.required],
+      email: ['vasiliy.stukalo9+16@gmail.com', [Validators.required]],
+      password: ['OTAcsf-1zMM', Validators.required],
+      grant_type: [OauthGrantTypeEnum.PASSWORD],
     };
 
     return this.fb.group({

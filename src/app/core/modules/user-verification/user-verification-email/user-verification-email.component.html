@@ -1,0 +1,45 @@
+<div class="step-content">
+  <p>Validate your email address by clicking on the link in the confirmation email that we've sent to you after signup.
+    If
+    you can't find it, you can resend the email. If you still can't find it, make sure to look in your spam folder.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-error>
+      <lnr-http-error-message [error]="null"></lnr-http-error-message>
+    </mat-error>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <mat-form-field appearance="outline" class="lnr-w-100">
+          <mat-label>Email</mat-label>
+          <input formControlName="email"
+                 type="email"
+                 matInput
+                 placeholder="Enter your email"
+                 lnrAutofocus
+          >
+          <mat-error *ngIf="form.get('email').touched && form.get('email').errors">
+            <small *ngIf="form.get('email').errors.required">Field is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-4">
+        <button mat-raised-button type="submit" color="primary" class="lnr-w-100"
+                [disabled]="form.invalid">
+          Resend email
+          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+        </button>
+      </div>
+    </div>
+
+    <h6 *ngIf="verified">Email address successfully verified!</h6>
+
+  </form>
+</div>
+
+<div class="step-actions lnr-d-flex lnr-space-btw">
+  <button mat-button matStepperPrevious>Back</button>
+
+  <button mat-raised-button matStepperNext>Next</button>
+</div>

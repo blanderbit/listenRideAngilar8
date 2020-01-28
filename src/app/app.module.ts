@@ -8,12 +8,11 @@ import {AppComponent} from './app.component';
 import {MainModule} from './main/main.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {reducers, metaReducers} from './reducers';
+import {metaReducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {CoreModule} from '@core/core.module';
 import {SharedModule} from './shared/shared.module';
 import {ApiService} from '@core/services/api.service';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {MatMenuModule} from '@angular/material/menu';
@@ -22,10 +21,10 @@ import {MatIconRegistry} from '@angular/material';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
-import {AuthModule} from '@core/modules/auth/auth.module';
 import {LayoutModule} from '@core/modules/layout';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-export function provideAuthServiceConfig() {
+function provideAuthServiceConfig() {
   return new AuthServiceConfig([
     {
       id: FacebookLoginProvider.PROVIDER_ID,
@@ -34,7 +33,7 @@ export function provideAuthServiceConfig() {
   ]);
 }
 
-export const APP_PROVIDERS = [
+const APP_PROVIDERS = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpAuthInterceptor,
@@ -54,7 +53,7 @@ export const APP_PROVIDERS = [
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
-
+    BrowserAnimationsModule,
     LayoutModule,
     MainModule,
     // TODO: Remove CoreModule from imports
@@ -75,7 +74,7 @@ export const APP_PROVIDERS = [
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    NoopAnimationsModule,
+    // NoopAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMaps,
       libraries: ['places', 'geometry']

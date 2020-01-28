@@ -12,4 +12,7 @@ export interface SignUpRequest {
   };
   is_shop: boolean;
   recaptcha_token: string;
+  business?: {
+    company_name: string;
+  };
 }

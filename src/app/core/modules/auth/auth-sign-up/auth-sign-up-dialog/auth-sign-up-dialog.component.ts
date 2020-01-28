@@ -1,21 +1,14 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidatorsLnr} from '@validators/validators-lnr';
 import {SignUpRequest} from '@models/sign-up/sign-up-request';
 import {ReCaptchaV3Service} from 'ngx-captcha';
 import {environment} from '@environment/environment';
-import {ApiUserService} from '@api/api-user/api-user.service';
-import {HttpErrorResponse} from '@angular/common/http';
-import {ApiBusinessService} from '@api/api-business/api-business.service';
-import {BusinessCreateRequest} from '@models/business/business-create-request';
-import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {AuthState} from '@core/modules/auth/store/reducers';
-import {LoginWithCredentials} from '@core/modules/auth/store/actions/auth.actions';
-import {OauthTokenRequest} from '@models/oauth/oauth-token-request';
-import {OauthGrantTypeEnum} from '@enums/oauth-grant-type.enum';
+import {select, Store} from '@ngrx/store';
+import * as fromAuth from '../../store/reducers';
+import {SignUpDialogActions} from '@core/modules/auth/store/actions';
+import {takeUntil} from 'rxjs/operators';
 
 enum TabsEnum {
   PRIVATE = 'PRIVATE',
@@ -32,27 +25,29 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
   tab = TabsEnum.PRIVATE;
   TabsEnum = TabsEnum;
   form: FormGroup;
-  loading = false;
-  error: HttpErrorResponse;
+  pending$ = this.store.pipe(select(fromAuth.selectSignUpDialogPending));
+  error$ = this.store.pipe(select(fromAuth.selectSignUpDialogError));
+  loginPending$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginPending));
+  loginError$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginError));
+  createBusinessPending$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreatePending));
+  createBusinessError$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreateError));
 
   get submitBtnTooltip(): string {
     return this.userForm.get('terms').invalid ? 'Agree our Terms and Conditions and Privacy policy' : null;
   }
 
   constructor(
-    private dialogRef: MatDialogRef<AuthSignUpDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
     private reCaptchaV3Service: ReCaptchaV3Service,
-    private apiUserService: ApiUserService,
-    private apiBusinessService: ApiBusinessService,
-    private store: Store<AuthState>
+    private store: Store<fromAuth.State>
   ) {
-
   }
 
   ngOnInit(): void {
     this.form = this.getForm();
+    this.pending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+    this.loginPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+    this.createBusinessPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
   }
 
   ngOnDestroy(): void {
@@ -65,7 +60,6 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.loading = true;
     let signUpRequest: SignUpRequest = {
       ...this.form.value,
     };
@@ -78,8 +72,8 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
     });
   }
 
-  onClose() {
-    this.dialogRef.close();
+  close() {
+    this.store.dispatch(SignUpDialogActions.close());
   }
 
   toggleTab(tab: TabsEnum) {
@@ -94,63 +88,19 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
     return this.form.get('user');
   }
 
-  private signUp(signUpRequest: SignUpRequest) {
-    this.error = null;
-    this.apiUserService.create(signUpRequest)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((res) => {
-        this.loading = false;
-        if (this.tab === TabsEnum.BUSINESS) {
-          this.createBusinessAccount(this.businessForm.value);
-        }
-
-        const credentials: OauthTokenRequest = {
-          email: this.userForm.value.email,
-          password: this.userForm.value.password,
-          grant_type: OauthGrantTypeEnum.PASSWORD
-        };
-        this.store.dispatch(LoginWithCredentials({credentials}));
-
-      }, (error => {
-        this.loading = false;
-        this.error = error;
-      }));
-  }
-
-  private createBusinessAccount(businessCreateRequest: BusinessCreateRequest) {
-    this.loading = true;
-    this.apiBusinessService.create(businessCreateRequest)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((res) => {
-        this.loading = false;
-      }, (error) => {
-        this.loading = false;
-      });
-  }
-
-  private setReCaptchaToken(signUpRequest: SignUpRequest, token: string) {
-    signUpRequest.recaptcha_token = token;
-    return signUpRequest;
-  }
-
-  private setIsShop(signUpRequest: SignUpRequest) {
-    signUpRequest.is_shop = this.tab === TabsEnum.BUSINESS;
-    return signUpRequest;
-  }
-
   private getForm() {
     const formControls = {
       business: this.fb.group(
         {
-          company_name: ['test', Validators.required],
+          company_name: ['testCompanyName', Validators.required],
         }
       ),
       user: this.fb.group(
         {
-          first_name: ['', Validators.required],
-          last_name: ['', Validators.required],
-          email: ['', [Validators.required]],
-          password: ['', Validators.required],
+          first_name: ['test', Validators.required],
+          last_name: ['test', Validators.required],
+          email: ['vasiliy.test+1@gmail.com', [Validators.required]],
+          password: ['Test@123', Validators.required],
           terms: [false, ValidatorsLnr.checkboxRequired],
           language: ['en']
         }
@@ -167,6 +117,20 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
     return this.fb.group({
       ...formControls
     });
+  }
+
+  private signUp(signUpRequest: SignUpRequest) {
+    this.store.dispatch(SignUpDialogActions.signUp({signUpRequest}));
+  }
+
+  private setReCaptchaToken(signUpRequest: SignUpRequest, token: string): SignUpRequest {
+    signUpRequest.recaptcha_token = token;
+    return signUpRequest;
+  }
+
+  private setIsShop(signUpRequest: SignUpRequest): SignUpRequest {
+    signUpRequest.is_shop = this.tab === TabsEnum.BUSINESS;
+    return signUpRequest;
   }
 
 }

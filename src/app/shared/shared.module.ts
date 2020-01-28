@@ -25,6 +25,8 @@ const components = [
   DividerComponent,
   LoaderSpinnerSmallComponent,
   HttpErrorMessageComponent,
+  SocialMediaImgComponent,
+  SubscribeInputComponent
 ];
 
 const formControls = [
@@ -53,8 +55,7 @@ const directives = [
     ...buttons,
     ...links,
     ...directives,
-    SocialMediaImgComponent,
-    SubscribeInputComponent
+
   ],
   imports: [
     CommonModule,

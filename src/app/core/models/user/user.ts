@@ -1,3 +1,6 @@
+import {BusinessLocation} from '@models/business/business-location';
+import {Business} from '@models/business/business';
+
 export interface User {
   id: number;
   first_name: string;
@@ -18,4 +21,23 @@ export interface User {
     url: string;
   };
   confirmed_phone: boolean;
+
+  locations?: BusinessLocation[];
+  rating_lister?: 0;
+  rating_rider?: 0;
+  status?: 1;
+  has_phone_number?: false;
+  has_description?: true;
+  has_business?: true;
+  confirmed_email?: true;
+  phone_number?: null;
+  unconfirmed_phone?: null;
+  pretty_phone_number?: string;
+  balance?: 0;
+  notification_preference?: any;
+  rides?: any[];
+  ratings?: any[];
+  business: Business;
+  me?: { admin?: boolean };
+
 }

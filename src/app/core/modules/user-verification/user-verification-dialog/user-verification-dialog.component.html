@@ -1,0 +1,44 @@
+<div class="lnr-dialog-header lnr-text-align-ctr">
+  <lnr-button-close (click)="close()"></lnr-button-close>
+</div>
+<mat-dialog-content>
+
+  <mat-error>
+    <lnr-http-error-message [error]="null"></lnr-http-error-message>
+  </mat-error>
+
+  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+
+    <mat-step>
+      <ng-template matStepLabel>Start</ng-template>
+      <lnr-user-verification-home [stepper]="stepper"></lnr-user-verification-home>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Email</ng-template>
+      <lnr-user-verification-email [stepper]="stepper"></lnr-user-verification-email>
+    </mat-step>
+
+    <mat-step [optional]="false">
+      <ng-template matStepLabel>Logo</ng-template>
+      <lnr-user-verification-logo [stepper]="stepper"></lnr-user-verification-logo>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Phone</ng-template>
+      <lnr-user-verification-phone [stepper]="stepper"></lnr-user-verification-phone>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Address</ng-template>
+      <lnr-user-verification-address [stepper]="stepper"></lnr-user-verification-address>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>VAT</ng-template>
+      <lnr-user-verification-vat [stepper]="stepper"></lnr-user-verification-vat>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</mat-dialog-content>

@@ -9,14 +9,14 @@ import { SelectLanguagesComponent } from './layout-footer/shared/select-language
 const components = [
   LayoutHeaderComponent,
   LayoutFooterComponent,
+  InsurancePartnersComponent,
+  SocialMediaBlockComponent,
+  SelectLanguagesComponent
 ];
 
 @NgModule({
   declarations: [
-    ...components,
-    InsurancePartnersComponent,
-    SocialMediaBlockComponent,
-    SelectLanguagesComponent
+    ...components
   ],
   imports: [
     SharedModule

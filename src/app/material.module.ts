@@ -3,14 +3,14 @@ import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatCheckboxModule,
+  MatDividerModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule,
-  MatDividerModule,
-  MatSidenavModule,
   MatListModule,
-  MatGridListModule,
+  MatMenuModule,
   MatProgressSpinnerModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 

@@ -20,15 +20,6 @@ export class ApiOauthService {
 
   token(oauthTokenRequest: OauthTokenRequest | OauthTokenFacebookRequest): Observable<OauthTokenResponse> {
     return this.httpClient.post<OauthTokenResponse>(`${environment.apiUrl}/oauth/token`, oauthTokenRequest)
-      .pipe(
-        map(res => {
-          localStorage.setItem(TokensEnum.ACCESS_TOKEN, res.access_token);
-          localStorage.setItem(TokensEnum.REFRESH_TOKEN, res.refresh_token);
-          localStorage.setItem(TokensEnum.TOKEN_TYPE, res.token_type);
-
-          return res;
-        })
-      );
   }
 
   refresh(oauthRefreshRequest: OauthRefreshRequest): Observable<OauthTokenResponse> {

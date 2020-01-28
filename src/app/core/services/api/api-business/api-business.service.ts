@@ -15,4 +15,8 @@ export class ApiBusinessService {
     return this.httpClient.post<Business>(`${environment.apiUrl}/businesses`, businessCreateRequest);
   }
 
+  update(businessId: number, business: { business: Partial<Business> }): Observable<Business> {
+    return this.httpClient.put<Business>(`${environment.apiUrl}/businesses/${businessId}`, business);
+  }
+
 }

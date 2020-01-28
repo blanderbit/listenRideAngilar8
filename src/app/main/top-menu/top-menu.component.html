@@ -65,8 +65,12 @@
         <a href="">List a bike</a>
       </li>
       <li *ngIf="!isLoggedIn"
-          class="header-list-item">
+          class="header-list-item lnr-d-flex">
+
+        <lnr-user-verification-button-temp></lnr-user-verification-button-temp>
+<!--        <lnr-auth-login-button></lnr-auth-login-button>-->
         <lnr-auth-sign-up-button></lnr-auth-sign-up-button>
+
       </li>
       <li *ngIf="!isLoggedIn"
           class="header-list-item">
