@@ -10,6 +10,7 @@
   margin-bottom: 1rem;
   width: 100%;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
@@ -23,14 +24,15 @@
   }
 
   .mat-icon {
-    height: 1.8rem;
+    height: 1.6rem;
+    width: 1.8rem;
   }
 
   .bike-info {
     padding: 0.8rem;
 
     &_brand {
-      font-size: $h4-fontsize;
+      font-size: $h5-fontsize;
       color: $dark-text-color;
     }
 
@@ -38,28 +40,36 @@
       font-size: $small-fontsize;
     }
 
+    &_name {
+      color: $dark-text-color;
+    }
+
     &_size {
       font-size: $small-fontsize;
       color: $light-text-color;
+      margin-top: 0.4rem;
     }
 
     &_rating {
       font-size: $small-fontsize;
       color: $light-text-color;
       width: 8.4rem;
+      margin-top: 0.4rem;
     }
 
     &_price {
       width: 8.4rem;
+      line-height: 2rem;
     }
 
     &_content {
       max-width: 70%;
+      line-height: 2rem;
     }
 
     &_price-day {
       color: $main-blue;
-      font-size: $h4-fontsize;
+      font-size: $h5-fontsize;
       white-space: nowrap;
     }
 
@@ -72,8 +82,28 @@
     }
   }
 
-  img {
-    max-width: 30rem;
+  &_wrap-img {
+    border: 0.1rem solid $light-grey;
+    width: 100%;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 67.667%;
+      float: left;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      position: absolute;
+      border-top-left-radius: 0.4rem;
+      border-top-right-radius: 0.4rem;
+    }
   }
 }
 
@@ -96,6 +126,18 @@
       &_name, &_price-week, &_size, &_rating {
         font-size: $small-fontsize - 0.2rem;
       }
+    }
+  }
+}
+
+@media (min-width: $device-xl) {
+  .bike-info {
+    &_brand, &_price-day {
+      font-size: $h4-fontsize;
+    }
+
+    &_price-day {
+      font-size: $h4-fontsize;
     }
   }
 }

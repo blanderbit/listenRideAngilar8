@@ -4,6 +4,8 @@
   transition: opacity .2s ease-in-out;
   line-height: 2rem;
   font-size: $small-fontsize;
+  font-weight: 400;
+  letter-spacing: .01em;
 
   &:hover {
     color: $light-grey;

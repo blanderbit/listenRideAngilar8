@@ -28,20 +28,20 @@
     </div>
     <div class="flex justify-content-between">
       <div class="bike-info_content flex direction-column">
-        <div class="m-t-1 bike-info_size flex direction-row align-items-center">
+        <div class="bike-info_size flex direction-row align-items-center">
           <span>Size: {{size}}</span>
           <div *ngIf="distance"
                class="flex direction-row align-items-center">
-            <mat-icon class="heading-5" aria-hidden="false" aria-label="">room</mat-icon>
+            <mat-icon class="heading-6" aria-hidden="false" aria-label="">room</mat-icon>
             <span>{{distance}} km</span>
           </div>
         </div>
       </div>
 
       <div class="bike-info_price align-items-left flex direction-column">
-        <div class="bike-info_rating flex direction-row align-items-center m-t-1"
+        <div class="bike-info_rating flex direction-row align-items-center"
              *ngIf="rating">
-          <mat-icon class="heading-5" aria-hidden="false" aria-label="">
+          <mat-icon class="heading-6" aria-hidden="false" aria-label="">
             grade
           </mat-icon>
           <span>{{ratingAverage | number: '1.0-0'}} ({{rating}})</span>
@@ -49,8 +49,15 @@
       </div>
     </div>
     <div class="bike-info_price-xs flex direction-column m-b-1">
-      <span class="bike-info_price-day p-b-1 medium">{{price | number: '1.0-0'}} €/day </span>
-      <span>{{weeklyPrice * 7| number: '1.0-0'}} €/week </span>
+       <span *ngIf="price === 0"
+             class="bike-info_price-day medium">
+          Free
+        </span>
+      <div *ngIf="price > 0"
+           class="flex direction-column">
+        <span class="bike-info_price-day p-b-1 medium">{{price | number: '1.0-0'}} €/day </span>
+        <span>{{weeklyPrice * 7| number: '1.0-0'}} €/week </span>
+      </div>
     </div>
   </div>
 </div>
