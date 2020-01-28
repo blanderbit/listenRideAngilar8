@@ -1,7 +1,7 @@
 <div class="select-languages">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Select Languages</mat-label>
-    <mat-select>
+    <mat-select placeholder="Languages" formControlName="languages">
       <mat-option *ngFor="let language of languages"
                   [value]="language.value">
         {{language.viewValue}}

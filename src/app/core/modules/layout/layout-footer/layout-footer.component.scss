@@ -62,6 +62,14 @@
       align-items: center;
       flex-direction: row;
       justify-content: space-between;
+
+      lnr-insurance-partners {
+        width: 55%;
+      }
+
+      lnr-social-media-block {
+        width: 45%;
+      }
     }
 
     &_bottom-block {
