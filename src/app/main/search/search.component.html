@@ -1,12 +1,12 @@
 <div class="wrap-search-page-layout">
-  <div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isTablet"
+  <div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5" [scrollWindow]="isMobile || isTablet"
        (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
-    <div *ngIf="isTablet" class="mobile-toolbar" [class.scrolled]="scrolled">
+    <div *ngIf="isTablet || isMobile" class="mobile-toolbar" [class.scrolled]="scrolled">
       <div class="toggle toggle-filters" (click)="toggleFilters()">
         <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
         <span>Filters</span>
       </div>
-      <div class="toggle toggle-sorting" (click)="toggleFilters()">
+      <div class="toggle toggle-sorting" (click)="toggleSorting()">
         <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
       </div>
 
@@ -18,12 +18,17 @@
     </div>
   </div>
   <div class="toolbar">
-    <lnr-filters *ngIf="!isTablet || isTablet && showFilter"></lnr-filters>
-    <div *ngIf="!isTablet || isTablet && !mapToggle" class="bikes-to-rent">
-      Bikes to rent in {{location.city}}: {{bikes.length}}</div>
+    <lnr-filters *ngIf="isDesktop|| !isDesktop && showFilter"></lnr-filters>
+    <lnr-mobile-sorting *ngIf="showSorting"></lnr-mobile-sorting>
+    <div class="sub-toolbar">
+      <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-rent">
+        Bikes to rent in {{location.city}} : {{pins.length}}</div>
+      <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-groups">
+        Bikes rental for large groups</div>
+    </div>
   </div>
-  <div *ngIf="!isTablet || isTablet && !mapToggle" class="flex row direction-row row-wrap m-1">
-    <div *ngFor="let ride of displayBikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
+  <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="flex row direction-row row-wrap m-1">
+    <div *ngFor="let ride of bikes" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
       <lnr-bike-tile
         [brand]="ride.brand"
         [bikeName]="ride.name"
@@ -41,32 +46,33 @@
   </div>
 </div>
 
-<div *ngIf="!isTablet || isTablet && mapToggle" class="map-container">
-  <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="15" [styles]="mapStyles">
+<div *ngIf=" isDesktop || !isDesktop && mapToggle" class="map-container">
+  <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="10" [styles]="mapStyles">
     <agm-marker-cluster [minimumClusterSize]="2" [styles]="clusterStyles">
-      <agm-marker *ngFor="let bike of bikes"
-                  [latitude]="bike.lat_rnd"
-                  [longitude]="bike.lng_rnd"
+      <agm-marker *ngFor="let pin of pins"
+                  (markerClick)="openWindow(pin.id)"
+                  [latitude]="pin.lat_rnd"
+                  [longitude]="pin.lng_rnd"
                   [iconUrl]="{url:'./assets/ui_icons/map/pin_map_white.png', anchor: {x: 28, y: 56},labelOrigin: {x: 28, y: 22}}"
-                  [label]="{text: bike.price + '€', color: '#599EFF', fontSize: '13px', fontWeight: 'bold'}"
+                  [label]="{text: pin.daily_price + '€', color: '#599EFF', fontSize: '13px', fontWeight: 'bold'}"
       >
         <agm-info-window
-          [isOpen]=false
-          [latitude]="bike.lat_rnd"
-          [longitude]="bike.lng_rnd">
+          [isOpen]="isInfoWindowOpened(pin.id)"
+          [latitude]="pin.lat_rnd"
+          [longitude]="pin.lng_rnd">
 
           <lnr-bike-tile
-            [brand]="bike.brand"
-            [bikeName]="bike.name"
-            [image]="bike.image_file"
-            [size]="bike.size"
-            [price]="bike.daily_price"
-            [weeklyPrice]="bike.weekly_price"
-            [ratingAverage]="bike.rating_average"
-            [rating]="bike.ratings_total"
-            [distance]="bike.distance"
-            [clusterParams]="bike.cluster"
-            [amount]="bike.cluster ? bike.cluster.variations.length : null"
+            [brand]="activeBike.brand"
+            [bikeName]="activeBike.name"
+            [image]="activeBike.image_file"
+            [size]="activeBike.size"
+            [price]="activeBike.daily_price"
+            [weeklyPrice]="activeBike.weekly_price"
+            [ratingAverage]="activeBike.rating_average"
+            [rating]="activeBike.ratings_total"
+            [distance]="activeBike.distance"
+            [clusterParams]="activeBike.cluster"
+            [amount]="activeBike.cluster ? activeBike.cluster.variations.length : null"
             [isMobileMap]="isTablet"
             [isMapView]="true"
           ></lnr-bike-tile>

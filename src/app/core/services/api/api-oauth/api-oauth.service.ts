@@ -19,7 +19,7 @@ export class ApiOauthService {
   }
 
   token(oauthTokenRequest: OauthTokenRequest | OauthTokenFacebookRequest): Observable<OauthTokenResponse> {
-    return this.httpClient.post<OauthTokenResponse>(`${environment.apiUrl}/oauth/token`, oauthTokenRequest)
+    return this.httpClient.post<OauthTokenResponse>(`${environment.apiUrl}/oauth/token`, oauthTokenRequest);
   }
 
   refresh(oauthRefreshRequest: OauthRefreshRequest): Observable<OauthTokenResponse> {

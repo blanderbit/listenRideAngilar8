@@ -41,9 +41,7 @@ export class UserVerificationEmailComponent implements OnInit, OnDestroy {
 
     this.apiUserService.emailRequestConfirm()
       .subscribe((res) => {
-        debugger;
       }, (error) => {
-        debugger;
       });
   }
 

@@ -44,9 +44,6 @@ export class ApiService {
 
   /**
    * Generic Function to GET list of Items
-   * @param path TODO: add description
-   * @param options TODO: add description
-   * @returns Observable<any[]>
    */
   public getList(path: string, options?): Observable<any> {
     return this.http.get<any[]>(`${path.includes('http') ? path : this.apiUrl + path}`, options);
@@ -54,10 +51,6 @@ export class ApiService {
 
   /**
    * Generic Function to CREATE One Item by ID
-   * @param path TODO: add description
-   * @param data TODO: add description
-   * @param options TODO: add description
-   * @returns Observable<any>
    */
   public createSingle(path: string, data: any, options?): Observable<any> {
     return this.http.post<any>(`${path.includes('http') ? path : this.apiUrl + path}`, data, options);
@@ -65,10 +58,6 @@ export class ApiService {
 
   /**
    * Generic Function to GET One Item by ID
-   * @param path TODO: add description
-   * @param id TODO: add description
-   * @param options TODO: add description
-   * @returns Observable<any>
    */
   public getSingle(path: string, id: string, options?): Observable<any> {
     return this.http.get<any>(`${path.includes('http') ? path : this.apiUrl + path}/${id}`, options);
@@ -76,24 +65,11 @@ export class ApiService {
 
   /**
    * Generic Function to UPDATE One Item by ID
-   * @param path TODO: add description
-   * @param id TODO: add description
-   * @param data TODO: add description
-   * @param options TODO: add description
-   * @returns Observable<any>
    */
   public updateSingle(path: string, id: string, data: any, options?): Observable<any> {
     return this.http.put<any>(`${path.includes('http') ? path : this.apiUrl + path}/${id}`, data, options);
   }
 
-  /**
-   *
-   * @param  path TODO: add description
-   * @param data TODO: add description
-   * @param options TODO: add description
-   * @param _apiUrl TODO: add description
-   * @returns Observable<any>
-   */
   // tslint:disable-next-line:variable-name
   public create(path: string, data: any, options?, _apiUrl?: string): Observable<any> {
     return this.http.post<any>(`${_apiUrl || this.apiUrl}${path}`, data, options);

@@ -51,13 +51,13 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
-            <mat-select placeholder="Type" formControlName="type" multiple>
+            <mat-select placeholder="Type" formControlName="brand" multiple>
               <mat-option *ngFor="let brand of brandList" [value]="brand.value">{{brand.text}}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="sorting-filter">
-            <mat-label>Sorting</mat-label>
+            <mat-label>Sort</mat-label>
             <mat-select placeholder="Type" formControlName="sorting">
               <mat-option *ngFor="let sort of sortList" [value]="sort.value">{{sort.text}}</mat-option>
             </mat-select>
@@ -66,6 +66,7 @@
             mat-flat-button
             class="btn-clear-filters"
             (click)=reset()>
+            <mat-icon aria-hidden="false" svgIcon="lnr-reset-filter" aria-label="reset icon"></mat-icon>
             Clear Filters
           </button>
         </div>

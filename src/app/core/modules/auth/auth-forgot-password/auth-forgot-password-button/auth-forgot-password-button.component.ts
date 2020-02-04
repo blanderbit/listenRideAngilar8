@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class AuthForgotPasswordButtonComponent {
   @Input() text = 'Forgot password?';
   @Input() disabled = false;
+  isLoggedIn = false;
 }

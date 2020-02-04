@@ -1,12 +1,12 @@
+import {Bike} from '@models/bike/bike.types';
+
 export interface SearchModel {
-  bikes: any[];
-  bikesMap: {[key: string]: any};
-  filteredBikes: any[];
-  displayBikes: any[];
+  bikes: Bike[];
+  bikes_coordinates: any[];
   location: any;
-  offset?: number;
-  limit?: number;
   showFilter?: boolean;
+  showSorting?: boolean;
+  filterPayload?: SearchPayload;
 }
 
 export interface Location {
@@ -15,4 +15,17 @@ export interface Location {
   type?: string;
   zoom?: number;
   city?: string;
+}
+
+export interface SearchPayload {
+  location?: string;
+  page?: number;
+  limit?: number;
+  category?: string;
+  height?: number;
+  brand?: string;
+  sort_by?: string;
+  sort_direction?: string;
+  start_date?: Date;
+  duration?: number;
 }

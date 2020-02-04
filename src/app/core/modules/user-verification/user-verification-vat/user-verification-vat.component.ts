@@ -32,9 +32,7 @@ export class UserVerificationVatComponent implements OnInit {
 
     this.apiBusinessService.update(827, business)
       .subscribe((res) => {
-        debugger;
       }, (error) => {
-        debugger;
       });
   }
 

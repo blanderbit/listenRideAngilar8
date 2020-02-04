@@ -17,8 +17,9 @@ import {AutofocusDirective} from './directives/autofocus.directive';
 import {FocusFirstInvalidFieldDirective} from './directives/focus-first-invalid-field.directive';
 import {MaterialModule} from './modules/material/material.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
-import {SocialMediaImgComponent} from './components/social-media-img/social-media-img.component';
-import {SubscribeInputComponent} from './components/subscribe-input/subscribe-input.component';
+import { SocialMediaImgComponent } from './components/social-media-img/social-media-img.component';
+import { SubscribeInputComponent } from './components/subscribe-input/subscribe-input.component';
+import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorting.component';
 
 const components = [
   FiltersComponent,
@@ -26,7 +27,8 @@ const components = [
   LoaderSpinnerSmallComponent,
   HttpErrorMessageComponent,
   SocialMediaImgComponent,
-  SubscribeInputComponent
+  SubscribeInputComponent,
+  MobileSortingComponent,
 ];
 
 const formControls = [

@@ -65,22 +65,20 @@ export class UserVerificationAddressComponent implements OnInit {
     }
 
     const street = this.form.get('street').value;
-    const number = this.form.get('number').value;
+    const streetNumber = this.form.get('number').value;
 
     const locationReq: Partial<User> = {
       locations: [
         {
           ...this.form.value,
-          street: street && number ? street + ' ' + number : street
+          street: street && streetNumber ? street + ' ' + streetNumber : street
         }
       ]
     };
 
     this.apiUserService.update(17289, locationReq)
       .subscribe((res) => {
-        debugger;
       }, (error) => {
-        debugger;
       });
   }
 

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2 justify-content-start">
+      <div class="sorting-close"
+           (click)=close()>
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <div class="col-8 sorting-label">
+      <span>Sorting</span>
+    </div>
+    <div class="col-2 sorting-apply">
+      <span (click)=close()>Apply</span>
+    </div>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let sorter of sortList">
+      <p mat-line (click) = "sort(sorter.value)"> {{sorter.text}} </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
+

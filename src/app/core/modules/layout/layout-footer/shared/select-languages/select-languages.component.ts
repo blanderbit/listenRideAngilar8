@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {SearchModel} from '../../../../../../main/search/search.types';
 
 export interface Languages {
   value: string;
@@ -12,6 +15,12 @@ export interface Languages {
 })
 
 export class SelectLanguagesComponent implements OnInit {
+
+  constructor(private fb: FormBuilder, private store: Store<SearchModel>) {
+  }
+
+  public form: FormGroup;
+
   languages: Languages[] = [
     {
       viewValue: 'English',
@@ -35,10 +44,11 @@ export class SelectLanguagesComponent implements OnInit {
     }
   ];
 
-  constructor() {
-  }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      language: [],
+    });
   }
 
 }

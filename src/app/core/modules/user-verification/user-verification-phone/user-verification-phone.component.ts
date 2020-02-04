@@ -58,7 +58,6 @@ export class UserVerificationPhoneComponent implements OnInit {
 
     this.apiUserService.phoneUpdate(17289, phoneUpdateRequest)
       .subscribe((res) => {
-        debugger;
       }, (error) => {
         this.phoneError = error;
       });
@@ -74,7 +73,6 @@ export class UserVerificationPhoneComponent implements OnInit {
 
     this.apiUserService.phoneConfirm(phoneConfirmRequest)
       .subscribe((res) => {
-        debugger;
       }, (error) => {
         this.codeError = error;
       });

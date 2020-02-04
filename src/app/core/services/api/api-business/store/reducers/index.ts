@@ -1,6 +1,5 @@
 import {Business} from '@models/business/business';
-import {createReducer, on} from '@ngrx/store';
-import {initialState} from '../../../../../../main/search/store/search.reducers';
+import {Action, createReducer, on} from '@ngrx/store';
 import {ApiBusinessActions} from '@api/api-business/store/actions';
 import {BusinessCreateRequest} from '@models/business/business-create-request';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -17,8 +16,8 @@ export const initialApiState: ApiBusinessState = {
   business: undefined
 };
 
-export const apiBusinessReducer = createReducer(
-  initialState,
+const reducer = createReducer(
+  initialApiState,
 
   on(ApiBusinessActions.createBusiness, (state, action) => {
     return {
@@ -41,3 +40,7 @@ export const apiBusinessReducer = createReducer(
     };
   })
 );
+
+export function apiBusinessReducer(state: ApiBusinessState = initialApiState, action: Action) {
+  return reducer(state, action);
+}

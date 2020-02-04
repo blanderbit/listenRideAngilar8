@@ -29,10 +29,8 @@ export class AuthLoginFacebookButtonComponent implements OnDestroy {
     this.apiOauthService.loginFacebook()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((user) => {
-        debugger;
         this.loading = false;
       }, (error) => {
-        debugger;
         this.loading = false;
       });
   }

@@ -7,7 +7,6 @@
 
 :host {
   display: flex;
-  flex: 1;
   width: 100%;
   margin-top: 1rem;
 
@@ -104,7 +103,14 @@
     }
 
     .btn-clear-filters {
-      color: $error-color;
+      color: $light-text-color;
+      font-weight: 400;
+      border: 0.1rem solid $error-color;
+      border-radius: 0.4rem;
+      margin-left: 0.5rem;
+      margin-top: 0.4rem;
+      height: 4.2rem;
+      padding-top: 0.5rem;
 
       mat-icon {
         margin-top: -10px;

@@ -24,7 +24,7 @@ import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angul
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-function provideAuthServiceConfig() {
+export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
     {
       id: FacebookLoginProvider.PROVIDER_ID,
@@ -33,7 +33,7 @@ function provideAuthServiceConfig() {
   ]);
 }
 
-const APP_PROVIDERS = [
+export const APP_PROVIDERS = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpAuthInterceptor,

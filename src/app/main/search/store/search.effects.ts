@@ -6,75 +6,32 @@ import {of} from 'rxjs';
 import {
   SuccessGetBikes,
   ErrorGetBikes,
-  StartGetBikes,
-  GetBikesPage,
-  GetBikesPageSuccess, GetUnavailableBikes, SuccessGetUnavailableBikes
+  GetBikes, GetBikesPage, GetBikesPageSuccess
 } from './search.actions';
 import {Store} from '@ngrx/store';
 import {SearchModel} from '../search.types';
-import {getBikes, getFilteredBikes, getSearchState} from './index';
+import {getFilterPayload, getSearchState} from './index';
 
 @Injectable()
 export class SearchEffects {
 
   loadBikes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(StartGetBikes),
+      ofType(GetBikes),
       withLatestFrom(this.store.select(getSearchState)),
       switchMap(([action, state]) => {
-        return this.searchService.getRide(action.location, action.sizes)
+        const payload = {...state.filterPayload};
+        return this.searchService.getRide(payload)
         .pipe(
           switchMap(results => {
-            if (results.bikes) {
-              results.bikesMap = {};
-              results.bikes.forEach(bike => results.bikesMap[bike.id] = bike);
-              results.filteredBikes = results.bikes;
-            }
+            const actionToReturn = payload.page > 1 ? GetBikesPageSuccess({bikes: results.bikes}) : SuccessGetBikes(results);
             return [
-              SuccessGetBikes(results),
-              GetBikesPageSuccess({bikes: results.bikes.slice(state.offset, state.limit)})
+              actionToReturn
             ];
           }),
           catchError((error) => of(ErrorGetBikes(error)))
         );
       }
-      )
-    )
-  );
-
-  getBikesPage$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(GetBikesPage),
-      withLatestFrom(this.store.select(getFilteredBikes)),
-      map(([action, bikes]) => {
-          return GetBikesPageSuccess({bikes: bikes.slice(action.offset, action.limit)});
-      }
-      )
-    )
-  );
-
-  getUnavailableBikes$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(GetUnavailableBikes),
-      withLatestFrom(this.store.select(getSearchState)),
-      switchMap(([action, state]) => {
-          return this.searchService.getUnavailableRides(action.startDate, action.duration)
-            .pipe(
-              switchMap(results => {
-                const filteredBikes = [];
-                const bikeIds = Object.keys(state.bikesMap);
-
-                bikeIds.map(bikeId => {
-                  if (results.ids.indexOf(bikeId) === -1) {
-                    filteredBikes.push(state.bikesMap[bikeId]);
-                  }
-                  }
-                );
-
-                return of(SuccessGetUnavailableBikes({filteredBikes}));
-              }),
-              catchError((error) => of(ErrorGetBikes(error))));
-        }
       )
     )
   );

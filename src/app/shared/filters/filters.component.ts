@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as SearchActions from '../../main/search/store/search.actions';
 import {select, Store} from '@ngrx/store';
-import {SearchModel} from '../../main/search/search.types';
+import {SearchModel, SearchPayload} from '../../main/search/search.types';
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
+import {sizeList, typeList, brandList, sortList} from '@core/constants/filters.const';
 import {getFilterToggle} from '../../main/search/store';
 
 @Component({
@@ -18,120 +19,10 @@ export class FiltersComponent implements OnInit {
 
   public filtersForm: FormGroup;
   public showFilter: boolean;
-  public sizeList = [
-    {
-      text: 'All Sizes',
-      value: -1,
-    },
-    {
-      text: 'Unisize',
-      value: 0,
-    },
-    {
-      text: '155-165',
-      value: 155
-    },
-    {
-      text: '165-175',
-      value: 165
-    },
-    {
-      text: '165-175',
-      value: 165
-    },
-    {
-      text: '175-185',
-      value: 175
-    },
-    {
-      text: '185-195',
-      value: 185
-    },
-    {
-      text: '195-205',
-      value: 195
-    },
-    {
-      text: '85-95',
-      value: 85
-    }
-  ];
-  public typeList = [{
-    type: 'Urban',
-    categories: [
-      {
-        text: 'City Bike',
-        value: 10,
-      },
-      {
-        text: 'Dutch Bike',
-        value: 11,
-      },
-      {
-        text: 'Single Speed Bike',
-        value: 12,
-      },
-    ]
-  },
-  {
-    type: 'E-bike',
-    categories: [
-      {
-        text: 'E-City Bike',
-        value: 20,
-      },
-      {
-        text: 'E-Touring Bike',
-        value: 21,
-      },
-      {
-        text: 'E-Cargo Bike',
-        value: 22,
-      },
-      {
-        text: 'E-Mountain Bike',
-        value: 23,
-      },
-      {
-        text: 'E-Road Bike',
-        value: 24,
-      },
-      {
-        text: 'E-Folding Bike',
-        value: 25,
-      },
-      {
-        text: 'E-Scooter',
-        value: 26,
-      },
-    ]
-  },
-  ];
-
-  public brandList = [
-    {
-      text: '8bar',
-      value: '8bar',
-    },
-    {
-      text: 'Benveno',
-      value: 'Benveno'
-    }];
-
-  public sortList = [
-    {
-      text: 'Newest',
-      value: 1,
-    },
-    {
-      text: 'Price: High to low',
-      value: 2
-    },
-    {
-      text: 'Price: Low to High',
-      value: 3
-    }
-  ];
+  public sizeList = sizeList;
+  public typeList = typeList;
+  public brandList = brandList;
+  public sortList = sortList;
 
   date: SatDatepickerRangeValue<Date>;
   lastDateInput: SatDatepickerRangeValue<Date> | null;
@@ -144,38 +35,45 @@ export class FiltersComponent implements OnInit {
   ngOnInit() {
     this.filtersForm = this.fb.group({
       date: [this.date],
-      size: [[]],
-      type: [[]],
-      brand: ['Test'],
-      sorting: [[]]
+      size: [],
+      type: [],
+      brand: [],
+      sorting: []
     });
 
     this.store.pipe(select(getFilterToggle))
       .subscribe(showFilter => this.showFilter = showFilter);
 
     this.filtersForm.valueChanges.subscribe(val => {
-      this.store.dispatch(SearchActions.GetUnavailableBikes(this.formatPayload(val)));
+      this.store.dispatch(SearchActions.SetSearchPayload(this.formatPayload(val)));
     });
-
   }
 
   formatPayload(formData) {
-    const filterPayload = {
-      startDate: null,
-      duration: null
+    const filterPayload: SearchPayload = {
+      page: 1
     };
+
     if (formData.date) {
-      filterPayload.startDate = formData.date.begin;
+      filterPayload.start_date = formData.date.begin;
       filterPayload.duration = Math.round((new Date(formData.date.end).getTime() - new Date(formData.date.begin).getTime()) / 1000);
+    }
+    if (formData.size) { filterPayload.height = formData.size; }
+    if (formData.type) { filterPayload.category = formData.type.join(','); }
+    if (formData.brand) { filterPayload.brand = formData.brand.join(','); }
+    if (formData.sorting) {
+      const sortParams = formData.sorting.split('-');
+      filterPayload.sort_by = sortParams[0];
+      filterPayload.sort_direction = sortParams[1];
     }
 
     return filterPayload;
   }
 
   reset() {
-    this.store.dispatch(SearchActions.StartGetBikes({location: 'berlin'}));
     this.filtersForm.markAsUntouched();
     this.filtersForm.reset();
+    this.store.dispatch(SearchActions.ResetSearchPayload());
   }
 
   close() {
@@ -183,8 +81,6 @@ export class FiltersComponent implements OnInit {
   }
 
   applyFilters() {
-    const filterPayload = {...this.filtersForm.getRawValue()};
-    this.store.dispatch(SearchActions.GetUnavailableBikes(this.formatPayload(filterPayload)));
     this.close();
   }
 

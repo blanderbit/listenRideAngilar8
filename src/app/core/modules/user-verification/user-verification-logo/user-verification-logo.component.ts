@@ -37,11 +37,9 @@ export class UserVerificationLogoComponent {
         }
       ))
       .subscribe((res) => {
-        debugger;
         this.uploading = false;
         this.uploaded = true;
       }, (error) => {
-        debugger;
         this.uploading = false;
       });
   }

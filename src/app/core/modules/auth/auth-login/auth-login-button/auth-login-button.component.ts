@@ -12,13 +12,14 @@ import * as fromAuth from '../../store/reducers';
 export class AuthLoginButtonComponent implements OnInit {
   @Input() text = 'Login';
   @Input() disabled = false;
-  isLoggedIn$: Observable<boolean>;
+  isLoggedIn: boolean;
 
   constructor(private store: Store<fromAuth.State>) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.store.pipe(select(fromAuth.isLoggedIn));
+    this.store.pipe(select(fromAuth.isLoggedIn))
+      .subscribe(loginState => this.isLoggedIn = loginState);
     // this.store.dispatch(AuthActions.headerOpenLoginDialog());
   }
 

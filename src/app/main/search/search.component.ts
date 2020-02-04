@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
 import * as SearchActions from './store/search.actions';
-import {SearchModel, Location} from './search.types';
+import {SearchModel, Location, SearchPayload} from './search.types';
 import {select, Store} from '@ngrx/store';
-import {filter, map, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
-import {getBikes, getDisplayBikes, getFilterToggle, getLocations} from './store';
-import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '../../core/constants/map-config';
+import {filter} from 'rxjs/operators';
+import {Bike} from '@core/models/bike/bike.types';
+import {getBikes, getBikesPins, getFilterPayload, getFilterToggle, getLocations, getSortingToggle} from './store';
+import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '@core/constants/map-config';
 import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
@@ -15,16 +15,20 @@ import {DeviceDetectorService} from 'ngx-device-detector';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public displayBikes$: Observable<any>;
-  public bikes = [];
-  public pagingOffset =  0;
-  public pagingLimit = 10;
+  public bikes: Bike[];
+  public page =  1;
   public pageAmount = 10;
   public pins;
   public mapToggle = false;
   public showFilter = false;
+  public showSorting = true;
   public isTablet = false;
+  public isMobile = false;
+  public isDesktop = false;
   public scrolled = false;
+  public openedWindow: string;
+  public activeBike = {} as Bike;
+  public filterPayload: SearchPayload;
 
   public location: Location = mapDefaultOptions;
   public mapStyles = mapColorScheme;
@@ -37,54 +41,53 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
-    this.store.dispatch(SearchActions.StartGetBikes({location: 'berlin'}));
+    this.store.dispatch(SearchActions.SetSearchPayload({ page: this.page, limit: this.pageAmount }));
     this.isTablet = this.deviceService.isTablet();
+    this.isMobile = this.deviceService.isMobile();
+    this.isDesktop = this.deviceService.isDesktop();
 
     this.store.pipe(
       select(getBikes),
       filter((bikes) => !!bikes)
       )
-      .subscribe(bikes => {
-        this.bikes = bikes.map(bike => { return {
-          price: Math.ceil(bike.price_from).toString(),
-          ...bike}; });
-      });
+      .subscribe(bikes => this.bikes = bikes);
 
-    this.displayBikes$ = this.store.pipe(
-      select(getDisplayBikes),
-      filter((bikes) => !!bikes)
-    );
+    this.store.pipe(select(getBikesPins))
+      .subscribe(pins => this.pins = pins);
 
     this.store.pipe(
       select(getLocations),
       filter((locations) => !!locations.geometry)
     )
-      .subscribe(locations => {
-        console.log(locations);
-        this.location = {city: locations.formatted_address, ...locations.geometry.location};
+      .subscribe(locations => this.location = {city: locations.formatted_address, ...locations.geometry.location});
+
+    this.store.pipe(
+        select(getFilterPayload),
+        filter(filterPayload => !!filterPayload && !!filterPayload.location)
+      )
+      .subscribe(filterPayload =>  {
+        this.filterPayload = {...filterPayload};
+        this.store.dispatch(SearchActions.GetBikes());
       });
 
     this.store.pipe(select(getFilterToggle))
       .subscribe(showFilter => this.showFilter = showFilter);
+
+    this.store.pipe(select(getSortingToggle))
+      .subscribe(showSorting =>  this.showSorting = showSorting );
   }
 
   onScrollDown(ev) {
     console.log('scrolled', ev);
     this.scrolled = true;
-    console.log(this.scrolled);
-    this.pagingOffset += this.pageAmount;
-    this.pagingLimit += this.pageAmount;
-    this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
+    this.filterPayload.page++;
+    this.store.dispatch(SearchActions.SetSearchPayload(this.filterPayload));
   }
 
   onScrollUp(ev) {
     console.log('scrolled up', ev);
     this.scrolled = false;
     console.log(this.scrolled);
-    this.pagingOffset += this.pageAmount;
-    this.pagingLimit += this.pageAmount;
-    this.store.dispatch(SearchActions.GetBikesPage({offset: this.pagingOffset, limit: this.pagingLimit}));
   }
 
   toggleMap() {
@@ -95,5 +98,24 @@ export class SearchComponent implements OnInit {
   toggleFilters() {
     console.log('toggled filter');
     this.store.dispatch(SearchActions.setSearchFilterToggle({showFilter: !this.showFilter}));
+  }
+
+  toggleSorting() {
+    console.log('toggled sorting');
+    this.store.dispatch(SearchActions.setSearchSortingToggle({showSorting: !this.showSorting}));
+  }
+
+  openWindow(id) {
+    this.openedWindow = null;
+    this.activeBike = {} as Bike;
+
+    this.SearchService.getSingleBike(id).subscribe(bike => {
+      this.activeBike = bike;
+      this.openedWindow = id;
+    });
+  }
+
+  isInfoWindowOpened(id) {
+    return this.openedWindow === id;
   }
 }

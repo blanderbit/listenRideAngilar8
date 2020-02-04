@@ -20,7 +20,11 @@ export class ToolbarComponent implements OnInit {
   }
 
   onAutocompleteSelected(selection) {
-    this.store.dispatch(SearchActions.StartGetBikes({location: selection.formatted_address}));
+    this.store.dispatch(SearchActions.SetSearchPayload({
+      location: selection.formatted_address,
+      page: 1,
+      limit: 10,
+    }));
   }
 
   showSearch($event) {
