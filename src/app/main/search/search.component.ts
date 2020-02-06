@@ -3,11 +3,12 @@ import {SearchService} from './search.service';
 import * as SearchActions from './store/search.actions';
 import {SearchModel, Location, SearchPayload} from './search.types';
 import {select, Store} from '@ngrx/store';
-import {filter} from 'rxjs/operators';
+import {filter, take} from 'rxjs/operators';
 import {Bike} from '@core/models/bike/bike.types';
 import {getBikes, getBikesPins, getFilterPayload, getFilterToggle, getLocations, getSortingToggle} from './store';
 import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '@core/constants/map-config';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'lnr-search',
@@ -17,7 +18,7 @@ import {DeviceDetectorService} from 'ngx-device-detector';
 export class SearchComponent implements OnInit {
   public bikes: Bike[];
   public page =  1;
-  public pageAmount = 10;
+  public pageAmount = 21;
   public pins;
   public mapToggle = false;
   public showFilter = false;
@@ -37,7 +38,9 @@ export class SearchComponent implements OnInit {
   // tslint:disable-next-line:no-shadowed-variable
   constructor(private SearchService: SearchService,
               private store: Store<SearchModel>,
-              private deviceService: DeviceDetectorService ) {
+              private deviceService: DeviceDetectorService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -45,6 +48,25 @@ export class SearchComponent implements OnInit {
     this.isTablet = this.deviceService.isTablet();
     this.isMobile = this.deviceService.isMobile();
     this.isDesktop = this.deviceService.isDesktop();
+
+    this.route.queryParamMap
+      .pipe(take(1))
+      .subscribe((paramMap) => {
+        const queryParams: SearchPayload = {
+          location: paramMap.get('location') || null,
+          page: paramMap.get('page') ? parseInt(paramMap.get('page'), 10) : null,
+          limit: paramMap.get('limit') ? parseInt(paramMap.get('limit'), 10) : null,
+          category: paramMap.get('category') || null,
+          height: paramMap.get('height') ? parseInt(paramMap.get('height'), 10) : null,
+          brand: paramMap.get('brand') || null,
+          sort_by: paramMap.get('sort_by') || null,
+          sort_direction: paramMap.get('sort_direction') || null,
+          start_date: paramMap.get('start_date') ? new Date(paramMap.get('start_date')) : null,
+          duration: paramMap.get('duration') ? parseInt(paramMap.get('duration'), 10) : null,
+        };
+        console.log('params', queryParams);
+        this.store.dispatch(SearchActions.SetSearchPayload(queryParams));
+    });
 
     this.store.pipe(
       select(getBikes),
@@ -68,6 +90,11 @@ export class SearchComponent implements OnInit {
       .subscribe(filterPayload =>  {
         this.filterPayload = {...filterPayload};
         this.store.dispatch(SearchActions.GetBikes());
+
+        this.router.navigate([], {
+          queryParams: { ...filterPayload },
+          replaceUrl: true
+        });
       });
 
     this.store.pipe(select(getFilterToggle))
@@ -78,30 +105,25 @@ export class SearchComponent implements OnInit {
   }
 
   onScrollDown(ev) {
-    console.log('scrolled', ev);
     this.scrolled = true;
     this.filterPayload.page++;
     this.store.dispatch(SearchActions.SetSearchPayload(this.filterPayload));
   }
 
   onScrollUp(ev) {
-    console.log('scrolled up', ev);
     this.scrolled = false;
     console.log(this.scrolled);
   }
 
   toggleMap() {
-    console.log('toggled map');
     this.mapToggle = !this.mapToggle;
   }
 
   toggleFilters() {
-    console.log('toggled filter');
     this.store.dispatch(SearchActions.setSearchFilterToggle({showFilter: !this.showFilter}));
   }
 
   toggleSorting() {
-    console.log('toggled sorting');
     this.store.dispatch(SearchActions.setSearchSortingToggle({showSorting: !this.showSorting}));
   }
 

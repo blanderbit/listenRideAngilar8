@@ -12,7 +12,7 @@ export const initialState: SearchModel = {
 
 export const initialSearchPayload: SearchPayload = {
   page: 1,
-  limit: 10,
+  limit: 21,
 };
 
 const reducer = createReducer(
@@ -39,7 +39,15 @@ const reducer = createReducer(
   }),
   on(SearchActions.SetSearchPayload, (state: SearchModel, payload) => {
     const nextState = {...state};
-    nextState.filterPayload = {...nextState.filterPayload, ...payload};
+    const filterPayload = {} as SearchPayload;
+
+    Object.keys(payload).forEach( (key) => {
+      if (!!payload[key] && key !== 'type') {
+        filterPayload[key] = payload[key];
+      }
+    });
+
+    nextState.filterPayload = {...nextState.filterPayload, ...filterPayload};
     return nextState;
   }),
   on(SearchActions.ResetSearchPayload, (state: SearchModel) => {

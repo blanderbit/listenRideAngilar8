@@ -5,7 +5,8 @@ import {select, Store} from '@ngrx/store';
 import {SearchModel, SearchPayload} from '../../main/search/search.types';
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
 import {sizeList, typeList, brandList, sortList} from '@core/constants/filters.const';
-import {getFilterToggle} from '../../main/search/store';
+import {getFilterPayload, getFilterToggle} from '../../main/search/store';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'lnr-filters',
@@ -43,6 +44,18 @@ export class FiltersComponent implements OnInit {
 
     this.store.pipe(select(getFilterToggle))
       .subscribe(showFilter => this.showFilter = showFilter);
+
+    this.store.pipe(select(getFilterPayload), take(1))
+      .subscribe(filters => {
+        this.filtersForm.patchValue({
+          date: filters.start_date || 'null',
+          size: filters.height || null,
+          type: filters.category ? filters.category.split(',') : [],
+          brand: filters.brand ? filters.brand.split(',') :  [],
+          sorting: filters.sort_direction && filters.sort_by ? `${filters.sort_by}-${filters.sort_direction}` : null
+
+        });
+      });
 
     this.filtersForm.valueChanges.subscribe(val => {
       this.store.dispatch(SearchActions.SetSearchPayload(this.formatPayload(val)));

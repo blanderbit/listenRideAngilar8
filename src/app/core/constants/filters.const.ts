@@ -41,15 +41,15 @@ export const typeList = [{
   categories: [
     {
       text: 'City Bike',
-      value: 10,
+      value: '10',
     },
     {
       text: 'Dutch Bike',
-      value: 11,
+      value: '11',
     },
     {
       text: 'Single Speed Bike',
-      value: 12,
+      value: '12',
     },
   ]
 },
@@ -58,31 +58,31 @@ export const typeList = [{
     categories: [
       {
         text: 'E-City Bike',
-        value: 20,
+        value: '20',
       },
       {
         text: 'E-Touring Bike',
-        value: 21,
+        value: '21',
       },
       {
         text: 'E-Cargo Bike',
-        value: 22,
+        value: '22',
       },
       {
         text: 'E-Mountain Bike',
-        value: 23,
+        value: '23',
       },
       {
         text: 'E-Road Bike',
-        value: 24,
+        value: '24',
       },
       {
         text: 'E-Folding Bike',
-        value: 25,
+        value: '25',
       },
       {
         text: 'E-Scooter',
-        value: 26,
+        value: '26',
       },
     ]
   },

@@ -15,6 +15,7 @@
               <input matInput
                      matGoogleMapsAutocomplete
                      placeholder="Search"
+                     [(ngModel)]="location"
                      (onAutocompleteSelected)="onAutocompleteSelected($event)"
               />
             </div>
