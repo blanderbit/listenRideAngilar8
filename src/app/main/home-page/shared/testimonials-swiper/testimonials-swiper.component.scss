@@ -1,0 +1,30 @@
+@import "../../../../../assets/scss/variables";
+
+:host .swiper-container {
+  height: 50rem;
+}
+
+.testimonials-list {
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 72rem;
+    object-fit: contain;
+    border-radius: $border-radius;
+  }
+
+  &_content {
+    background: $white;
+    position: absolute;
+    width: 44rem;
+    height: 38rem;
+    box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
+    border-radius: $border-radius;
+    right: 6rem;
+    padding: 2rem;
+    text-align: left;
+  }
+}

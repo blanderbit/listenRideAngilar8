@@ -1,0 +1,37 @@
+@import '../../../../../assets/scss/variables';
+
+.swiper-wrapper {
+  box-sizing: border-box;
+
+  .bike-tile .bike-info_content {
+    width: 58%;
+  }
+}
+
+@media (max-width: $device-md) {
+  .swiper-container {
+    ::ng-deep.bike-tile .bike-info_content {
+      width: 58% !important;
+    }
+  }
+}
+
+.swiper-button-prev, .swiper-button-next {
+  border-radius: 50%;
+  color: $white-font-color;
+  width: 4.8rem;
+  height: 4.8rem;
+
+  &:after {
+    font-size: $h4-fontsize;
+    font-weight: 900;
+  }
+}
+
+.swiper-button-next {
+  transform: translate(15%, -50%);
+}
+
+.swiper-button-prev {
+  transform: translate(-15%, -50%);
+}

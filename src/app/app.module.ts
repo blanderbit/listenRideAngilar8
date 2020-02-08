@@ -23,6 +23,7 @@ import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SWIPER_CONFIG, SwiperConfigInterface, SwiperModule} from 'ngx-swiper-wrapper';
 
 export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
@@ -32,6 +33,11 @@ export function provideAuthServiceConfig() {
     }
   ]);
 }
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 export const APP_PROVIDERS = [
   {
@@ -61,6 +67,7 @@ export const APP_PROVIDERS = [
     // TODO: Remove SharedModule from imports
     SharedModule,
     MaterialModule,
+    SwiperModule,
     MatMenuModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {
@@ -86,9 +93,14 @@ export const APP_PROVIDERS = [
 
     // TODO: remove ApiService from providers
     ApiService,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
+
 export class AppModule {
   constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     // TODO: filter mdi.svg to contains just needed icons

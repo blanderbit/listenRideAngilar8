@@ -1,0 +1,39 @@
+@import "../../../../../assets/scss/variables";
+
+.our-pros {
+  &_title, &_paragraph {
+    color: $dark-text-color;
+    line-height: 2rem;
+    font-weight: normal;
+  }
+
+  &_title {
+    margin-top: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  &_paragraph {
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: $device-sm) {
+  .our-pros {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      margin-right: 2rem;
+    }
+
+    &_title, &_paragraph {
+      line-height: 1.6rem;
+    }
+
+    &_title {
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+  }
+}

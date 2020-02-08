@@ -12,30 +12,29 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {SharedModule} from '../../shared/shared.module';
 import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MatIconModule} from '@angular/material/icon';
-import {BikeTileComponent} from '../bike-tile/bike-tile.component';
 import {DeviceDetectorModule} from 'ngx-device-detector';
 import {MainModule} from '../main.module';
 
 
 @NgModule({
   declarations: [
-    SearchComponent,
-    BikeTileComponent
+    SearchComponent
   ],
-    imports: [
-        CommonModule,
-        SearchRoutingModule,
-        SharedModule,
-        MatIconModule,
-        StoreModule.forFeature('search', SearchReducer),
-        EffectsModule.forFeature([SearchEffects]),
-        AgmCoreModule,
-        MatGoogleMapsAutocompleteModule,
-        AgmJsMarkerClustererModule,
-        InfiniteScrollModule,
-        DeviceDetectorModule.forRoot(),
-        MainModule
-    ]
+  exports: [],
+  imports: [
+    CommonModule,
+    SearchRoutingModule,
+    SharedModule,
+    MatIconModule,
+    StoreModule.forFeature('search', SearchReducer),
+    EffectsModule.forFeature([SearchEffects]),
+    AgmCoreModule,
+    MatGoogleMapsAutocompleteModule,
+    AgmJsMarkerClustererModule,
+    InfiniteScrollModule,
+    DeviceDetectorModule.forRoot(),
+    MainModule
+  ]
 })
 export class SearchModule {
 }

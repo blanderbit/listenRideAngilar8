@@ -17,9 +17,10 @@ import {AutofocusDirective} from './directives/autofocus.directive';
 import {FocusFirstInvalidFieldDirective} from './directives/focus-first-invalid-field.directive';
 import {MaterialModule} from './modules/material/material.module';
 import {NgxCaptchaModule} from 'ngx-captcha';
-import { SocialMediaImgComponent } from './components/social-media-img/social-media-img.component';
-import { SubscribeInputComponent } from './components/subscribe-input/subscribe-input.component';
-import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorting.component';
+import {SocialMediaImgComponent} from './components/social-media-img/social-media-img.component';
+import {SubscribeInputComponent} from './components/subscribe-input/subscribe-input.component';
+import {MobileSortingComponent} from './components/mobile-sorting/mobile-sorting.component';
+import {OurProsComponent} from '../main/home-page/shared/our-pros/our-pros.component';
 
 const components = [
   FiltersComponent,
@@ -29,6 +30,7 @@ const components = [
   SocialMediaImgComponent,
   SubscribeInputComponent,
   MobileSortingComponent,
+  OurProsComponent
 ];
 
 const formControls = [
@@ -66,7 +68,7 @@ const directives = [
     SatDatepickerModule,
     SatNativeDateModule,
     MaterialModule,
-    NgxCaptchaModule,
+    NgxCaptchaModule
   ],
   exports: [
     ...components,
@@ -81,7 +83,8 @@ const directives = [
     SatNativeDateModule,
     MaterialModule,
     SocialMediaImgComponent,
-    SubscribeInputComponent
+    SubscribeInputComponent,
+    OurProsComponent
   ],
   entryComponents: []
 })

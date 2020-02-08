@@ -11,7 +11,7 @@
 @import "assets/scss/flexbox-helper";
 @import "assets/scss/padding-helper";
 @import "assets/scss/sizes-helper";
-
+@import '~swiper/css/swiper.min.css';
 
 @include mat-core();
 
@@ -89,4 +89,38 @@ p {
 
 .hdd-datepicker.mat-calendar {
   height: 320px !important;
+}
+
+/* Styles for Swiper */
+
+.swiper-container {
+  .swiper-wrapper {
+    box-sizing: border-box;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    background: $submit-button-color;
+    border-radius: 50%;
+    line-height: 1.6rem;
+    color: $white-font-color;
+    width: 4.8rem;
+    height: 4.8rem;
+    font-size: $h4-fontsize;
+
+    &:after {
+      font-size: $h4-fontsize ;
+      font-weight: 900;
+    }
+  }
 }

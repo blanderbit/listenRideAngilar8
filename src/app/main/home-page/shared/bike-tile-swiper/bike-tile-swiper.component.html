@@ -1,0 +1,31 @@
+<div class="swiper-container" [swiper]="config" [(index)]="index">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div *ngFor="let bike of bikes" class="swiper-slide cursor-pointer">
+        <div class="col-md-12 col-sm-12">
+          <lnr-bike-tile
+            [brand]="bike.brand"
+            [bikeName]="bike.name"
+            [image]="bike.image_file"
+            [size]="bike.pretty_size"
+            [price]="bike.daily_price"
+            [weeklyPrice]="bike.weekly_price"
+            [ratingAverage]="bike.rating_average"
+            [rating]="bike.ratings_total"
+            [distance]="bike.distance"
+            [clusterParams]="bike.cluster"
+            [isMobileView]="false"
+            [amount]="bike.cluster ? bike.cluster.variations.length : null"
+          >
+          </lnr-bike-tile>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="swiper-button-prev">
+    </div>
+    <div class="swiper-button-next">
+    </div>
+  </div>
+</div>

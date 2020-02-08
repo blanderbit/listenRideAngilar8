@@ -1,0 +1,93 @@
+<div class="wrap-home-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
+        <h3 class="home-page_subtitles">The perfect bike. Simply rent it.</h3>
+        <p>Join listnride and find the bike that is right for you</p>
+      </div>
+    </div>
+    <div class="home-page_content flex direction-row">
+      <lnr-searching-form></lnr-searching-form>
+      <div class="wrap-main-img">
+        <img alt="" src="../../../assets/images/img-home-page/main-img.jpg"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 offset-md-1">
+        <h3 class="home-page_subtitles"> Bike Rental: Our Community’s Favorites:</h3>
+        <p> Whether it’s road bikes, mountain bikes, cargo bikes, city bikes or e-bikes, you can rent them all.
+          These are the current favorite rental bikes of the community.</p>
+      </div>
+      <div class="col-md-12">
+        <lnr-bike-tile-swiper></lnr-bike-tile-swiper>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 col-sm-12 m-t-2 m-b-2 offset-md-1">
+        <h3 class="home-page_subtitles">Ride your favourite bike before you buy it!</h3>
+        <p> We are partnering with innovative bike brands, which offer their latest models for test-riding.
+          Simply rent a test-bike for a day or a weekend and make a well-considered decision!</p>
+      </div>
+      <div class="col-md-12">
+        <lnr-brands-swiper></lnr-brands-swiper>
+      </div>
+      <div class="col-md-11 offset-md-1 m-t-2 m-b-2">
+        <button mat-flat-button
+                class="m-t-2 m-b-2"
+                routerLink="./brands"
+                color="accent">
+          <span class="white regular heading-6">
+             See all brands
+          </span>
+        </button>
+      </div>
+    </div>
+    <div>
+      <lnr-popular-destination></lnr-popular-destination>
+    </div>
+    <div class="row">
+      <div class="col-md-11 offset-md-1">
+        <h3 class="home-page_subtitles">Why you should you rent with us:</h3>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/img-home-page/Icon_rent-easy 1.svg'"
+          [title]="'Bike rental, made easy'"
+          [paragraph]="'Search and rent a bike in mere seconds.\n'+'No more phone calls or emails needed!'"
+        >
+        </lnr-our-pros>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/img-home-page/Icon_rent-secure 1.svg'"
+          [title]="'Variety of choice, everywhere'"
+          [paragraph]="' Road bikes, mountain bikes, e-bikes, city bikes -' +
+         ' we have the greatest selection of rental bikes!'"
+        >
+        </lnr-our-pros>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/img-home-page/Icon_rent-variety 1.svg'"
+          [title]="'We care about quality'"
+          [paragraph]="'  Premium road bikes, reliable e-bikes, and sturdy city bikes:' +
+           ' were more than just a simple bike rental service!'"
+        >
+        </lnr-our-pros>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <lnr-testimonal-swiper></lnr-testimonal-swiper>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
+        <h3 class="home-page_subtitles">Top locations to rent a bike with listnride:</h3>
+      </div>
+      <div class="col-md-12 m-t-2 m-b-2">
+        <lnr-top-location></lnr-top-location>
+      </div>
+    </div>
+  </div>
+</div>

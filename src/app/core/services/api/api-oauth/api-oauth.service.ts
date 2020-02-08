@@ -40,6 +40,4 @@ export class ApiOauthService {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     return this.authService.authState;
   }
-
-
 }

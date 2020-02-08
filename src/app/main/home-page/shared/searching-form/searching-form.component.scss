@@ -1,0 +1,13 @@
+@import "../../../../../assets/scss/variables";
+
+.wrap-form {
+  background: $white-font-color;
+  box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
+  border-radius: 0.8rem;
+  position: relative;
+  z-index: 2;
+  height: 36rem;
+  width: 49rem;
+  left: 2rem;
+  padding: 2rem;
+}
