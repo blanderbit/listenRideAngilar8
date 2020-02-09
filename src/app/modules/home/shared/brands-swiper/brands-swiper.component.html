@@ -1,0 +1,17 @@
+<div class="swiper-container" [swiper]="config">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div *ngFor="let brand of brands" class="swiper-slide cursor-pointer brands-list">
+        <a target="_blank" href="/brands/{{brand.title}}">
+          <img src="{{brand.tile_image}}"/>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="swiper-button-prev">
+    </div>
+    <div class="swiper-button-next">
+    </div>
+  </div>
+</div>

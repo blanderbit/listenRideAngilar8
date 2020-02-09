@@ -1,35 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-
 const routes: Routes = [
-  // <TODO> change to normal routing after homepage's created
-  {
-    path: 'terms',
-    loadChildren: () => import('./modules/terms').then(m => m.TermsModule)
-  },
-  {
-    path: 'privacy',
-    loadChildren: () => import('./modules/privacy').then(m => m.PrivacyModule)
-  },
-  {
-    path: 'list-bike',
-    loadChildren: () => import('./modules/listMyBike').then(m => m.ListMyBikeModule)
-  },
-  {
-    path: '',
-    redirectTo: 'main/search',
-    pathMatch: 'full'
-  },
-  {
-    path: 'main',
-    loadChildren: './main/main.module#MainModule',
-  },
-  {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  },
+  {path: '', loadChildren: () => import('./modules/home').then(m => m.HomeModule)},
+  {path: 'list-bike', loadChildren: () => import('./modules/list-my-bike').then(m => m.ListMyBikeModule)},
+  {path: 'privacy', loadChildren: () => import('./modules/privacy').then(m => m.PrivacyModule)},
+  {path: 'search', loadChildren: () => import('./modules/search').then(m => m.SearchModule)},
+  {path: 'settings', loadChildren: () => import('./modules/settings').then(m => m.SettingsModule)},
+  {path: 'terms', loadChildren: () => import('./modules/terms').then(m => m.TermsModule)},
+  {path: '**', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
 ];
 
 @NgModule({

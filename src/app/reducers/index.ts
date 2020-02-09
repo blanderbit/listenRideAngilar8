@@ -5,8 +5,8 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import {environment} from '../../environments/environment';
-import {SearchReducer} from '../main/search/store/search.reducers';
+import {environment} from '@environment/environment';
+
 
 // tslint:disable-next-line:no-empty-interface
 export interface State {}

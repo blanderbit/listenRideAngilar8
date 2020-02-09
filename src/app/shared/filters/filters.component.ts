@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as SearchActions from '../../main/search/store/search.actions';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 import {select, Store} from '@ngrx/store';
-import {SearchModel, SearchPayload} from '../../main/search/search.types';
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
-import {sizeList, typeList, brandList, sortList} from '@core/constants/filters.const';
-import {getFilterPayload, getFilterToggle} from '../../main/search/store';
+import {brandList, sizeList, sortList, typeList} from '@core/constants/filters.const';
 import {take} from 'rxjs/operators';
+import * as SearchActions from '../../modules/search/store/search.actions';
+import {SearchModel, SearchPayload} from '../../modules/search/search.types';
+import {getFilterPayload, getFilterToggle} from '../../modules/search/store';
 
 @Component({
   selector: 'lnr-filters',

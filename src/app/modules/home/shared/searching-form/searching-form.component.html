@@ -1,0 +1,28 @@
+<div class="wrap-form">
+  <h5>Start searching</h5>
+  <div class="d-none d-sm-block"
+       [ngClass]="{'d-block': activeSearch}">
+    <div class="flex direction-row search-autocomplete">
+      <mat-icon class="m-r-1">location_on</mat-icon>
+      <input matInput
+             matGoogleMapsAutocomplete
+             placeholder="Search"
+             (onAutocompleteSelected)="onAutocompleteSelected($event)"
+      />
+    </div>
+    <mat-form-field appearance="outline">
+      <input matInput
+             class="filter-input"
+             placeholder="Choose a date"
+
+             [max]="maxDate"
+             [satDatepicker]="resultPicker"
+             (dateInput)="onDateInput($event)"
+             (dateChange)="onDateChange($event)">
+      <sat-datepicker panelClass="hdd-datepicker"
+                      #resultPicker [rangeMode]="true">
+      </sat-datepicker>
+      <sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
+    </mat-form-field>
+  </div>
+</div>

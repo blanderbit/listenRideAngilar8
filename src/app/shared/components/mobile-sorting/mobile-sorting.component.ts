@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { sortList } from '@core/constants/filters.const';
-import * as SearchActions from '../../../main/search/store/search.actions';
+import {Component} from '@angular/core';
+import {sortList} from '@core/constants/filters.const';
+import * as SearchActions from '../../../modules/search/store/search.actions';
+import {SearchModel} from '../../../modules/search/search.types';
 import {Store} from '@ngrx/store';
-import {SearchModel} from '../../../main/search/search.types';
 
 @Component({
   selector: 'lnr-mobile-sorting',
   templateUrl: './mobile-sorting.component.html',
   styleUrls: ['./mobile-sorting.component.scss']
 })
-export class MobileSortingComponent implements OnInit {
+export class MobileSortingComponent {
   sortList = sortList;
 
-  constructor(private store: Store<SearchModel>) { }
-
-  ngOnInit() {
+  constructor(private store: Store<SearchModel>) {
   }
 
   sort(sorter) {

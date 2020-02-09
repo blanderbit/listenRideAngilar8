@@ -1,0 +1,63 @@
+<div class="bike-tile-map-view">
+  <div class="bike-tile-map-view_wrap-img">
+    <img src="{{bike?.image_file}}"
+         alt=""
+    />
+  </div>
+  <div class="bike-info">
+    <div class="flex justify-content-between">
+      <div class="bike-info_content flex direction-column">
+        <span class="bike-info_brand text-ellipsis medium">{{bike?.brand}}</span>
+        <span class="bike-info_name text-ellipsis">{{bike?.name}}</span>
+      </div>
+      <div class="bike-info_price align-items-left flex direction-column">
+        <span *ngIf="bike?.daily_price === 0"
+              class="bike-info_price-day medium">
+          Free
+        </span>
+        <div *ngIf="bike?.daily_price > 0"
+             class="flex direction-column">
+          <span class="bike-info_price-day medium">
+            {{bike?.daily_price | number: '1.0-0' }} €/day
+          </span>
+          <span class="bike-info_price-week">
+            {{bike?.weekly_price * 7 | number: '1.0-0' }} €/week
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-content-between">
+      <div class="bike-info_content flex direction-column">
+        <div class="bike-info_size flex direction-row align-items-center">
+          <span class="text-ellipsis">Size: {{bike?.size}}</span>
+          <div *ngIf="bike?.distance"
+               class="flex direction-row align-items-center">
+            <mat-icon class="heading-6" aria-hidden="false" aria-label="">room</mat-icon>
+            <span>{{bike?.distance}} km</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bike-info_price align-items-left flex direction-column">
+        <div class="bike-info_rating flex direction-row align-items-center"
+             *ngIf="bike?.ratings_total">
+          <mat-icon class="heading-6" aria-hidden="false" aria-label="">
+            grade
+          </mat-icon>
+          <span>{{bike?.rating_average | number: '1.0-0'}} ({{bike?.ratings_total}})</span>
+        </div>
+      </div>
+    </div>
+    <div class="bike-info_price-xs flex direction-column m-b-1">
+       <span *ngIf="bike?.daily_price === 0"
+             class="bike-info_price-day medium">
+          Free
+        </span>
+      <div *ngIf="bike?.daily_price > 0"
+           class="flex direction-column">
+        <span class="bike-info_price-day p-b-1 medium">{{bike?.daily_price | number: '1.0-0'}} €/day </span>
+        <span>{{bike?.weekly_price * 7| number: '1.0-0'}} €/week </span>
+      </div>
+    </div>
+  </div>
+</div>

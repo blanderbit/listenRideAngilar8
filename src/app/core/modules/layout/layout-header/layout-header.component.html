@@ -1,1 +1,43 @@
-<!--<h2>Header</h2>-->
+<div class="flex wrap-toolbar-component content-center align-items-center">
+  <div class="toolbar-component-container">
+    <div class="flex direction-row content-between align-items-center row-no-wrap">
+      <div class="flex align-items-center">
+        <a class="logo" [ngClass]="{'d-none': activeSearch}" routerLink="/">
+          <img src="../../../../../assets/ui_icons/lnr_logo_bold.svg"
+               alt="logo"/>
+        </a>
+        <div class="d-none d-sm-block"
+             [ngClass]="{'d-block': activeSearch}">
+          <div class="flex direction-row search-autocomplete">
+            <mat-icon class="m-r-1">search</mat-icon>
+            <input matInput
+                   matGoogleMapsAutocomplete
+                   placeholder="Search"
+                   [(ngModel)]="location"
+                   (onAutocompleteSelected)="onAutocompleteSelected($event)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="d-sm-none">
+          <a class="m-r-2 search-btn"
+             [ngClass]="{'d-none': activeSearch}"
+             (click)="showSearch($event)">
+            <mat-icon class="white">search</mat-icon>
+          </a>
+          <a class="m-r-2 d-none close-btn"
+             (click)="close('toggle button')"
+             [ngClass]="{'d-block': activeSearch}">
+            <mat-icon class="white">
+              close
+            </mat-icon>
+          </a>
+        </div>
+        <div>
+          <lnr-menu [isLoggedIn]="false"></lnr-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

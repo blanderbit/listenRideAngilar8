@@ -1,24 +1,18 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {environment} from '@environment/environment';
-import {MaterialModule} from './material.module';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MainModule} from './main/main.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {metaReducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {CoreModule} from '@core/core.module';
-import {SharedModule} from './shared/shared.module';
-import {ApiService} from '@core/services/api.service';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
-import {MatMenuModule} from '@angular/material/menu';
 
 import {MatIconRegistry} from '@angular/material';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
@@ -48,6 +42,10 @@ export const APP_PROVIDERS = [
   {
     provide: AuthServiceConfig,
     useFactory: provideAuthServiceConfig
+  },
+  {
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
   }
 ];
 
@@ -57,18 +55,12 @@ export const APP_PROVIDERS = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SocialLoginModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MainModule,
-    // TODO: Remove CoreModule from imports
-    CoreModule,
-    // TODO: Remove SharedModule from imports
-    SharedModule,
-    MaterialModule,
     SwiperModule,
-    MatMenuModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {
       metaReducers,
@@ -77,27 +69,11 @@ export const APP_PROVIDERS = [
         strictActionImmutability: true
       }
     }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
-    }),
-    // NoopAnimationsModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMaps,
-      libraries: ['places', 'geometry']
-    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    AgmCoreModule.forRoot({apiKey: environment.googleMaps, libraries: ['places', 'geometry']}),
     MatGoogleMapsAutocompleteModule.forRoot(),
   ],
-  providers: [
-    ...APP_PROVIDERS,
-
-    // TODO: remove ApiService from providers
-    ApiService,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }
-  ],
+  providers: [...APP_PROVIDERS],
   bootstrap: [AppComponent],
 })
 

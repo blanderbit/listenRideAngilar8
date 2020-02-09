@@ -20,7 +20,9 @@ import {NgxCaptchaModule} from 'ngx-captcha';
 import {SocialMediaImgComponent} from './components/social-media-img/social-media-img.component';
 import {SubscribeInputComponent} from './components/subscribe-input/subscribe-input.component';
 import {MobileSortingComponent} from './components/mobile-sorting/mobile-sorting.component';
-import {OurProsComponent} from '../main/home-page/shared/our-pros/our-pros.component';
+import {BikeCardComponent} from './components/bike-card/bike-card.component';
+import {BikeCardMobileComponent} from './components/bike-card/bike-card-mobile/bike-card-mobile.component';
+import {RouterModule} from '@angular/router';
 
 const components = [
   FiltersComponent,
@@ -30,7 +32,9 @@ const components = [
   SocialMediaImgComponent,
   SubscribeInputComponent,
   MobileSortingComponent,
-  OurProsComponent
+
+  BikeCardComponent,
+  BikeCardMobileComponent
 ];
 
 const formControls = [
@@ -77,6 +81,7 @@ const directives = [
     ...links,
     ...directives,
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     SatDatepickerModule,
@@ -84,7 +89,6 @@ const directives = [
     MaterialModule,
     SocialMediaImgComponent,
     SubscribeInputComponent,
-    OurProsComponent
   ],
   entryComponents: []
 })

@@ -1,0 +1,30 @@
+.image-wrapper {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    .overlay {
+      bottom: 0;
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    right: 0;
+    bottom: -100px;
+    left: 0;
+    text-align: center;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, .4);
+    padding: 3px;
+    transition: bottom .2s;
+  }
+}

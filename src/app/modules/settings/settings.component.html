@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Settings</h3>
+    </div>
+  </div>
+
+  <div class="row lnr-mrg-btm">
+    <div class="col-sm-12">
+      <div class="tabs">
+        <div class="buttons-wrap" [ngClass]="tabType">
+          <button mat-button (click)="toggleTab('profile')" [ngClass]="{'active': showProfile}">Profile</button>
+          <button mat-button (click)="toggleTab('account')" [ngClass]="{'active': showAccount}">Account</button>
+          <button mat-button (click)="toggleTab('availability')" [ngClass]="{'active': showAvailability}">Availability
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <lnr-settings-profile *ngIf="showProfile"></lnr-settings-profile>
+      <lnr-settings-account *ngIf="showAccount"></lnr-settings-account>
+      <lnr-settings-availability *ngIf="showAvailability"></lnr-settings-availability>
+    </div>
+  </div>
+
+</div>

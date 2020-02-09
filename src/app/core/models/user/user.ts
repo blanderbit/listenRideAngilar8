@@ -18,7 +18,7 @@ export interface User {
   // TODO: ASK BE for enum
   ref_status: any;
   profile_picture: {
-    url: string;
+    profile_picture: { url: string; }
   };
   confirmed_phone: boolean;
 

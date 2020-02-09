@@ -14,18 +14,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './subscribe-input.component.html',
   styleUrls: ['./subscribe-input.component.scss']
 })
-export class SubscribeInputComponent implements OnInit {
+export class SubscribeInputComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   matcher = new MyErrorStateMatcher();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }

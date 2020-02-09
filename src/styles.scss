@@ -1,5 +1,6 @@
 /*lnr theme global styles*/
 @import "theme/index";
+@import "./theme/atom-styles/index";
 
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/theming";
@@ -12,6 +13,16 @@
 @import "assets/scss/padding-helper";
 @import "assets/scss/sizes-helper";
 @import '~swiper/css/swiper.min.css';
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0 !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+}
+
+
 
 @include mat-core();
 

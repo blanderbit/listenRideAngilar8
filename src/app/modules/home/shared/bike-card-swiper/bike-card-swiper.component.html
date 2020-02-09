@@ -1,0 +1,17 @@
+<div class="swiper-container" [swiper]="config">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div *ngFor="let bike of bikes" class="swiper-slide cursor-pointer">
+        <div class="col-md-12 col-sm-12">
+          <lnr-bike-card [bike]="bike" [isMobileView]="false"></lnr-bike-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="swiper-button-prev">
+    </div>
+    <div class="swiper-button-next">
+    </div>
+  </div>
+</div>
