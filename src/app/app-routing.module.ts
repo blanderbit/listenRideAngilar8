@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/privacy').then(m => m.PrivacyModule)
   },
   {
+    path: 'list-bike',
+    loadChildren: () => import('./modules/listMyBike').then(m => m.ListMyBikeModule)
+  },
+  {
     path: '',
     redirectTo: 'main/search',
     pathMatch: 'full'

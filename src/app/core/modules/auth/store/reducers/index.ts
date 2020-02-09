@@ -5,6 +5,7 @@ import * as fromSignUpDialog from './sign-up-dialog.reducer';
 import * as fromSignUpBusinessDialog from './sign-up-business-dialog.reducer';
 import {TokensEnum} from '@enums/tokens.enum';
 
+
 export const authFeatureKey = 'auth';
 
 export interface AuthState {
@@ -88,4 +89,23 @@ export const selectSignUpBusinessCreateError = createSelector(
 export const selectSignUpBusinessCreatePending = createSelector(
   selectSignUpDialogState,
   fromSignUpDialog.getSignUpBusinessCreatePending
+);
+
+export const selectFromAuth = createSelector(
+    selectAuthState,
+    (state: AuthState) => state[fromAuth.statusFeatureKey]
+);
+export const selectAuthGetMe = createSelector(
+    selectFromAuth,
+    fromAuth.getMe
+);
+
+export const selectAuthGetUser = createSelector(
+    selectFromAuth,
+    fromAuth.getUser
+);
+
+export const selectAuthGetUserCombine = createSelector(
+    selectFromAuth,
+    fromAuth.getUserCombine
 );

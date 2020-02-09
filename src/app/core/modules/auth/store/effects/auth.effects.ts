@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {catchError, exhaustMap, map, mergeMap, take, tap} from 'rxjs/operators';
+import {catchError, exhaustMap, flatMap, map, mergeMap, take, tap} from 'rxjs/operators';
 import {
   AuthActions,
   AuthApiActions,
@@ -9,7 +9,7 @@ import {
   SignUpDialogActions,
   UserApiActions
 } from '@core/modules/auth/store/actions';
-import {of} from 'rxjs';
+import {concat, Observable, of} from 'rxjs';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {ApiUserService} from '@api/api-user/api-user.service';
 import {OauthTokenRequest} from '@models/oauth/oauth-token-request';
@@ -28,6 +28,18 @@ import {LocalStorageKeysEnum} from '@enums/local-storage-keys.enum';
 
 @Injectable()
 export class AuthEffects {
+
+  setUserDataInitialize$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(UserApiActions.UserDataInitialize),
+        exhaustMap(({me, user}) =>
+          concat(
+            of(UserApiActions.getMeSuccess({me})),
+            of(UserApiActions.getUserByIdSuccess({user}))
+          )
+      ))
+    }
+  );
 
   saveTokens$ = createEffect(() => {
       return this.actions$.pipe(

@@ -14,6 +14,7 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {LayoutModule} from '@core/modules/layout';
 import {UserVerificationModule} from '@user-verification/user-verification.module';
 import {ToolbarComponent} from './toolbar/toolbar.component';
+import {ListMyBikeModule} from '../modules/listMyBike';
 import {SharedModule} from '../shared/shared.module';
 import {TopLocationComponent} from './home-page/shared/top-location/top-location.component';
 import {PopularDestinationComponent} from './home-page/shared/popular-destination/popular-destination.component';
@@ -50,7 +51,8 @@ import { TestimonialsSwiperComponent } from './home-page/shared/testimonials-swi
     FormsModule,
     LayoutModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    ListMyBikeModule
   ],
   exports: [
     BikeTileMobileMapViewComponent,

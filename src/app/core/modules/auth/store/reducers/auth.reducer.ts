@@ -28,3 +28,4 @@ export const reducer = createReducer(
 
 export const getMe = (state: State) => state.me;
 export const getUser = (state: State) => state.user;
+export const getUserCombine = (state: State | any) => [state.me, state.user];
