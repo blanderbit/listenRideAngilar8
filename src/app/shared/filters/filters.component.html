@@ -39,7 +39,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+        <!--  <mat-form-field appearance="outline">
             <mat-label>Type</mat-label>
             <mat-select placeholder="Type" formControlName="type" multiple>
               <mat-optgroup class="category" *ngFor="let type of typeList" [label]="type.type">
@@ -47,7 +47,8 @@
                             [value]="category.value">{{category.text}}</mat-option>
               </mat-optgroup>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
+          <lnr-category-multiselect #categorySelect></lnr-category-multiselect>
 
           <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>

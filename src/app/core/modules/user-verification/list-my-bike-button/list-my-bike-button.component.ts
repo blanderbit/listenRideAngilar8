@@ -6,10 +6,10 @@ import {UserVerificationActions} from '@user-verification/store/actions';
 
 @Component({
   selector: 'lnr-list-my-bike-button',
-  templateUrl: './list-my-bike-button.html',
-  styleUrls: ['./list-my-bike-button.scss']
+  templateUrl: './list-my-bike-button.component.html',
+  styleUrls: ['./list-my-bike-button.component.scss']
 })
-export class ListMyBikeButton {
+export class ListMyBikeButtonComponent {
 
   user = this.store.pipe(select(fromAuth.selectAuthGetUser));
 

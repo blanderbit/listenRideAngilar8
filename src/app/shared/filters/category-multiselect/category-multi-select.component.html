@@ -1,0 +1,27 @@
+<button
+  mat-flat-button
+  class="btn-category-filter"
+  (click) = "toggleFilter()"
+> Type</button>
+<div class="category-filter" [ngClass]="{active : showFilter}">
+  <div class="category" *ngFor="let category of categories; let i = index">
+    <div class="category-label">
+      <mat-checkbox
+        (change) = "handleCategoryChange(i)"
+        [indeterminate]="checkIndeterminate(i)"
+      ></mat-checkbox>
+      <span (click) = "toggleCategory(i)">{{ category.type }}</span>
+      <mat-icon aria-hidden="false" svgIcon="lnr-bike-cat-{{i+1}}" aria-label="category icon"></mat-icon>
+    </div>
+
+    <div class="sub-category" [ngClass]="{active : category.active}">
+      <div class="option" *ngFor="let subcategory of category.subcategories">
+        <mat-checkbox
+          [(ngModel)]="categoriesForm[subcategory.value]"
+          (change)="handleSubcategoryChange()">
+          {{ subcategory.text }}
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+</div>

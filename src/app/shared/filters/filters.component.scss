@@ -1,10 +1,5 @@
 @import "../../../assets/scss/variables";
 
-::ng-deep .category {
-  outline: 0.1rem solid $black;
-  background: $black;
-}
-
 :host {
   display: flex;
   width: 100%;
@@ -78,7 +73,7 @@
       @media (max-width: $device-xs) {
         flex: 1;
         margin: auto 1rem;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $light-grey;
 
         ::ng-deep .mat-form-field-wrapper {
           width: 100%;

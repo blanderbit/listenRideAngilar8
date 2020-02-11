@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {select, Store} from '@ngrx/store';
@@ -19,12 +19,13 @@ export class FiltersComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store<SearchModel>) {
   }
 
-  public filtersForm: FormGroup;
-  public showFilter: boolean;
-  public sizeList = sizeList;
-  public typeList = typeList;
-  public brandList = brandList;
-  public sortList = sortList;
+  filtersForm: FormGroup;
+  showFilter: boolean;
+  sizeList = sizeList;
+  brandList = brandList;
+  sortList = sortList;
+
+  @ViewChild('categorySelect', { static: true }) public categorySelect: TemplateRef<any>;
 
   date: SatDatepickerRangeValue<Date>;
   lastDateInput: SatDatepickerRangeValue<Date> | null;
@@ -56,6 +57,11 @@ export class FiltersComponent implements OnInit {
           sorting: filters.sort_direction && filters.sort_by ? `${filters.sort_by}-${filters.sort_direction}` : null
 
         });
+      });
+
+    this.categorySelect[`multiSelectUpdate`]
+      .subscribe((categories) => {
+        this.filtersForm.get('type').setValue(categories);
       });
 
     this.filtersForm.valueChanges.subscribe(val => {

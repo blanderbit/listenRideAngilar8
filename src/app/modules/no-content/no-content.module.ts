@@ -7,5 +7,4 @@ import {NoContentRoutingModule} from './no-content-routing.module';
   imports: [NoContentRoutingModule]
 })
 export class NoContentModule {
-  
 }

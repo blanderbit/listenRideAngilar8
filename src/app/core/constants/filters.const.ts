@@ -38,7 +38,8 @@ export const sizeList = [
 ];
 export const typeList = [{
   type: 'Urban',
-  categories: [
+  active: false,
+  subcategories: [
     {
       text: 'City Bike',
       value: '10',
@@ -55,7 +56,8 @@ export const typeList = [{
 },
   {
     type: 'E-bike',
-    categories: [
+    active: false,
+    subcategories: [
       {
         text: 'E-City Bike',
         value: '20',
@@ -83,6 +85,128 @@ export const typeList = [{
       {
         text: 'E-Scooter',
         value: '26',
+      },
+    ]
+  },
+  {
+    type: 'Road Bike',
+    active: false,
+    subcategories: [
+      {
+        text: 'Road Bike',
+        value: '30',
+      },
+      {
+        text: 'Triathlon Bike',
+        value: '31',
+      },
+      {
+        text: 'Touring Bike',
+        value: '32',
+      },
+      {
+        text: 'Fixed Gear Bike',
+        value: '33',
+      },
+    ]
+  },
+  {
+    type: 'All-terrain',
+    active: false,
+    subcategories: [
+      {
+        text: 'MTB Hardtail',
+        value: '40',
+      },
+      {
+        text: 'MTB Full suspension',
+        value: '41',
+      },
+      {
+        text: 'Cyclocross Bike',
+        value: '42',
+      },
+      {
+        text: 'Gravel Bike',
+        value: '43',
+      },
+    ]
+  },
+  {
+    type: 'Transport',
+    active: false,
+    subcategories: [
+      {
+        text: 'Cargo bike',
+        value: '50',
+      },
+      {
+        text: 'Bike trailer',
+        value: '51',
+      },
+      {
+        text: 'Bike Child Seat',
+        value: '52',
+      },
+      {
+        text: 'Bike Car Rack',
+        value: '53',
+      },
+      {
+        text: 'Bike Travel Bag',
+        value: '54',
+      },
+      {
+        text: 'Event Bike',
+        value: '55',
+      },
+    ]
+  },
+  {
+    type: 'Kids',
+    active: false,
+    subcategories: [
+      {
+        text: 'City Bike',
+        value: '60',
+      },
+      {
+        text: 'All-terrain bike',
+        value: '61',
+      },
+      {
+        text: 'Road Bike',
+        value: '62',
+      },
+      {
+        text: 'Bogie Bike',
+        value: '63',
+      },
+    ]
+  },
+  {
+    type: 'Special',
+    active: false,
+    subcategories: [
+      {
+        text: 'Folding Bike',
+        value: '70',
+      },
+      {
+        text: 'Recumbent bike',
+        value: '71',
+      },
+      {
+        text: 'Tandem Bike',
+        value: '72',
+      },
+      {
+        text: 'Longtail Bike',
+        value: '73',
+      },
+      {
+        text: 'Scooter',
+        value: '74',
       },
     ]
   },

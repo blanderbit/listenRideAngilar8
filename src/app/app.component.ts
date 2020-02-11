@@ -4,6 +4,8 @@ import {map, takeUntil} from 'rxjs/operators';
 import * as fromAuth from './core/modules/auth/store/reducers';
 import {combineLatest, Subject} from 'rxjs';
 import {UserApiActions} from '@auth/store/actions';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'lnr-root',
@@ -15,7 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
 
   constructor(
-    private store: Store<fromAuth.State>
+    private store: Store<fromAuth.State>,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
   ) {
   }
 
@@ -36,6 +40,47 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         },
         (e) => console.log(e));
+
+    this.matIconRegistry.addSvgIcon(
+      'lnr-filter',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/filter_icon.svg')
+    )
+      .addSvgIcon(
+        'lnr-reset-filter',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/reset_filter_icon.svg')
+      )
+      .addSvgIcon(
+        'lnr-sort',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/sort_icon.svg')
+      )
+      .addSvgIcon(
+      'lnr-bike-cat-1',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_1.svg')
+      )
+      .addSvgIcon(
+      'lnr-bike-cat-2',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_2.svg')
+      )
+      .addSvgIcon(
+      'lnr-bike-cat-3',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_3.svg')
+      )
+      .addSvgIcon(
+        'lnr-bike-cat-4',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_4.svg')
+      )
+      .addSvgIcon(
+        'lnr-bike-cat-5',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_5.svg')
+      )
+      .addSvgIcon(
+        'lnr-bike-cat-6',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_6.svg')
+      )
+      .addSvgIcon(
+        'lnr-bike-cat-7',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_7.svg')
+      );
   }
 
   private lS_Select(type) {

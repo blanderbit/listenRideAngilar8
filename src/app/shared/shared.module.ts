@@ -23,6 +23,7 @@ import {MobileSortingComponent} from './components/mobile-sorting/mobile-sorting
 import {BikeCardComponent} from './components/bike-card/bike-card.component';
 import {BikeCardMobileComponent} from './components/bike-card/bike-card-mobile/bike-card-mobile.component';
 import {RouterModule} from '@angular/router';
+import { CategoryMultiSelectComponent } from './filters/category-multiselect/category-multi-select.component';
 
 const components = [
   FiltersComponent,
@@ -32,6 +33,7 @@ const components = [
   SocialMediaImgComponent,
   SubscribeInputComponent,
   MobileSortingComponent,
+  CategoryMultiSelectComponent,
 
   BikeCardComponent,
   BikeCardMobileComponent

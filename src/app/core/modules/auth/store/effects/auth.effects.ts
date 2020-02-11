@@ -37,7 +37,7 @@ export class AuthEffects {
             of(UserApiActions.getMeSuccess({me})),
             of(UserApiActions.getUserByIdSuccess({user}))
           )
-      ))
+      ));
     }
   );
 

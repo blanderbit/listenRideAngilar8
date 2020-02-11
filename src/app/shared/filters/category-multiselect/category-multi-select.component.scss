@@ -1,0 +1,82 @@
+@import "../../../../assets/scss/variables";
+
+:host {
+  @media (max-width: $device-xs) {
+    flex: 1;
+    margin: auto 1rem;
+    border-bottom: 0.1rem solid $light-grey;
+  }
+}
+
+.btn-category-filter {
+  color: $light-text-color;
+  font-weight: 400;
+  border: 0.1rem solid $light-text-color;
+  border-radius: 0.4rem;
+  margin-left: 0.5rem;
+  margin-top: 0.4rem;
+  height: 4.2rem;
+  padding-top: 0.5rem;
+  width: 12.5rem;
+
+  @media (max-width: $device-xs) {
+    width: 100%;
+    text-align: left;
+    margin-left: 0.1rem;
+  }
+}
+.category-filter {
+  display: none;
+  box-shadow: 0 0.2rem 0.4rem -0.1rem rgba(0,0,0,.09), 0 0.4rem 0.5rem 0 rgba(0,0,0,.06), 0 0.1rem 1rem 0 rgba(0,0,0,.05);
+
+  &.active {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+  }
+}
+.category {
+  background: $white;
+  display: flex;
+  max-width: 100%;
+  flex: 0 0 100%;
+  flex-direction: column;
+  padding: 1.6rem;
+  border-bottom: 0.1rem solid $light-grey;
+
+  .category-label {
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    color: $light-grey-font;
+
+    mat-icon{
+      align-self: flex-end;
+    }
+  }
+}
+
+.sub-category {
+  background: $white;
+  display: none;
+
+  &.active {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1 0 100%;
+    color: $light-grey-font;
+  }
+
+  .option {
+    flex: 0 0 100%;
+  }
+
+}
+
