@@ -18,6 +18,10 @@ export class ApiSeoService {
     return this.httpClient.get(`${environment.apiUrl}/seo_cities/subfooter`);
   }
 
+  getRecommendedCities(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/seo_cities/recommended_destinations`);
+  }
+
   getCountryDomain() {
     const url = window.location.host.split('.');
     const urlDomain = url[url.length - 1];

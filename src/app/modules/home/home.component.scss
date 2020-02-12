@@ -10,11 +10,12 @@
     .wrap-main-img {
       position: relative;
       z-index: 1;
+      left: -1rem;
 
       img {
         border-radius: 0.4rem;
-        max-height: 48rem;
-        max-width: 72rem;
+        //max-height: 48rem;
+        width: 100%;
       }
     }
   }
@@ -31,4 +32,34 @@
       text-align: center;
     }
   }
+  .wrap-searching-form {
+    margin-bottom: -8rem;
+  }
+}
+
+.wrap-main-img-mobile {
+  width: 100%;
+  min-height: 40rem;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .home-page_subtitles {
+    font-size: 3.2rem;
+  }
+}
+
+.wrap-searching-form {
+  padding: 2rem;
+  width: 100%;
+}
+
+.large-m-t {
+  margin-top: 8px;
+}
+
+.large-m-b {
+  margin-bottom: 8rem;
 }

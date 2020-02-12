@@ -5,21 +5,29 @@
            class="swiper-slide cursor-pointer testimonials-list">
         <div class="d-none d-lg-block">
           <img alt=""
+               class="testimonials-list_large-img"
                src="{{response.picture}}"/>
         </div>
         <div class="testimonials-list_content">
-          <h4 class="main-blue-font-color m-b-1">
+          <h3 class="main-blue-font-color m-b-2">
             {{response.description[this.apiSeoService.retrieveLocale()]}}
-          </h4>
+          </h3>
+          <img class="testimonials-list_small-img m-b-1"
+               alt=""
+               src="{{response.picture}}"/>
+          <p class="main-blue-font-color testimonials-list_username d-block d-lg-none">
+            {{response.fullname}}
+          </p>
           <p class="dark-font-color">
             {{response.text[this.apiSeoService.retrieveLocale()]}}
           </p>
-          <p class="main-blue-font-color">
+          <p class="main-blue-font-color testimonials-list_username d-none d-lg-block">
             {{response.fullname}}
           </p>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <!--      TODO add pagination-->
+      <!--      <div class="swiper-pagination"></div>-->
     </div>
   </div>
   <div class="d-none d-lg-block">

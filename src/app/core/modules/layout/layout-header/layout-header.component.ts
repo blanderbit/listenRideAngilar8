@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
-import * as SearchActions from '../../../../modules/search/store/search.actions';
 import {SearchModel} from '../../../../modules/search/search.types';
+import * as SearchActions from '../../../../modules/search/store/search.actions';
 
 @Component({
   selector: 'lnr-layout-header',
@@ -11,7 +11,7 @@ import {SearchModel} from '../../../../modules/search/search.types';
 })
 export class LayoutHeaderComponent implements OnInit {
   @Input() activeSearch = false;
-  reason = '';
+  reason: string;
   location: string;
 
   constructor(

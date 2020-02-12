@@ -55,8 +55,15 @@
         </div>
       </div>
       <div class="bike-info_price-xs flex direction-column m-b-1">
-        <span class="bike-info_price-day p-b-1 medium">{{bike?.daily_price | number: '1.0-0'}} €/day </span>
-        <span>{{bike?.weekly_price * 7| number: '1.0-0'}} €/week </span>
+       <span *ngIf="bike?.daily_price === 0"
+             class="bike-info_price-day medium">
+          Free
+        </span>
+        <div *ngIf="bike?.daily_price > 0"
+             class="flex direction-column">
+          <span class="bike-info_price-day p-b-1 medium">{{bike?.daily_price | number: '1.0-0'}} €/day </span>
+          <span>{{bike?.weekly_price * 7| number: '1.0-0'}} €/week </span>
+        </div>
       </div>
     </div>
   </div>

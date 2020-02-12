@@ -7,7 +7,7 @@
 .testimonials-list {
   position: relative;
 
-  img {
+  &_large-img {
     position: absolute;
     left: 0;
     top: 0;
@@ -26,5 +26,63 @@
     right: 6rem;
     padding: 2rem;
     text-align: left;
+  }
+
+  &_small-img {
+    display: none;
+  }
+
+  &_username {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.swiper-pagination {
+  bottom: 7rem;
+  right: 12rem;
+}
+
+@media (max-width: $device-md) {
+  :host .swiper-container {
+    height: 64rem;
+  }
+  .testimonials-list {
+    &_content {
+      position: relative;
+      width: 100%;
+      height: auto;
+      margin-right: 1rem;
+      margin-left: 1rem;
+
+      h3 {
+        font-size: $h4-fontsize;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+    }
+
+    &_username {
+      position: relative;
+    }
+
+    &_username {
+      margin-top: 1rem;
+    }
+
+    &_small-img {
+      display: block;
+      width: 100%;
+      height: inherit;
+      position: relative;
+      object-fit: contain;
+      border-radius: $border-radius;
+    }
+  }
+}
+
+@media (max-width: $device-sm) {
+  :host .swiper-container {
+    height: 56rem;
   }
 }

@@ -1,5 +1,6 @@
 <div class="top-location-list">
-  <p *ngFor="let city of cities"  class="regular dark-font-color">
-    {{city}}
+  <p *ngFor="let city of cities">
+    <a class="city-link regular dark-font-color"
+       routerLink="./{{city | lowercase}}">{{city}}</a>
   </p>
 </div>

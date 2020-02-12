@@ -13,10 +13,6 @@ export class TestimonialsSwiperComponent implements OnInit {
     a11y: true,
     direction: 'horizontal',
     slidesPerView: 1,
-    slideToClickedSlide: true,
-    mousewheel: true,
-    watchSlidesProgress: true,
-    keyboard: true,
     centeredSlides: true,
     loop: true,
     slidesOffsetBefore: 24,
@@ -27,8 +23,7 @@ export class TestimonialsSwiperComponent implements OnInit {
       clickable: true
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: '.swiper-button-next'
     },
     breakpoints: {
       960: {
