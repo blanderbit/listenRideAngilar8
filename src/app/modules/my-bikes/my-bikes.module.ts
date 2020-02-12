@@ -14,7 +14,15 @@ import { MyBikesDuplicateModalComponent } from './shared/modals/my-bikes-duplica
 
 
 @NgModule({
-  declarations: [MyBikesComponent, MyBikesTableViewComponent, MyBikesGridViewComponent, MyBikesMergeModalComponent, MyBikesAvailabilityModalComponent, MyBikesDeleteModalComponent, MyBikesActivateModalComponent, MyBikesDuplicateModalComponent],
+  declarations: [
+    MyBikesComponent,
+    MyBikesTableViewComponent,
+    MyBikesGridViewComponent,
+    MyBikesMergeModalComponent,
+    MyBikesAvailabilityModalComponent,
+    MyBikesDeleteModalComponent,
+    MyBikesActivateModalComponent,
+    MyBikesDuplicateModalComponent],
   imports: [
     CommonModule,
     MyBikesRoutingModule,

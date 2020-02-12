@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {SatDatepickerInputEvent, SatDatepickerRangeValue} from "saturn-datepicker";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'lnr-my-bikes-merge-availability-modal',

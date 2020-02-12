@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {DataSource} from '@angular/cdk/typings/collections';
 import {Observable, throwError} from 'rxjs';
 import {Bike} from '@models/bike/bike.types';
 import {catchError, filter, map, tap} from 'rxjs/operators';
@@ -13,7 +12,7 @@ import {DialogConfig} from '@core/configs/dialog/dialog.config';
 import {MyBikesDuplicateModalComponent} from '../shared/modals/my-bikes-duplicate-modal/my-bikes-duplicate-modal.component';
 import {MyBikesDeleteModalComponent} from '../shared/modals/my-bikes-delete-modal/my-bikes-delete-modal.component';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MyBikesAvailabilityModalComponent} from "../shared/modals/my-bikes-availability-modal/my-bikes-availability-modal.component";
+import {MyBikesAvailabilityModalComponent} from '../shared/modals/my-bikes-availability-modal/my-bikes-availability-modal.component';
 
 @Component({
   selector: 'lnr-my-bikes-table-view',

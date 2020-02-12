@@ -92,16 +92,12 @@ export class SettingsAddressComponent implements OnInit {
       ]
     };
 
-    debugger;
-
     this.apiUserService.update(this.user.id, locationReq)
       .subscribe((res) => {
 
         this.loading$.next(false);
         this.error$.next(null);
-        debugger;
       }, (error) => {
-        debugger;
         this.loading$.next(false);
         this.error$.next(error);
       });
