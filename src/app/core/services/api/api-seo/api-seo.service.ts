@@ -1,6 +1,5 @@
 import {Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '@environment/environment';
 import {Observable} from 'rxjs';
 
 (window as any).global = window;
@@ -11,11 +10,12 @@ import {Observable} from 'rxjs';
 
 export class ApiSeoService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient) {
   }
 
   getTopLocation(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/seo_cities/subfooter`);
+    return this.httpClient.get(`/seo_cities/subfooter`);
   }
 
   getRecommendedCities(): Observable<any> {
@@ -46,18 +46,18 @@ export class ApiSeoService {
   }
 
   getPopularDestinations(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/seo_cities/popular_destinations?country_code=${this.getCountryDomain()}`);
+    return this.httpClient.get(`/seo_cities/popular_destinations?country_code=${this.getCountryDomain()}`);
   }
 
   getTopBikes(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/featured`);
+    return this.httpClient.get(`/featured`);
   }
 
   getBrands(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/brand_pages`);
+    return this.httpClient.get(`/brand_pages`);
   }
 
   getTestimonials(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/seo_testimonials?page_type=home_page`);
-  }
+    return this.httpClient.get(`/seo_testimonials?page_type=home_page`);
+}
 }

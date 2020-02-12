@@ -1,0 +1,328 @@
+<h2 class="header">List My Bike</h2>
+<div class="stepper-container">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+
+    <mat-step [stepControl]="categoryFormGroup">
+      <form class="category" [formGroup]="categoryFormGroup">
+
+        <ng-template matStepLabel>Category</ng-template>
+
+        <p class="description">Please select the category and subcategory of your bike.</p>
+        <h3 class="description-what">What type of bike it is?</h3>
+
+        <div class="mat">
+          <mat-form-field appearance="fill">
+            <mat-select
+              formControlName="categoryCtrl"
+              placeholder="Select the bike category"
+              (selectionChange)="changeCategory($event)"
+              [ngClass]="categoryFormGroup.controls.categoryCtrl.value.src && 'selected-category'"
+              [ngStyle]="{
+                background: getUrlBackground(categoryFormGroup.controls.categoryCtrl.value)
+              }"
+            >
+              <mat-option
+                *ngFor="let category of bikeCategoryList"
+                [value]="category"
+              >
+                <img width="30" [src]="category.src">
+                {{category.type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="subCategoryCtrl" placeholder="Specify the subcategory">
+              <mat-option
+                *ngFor="let subcategory of subCategoriesValue"
+                [value]="subcategory"
+              >
+                {{subcategory.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!categoryFormGroup.invalid">
+          <p class="description">What accessories does your bike have?</p>
+          <div class="select-category-container">
+            <div *ngFor="let item of accessoriesARrr"
+                 class="select-category-accessories"
+                 [ngClass]="{activeSelect: accessories[item]}"
+                 (click)="accessories[item] =! accessories[item]"
+            >
+              <mat-icon [svgIcon]="accessoriesImage[item]"></mat-icon>
+              <div class="text-category">{{item}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container first">
+          <button class="next"
+                  [ngClass]="{active: !categoryFormGroup.invalid}"
+                  [disabled]="categoryFormGroup.invalid" mat-button matStepperNext>
+            Next
+          </button>
+        </div>
+
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="detailsFormGroup">
+      <form class="details" [formGroup]="detailsFormGroup">
+        <ng-template matStepLabel>Details</ng-template>
+        <p>How many variants would you like to add?</p>
+
+
+        <div id="details_container" *ngFor="let val of bikeQuantity">
+          <mat-form-field class="quantity" >
+            <div class="col-12">
+              <label class="quantity">Quantity</label>
+              <input matInput class="quantity" formControlName="detailsCtrl" value="{{val}}" >
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <div class="col-12">
+              <label>Rider height*</label>
+              <mat-select formControlName="detailsCtrl">
+                <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+              </mat-select>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+
+            <div class="col-12">
+              <label>Frame size</label>
+              <input matInput placeholder="" formControlName="detailsCtrl">
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <div class="col-12">
+              <label>Bicycle number</label>
+              <input matInput placeholder="" formControlName="detailsCtrl">
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <div class="col-12">
+              <label>Frame number</label>
+
+              <div class="frame-number">
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="detailsCtrl"
+                       required>
+                <mat-icon id="hideFrameNumber" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon id="delQuantity" (click)="delQuantity(val)">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+
+        <div class="addVariants" (click)="addVariants()">Add variants</div>
+
+        <div class="button-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button class="next"
+                  [ngClass]="{active: !detailsFormGroup.invalid}"
+                  [disabled]="detailsFormGroup.invalid" mat-button matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="picturesFormGroup">
+      <form class="pictureLoader" [formGroup]="picturesFormGroup" style="width: 100%; max-width: 1000px">
+        <ng-template matStepLabel>Pictures</ng-template>
+        <p class="pictureLoader">Now select some nice pictures of your bike. Here is a guide on how to make your listing
+          look even better!</p>
+        <p>Please note that the potos need to be at least 1500x1000px!</p>
+        <h3>Upload some pictures of your bike</h3>
+
+        <label id="upload-file" for="upload">Upload photos</label>
+        <input id="upload"
+               type="file"
+               (change)="previewFile($event.target.files[0])"
+        >
+
+        <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
+          <div class="bikePhotoContainer" *ngFor="let photo of loadedPhoto; let i = index">
+            <img src="{{photo.url}}" alt="" class="myBikePhoto">
+            <div  class="bikeCheckedContainer" >
+              <div class="imgCheckboxContainer">
+                <input type="radio" [id]="'picturesCtrl' + i" name="picturesCtrl_{{i}}" >
+                <label [for]="'picturesCtrl' + i" class="custom-checkbox"></label>
+                <span>Make this the main photo</span>
+              </div>
+              <button mat-button class="remove" (click)="removePhoto(i)">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button class="next"
+                  [ngClass]="{active: !picturesFormGroup.invalid}"
+                  [disabled]="picturesFormGroup.invalid" mat-button matStepperNext>
+            Next
+
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="locationFormGroup">
+      <form id="location-container" [formGroup]="locationFormGroup">
+        <ng-template matStepLabel>Location</ng-template>
+        <h3>Where can the bike be picked up?</h3>
+        <p>Don’t worry, the exact location of your bike will ONLY be forwarded when you have confirmed a rental
+          request.</p>
+
+        <div class="location-container">
+          <div>
+            <mat-form-field class="col-12">
+              <label>Street and number*</label>
+              <input matInput formControlName="locationCtrl">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <label>Zip Code*</label>
+              <input matInput formControlName="locationCtrl">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="col-12">
+              <div class="col-12">
+                <label>City*</label>
+                <input matInput formControlName="locationCtrl">
+              </div>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <div class="col-12">
+                <label>Country*</label>
+                <input matInput formControlName="locationCtrl">
+              </div>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <div class="inner-container">
+              <h3>Your bike rental comes with automatic insurance!</h3>
+              <p>Your bike is insured whenever it is rented. In order to provide you<br>
+                with the right protection it's necessary that you enter the value<br>
+                of your bike.
+              <p>Please note that your have to provide proof of your bike's value<br>
+                in case of any claim</p>
+              <p>Learn more about insurance.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="inner-container category">
+
+              <h3>What is the value of your bike?</h3>
+              <div class="mat col-12">
+                <mat-form-field appearance="fill" class="bikeValue">
+                  <mat-select
+                    formControlName="locationCtrl"
+                    placeholder="Please select your bike value"
+                  >
+                    <mat-option></mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button class="next"
+                  [ngClass]="{active: !locationFormGroup.invalid}"
+                  [disabled]="locationFormGroup.invalid" mat-button matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="pricingFormGroup">
+      <form id="pricing-container" [formGroup]="pricingFormGroup">
+        <ng-template matStepLabel>Pricing</ng-template>
+        <h3>The price you charge your bike is up to you.</h3>
+        <p>The price should be based on the bike and equipment. To get an<br>
+          idea of market prices, you can view comparable listings. To<br>
+          encourage longer rentals, some listers set a daily or weekly discount.</p>
+        <p>listnride charges a 10% commision on all rentals</p>
+        <div class="pricing-container">
+          <mat-form-field class="col-11">
+            <label>Daily price (€)*</label>
+            <input matInput formControlName="pricingCtrl" value="30">
+          </mat-form-field>
+
+          <mat-form-field class="col-5">
+            <label>Daily discount (%)*</label>
+            <input matInput formControlName="pricingCtrl" value="10">
+          </mat-form-field>
+
+          <mat-form-field class="col-5">
+            <label>Weekly Discount (%)*</label>
+            <input matInput formControlName="pricingCtrl" value="20">
+          </mat-form-field>
+        </div>
+        <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
+          listnride fees.</p>
+
+        <div >
+          <div class="customised">
+            <p>Customised pricing</p>
+            <mat-slide-toggle (click)="customisedPricing=!customisedPricing"></mat-slide-toggle>
+          </div>
+
+          <div class="pricing-container" *ngIf="customisedPricing">
+            <mat-form-field class="col-5">
+              <label>2 days*</label>
+              <input matInput formControlName="pricingCtrl" value="48">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>3 days*</label>
+              <input matInput formControlName="pricingCtrl" value="72">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>4 days*</label>
+              <input matInput formControlName="pricingCtrl" value="96">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>5 days*</label>
+              <input matInput formControlName="pricingCtrl" value="120">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>6 days*</label>
+              <input matInput formControlName="pricingCtrl" value="144">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>7 days (1 week)*</label>
+              <input matInput formControlName="pricingCtrl" value="158">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>8 days onwards (per day)</label>
+              <input matInput formControlName="pricingCtrl" value="23">
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="button-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button class="active" mat-button matStepperNext>List my bike</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

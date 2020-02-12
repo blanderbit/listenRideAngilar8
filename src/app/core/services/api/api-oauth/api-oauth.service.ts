@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '@environment/environment';
 import {TokensEnum} from '@enums/tokens.enum';
 import {OauthRefreshRequest} from '@models/oauth/oauth-refresh-request';
 import {map, share} from 'rxjs/operators';
@@ -19,11 +18,11 @@ export class ApiOauthService {
   }
 
   token(oauthTokenRequest: OauthTokenRequest | OauthTokenFacebookRequest): Observable<OauthTokenResponse> {
-    return this.httpClient.post<OauthTokenResponse>(`${environment.apiUrl}/oauth/token`, oauthTokenRequest);
+    return this.httpClient.post<OauthTokenResponse>(`/oauth/token`, oauthTokenRequest);
   }
 
   refresh(oauthRefreshRequest: OauthRefreshRequest): Observable<OauthTokenResponse> {
-    return this.httpClient.post<OauthTokenResponse>(`${environment.apiUrl}/oauth/refresh`, oauthRefreshRequest)
+    return this.httpClient.post<OauthTokenResponse>(`/oauth/refresh`, oauthRefreshRequest)
       .pipe(
         share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
         map(res => {

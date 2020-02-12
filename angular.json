@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "listnride-frontend-new"
+  "defaultProject": "listnride-frontend-new",
+  "cli": {
+    "analytics": "4e6f5d63-33d1-4b41-aaf1-3e7c9da9a8fa"
+  }
 }

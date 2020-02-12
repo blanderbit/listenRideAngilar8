@@ -13,7 +13,7 @@ import {
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
-import {MatStepperModule} from '@angular/material/stepper';
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 @NgModule({
