@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'search', loadChildren: () => import('./modules/search').then(m => m.SearchModule)},
   {path: 'settings', loadChildren: () => import('./modules/settings').then(m => m.SettingsModule)},
   {path: 'terms', loadChildren: () => import('./modules/terms').then(m => m.TermsModule)},
+  {path: 'my-bikes', loadChildren: () => import('./modules/my-bikes').then(m => m.MyBikesModule)},
   {path: '**', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
 ];
 

@@ -26,4 +26,16 @@ export class ApiRidesService {
     const params: any = {start_date: startDate, duration};
     return this.httpClient.get<Bike[]>(`${environment.apiUrl}/rides/unavailable`, {params});
   }
+
+  getByUserId(userId: string): Observable<any> {
+    return this.httpClient.get<Bike[]>(`${environment.apiUrl}/users/${userId}/rides`);
+  }
+
+  updateBike(bikeId: string, bike: any): Observable<any> {
+    return this.httpClient.put(`${environment.apiUrl}/rides/${bikeId}`, bike);
+  }
+
+  deleteBike(bikeId: string): Observable<any> {
+    return this.httpClient.delete(`${environment.apiUrl}/rides/${bikeId}`);
+  }
 }

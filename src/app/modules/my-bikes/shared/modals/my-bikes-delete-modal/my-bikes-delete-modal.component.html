@@ -1,0 +1,20 @@
+<div class="lnr-dialog-header lnr-text-align-ctr">
+  <h2 mat-dialog-title>Remove Bike?</h2>
+  <lnr-button-close (closed)="close()"></lnr-button-close>
+</div>
+
+<mat-dialog-content>
+  Do you really want to remove the bike?
+</mat-dialog-content>
+
+<mat-dialog-actions class="lnr-d-flex lnr-space-btw">
+
+  <button mat-flat-button color="secondary" (click)="close()">
+    Discard
+  </button>
+  <button mat-raised-button color="primary" type="submit" (click)="submit()">
+    Remove
+  </button>
+
+</mat-dialog-actions>
+
