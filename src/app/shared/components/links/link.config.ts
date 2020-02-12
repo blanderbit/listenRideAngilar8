@@ -3,7 +3,7 @@ import {LinkRelsEnum} from './link-rels.enum';
 
 export interface LinkConfig {
   href?: string;
-  text?: string;
+  translationKey?: string;
   target?: LinkTargetsEnum;
   rel?: LinkRelsEnum;
 }

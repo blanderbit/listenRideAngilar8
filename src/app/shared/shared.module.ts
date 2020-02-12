@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {FiltersComponent} from './filters/filters.component';
@@ -23,7 +24,7 @@ import {MobileSortingComponent} from './components/mobile-sorting/mobile-sorting
 import {BikeCardComponent} from './components/bike-card/bike-card.component';
 import {BikeCardMobileComponent} from './components/bike-card/bike-card-mobile/bike-card-mobile.component';
 import {RouterModule} from '@angular/router';
-import { CategoryMultiSelectComponent } from './filters/category-multiselect/category-multi-select.component';
+import {CategoryMultiSelectComponent} from './filters/category-multiselect/category-multi-select.component';
 
 const components = [
   FiltersComponent,
@@ -74,7 +75,8 @@ const directives = [
     SatDatepickerModule,
     SatNativeDateModule,
     MaterialModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    TranslateModule
   ],
   exports: [
     ...components,
@@ -91,6 +93,7 @@ const directives = [
     MaterialModule,
     SocialMediaImgComponent,
     SubscribeInputComponent,
+    TranslateModule,
   ],
   entryComponents: []
 })

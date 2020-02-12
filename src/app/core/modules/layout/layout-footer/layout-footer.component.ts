@@ -8,4 +8,5 @@ import {LayoutFooterListLinksConfig} from '@core/modules/layout/layout-footer/la
 })
 export class LayoutFooterComponent {
   links = LayoutFooterListLinksConfig;
+  currentYear:number = new Date().getFullYear();
 }

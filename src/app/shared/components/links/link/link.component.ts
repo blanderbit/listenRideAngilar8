@@ -10,7 +10,6 @@ import {LinkConfig} from '../link.config';
 })
 export class LinkComponent implements LinkConfig {
   @Input() href: string = null;
-  @Input() text: string = null;
   @Input() target = LinkTargetsEnum.BLANK;
   @Input() rel = LinkRelsEnum.NOOPENER_NOREFERRER;
 }
