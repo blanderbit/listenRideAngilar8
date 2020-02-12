@@ -22,7 +22,10 @@ export interface User {
   };
   confirmed_phone: boolean;
 
-  locations?: BusinessLocation[];
+  locations?:
+    BusinessLocation[] |
+    {primary: BusinessLocation} |
+    {billing: BusinessLocation};
   rating_lister?: 0;
   rating_rider?: 0;
   status?: 1;

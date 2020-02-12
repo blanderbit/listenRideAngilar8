@@ -1,0 +1,157 @@
+<div class="row">
+
+  <div class="col-sm-12 col-md-2 offset-md-1">
+    <h6>Address</h6>
+  </div>
+
+  <div class="col-sm-12 col-md-8">
+    <ng-container *ngIf="mode === 'update'">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-error>
+          <lnr-http-error-message [error]="error$ | async"></lnr-http-error-message>
+        </mat-error>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <mat-google-maps-autocomplete
+              [appearance]="'outline'"
+              (onAutocompleteSelected)="onAutocompleteSelected($event)"
+            >
+            </mat-google-maps-autocomplete>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-9">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Street</mat-label>
+              <input formControlName="street"
+                     type="text"
+                     matInput
+                     placeholder="Enter street"
+              >
+              <mat-error *ngIf="form.get('street').touched && form.get('street').errors">
+                <small *ngIf="form.get('street').errors.required">Field is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Number</mat-label>
+              <input formControlName="number"
+                     type="number"
+                     matInput
+                     placeholder="Enter number"
+              >
+              <mat-error *ngIf="form.get('number').touched && form.get('number').errors">
+                <small *ngIf="form.get('number').errors.required">Field is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Zip Code</mat-label>
+              <input formControlName="zip"
+                     type="number"
+                     matInput
+                     placeholder="Enter zip"
+              >
+              <mat-error *ngIf="form.get('zip').touched && form.get('zip').errors">
+                <small *ngIf="form.get('zip').errors.required">Field is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>City</mat-label>
+              <input formControlName="city"
+                     type="text"
+                     matInput
+                     placeholder="Enter city"
+              >
+              <mat-error *ngIf="form.get('city').touched && form.get('city').errors">
+                <small *ngIf="form.get('city').errors.required">Field is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Country</mat-label>
+              <input formControlName="country"
+                     type="text"
+                     matInput
+                     placeholder="Enter country"
+              >
+              <mat-error *ngIf="form.get('country').touched && form.get('country').errors">
+                <small *ngIf="form.get('country').errors.required">Field is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-7">
+            <small>The <a>Privacy Policy</a> of listnride applies.</small>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <button mat-stroked-button class="lnr-w-100" (click)="openView()">Cancel</button>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="form?.invalid">
+              Save
+              <lnr-loader-spinner-small *ngIf="loading$ | async"></lnr-loader-spinner-small>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'view'">
+      <div class="row">
+        <div class="col-sm-10">
+          <table class="lnr-table-info">
+            <tr>
+              <td>Street:</td>
+              <td>{{user?.locations?.primary?.street | stringPipe}}</td>
+            </tr>
+            <tr>
+              <td>Number:</td>
+              <td>{{user?.locations?.primary?.number | stringPipe}}</td>
+            </tr>
+            <tr>
+              <td>Country:</td>
+              <td>{{user?.locations?.primary?.country | stringPipe}}</td>
+            </tr>
+            <tr>
+              <td>City:</td>
+              <td>{{user?.locations?.primary?.city | stringPipe}}</td>
+            </tr>
+            <tr>
+              <td>Zip code:</td>
+              <td>{{user?.locations?.primary?.zip | stringPipe}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-2 lnr-text-align-r">
+          <button mat-button class="lnr-btn-edit" (click)="openUpdate()">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>

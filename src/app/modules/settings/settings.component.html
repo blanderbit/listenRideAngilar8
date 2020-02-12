@@ -8,7 +8,7 @@
 
   <div class="row lnr-mrg-btm">
     <div class="col-sm-12">
-      <div class="tabs">
+      <div class="tabs lnr-mrg-btm">
         <div class="buttons-wrap" [ngClass]="tabType">
           <button mat-button (click)="toggleTab('profile')" [ngClass]="{'active': showProfile}">Profile</button>
           <button mat-button (click)="toggleTab('account')" [ngClass]="{'active': showAccount}">Account</button>
@@ -21,9 +21,9 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <lnr-settings-profile *ngIf="showProfile"></lnr-settings-profile>
-      <lnr-settings-account *ngIf="showAccount"></lnr-settings-account>
-      <lnr-settings-availability *ngIf="showAvailability"></lnr-settings-availability>
+      <lnr-settings-profile [hidden]="!showProfile" [user]="user"></lnr-settings-profile>
+      <lnr-settings-account [hidden]="!showAccount" [user]="user"></lnr-settings-account>
+      <lnr-settings-availability [hidden]="!showAvailability" [user]="user"></lnr-settings-availability>
     </div>
   </div>
 

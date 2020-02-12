@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {User} from '@models/user/user';
 
 @Component({
   selector: 'lnr-settings-profile',
@@ -6,5 +7,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./settings-profile.component.scss']
 })
 export class SettingsProfileComponent {
-
+  @Input() user: User;
 }
