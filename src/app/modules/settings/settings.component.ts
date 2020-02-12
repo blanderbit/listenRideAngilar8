@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from '@models/user/user';
 
 type TabType = 'account' | 'availability' | 'profile';
 
@@ -7,8 +8,13 @@ type TabType = 'account' | 'availability' | 'profile';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   tabType: TabType = 'profile';
+  user: User;
+
+  ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('USER'));
+  }
 
   get showAccount() {
     return this.tabType === 'account';

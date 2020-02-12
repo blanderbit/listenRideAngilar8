@@ -1,0 +1,60 @@
+<div class="row">
+
+  <div class="col-sm-12 col-md-2 offset-md-1">
+    <h6>Profile bio</h6>
+  </div>
+
+  <div class="col-sm-12 col-md-8">
+
+    <ng-container *ngIf="mode === 'update'">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-error>
+          <lnr-http-error-message [error]="null"></lnr-http-error-message>
+        </mat-error>
+
+        <mat-form-field class="w-100"
+                        appearance="outline">
+          <mat-label>Profile bio</mat-label>
+          <textarea type="text"
+                    matInput
+                    placeholder="Enter bio"></textarea>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col-sm-7"></div>
+          <div class="col-sm-12 col-md-2">
+            <button mat-stroked-button class="lnr-w-100" (click)="openView()">Close</button>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="form?.invalid">
+              Save
+              <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'view'">
+      <div class="row">
+        <div class="col-sm-10">
+          <table class="lnr-table-info lnr-mrg-btm">
+            <tr>
+              <td>Bio:</td>
+              <td>{{user?.description | stringPipe}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-2 lnr-text-align-r">
+          <button mat-button class="lnr-btn-edit" (click)="openUpdate()">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>

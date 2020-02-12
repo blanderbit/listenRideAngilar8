@@ -3,11 +3,46 @@
 .wrap-form {
   background: $white-font-color;
   box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
-  border-radius: 0.8rem;
+  border-radius: 0.6rem;
   position: relative;
   z-index: 2;
-  height: 36rem;
-  width: 49rem;
-  left: 2rem;
+  height: auto;
+  width: 100%;
   padding: 2rem;
+  left: 4rem;
+
+  .search-autocomplete {
+    border: 1px solid $input-border;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    min-width: 32rem;
+    width: auto;
+  }
+
+  svg {
+    color: $black !important;
+  }
+}
+
+@media (max-width: $device-sm) {
+  .wrap-form {
+    background: $white-font-color;
+    box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
+    border-radius: 0.8rem;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    top: -10rem;
+    left: 0;
+
+    .search-autocomplete {
+      min-width: 29rem;
+    }
+  }
+}
+
+@media (min-width: $device-xl) {
+  .wrap-form {
+    max-width: 40rem;
+  }
 }

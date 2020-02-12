@@ -1,95 +1,98 @@
 import {LinkConfig} from '../../../../shared/components/links/link.config';
 
+// TODO: add ui-href instead of href here ? and vice versa
+// TODO: add translation for countries or take them from Admin panel
+
 export const LayoutFooterListLinksConfig: { [key: string]: LinkConfig[] } = {
   listnride: [
     {
-      text: 'About',
+      translationKey: 'footer.about',
       href: '/about'
     },
     {
-      text: 'Press',
+      translationKey: 'footer.press',
       href: '/press'
     },
     {
-      text: 'Jobs',
+      translationKey: 'footer.jobs',
       href: '/jobs'
     },
     {
-      text: 'Invite Friends',
+      translationKey: 'settings.invite',
       href: '/invite'
     },
     {
-      text: 'Help & Support',
+      translationKey: 'shared.contact',
       href: '/help'
     }
   ],
 
   learnMore: [
     {
-      text: 'How it works',
-      href: '/about'
+      translationKey: 'shared.how-it-works',
+      href: '/howItWorks'
     },
     {
-      text: 'Listing a Bike',
-      href: '/press'
+      translationKey: 'shared.listing-a-bike',
+      href: '/listingABike'
     },
     {
-      text: 'For Business',
-      href: '/jobs'
+      translationKey: 'shared.for-shops',
+      href: '/businessCommunity'
     },
     {
-      text: 'Brands',
-      href: '/invite'
+      translationKey: 'shared.brands',
+      href: '/brands'
     },
     {
-      text: 'Blog',
-      href: '/help'
+      translationKey: 'shared.journal',
+      href: 'http://journal.listnride.com'
     }
   ],
 
   topCountries: [
     {
-      text: 'Germany',
-      href: '/about'
+      translationKey: 'Germany',
+      href: '/germany'
     },
     {
-      text: 'Italy',
-      href: '/press'
+      translationKey: 'Italy',
+      href: '/italy'
     },
     {
-      text: 'Spain',
-      href: '/jobs'
+      translationKey: 'Spain',
+      href: '/spain'
     },
     {
-      text: 'Netherlands',
-      href: '/invite'
+      translationKey: 'Netherlands',
+      href: '/netherlands'
     },
     {
-      text: 'Switzerland',
-      href: '/help'
+      translationKey: 'Switzerland',
+      href: '/switzerland'
     }
   ],
 
   legal: [
     {
-      text: 'Terms',
-      href: '/about'
+      translationKey: 'footer.terms-and-conditions',
+      href: '/terms'
     },
     {
-      text: 'Privacy',
-      href: '/press'
+      translationKey: 'footer.privacy-statement',
+      href: '/privacy'
     },
     {
-      text: 'Sitemap',
-      href: '/jobs'
+      translationKey: 'footer.sitemap',
+      href: '/sitemap' // or '/countries'
     },
     {
-      text: 'Trust & Safety',
-      href: '/invite'
+      translationKey: 'shared.trust-and-safety',
+      href: '/trustAndSafety'
     },
     {
-      text: 'Insurance',
-      href: '/help'
+      translationKey: 'footer.insurance',
+      href: '/insurance'
     }
   ],
 };

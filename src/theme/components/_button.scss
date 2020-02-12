@@ -6,5 +6,28 @@
     &:focus {
       outline: none;
     }
+
+    &.lnr-btn-edit {
+      mat-icon {
+        font-size: 17px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .lnr-btn-link {
+    border: none;
+    padding: 0;
+    background: transparent;
+    // TODO: add var
+    color: green;
+    font-size: 14px;
+    font-weight: 500;
+    height: 18px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
   }
 }

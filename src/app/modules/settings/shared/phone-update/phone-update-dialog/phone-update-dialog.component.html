@@ -1,0 +1,73 @@
+<div class="lnr-dialog-header">
+  <h5 mat-dialog-title>Change phone number</h5>
+  <lnr-button-close (click)="close()"></lnr-button-close>
+</div>
+<mat-dialog-content>
+
+  <form [formGroup]="phoneForm" class="lnr-mrg-btm">
+    <mat-error>
+      <lnr-http-error-message [error]="phoneError"></lnr-http-error-message>
+    </mat-error>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <ngx-intl-tel-input style="display: block; position: relative" class="lnr-w-100"
+                            [cssClass]="'phone-input'"
+                            [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="true"
+                            [enablePlaceholder]="true"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="defaultCountry"
+                            [maxLength]="15"
+                            [tooltipField]="TooltipLabel.Name"
+                            [phoneValidation]="true"
+                            [separateDialCode]="true"
+                            name="phone" formControlName="phone_number">
+        </ngx-intl-tel-input>
+      </div>
+      <div class="col-sm-12 col-md-5">
+        <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="phoneForm.invalid">
+          Send confirmation
+          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <form [formGroup]="codeForm" (ngSubmit)="submitCode()">
+    <mat-error *ngIf="codeError">
+      <lnr-http-error-message [error]="codeError"></lnr-http-error-message>
+    </mat-error>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <mat-form-field appearance="outline" class="lnr-w-100">
+          <mat-label>SMS Code</mat-label>
+          <input formControlName="phone_confirmation_code"
+                 type="number"
+                 matInput
+                 placeholder="SMS Code">
+          <mat-error
+            *ngIf="codeForm.get('phone_confirmation_code').touched && codeForm.get('phone_confirmation_code').errors">
+            <small *ngIf="codeForm.get('phone_confirmation_code').errors.required">SMS code is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-12 col-md-5">
+        <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="codeForm.invalid">
+          Confirm code
+          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+
+
+

@@ -1,0 +1,27 @@
+<div class="row lnr-mrg-btm">
+  <div class="col-sm-12 col-md-2 offset-md-1">
+    <h6>Availability</h6>
+  </div>
+
+  <div class="col-sm-12 col-md-7">
+    <div *ngFor="let day of days">
+      <lnr-settings-working-day></lnr-settings-working-day>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <button mat-stroked-button class="lnr-w-100">Close</button>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <button mat-raised-button type="submit" color="primary" class="lnr-w-100" >
+          Save
+          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

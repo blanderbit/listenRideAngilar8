@@ -1,0 +1,12 @@
+@import "../../../../../assets/scss/variables";
+
+.wrap-recommended-destination {
+  .destination-card {
+    width: 20rem;
+    height: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.8rem;
+  }
+}

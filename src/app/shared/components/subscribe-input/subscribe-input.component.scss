@@ -4,6 +4,8 @@
   margin-top: -1rem;
 
   &_input {
+    white-space: nowrap;
+
     input {
       padding: 1rem;
       border: 0.1rem solid $grey-background;

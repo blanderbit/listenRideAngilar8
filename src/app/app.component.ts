@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {map, takeUntil} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 import * as fromAuth from './core/modules/auth/store/reducers';
 import {combineLatest, Subject} from 'rxjs';
 import {UserApiActions} from '@auth/store/actions';
@@ -19,8 +20,14 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromAuth.State>,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public translate: TranslateService
   ) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('en');
   }
 
   ngOnInit() {

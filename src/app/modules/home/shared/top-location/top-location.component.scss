@@ -12,6 +12,13 @@
   p {
     font-size: $h4-fontsize;
   }
+
+  .city-link {
+    &:hover {
+      text-decoration: none;
+      color: $light-text-color
+    }
+  }
 }
 
 @media (max-width: $device-sm) {

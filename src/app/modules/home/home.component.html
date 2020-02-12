@@ -1,20 +1,41 @@
 <div class="wrap-home-page">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
-        <h3 class="home-page_subtitles">The perfect bike. Simply rent it.</h3>
-        <p>Join listnride and find the bike that is right for you</p>
+  <div class="home-page_mobile d-block d-md-none">
+    <div class="wrap-main-img-mobile"
+         [ngStyle]="{ 'background-image': 'url(' + heroShotUrl + ')'}"
+    >
+      <div class="container">
+        <div class="row">
+          <h3 class="home-page_subtitles col-sm-6 col-md-12 white">
+            The perfect bike. Simply rent it.
+          </h3>
+        </div>
       </div>
     </div>
-    <div class="home-page_content flex direction-row">
+    <div class="wrap-searching-form">
       <lnr-searching-form></lnr-searching-form>
-      <div class="wrap-main-img">
-        <img alt="" src="../../../assets/images/img-home/main-img.jpg"/>
+    </div>
+  </div>
+  <div class="container">
+    <div class="home-page_desktop large-m-t large-m-b d-none d-md-block">
+      <div class="row">
+        <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
+          <h3 class="home-page_subtitles">The perfect bike. Simply rent it.</h3>
+          <p>Join listnride and find the bike that is right for you</p>
+        </div>
+      </div>
+      <div class="row home-page_content flex direction-row">
+        <lnr-searching-form></lnr-searching-form>
+        <div class="wrap-main-img">
+          <img alt=""
+               src="{{heroShotUrl}}">
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-11 offset-md-1">
-        <h3 class="home-page_subtitles"> Bike Rental: Our Community’s Favorites:</h3>
+    <div class="row large-m-b d-none d-sm-block">
+      <div class="col-md-7 col-sm-12 offset-md-1">
+        <h3 class="home-page_subtitles">
+          Bike Rental: Our Community’s Favorites:
+        </h3>
         <p> Whether it’s road bikes, mountain bikes, cargo bikes, city bikes or e-bikes, you can rent them all.
           These are the current favorite rental bikes of the community.</p>
       </div>
@@ -22,16 +43,22 @@
         <lnr-bike-tile-swiper></lnr-bike-tile-swiper>
       </div>
     </div>
+    <div class="large-m-b d-block d-sm-none">
+      <lnr-popular-destination></lnr-popular-destination>
+    </div>
     <div class="row">
       <div class="col-md-11 col-sm-12 m-t-2 m-b-2 offset-md-1">
-        <h3 class="home-page_subtitles">Ride your favourite bike before you buy it!</h3>
+        <h3 class="home-page_subtitles m-t-2">
+          Ride your favourite bike before you buy it!
+        </h3>
         <p> We are partnering with innovative bike brands, which offer their latest models for test-riding.
-          Simply rent a test-bike for a day or a weekend and make a well-considered decision!</p>
+          Simply rent a test-bike for a day or a weekend and make a well-considered decision!
+        </p>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 m-b-2">
         <lnr-brands-swiper></lnr-brands-swiper>
       </div>
-      <div class="col-md-11 offset-md-1 m-t-2 m-b-2">
+      <div class="col-md-11 offset-md-1 m-t-2 large-m-b">
         <button mat-flat-button
                 class="m-t-2 m-b-2"
                 routerLink="./brands"
@@ -42,10 +69,10 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="large-m-t large-m-b d-none d-sm-block">
       <lnr-popular-destination></lnr-popular-destination>
     </div>
-    <div class="row">
+    <div class="row large-m-b">
       <div class="col-md-11 offset-md-1">
         <h3 class="home-page_subtitles">Why you should you rent with us:</h3>
       </div>
@@ -59,7 +86,7 @@
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
-          [image]="'../../../assets/images/img-home/Icon_rent-secure 1.svg'"
+          [image]="'../../../assets/images/img-home/Icon_rent-variety 1.svg'"
           [title]="'Variety of choice, everywhere'"
           [paragraph]="' Road bikes, mountain bikes, e-bikes, city bikes -' +
          ' we have the greatest selection of rental bikes!'"
@@ -68,20 +95,35 @@
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
-          [image]="'../../../assets/images/img-home/Icon_rent-variety 1.svg'"
+          [image]="'../../../assets/images/img-home/Icon_rent-secure 1.svg'"
           [title]="'We care about quality'"
-          [paragraph]="'  Premium road bikes, reliable e-bikes, and sturdy city bikes:' +
+          [paragraph]="'Premium road bikes, reliable e-bikes, and sturdy city bikes:' +
            ' were more than just a simple bike rental service!'"
         >
         </lnr-our-pros>
       </div>
     </div>
-    <div class="row">
+    <div class="row large-m-b">
+      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
+        <h3 class="home-page_subtitles">
+          What others say about listnride
+        </h3>
+      </div>
       <div class="col-md-12">
         <lnr-testimonal-swiper></lnr-testimonal-swiper>
       </div>
     </div>
-    <div class="row">
+    <div class="row large-m-b">
+      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
+        <h3 class="home-page_subtitles">With listnride you are never without a perfect bike.</h3>
+        <p> listnride’s bike rental service is available in Germany, Austria, Netherlands, Italy, Spain and more!
+          Here are some cities we recommend renting a bike in:</p>
+      </div>
+      <div class="col-md-12 m-t-2 m-b-2">
+        <lnr-recommended-destinations></lnr-recommended-destinations>
+      </div>
+    </div>
+    <div class="row large-m-t large-m-b">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
         <h3 class="home-page_subtitles">Top locations to rent a bike with listnride:</h3>
       </div>

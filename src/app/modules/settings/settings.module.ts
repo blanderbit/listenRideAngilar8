@@ -15,7 +15,7 @@ import {SettingsProfileModule} from './settings-profile';
     SettingsRoutingModule,
     SettingsAccountModule,
     SettingsAvailabilityModule,
-    SettingsProfileModule
+    SettingsProfileModule,
   ]
 })
 export class SettingsModule {

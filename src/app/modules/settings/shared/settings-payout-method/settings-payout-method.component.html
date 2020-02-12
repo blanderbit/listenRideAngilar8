@@ -1,0 +1,220 @@
+<div class="row">
+
+  <div class="col-sm-12 col-md-2 offset-md-1">
+    <h6>Payout method</h6>
+  </div>
+
+  <div class="col-sm-12 col-md-8">
+
+    <ng-container *ngIf="mode === 'update'">
+      <p>Your payout method is where we send you your rental income. Therefore you have to add it latest when accepting
+        a
+        request as a lister.</p>
+      <p>You didn't enter any payout method so far.</p>
+
+      <form [formGroup]="form">
+        <mat-error>
+          <lnr-http-error-message [error]="null"></lnr-http-error-message>
+        </mat-error>
+
+        <div class="row">
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>IBAN</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>BIC</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Account holder name</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Country</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>First name</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Last name</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Date of birth</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Gender</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="lnr-w-100">
+              <mat-label>Nationality</mat-label>
+              <input formControlName="test"
+                     type="text"
+                     matInput
+                     placeholder="Enter your test">
+              <mat-error *ngIf="form.get('test').touched && form.get('test').errors">
+                <small *ngIf="form.get('test').errors?.required">Company name is required</small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-7">
+            <small>The <a>Privacy Policy</a> of listnride applies.</small>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <button mat-stroked-button class="lnr-w-100" (click)="openView()">Cancel</button>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="form?.invalid"
+                    (click)="save()">
+              Save
+              <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'view'">
+      <div class="row">
+        <div class="col-sm-10">
+          <table class="lnr-table-info">
+            <tr>
+              <td>IBAN</td>
+              <td>342342343</td>
+            </tr>
+            <tr>
+              <td>BIC</td>
+              <td>345345435345</td>
+            </tr>
+            <tr>
+              <td>Account holder name</td>
+              <td>test name</td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td>test country</td>
+            </tr>
+
+            <tr>
+              <td colspan="100">
+                <div class="divider"></div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>First name</td>
+              <td>test name</td>
+            </tr>
+            <tr>
+              <td>Last name</td>
+              <td>test last name</td>
+            </tr>
+
+            <tr>
+              <td>Date of birth</td>
+              <td>test name</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>test last name</td>
+            </tr>
+            <tr>
+              <td>Nationality</td>
+              <td>test last name</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-2 lnr-text-align-r">
+          <button mat-button class="lnr-btn-edit" (click)="openUpdate()">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

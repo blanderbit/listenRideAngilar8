@@ -1,10 +1,12 @@
+// TODO: remove this styles after apply Mariya's styles
+
 .lnr {
   .lnr-w-100 {
     width: 100%;
   }
 
   .lnr-mrg-btm {
-    margin-bottom: 1.34375em;
+    margin-bottom: 24px;
   }
 
   .lnr-d-flex {
@@ -16,6 +18,14 @@
   }
 
   .lnr-text-align-ctr {
+    text-align: center;
+  }
+
+  .lnr-text-align-r {
+    text-align: center;
+  }
+
+  .lnr-text-align-l {
     text-align: center;
   }
 }

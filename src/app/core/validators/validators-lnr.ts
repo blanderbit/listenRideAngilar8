@@ -1,8 +1,38 @@
 import {FormControl} from '@angular/forms';
+import {isEmpty, pickBy} from 'lodash';
 
 export class ValidatorsLnr {
   static checkboxRequired(control: FormControl) {
     return !control.value ? {required: true} : null;
+  }
+
+  static passwordValidator(control: FormControl) {
+    if (!control.parent || !control.value) {
+      return null;
+    }
+
+    const result = pickBy({
+      uppercase: !/[A-Z]/.test(control.value),
+      digit: !/\d/.test(control.value),
+      specialchar: !/[!@#\$%^&\*\(\)\[\]\-{}=_+?:;~`"'\.,<>/|\\]/.test(control.value),
+      minlength: control.value.length < 8,
+      maxlength: control.value.length > 50
+    });
+
+    return isEmpty(result) ? null : {format: result};
+  }
+
+  static passwordsMatchValidator(control: FormControl) {
+    const password = control.get('password').value;
+    const confirmation = control.get('confirmPassword').value;
+
+    if (password !== confirmation) {
+      control.get('confirmPassword').setErrors({match: true});
+    } else {
+      control.get('confirmPassword').setErrors(null);
+    }
+
+    return null;
   }
 
   static email(control: FormControl): { [s: string]: boolean } {

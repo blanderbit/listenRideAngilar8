@@ -18,22 +18,22 @@
         <lnr-social-media-block></lnr-social-media-block>
       </div>
       <div class="lnr-footer_subscribe-form">
-        <h3 class="white regular">
-          Subscribe to our newsletter
+        <h3 class="white regular" style="padding-top: 16px;">
+          {{'footer.subscribe-title' | translate}}
         </h3>
         <lnr-subscribe-input></lnr-subscribe-input>
         <div class="lnr-footer_recapcha m-t-1 flex direction-row align-items-center">
-          <span>Protected by reCAPTCHA:&nbsp;</span>
+          <span>{{ 'footer.recapcha-text' | translate }}:&nbsp;</span>
           <a class="text-decoration-none"
              href="https://www.google.com/intl/uk/policies/privacy/"
              target="_blank">
-            Privacy
+            {{ 'footer.privacy-statement' | translate }}
           </a>
           <span>&nbsp;&&nbsp;</span>
           <a class="text-decoration-none"
              href="https://www.google.com/intl/uk/policies/terms/"
              target="_blank">
-            Terms
+            {{ 'footer.terms-and-conditions' | translate }}
           </a>
         </div>
       </div>
@@ -51,10 +51,10 @@
              alt="listnride"
              class="m-r-1">
         <span class="white">
-          © 2020 List and Ride GmbH.
+          © {{currentYear}} List and Ride GmbH.
           <a class="white"
              href="#">
-          Imprint
+          {{ 'footer.imprint' | translate }}
           </a>
         </span>
       </div>

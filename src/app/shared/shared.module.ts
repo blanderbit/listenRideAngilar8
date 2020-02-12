@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {FiltersComponent} from './filters/filters.component';
@@ -23,7 +24,10 @@ import {MobileSortingComponent} from './components/mobile-sorting/mobile-sorting
 import {BikeCardComponent} from './components/bike-card/bike-card.component';
 import {BikeCardMobileComponent} from './components/bike-card/bike-card-mobile/bike-card-mobile.component';
 import {RouterModule} from '@angular/router';
-import { CategoryMultiSelectComponent } from './filters/category-multiselect/category-multi-select.component';
+import {CategoryMultiSelectComponent} from './filters/category-multiselect/category-multi-select.component';
+import {CreditCardDirectivesModule} from 'angular-cc-library';
+import {StringPipe} from './pipes/string.pipe';
+import {Phone} from './pipes/phone.pipe';
 
 const components = [
   FiltersComponent,
@@ -58,6 +62,11 @@ const directives = [
   FocusFirstInvalidFieldDirective
 ];
 
+const pipes = [
+  StringPipe,
+  Phone
+];
+
 @NgModule({
   declarations: [
     ...components,
@@ -65,6 +74,7 @@ const directives = [
     ...buttons,
     ...links,
     ...directives,
+    ...pipes
 
   ],
   imports: [
@@ -74,7 +84,8 @@ const directives = [
     SatDatepickerModule,
     SatNativeDateModule,
     MaterialModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    TranslateModule
   ],
   exports: [
     ...components,
@@ -82,6 +93,7 @@ const directives = [
     ...buttons,
     ...links,
     ...directives,
+    ...pipes,
     CommonModule,
     RouterModule,
     FormsModule,
@@ -91,6 +103,8 @@ const directives = [
     MaterialModule,
     SocialMediaImgComponent,
     SubscribeInputComponent,
+    CreditCardDirectivesModule,
+    TranslateModule,
   ],
   entryComponents: []
 })

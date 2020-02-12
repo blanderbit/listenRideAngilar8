@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-12 col-md-2 offset-md-1">
+    <h6>General</h6>
+  </div>
+
+  <div class="col-sm-12 col-md-8">
+    <table class="lnr-table-info lnr-mrg-btm">
+      <tr>
+        <td>First name:</td>
+        <td>{{user?.first_name | stringPipe}}</td>
+      </tr>
+      <tr>
+        <td>Last name:</td>
+        <td>{{user?.last_name | stringPipe}}</td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>{{user?.email | stringPipe}}</td>
+      </tr>
+    </table>
+
+    <p>To change your name or email address please contact us via e-mail at: contact@listnride.com</p>
+  </div>
+
+</div>
