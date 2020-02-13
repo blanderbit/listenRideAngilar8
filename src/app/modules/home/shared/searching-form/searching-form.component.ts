@@ -56,7 +56,7 @@ export class SearchingFormComponent implements OnInit {
       page: 1
     };
     if (formData.date) {
-      filterPayload.start_date = formData.date.begin;
+      filterPayload.start_date = formData.date.begin.toISOString();
       filterPayload.duration = Math.round((new Date(formData.date.end).getTime() - new Date(formData.date.begin).getTime()) / 1000);
     }
     if (formData.type) {
