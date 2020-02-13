@@ -32,9 +32,10 @@ import {
 import {DomSanitizer} from '@angular/platform-browser';
 
 import {MatIconRegistry} from '@angular/material/icon';
-//import {BIKE} from './model/models';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {BIKE, Variations} from "@models/bike/bike.model";
+import {Subject} from "rxjs";
+import {map, switchMap, takeUntil} from "rxjs/operators";
 
 declare var require;
 
@@ -55,7 +56,7 @@ export class ListMyBikeComponent implements OnInit {
     sizeList: Array<SizeListInterface> = sizeList;
     loadedPhoto: Array<LoadedImageInterface> = [];
     subCategoriesValue: Array<SubCategoryInterface> | null = [];
-    user: Store<fromAuth.State> | any = this.store.pipe(select(fromAuth.selectAuthGetUser));
+    user: Store<fromAuth.State> | any;
     hide = true;
     accessories: AccessoriesInterface | any = new AccessoriesInterface();
     accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
@@ -63,6 +64,8 @@ export class ListMyBikeComponent implements OnInit {
     customisedPricing = false;
     bikeQuantity:any = [{}];
     listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000];
+    priceCount = [1,2,3,4,5,6,7];
+    private destroyed$ = new Subject();
 
     get accessoriesARrr() {
         return (this.accessoriesArrList || []);
@@ -82,6 +85,10 @@ export class ListMyBikeComponent implements OnInit {
     ) {
         this.accessoriesARrr = this.accessories;
         this.setSvgImageToMat();
+        this.user = this.store.pipe(
+            select(fromAuth.selectAuthGetUser),
+            takeUntil(this.destroyed$)
+        );
     }
 
     setSvgImageToMat(): void {
@@ -174,42 +181,89 @@ export class ListMyBikeComponent implements OnInit {
 
     removePhoto = (i: number): Object => this.loadedPhoto.splice(i, 1);
 
-
     create(): void {
 
-        const data = new BIKE();
+        const data:BIKE | any = new BIKE();
         const arrVariable = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
-        const priceCount = [1,2,3,4,5,6,7];
 
         arrVariable.forEach( name => {
             if(!this[name] && this[name].controls){
-              return false;
+                return false;
             }
             const controls = this[name].controls;
             const variable = typeof controls === 'object' ? Object.keys(controls) : [];
             variable.forEach(nameControl => {
-              const value = controls[nameControl].value;
-              if(value){
-                data[nameControl] = controls[nameControl].value
-              }
+                const value = controls[nameControl].value;
+                if(value){
+                    data[nameControl] = controls[nameControl].value
+                }
             })
         });
 
-        data.accessories = this.accessories;
-        data.variations = this.bikeQuantity;
-        priceCount.forEach(i => {
-          const name = `price${i}`;
-          const control = this.pricingFormGroup.controls[name];
-          if(control) {
-            data.prices.splice(i,0,control.value)
-          }
+        data.accessories = JSON.stringify(this.accessories);
+        data.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
+        data.variations = data.variations.map(item => {
+            if(item.size === 'Unisize') {
+                item.size = 0;
+            }
+            return item;
+        });
+        debugger
+        this.priceCount.forEach(i => {
+            const name = `price${i}`;
+            const control = this.pricingFormGroup.controls[name];
+            if(control) {
+                data.prices.splice(i,0,control.value)
+            }
         });
 
         data.discounts.daily = this.pricingFormGroup.controls.daily.value;
-        data.discounts.weekly =this.pricingFormGroup.controls.weekly.value;
+        data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
         data.price = this.pricingFormGroup.controls.price.value;
-        debugger
-        this.apiRidesService.createBike(data);
+        data.category = data.subCategory.value;
+        data.new_images = JSON.parse(JSON.stringify(this.loadedPhoto))
+            .map(({isMain, file}, index) => {
+                const form = new FormData();
+                form.append('is_primary', isMain);
+                form.append('file', file);
+                form.append('position', index + 1);
+                return form;
+            });
+        delete data.subCategory;
+
+
+            this.user.pipe(
+                map((me:any) => {
+                    debugger
+                    data.user_id = me.id;
+                    return data
+                }),
+                switchMap(switchData => this.apiRidesService.createBike(switchData))
+            )
+            .subscribe((result) => {
+              console.log(result)
+                // if (me && user) {
+                //     this.store.dispatch(UserApiActions.UserDataInitialize({me, user}));
+                    this.destroyed();
+                // }
+            },
+              ()=> this.destroyed(),
+              ()=> this.destroyed()
+            )
+
+    }
+    destroyed(): void {
+        this.destroyed$.next();
+        this.destroyed$.complete();
+    }
+    setCustomize({checked}: any){
+        this.customisedPricing = checked;
+        this.priceCount.forEach(i => {
+            const name = `price${i}`;
+          checked
+                ? this.pricingFormGroup.addControl(name, new FormControl('', Validators.required))
+                : this.pricingFormGroup.removeControl(name)
+        });
     }
 
     addVariants = (): undefined => this.bikeQuantity.push(new Variations());
@@ -217,9 +271,9 @@ export class ListMyBikeComponent implements OnInit {
     changeData = ({target}, obj, key): undefined => obj[key] = target.value;
 
     isRider = (): boolean => {
-      const arr = [...this.bikeQuantity];
-      arr.splice(0,1);
-      return arr.every(({size}) => size);
+        const arr = [...this.bikeQuantity];
+        arr.splice(0,1);
+        return arr.every(({size}) => size);
     };
 
     delQuantity = (index): Object => this.bikeQuantity.splice(index, 1);

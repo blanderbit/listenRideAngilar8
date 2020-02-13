@@ -169,7 +169,7 @@
           </mat-form-field>
         </div>
 
-        <div class="addVariants" (click)="addVariants(bikeQuantity.length)">Add variants</div>
+        <div class="addVariants" (click)="addVariants()">Add variants</div>
         <div class="button-container">
           <button mat-button matStepperPrevious>Back</button>
           <button class="next"
@@ -201,8 +201,7 @@
             <img src="{{photo.url}}" alt="" class="myBikePhoto">
             <div class="bikeCheckedContainer">
               <div class="imgCheckboxContainer">
-                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [value]="photo.isMain"
-                       (change)="photo.isMain=!photo.isMain">
+                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [(value)]="photo.isMain">
                 <label [for]="'pictures' + i" class="custom-checkbox"></label>
                 <span>Make this the main photo</span>
               </div>
@@ -312,17 +311,17 @@
         <div class="pricing-container">
           <mat-form-field class="col-11">
             <label>Daily price (€)*</label>
-            <input matInput formControlName="price" value="30">
+            <input matInput formControlName="price">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Daily discount (%)*</label>
-            <input matInput formControlName="daily" value="10">
+            <input matInput formControlName="daily">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Weekly Discount (%)*</label>
-            <input matInput formControlName="weekly" value="20">
+            <input matInput formControlName="weekly">
           </mat-form-field>
         </div>
         <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
@@ -331,43 +330,43 @@
         <div>
           <div class="customised">
             <p>Customised pricing</p>
-            <mat-slide-toggle (change)="customisedPricing=!customisedPricing"></mat-slide-toggle>
+            <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
           </div>
 
           <div class="pricing-container" *ngIf="customisedPricing">
             <mat-form-field class="col-5">
               <label>2 days*</label>
-              <input matInput formControlName="price1" value="48">
+              <input matInput formControlName="price1" >
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>3 days*</label>
-              <input matInput formControlName="price2" value="72">
+              <input matInput formControlName="price2" >
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>4 days*</label>
-              <input matInput formControlName="price3" value="96">
+              <input matInput formControlName="price3" >
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>5 days*</label>
-              <input matInput formControlName="price4" value="120">
+              <input matInput formControlName="price4">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>6 days*</label>
-              <input matInput formControlName="price5" value="144">
+              <input matInput formControlName="price5">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>7 days (1 week)*</label>
-              <input matInput formControlName="price6" value="158">
+              <input matInput formControlName="price6">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>8 days onwards (per day)</label>
-              <input matInput formControlName="price7" value="23">
+              <input matInput formControlName="price7" >
             </mat-form-field>
 
           </div>

@@ -12,6 +12,7 @@ export class BIKE {
     // is_equipment: boolean = false;
     details: string = '';
     frame_number: string = '';
+    category: string | number;
     description: string = '';
     brand: string = '';
     name: string = '';
@@ -20,7 +21,7 @@ export class BIKE {
     coverage_total: number;
     custom_price: number;
     size: number;
-  price: number;// ?
+    price: number;// ?
     user_id: number;
     discounts: Discounts = new Discounts();
     location: Location;
@@ -55,8 +56,7 @@ class Images {
     constructor(init?: Partial<Images>) {
         Object.assign(this, init);
     }
-
-    file: FormData;
+    file: Object;
     is_primary: boolean;
     position: number;
 }
