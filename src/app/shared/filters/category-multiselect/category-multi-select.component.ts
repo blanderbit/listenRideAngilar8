@@ -10,7 +10,7 @@ export class CategoryMultiSelectComponent implements OnInit {
 
   showFilter = false;
   categories = typeList;
-  categoriesTree = this.categories.map( cat => cat.subcategories.map( subcat => subcat.value));
+  categoriesTree = this.categories.map( cat => cat.categories.map( subcat => subcat.value));
   categoriesForm = {};
 
   @Output() multiSelectUpdate = new EventEmitter();

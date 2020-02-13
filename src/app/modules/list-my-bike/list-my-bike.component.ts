@@ -32,8 +32,9 @@ import {
 import {DomSanitizer} from '@angular/platform-browser';
 
 import {MatIconRegistry} from '@angular/material/icon';
-import {BIKE} from './model/bike.model';
-import {ApiRidesBikeService} from './../../core/services/api/api-rides-bike/api-rides-bike.service';
+//import {BIKE} from './model/models';
+import {ApiRidesService} from '@api/api-rides/api-rides.service';
+import {BIKE} from "@models/bike/bike.model";
 
 declare var require;
 
@@ -76,7 +77,7 @@ export class ListMyBikeComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer,
-        private apiRidesBikeService: ApiRidesBikeService
+        private apiRidesService: ApiRidesService
     ) {
         this.accessoriesARrr = this.accessories;
         this.setSvgImageToMat();
@@ -151,8 +152,8 @@ export class ListMyBikeComponent implements OnInit {
     }
 
     create() {
-        const data: BIKE = new BIKE();
-        this.apiRidesBikeService.createBike(data);
+        const data = new BIKE();
+        this.apiRidesService.createBike(data);
     }
 
     addVariants() {

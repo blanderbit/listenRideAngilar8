@@ -16,7 +16,7 @@
     </div>
 
     <div class="sub-category" [ngClass]="{active : category.active}">
-      <div class="option" *ngFor="let subcategory of category.subcategories">
+      <div class="option" *ngFor="let subcategory of category.categories">
         <mat-checkbox
           [(ngModel)]="categoriesForm[subcategory.value]"
           (change)="handleSubcategoryChange()">
