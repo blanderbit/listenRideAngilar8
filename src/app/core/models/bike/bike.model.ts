@@ -7,8 +7,8 @@ export class BIKE {
         Object.assign(this, init);
     }
 
-    new_images: Array<Images>;
-    variations: Array<Variations>;
+    new_images: Array<Images> = [];
+    variations: Array<Variations> = [];
     // is_equipment: boolean = false;
     details: string = '';
     frame_number: string = '';
@@ -22,9 +22,9 @@ export class BIKE {
     size: number;
   price: number;// ?
     user_id: number;
-    discounts: Discounts;
+    discounts: Discounts = new Discounts();
     location: Location;
-    prices: Array<number>;
+    prices: Array<number> = [];
     accessories: AccessoriesImageInterface;
     available: boolean;
 }
@@ -61,14 +61,14 @@ class Images {
     position: number;
 }
 
-class Variations {
+export class Variations {
     constructor(init?: Partial<Variations>) {
         Object.assign(this, init);
     }
 
-    size: boolean;
-    frame_size: string;
-    bicycle_number: string;
-    frame_number: string;
-    available: boolean;
+    size: number | string;
+    frame_size: string = '';
+    bicycle_number: string = '';
+    frame_number: string = '';
+    available: boolean = true;
 }

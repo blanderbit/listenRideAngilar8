@@ -62,7 +62,6 @@
           <button class="next"
                   [ngClass]="{active: !categoryFormGroup.invalid}"
                   [disabled]="categoryFormGroup.invalid" mat-button matStepperNext
-                  (click)="category()"
           >
             Next
           </button>
@@ -81,19 +80,20 @@
 
             <mat-form-field class="brand col-12">
                 <label class="brand">Brand*</label>
-                <input matInput class="brand">
+                <input matInput formControlName="brand" class="brand">
             </mat-form-field>
 
             <mat-form-field class="model col-12">
                 <label class="model">Model*</label>
-                <input matInput class="model">
+                <input matInput formControlName="name" class="model">
             </mat-form-field>
 
           </div>
           <div>
             <mat-form-field class="description col-12">
                 <label class="description">Description(min. 100 characters)</label>
-                <input matInput class="description">
+              <textarea #description maxlength="800" matInput formControlName="description"  class="description"></textarea>
+              <mat-hint align="end">{{description.value.length}}/800</mat-hint>
             </mat-form-field>
           </div>
         </div>
@@ -102,17 +102,27 @@
         <p>How many variants would you like to add?</p>
 
         <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
+
           <mat-form-field class="quantity">
             <div class="col-12">
               <label class="quantity">Quantity</label>
               <input matInput class="quantity" value="{{i + 1}}">
             </div>
           </mat-form-field>
+
           <mat-form-field>
             <div class="col-12">
-              <label>Rider height* {{'size' + i}}</label>
-              <mat-select [formControlName]="'size' + i">
+              <label>Rider height*</label>
+              <mat-select [formControlName]="'size'" *ngIf="i === 0">
                 <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+              </mat-select>
+              <mat-select  [(value)]=" val.size" *ngIf="i > 0">
+                <mat-option
+                  *ngFor="let size of sizeList"
+                  [value]="'Unisize' === size.text ? 'Unisize' :size.value"
+                >
+                  {{size.text}}
+                </mat-option>
               </mat-select>
             </div>
           </mat-form-field>
@@ -121,13 +131,23 @@
 
             <div class="col-12">
               <label>Frame size</label>
-              <input matInput placeholder="" [formControlName]="'frame_size' + i">
+              <input matInput placeholder="" [formControlName]="'frame_size'" *ngIf="i === 0">
+              <input matInput placeholder=""
+                     *ngIf="i > 0"
+                     [value]="val && val.frame_size"
+                     (input)="changeData($event, val, 'frame_size')"
+              >
             </div>
           </mat-form-field>
           <mat-form-field>
             <div class="col-12">
               <label>Bicycle number</label>
-              <input matInput placeholder="" [formControlName]="'bicycle_number' + i">
+              <input matInput placeholder="" [formControlName]="'bicycle_number'" *ngIf="i === 0">
+              <input matInput placeholder=""
+                     *ngIf="i > 0"
+                     (input)="changeData($event, val, 'bicycle_number')"
+                     [value]="val && val.bicycle_number"
+              >
             </div>
           </mat-form-field>
           <mat-form-field>
@@ -135,7 +155,12 @@
               <label>Frame number</label>
 
               <div class="frame-number">
-                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number' + i"
+                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number'"
+                       required *ngIf="i === 0">
+                <input matInput [type]="hide ? 'password' : 'text'"
+                       [value]="val && val.frame_number"
+                       *ngIf="i > 0"
+                       (input)="changeData($event, val, 'frame_number')"
                        required>
                 <mat-icon id="hideFrameNumber"
                           (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -146,12 +171,11 @@
         </div>
 
         <div class="addVariants" (click)="addVariants(bikeQuantity.length)">Add variants</div>
-
         <div class="button-container">
           <button mat-button matStepperPrevious>Back</button>
           <button class="next"
-                  [ngClass]="{active: !detailsFormGroup.invalid}"
-                  [disabled]="detailsFormGroup.invalid" mat-button matStepperNext>
+                  [ngClass]="{active: !detailsFormGroup.invalid && isRider()}"
+                  [disabled]="detailsFormGroup.invalid || !isRider()" mat-button matStepperNext>
             Next
           </button>
         </div>
@@ -351,7 +375,7 @@
         </div>
         <div class="button-container">
           <button mat-button matStepperPrevious>Back</button>
-          <button class="active" mat-button matStepperNext>List my bike</button>
+          <button class="active" mat-button (click)="create()" matStepperNext>List my bike</button>
         </div>
       </form>
     </mat-step>
