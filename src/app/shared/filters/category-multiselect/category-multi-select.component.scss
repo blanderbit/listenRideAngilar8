@@ -36,8 +36,12 @@
     max-height: 90vh;
     overflow-y: scroll;
     position: absolute;
-    width: 100%;
+    width: 25rem;
     z-index: 999;
+
+    @media (max-width: $device-xs) {
+      width: 100%;
+    }
   }
 }
 .category {

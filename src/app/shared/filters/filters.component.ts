@@ -75,7 +75,7 @@ export class FiltersComponent implements OnInit {
     };
 
     if (formData.date) {
-      filterPayload.start_date = formData.date.begin;
+      filterPayload.start_date = formData.date.begin.toISOString();
       filterPayload.duration = Math.round((new Date(formData.date.end).getTime() - new Date(formData.date.begin).getTime()) / 1000);
     }
     if (formData.size) { filterPayload.height = formData.size; }

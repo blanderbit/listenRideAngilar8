@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SearchModel} from '../../../../modules/search/search.types';
 import * as SearchActions from '../../../../modules/search/store/search.actions';
 
@@ -16,7 +16,8 @@ export class LayoutHeaderComponent implements OnInit {
 
   constructor(
     private store: Store<SearchModel>,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+  ) {
   }
 
 
