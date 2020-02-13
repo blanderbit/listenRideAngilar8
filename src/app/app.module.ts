@@ -16,6 +16,7 @@ import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/goog
 import {MatIconRegistry} from '@angular/material';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
+import {HttpUrlInterceptor} from '@core/interceptors/http-url-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -44,6 +45,11 @@ export const APP_PROVIDERS = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpAuthInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpUrlInterceptor,
     multi: true
   },
   {

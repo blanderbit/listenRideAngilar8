@@ -17,12 +17,15 @@ import {EffectsModule} from '@ngrx/effects';
 import {UserVerificationEffects} from '@core/modules/user-verification/store/effects/user-verification.effects';
 import {StoreModule} from '@ngrx/store';
 import * as fromUserVerification from './store/reducers';
+import {ListMyBikeButton} from "@user-verification/list-my-bike-button/list-my-bike-button";
+import {RouterModule} from "@angular/router";
 import {ListMyBikeButtonComponent} from '@user-verification/list-my-bike-button/list-my-bike-button.component';
-import {RouterModule} from '@angular/router';
+
 
 const buttons = [
   UserVerificationButtonTempComponent,
-  ListMyBikeButtonComponent
+  ListMyBikeButton,
+    ListMyBikeButtonComponent
 ];
 
 const components = [

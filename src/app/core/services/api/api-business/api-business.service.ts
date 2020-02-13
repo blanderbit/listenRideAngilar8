@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '@environment/environment';
 import {BusinessCreateRequest} from '@models/business/business-create-request';
 import {Business} from '@models/business/business';
 
@@ -12,11 +11,11 @@ export class ApiBusinessService {
   }
 
   create(businessCreateRequest: BusinessCreateRequest): Observable<Business> {
-    return this.httpClient.post<Business>(`${environment.apiUrl}/businesses`, businessCreateRequest);
+    return this.httpClient.post<Business>(`/businesses`, businessCreateRequest);
   }
 
   update(businessId: number, business: { business: Partial<Business> }): Observable<Business> {
-    return this.httpClient.put<Business>(`${environment.apiUrl}/businesses/${businessId}`, business);
+    return this.httpClient.put<Business>(`/businesses/${businessId}`, business);
   }
 
 }
