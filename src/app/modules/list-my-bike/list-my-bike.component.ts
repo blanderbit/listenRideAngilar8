@@ -34,7 +34,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 //import {BIKE} from './model/models';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
-import {BIKE} from "@models/bike/bike.model";
+import {BIKE, Variations} from "@models/bike/bike.model";
 
 declare var require;
 
@@ -61,8 +61,8 @@ export class ListMyBikeComponent implements OnInit {
     accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
     accessoriesArrList: Array<string> = [];
     customisedPricing = false;
-    bikeQuantity = [0];
-    listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000]
+    bikeQuantity:any = [{}];
+    listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000];
 
     get accessoriesARrr() {
         return (this.accessoriesArrList || []);
@@ -116,11 +116,14 @@ export class ListMyBikeComponent implements OnInit {
             subCategory: ['', Validators.required]
         };
         const detailsCtrl = {
-          available0: [true, Validators.required],
-          size0: ['', Validators.required],
-          frame_size0: ['', Validators.required],
-          bicycle_number0: ['', Validators.required],
-          frame_number0: ['', Validators.required],
+          available: [true],
+          size: ['', Validators.required],
+          frame_size: [''],
+          bicycle_number: [''],
+          frame_number: [''],
+          brand: ['', Validators.required],
+          name: ['', Validators.required],
+          description: ['', [Validators.minLength(100), Validators.required]],
         };
         const picturesCtrl = {
             picturesCtrl_0: ['', Validators.required]
@@ -169,37 +172,56 @@ export class ListMyBikeComponent implements OnInit {
         };
     }
 
-    removePhoto(i: number): void {
-        this.loadedPhoto.splice(i, 1);
-    }
+    removePhoto = (i: number): Object => this.loadedPhoto.splice(i, 1);
 
-    create() {
+
+    create(): void {
+
         const data = new BIKE();
+        const arrVariable = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
+        const priceCount = [1,2,3,4,5,6,7];
+
+        arrVariable.forEach( name => {
+            if(!this[name] && this[name].controls){
+              return false;
+            }
+            const controls = this[name].controls;
+            const variable = typeof controls === 'object' ? Object.keys(controls) : [];
+            variable.forEach(nameControl => {
+              const value = controls[nameControl].value;
+              if(value){
+                data[nameControl] = controls[nameControl].value
+              }
+            })
+        });
+
+        data.accessories = this.accessories;
+        data.variations = this.bikeQuantity;
+        priceCount.forEach(i => {
+          const name = `price${i}`;
+          const control = this.pricingFormGroup.controls[name];
+          if(control) {
+            data.prices.splice(i,0,control.value)
+          }
+        });
+
+        data.discounts.daily = this.pricingFormGroup.controls.daily.value;
+        data.discounts.weekly =this.pricingFormGroup.controls.weekly.value;
+        data.price = this.pricingFormGroup.controls.price.value;
+        debugger
         this.apiRidesService.createBike(data);
     }
 
-    addVariants(index) {
+    addVariants = (): undefined => this.bikeQuantity.push(new Variations());
 
-        const obj = {
-          size: ['', Validators.required],
-          frame_size: ['', Validators.required],
-          bicycle_number: ['', Validators.required],
-          frame_number: ['', Validators.required],
-        };
+    changeData = ({target}, obj, key): undefined => obj[key] = target.value;
 
-        Object
-            .keys(obj)
-            .forEach(i => this.detailsFormGroup.addControl(`${i + (index)}`, new FormControl(...obj[i])));
+    isRider = (): boolean => {
+      const arr = [...this.bikeQuantity];
+      arr.splice(0,1);
+      return arr.every(({size}) => size);
+    };
 
-        const length = this.bikeQuantity.length;
-        this.bikeQuantity.push(length + 1);
-    }
+    delQuantity = (index): Object => this.bikeQuantity.splice(index, 1);
 
-    delQuantity(i) {
-        this.bikeQuantity.splice(i, 1);
-    }
-
-  category() {
-    console.log(this.categoryFormGroup)
-  }
 }
