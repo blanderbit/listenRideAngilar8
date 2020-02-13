@@ -19,7 +19,7 @@ export class ApiSeoService {
   }
 
   getRecommendedCities(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/seo_cities/recommended_destinations`);
+    return this.httpClient.get(`/seo_cities/recommended_destinations`);
   }
 
   getCountryDomain() {

@@ -1,0 +1,17 @@
+.row{
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+
+  mat-form-field {
+    width: 45%;
+  }
+}
+
+mat-dialog-actions{
+  display: flex;
+  align-items: center;
+  button {
+    margin: 0.5rem auto;
+  }
+}

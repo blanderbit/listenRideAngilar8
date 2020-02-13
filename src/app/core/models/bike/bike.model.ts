@@ -1,4 +1,4 @@
-import {AccessoriesImageInterface} from './models';
+// import {AccessoriesImageInterface} from './models';
 
 export class BIKE {
     constructor(init?: Partial<BIKE>) {
@@ -22,7 +22,7 @@ export class BIKE {
     discounts: Discounts;
     location: Location;
     prices: Array<Prices>;
-    accessories: AccessoriesImageInterface;
+  //  accessories: AccessoriesImageInterface;
     available: boolean;
 }
 

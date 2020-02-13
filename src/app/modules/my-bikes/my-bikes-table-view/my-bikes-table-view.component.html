@@ -1,0 +1,121 @@
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="bike">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Bike </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> <img width="70px" src="{{bike.image_file}}" /> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Brand </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.brand}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="model">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="location">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.city}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Bike Id </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="size">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Frame Size </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.size}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.price_from}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="grouped">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Grouped </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{bike.rides_count}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let bike">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="openDuplicateModal(bike.id)">
+            <mat-icon>copy</mat-icon>
+            <span>Duplicate</span>
+          </button>
+          <button mat-menu-item (click)="openAvailabilityModal(bike.id)">
+            <mat-icon>alarm</mat-icon>
+            <span>Availability</span>
+          </button>
+          <button mat-menu-item (click)="toggleAvailability(bike.id, bike.available)">
+            <mat-icon>close</mat-icon>
+            <span>Disable</span>
+          </button>
+          <button mat-menu-item (click)="openDeleteModal(bike.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let detail">
+        The bike {{detail}}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             matRipple
+             class="element-row"
+             [class.expanded]="expandedElement == row"
+             [class.disabled]="!row.available"
+             (click)="expandedElement = row"></mat-row>
+
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+             [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
+             style="overflow: hidden">
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

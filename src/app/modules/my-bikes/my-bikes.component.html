@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="my-bikes-toolbar col-12">
+    <mat-form-field appearance="outline" class="col-md-6">
+      <mat-label>Search your bikes</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Name, Model, City">
+    </mat-form-field>
+    <button mat-flat-button color="primary">Group bikes</button>
+    <button mat-flat-button color="primary" (click)="toggleView()">{{viewLabel}}</button>
+    <button mat-flat-button color="accent"> <a routerLink="../list-bike"> List My Bike</a> </button>
+  </div>
+
+  <lnr-my-bikes-grid-view *ngIf="gridView" [bikes$]="bikes$"></lnr-my-bikes-grid-view>
+  <lnr-my-bikes-table-view *ngIf="!gridView" [filter]="filterValue"></lnr-my-bikes-table-view>
+</div>

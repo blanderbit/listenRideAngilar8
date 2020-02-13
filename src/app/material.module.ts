@@ -11,7 +11,10 @@ import {
   MatMenuModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import {MatStepperModule} from "@angular/material/stepper";
 
@@ -30,7 +33,9 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatListModule,
     MatIconModule,
     MatStepperModule,
-
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatButtonModule,

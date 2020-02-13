@@ -1,0 +1,5 @@
+<div class="content bikes-grid-wrapper">
+  <div *ngFor="let bike of bikes$ | async" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
+    <lnr-bike-card [bike]="bike"></lnr-bike-card>
+  </div>
+</div>

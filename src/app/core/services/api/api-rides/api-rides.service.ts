@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {SearchPayload} from '../../../../modules/search/search.types';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '@environment/environment';
 import {Observable} from 'rxjs';
@@ -25,5 +24,21 @@ export class ApiRidesService {
   getUnavailable(startDate, duration): Observable<Bike[]> {
     const params: any = {start_date: startDate, duration};
     return this.httpClient.get<Bike[]>(`${environment.apiUrl}/rides/unavailable`, {params});
+  }
+
+  getByUserId(userId: string): Observable<any> {
+    return this.httpClient.get<Bike[]>(`${environment.apiUrl}/users/${userId}/rides`);
+  }
+
+  createBike(data): Observable<any> {
+    return this.httpClient.post(`/rides`, data);
+  }
+
+  updateBike(bikeId: string, bike: any): Observable<any> {
+    return this.httpClient.put(`${environment.apiUrl}/rides/${bikeId}`, bike);
+  }
+
+  deleteBike(bikeId: string): Observable<any> {
+    return this.httpClient.delete(`${environment.apiUrl}/rides/${bikeId}`);
   }
 }

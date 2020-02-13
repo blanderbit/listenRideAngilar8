@@ -11,12 +11,12 @@
 .btn-category-filter {
   color: $light-text-color;
   font-weight: 400;
-  border: 0.1rem solid $light-text-color;
+  border: 0.1rem solid $input-border;
   border-radius: 0.4rem;
   margin-left: 0.5rem;
   margin-top: 0.4rem;
-  height: 4.2rem;
-  padding-top: 0.5rem;
+  height: 3.6rem;
+  padding-top: -0.7rem;
   width: 12.5rem;
 
   @media (max-width: $device-xs) {
