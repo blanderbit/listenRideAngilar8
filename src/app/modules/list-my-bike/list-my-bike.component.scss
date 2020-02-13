@@ -44,7 +44,7 @@
     left: 20%;
 
     .mat-horizontal-stepper-header {
-      pointer-events: none !important;
+      //pointer-events: none !important;
 
       height: 48px;
       cursor: pointer;
@@ -143,14 +143,7 @@
     }
   }
 
-  .details {
-    p {
-      font-size: 18px;
-      line-height: 120%;
-      color: #353541;
-      margin-top: 43px;
-    }
-  }
+
 
   ::ng-deep {
     .mat-button {
@@ -357,56 +350,93 @@
       visibility: hidden;
     }
 
-    #details_container {
-      display: flex;
-      margin-top: 35px;
-      padding: 0 !important;
-      mat-form-field {
-        padding: 0;
-        margin: 10px;
+    .details {
+      p {
+        font-size: 18px;
+        line-height: 120%;
+        color: #353541;
+        margin-top: 43px;
+      }
 
-        div {
-          padding-right: 0;
+      #details_container, #details_brand_container {
+        display: flex;
+        margin-top: 35px;
+        padding: 0 !important;
+
+        mat-form-field {
+          padding: 0;
+          margin: 10px;
+
+          div {
+            padding-right: 0;
+          }
+        }
+
+        label, mat-label {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 120%;
+          color: #353541;
+        }
+
+        input, mat-select {
+          background: none;
+          padding: 0 16px;
+          border-width: 1px;
+          border-radius: 4px;
+          border-style: solid;
+          line-height: 40px;
+          height: 42px;
+          width: 175px;
+
+          border-color: rgba(206, 212, 216, 0.9);
+        }
+
+        input.quantity {
+          width: 54px !important;
+          height: 42px;
+          background: #FFFFFF;
+          border: 1px solid #EBEBEB;
+          box-sizing: border-box;
+          padding: 0;
+          padding-left: 10px;
+          font-size: 16px;
+          line-height: 150%;
+          color: #AEB1BB;
+        }
+
+        label.quantity, mat-form-field.quantity {
+          width: 67px;
+          margin-right: 5px;
+          padding: 0;
         }
       }
 
-      label, mat-label {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 120%;
-        color: #353541;
-      }
+      #details_brand_container {
+        display: grid;
+        grid-template-columns: 50% 50%;
 
-      input, mat-select {
-        background: none;
-        padding: 0 16px;
-        border-width: 1px;
-        border-radius: 4px;
-        border-style: solid;
-        line-height: 40px;
-        height: 42px;
-        width: 175px;
+        mat-form-field{
+          display: flex;
 
-        border-color: rgba(206, 212, 216, 0.9);
-      }
+          div.mat-form-field-wrapper{
+            width: 100%;
+            .mat-form-field-infix {
+              display: flex;
+              flex-direction: column;
+              input {
+                width: 465px;
+                height: 40px;
+                padding: 0 16px;
+              }
 
-      input.quantity {
-        width: 54px !important;
-        height: 42px;
-        background: #FFFFFF;
-        border: 1px solid #EBEBEB;
-        box-sizing: border-box;
-        padding: 0;
-        padding-left: 10px;
-        font-size: 16px;
-        line-height: 150%;
-        color: #AEB1BB;
-      }
-
-      label.quantity, mat-form-field.quantity {
-        width: 67px;
-        margin-right: 5px;
-        padding: 0;
+              input.description {
+                height: 121px;
+                padding: 16px;
+              }
+            }
+          }
+        }
       }
     }
 

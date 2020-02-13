@@ -198,4 +198,8 @@ export class ListMyBikeComponent implements OnInit {
     delQuantity(i) {
         this.bikeQuantity.splice(i, 1);
     }
+
+  category() {
+    console.log(this.categoryFormGroup)
+  }
 }

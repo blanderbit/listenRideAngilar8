@@ -61,7 +61,9 @@
         <div class="button-container first">
           <button class="next"
                   [ngClass]="{active: !categoryFormGroup.invalid}"
-                  [disabled]="categoryFormGroup.invalid" mat-button matStepperNext>
+                  [disabled]="categoryFormGroup.invalid" mat-button matStepperNext
+                  (click)="category()"
+          >
             Next
           </button>
         </div>
@@ -73,14 +75,37 @@
     <mat-step [stepControl]="detailsFormGroup">
       <form class="details" [formGroup]="detailsFormGroup">
         <ng-template matStepLabel>Details</ng-template>
+        <p>What is the brand, model, and size of your bike?</p>
+        <div id="details_brand_container">
+          <div>
+
+            <mat-form-field class="brand col-12">
+                <label class="brand">Brand*</label>
+                <input matInput class="brand">
+            </mat-form-field>
+
+            <mat-form-field class="model col-12">
+                <label class="model">Model*</label>
+                <input matInput class="model">
+            </mat-form-field>
+
+          </div>
+          <div>
+            <mat-form-field class="description col-12">
+                <label class="description">Description(min. 100 characters)</label>
+                <input matInput class="description">
+            </mat-form-field>
+          </div>
+        </div>
+
+
         <p>How many variants would you like to add?</p>
 
-
         <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
-          <mat-form-field class="quantity" >
+          <mat-form-field class="quantity">
             <div class="col-12">
               <label class="quantity">Quantity</label>
-              <input matInput class="quantity"  value="{{i + 1}}" >
+              <input matInput class="quantity" value="{{i + 1}}">
             </div>
           </mat-form-field>
           <mat-form-field>
@@ -96,13 +121,13 @@
 
             <div class="col-12">
               <label>Frame size</label>
-              <input matInput placeholder=""  [formControlName]="'frame_size' + i">
+              <input matInput placeholder="" [formControlName]="'frame_size' + i">
             </div>
           </mat-form-field>
           <mat-form-field>
             <div class="col-12">
               <label>Bicycle number</label>
-              <input matInput placeholder=""  [formControlName]="'bicycle_number' + i">
+              <input matInput placeholder="" [formControlName]="'bicycle_number' + i">
             </div>
           </mat-form-field>
           <mat-form-field>
@@ -112,7 +137,8 @@
               <div class="frame-number">
                 <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number' + i"
                        required>
-                <mat-icon id="hideFrameNumber" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon id="hideFrameNumber"
+                          (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">{{'delete'}}</mat-icon>
               </div>
             </div>
@@ -150,9 +176,10 @@
         <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
           <div class="bikePhotoContainer" *ngFor="let photo of loadedPhoto; let i = index">
             <img src="{{photo.url}}" alt="" class="myBikePhoto">
-            <div  class="bikeCheckedContainer" >
+            <div class="bikeCheckedContainer">
               <div class="imgCheckboxContainer">
-                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [value]="photo.isMain" (change)="photo.isMain=!photo.isMain">
+                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [value]="photo.isMain"
+                       (change)="photo.isMain=!photo.isMain">
                 <label [for]="'pictures' + i" class="custom-checkbox"></label>
                 <span>Make this the main photo</span>
               </div>
@@ -278,7 +305,7 @@
         <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
           listnride fees.</p>
 
-        <div >
+        <div>
           <div class="customised">
             <p>Customised pricing</p>
             <mat-slide-toggle (change)="customisedPricing=!customisedPricing"></mat-slide-toggle>
