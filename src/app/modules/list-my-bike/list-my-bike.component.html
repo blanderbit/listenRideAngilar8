@@ -92,7 +92,8 @@
           <div>
             <mat-form-field class="description col-12">
                 <label class="description">Description(min. 100 characters)</label>
-                <input matInput formControlName="description"  class="description">
+              <textarea #description maxlength="800" matInput formControlName="description"  class="description"></textarea>
+              <mat-hint align="end">{{description.value.length}}/800</mat-hint>
             </mat-form-field>
           </div>
         </div>
