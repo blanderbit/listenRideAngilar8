@@ -10,9 +10,9 @@ import {
 } from '@ngrx/store';
 
 import {
-    FormBuilder,
-    FormGroup,
-    Validators
+  FormBuilder, FormControl,
+  FormGroup,
+  Validators
 } from '@angular/forms';
 
 import {
@@ -61,7 +61,8 @@ export class ListMyBikeComponent implements OnInit {
     accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
     accessoriesArrList: Array<string> = [];
     customisedPricing = false;
-    bikeQuantity = [1, 2];
+    bikeQuantity = [0];
+    listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000]
 
     get accessoriesARrr() {
         return (this.accessoriesArrList || []);
@@ -111,26 +112,48 @@ export class ListMyBikeComponent implements OnInit {
     ngOnInit(): void {
 
         const category = {
-            categoryCtrl: ['', Validators.required],
-            subCategoryCtrl: ['', Validators.required]
+            category: ['', Validators.required],
+            subCategory: ['', Validators.required]
         };
-        const detailsCtrl = ['', Validators.required];
+        const detailsCtrl = {
+          available0: [true, Validators.required],
+          size0: ['', Validators.required],
+          frame_size0: ['', Validators.required],
+          bicycle_number0: ['', Validators.required],
+          frame_number0: ['', Validators.required],
+        };
         const picturesCtrl = {
-                picturesCtrl_0: ['', Validators.required]
-            }
-        ;
-        const locationCtrl = [''];
-        const pricingCtrl = ['', Validators.required];
+            picturesCtrl_0: ['', Validators.required]
+        };
+        const locationCtrl = {
+          street: [''],
+          zip: [''],
+          city: [''],
+          country: [''],
+          custom_price: ['', Validators.required],
+        };
+        const pricingCtrl = {
+          daily: ['',Validators.required],
+          weekly: ['',Validators.required],
+          price: ['',Validators.required],
+          price1: ['',Validators.required],
+          price2: ['',Validators.required],
+          price3: ['',Validators.required],
+          price4: ['',Validators.required],
+          price5: ['',Validators.required],
+          price6: ['',Validators.required],
+          price7: ['',Validators.required],
+        } ;
 
         this.categoryFormGroup = this.formBuilder.group(category);
-        this.detailsFormGroup = this.formBuilder.group({detailsCtrl});
+        this.detailsFormGroup = this.formBuilder.group(detailsCtrl);
         this.picturesFormGroup = this.formBuilder.group(picturesCtrl);
-        this.locationFormGroup = this.formBuilder.group({locationCtrl});
-        this.pricingFormGroup = this.formBuilder.group({pricingCtrl});
+        this.locationFormGroup = this.formBuilder.group(locationCtrl);
+        this.pricingFormGroup = this.formBuilder.group(pricingCtrl);
     }
 
     changeCategory = (e: any): void => {
-        this.categoryFormGroup.controls.subCategoryCtrl.setValue('');
+        this.categoryFormGroup.controls.subCategory.setValue('');
         this.subCategoriesValue = e.value.categories;
     };
 
@@ -143,7 +166,6 @@ export class ListMyBikeComponent implements OnInit {
                 file,
                 url: reader.result
             });
-            // this._formBuilder.group({picturesCtrl1, picturesCtrl2, picturesCtrl3});
         };
     }
 
@@ -156,13 +178,24 @@ export class ListMyBikeComponent implements OnInit {
         this.apiRidesService.createBike(data);
     }
 
-    addVariants() {
+    addVariants(index) {
+
+        const obj = {
+          size: ['', Validators.required],
+          frame_size: ['', Validators.required],
+          bicycle_number: ['', Validators.required],
+          frame_number: ['', Validators.required],
+        };
+
+        Object
+            .keys(obj)
+            .forEach(i => this.detailsFormGroup.addControl(`${i + (index)}`, new FormControl(...obj[i])));
+
         const length = this.bikeQuantity.length;
         this.bikeQuantity.push(length + 1);
     }
 
     delQuantity(i) {
-        this.bikeQuantity.splice(i - 1, 1);
-
+        this.bikeQuantity.splice(i, 1);
     }
 }

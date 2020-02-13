@@ -14,12 +14,12 @@
         <div class="mat">
           <mat-form-field appearance="fill">
             <mat-select
-              formControlName="categoryCtrl"
+              formControlName="category"
               placeholder="Select the bike category"
               (selectionChange)="changeCategory($event)"
-              [ngClass]="categoryFormGroup.controls.categoryCtrl.value.src && 'selected-category'"
+              [ngClass]="categoryFormGroup.controls.category.value.src && 'selected-category'"
               [ngStyle]="{
-                background: getUrlBackground(categoryFormGroup.controls.categoryCtrl.value)
+                background: getUrlBackground(categoryFormGroup.controls.category.value)
               }"
             >
               <mat-option
@@ -35,7 +35,7 @@
 
         <div>
           <mat-form-field appearance="fill">
-            <mat-select formControlName="subCategoryCtrl" placeholder="Specify the subcategory">
+            <mat-select formControlName="subCategory" placeholder="Specify the subcategory">
               <mat-option
                 *ngFor="let subcategory of subCategoriesValue"
                 [value]="subcategory"
@@ -76,17 +76,17 @@
         <p>How many variants would you like to add?</p>
 
 
-        <div id="details_container" *ngFor="let val of bikeQuantity">
+        <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
           <mat-form-field class="quantity" >
             <div class="col-12">
               <label class="quantity">Quantity</label>
-              <input matInput class="quantity" formControlName="detailsCtrl" value="{{val}}" >
+              <input matInput class="quantity"  value="{{i + 1}}" >
             </div>
           </mat-form-field>
           <mat-form-field>
             <div class="col-12">
-              <label>Rider height*</label>
-              <mat-select formControlName="detailsCtrl">
+              <label>Rider height* {{'size' + i}}</label>
+              <mat-select [formControlName]="'size' + i">
                 <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
               </mat-select>
             </div>
@@ -96,13 +96,13 @@
 
             <div class="col-12">
               <label>Frame size</label>
-              <input matInput placeholder="" formControlName="detailsCtrl">
+              <input matInput placeholder=""  [formControlName]="'frame_size' + i">
             </div>
           </mat-form-field>
           <mat-form-field>
             <div class="col-12">
               <label>Bicycle number</label>
-              <input matInput placeholder="" formControlName="detailsCtrl">
+              <input matInput placeholder=""  [formControlName]="'bicycle_number' + i">
             </div>
           </mat-form-field>
           <mat-form-field>
@@ -110,16 +110,16 @@
               <label>Frame number</label>
 
               <div class="frame-number">
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="detailsCtrl"
+                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number' + i"
                        required>
                 <mat-icon id="hideFrameNumber" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-icon id="delQuantity" (click)="delQuantity(val)">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">{{'delete'}}</mat-icon>
               </div>
             </div>
           </mat-form-field>
         </div>
 
-        <div class="addVariants" (click)="addVariants()">Add variants</div>
+        <div class="addVariants" (click)="addVariants(bikeQuantity.length)">Add variants</div>
 
         <div class="button-container">
           <button mat-button matStepperPrevious>Back</button>
@@ -144,6 +144,7 @@
         <input id="upload"
                type="file"
                (change)="previewFile($event.target.files[0])"
+               formControlName="picturesCtrl_0"
         >
 
         <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
@@ -151,14 +152,15 @@
             <img src="{{photo.url}}" alt="" class="myBikePhoto">
             <div  class="bikeCheckedContainer" >
               <div class="imgCheckboxContainer">
-                <input type="radio" [id]="'picturesCtrl' + i" name="picturesCtrl_{{i}}" >
-                <label [for]="'picturesCtrl' + i" class="custom-checkbox"></label>
+                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [value]="photo.isMain" (change)="photo.isMain=!photo.isMain">
+                <label [for]="'pictures' + i" class="custom-checkbox"></label>
                 <span>Make this the main photo</span>
               </div>
               <button mat-button class="remove" (click)="removePhoto(i)">Remove</button>
             </div>
           </div>
         </div>
+
 
         <div class="button-container">
           <button mat-button matStepperPrevious>Back</button>
@@ -183,11 +185,11 @@
           <div>
             <mat-form-field class="col-12">
               <label>Street and number*</label>
-              <input matInput formControlName="locationCtrl">
+              <input matInput formControlName="street">
             </mat-form-field>
             <mat-form-field class="col-12">
               <label>Zip Code*</label>
-              <input matInput formControlName="locationCtrl">
+              <input matInput formControlName="zip">
             </mat-form-field>
           </div>
 
@@ -195,13 +197,13 @@
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>City*</label>
-                <input matInput formControlName="locationCtrl">
+                <input matInput formControlName="city">
               </div>
             </mat-form-field>
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>Country*</label>
-                <input matInput formControlName="locationCtrl">
+                <input matInput formControlName="country">
               </div>
             </mat-form-field>
           </div>
@@ -225,10 +227,12 @@
               <div class="mat col-12">
                 <mat-form-field appearance="fill" class="bikeValue">
                   <mat-select
-                    formControlName="locationCtrl"
+                    formControlName="custom_price"
                     placeholder="Please select your bike value"
                   >
-                    <mat-option></mat-option>
+                    <mat-option *ngFor="let item of listPrices" [value]="item">
+                      {{item}}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -258,17 +262,17 @@
         <div class="pricing-container">
           <mat-form-field class="col-11">
             <label>Daily price (€)*</label>
-            <input matInput formControlName="pricingCtrl" value="30">
+            <input matInput formControlName="price" value="30">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Daily discount (%)*</label>
-            <input matInput formControlName="pricingCtrl" value="10">
+            <input matInput formControlName="daily" value="10">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Weekly Discount (%)*</label>
-            <input matInput formControlName="pricingCtrl" value="20">
+            <input matInput formControlName="weekly" value="20">
           </mat-form-field>
         </div>
         <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
@@ -277,43 +281,43 @@
         <div >
           <div class="customised">
             <p>Customised pricing</p>
-            <mat-slide-toggle (click)="customisedPricing=!customisedPricing"></mat-slide-toggle>
+            <mat-slide-toggle (change)="customisedPricing=!customisedPricing"></mat-slide-toggle>
           </div>
 
           <div class="pricing-container" *ngIf="customisedPricing">
             <mat-form-field class="col-5">
               <label>2 days*</label>
-              <input matInput formControlName="pricingCtrl" value="48">
+              <input matInput formControlName="price1" value="48">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>3 days*</label>
-              <input matInput formControlName="pricingCtrl" value="72">
+              <input matInput formControlName="price2" value="72">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>4 days*</label>
-              <input matInput formControlName="pricingCtrl" value="96">
+              <input matInput formControlName="price3" value="96">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>5 days*</label>
-              <input matInput formControlName="pricingCtrl" value="120">
+              <input matInput formControlName="price4" value="120">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>6 days*</label>
-              <input matInput formControlName="pricingCtrl" value="144">
+              <input matInput formControlName="price5" value="144">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>7 days (1 week)*</label>
-              <input matInput formControlName="pricingCtrl" value="158">
+              <input matInput formControlName="price6" value="158">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>8 days onwards (per day)</label>
-              <input matInput formControlName="pricingCtrl" value="23">
+              <input matInput formControlName="price7" value="23">
             </mat-form-field>
 
           </div>
