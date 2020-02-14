@@ -162,16 +162,20 @@ export class ListMyBikeComponent implements OnInit {
     this.subCategoriesValue = e.value.categories;
   };
 
-  previewFile(file: any): void {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      this.loadedPhoto.push({
-        isMain: false,
-        file,
-        url: reader.result
-      });
-    };
+  previewFile(files: any): void {
+    const arr = Array.from(files);
+    arr.forEach((file: any) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        this.loadedPhoto.push({
+          isMain: false,
+          file,
+          url: reader.result
+        });
+      };
+    });
+
   }
 
   removePhoto = (i: number): Object => this.loadedPhoto.splice(i, 1);

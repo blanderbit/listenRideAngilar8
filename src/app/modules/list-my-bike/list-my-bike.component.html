@@ -202,8 +202,9 @@
 
         <label id="upload-file" for="upload">Upload photos</label>
         <input id="upload"
+               multiple
                type="file"
-               (change)="previewFile($event.target.files[0])"
+               (change)="previewFile($event.target.files)"
                formControlName="picturesCtrl_0"
         >
 
