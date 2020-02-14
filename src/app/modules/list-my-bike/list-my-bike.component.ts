@@ -148,13 +148,6 @@ export class ListMyBikeComponent implements OnInit {
       daily: ['', Validators.required],
       weekly: ['', Validators.required],
       price: ['', Validators.required],
-      price1: ['', Validators.required],
-      price2: ['', Validators.required],
-      price3: ['', Validators.required],
-      price4: ['', Validators.required],
-      price5: ['', Validators.required],
-      price6: ['', Validators.required],
-      price7: ['', Validators.required],
     };
 
     this.categoryFormGroup = this.formBuilder.group(category);
@@ -196,7 +189,7 @@ export class ListMyBikeComponent implements OnInit {
       const variable = typeof controls === 'object' ? Object.keys(controls) : [];
       variable.forEach(nameControl => {
         const value = controls[nameControl].value;
-        if (value) {
+        if (value || typeof value === 'number') {
           data[nameControl] = controls[nameControl].value
         }
       })
@@ -222,6 +215,7 @@ export class ListMyBikeComponent implements OnInit {
     data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
     data.price = this.pricingFormGroup.controls.price.value;
     data.category = data.subCategory.value;
+    delete data.subCategory;
     data.new_images = JSON.parse(JSON.stringify(this.loadedPhoto))
       .map(({isMain, file}, index) => {
         const form = new FormData();
@@ -230,7 +224,7 @@ export class ListMyBikeComponent implements OnInit {
         form.append('position', index + 1);
         return form;
       });
-    delete data.subCategory;
+
 
 
     this.user.pipe(
@@ -240,13 +234,13 @@ export class ListMyBikeComponent implements OnInit {
       }),
       switchMap(switchData => this.apiRidesService.createBike(switchData))
     )
-      .subscribe((result) => {
-
+      .subscribe(() => {
           this.router.navigate(['/my-bikes']);
-
           this.destroyed();
         },
-        () => this.destroyed(),
+        () => {
+          this.destroyed()
+        },
         () => this.destroyed()
       )
 
@@ -269,7 +263,7 @@ export class ListMyBikeComponent implements OnInit {
 
   addVariants = (): undefined => this.bikeQuantity.push(new Variations());
 
-  changeData = ({target}, obj, key): undefined => obj[key] = target.value;
+  changeData = ({target}, obj: Variations | Object, key:string): undefined => obj[key] = target.value;
 
   isRider = (): boolean => {
     const arr = [...this.bikeQuantity];
@@ -278,6 +272,4 @@ export class ListMyBikeComponent implements OnInit {
   };
 
   delQuantity = (index): Object => this.bikeQuantity.splice(index, 1);
-
-
 }
