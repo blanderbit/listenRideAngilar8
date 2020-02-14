@@ -1,69 +1,62 @@
+@import "../../../assets/scss/variables";
+
+
 .header {
-  font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 3rem;
   line-height: 120%;
-  color: #353541;
+  color: $dark-text-color;
   display: flex;
   justify-content: flex-start;
-  width: 1100px;
-  padding: 0 10px;
-  margin: 40px auto;
+  width: 110rem;
+  padding: 0 1rem;
+  margin: 4rem auto;
 }
 
 .stepper-container {
-
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  //max-width: 1000px;
 
   h3 {
-    font-family: Roboto;
-    font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 120%;
-    color: #353541;
+    color: $dark-text-color;
   }
 
   p {
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 100%;
-    color: #353541;
+    color: $dark-text-color;
   }
 
-
   ::ng-deep .mat-horizontal-stepper-header-container {
-    //justify-content: space-around;
     left: 20%;
 
     .mat-horizontal-stepper-header {
-      //pointer-events: none !important;
+      pointer-events: none !important;
 
-      height: 48px;
+      height: 4.8rem;
       cursor: pointer;
       box-sizing: border-box;
-      border-bottom: 2px solid white;
+      border-bottom: .2rem solid white;
       transition: .5s all;
 
       &[aria-selected="true"] {
-        border-bottom: 2px solid #85b2f3;
+        border-bottom: .2rem solid $main-blue;
       }
 
       &[aria-selected="false"] {
         opacity: .5;
       }
-      div{
-        &.mat-step-icon-state-number.mat-step-icon, &.mat-step-icon-state-edit.mat-step-icon{
+
+      div {
+        &.mat-step-icon-state-number.mat-step-icon, &.mat-step-icon-state-edit.mat-step-icon {
           display: none !important;
         }
       }
+
       .mat-step-label-active.mat-step-label-selected {
         opacity: 1;
       }
@@ -71,7 +64,7 @@
   }
 
   ::ng-deep .mat-horizontal-stepper-content {
-    width: 1000px;
+    width: 100rem;
 
     .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
       padding: 0;
@@ -86,55 +79,56 @@
   }
 
   .selected-category {
-    background-size: 27px !important;
+    background-size: 2.7rem !important;
+
     ::ng-deep .mat-select-value {
-      padding-left: 30px;
+      padding-left: 3rem;
     }
   }
 
   .category {
     mat-form-field {
-      width: 263px;
+      width: 26.3rem;
 
       img {
-        margin-right: 10px;
+        margin-right: 1rem;
       }
     }
 
     mat-icon {
-      margin-right: 10px;
+      margin-right: 1rem;
     }
 
     .select-category-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      width: 350px;
+      width: 35rem;
 
       .select-category-accessories {
-        background-color: #fff;
+        background-color: $white;
         width: 30%;
         color: rgba(85, 85, 85, 1.0);
-        margin: 0 8px 10px 0;
+        margin: 0 .8rem 1rem 0;
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: 10px;
-        border-radius: 5px;
+        padding: 1rem;
+        border-radius: .5rem;
 
         &.activeSelect {
-          color: #fff;
-          background: #7ab2f8;
+          color: $white;
+          background: $main-blue;
 
           ::ng-deep svg {
-            fill: white !important;
+            fill: $white !important;
 
             g {
-              fill: white !important;
+              fill: $white !important;
             }
 
             path {
-              fill: white !important;
+              fill: $white !important;
             }
           }
 
@@ -143,43 +137,35 @@
     }
   }
 
-  .details {
-    p {
-      font-size: 18px;
-      line-height: 120%;
-      color: #353541;
-      margin-top: 43px;
-    }
-  }
 
   ::ng-deep {
-    .mat-button {
-      margin: 40px 0;
-      width: 166px;
-      height: 42px;
+    .mat-button-stepper {
+      margin: 4rem 0;
+      width: 16.6rem;
+      height: 4.2rem;
 
       &[disabled] {
-        background: rgba(225, 230, 230, 1.0)
+        background: $submit-button-color-disabled;
       }
     }
 
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
-      background: #FFFFFF;
+      background: $white;
       padding: 0;
-      width: 263px;
+      width: 26.3rem;
 
       .mat-select-placeholder, .mat-select-value-text {
-        font-size: 14px;
+        font-size: 1.4rem;
         line-height: 150%;
       }
 
       .mat-select {
-        border: 1px solid #D8D8D8 !important;
-        border-radius: 3px;
+        border: .1rem solid #D8D8D8 !important;
+        border-radius: .3rem;
       }
 
       .ng-valid.mat-select {
-        border: 1px solid grey !important;;
+        border: .1rem solid $grey-background !important;;
       }
 
       .mat-select-arrow, .mat-select-invalid {
@@ -187,11 +173,11 @@
       }
 
       .ng-valid .mat-select-arrow {
-        color: grey !important;
+        color: $grey-background !important;
       }
 
       .mat-select-placeholder {
-        color: #AEB1BB;
+        color: $grey-background;
       }
 
       .mat-select-arrow-wrapper {
@@ -199,18 +185,18 @@
       }
 
       .mat-select-trigger {
-        border-radius: 3px;
-        padding: 6px 13px;
+        border-radius: .3rem;
+        padding: .6rem 1.3rem;
       }
     }
 
     .active {
-      background: #5FC693 !important;
+      background: $submit-button-color !important;
       font-weight: bold;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
       text-align: center;
-      color: #FFFFFF;
+      color: $white;
     }
 
     ::ng-deep div.mat-stepper-horizontal-line {
@@ -229,34 +215,35 @@
         .mat-form-field-underline {
           display: none !important;
         }
+
         label, mat-label {
           font-weight: bold;
         }
 
         .preview-container {
           img {
-            width: 164px !important;
-            height: 110px !important;
+            width: 16.4rem !important;
+            height: 11rem !important;
           }
 
           .imgCheckboxContainer {
-            margin-left: 20px;
+            margin-left: 2rem;
             display: flex;
             flex-direction: row !important;
 
             input {
-              background: #FFFFFF;
-              border: 1px solid #E0E6E9;
+              background: $white;
+              border: .1rem solid $input-border;
               box-sizing: border-box;
-              width: 24px;
-              height: 24px;
+              width: 2.4rem;
+              height: 2.4rem;
             }
 
             label {
               font-weight: 500;
-              font-size: 16px;
+              font-size: 1.6rem;
               line-height: 120%;
-              margin-left: 5px;
+              margin-left: .5rem;
             }
           }
         }
@@ -274,11 +261,6 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-
-            mat-icon {
-              //padding-left: 10%;
-              //padding-top: .5rem;
-            }
           }
         }
       }
@@ -291,11 +273,6 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-
-            mat-icon {
-              //padding-left: 10%;
-              //padding-top: .5rem;
-            }
           }
         }
       }
@@ -308,11 +285,6 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-
-            mat-icon {
-              //padding-left: 10%;
-              //padding-top: .5rem;
-            }
           }
         }
       }
@@ -320,93 +292,136 @@
       div.button-container.first {
         display: flex;
         justify-content: flex-end;
-
       }
 
       div.button-container {
         display: flex;
         justify-content: space-between;
       }
-
     }
 
     .pictureLoader {
       p.pictureLoader {
-        margin-top: 35px;
+        margin-top: 3.5rem;
       }
 
       h3 {
-        margin-top: 23px;
+        margin-top: 2.3rem;
       }
     }
 
     #upload-file {
       font-weight: bold;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
       text-align: center;
-      margin: 15px 0 34px 0;
-      color: #FFFFFF;
-      background: #5FC693;
-      border-radius: 4px;
-      padding: 11px 25px 10px 24px;
-
+      margin: 1.6rem 0 3.4rem 0;
+      color: $white;
+      background: $submit-button-color;
+      border-radius: .4rem;
+      padding: 1.2rem 2.6rem 1.0rem 2.4rem;
     }
 
     #upload {
       visibility: hidden;
     }
 
-    #details_container {
-      display: flex;
-      margin-top: 35px;
-      padding: 0 !important;
-      mat-form-field {
-        padding: 0;
-        margin: 10px;
+    .details {
+      h3 {
+        margin-top: 4.2rem;
+      }
 
-        div {
-          padding-right: 0;
+      #details_container, #details_brand_container {
+        display: flex;
+        margin-top: 3.5rem;
+        padding: 0 !important;
+        width: 100%;
+
+        mat-form-field {
+          padding: 0;
+          margin: 1rem;
+          width: 100%;
+
+          div {
+            padding-right: 0;
+          }
+
+          mat-icon {
+            padding-left: 1rem;
+            cursor: pointer;
+          }
+        }
+
+        label, mat-label {
+          font-weight: 500;
+          font-size: 1.6rem;
+          line-height: 120%;
+        }
+
+        input, mat-select, textarea {
+          background: none;
+          padding: 0 1.6rem;
+          border-width: .1rem;
+          border-radius: .4rem;
+          border-style: solid;
+          line-height: 4rem;
+          height: 4.2rem;
+          border-color: $input-border
+        }
+
+        input.quantity {
+          width: 5.4rem !important;
+          height: 4.2rem;
+          background: $white;
+          border: .1rem solid $input-border;
+          box-sizing: border-box;
+          padding: 0 0 0 1rem;
+          font-size: 1.6rem;
+          line-height: 150%;
+        }
+
+        label.quantity, mat-form-field.quantity {
+          width: 6.7rem;
+          margin-right: .5rem;
+          padding: 0;
         }
       }
 
-      label, mat-label {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 120%;
-        color: #353541;
-      }
+      #details_brand_container {
+        display: grid;
+        grid-template-columns: 50% 50%;
 
-      input, mat-select {
-        background: none;
-        padding: 0 16px;
-        border-width: 1px;
-        border-radius: 4px;
-        border-style: solid;
-        line-height: 40px;
-        height: 42px;
-        width: 175px;
+        mat-form-field {
+          display: flex;
 
-        border-color: rgba(206, 212, 216, 0.9);
-      }
+          div.mat-form-field-wrapper {
+            width: 100%;
 
-      input.quantity {
-        width: 54px !important;
-        height: 42px;
-        background: #FFFFFF;
-        border: 1px solid #EBEBEB;
-        box-sizing: border-box;
-        padding: 0;
-        padding-left: 10px;
-        font-size: 16px;
-        line-height: 150%;
-        color: #AEB1BB;
-      }
+            .mat-form-field-infix {
+              display: flex;
+              flex-direction: column;
 
-      label.quantity, mat-form-field.quantity {
-        width: 67px;
-        margin-right: 5px;
-        padding: 0;
+              input {
+                width: 46.5rem;
+                height: 4rem;
+                padding: 0 1.6rem;
+              }
+
+              textarea.description {
+                height: 12.8rem;
+                padding: 1.6rem;
+                width: 95%;
+                line-height: 2.56rem;
+                min-height: 4rem;
+              }
+            }
+          }
+
+          mat-hint {
+            margin-top: 1.5rem;
+            margin-right: 3.5rem;
+          }
+        }
       }
     }
 
@@ -414,26 +429,26 @@
       display: flex;
       justify-content: flex-end;
       margin-right: 10%;
-      color: #5FC693;
-      font-family: Roboto;
+      color: $submit-button-color;
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 1.6rem;
       line-height: 120%;
+      cursor: pointer;
     }
 
     .category {
       .description {
-        margin-top: 40px;
-        margin-bottom: 30px;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
       }
 
       .description-what {
-        margin-bottom: 20px;
+        margin-bottom: 2rem;
       }
 
       .mat {
-        margin-bottom: 15px;
+        margin-bottom: 1.5rem;
       }
     }
   }
@@ -441,19 +456,21 @@
   .preview-container {
     display: grid;
     grid-template-columns: 50% 50%;
+
     .bikePhotoContainer {
       display: flex;
+
       .bikeCheckedContainer {
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         .imgCheckboxContainer {
           display: flex;
-          font-family: Roboto;
           font-style: normal;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 1.6rem;
           line-height: 120%;
 
           input[type="radio"] {
@@ -461,31 +478,31 @@
           }
 
           label.custom-checkbox {
-            background: #FFFFFF;
-            border: 1px solid #E0E6E9;
+            background: $white;
+            border: .1rem solid $input-border;
             box-sizing: border-box;
-            width: 24px;
-            height: 24px;
+            width: 2.4rem;
+            height: 2.4rem;
           }
 
           span {
-            margin-left: 10px;
+            margin-left: 1rem;
           }
 
           input:checked ~ label:before {
             content: "\2714";
-            padding-left: 5px;
+            padding-left: .5rem;
           }
         }
 
 
         img.myBikePhoto {
-          width: 164px !important;
-          height: 110px !important;
+          width: 16.4rem !important;
+          height: 11rem !important;
         }
 
         button.remove {
-          color: #FF6E5A;
+          color: $error-color;
           margin: 0;
         }
       }
@@ -494,24 +511,27 @@
 
   #location-container {
     h3 {
-      margin-top: 45px;
+      margin-top: 4.5rem;
     }
 
     .location-container {
       display: grid;
       grid-template-columns: 50% 50%;
 
-      .bikeValue {
+      #bikeValue.bikeValue {
         width: 100%;
 
-        .mat-horizontal-stepper-content .category .mat-form-field-flex {
-          width: 100%;
+        .mat-form-field-wrapper {
+
+          .mat-horizontal-stepper-content .category .mat-form-field-flex {
+            width: 100% !important;
+          }
         }
       }
 
       div {
         mat-form-field, .inner-container {
-          margin: 8px 0;
+          margin: .8rem 0;
           padding: 0;
         }
 
@@ -525,141 +545,83 @@
 
       label, mat-label {
         font-weight: 500;
-        font-size: 16px;
+        font-size: 1.6rem;
         line-height: 120%;
         color: #353541;
       }
 
       input, mat-select {
         background: none;
-        padding: 0 16px;
-        border-width: 1px;
-        border-radius: 4px;
+        padding: 0 1.6rem;
+        border-width: .1rem;
+        border-radius: .4rem;
         border-style: solid;
-        line-height: 30px;
-        height: 42px;
-        border-color: rgba(206, 212, 216, 0.9);
+        line-height: 3rem;
+        height: 4.2rem;
+        border-color: $input-border;
       }
     }
   }
 
   #pricing-container {
     h3 {
-      margin: 0 18px;
-      margin-top: 47px;
+      margin: 4.7rem 1.8rem 0;
     }
 
     p {
-      margin: 0 18px;
-      margin-top: 10px;
+      margin: 1rem 1.8rem 0;
     }
 
     .customised {
-      margin-top: 30px;
+      margin-top: 3rem;
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      width: 450px;
-      mat-slide-toggle{
-        margin-right: 10px;
+      width: 45rem;
+
+      mat-slide-toggle {
+        margin-right: 1rem;
       }
 
     }
 
     .pricing-container {
-      width: 478px;
-      margin-top: 30px;
+      width: 47.8rem;
+      margin-top: 3rem;
 
       label, mat-label {
         font-weight: 500;
-        font-size: 16px;
+        font-size: 1.6rem;
         line-height: 120%;
         color: #353541;
       }
 
       input, mat-select {
         background: none;
-        border-width: 1px;
-        border-radius: 4px;
+        border-width: .1rem;
+        border-radius: .4rem;
         border-style: solid;
-        line-height: 40px;
-        height: 42px;
-        border-color: rgba(206, 212, 216, 0.9);
-        padding: 0 10px;
+        line-height: 4rem;
+        height: 4.2rem;
+        border-color: $input-border;
+        padding: 0 1rem;
       }
 
       mat-form-field {
         padding: 0;
-        margin: 10px 18px;
+        margin: 1rem 1.8rem;
       }
     }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 36px;
-      height: 14px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: grab;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 22px;
-      width: 22px;
-      background-color: white;
-      -webkit-transition: .4s;
-      transition: .4s;
-    }
-    input{
-      &:checked + .slider {
-        background-color: #2196F3;
-      }
-      &:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-      }
-      &:checked + .slider:before {
-         -webkit-transform: translateX(26px);
-         -ms-transform: translateX(26px);
-         transform: translateX(26px);
-       }
-    }
-
-    .slider.round {
-      border-radius: 34px;
-    }
-
-    .slider.round:before {
-      border-radius: 50%;
-    }
-
   }
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 110rem) {
     ::ng-deep .mat-stepper-horizontal {
       width: 100%;
-      padding: 0 40px;
+      padding: 0 4rem;
     }
     .header {
       width: 100%;
-      padding: 0 20px;
+      padding: 0 2rem;
     }
     ::ng-deep .mat-horizontal-stepper-content {
       width: 100%;

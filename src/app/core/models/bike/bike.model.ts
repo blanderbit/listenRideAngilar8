@@ -1,15 +1,18 @@
 // import {AccessoriesImageInterface} from './models';
 
+import {AccessoriesImageInterface} from "../../../modules/list-my-bike/model/models";
+
 export class BIKE {
     constructor(init?: Partial<BIKE>) {
         Object.assign(this, init);
     }
 
-    new_images: Array<Images>;
-    variations: Array<Variations>;
-    is_equipment: boolean = false;
+    new_images: Array<Images> = [];
+    variations: Array<Variations> = [];
+    // is_equipment: boolean = false;
     details: string = '';
     frame_number: string = '';
+    category: string | number;
     description: string = '';
     brand: string = '';
     name: string = '';
@@ -18,11 +21,12 @@ export class BIKE {
     coverage_total: number;
     custom_price: number;
     size: number;
+    price: number;// ?
     user_id: number;
-    discounts: Discounts;
+    discounts: Discounts = new Discounts();
     location: Location;
-    prices: Array<Prices>;
-  //  accessories: AccessoriesImageInterface;
+    prices: Array<number> = [];
+    accessories: AccessoriesImageInterface;
     available: boolean;
 }
 
@@ -37,14 +41,7 @@ class Location {
     country: string = '';
 }
 
-class Prices {
-    constructor(init?: Partial<Prices>) {
-        Object.assign(this, init);
-    }
 
-    prices: number;
-    start_at: number;
-}
 
 class Discounts {
     constructor(init?: Partial<Discounts>) {
@@ -59,20 +56,19 @@ class Images {
     constructor(init?: Partial<Images>) {
         Object.assign(this, init);
     }
-
-    file: FormData;
+    file: Object;
     is_primary: boolean;
     position: number;
 }
 
-class Variations {
+export class Variations {
     constructor(init?: Partial<Variations>) {
         Object.assign(this, init);
     }
 
-    size: boolean;
-    frame_size: string;
-    bicycle_number: string;
-    frame_number: string;
-    available: boolean;
+    size: number | string;
+    frame_size: string = '';
+    bicycle_number: string = '';
+    frame_number: string = '';
+    available: boolean = true;
 }
