@@ -35,7 +35,7 @@
     left: 20%;
 
     .mat-horizontal-stepper-header {
-      pointer-events: none !important;
+      //pointer-events: none !important;
 
       height: 4.8rem;
       cursor: pointer;
@@ -458,7 +458,9 @@
     grid-template-columns: 50% 50%;
 
     .bikePhotoContainer {
+
       display: flex;
+      margin-bottom: 2rem;
 
       .bikeCheckedContainer {
         display: flex;
@@ -627,4 +629,17 @@
       width: 100%;
     }
   }
+  @media screen and (max-width: 100rem) {
+
+    .preview-container {
+      grid-template-columns: 50% 50%;
+    }
+  }
+  @media screen and (max-width: 70rem) {
+
+    .preview-container {
+      grid-template-columns: 100%;
+    }
+  }
+
 }
