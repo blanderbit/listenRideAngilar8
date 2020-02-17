@@ -2,7 +2,14 @@
   <div class="col-md-11 col-sm-12 offset-md-1 m-t-2 m-b-2">
     <h3 class="subtitles" *ngIf="cities">
       Popular bike rental locations
-      in {{cities[0]?.seo_country?.name[this.apiSeoService.retrieveLocale()]}}:</h3>
+      in
+      <span *ngIf="this.apiSeoService.getCountryDomain() === 'com'">
+        the world :
+      </span>
+      <span *ngIf="this.apiSeoService.getCountryDomain() !== 'com'">
+        {{cities[0]?.seo_country?.name[this.apiSeoService.retrieveLocale()]}} :
+      </span>
+    </h3>
   </div>
 </div>
 <div class="row popular-destination-list text-center">

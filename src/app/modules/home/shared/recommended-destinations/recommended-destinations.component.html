@@ -1,9 +1,15 @@
-<div *ngFor="let city of cities"
-     class="wrap-recommended-destination col-lg-2 col-md-4 col-sm-6">
-  <div class="destination-card m-t-1 m-b-1"
-       [ngStyle]="{ 'background-image': 'url(' + city.image_url + ')'}">
-    <h5 class="white thin">
-      {{city.name[this.apiSeoService.retrieveLocale()]}}
-    </h5>
+<div class="swiper-container swiper-recommended-destinations">
+  <div class="swiper-wrapper">
+    <div class="wrap-recommended-destination swiper-slide">
+      <div *ngFor="let city of cities"
+           class="destination-card m-t-1 m-b-1"
+           [ngStyle]="{ 'background-image': 'url(' + city.image_url + ')'}">
+        <h5 class="white thin">
+          {{city.name[this.apiSeoService.retrieveLocale()]}}
+        </h5>
+      </div>
+    </div>
   </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>
