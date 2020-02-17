@@ -1,7 +1,8 @@
 import {
+  AfterViewInit,
   Component,
   Inject,
-  OnInit
+  OnInit, ViewChild
 } from '@angular/core';
 
 import {
@@ -38,6 +39,7 @@ import {Subject} from "rxjs";
 import {map, switchMap, takeUntil} from "rxjs/operators";
 import {Router} from "@angular/router";
 
+declare const google: any;
 declare var require;
 
 @Component({
@@ -46,7 +48,7 @@ declare var require;
   styleUrls: ['./list-my-bike.component.scss']
 })
 
-export class ListMyBikeComponent implements OnInit {
+export class ListMyBikeComponent implements OnInit , AfterViewInit{
   isLinear = false;
   categoryFormGroup: FormGroup;
   detailsFormGroup: FormGroup;
@@ -66,12 +68,20 @@ export class ListMyBikeComponent implements OnInit {
   bikeQuantity: any = [{}];
   listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000];
   priceCount = [1, 2, 3, 4, 5, 6, 7];
+  arrVariable: Array<string> = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
   private destroyed$ = new Subject();
+  @ViewChild('address', {static: true}) address: any;
+  @ViewChild('cities', {static: true}) cities: any;
+  @ViewChild('regionsZip', {static: true}) regionsZip: any;
+  @ViewChild('regionsCountry', {static: true}) regionsCountry: any;
 
+
+  /*
+    conversations object Accessory keys to array and get this array
+  */
   get accessoriesARrr() {
     return (this.accessoriesArrList || []);
   }
-
   set accessoriesARrr(value) {
     this.accessoriesArrList = Object.keys(value);
   }
@@ -93,6 +103,9 @@ export class ListMyBikeComponent implements OnInit {
     );
   }
 
+  /*
+    set svg image to material
+  */
   setSvgImageToMat(): void {
     const images = require.context('../../../assets/img-accessories', true, /\.(png|jpg|jpeg|svg)$/);
     images
@@ -107,17 +120,29 @@ export class ListMyBikeComponent implements OnInit {
       });
   }
 
+  /*
+    clear unnecessary characters
+  */
   getClearName = (key: string): string => {
-    return key ? key
+     return key ? key
         .replace('./', '')
         .replace('.svg', '')
       : '';
   };
 
+  /*
+    get really path for svg image in root folder
+  */
   getUrlSvg = (name: string): string => name ? `../../../assets/img-accessories/${name}.svg` : '';
 
+  /*
+   get string background image for dropdown
+  */
   getUrlBackground = (value: any): string => value && value.src ? `url(${value.src}) 9px 3px no-repeat` : '';
 
+  /*
+    set default value to controls
+  */
   ngOnInit(): void {
 
     const category = {
@@ -157,11 +182,17 @@ export class ListMyBikeComponent implements OnInit {
     this.pricingFormGroup = this.formBuilder.group(pricingCtrl);
   }
 
+  /*
+    change Category value and set sub category value
+  */
   changeCategory = (e: any): void => {
     this.categoryFormGroup.controls.subCategory.setValue('');
     this.subCategoriesValue = e.value.categories;
   };
 
+  /*
+    converting an unreadable picture file to a normal state for display
+  */
   previewFile(files: any): void {
     const arr = Array.from(files);
     arr.forEach((file: any) => {
@@ -175,17 +206,23 @@ export class ListMyBikeComponent implements OnInit {
         });
       };
     });
-
   }
 
+  /*
+    remove one photo object from array
+  */
   removePhoto = (i: number): Object => this.loadedPhoto.splice(i, 1);
 
+  /*
+    create bike
+  */
   create(): void {
 
+    // create valid object
     const data: BIKE | any = new BIKE();
-    const arrVariable = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
 
-    arrVariable.forEach(name => {
+    // get value from all controls
+    this.arrVariable.forEach(name => {
       if (!this[name] && this[name].controls) {
         return false;
       }
@@ -199,14 +236,23 @@ export class ListMyBikeComponent implements OnInit {
       })
     });
 
+    // we put only filled objects
     data.accessories = JSON.stringify(this.accessories);
     data.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
+
+    // we have specific dropdown value which set number value,
+    // but array[] with data for dropdown have 'Unisize = 0', if we select 'Unisize' we can’t validate the formGroup
+    // in order to get around this concept, the value of this dropdown option is its
+    // name, and here we put the desired parameter
     data.variations = data.variations.map(item => {
       if (item.size === 'Unisize') {
         item.size = 0;
       }
       return item;
     });
+
+
+    // get value from control prices
     this.priceCount.forEach(i => {
       const name = `price${i}`;
       const control = this.pricingFormGroup.controls[name];
@@ -215,11 +261,14 @@ export class ListMyBikeComponent implements OnInit {
       }
     });
 
+    // get value from controls
     data.discounts.daily = this.pricingFormGroup.controls.daily.value;
     data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
     data.price = this.pricingFormGroup.controls.price.value;
     data.category = data.subCategory.value;
     delete data.subCategory;
+
+    // set image in form data and add to property
     data.new_images = JSON.parse(JSON.stringify(this.loadedPhoto))
       .map(({isMain, file}, index) => {
         const form = new FormData();
@@ -229,8 +278,7 @@ export class ListMyBikeComponent implements OnInit {
         return form;
       });
 
-
-
+    // receiving user from store and sending data
     this.user.pipe(
       map((me: any) => {
         data.user_id = me.id;
@@ -250,11 +298,17 @@ export class ListMyBikeComponent implements OnInit {
 
   }
 
+  /*
+    clear all active observables
+  */
   destroyed(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
 
+  /*
+    adding controllers for the form when activating the checkbox in formGroup
+  */
   setCustomize({checked}: any) {
     this.customisedPricing = checked;
     this.priceCount.forEach(i => {
@@ -265,15 +319,43 @@ export class ListMyBikeComponent implements OnInit {
     });
   }
 
+  /*
+   add one object to array bikeQuantity
+  */
   addVariants = (): undefined => this.bikeQuantity.push(new Variations());
 
-  changeData = ({target}, obj: Variations | Object, key:string): undefined => obj[key] = target.value;
+  /*
+     update one field of one object in the array bikeQuantity
+  */
+  changeData = ({target}: any, obj: Variations | Object, key:string): undefined => obj[key] = target.value;
 
+  /*
+     check for filling the "size" field of one object in the array bikeQuantity
+  */
   isRider = (): boolean => {
     const arr = [...this.bikeQuantity];
-    arr.splice(0, 1);
-    return arr.every(({size}) => size);
+    return arr.every((item) => item && item.size);
   };
 
+  /*
+     delete one variation from array
+  */
   delQuantity = (index): Object => this.bikeQuantity.splice(index, 1);
+
+  /*
+     initialize google Autocomplete
+  */
+  ngAfterViewInit() {
+    this.getPlaceAutocomplete();
+  }
+
+  /*
+    set google Autocomplete to field
+  */
+  private getPlaceAutocomplete() {
+    new google.maps.places.Autocomplete(this.address.nativeElement,        {types: ['address']  });
+    new google.maps.places.Autocomplete(this.cities.nativeElement,         {types: ['(cities)' ]});
+    new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
+    new google.maps.places.Autocomplete(this.regionsZip.nativeElement,     {types: ['(regions)']});
+  }
 }

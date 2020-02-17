@@ -252,11 +252,11 @@
           <div>
             <mat-form-field class="col-12">
               <label>Street and number*</label>
-              <input matInput formControlName="street">
+              <input matInput #address formControlName="street">
             </mat-form-field>
             <mat-form-field class="col-12">
               <label>Zip Code*</label>
-              <input matInput formControlName="zip">
+              <input matInput #regionsZip formControlName="zip">
             </mat-form-field>
           </div>
 
@@ -264,13 +264,13 @@
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>City*</label>
-                <input matInput formControlName="city">
+                <input matInput #cities formControlName="city">
               </div>
             </mat-form-field>
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>Country*</label>
-                <input matInput formControlName="country">
+                <input matInput #regionsCountry formControlName="country">
               </div>
             </mat-form-field>
           </div>

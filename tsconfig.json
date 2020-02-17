@@ -39,6 +39,7 @@
     "target": "es2015",
     "types" : [
       "node",
+      "googlemaps"
     ],
     "typeRoots": [
       "node_modules/@types"
