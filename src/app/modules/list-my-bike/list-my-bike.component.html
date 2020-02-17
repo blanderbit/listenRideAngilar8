@@ -1,4 +1,4 @@
-<h2 class="header">List My Bike</h2>
+<h2 class="header">{{mode ? 'Edit' : 'List'}} My Bike</h2>
 <div class="stepper-container flex direction-column align-items-center">
   <mat-horizontal-stepper [linear]="isLinear">
 
@@ -159,15 +159,15 @@
               <label>Frame number</label>
 
               <div class="frame-number">
-                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number'"
+                <input matInput [type]="!val.hide ? 'password' : 'text'" [formControlName]="'frame_number'"
                        *ngIf="i === 0">
-                <input matInput [type]="hide ? 'password' : 'text'"
+                <input matInput [type]="!val.hide ? 'password' : 'text'"
                        [value]="val && val.frame_number"
                        *ngIf="i > 0"
                        (input)="changeData($event, val, 'frame_number')"
                 >
                 <mat-icon id="hideFrameNumber"
-                          (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          (click)="val.hide = !val.hide">{{!val.hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">{{'delete'}}</mat-icon>
               </div>
             </div>
@@ -398,7 +398,7 @@
             [ngClass]="{active: !pricingFormGroup.invalid}"
             [disabled]="pricingFormGroup.invalid"
           >
-            List my bike
+            {{mode ? 'Save changes' : 'List my bike'}}
           </button>
         </div>
       </form>
