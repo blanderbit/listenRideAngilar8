@@ -37,7 +37,8 @@ import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {BIKE, Variations} from "@models/bike/bike.model";
 import {Subject} from "rxjs";
 import {map, switchMap, takeUntil} from "rxjs/operators";
-import {Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 declare const google: any;
 declare var require;
@@ -60,7 +61,6 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   loadedPhoto: Array<LoadedImageInterface> = [];
   subCategoriesValue: Array<SubCategoryInterface> | null = [];
   user: Store<fromAuth.State> | any;
-  hide = true;
   accessories: AccessoriesInterface | any = new AccessoriesInterface();
   accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
   accessoriesArrList: Array<string> = [];
@@ -70,6 +70,8 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   priceCount = [1, 2, 3, 4, 5, 6, 7];
   arrVariable: Array<string> = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
   private destroyed$ = new Subject();
+  mode = false;
+  data: BIKE | any;
   @ViewChild('address', {static: true}) address: any;
   @ViewChild('cities', {static: true}) cities: any;
   @ViewChild('regionsZip', {static: true}) regionsZip: any;
@@ -93,10 +95,25 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private apiRidesService: ApiRidesService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private activateRoute: ActivatedRoute
   ) {
+
     this.accessoriesARrr = this.accessories;
     this.setSvgImageToMat();
+    let activated$ = this.activateRoute.paramMap;
+    activated$
+      .pipe(
+        map((data:ParamMap | any) => data.params),
+        switchMap((params:any) => {
+          this.mode = params.id;
+          return this.mode ? 'request' : Promise.resolve(new BIKE());
+        })
+    )
+      .subscribe(next => {
+        this.data = new BIKE();
+      });
     this.user = this.store.pipe(
       select(fromAuth.selectAuthGetUser),
       takeUntil(this.destroyed$)
@@ -218,9 +235,6 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   */
   create(): void {
 
-    // create valid object
-    const data: BIKE | any = new BIKE();
-
     // get value from all controls
     this.arrVariable.forEach(name => {
       if (!this[name] && this[name].controls) {
@@ -231,45 +245,44 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
       variable.forEach(nameControl => {
         const value = controls[nameControl].value;
         if (value || typeof value === 'number') {
-          data[nameControl] = controls[nameControl].value
+          this.data[nameControl] = controls[nameControl].value
         }
       })
     });
 
     // we put only filled objects
-    data.accessories = JSON.stringify(this.accessories);
-    data.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
+    this.data.accessories = JSON.stringify(this.accessories);
+    this.data.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
 
     // we have specific dropdown value which set number value,
     // but array[] with data for dropdown have 'Unisize = 0', if we select 'Unisize' we can’t validate the formGroup
     // in order to get around this concept, the value of this dropdown option is its
     // name, and here we put the desired parameter
-    data.variations = data.variations.map(item => {
+    this.data.variations = this.data.variations.map(item => {
       if (item.size === 'Unisize') {
         item.size = 0;
       }
       return item;
     });
 
-
     // get value from control prices
     this.priceCount.forEach(i => {
       const name = `price${i}`;
       const control = this.pricingFormGroup.controls[name];
       if (control) {
-        data.prices.splice(i, 0, control.value)
+        this.data.prices.splice(i, 0, control.value)
       }
     });
 
     // get value from controls
-    data.discounts.daily = this.pricingFormGroup.controls.daily.value;
-    data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
-    data.price = this.pricingFormGroup.controls.price.value;
-    data.category = data.subCategory.value;
-    delete data.subCategory;
+    this.data.discounts.daily = this.pricingFormGroup.controls.daily.value;
+    this.data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
+    this.data.price = this.pricingFormGroup.controls.price.value;
+    this.data.category = this.data.subCategory.value;
+    delete this.data.subCategory;
 
     // set image in form data and add to property
-    data.new_images = JSON.parse(JSON.stringify(this.loadedPhoto))
+    this.data.new_images = JSON.parse(JSON.stringify(this.loadedPhoto))
       .map(({isMain, file}, index) => {
         const form = new FormData();
         form.append('is_primary', isMain);
@@ -281,16 +294,18 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
     // receiving user from store and sending data
     this.user.pipe(
       map((me: any) => {
-        data.user_id = me.id;
-        return data
+        this.data.user_id = me.id;
+        return this.data
       }),
       switchMap(switchData => this.apiRidesService.createBike(switchData))
     )
-      .subscribe(() => {
+      .subscribe((val) => {
+          // this.snackBar(val)
           this.router.navigate(['/my-bikes']);
           this.destroyed();
         },
-        () => {
+        (err) => {
+          this.snackBar(err);
           this.destroyed()
         },
         () => this.destroyed()
@@ -352,10 +367,13 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   /*
     set google Autocomplete to field
   */
-  private getPlaceAutocomplete() {
+  private getPlaceAutocomplete = ():void => {
     new google.maps.places.Autocomplete(this.address.nativeElement,        {types: ['address']  });
     new google.maps.places.Autocomplete(this.cities.nativeElement,         {types: ['(cities)' ]});
     new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
     new google.maps.places.Autocomplete(this.regionsZip.nativeElement,     {types: ['(regions)']});
-  }
+  };
+
+  snackBar = (val:string) : any => this._snackBar.open(val, 'Undo', {duration: 2000});
+
 }

@@ -3,7 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListMyBikeComponent} from './list-my-bike.component';
 
 const routes: Routes = [
-  {path: '', component: ListMyBikeComponent}
+  {path: '', component: ListMyBikeComponent},
+  {path: ':id', component: ListMyBikeComponent},
 ];
 
 @NgModule({
