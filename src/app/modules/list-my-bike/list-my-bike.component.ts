@@ -36,7 +36,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {BIKE, Variations} from "@models/bike/bike.model";
 import {Subject} from "rxjs";
-import {map, switchMap, takeUntil} from "rxjs/operators";
+import {filter, map, switchMap, takeUntil, tap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -49,7 +49,7 @@ declare var require;
   styleUrls: ['./list-my-bike.component.scss']
 })
 
-export class ListMyBikeComponent implements OnInit , AfterViewInit{
+export class ListMyBikeComponent implements OnInit, AfterViewInit {
   isLinear = false;
   categoryFormGroup: FormGroup;
   detailsFormGroup: FormGroup;
@@ -61,6 +61,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   loadedPhoto: Array<LoadedImageInterface> = [];
   subCategoriesValue: Array<SubCategoryInterface> | null = [];
   user: Store<fromAuth.State> | any;
+  userId: Store<fromAuth.State> | any;
   accessories: AccessoriesInterface | any = new AccessoriesInterface();
   accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
   accessoriesArrList: Array<string> = [];
@@ -72,6 +73,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   private destroyed$ = new Subject();
   mode = false;
   data: BIKE | any;
+  editDataBike;
   @ViewChild('address', {static: true}) address: any;
   @ViewChild('cities', {static: true}) cities: any;
   @ViewChild('regionsZip', {static: true}) regionsZip: any;
@@ -84,6 +86,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   get accessoriesARrr() {
     return (this.accessoriesArrList || []);
   }
+
   set accessoriesARrr(value) {
     this.accessoriesArrList = Object.keys(value);
   }
@@ -102,22 +105,43 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
 
     this.accessoriesARrr = this.accessories;
     this.setSvgImageToMat();
+    // debugger
+    // this.userId = this.store.pipe(
+    //   select(fromAuth.selectAuthGetUser),
+    //   takeUntil(this.destroyed$),
+    //   map((me: any) => {
+    //     console.log(me.id)
+    //     // this.data.user_id = me.id;
+    //     return me.id;
+    //   }),
+    // ).subscribe();
+    // // console.log(this.userId)
+
     let activated$ = this.activateRoute.paramMap;
     activated$
       .pipe(
-        map((data:ParamMap | any) => data.params),
-        switchMap((params:any) => {
+        map((data: ParamMap | any) => data.params),
+        switchMap((params: any) => {
           this.mode = params.id;
           return this.mode ? 'request' : Promise.resolve(new BIKE());
         })
-    )
+      )
       .subscribe(next => {
+        // debugger
+        console.log(next)
         this.data = new BIKE();
       });
     this.user = this.store.pipe(
       select(fromAuth.selectAuthGetUser),
       takeUntil(this.destroyed$)
-    );
+    ).subscribe(res => console.log(res));
+    // this.editDataBike = this.apiRidesService.getByUserId('17282').pipe(
+    //   filter(resp => !!resp),
+    //   tap(resp => console.log(resp)),
+    //   map(resp => resp.bikes)
+    // )
+    //   .subscribe();
+
   }
 
   /*
@@ -141,7 +165,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
     clear unnecessary characters
   */
   getClearName = (key: string): string => {
-     return key ? key
+    return key ? key
         .replace('./', '')
         .replace('.svg', '')
       : '';
@@ -236,6 +260,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   create(): void {
 
     // get value from all controls
+    debugger
     this.arrVariable.forEach(name => {
       if (!this[name] && this[name].controls) {
         return false;
@@ -342,7 +367,7 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   /*
      update one field of one object in the array bikeQuantity
   */
-  changeData = ({target}: any, obj: Variations | Object, key:string): undefined => obj[key] = target.value;
+  changeData = ({target}: any, obj: Variations | Object, key: string): undefined => obj[key] = target.value;
 
   /*
      check for filling the "size" field of one object in the array bikeQuantity
@@ -367,13 +392,13 @@ export class ListMyBikeComponent implements OnInit , AfterViewInit{
   /*
     set google Autocomplete to field
   */
-  private getPlaceAutocomplete = ():void => {
-    new google.maps.places.Autocomplete(this.address.nativeElement,        {types: ['address']  });
-    new google.maps.places.Autocomplete(this.cities.nativeElement,         {types: ['(cities)' ]});
+  private getPlaceAutocomplete = (): void => {
+    new google.maps.places.Autocomplete(this.address.nativeElement, {types: ['address']});
+    new google.maps.places.Autocomplete(this.cities.nativeElement, {types: ['(cities)']});
     new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
-    new google.maps.places.Autocomplete(this.regionsZip.nativeElement,     {types: ['(regions)']});
+    new google.maps.places.Autocomplete(this.regionsZip.nativeElement, {types: ['(regions)']});
   };
 
-  snackBar = (val:string) : any => this._snackBar.open(val, 'Undo', {duration: 2000});
+  snackBar = (val: string): any => this._snackBar.open(val, 'Undo', {duration: 2000});
 
 }

@@ -370,7 +370,7 @@
         }
 
         input.quantity {
-          width: 5.4rem !important;
+          //width: 5.4rem !important;
           height: 4.2rem;
           background: $white;
           border: .1rem solid $input-border;
@@ -381,10 +381,15 @@
         }
 
         label.quantity, mat-form-field.quantity {
-          width: 6.7rem;
+          //width: 6.7rem;
           margin-right: .5rem;
           padding: 0;
         }
+      }
+
+      #details_container {
+        display: grid;
+        grid-template-columns: 6.7rem 23% 23% 23% 23%;
       }
 
       #details_brand_container {
