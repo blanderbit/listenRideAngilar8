@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild, OnInit, ElementRef, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApiSeoService} from '@api/api-seo/api-seo.service';
 import Swiper from 'swiper';
 
@@ -11,6 +11,7 @@ export class RecommendedDestinationsComponent implements OnInit, AfterViewInit {
   cities;
   public citiesSwiper;
 
+// TODO add swiper
   // swiperConfig() {
   //   this.citiesSwiper = new Swiper('.swiper-recommended-destinations', {
   //     direction: 'horizontal',

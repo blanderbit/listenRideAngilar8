@@ -1,4 +1,4 @@
-<div class="masonry-with-columns-2">
+<div class="wrap-recommended-destinations">
   <a *ngFor="let city of cities"
      class="destination-card"
      routerLink="./{{city.name[this.apiSeoService.retrieveLocale()] | lowercase}}"
