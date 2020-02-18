@@ -5,8 +5,7 @@ export interface Bike {
   image_file: string;
   category: string;
   size: number;
-  // TODO: add type
-  pretty_size: any;
+  pretty_size: string;
   daily_price: number;
   weekly_price: number;
   rating_average: number;
