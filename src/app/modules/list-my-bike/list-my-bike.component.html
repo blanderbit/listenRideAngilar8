@@ -18,9 +18,9 @@
               formControlName="category"
               placeholder="Select the bike category"
               (selectionChange)="changeCategory($event)"
-              [ngClass]="categoryFormGroup.controls.category.value.src && 'selected-category'"
+              [ngClass]="categoryFormGroup?.controls?.category?.value?.src && 'selected-category'"
               [ngStyle]="{
-                background: getUrlBackground(categoryFormGroup.controls.category.value)
+                background: getUrlBackground(categoryFormGroup?.controls?.category?.value)
               }"
             >
               <mat-option
@@ -233,8 +233,8 @@
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !picturesFormGroup.invalid}"
-                  [disabled]="picturesFormGroup.invalid" mat-button matStepperNext>
+                  [ngClass]="{active: loadedPhoto.length > 0}"
+                  [disabled]="loadedPhoto.length < 1" mat-button matStepperNext>
             Next
 
           </button>
