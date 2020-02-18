@@ -1,5 +1,6 @@
-<h2 class="header">{{mode ? 'Edit' : 'List'}} My Bike</h2>
-<div class="stepper-container flex direction-column align-items-center">
+<h2 class="header">{{editData ? 'Edit' : 'List'}} My Bike</h2>
+<!--*ngIf="userId && data"-->
+<div class="stepper-container flex direction-column align-items-center" >
   <mat-horizontal-stepper [linear]="isLinear">
 
 
@@ -394,14 +395,20 @@
           <button
             class="mat-button-stepper"
             mat-button
-            (click)="create()"
+            (click)="request(editData)"
             [ngClass]="{active: !pricingFormGroup.invalid}"
             [disabled]="pricingFormGroup.invalid"
           >
-            {{mode ? 'Save changes' : 'List my bike'}}
+            {{editData ? 'Save changes' : 'List my bike'}}
           </button>
         </div>
       </form>
     </mat-step>
   </mat-horizontal-stepper>
+</div>
+<div  *ngIf="!userId" class="message">
+  Loading...
+</div>
+<div  *ngIf="!data" class="message">
+  We don`t have this ride
 </div>

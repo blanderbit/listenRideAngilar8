@@ -12,22 +12,22 @@ export class ApiRidesService {
 
   // TODO: add type
   getByQuery(params: any): Observable<any> {
-    return this.httpClient.get<any>(`${environment.apiUrl}/rides`, {params});
+    return this.httpClient.get<any>(`/rides`, {params});
   }
 
   getById(id: any, light = true): Observable<Bike> {
     const params: any = {light};
 
-    return this.httpClient.get<Bike>(`${environment.apiUrl}/rides/${id}`, {params});
+    return this.httpClient.get<Bike>(`/rides/${id}`, {params});
   }
 
   getUnavailable(startDate, duration): Observable<Bike[]> {
     const params: any = {start_date: startDate, duration};
-    return this.httpClient.get<Bike[]>(`${environment.apiUrl}/rides/unavailable`, {params});
+    return this.httpClient.get<Bike[]>(`/rides/unavailable`, {params});
   }
 
   getByUserId(userId: string): Observable<any> {
-    return this.httpClient.get<Bike[]>(`${environment.apiUrl}/users/${userId}/rides`);
+    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`);
   }
 
   createBike(data): Observable<any> {
@@ -35,10 +35,10 @@ export class ApiRidesService {
   }
 
   updateBike(bikeId: string, bike: any): Observable<any> {
-    return this.httpClient.put(`${environment.apiUrl}/rides/${bikeId}`, bike);
+    return this.httpClient.put(`/rides/${bikeId}`, bike);
   }
 
   deleteBike(bikeId: string): Observable<any> {
-    return this.httpClient.delete(`${environment.apiUrl}/rides/${bikeId}`);
+    return this.httpClient.delete(`/rides/${bikeId}`);
   }
 }
