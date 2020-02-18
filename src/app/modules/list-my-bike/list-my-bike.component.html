@@ -1,6 +1,6 @@
 <h2 class="header">List My Bike</h2>
-<div class="stepper-container">
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+<div class="stepper-container flex direction-column align-items-center">
+  <mat-horizontal-stepper [linear]="isLinear">
 
 
     <mat-step [stepControl]="categoryFormGroup">
@@ -14,19 +14,19 @@
         <div class="mat">
           <mat-form-field appearance="fill">
             <mat-select
-              formControlName="categoryCtrl"
+              formControlName="category"
               placeholder="Select the bike category"
               (selectionChange)="changeCategory($event)"
-              [ngClass]="categoryFormGroup.controls.categoryCtrl.value.src && 'selected-category'"
+              [ngClass]="categoryFormGroup.controls.category.value.src && 'selected-category'"
               [ngStyle]="{
-                background: getUrlBackground(categoryFormGroup.controls.categoryCtrl.value)
+                background: getUrlBackground(categoryFormGroup.controls.category.value)
               }"
             >
               <mat-option
                 *ngFor="let category of bikeCategoryList"
                 [value]="category"
               >
-                <img width="30" [src]="category.src">
+                <img style="width: 3rem" [src]="category.src">
                 {{category.type}}
               </mat-option>
             </mat-select>
@@ -35,7 +35,7 @@
 
         <div>
           <mat-form-field appearance="fill">
-            <mat-select formControlName="subCategoryCtrl" placeholder="Specify the subcategory">
+            <mat-select formControlName="subCategory" placeholder="Specify the subcategory">
               <mat-option
                 *ngFor="let subcategory of subCategoriesValue"
                 [value]="subcategory"
@@ -61,7 +61,11 @@
         <div class="button-container first">
           <button class="next"
                   [ngClass]="{active: !categoryFormGroup.invalid}"
-                  [disabled]="categoryFormGroup.invalid" mat-button matStepperNext>
+                  [disabled]="categoryFormGroup.invalid"
+                  class="mat-button-stepper"
+                  mat-button
+                  matStepperNext
+          >
             Next
           </button>
         </div>
@@ -73,21 +77,56 @@
     <mat-step [stepControl]="detailsFormGroup">
       <form class="details" [formGroup]="detailsFormGroup">
         <ng-template matStepLabel>Details</ng-template>
-        <p>How many variants would you like to add?</p>
+        <h3>What is the brand, model, and size of your bike?</h3>
+        <div id="details_brand_container">
+          <div>
+
+            <mat-form-field class="brand col-12">
+              <label class="brand">Brand*</label>
+              <input matInput formControlName="brand" class="brand">
+            </mat-form-field>
+
+            <mat-form-field class="model col-12">
+              <label class="model">Model*</label>
+              <input matInput formControlName="name" class="model">
+            </mat-form-field>
+
+          </div>
+          <div>
+            <mat-form-field class="description col-12">
+              <label class="description">Description(min. 100 characters)</label>
+              <textarea #description maxlength="800" matInput formControlName="description"
+                        class="description"></textarea>
+              <mat-hint align="end">{{description.value.length}}/800</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
 
 
-        <div id="details_container" *ngFor="let val of bikeQuantity">
-          <mat-form-field class="quantity" >
+        <h3>How many variants would you like to add?</h3>
+
+        <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
+
+          <mat-form-field class="quantity">
             <div class="col-12">
               <label class="quantity">Quantity</label>
-              <input matInput class="quantity" formControlName="detailsCtrl" value="{{val}}" >
+              <input matInput class="quantity" value="{{i + 1}}" disabled>
             </div>
           </mat-form-field>
+
           <mat-form-field>
             <div class="col-12">
               <label>Rider height*</label>
-              <mat-select formControlName="detailsCtrl">
+              <mat-select [formControlName]="'size'" *ngIf="i === 0">
                 <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+              </mat-select>
+              <mat-select [(value)]=" val.size" *ngIf="i > 0">
+                <mat-option
+                  *ngFor="let size of sizeList"
+                  [value]="'Unisize' === size.text ? 'Unisize' :size.value"
+                >
+                  {{size.text}}
+                </mat-option>
               </mat-select>
             </div>
           </mat-form-field>
@@ -96,13 +135,23 @@
 
             <div class="col-12">
               <label>Frame size</label>
-              <input matInput placeholder="" formControlName="detailsCtrl">
+              <input matInput placeholder="" [formControlName]="'frame_size'" *ngIf="i === 0">
+              <input matInput placeholder=""
+                     *ngIf="i > 0"
+                     [value]="val && val.frame_size"
+                     (input)="changeData($event, val, 'frame_size')"
+              >
             </div>
           </mat-form-field>
           <mat-form-field>
             <div class="col-12">
               <label>Bicycle number</label>
-              <input matInput placeholder="" formControlName="detailsCtrl">
+              <input matInput placeholder="" [formControlName]="'bicycle_number'" *ngIf="i === 0">
+              <input matInput placeholder=""
+                     *ngIf="i > 0"
+                     (input)="changeData($event, val, 'bicycle_number')"
+                     [value]="val && val.bicycle_number"
+              >
             </div>
           </mat-form-field>
           <mat-form-field>
@@ -110,22 +159,33 @@
               <label>Frame number</label>
 
               <div class="frame-number">
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="detailsCtrl"
-                       required>
-                <mat-icon id="hideFrameNumber" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-icon id="delQuantity" (click)="delQuantity(val)">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number'"
+                       *ngIf="i === 0">
+                <input matInput [type]="hide ? 'password' : 'text'"
+                       [value]="val && val.frame_number"
+                       *ngIf="i > 0"
+                       (input)="changeData($event, val, 'frame_number')"
+                >
+                <mat-icon id="hideFrameNumber"
+                          (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">{{'delete'}}</mat-icon>
               </div>
             </div>
           </mat-form-field>
         </div>
 
         <div class="addVariants" (click)="addVariants()">Add variants</div>
-
         <div class="button-container">
-          <button mat-button matStepperPrevious>Back</button>
-          <button class="next"
-                  [ngClass]="{active: !detailsFormGroup.invalid}"
-                  [disabled]="detailsFormGroup.invalid" mat-button matStepperNext>
+          <button
+            class="mat-button-stepper"
+            mat-button
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button class="mat-button-stepper next"
+                  [ngClass]="{active: !detailsFormGroup.invalid && isRider()}"
+                  [disabled]="detailsFormGroup.invalid || !isRider()" mat-button matStepperNext>
             Next
           </button>
         </div>
@@ -133,7 +193,7 @@
     </mat-step>
 
     <mat-step [stepControl]="picturesFormGroup">
-      <form class="pictureLoader" [formGroup]="picturesFormGroup" style="width: 100%; max-width: 1000px">
+      <form class="pictureLoader" [formGroup]="picturesFormGroup">
         <ng-template matStepLabel>Pictures</ng-template>
         <p class="pictureLoader">Now select some nice pictures of your bike. Here is a guide on how to make your listing
           look even better!</p>
@@ -142,17 +202,19 @@
 
         <label id="upload-file" for="upload">Upload photos</label>
         <input id="upload"
+               multiple
                type="file"
-               (change)="previewFile($event.target.files[0])"
+               (change)="previewFile($event.target.files)"
+               formControlName="picturesCtrl_0"
         >
 
         <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
           <div class="bikePhotoContainer" *ngFor="let photo of loadedPhoto; let i = index">
             <img src="{{photo.url}}" alt="" class="myBikePhoto">
-            <div  class="bikeCheckedContainer" >
+            <div class="bikeCheckedContainer">
               <div class="imgCheckboxContainer">
-                <input type="radio" [id]="'picturesCtrl' + i" name="picturesCtrl_{{i}}" >
-                <label [for]="'picturesCtrl' + i" class="custom-checkbox"></label>
+                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [(value)]="photo.isMain">
+                <label [for]="'pictures' + i" class="custom-checkbox"></label>
                 <span>Make this the main photo</span>
               </div>
               <button mat-button class="remove" (click)="removePhoto(i)">Remove</button>
@@ -160,9 +222,16 @@
           </div>
         </div>
 
+
         <div class="button-container">
-          <button mat-button matStepperPrevious>Back</button>
-          <button class="next"
+          <button
+            class="mat-button-stepper"
+            mat-button
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button class="mat-button-stepper next"
                   [ngClass]="{active: !picturesFormGroup.invalid}"
                   [disabled]="picturesFormGroup.invalid" mat-button matStepperNext>
             Next
@@ -183,11 +252,11 @@
           <div>
             <mat-form-field class="col-12">
               <label>Street and number*</label>
-              <input matInput formControlName="locationCtrl">
+              <input matInput formControlName="street">
             </mat-form-field>
             <mat-form-field class="col-12">
               <label>Zip Code*</label>
-              <input matInput formControlName="locationCtrl">
+              <input matInput formControlName="zip">
             </mat-form-field>
           </div>
 
@@ -195,13 +264,13 @@
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>City*</label>
-                <input matInput formControlName="locationCtrl">
+                <input matInput formControlName="city">
               </div>
             </mat-form-field>
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>Country*</label>
-                <input matInput formControlName="locationCtrl">
+                <input matInput formControlName="country">
               </div>
             </mat-form-field>
           </div>
@@ -223,12 +292,14 @@
 
               <h3>What is the value of your bike?</h3>
               <div class="mat col-12">
-                <mat-form-field appearance="fill" class="bikeValue">
+                <mat-form-field appearance="fill" class="bikeValue w-p-100" id="bikeValue">
                   <mat-select
-                    formControlName="locationCtrl"
+                    formControlName="custom_price"
                     placeholder="Please select your bike value"
                   >
-                    <mat-option></mat-option>
+                    <mat-option *ngFor="let item of listPrices" [value]="item">
+                      {{item}}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -237,8 +308,8 @@
         </div>
 
         <div class="button-container">
-          <button mat-button matStepperPrevious>Back</button>
-          <button class="next"
+          <button class="mat-button-stepper" mat-button matStepperPrevious>Back</button>
+          <button class="mat-button-stepper next"
                   [ngClass]="{active: !locationFormGroup.invalid}"
                   [disabled]="locationFormGroup.invalid" mat-button matStepperNext>
             Next
@@ -258,69 +329,77 @@
         <div class="pricing-container">
           <mat-form-field class="col-11">
             <label>Daily price (€)*</label>
-            <input matInput formControlName="pricingCtrl" value="30">
+            <input matInput formControlName="price">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Daily discount (%)*</label>
-            <input matInput formControlName="pricingCtrl" value="10">
+            <input matInput formControlName="daily">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Weekly Discount (%)*</label>
-            <input matInput formControlName="pricingCtrl" value="20">
+            <input matInput formControlName="weekly">
           </mat-form-field>
         </div>
         <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
           listnride fees.</p>
 
-        <div >
+        <div>
           <div class="customised">
             <p>Customised pricing</p>
-            <mat-slide-toggle (click)="customisedPricing=!customisedPricing"></mat-slide-toggle>
+            <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
           </div>
 
           <div class="pricing-container" *ngIf="customisedPricing">
             <mat-form-field class="col-5">
               <label>2 days*</label>
-              <input matInput formControlName="pricingCtrl" value="48">
+              <input matInput formControlName="price1">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>3 days*</label>
-              <input matInput formControlName="pricingCtrl" value="72">
+              <input matInput formControlName="price2">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>4 days*</label>
-              <input matInput formControlName="pricingCtrl" value="96">
+              <input matInput formControlName="price3">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>5 days*</label>
-              <input matInput formControlName="pricingCtrl" value="120">
+              <input matInput formControlName="price4">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>6 days*</label>
-              <input matInput formControlName="pricingCtrl" value="144">
+              <input matInput formControlName="price5">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>7 days (1 week)*</label>
-              <input matInput formControlName="pricingCtrl" value="158">
+              <input matInput formControlName="price6">
             </mat-form-field>
 
             <mat-form-field class="col-5">
               <label>8 days onwards (per day)</label>
-              <input matInput formControlName="pricingCtrl" value="23">
+              <input matInput formControlName="price7">
             </mat-form-field>
 
           </div>
         </div>
         <div class="button-container">
-          <button mat-button matStepperPrevious>Back</button>
-          <button class="active" mat-button matStepperNext>List my bike</button>
+          <button class="mat-button-stepper" mat-button matStepperPrevious>Back</button>
+          <button
+            class="mat-button-stepper"
+            mat-button
+            (click)="create()"
+            [ngClass]="{active: !pricingFormGroup.invalid}"
+            [disabled]="pricingFormGroup.invalid"
+          >
+            List my bike
+          </button>
         </div>
       </form>
     </mat-step>
