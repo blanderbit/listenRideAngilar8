@@ -17,7 +17,6 @@ export class ApiRidesService {
 
   getById(id: any, light = true): Observable<Bike> {
     const params: any = {light};
-
     return this.httpClient.get<Bike>(`/rides/${id}`, {params});
   }
 

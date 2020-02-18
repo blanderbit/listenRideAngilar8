@@ -79,7 +79,7 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
   }
 
   fetchBikes() {
-    this.apiRidesService.getByUserId('11442').pipe(
+    this.apiRidesService.getByUserId('17282').pipe(
       filter(resp => !!resp),
       tap(resp => console.log(resp)),
       map(resp => resp.bikes)

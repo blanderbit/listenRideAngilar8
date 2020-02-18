@@ -113,9 +113,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             }),
             takeUntil(this.destroyed$)
         )
-        .subscribe(next => {
-            this.data = next ? next : new BIKE();
-        }, () => this.data);
+        .subscribe(
+          next => {
+            this.data = next || new BIKE();
+            console.log(this.data)
+          },
+          () => this.snackBar('we have same error')
+        );
 
     }
 
@@ -144,7 +148,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                 .replace('./', '')
                 .replace('.svg', '')
             : '';
-    }
+    };
 
     /*
       get really path for svg image in root folder
@@ -232,7 +236,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     /*
       create bike
     */
-    request(isCreate?: any ): void {
+    request(isEdit?: any ): void {
 
         // get value from all controls
         this.arrVariable.forEach(name => {
@@ -293,20 +297,19 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
         // receiving user from store and sending data
         data.user_id = this.userId;
-            debugger;
-        (isCreate ? this.apiRidesService.createBike(data) : this.apiRidesService.updateBike(this.editData, data))
-        .subscribe(() => {
-                if (isCreate) {
+        (isEdit ? this.apiRidesService.updateBike(this.editData, data) :  this.apiRidesService.createBike(data))
+            .subscribe(
+                () => {
+                    this.snackBar(isEdit ? 'Updated successfully' : 'Created successfully', false);
                     this.router.navigate(['/my-bikes']) ;
-                }
-                this.destroyed();
-            },
-            (err) => {
-                this.snackBar(err);
-                this.destroyed();
-            },
-            () => this.destroyed()
-        );
+                },
+                ({error}) => {
+                    const errorFirst = error.errors[0];
+                    if(errorFirst){
+                      this.snackBar(errorFirst.detail, false);
+                    }
+                },
+            );
 
     }
 
@@ -365,7 +368,6 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       set google Autocomplete to field
     */
     private getPlaceAutocomplete = (): void => {
-        debugger
         if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
             return;
         }
@@ -375,6 +377,11 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         new google.maps.places.Autocomplete(this.regionsZip.nativeElement, {types: ['(regions)']});
     };
 
-    snackBar = (val: string): any => this._snackBar.open(val, 'Undo', {duration: 2000});
+    snackBar = (val: string, isGood = false): any => this._snackBar.open(val, 'Undo', {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: [(!isGood ? 'red-snackbar' : 'green-snackbar')]
+    });
 
 }

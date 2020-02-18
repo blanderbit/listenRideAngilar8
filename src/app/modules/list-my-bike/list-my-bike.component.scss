@@ -653,6 +653,14 @@
 
 }
 
+::ng-deep .red-snackbar{
+  background: #7d0504;
+}
+
+::ng-deep .green-snackbar{
+  background: #2e7d2c;
+}
+
 .message{
   width: 100%;
   height: 60vh;

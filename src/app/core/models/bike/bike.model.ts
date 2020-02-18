@@ -26,7 +26,7 @@ export class BIKE {
     discounts: Discounts = new Discounts();
     location: Location;
     prices: Array<number> = [];
-    accessories: AccessoriesImageInterface;
+    accessories: AccessoriesImageInterface = new AccessoriesImageInterface();
     available: boolean;
 }
 

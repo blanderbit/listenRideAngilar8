@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
-import {catchError, first, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
-import {combineLatest, EMPTY} from 'rxjs';
+import {EMPTY} from 'rxjs';
 
 @Injectable()
 export class UserEditDataResolver implements Resolve<any> {
