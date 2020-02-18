@@ -185,8 +185,8 @@
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !detailsFormGroup.invalid && isRider()}"
-                  [disabled]="detailsFormGroup.invalid || !isRider()" mat-button matStepperNext>
+                  [ngClass]="{active: !detailsFormGroup.invalid && !isRider()}"
+                  [disabled]="detailsFormGroup.invalid || isRider()" mat-button matStepperNext>
             Next
           </button>
         </div>
