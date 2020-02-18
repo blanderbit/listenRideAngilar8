@@ -24,6 +24,7 @@
               }"
             >
               <mat-option
+                size="7"
                 *ngFor="let category of bikeCategoryList"
                 [value]="category"
               >
@@ -55,7 +56,7 @@
                  (click)="accessories[item] =! accessories[item]"
             >
               <mat-icon [svgIcon]="accessoriesImage[item]"></mat-icon>
-              <div class="text-category">{{item}}</div>
+              <div class="text-category">{{item | titlecase}}</div>
             </div>
           </div>
         </div>

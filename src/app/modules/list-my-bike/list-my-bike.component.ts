@@ -163,7 +163,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
           this.data = next || new BIKE();
           this.setDataToPage()
         },
-        () => this.snackBar('we have same error')
+        () => this.snackBar('we have some error')
       );
 
     console.log(this.data)

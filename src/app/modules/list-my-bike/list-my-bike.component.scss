@@ -149,6 +149,10 @@
       }
     }
 
+    div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
+      height: 300px !important;
+    }
+
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
       background: $white;
       padding: 0;
@@ -165,7 +169,7 @@
       }
 
       .ng-valid.mat-select {
-        border: .1rem solid $grey-background !important;;
+        border: .1rem solid #D8D8D8 !important;;
       }
 
       .mat-select-arrow, .mat-select-invalid {
@@ -634,12 +638,7 @@
       width: 100%;
     }
   }
-  //@media screen and (max-width: 100rem) {
-  //
-  //  .preview-container {
-  //    grid-template-columns: 50% 50%;
-  //  }
-  //}
+
   @media screen and (max-width: 40rem) {
 
     .preview-container {
@@ -649,22 +648,47 @@
       display: grid;
       grid-template-columns: 100%;
     }
+    #location-container {
+
+      .location-container {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+    }
+
+    #pricing-container {
+      .pricing-container, .customised {
+        display: grid;
+        grid-template-columns: 100%;
+        mat-form-field {
+          display: flex;
+        }
+      }
+    }
   }
 
 }
 
-::ng-deep .red-snackbar{
+::ng-deep .red-snackbar {
   background: #7d0504;
 }
 
-::ng-deep .green-snackbar{
+::ng-deep .green-snackbar {
   background: #2e7d2c;
 }
 
-.message{
+.message {
   width: 100%;
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+::ng-deep .cdk-overlay-container {
+  div#cdk-overlay-0 {
+    div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
+      height: 300px !important;
+    }
+  }
 }
