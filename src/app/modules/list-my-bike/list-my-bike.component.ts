@@ -103,42 +103,27 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         private activateRoute: ActivatedRoute
     ) {
 
-        this.accessoriesARrr = this.accessories;
-        this.setSvgImageToMat();
-        this.activateRoute.data.pipe(
-            map(({user, edit}) => {
-                user ? this.userId = user.id : false;
-                edit ? this.editData = true : false;
-                return edit;
-            }),
-            takeUntil(this.destroyed$)
-        )
-        .subscribe(
-          next => {
-            this.data = next || new BIKE();
-            console.log(this.data)
-          },
-          () => this.snackBar('we have same error')
-        );
+    this.accessoriesARrr = this.accessories;
+    this.setSvgImageToMat();
 
-    }
+  }
 
-    /*
-      set svg image to material
-    */
-    setSvgImageToMat(): void {
-        const images = require.context('../../../assets/img-accessories', true, /\.(png|jpg|jpeg|svg)$/);
-        images
-            .keys()
-            .forEach((key: string): void => {
-                const name = this.getClearName(key);
-                this.matIconRegistry
-                    .addSvgIcon(
-                        `lnr-${name}`,
-                        this.domSanitizer.bypassSecurityTrustResourceUrl(this.getUrlSvg(name))
-                    );
-            });
-    }
+  /*
+    set svg image to material
+  */
+  setSvgImageToMat(): void {
+    const images = require.context('../../../assets/img-accessories', true, /\.(png|jpg|jpeg|svg)$/);
+    images
+      .keys()
+      .forEach((key: string): void => {
+        const name = this.getClearName(key);
+        this.matIconRegistry
+          .addSvgIcon(
+            `lnr-${name}`,
+            this.domSanitizer.bypassSecurityTrustResourceUrl(this.getUrlSvg(name))
+          );
+      });
+  }
 
     /*
       clear unnecessary characters
@@ -148,7 +133,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                 .replace('./', '')
                 .replace('.svg', '')
             : '';
-    };
+    }
 
     /*
       get really path for svg image in root folder
@@ -165,35 +150,79 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     */
     ngOnInit(): void {
 
-        const category = {
-            category: ['', Validators.required],
-            subCategory: ['', Validators.required]
-        };
-        const detailsCtrl = {
-            available: [true],
-            size: ['', Validators.required],
-            frame_size: [''],
-            bicycle_number: [''],
-            frame_number: [''],
-            brand: ['', Validators.required],
-            name: ['', Validators.required],
-            description: ['', [Validators.minLength(100), Validators.required]],
-        };
-        const picturesCtrl = {
-            picturesCtrl_0: ['', Validators.required]
-        };
-        const locationCtrl = {
-            street: [''],
-            zip: [''],
-            city: [''],
-            country: [''],
-            custom_price: ['', Validators.required],
-        };
-        const pricingCtrl = {
-            daily: ['', Validators.required],
-            weekly: ['', Validators.required],
-            price: ['', Validators.required],
-        };
+    this.activateRoute.data.pipe(
+      map(({user, edit}) => {
+        user ? this.userId = user.id : false;
+        edit ? this.editData = true : false;
+        return edit;
+      }),
+      takeUntil(this.destroyed$)
+    )
+      .subscribe(
+        next => {
+          this.data = next || new BIKE();
+          this.setDataToPage()
+        },
+          () => this.snackBar('we have same error')
+      );
+
+    console.log(this.data)
+
+
+  }
+
+  setDataToPage = () => {
+    let editCategory;
+    let editSubcategory;
+
+    if (this.data.category) {
+      editCategory = this.bikeCategoryList
+        .find(i => editSubcategory = i.categories
+          .find(v => v.value == this.data.category))
+    }
+
+    this.accessories = this.data.accessories;
+
+    this.subCategoriesValue = (editCategory && editCategory.categories) || [];
+
+    const category = {
+      category: [editCategory, Validators.required],
+      subCategory: [editSubcategory || '', Validators.required]
+    };
+
+    const detailsCtrl = {
+      available: [true],
+      size: [this.data.size ? this.data.size : '', Validators.required],
+      frame_size: [this.data.frame_size === "null" ? '' : this.data.frame_size],
+      bicycle_number: [this.data.bicycle_number || ''],
+      frame_number: [this.data.frame_number || ''],
+      brand: [this.data.brand || '', Validators.required],
+      name: [this.data.name || '', Validators.required],
+      description: [this.data.description || '', [Validators.minLength(100), Validators.required]],
+    };
+
+    this.data.images.forEach(i => this.loadedPhoto.push({
+      isMain: this.data.image_file === i.oginal,
+      url: i.original,
+      file: i.id
+    }));
+    const picturesCtrl = {
+      picturesCtrl_0: ['', Validators.required]
+    };
+
+    const locationCtrl = {
+      street: [this.data.street ? this.data.street : ''],
+      zip: [this.data.zip ? this.data.zip : ''],
+      city: [this.data.city ? this.data.city : ''],
+      country: [this.data.country ? this.data.country : ''],
+      custom_price: [this.data.coverage_total ? this.data.coverage_total : '', Validators.required],
+    };
+
+    const pricingCtrl = {
+      daily: [this.data.discounts.daily, Validators.required],
+      weekly: [this.data.discounts.weekly, Validators.required],
+      price: [this.data.daily_price, Validators.required],
+    };
 
         this.categoryFormGroup = this.formBuilder.group(category);
         this.detailsFormGroup = this.formBuilder.group(detailsCtrl);
@@ -368,6 +397,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       set google Autocomplete to field
     */
     private getPlaceAutocomplete = (): void => {
+        debugger
         if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
             return;
         }
