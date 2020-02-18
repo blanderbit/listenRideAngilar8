@@ -49,6 +49,7 @@
       font-size: $small-fontsize;
       color: $light-text-color;
       margin-top: 0.4rem;
+      max-width: 100%;
     }
 
     &_rating {
@@ -79,14 +80,13 @@
       white-space: nowrap;
     }
 
-    &_price-xs {
+    &_price-xs, .bike-card-info-mobile {
       display: none;
     }
   }
 }
 
 @media (min-width: $device-sm) {
-
   .bike-tile {
     &_wrap-img {
       width: 100%;
@@ -121,19 +121,34 @@
       width: 100%;
       margin-top: 1rem;
       margin-bottom: 1rem;
-      max-height: 13rem;
+      max-height: 10rem;
 
       .bike-available {
         top: 0.2rem;
         right: initial;
         left: 0.2rem;
+        font-size: 1.2rem;
+      }
+
+      .bike-card-info-mobile {
+        display: contents;
       }
 
       .bike-info {
-        width: 60%;
+        width: 55%;
+        padding: 0.4rem;
 
         &_content {
-          max-width: 100%;
+          width: 100%;
+        }
+
+        &_brand {
+          width: 100%;
+          font-size: $h6-fontsize;
+        }
+
+        &_rating {
+          margin-top: 0;
         }
 
         &_price-xs {
@@ -144,21 +159,26 @@
         }
 
         &_price-day {
-          padding-bottom: 0.4rem;
+          padding-bottom: 0;
+          font-size: $h6-fontsize;
         }
 
-        &_price {
+        &_price, .bike-tile_desktop {
           display: none;
         }
 
-        &_rating {
-          display: none;
+        &_name, &_price-week, &_size, &_rating {
+          font-size: $small-fontsize - 0.2rem;
         }
+      }
+
+      .wrap-size-rating {
+        max-width: 60%;
       }
 
       .bike-tile {
         &_wrap-img {
-          width: 40%;
+          width: 45%;
           border-right: 1px solid $light-grey;
 
           img {
@@ -199,10 +219,18 @@
 
 @media (min-width: $device-lg) {
   .bike-tile_map-view.bike-tile {
-    width: 21rem;
+    width: 20rem;
 
-    &_wrap-img {
-      height: 12rem;
+    .bike-tile_wrap-img {
+      width: 100%;
+
+      &::before {
+        padding-top: 57.667%;
+      }
+    }
+
+    .bike-info {
+      padding: 0.4rem;
     }
   }
 }
