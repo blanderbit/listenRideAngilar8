@@ -372,7 +372,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     this.priceCount.forEach(i => {
       const name = `price${i}`;
       checked
-        ? this.pricingFormGroup.addControl(name, new FormControl('', Validators.required))
+        ? this.pricingFormGroup.addControl(name, new FormControl(this.data.prices[i].price, Validators.required))
         : this.pricingFormGroup.removeControl(name);
     });
   }
