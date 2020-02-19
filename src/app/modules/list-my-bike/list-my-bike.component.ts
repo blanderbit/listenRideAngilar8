@@ -59,7 +59,6 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   bikeCategoryList: Array<CategoryInterface> = typeList;
   sizeList: Array<SizeListInterface> = sizeList;
   loadedPhoto: Array<LoadedImageInterface> = [];
-  images: Array<LoadedImageInterface> = [];
   subCategoriesValue: Array<SubCategoryInterface> | null = [];
   user: Store<fromAuth.State> | any;
   userId: Store<fromAuth.State> | any;
@@ -205,10 +204,11 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       description: [this.data.description || '', [Validators.minLength(100), Validators.required]],
     };
 
-    this.data.images && Array.isArray(this.data.images) && this.data.images.forEach(i => this.images.push({
+    this.data.images && Array.isArray(this.data.images) && this.data.images.forEach(i => this.loadedPhoto.push({
       isMain: i.is_primary,
       url: i.original,
-      file: null
+      file: null,
+      id: i.id
     }));
 
     const picturesCtrl = {
@@ -238,7 +238,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       this.pricingFormGroup.addControl(this.getName(i.count), new FormControl('', Validators.required))
     });
     // this.setCustomizeBasePrice(!this.editData ? 10: this.data.daily_price);
-    this.setCustomizeReCount()
+    !this.editData ? this.setCustomizeReCount() : this.setCustomizeBasePrice(this.data.prices)
   };
 
   /*
@@ -286,6 +286,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   request(isEdit?: any): void {
     const data = new FormData();
     // get value from all controls
+
+    const virtualData:any = {};
     this.arrVariable.forEach(name => {
       if (!this[name] && this[name].controls) {
         return false;
@@ -298,7 +300,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
           if (nameControl !== 'category' && nameControl !== 'subCategory') {
             data.append(`ride[${nameControl}]`, controls[nameControl].value);
           }
-          this.data[nameControl] = controls[nameControl].value;
+          virtualData[nameControl] = controls[nameControl].value;
         }
       });
     });
@@ -306,81 +308,89 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     // we put only filled objects
     // this.data.accessories = JSON.stringify(this.accessories);
     data.append('ride[accessories]', JSON.stringify(this.accessories));
-    this.data.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
+    virtualData.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
 
     // we have specific dropdown value which set number value,
     // but array[] with data for dropdown have 'Unisize = 0', if we select 'Unisize' we can’t validate the formGroup
     // in order to get around this concept, the value of this dropdown option is its
     // name, and here we put the desired parameter
-    this.data.variations = this.data.variations.map(item => {
+    virtualData.variations = virtualData.variations.map(item => {
       if (item.size === 'Unisize') {
         item.size = 0;
       }
       return item;
     });
-    this.data.variations.forEach((item, index) => {
+    virtualData.variations.forEach((item, index) => {
       Object.keys(item).forEach(key => data.append(`ride[variations][${index}]`, item[key]))
     });
     // get value from control prices
-    debugger
+    // debugger
+    virtualData.prices = [];
     this.priceCount.forEach(i => {
       const control = this.pricingFormGroup.controls[this.getName(i.count)];
       if (control) {
-        this.data.prices.splice(i.count, 0, control.value);
+        virtualData.prices.splice(i.count, 0, control.value);
       }
     });
-    this.data.discounts.daily = this.pricingFormGroup.controls.daily.value;
-    this.data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
-    this.data.price = this.pricingFormGroup.controls.price.value;
+    virtualData.discounts = {};
+    virtualData.discounts.daily = this.pricingFormGroup.controls.daily.value;
+    virtualData.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
+    virtualData.price = this.pricingFormGroup.controls.price.value;
 
-    data.append(`ride[prices][0][price]`, this.data.price);
+    data.append(`ride[prices][0][price]`, virtualData.price);
     data.append(`ride[prices][0][start_at]`, `0`);
 
-    const prices = this.data.prices;
-    Array.isArray(prices) && prices.length > 0 ? prices.forEach((i, index) => {
-      data.append(`ride[prices][${index + 1}][price]`, i);
-      data.append(`ride[prices][${index + 1}][start_at]`, `${this.priceCount[index].start_at}`);
-    }) : data.append(`ride[prices][]`, '');
+    this.editData && data.append(`ride[prices][0][id]`, this.data.prices[0].id);
+    const prices = virtualData.prices;
+    Array.isArray(prices) && prices.forEach((i, index) => {
+      const mainIndex = index + 1;
+      data.append(`ride[prices][${mainIndex}][price]`, i);
+      data.append(`ride[prices][${mainIndex}][start_at]`, `${this.priceCount[index].start_at}`);
+      this.editData && data.append(`ride[prices][${mainIndex}][id]`, this.data.prices[mainIndex].id);
+    });
 
     // get value from controls
 
-    this.data.category = this.data.subCategory.value;
-    delete this.data.subCategory;
-    this.data.location = {};
-    this.data.location.street = this.locationFormGroup.controls.street.value;
-    this.data.location.zip = this.locationFormGroup.controls.zip.value;
-    this.data.location.city = this.locationFormGroup.controls.city.value;
-    this.data.location.country = this.locationFormGroup.controls.country.value;
+    virtualData.category = virtualData.subCategory.value;
+    delete virtualData.subCategory;
+    virtualData.location = {};
+    virtualData.location.street = this.locationFormGroup.controls.street.value;
+    virtualData.location.zip = this.locationFormGroup.controls.zip.value;
+    virtualData.location.city = this.locationFormGroup.controls.city.value;
+    virtualData.location.country = this.locationFormGroup.controls.country.value;
 
-    data.append('ride[location][street]', this.data.location.street);
-    data.append('ride[location][zip]',  this.data.location.zip);
-    data.append('ride[location][city]', this.data.location.city);
-    data.append('ride[location][country]', this.data.location.country);
+    data.append('ride[location][street]',  virtualData.location.street);
+    data.append('ride[location][zip]',     virtualData.location.zip);
+    data.append('ride[location][city]',    virtualData.location.city);
+    data.append('ride[location][country]', virtualData.location.country);
 
 
-    data.append('ride[category]', this.data.category);
-    data.append('ride[discounts][daily]', this.data.discounts.daily);
-    data.append('ride[discounts][weekly]', this.data.discounts.weekly);
+    data.append('ride[category]',          virtualData.category);
+    data.append('ride[discounts][daily]',  virtualData.discounts.daily);
+    data.append('ride[discounts][weekly]', virtualData.discounts.weekly);
     // const data = JSON.parse(JSON.stringify(this.data));
     const user = this.userId;
     data.append('ride[user_id]', user);
     // set image in form data and add to property
     // data.append('ride[images_to_remove]', JSON.stringify(this.deleted));
-    Array.isArray(this.deleted) && this.deleted.length > 0 ?
-      this.deleted.forEach((item, index) => data.append(`ride[images_to_remove][${index}]`, item))
-      : data.append(`ride[images_to_remove][]`, '');
+    Array.isArray(this.deleted) &&
+      this.deleted.forEach((item, index) => data.append(`ride[images_to_remove][${index}]`, item));
+
     data.append('ride[custom_price]', `${this.customisedPricing}`);
 
     this.loadedPhoto
-      .forEach(({isMain, file}, index) => {
+      .forEach(({isMain, file, id}, index) => {
         if (!file) {
           return false;
         }
-        data.append(`ride[new_images][${index}]is_primary`, `${isMain}`);
-        data.append(`ride[new_images][${index}]file`, file);
-        data.append(`ride[new_images][${index}]position`, `${index++}`);
+        if(id) {
+          data.append(`ride[images][${index}][id]`, id);
+        } else {
+          data.append(`ride[new_images][${index}][file]`, file);
+        }
+        data.append(`ride[new_images][${index}][is_primary]`, `${isMain}`);
+        data.append(`ride[new_images][${index}][position]`, `${index++}`);
       });
-
 
     // receiving user from store and sending
 
@@ -417,7 +427,7 @@ debugger;
     let base = parseInt(this.pricingFormGroup.controls.price.value) || 0;
     const weekly = this.pricingFormGroup.controls.weekly.value;
     const daily = this.pricingFormGroup.controls.daily.value;
-    for (let day = 1; day <= 5; day += 1) {
+    for (let day = 1; day <= 5; day++) {
       this.pricingFormGroup.controls[this.getName(day)]
         .setValue(daily > 1 ? this.SetRound(day+1, base, daily) : Math.round((day+1) * base));
     }
@@ -432,26 +442,14 @@ debugger;
 
   getName = (day) => `price${day}`;
 
-  // setCustomizeBasePrice = (price) => {
-  //   let basePrice = price * (1 / 1.25);
-  //   const prices = [];
-  //   prices[0] = 0;
-  //   prices[1] = Math.round(basePrice * 2);
-  //   prices[2] = Math.round(basePrice * 2.7);
-  //   prices[3] = Math.round(basePrice * 3.3);
-  //   prices[4] = Math.round(basePrice * 3.9);
-  //   prices[5] = Math.round(basePrice * 4.4);
-  //   prices[6] = Math.round(basePrice * 4.9);
-  //   prices[7] = Math.round(prices[0] * 0.35);
-  //   prices[8] = Math.round(prices[7] * 28);
-  //
-  //   prices.forEach((item, index) => {
-  //     if(!index) return;
-  //     const name = `price${index}`;
-  //     const control = this.pricingFormGroup.controls[name];
-  //     control ? control.setValue(item) : null
-  //   })
-  // };
+  setCustomizeBasePrice = (pricesData) => {
+    Array.isArray(pricesData) && pricesData.forEach((item, index) => {
+      if(!index) return;
+      const name = this.getName(index);
+      const control = this.pricingFormGroup.controls[name];
+      control && control.setValue(item.price)
+    })
+  };
 
   /*
    add one object to array bikeQuantity
