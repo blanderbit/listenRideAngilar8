@@ -8,13 +8,14 @@
   color: $dark-text-color;
   display: flex;
   justify-content: flex-start;
-  width: 110rem;
-  padding: 0 1rem;
+  //width: 110rem;
+  padding: 0 10%;
   margin: 4rem auto;
 }
 
 .stepper-container {
   width: 100%;
+  //padding: 0 20%;
 
   h3 {
     font-weight: normal;
@@ -27,12 +28,13 @@
     font-style: normal;
     font-weight: normal;
     font-size: 1.6rem;
-    line-height: 100%;
+    line-height: 120%;
     color: $dark-text-color;
   }
 
   ::ng-deep .mat-horizontal-stepper-header-container {
     left: 20%;
+
 
     .mat-horizontal-stepper-header {
       //pointer-events: none !important;
@@ -149,6 +151,10 @@
       }
     }
 
+    div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
+      height: 300px !important;
+    }
+
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
       background: $white;
       padding: 0;
@@ -165,7 +171,7 @@
       }
 
       .ng-valid.mat-select {
-        border: .1rem solid $grey-background !important;;
+        border: .1rem solid #D8D8D8 !important;;
       }
 
       .mat-select-arrow, .mat-select-invalid {
@@ -208,7 +214,7 @@
       justify-content: center;
     }
 
-    ::ng-deep .mat-horizontal-content-container {
+    .mat-horizontal-content-container {
       padding: 0 !important;
 
       .mat-horizontal-stepper-content {
@@ -519,6 +525,7 @@
   #location-container {
     h3 {
       margin-top: 4.5rem;
+      margin-bottom: 2rem;
     }
 
     .location-container {
@@ -621,50 +628,99 @@
     }
   }
 
-  @media screen and (max-width: 110rem) {
+  @media screen and (max-width: 190rem) {
     ::ng-deep .mat-stepper-horizontal {
       width: 100%;
-      padding: 0 4rem;
+      padding: 0 15%;
     }
     .header {
       width: 100%;
-      padding: 0 2rem;
+      padding: 0 10%;
     }
     ::ng-deep .mat-horizontal-stepper-content {
       width: 100%;
     }
   }
-  //@media screen and (max-width: 100rem) {
-  //
-  //  .preview-container {
-  //    grid-template-columns: 50% 50%;
-  //  }
-  //}
-  @media screen and (max-width: 40rem) {
+
+  @media screen and (max-width: $device-xs) {
+    ::ng-deep .mat-stepper-horizontal {
+      padding: 0 5%;
+      width: 100%;
+    }
+    .header {
+      width: 100%;
+      padding: 0 10%;
+    }
+
+    ::ng-deep .mat-horizontal-stepper-header-container {
+      left: 20%;
+      display: flex;
+      justify-content: space-around;
+
+      .mat-horizontal-stepper-header {
+        padding: 0 !important;
+      }
+    }
+
 
     .preview-container {
       grid-template-columns: 100%;
+
+      .imgCheckboxContainer {
+
+        input {
+          width: 3.4rem !important;
+        }
+
+
+      }
     }
     #details_brand_container, #details_container {
       display: grid;
       grid-template-columns: 100%;
     }
+    #location-container {
+
+      .location-container {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+    }
+
+    #pricing-container {
+      .pricing-container, .customised {
+        display: grid;
+        grid-template-columns: 100%;
+
+        mat-form-field {
+          display: flex;
+        }
+      }
+    }
+
+    .stepper-container.preview-container.bikePhotoContainer.bikeCheckedContainer.imgCheckboxContainer.custom-checkbox{
+      width: 3.4rem;
+    }
   }
 
 }
 
-::ng-deep .red-snackbar{
+::ng-deep .red-snackbar {
   background: #7d0504;
 }
 
-::ng-deep .green-snackbar{
+::ng-deep .green-snackbar {
   background: #2e7d2c;
 }
 
-.message{
+.message {
   width: 100%;
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+::ng-deep .mat-select-panel {
+  max-height: 350px !important;
 }

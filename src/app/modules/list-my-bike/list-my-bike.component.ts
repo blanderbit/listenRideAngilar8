@@ -139,7 +139,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   /*
     clear unnecessary characters
   */
-  getClearName(key: string): string {
+  getClearName = (key: string): string => {
     return key ? key
         .replace('./', '')
         .replace('.svg', '')
@@ -174,7 +174,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
           this.data = next || new BIKE();
           this.setDataToPage()
         },
-        () => this.snackBar('we have same error')
+        () => this.snackBar('we have some error')
       );
   }
 
@@ -486,7 +486,7 @@ debugger;
   /*
     set google Autocomplete to field
   */
-  getPlaceAutocomplete = (): void => {
+  private getPlaceAutocomplete = (): void => {
     if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
       return;
     }
