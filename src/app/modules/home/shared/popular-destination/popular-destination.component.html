@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-11 col-sm-12 offset-md-1 m-t-2 m-b-2">
-    <h3 class="subtitles" *ngIf="cities">
-      Popular bike rental locations
-      in
+  <div class="col-md-11 col-sm-12 offset-md-1 m-b-2">
+    <h3 class="subtitles m-b-2"
+        *ngIf="cities">
+      Popular bike rental locations in
       <span *ngIf="this.apiSeoService.getCountryDomain() === 'com'">
         the world :
       </span>
@@ -13,11 +13,14 @@
   </div>
 </div>
 <div class="row popular-destination-list text-center">
-  <div *ngFor="let city of cities" class="wrap-destination col-lg-2 col-md-4 col-sm-6">
+  <div *ngFor="let city of cities"
+       class="wrap-destination col-lg-2 col-md-4 col-sm-6">
     <div class="flex direction-column">
-      <h5 class="main-blue-font-color thin">
-        {{city.name[this.apiSeoService.retrieveLocale()]}}
-      </h5>
+      <a routerLink="./cities/{{city.name[this.apiSeoService.retrieveLocale()] | lowercase}}">
+        <h5 class="main-blue-font-color thin text-decoration-none">
+          {{city.name[this.apiSeoService.retrieveLocale()]}}
+        </h5>
+      </a>
       <p>€{{city?.average_price | number: '1.0-0'}} / day average</p>
     </div>
   </div>

@@ -28,7 +28,7 @@
     }
   }
 
-  @for $i from 1 through 36 {
+  @for $i from 1 through 12 {
     a:nth-child(#{$i}) {
       $h: (random(32) + 8) + rem;
       width: $h;

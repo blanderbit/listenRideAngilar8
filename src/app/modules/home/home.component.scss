@@ -19,8 +19,10 @@
     }
   }
 
-  h3 {
+  &_subtitles {
+    font-size: 2.6rem;
     color: $dark-text-color;
+    margin-bottom: 1rem;
   }
 }
 

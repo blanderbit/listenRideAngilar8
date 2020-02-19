@@ -11,8 +11,8 @@ import {TestimonialsSwiperComponent} from './shared/testimonials-swiper/testimon
 import {TopLocationComponent} from './shared/top-location/top-location.component';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {SwiperModule} from 'ngx-swiper-wrapper';
-import { RecommendedDestinationsComponent } from './shared/recommended-destinations/recommended-destinations.component';
-import { EventsSwiperComponent } from './shared/events-swiper/events-swiper.component';
+import {RecommendedDestinationsComponent} from './shared/recommended-destinations/recommended-destinations.component';
+import {EventsSwiperComponent} from './shared/events-swiper/events-swiper.component';
 
 @NgModule({
   declarations: [
