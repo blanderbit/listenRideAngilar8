@@ -685,10 +685,6 @@
   justify-content: center;
 }
 
-::ng-deep .cdk-overlay-container {
-  div#cdk-overlay-0 {
-    div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
-      height: 300px !important;
-    }
-  }
+::ng-deep .mat-select-panel {
+  max-height: 350px !important;
 }
