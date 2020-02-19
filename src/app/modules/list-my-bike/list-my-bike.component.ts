@@ -195,7 +195,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
     const detailsCtrl = {
       available: [true],
-      size: [this.data.size ? this.data.size : '', Validators.required],
+      size: [this.data.size ? this.data.size : typeof this.data.size === "number" ? 0 :'', Validators.required],
       frame_size: [this.data.frame_size === "null" ? '' : this.data.frame_size],
       bicycle_number: [this.data.bicycle_number || ''],
       frame_number: [this.data.frame_number || ''],
@@ -351,6 +351,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
     // get value from controls
 
+
     virtualData.category = virtualData.subCategory.value;
     delete virtualData.subCategory;
     virtualData.location = {};
@@ -358,11 +359,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     virtualData.location.zip = this.locationFormGroup.controls.zip.value;
     virtualData.location.city = this.locationFormGroup.controls.city.value;
     virtualData.location.country = this.locationFormGroup.controls.country.value;
+    virtualData.location.coverage_total = this.locationFormGroup.controls.custom_price.value;
 
-    data.append('ride[location][street]',  virtualData.location.street);
-    data.append('ride[location][zip]',     virtualData.location.zip);
-    data.append('ride[location][city]',    virtualData.location.city);
-    data.append('ride[location][country]', virtualData.location.country);
+    data.append('ride[location][street]',         virtualData.location.street);
+    data.append('ride[location][zip]',            virtualData.location.zip);
+    data.append('ride[location][city]',           virtualData.location.city);
+    data.append('ride[location][country]',        virtualData.location.country);
+    data.append('ride[location][coverage_total]', virtualData.location.coverage_total);
 
 
     data.append('ride[category]',          virtualData.category);
