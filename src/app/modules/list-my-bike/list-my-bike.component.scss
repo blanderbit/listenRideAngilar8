@@ -145,6 +145,7 @@
       margin: 4rem 0;
       width: 16.6rem;
       height: 4.2rem;
+      margin-right: 4%;
 
       &[disabled] {
         background: $submit-button-color-disabled;
@@ -211,7 +212,7 @@
 
     h2 {
       display: flex;
-      justify-content: center;
+      //justify-content: center;
     }
 
     .mat-horizontal-content-container {
@@ -629,20 +630,29 @@
   }
 
   @media screen and (max-width: 190rem) {
-    ::ng-deep .mat-stepper-horizontal {
-      width: 100%;
-      padding: 0 15%;
-    }
-    .header {
-      width: 100%;
-      padding: 0 10%;
+
+    ::ng-deep {
+      .mat-stepper-horizontal {
+
+        width: 100%;
+        max-width: 160rem;
+        padding: 0 15%;
+
+      }
+
+      .header {
+        width: 100%;
+        max-width: 160rem;
+
+        padding: 0 10%;
+      }
     }
     ::ng-deep .mat-horizontal-stepper-content {
       width: 100%;
     }
   }
 
-  @media screen and (max-width: $device-xs) {
+  @media screen and (max-width: 65rem) {
     ::ng-deep .mat-stepper-horizontal {
       padding: 0 5%;
       width: 100%;

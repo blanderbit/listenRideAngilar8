@@ -179,7 +179,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
   setDataToPage = () => {
     let editSubcategory;
-
+console.log(this.data)
     let editCategory = this.bikeCategoryList
       .find(i => editSubcategory = i.categories
         .find(v => v.value == this.data.category)
@@ -214,7 +214,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     const picturesCtrl = {
       picturesCtrl_0: ['', Validators.required]
     };
-debugger
+// debugger
     const locationCtrl = {
       street: [this.data.street || ''],
       zip: [this.data.zip || ''],
