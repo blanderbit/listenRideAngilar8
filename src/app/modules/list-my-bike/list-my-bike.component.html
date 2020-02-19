@@ -345,20 +345,24 @@
         <div class="pricing-container">
           <mat-form-field class="col-11">
             <label>Daily price (€)*</label>
-            <input matInput formControlName="price">
+            <input matInput (input)="setCustomizeReCount()" formControlName="price">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Daily discount (%)*</label>
-            <input matInput formControlName="daily">
+            <input matInput (input)="setCustomizeReCount()" formControlName="daily">
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Weekly Discount (%)*</label>
-            <input matInput formControlName="weekly">
+            <input matInput (input)="setCustomizeReCount()" formControlName="weekly">
           </mat-form-field>
         </div>
-        <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
+        <p>With a weekly discount of {{
+          this.pricingFormGroup.controls?.weekly?.value || 0
+          }}% you'll get {{
+            this.pricingFormGroup.controls?.price7?.value || 0
+          }}€ per week, minus the<br>
           listnride fees.</p>
 
         <div>
@@ -401,6 +405,11 @@
             <mat-form-field class="col-5">
               <label>8 days onwards (per day)</label>
               <input matInput formControlName="price7">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>28 days</label>
+              <input matInput formControlName="price8">
             </mat-form-field>
 
           </div>
