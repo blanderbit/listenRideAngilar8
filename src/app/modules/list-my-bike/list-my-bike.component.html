@@ -218,7 +218,21 @@
                 <label [for]="'pictures' + i" class="custom-checkbox"></label>
                 <span>Make this the main photo</span>
               </div>
-              <button mat-button class="remove" (click)="removePhoto(i)">Remove</button>
+              <button mat-button class="remove" (click)="removePhoto(i, 'loadedPhoto')">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-container" id="load_photo" *ngIf="images">
+          <div class="bikePhotoContainer" *ngFor="let photo of images; let i = index">
+            <img src="{{photo.url}}" alt="" class="myBikePhoto">
+            <div class="bikeCheckedContainer">
+              <div class="imgCheckboxContainer">
+                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [(value)]="photo.isMain">
+                <label [for]="'pictures' + i" class="custom-checkbox"></label>
+                <span>Make this the main photo</span>
+              </div>
+              <button mat-button class="remove" (click)="removePhoto(i, 'images')">Remove</button>
             </div>
           </div>
         </div>
@@ -233,10 +247,11 @@
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: loadedPhoto.length > 0}"
-                  [disabled]="loadedPhoto.length < 1" mat-button matStepperNext>
+                  [ngClass]="{active: (loadedPhoto.length > 0 || images.length > 0)}"
+                  [disabled]="(loadedPhoto.length < 1 && images.length < 1) || (images.length < 1 && loadedPhoto.length < 1)"
+                  mat-button matStepperNext
+          >
             Next
-
           </button>
         </div>
       </form>

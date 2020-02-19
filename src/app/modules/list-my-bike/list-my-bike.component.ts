@@ -59,6 +59,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   bikeCategoryList: Array<CategoryInterface> = typeList;
   sizeList: Array<SizeListInterface> = sizeList;
   loadedPhoto: Array<LoadedImageInterface> = [];
+  images: Array<LoadedImageInterface> = [];
   subCategoriesValue: Array<SubCategoryInterface> | null = [];
   user: Store<fromAuth.State> | any;
   userId: Store<fromAuth.State> | any;
@@ -69,6 +70,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   bikeQuantity: any = [{}];
   listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000];
   priceCount = [1, 2, 3, 4, 5, 6, 7];
+  deleted = [];
   arrVariable: Array<string> = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
   private destroyed$ = new Subject();
   data: BIKE | any;
@@ -128,7 +130,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   /*
     clear unnecessary characters
   */
-  getClearName = (key: string): string => {
+  getClearName (key: string): string {
     return key ? key
         .replace('./', '')
         .replace('.svg', '')
@@ -200,8 +202,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       description: [this.data.description || '', [Validators.minLength(100), Validators.required]],
     };
 
-    this.data.images && Array.isArray(this.data.images) && this.data.images.forEach(i => this.loadedPhoto.push({
-      isMain: this.data.image_file === i.original,
+    this.data.images && Array.isArray(this.data.images) && this.data.images.forEach(i => this.images.push({
+      isMain: i.is_primary,
       url: i.original,
       file: null
     }));
@@ -260,7 +262,15 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
   /*
     remove one photo object from array
   */
-  removePhoto = (i: number): object => this.loadedPhoto.splice(i, 1);
+  removePhoto = (i: number, type): void => {
+    if(type === 'image') {
+      const data = this[type].splice(i, 1);
+      this.deleted.push(data.id)
+    }
+    if(type === 'loadedPhoto') {
+      this[type].splice(i, 1);
+    }
+  };
 
   /*
     create bike
@@ -311,32 +321,34 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         this.data.prices.splice(i, 0, control.value);
       }
     });
-    this.data.prices.forEach((i, index) => {
+    Array.isArray(this.data.prices) && this.data.prices.length > 0 ? this.data.prices.forEach((i, index) => {
       data.append(`ride[prices][${index}]price`, i);
-    });
-    debugger;
+    }): data.append(`ride[prices]`,'[]');
+
     // get value from controls
     this.data.discounts.daily = this.pricingFormGroup.controls.daily.value;
     this.data.discounts.weekly = this.pricingFormGroup.controls.weekly.value;
     this.data.price = this.pricingFormGroup.controls.price.value;
     this.data.category = this.data.subCategory.value;
     delete this.data.subCategory;
-    data.append('ride[category]', this.data.category)
-    data.append('ride[price]', this.data.price)
-    data.append('ride[discounts]', JSON.stringify(this.data.discounts))
+    data.append('ride[category]', this.data.category);
+    data.append('ride[price]', this.data.price);
+    data.append('ride[discounts]', JSON.stringify(this.data.discounts));
     // const data = JSON.parse(JSON.stringify(this.data));
     const user = this.userId;
     data.append('ride[user_id]', user);
     // set image in form data and add to property
-    JSON.parse(JSON.stringify(this.loadedPhoto))
+    data.append('images_to_remove', JSON.stringify(this.deleted))
+    this.loadedPhoto
       .forEach(({isMain, file}, index) => {
         if (!file) {
           return false;
         }
-        data.append(`ride[new_images][${index}]is_primary`, isMain);
+        data.append(`ride[new_images][${index}]is_primary`, `${isMain}`);
         data.append(`ride[new_images][${index}]file`, file);
-        data.append(`ride[new_images][${index}]position`, index + 1);
+        data.append(`ride[new_images][${index}]position`, `${index++}`);
       });
+
 
     // receiving user from store and sending
 
