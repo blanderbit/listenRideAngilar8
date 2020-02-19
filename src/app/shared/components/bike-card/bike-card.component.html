@@ -58,6 +58,13 @@
       <div *ngIf="isMobileView " class="flex bike-card-info-mobile">
         <div class="bike-info_content flex direction-row m-t-1 align-items-end justify-content-between">
           <div class="flex direction-column wrap-size-rating">
+            <div class="bike-info_rating flex direction-row align-items-center"
+                 *ngIf="bike?.ratings_total">
+              <mat-icon class="heading-6" aria-hidden="false" aria-label="">
+                grade
+              </mat-icon>
+              <span>{{bike?.rating_average | number: '1.2-2'}} ({{bike?.ratings_total}})</span>
+            </div>
             <div class="bike-info_size flex direction-row align-items-center">
               <span class="text-ellipsis">Size: {{bike?.pretty_size}}</span>
               <div *ngIf="bike?.distance"
@@ -65,13 +72,6 @@
                 <mat-icon class="heading-6" aria-hidden="false" aria-label="">room</mat-icon>
                 <span>{{bike?.distance}} km</span>
               </div>
-            </div>
-            <div class="bike-info_rating flex direction-row align-items-center"
-                 *ngIf="bike?.ratings_total">
-              <mat-icon class="heading-6" aria-hidden="false" aria-label="">
-                grade
-              </mat-icon>
-              <span>{{bike?.rating_average | number: '1.2-2'}} ({{bike?.ratings_total}})</span>
             </div>
           </div>
 
