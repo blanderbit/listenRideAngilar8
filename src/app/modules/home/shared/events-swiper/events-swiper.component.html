@@ -1,7 +1,7 @@
 <div class="swiper-container swiper-events">
   <div class="swiper-wrapper"
-       *ngIf="events$ | async as events">
-    <a *ngFor="let event of events"
+       *ngIf="events$">
+    <a *ngFor="let event of events$ | async"
        [ngStyle]="{ 'background-image': 'url(' + event.thumb_image + ')'}"
        class="swiper-slide swiper-list"
        href="/events/{{event.name | lowercase}}"
