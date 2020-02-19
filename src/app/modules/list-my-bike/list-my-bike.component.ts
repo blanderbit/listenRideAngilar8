@@ -196,7 +196,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
     const detailsCtrl = {
       available: [true],
-      size: [this.data.size ? this.data.size : '', Validators.required],
+      size: [this.data.size ? this.data.size : typeof this.data.size === "number" ? 0 :'', Validators.required],
       frame_size: [this.data.frame_size === "null" ? '' : this.data.frame_size],
       bicycle_number: [this.data.bicycle_number || ''],
       frame_number: [this.data.frame_number || ''],
@@ -351,11 +351,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     this.data.location.zip = this.locationFormGroup.controls.zip.value;
     this.data.location.city = this.locationFormGroup.controls.city.value;
     this.data.location.country = this.locationFormGroup.controls.country.value;
+    this.data.location.coverage_total = this.locationFormGroup.controls.custom_price.value;
 
     data.append('ride[location][street]', this.data.location.street);
     data.append('ride[location][zip]',  this.data.location.zip);
     data.append('ride[location][city]', this.data.location.city);
     data.append('ride[location][country]', this.data.location.country);
+    data.append('ride[location][coverage_total]', this.data.location.coverage_total);
 
 
     data.append('ride[category]', this.data.category);
