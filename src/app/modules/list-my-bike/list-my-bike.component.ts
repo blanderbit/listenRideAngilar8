@@ -214,13 +214,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     const picturesCtrl = {
       picturesCtrl_0: ['', Validators.required]
     };
-
+debugger
     const locationCtrl = {
       street: [this.data.street || ''],
       zip: [this.data.zip || ''],
       city: [this.data.city || ''],
       country: [this.data.country || ''],
-      custom_price: [this.data.coverage_total || '', Validators.required],
+      coverage_total: [this.data.coverage_total || '', Validators.required],
     };
 
     const pricingCtrl = {
@@ -321,7 +321,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       return item;
     });
     virtualData.variations.forEach((item, index) => {
-      Object.keys(item).forEach(key => data.append(`ride[variations][${index}]`, item[key]))
+      Object.keys(item).forEach(key => data.append(`ride[variations][${index}][${key}]`, item[key]))
     });
     // get value from control prices
     // debugger
@@ -359,13 +359,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     virtualData.location.zip = this.locationFormGroup.controls.zip.value;
     virtualData.location.city = this.locationFormGroup.controls.city.value;
     virtualData.location.country = this.locationFormGroup.controls.country.value;
-    virtualData.location.coverage_total = this.locationFormGroup.controls.custom_price.value;
+    virtualData.location.coverage_total = this.locationFormGroup.controls.coverage_total.value;
 
-    data.append('ride[location][street]',         virtualData.location.street);
-    data.append('ride[location][zip]',            virtualData.location.zip);
-    data.append('ride[location][city]',           virtualData.location.city);
-    data.append('ride[location][country]',        virtualData.location.country);
-    data.append('ride[location][coverage_total]', virtualData.location.coverage_total);
+    data.append('ride[location][street]',  virtualData.location.street);
+    data.append('ride[location][zip]',     virtualData.location.zip);
+    data.append('ride[location][city]',    virtualData.location.city);
+    data.append('ride[location][country]', virtualData.location.country);
+    data.append('ride[coverage_total]',    virtualData.location.coverage_total);
 
 
     data.append('ride[category]',          virtualData.category);
@@ -401,7 +401,7 @@ debugger;
     (isEdit ? this.apiRidesService.updateBike(this.data.id, data) : this.apiRidesService.createBike(data))
       .subscribe(
         () => {
-          this.snackBar(isEdit ? 'Updated successfully' : 'Created successfully', false);
+          this.snackBar(isEdit ? 'Updated successfully' : 'Created successfully', true);
           this.router.navigate(['/my-bikes']);
         },
         ({error}) => {
