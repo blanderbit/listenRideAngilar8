@@ -214,7 +214,7 @@ console.log(this.data)
     const picturesCtrl = {
       picturesCtrl_0: ['', Validators.required]
     };
-// debugger
+
     const locationCtrl = {
       street: [this.data.street || ''],
       zip: [this.data.zip || ''],
@@ -324,7 +324,6 @@ console.log(this.data)
       Object.keys(item).forEach(key => data.append(`ride[variations][${index}][${key}]`, item[key]))
     });
     // get value from control prices
-    // debugger
     virtualData.prices = [];
     this.priceCount.forEach(i => {
       const control = this.pricingFormGroup.controls[this.getName(i.count)];
@@ -397,7 +396,6 @@ console.log(this.data)
 
     // receiving user from store and sending
 
-debugger;
     (isEdit ? this.apiRidesService.updateBike(this.data.id, data) : this.apiRidesService.createBike(data))
       .subscribe(
         () => {

@@ -8,14 +8,12 @@
   color: $dark-text-color;
   display: flex;
   justify-content: flex-start;
-  //width: 110rem;
   padding: 0 10%;
   margin: 4rem auto;
 }
 
 .stepper-container {
   width: 100%;
-  //padding: 0 20%;
 
   h3 {
     font-weight: normal;
@@ -142,10 +140,9 @@
 
   ::ng-deep {
     .mat-button-stepper {
-      margin: 4rem 0;
       width: 16.6rem;
       height: 4.2rem;
-      margin-right: 4%;
+      margin: 4rem 4% 4rem 0;
 
       &[disabled] {
         background: $submit-button-color-disabled;
@@ -212,7 +209,6 @@
 
     h2 {
       display: flex;
-      //justify-content: center;
     }
 
     .mat-horizontal-content-container {
@@ -345,9 +341,7 @@
         width: 100%;
 
         mat-form-field {
-          //padding: 0;
           margin: 1rem;
-          //width: 100%;
 
           div {
             padding-right: 0;
@@ -377,7 +371,6 @@
         }
 
         input.quantity {
-          //width: 5.4rem !important;
           height: 4.2rem;
           background: $white;
           border: .1rem solid $input-border;
@@ -388,7 +381,6 @@
         }
 
         label.quantity, mat-form-field.quantity {
-          //width: 6.7rem;
           margin-right: .5rem;
           padding: 0;
         }
@@ -414,7 +406,6 @@
               flex-direction: column;
 
               input {
-                //width: 46.5rem;
                 height: 4rem;
                 padding: 0 1.6rem;
               }
