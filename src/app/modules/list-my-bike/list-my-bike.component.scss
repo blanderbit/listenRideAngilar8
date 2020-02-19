@@ -8,13 +8,14 @@
   color: $dark-text-color;
   display: flex;
   justify-content: flex-start;
-  width: 110rem;
-  padding: 0 1rem;
+  //width: 110rem;
+  padding: 0 10%;
   margin: 4rem auto;
 }
 
 .stepper-container {
   width: 100%;
+  //padding: 0 20%;
 
   h3 {
     font-weight: normal;
@@ -213,7 +214,7 @@
       justify-content: center;
     }
 
-    ::ng-deep .mat-horizontal-content-container {
+    .mat-horizontal-content-container {
       padding: 0 !important;
 
       .mat-horizontal-stepper-content {
@@ -626,23 +627,33 @@
     }
   }
 
-  @media screen and (max-width: 110rem) {
+  @media screen and (max-width: 190rem) {
     ::ng-deep .mat-stepper-horizontal {
       width: 100%;
-      padding: 0 4rem;
+      padding: 0 15%;
     }
     .header {
       width: 100%;
-      padding: 0 2rem;
+      padding: 0 10%;
     }
     ::ng-deep .mat-horizontal-stepper-content {
       width: 100%;
     }
   }
 
-  @media screen and (max-width: 40rem) {
+  @media screen and (max-width: $device-xs) {
+    ::ng-deep .mat-stepper-horizontal {
+      padding: 0 5%;
+      width: 100%;
+    }
+    .header {
+      width: 100%;
+      padding: 0 10%;
+    }
+
     ::ng-deep .mat-horizontal-stepper-header-container {
       left: 20%;
+      display: flex;
       justify-content: space-around;
 
       .mat-horizontal-stepper-header {
@@ -653,6 +664,15 @@
 
     .preview-container {
       grid-template-columns: 100%;
+
+      .imgCheckboxContainer {
+
+        input {
+          width: 3.4rem !important;
+        }
+
+
+      }
     }
     #details_brand_container, #details_container {
       display: grid;
@@ -675,6 +695,10 @@
           display: flex;
         }
       }
+    }
+
+    .stepper-container.preview-container.bikePhotoContainer.bikeCheckedContainer.imgCheckboxContainer.custom-checkbox{
+      width: 3.4rem;
     }
   }
 
