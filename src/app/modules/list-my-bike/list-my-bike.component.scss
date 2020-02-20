@@ -344,12 +344,13 @@
           margin: 1rem;
 
           div {
-            padding-right: 0;
+            padding: 0;
           }
 
           mat-icon {
             padding-left: 1rem;
             cursor: pointer;
+            display: table;
           }
         }
 
@@ -361,7 +362,7 @@
 
         input, mat-select, textarea {
           background: none;
-          padding: 0 1.6rem;
+          padding: 0 1rem;
           border-width: .1rem;
           border-radius: .4rem;
           border-style: solid;
@@ -486,8 +487,8 @@
             background: $white;
             border: .1rem solid $input-border;
             box-sizing: border-box;
-            width: 2.4rem;
-            height: 2.4rem;
+            width: 1.8em;
+            height: 1.8em;
           }
 
           span {
@@ -496,7 +497,10 @@
 
           input:checked ~ label:before {
             content: "\2714";
-            padding-left: .5rem;
+            padding-left: 25%;
+            display: block;
+            padding-top: 18%;
+
           }
         }
 
