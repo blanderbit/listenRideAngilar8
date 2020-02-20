@@ -23,7 +23,6 @@
               }"
             >
               <mat-option
-                size="7"
                 *ngFor="let category of bikeCategoryList"
                 [value]="category"
               >
@@ -60,10 +59,9 @@
           </div>
         </div>
         <div class="button-container first">
-          <button class="next"
+          <button class="next mat-button-stepper"
                   [ngClass]="{active: !categoryFormGroup.invalid}"
                   [disabled]="categoryFormGroup.invalid"
-                  class="mat-button-stepper"
                   mat-button
                   matStepperNext
           >
@@ -338,7 +336,7 @@
             </mat-form-field>
           </div>
 
-          <div>
+          <div *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
             <div class="inner-container">
               <h3>Your bike rental comes with automatic insurance!</h3>
               <p>Your bike is insured whenever it is rented. In order to provide you<br>
@@ -350,7 +348,7 @@
             </div>
           </div>
 
-          <div>
+          <div *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
             <div class="inner-container category">
 
               <h3>What is the value of your bike?</h3>
