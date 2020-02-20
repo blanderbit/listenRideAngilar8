@@ -1,25 +1,10 @@
-import {
-    AfterViewInit,
-    Component,
-    Inject,
-    OnInit, ViewChild
-} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 
-import {
-    select,
-    Store
-} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 
-import {
-    FormBuilder, FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {
-    typeList,
-    sizeList
-} from '@core/constants/filters.const';
+import {typeList, sizeList} from '@core/constants/filters.const';
 import {DOCUMENT} from '@angular/common';
 import * as fromAuth from '@auth/store/reducers';
 import {
@@ -36,9 +21,10 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {BIKE, Variations} from '@models/bike/bike.model';
 import {Subject} from 'rxjs';
-import {filter, map, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {map, takeUntil} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {getClearName} from './helpers/helpers';
 
 declare const google: any;
 declare var require;
@@ -86,6 +72,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     data: BIKE | any;
     editData: any;
 
+    getClearName = getClearName;
+
     @ViewChild('address', {static: true}) address: any;
     @ViewChild('cities', {static: true}) cities: any;
     @ViewChild('regionsZip', {static: true}) regionsZip: any;
@@ -114,10 +102,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         private SnackBar: MatSnackBar,
         private activateRoute: ActivatedRoute
     ) {
-
         this.accessoriesARrr = this.accessories;
         this.setSvgImageToMat();
-
     }
 
     /*
@@ -136,16 +122,10 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                     );
             });
     }
-
-    /*
-      clear unnecessary characters
-    */
-    getClearName = (key: string): string => key ? key.replace('./', '').replace('.svg', '') : '';
-
     /*
       get really path for svg image in root folder
     */
-    getUrlSvg = (name: string): string => name ? `../../../assets/img-accessories/${name}.svg` : '';
+    getUrlSvg = (name: string): string => name ? `'../../../assets/img-accessories/${name}.svg` : '';
 
     /*
      get string background image for dropdown
@@ -470,9 +450,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             );
     }
 
-    SetRound = (day: number, base: number, data: number | string | any): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0;
+    SetRound = (
+      day: number,
+      base: number,
+      data: any
+    ): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0;
 
-    getName = (day) => `price${day}`;
+    getName = (day: string | number ):string => `price${day}`;
 
     setCustomizeBasePrice(pricesData): void {
         if (Array.isArray(pricesData)) {
