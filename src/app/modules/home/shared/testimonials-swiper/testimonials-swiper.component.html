@@ -9,19 +9,19 @@
                src="{{response.picture}}"/>
         </div>
         <div class="testimonials-list_content">
-          <h3 class="main-blue-font-color m-b-2">
+          <h3 class="main-blue-font-color m-b-2 hyphens-auto">
             {{response.description[this.apiSeoService.retrieveLocale()]}}
           </h3>
           <img class="testimonials-list_small-img m-b-1"
                alt=""
                src="{{response.picture}}"/>
-          <p class="main-blue-font-color testimonials-list_username d-block d-lg-none">
+          <p class="main-blue-font-color testimonials-list_username d-block d-lg-none hyphens-auto">
             {{response.fullname}}
           </p>
-          <p class="dark-font-color">
+          <p class="dark-font-color hyphens-auto">
             {{response.text[this.apiSeoService.retrieveLocale()]}}
           </p>
-          <p class="main-blue-font-color testimonials-list_username d-none d-lg-block">
+          <p class="main-blue-font-color testimonials-list_username d-none d-lg-block hyphens-auto">
             {{response.fullname}}
           </p>
         </div>

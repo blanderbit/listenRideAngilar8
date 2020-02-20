@@ -14,14 +14,15 @@
 
       img {
         border-radius: 0.4rem;
-        //max-height: 48rem;
         width: 100%;
       }
     }
   }
 
-  h3 {
+  &_subtitles {
+    font-size: 2.6rem;
     color: $dark-text-color;
+    margin-bottom: 1rem;
   }
 }
 
@@ -48,6 +49,7 @@
 
   .home-page_subtitles {
     font-size: 3.2rem;
+    color: $white-font-color;
   }
 }
 
@@ -57,9 +59,9 @@
 }
 
 .large-m-t {
-  margin-top: 8px;
+  margin-top: 6rem;
 }
 
 .large-m-b {
-  margin-bottom: 8rem;
+  margin-bottom: 6rem;
 }
