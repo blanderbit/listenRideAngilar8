@@ -497,8 +497,9 @@
 
           input:checked ~ label:before {
             content: "\2714";
-            padding-left: .9rem;
-            //padding-top: .9rem;
+            padding-left: 25%;
+            display: block;
+            padding-top: 18%;
 
           }
         }
