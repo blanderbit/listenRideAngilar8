@@ -252,7 +252,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                 img.onload = function() {
                     const width = this.width;
                     const height = this.height;
-                    if(width >= 1500 && height >= 1000){
+                    if(width >= 1200 && height >= 800){
                         vm.loadedPhoto.push({
                             isMain: false,
                             file,
