@@ -235,11 +235,11 @@
           look even better!
         </p>
         <p>Please note that the photos need to be at least 1500x1000px!</p>
-        <div *ngIf="imageError.length > 0">
+        <div *ngIf="imageError.length > 0" class="errorMessage">
           Invalid images
           Some of your images size is less than the allowable minimum 1500x1000:
         </div>
-        <p *ngFor="let item of imageError">
+        <p *ngFor="let item of imageError" class="errorMessage">
           {{item}}
         </p>
         <h3>Upload some pictures of your bike</h3>

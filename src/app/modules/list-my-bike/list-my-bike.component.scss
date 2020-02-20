@@ -317,6 +317,9 @@
       h3 {
         margin-top: 2.3rem;
       }
+      .errorMessage{
+        color: $error-color;
+      }
     }
 
     #upload-file {
