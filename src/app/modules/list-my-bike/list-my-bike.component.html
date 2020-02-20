@@ -236,7 +236,14 @@
           Now select some nice pictures of your bike. Here is a guide on how to make your listing
           look even better!
         </p>
-        <p>Please note that the potos need to be at least 1500x1000px!</p>
+        <p>Please note that the photos need to be at least 1500x1000px!</p>
+        <div *ngIf="imageError.length > 0">
+          Invalid images
+          Some of your images size is less than the allowable minimum 1500x1000:
+        </div>
+        <p *ngFor="let item of imageError">
+          {{item}}
+        </p>
         <h3>Upload some pictures of your bike</h3>
 
         <label id="upload-file"
@@ -248,6 +255,7 @@
                multiple
                type="file"
                (change)="previewFile($event.target.files)"
+               accept=".png, .jpg, .jpeg"
                formControlName="picturesCtrl_0"
         >
 

@@ -25,8 +25,7 @@ import {map, takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {getClearName} from './helpers/helpers';
-
-declare const google: any;
+import {} from 'google-maps';
 declare var require;
 
 const priceCount = [
@@ -71,6 +70,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     private destroyed$ = new Subject();
     data: BIKE | any;
     editData: any;
+    imageError: Array<string> = [];
 
     getClearName = getClearName;
 
@@ -238,18 +238,39 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       converting an unreadable picture file to a normal state for display
     */
     previewFile(files: any): void {
-        const arr = Array.from(files);
+        const arr = files ? Array.from(files) : [];
+        this.imageError = [];
         arr.forEach((file: any) => {
+            if (!file || (file && !this.isValidImage(file.name))) {
+                return this.imageError.push(`${file.name} - no jpg, jpeg, png`);
+            }
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                this.loadedPhoto.push({
-                    isMain: false,
-                    file,
-                    url: reader.result
-                });
+                const img:any = new Image();
+                const vm = this;
+                img.onload = function() {
+                    const width = this.width;
+                    const height = this.height;
+                    if(width >= 1500 && height >= 1000){
+                        vm.loadedPhoto.push({
+                            isMain: false,
+                            file,
+                            url: reader.result
+                        });
+                    } else {
+                        vm.imageError.push(`${file.name} - ${width}x${height}`);
+                    }
+                };
+                img.src = reader.result;
             };
         });
+    }
+
+
+    isValidImage(value) {
+        const $file_type = value.split('.').pop();
+        return $file_type === "jpeg" || $file_type === "jpg" || $file_type === "png";
     }
 
     /*
@@ -381,7 +402,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                     return false;
                 }
                 if (id) {
-                    data.append(`ride[images][${index}][id]`, id);
+                    data.append(`ride[images][${index}][id]`, `${id}`);
                 } else {
                     data.append(`ride[new_images][${index}][file]`, file);
                 }
@@ -508,6 +529,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     /*
       set google Autocomplete to field
     */
+
+
     private getPlaceAutocomplete(): void {
         if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
             return;
