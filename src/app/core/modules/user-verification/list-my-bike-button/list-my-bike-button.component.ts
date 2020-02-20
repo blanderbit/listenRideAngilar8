@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
 import {UserVerificationActions} from '@user-verification/store/actions';
+import {AuthActions} from "@auth/store/actions";
 
 
 @Component({
@@ -16,12 +17,17 @@ export class ListMyBikeButtonComponent {
   constructor(
     private store: Store<fromAuth.State>
   ) {
+    console.log(this.user)
   }
 
 
   openDialog(e): void {
     e.preventDefault();
-    this.store.dispatch(UserVerificationActions.headerOpenUserVerificationDialog());
+    if (e.target.id === "needVerification") {
+      this.store.dispatch(UserVerificationActions.headerOpenUserVerificationDialog());
+    } else {
+      this.store.dispatch(AuthActions.headerOpenLoginDialog());
+    }
   }
 
 }

@@ -1,8 +1,14 @@
+
+
 <div
-  *ngIf="(user | async)?.confirmed_phone && (user | async)?.confirmed_email; then verified else needVerification"></div>
+  *ngIf="((user | async)?.confirmed_phone && (user | async)?.confirmed_email); then verified"></div>
+<div *ngIf="(user | async); then needVerification else needLogIn"></div>
 <ng-template #verified>
   <a href="" routerLink="/list-bike">List a bike</a>
 </ng-template>
-<ng-template #needVerification>
-  <a href="" (click)="openDialog($event)">List a bike</a>
+<ng-template #needVerification >
+  <a href="" (click)="openDialog($event)" id="needVerification">List a bike</a>
+</ng-template>
+<ng-template #needLogIn >
+  <a href="" (click)="openDialog($event)" id="Login">List a bike</a>
 </ng-template>

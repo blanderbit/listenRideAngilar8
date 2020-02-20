@@ -18,7 +18,7 @@ export class MyBikesComponent implements OnInit {
   constructor(private apiRidesService: ApiRidesService) { }
 
   ngOnInit() {
-    this.bikes$ = this.apiRidesService.getByUserId('11442').pipe(
+    this.bikes$ = this.apiRidesService.getByUserId('17282').pipe(
       filter(resp => !!resp),
       tap(resp => console.log(resp)),
       map(resp => resp.bikes)

@@ -8,8 +8,7 @@
   color: $dark-text-color;
   display: flex;
   justify-content: flex-start;
-  width: 110rem;
-  padding: 0 1rem;
+  padding: 0 10%;
   margin: 4rem auto;
 }
 
@@ -18,7 +17,7 @@
 
   h3 {
     font-weight: normal;
-    font-size: 1.8rem;
+    font-size: $h5-fontsize;
     line-height: 120%;
     color: $dark-text-color;
   }
@@ -26,16 +25,16 @@
   p {
     font-style: normal;
     font-weight: normal;
-    font-size: 1.6rem;
-    line-height: 100%;
+    font-size: $h6-fontsize;
+    line-height: 120%;
     color: $dark-text-color;
   }
 
-  ::ng-deep .mat-horizontal-stepper-header-container {
+  ::ng-deep #listMyBike-stepper {
     left: 20%;
 
     .mat-horizontal-stepper-header {
-      pointer-events: none !important;
+      //pointer-events: none !important;
 
       height: 4.8rem;
       cursor: pointer;
@@ -61,15 +60,15 @@
         opacity: 1;
       }
     }
-  }
 
-  ::ng-deep .mat-horizontal-stepper-content {
-    width: 100rem;
 
-    .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
-      padding: 0;
-      border: none;
-      margin-top: 0;
+    .mat-horizontal-stepper-content {
+
+      .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
+        padding: 0;
+        border: none;
+        margin-top: 0;
+      }
     }
   }
 
@@ -140,13 +139,17 @@
 
   ::ng-deep {
     .mat-button-stepper {
-      margin: 4rem 0;
       width: 16.6rem;
       height: 4.2rem;
+      margin: 4rem 4% 4rem 0;
 
       &[disabled] {
         background: $submit-button-color-disabled;
       }
+    }
+
+    div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
+      height: 300px !important;
     }
 
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
@@ -160,16 +163,15 @@
       }
 
       .mat-select {
-        border: .1rem solid #D8D8D8 !important;
+        border: .1rem solid $input-border !important;
         border-radius: .3rem;
-      }
-
-      .ng-valid.mat-select {
-        border: .1rem solid $grey-background !important;;
+        height: 4.2rem;
+        align-items: center;
+        display: grid;
       }
 
       .mat-select-arrow, .mat-select-invalid {
-        color: #D8D8D8 !important;
+        color: $input-border !important;
       }
 
       .ng-valid .mat-select-arrow {
@@ -193,8 +195,8 @@
     .active {
       background: $submit-button-color !important;
       font-weight: bold;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
+      font-size: $h6-fontsize;
+      line-height: $h4-fontsize;
       text-align: center;
       color: $white;
     }
@@ -203,12 +205,19 @@
       display: none !important;
     }
 
-    h2 {
-      display: flex;
-      justify-content: center;
+    .header {
+      width: 100%;
+      max-width: 160rem;
+      padding: 0 10%;
     }
 
-    ::ng-deep .mat-horizontal-content-container {
+    .mat-stepper-horizontal {
+      width: 100%;
+      max-width: 160rem;
+      padding: 0 15%;
+    }
+
+    .mat-horizontal-content-container {
       padding: 0 !important;
 
       .mat-horizontal-stepper-content {
@@ -241,7 +250,7 @@
 
             label {
               font-weight: 500;
-              font-size: 1.6rem;
+              font-size: $h6-fontsize;
               line-height: 120%;
               margin-left: .5rem;
             }
@@ -308,14 +317,17 @@
       h3 {
         margin-top: 2.3rem;
       }
+      .errorMessage{
+        color: $error-color;
+      }
     }
 
     #upload-file {
       font-weight: bold;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
+      font-size: $h6-fontsize;
+      line-height: $h4-fontsize;
       text-align: center;
-      margin: 1.6rem 0 3.4rem 0;
+      margin: $h6-fontsize 0 3.4rem 0;
       color: $white;
       background: $submit-button-color;
       border-radius: .4rem;
@@ -338,29 +350,28 @@
         width: 100%;
 
         mat-form-field {
-          padding: 0;
           margin: 1rem;
-          width: 100%;
 
           div {
-            padding-right: 0;
+            padding: 0;
           }
 
           mat-icon {
             padding-left: 1rem;
             cursor: pointer;
+            display: table;
           }
         }
 
         label, mat-label {
           font-weight: 500;
-          font-size: 1.6rem;
+          font-size: $h6-fontsize;
           line-height: 120%;
         }
 
         input, mat-select, textarea {
           background: none;
-          padding: 0 1.6rem;
+          padding: 0 1rem;
           border-width: .1rem;
           border-radius: .4rem;
           border-style: solid;
@@ -370,21 +381,24 @@
         }
 
         input.quantity {
-          width: 5.4rem !important;
           height: 4.2rem;
           background: $white;
           border: .1rem solid $input-border;
           box-sizing: border-box;
           padding: 0 0 0 1rem;
-          font-size: 1.6rem;
+          font-size: $h6-fontsize;
           line-height: 150%;
         }
 
         label.quantity, mat-form-field.quantity {
-          width: 6.7rem;
           margin-right: .5rem;
           padding: 0;
         }
+      }
+
+      #details_container {
+        display: grid;
+        grid-template-columns: 6.7rem 23% 23% 23% 23%;
       }
 
       #details_brand_container {
@@ -402,14 +416,13 @@
               flex-direction: column;
 
               input {
-                width: 46.5rem;
                 height: 4rem;
-                padding: 0 1.6rem;
+                padding: 0 $h6-fontsize;
               }
 
               textarea.description {
                 height: 12.8rem;
-                padding: 1.6rem;
+                padding: $h6-fontsize;
                 width: 95%;
                 line-height: 2.56rem;
                 min-height: 4rem;
@@ -432,7 +445,7 @@
       color: $submit-button-color;
       font-style: normal;
       font-weight: normal;
-      font-size: 1.6rem;
+      font-size: $h6-fontsize;
       line-height: 120%;
       cursor: pointer;
     }
@@ -458,7 +471,9 @@
     grid-template-columns: 50% 50%;
 
     .bikePhotoContainer {
+
       display: flex;
+      margin-bottom: 2rem;
 
       .bikeCheckedContainer {
         display: flex;
@@ -468,9 +483,10 @@
 
         .imgCheckboxContainer {
           display: flex;
+          align-items: baseline;
           font-style: normal;
           font-weight: 500;
-          font-size: 1.6rem;
+          font-size: $h6-fontsize;
           line-height: 120%;
 
           input[type="radio"] {
@@ -481,8 +497,11 @@
             background: $white;
             border: .1rem solid $input-border;
             box-sizing: border-box;
-            width: 2.4rem;
-            height: 2.4rem;
+            width: 1.8em;
+            height: 1.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           span {
@@ -491,7 +510,6 @@
 
           input:checked ~ label:before {
             content: "\2714";
-            padding-left: .5rem;
           }
         }
 
@@ -512,6 +530,7 @@
   #location-container {
     h3 {
       margin-top: 4.5rem;
+      margin-bottom: 2rem;
     }
 
     .location-container {
@@ -545,14 +564,14 @@
 
       label, mat-label {
         font-weight: 500;
-        font-size: 1.6rem;
+        font-size: $h6-fontsize;
         line-height: 120%;
-        color: #353541;
+        color: $dark-text-color;
       }
 
       input, mat-select {
         background: none;
-        padding: 0 1.6rem;
+        padding: 0 $h6-fontsize;
         border-width: .1rem;
         border-radius: .4rem;
         border-style: solid;
@@ -565,11 +584,11 @@
 
   #pricing-container {
     h3 {
-      margin: 4.7rem 1.8rem 0;
+      margin: 4.7rem $h5-fontsize 0;
     }
 
     p {
-      margin: 1rem 1.8rem 0;
+      margin: 1rem $h5-fontsize 0;
     }
 
     .customised {
@@ -591,9 +610,9 @@
 
       label, mat-label {
         font-weight: 500;
-        font-size: 1.6rem;
+        font-size: $h6-fontsize;
         line-height: 120%;
-        color: #353541;
+        color: $dark-text-color;
       }
 
       input, mat-select {
@@ -609,22 +628,94 @@
 
       mat-form-field {
         padding: 0;
-        margin: 1rem 1.8rem;
+        margin: 1rem $h5-fontsize;
       }
     }
   }
 
-  @media screen and (max-width: 110rem) {
-    ::ng-deep .mat-stepper-horizontal {
+  @media(max-width: $device-md) {
+    .preview-container {
+      grid-template-columns: 100%;
+
+      .imgCheckboxContainer {
+        input {
+          width: 3.4rem !important;
+        }
+      }
+    }
+    #details_container {
+      display: grid;
+      grid-template-columns: 100%;
+    }
+  }
+
+
+  @media (max-width: $device-sm) {
+    .mat-stepper-horizontal {
+      padding: 0 5%;
       width: 100%;
-      padding: 0 4rem;
     }
     .header {
       width: 100%;
-      padding: 0 2rem;
+      padding: 0 10%;
     }
-    ::ng-deep .mat-horizontal-stepper-content {
-      width: 100%;
+
+    .mat-horizontal-stepper-header-container {
+      left: 20%;
+      display: flex;
+      justify-content: space-around;
+
+      .mat-horizontal-stepper-header {
+        padding: 0 !important;
+      }
+    }
+
+    #details_brand_container {
+      display: grid;
+      grid-template-columns: 100%;
+    }
+
+    #location-container {
+      .location-container {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+    }
+
+    #pricing-container {
+      .pricing-container, .customised {
+        display: grid;
+        grid-template-columns: 100%;
+
+        mat-form-field {
+          display: flex;
+        }
+      }
+    }
+
+    .stepper-container.preview-container.bikePhotoContainer.bikeCheckedContainer.imgCheckboxContainer.custom-checkbox {
+      width: 3.4rem;
     }
   }
+
+}
+
+::ng-deep .red-snackbar {
+  background: $error-color;
+}
+
+::ng-deep .green-snackbar {
+  background: $submit-button-color;
+}
+
+.message {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .mat-select-panel {
+  max-height: 350px !important;
 }

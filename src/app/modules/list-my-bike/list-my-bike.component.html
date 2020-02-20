@@ -1,7 +1,7 @@
-<h2 class="header">List My Bike</h2>
 <div class="stepper-container flex direction-column align-items-center">
-  <mat-horizontal-stepper [linear]="isLinear">
+  <h2 class="header">{{editData ? 'Edit' : 'List'}} My Bike</h2>
 
+  <mat-horizontal-stepper [linear]="isLinear" id="listMyBike-stepper">
 
     <mat-step [stepControl]="categoryFormGroup">
       <form class="category" [formGroup]="categoryFormGroup">
@@ -17,9 +17,9 @@
               formControlName="category"
               placeholder="Select the bike category"
               (selectionChange)="changeCategory($event)"
-              [ngClass]="categoryFormGroup.controls.category.value.src && 'selected-category'"
+              [ngClass]="categoryFormGroup?.controls?.category?.value?.src && 'selected-category'"
               [ngStyle]="{
-                background: getUrlBackground(categoryFormGroup.controls.category.value)
+                background: getUrlBackground(categoryFormGroup?.controls?.category?.value)
               }"
             >
               <mat-option
@@ -54,15 +54,14 @@
                  (click)="accessories[item] =! accessories[item]"
             >
               <mat-icon [svgIcon]="accessoriesImage[item]"></mat-icon>
-              <div class="text-category">{{item}}</div>
+              <div class="text-category">{{item | titlecase}}</div>
             </div>
           </div>
         </div>
         <div class="button-container first">
-          <button class="next"
+          <button class="next mat-button-stepper"
                   [ngClass]="{active: !categoryFormGroup.invalid}"
                   [disabled]="categoryFormGroup.invalid"
-                  class="mat-button-stepper"
                   mat-button
                   matStepperNext
           >
@@ -95,32 +94,45 @@
           <div>
             <mat-form-field class="description col-12">
               <label class="description">Description(min. 100 characters)</label>
-              <textarea #description maxlength="800" matInput formControlName="description"
-                        class="description"></textarea>
+              <textarea #description
+                        maxlength="800"
+                        matInput
+                        formControlName="description"
+                        class="description"
+              ></textarea>
               <mat-hint align="end">{{description.value.length}}/800</mat-hint>
             </mat-form-field>
           </div>
         </div>
 
-
         <h3>How many variants would you like to add?</h3>
 
         <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
-
           <mat-form-field class="quantity">
             <div class="col-12">
               <label class="quantity">Quantity</label>
-              <input matInput class="quantity" value="{{i + 1}}" disabled>
+              <input matInput
+                     class="quantity"
+                     value="{{i + 1}}"
+                     disabled
+              >
             </div>
           </mat-form-field>
 
           <mat-form-field>
             <div class="col-12">
               <label>Rider height*</label>
-              <mat-select [formControlName]="'size'" *ngIf="i === 0">
-                <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+              <mat-select [formControlName]="'size'"
+                          *ngIf="i === 0"
+              >
+                <mat-option *ngFor="let size of sizeList"
+                            [value]="size.value"
+                >
+                  {{size.text}}
+                </mat-option>
               </mat-select>
-              <mat-select [(value)]=" val.size" *ngIf="i > 0">
+              <mat-select [(value)]=" val.size"
+                          *ngIf="i > 0">
                 <mat-option
                   *ngFor="let size of sizeList"
                   [value]="'Unisize' === size.text ? 'Unisize' :size.value"
@@ -135,8 +147,11 @@
 
             <div class="col-12">
               <label>Frame size</label>
-              <input matInput placeholder="" [formControlName]="'frame_size'" *ngIf="i === 0">
-              <input matInput placeholder=""
+              <input matInput
+                     [formControlName]="'frame_size'"
+                     *ngIf="i === 0"
+              >
+              <input matInput
                      *ngIf="i > 0"
                      [value]="val && val.frame_size"
                      (input)="changeData($event, val, 'frame_size')"
@@ -146,8 +161,10 @@
           <mat-form-field>
             <div class="col-12">
               <label>Bicycle number</label>
-              <input matInput placeholder="" [formControlName]="'bicycle_number'" *ngIf="i === 0">
-              <input matInput placeholder=""
+              <input matInput
+                     [formControlName]="'bicycle_number'"
+                     *ngIf="i === 0">
+              <input matInput
                      *ngIf="i > 0"
                      (input)="changeData($event, val, 'bicycle_number')"
                      [value]="val && val.bicycle_number"
@@ -159,33 +176,51 @@
               <label>Frame number</label>
 
               <div class="frame-number">
-                <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'frame_number'"
-                       *ngIf="i === 0">
-                <input matInput [type]="hide ? 'password' : 'text'"
+                <input matInput
+                       [type]="!val.hide ? 'password' : 'text'"
+                       [formControlName]="'frame_number'"
+                       *ngIf="i === 0"
+                >
+                <input matInput
+                       [type]="!val.hide ? 'password' : 'text'"
                        [value]="val && val.frame_number"
                        *ngIf="i > 0"
                        (input)="changeData($event, val, 'frame_number')"
                 >
                 <mat-icon id="hideFrameNumber"
-                          (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">{{'delete'}}</mat-icon>
+                          (click)="val.hide = !val.hide"
+                >
+                  {{!val.hide ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+                <mat-icon id="delQuantity"
+                          *ngIf="i > 0"
+                          (click)="delQuantity(i)"
+                >
+                  {{'delete'}}
+                </mat-icon>
               </div>
             </div>
           </mat-form-field>
         </div>
 
-        <div class="addVariants" (click)="addVariants()">Add variants</div>
+        <div class="addVariants"
+             (click)="addVariants()"
+        >
+          Add variants
+        </div>
         <div class="button-container">
-          <button
-            class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
+          <button class="mat-button-stepper"
+                  mat-button
+                  matStepperPrevious
           >
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !detailsFormGroup.invalid && isRider()}"
-                  [disabled]="detailsFormGroup.invalid || !isRider()" mat-button matStepperNext>
+                  [ngClass]="{active: !detailsFormGroup.invalid && !isRider()}"
+                  [disabled]="detailsFormGroup.invalid || isRider()"
+                  mat-button
+                  matStepperNext
+          >
             Next
           </button>
         </div>
@@ -195,47 +230,79 @@
     <mat-step [stepControl]="picturesFormGroup">
       <form class="pictureLoader" [formGroup]="picturesFormGroup">
         <ng-template matStepLabel>Pictures</ng-template>
-        <p class="pictureLoader">Now select some nice pictures of your bike. Here is a guide on how to make your listing
-          look even better!</p>
-        <p>Please note that the potos need to be at least 1500x1000px!</p>
+        <p class="pictureLoader">
+          Now select some nice pictures of your bike. Here is a guide on how to make your listing
+          look even better!
+        </p>
+        <p>Please note that the photos need to be at least 1500x1000px!</p>
+        <div *ngIf="imageError.length > 0" class="errorMessage">
+        <p>Please note that the photos need to be at least 1200x800px!</p>
+        <div *ngIf="imageError.length > 0" class="errorMessage">
+          Invalid images
+          Some of your images size is less than the allowable minimum 1500x1000:
+        </div>
+        <p *ngFor="let item of imageError" class="errorMessage">
+          {{item}}
+        </p>
         <h3>Upload some pictures of your bike</h3>
 
-        <label id="upload-file" for="upload">Upload photos</label>
+        <label id="upload-file"
+               for="upload"
+        >
+          Upload photos
+        </label>
         <input id="upload"
                multiple
                type="file"
                (change)="previewFile($event.target.files)"
+               accept=".png, .jpg, .jpeg"
                formControlName="picturesCtrl_0"
         >
 
-        <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
-          <div class="bikePhotoContainer" *ngFor="let photo of loadedPhoto; let i = index">
-            <img src="{{photo.url}}" alt="" class="myBikePhoto">
+        <div class="preview-container"
+             id="load_photo"
+             *ngIf="loadedPhoto"
+        >
+          <div class="bikePhotoContainer"
+               *ngFor="let photo of loadedPhoto; let i = index"
+          >
+            <img src="{{photo.url}}" class="myBikePhoto">
             <div class="bikeCheckedContainer">
               <div class="imgCheckboxContainer">
-                <input type="radio" [id]="'pictures' + i" name="picturesCtrl" [(value)]="photo.isMain">
-                <label [for]="'pictures' + i" class="custom-checkbox"></label>
+                <input type="radio"
+                       [id]="'pictures' + i"
+                       name="picturesCtrl"
+                       [(value)]="photo.isMain"
+                       [checked]="photo.isMain"
+                >
+                <label [for]="'pictures' + i"
+                       class="custom-checkbox"
+                ></label>
                 <span>Make this the main photo</span>
               </div>
-              <button mat-button class="remove" (click)="removePhoto(i)">Remove</button>
+              <button mat-button
+                      class="remove"
+                      (click)="removePhoto(i, photo.file ? 'loadedPhoto' : 'images')"
+              >
+                Remove
+              </button>
             </div>
           </div>
         </div>
 
-
         <div class="button-container">
-          <button
-            class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
+          <button class="mat-button-stepper"
+                  mat-button
+                  matStepperPrevious
           >
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !picturesFormGroup.invalid}"
-                  [disabled]="picturesFormGroup.invalid" mat-button matStepperNext>
+                  [ngClass]="{active: loadedPhoto.length > 0 }"
+                  [disabled]="loadedPhoto.length < 1"
+                  mat-button matStepperNext
+          >
             Next
-
           </button>
         </div>
       </form>
@@ -251,12 +318,16 @@
         <div class="location-container">
           <div>
             <mat-form-field class="col-12">
-              <label>Street and number*</label>
-              <input matInput formControlName="street">
+              <div class="col-12">
+                <label>Street and number*</label>
+                <input matInput #address formControlName="street">
+              </div>
             </mat-form-field>
             <mat-form-field class="col-12">
-              <label>Zip Code*</label>
-              <input matInput formControlName="zip">
+              <div class="col-12">
+                <label>Zip Code*</label>
+                <input matInput #regionsZip formControlName="zip">
+              </div>
             </mat-form-field>
           </div>
 
@@ -264,18 +335,18 @@
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>City*</label>
-                <input matInput formControlName="city">
+                <input matInput #cities formControlName="city">
               </div>
             </mat-form-field>
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>Country*</label>
-                <input matInput formControlName="country">
+                <input matInput #regionsCountry formControlName="country">
               </div>
             </mat-form-field>
           </div>
 
-          <div>
+          <div *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
             <div class="inner-container">
               <h3>Your bike rental comes with automatic insurance!</h3>
               <p>Your bike is insured whenever it is rented. In order to provide you<br>
@@ -287,17 +358,18 @@
             </div>
           </div>
 
-          <div>
+          <div *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
             <div class="inner-container category">
 
               <h3>What is the value of your bike?</h3>
               <div class="mat col-12">
                 <mat-form-field appearance="fill" class="bikeValue w-p-100" id="bikeValue">
-                  <mat-select
-                    formControlName="custom_price"
-                    placeholder="Please select your bike value"
+                  <mat-select formControlName="coverage_total"
+                              placeholder="Please select your bike value"
                   >
-                    <mat-option *ngFor="let item of listPrices" [value]="item">
+                    <mat-option *ngFor="let item of listPrices"
+                                [value]="item"
+                    >
                       {{item}}
                     </mat-option>
                   </mat-select>
@@ -308,10 +380,18 @@
         </div>
 
         <div class="button-container">
-          <button class="mat-button-stepper" mat-button matStepperPrevious>Back</button>
+          <button class="mat-button-stepper"
+                  mat-button
+                  matStepperPrevious
+          >
+            Back
+          </button>
           <button class="mat-button-stepper next"
                   [ngClass]="{active: !locationFormGroup.invalid}"
-                  [disabled]="locationFormGroup.invalid" mat-button matStepperNext>
+                  [disabled]="locationFormGroup.invalid"
+                  mat-button
+                  matStepperNext
+          >
             Next
           </button>
         </div>
@@ -319,30 +399,47 @@
     </mat-step>
 
     <mat-step [stepControl]="pricingFormGroup">
+
       <form id="pricing-container" [formGroup]="pricingFormGroup">
         <ng-template matStepLabel>Pricing</ng-template>
+
         <h3>The price you charge your bike is up to you.</h3>
+
         <p>The price should be based on the bike and equipment. To get an<br>
           idea of market prices, you can view comparable listings. To<br>
           encourage longer rentals, some listers set a daily or weekly discount.</p>
         <p>listnride charges a 10% commision on all rentals</p>
+
         <div class="pricing-container">
           <mat-form-field class="col-11">
             <label>Daily price (€)*</label>
-            <input matInput formControlName="price">
+            <input matInput
+                   (input)="setCustomizeReCount()"
+                   formControlName="price"
+            >
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Daily discount (%)*</label>
-            <input matInput formControlName="daily">
+            <input matInput
+                   (input)="setCustomizeReCount()"
+                   formControlName="daily"
+            >
           </mat-form-field>
 
           <mat-form-field class="col-5">
             <label>Weekly Discount (%)*</label>
-            <input matInput formControlName="weekly">
+            <input matInput
+                   (input)="setCustomizeReCount()"
+                   formControlName="weekly"
+            >
           </mat-form-field>
         </div>
-        <p>With a weekly discount of 20% you'll get 168€ per week, minus the<br>
+        <p>With a weekly discount of {{
+          this.pricingFormGroup.controls?.weekly?.value || 0
+          }}% you'll get {{
+          this.pricingFormGroup.controls?.price7?.value || 0
+          }}€ per week, minus the<br>
           listnride fees.</p>
 
         <div>
@@ -351,7 +448,9 @@
             <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
           </div>
 
-          <div class="pricing-container" *ngIf="customisedPricing">
+          <div class="pricing-container"
+               *ngIf="customisedPricing"
+          >
             <mat-form-field class="col-5">
               <label>2 days*</label>
               <input matInput formControlName="price1">
@@ -387,21 +486,36 @@
               <input matInput formControlName="price7">
             </mat-form-field>
 
+            <mat-form-field class="col-5">
+              <label>28 days</label>
+              <input matInput formControlName="price8">
+            </mat-form-field>
+
           </div>
         </div>
         <div class="button-container">
-          <button class="mat-button-stepper" mat-button matStepperPrevious>Back</button>
-          <button
-            class="mat-button-stepper"
-            mat-button
-            (click)="create()"
-            [ngClass]="{active: !pricingFormGroup.invalid}"
-            [disabled]="pricingFormGroup.invalid"
+          <button class="mat-button-stepper"
+                  mat-button
+                  matStepperPrevious
           >
-            List my bike
+            Back
+          </button>
+          <button class="mat-button-stepper"
+                  mat-button
+                  (click)="request(editData)"
+                  [ngClass]="{active: !pricingFormGroup.invalid}"
+                  [disabled]="pricingFormGroup.invalid"
+          >
+            {{editData ? 'Save changes' : 'List my bike'}}
           </button>
         </div>
       </form>
     </mat-step>
   </mat-horizontal-stepper>
+</div>
+<div *ngIf="!userId" class="message">
+  Loading...
+</div>
+<div *ngIf="!data" class="message">
+  We don`t have this ride
 </div>

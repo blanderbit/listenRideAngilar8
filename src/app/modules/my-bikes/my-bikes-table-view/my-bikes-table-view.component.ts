@@ -13,6 +13,7 @@ import {MyBikesDuplicateModalComponent} from '../shared/modals/my-bikes-duplicat
 import {MyBikesDeleteModalComponent} from '../shared/modals/my-bikes-delete-modal/my-bikes-delete-modal.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MyBikesAvailabilityModalComponent} from '../shared/modals/my-bikes-availability-modal/my-bikes-availability-modal.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'lnr-my-bikes-table-view',
@@ -40,7 +41,11 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   isExpansionDetailRow = (i: number, row) => row.hasOwnProperty('detailRow');
 
-  constructor(private apiRidesService: ApiRidesService, private dialog: MatDialog) {
+  constructor(
+    private apiRidesService: ApiRidesService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -79,7 +84,7 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
   }
 
   fetchBikes() {
-    this.apiRidesService.getByUserId('11442').pipe(
+    this.apiRidesService.getByUserId('17282').pipe(
       filter(resp => !!resp),
       tap(resp => console.log(resp)),
       map(resp => resp.bikes)

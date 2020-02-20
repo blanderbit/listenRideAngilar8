@@ -1,6 +1,6 @@
 // import {AccessoriesImageInterface} from './models';
 
-import {AccessoriesImageInterface} from "../../../modules/list-my-bike/model/models";
+import {AccessoriesImageInterface, AccessoriesInterface} from "../../../modules/list-my-bike/model/models";
 
 export class BIKE {
     constructor(init?: Partial<BIKE>) {
@@ -26,7 +26,7 @@ export class BIKE {
     discounts: Discounts = new Discounts();
     location: Location;
     prices: Array<number> = [];
-    accessories: AccessoriesImageInterface;
+    accessories: AccessoriesInterface = new AccessoriesInterface();
     available: boolean;
 }
 
