@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApiSeoService} from '@api/api-seo/api-seo.service';
-import {SwiperConfigInterface} from 'ngx-swiper-wrapper';
 import {Bike} from '@models/bike/bike.types';
 import {Observable} from 'rxjs';
 import Swiper from 'swiper';
@@ -51,6 +50,6 @@ export class BikeCardSwiperComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.swiperConfig();
-    }, 1000);
+    }, 500);
   }
 }

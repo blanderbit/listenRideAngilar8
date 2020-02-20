@@ -6,6 +6,7 @@
 
 .testimonials-list {
   position: relative;
+  height: 50rem;
 
   &_large-img {
     position: absolute;
@@ -20,12 +21,12 @@
     background: $white;
     position: absolute;
     width: 44rem;
-    height: 38rem;
     box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
     border-radius: $border-radius;
     right: 6rem;
-    padding: 2rem;
     text-align: left;
+    height: auto;
+    padding: 4rem 2rem 8rem 2rem;
   }
 
   &_small-img {
@@ -36,11 +37,17 @@
     position: absolute;
     bottom: 0;
   }
-}
 
-.swiper-pagination {
-  bottom: 7rem;
-  right: 12rem;
+  .swiper-pagination {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  ::ng-deep.swiper-pagination-bullet {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 30%;
+  }
 }
 
 @media (max-width: $device-md) {
