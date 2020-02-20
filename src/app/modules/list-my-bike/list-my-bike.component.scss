@@ -30,9 +30,8 @@
     color: $dark-text-color;
   }
 
-  ::ng-deep .mat-horizontal-stepper-header-container {
+  ::ng-deep #listMyBike-stepper {
     left: 20%;
-
 
     .mat-horizontal-stepper-header {
       //pointer-events: none !important;
@@ -61,14 +60,15 @@
         opacity: 1;
       }
     }
-  }
 
-  ::ng-deep .mat-horizontal-stepper-content {
 
-    .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
-      padding: 0;
-      border: none;
-      margin-top: 0;
+    .mat-horizontal-stepper-content {
+
+      .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
+        padding: 0;
+        border: none;
+        margin-top: 0;
+      }
     }
   }
 
@@ -640,7 +640,7 @@
         }
       }
     }
-    #details_container{
+    #details_container {
       display: grid;
       grid-template-columns: 100%;
     }

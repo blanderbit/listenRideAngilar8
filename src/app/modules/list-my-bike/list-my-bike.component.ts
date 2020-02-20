@@ -1,25 +1,10 @@
-import {
-    AfterViewInit,
-    Component,
-    Inject,
-    OnInit, ViewChild
-} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 
-import {
-    select,
-    Store
-} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 
-import {
-    FormBuilder, FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {
-    typeList,
-    sizeList
-} from '@core/constants/filters.const';
+import {typeList, sizeList} from '@core/constants/filters.const';
 import {DOCUMENT} from '@angular/common';
 import * as fromAuth from '@auth/store/reducers';
 import {
@@ -36,11 +21,11 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {BIKE, Variations} from '@models/bike/bike.model';
 import {Subject} from 'rxjs';
-import {filter, map, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {map, takeUntil} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
-declare const google: any;
+import {getClearName} from './helpers/helpers';
+import {} from 'google-maps';
 declare var require;
 
 const priceCount = [
@@ -85,6 +70,9 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     private destroyed$ = new Subject();
     data: BIKE | any;
     editData: any;
+    imageError: Array<string> = [];
+
+    getClearName = getClearName;
 
     @ViewChild('address', {static: true}) address: any;
     @ViewChild('cities', {static: true}) cities: any;
@@ -114,10 +102,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         private SnackBar: MatSnackBar,
         private activateRoute: ActivatedRoute
     ) {
-
         this.accessoriesARrr = this.accessories;
         this.setSvgImageToMat();
-
     }
 
     /*
@@ -136,16 +122,10 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                     );
             });
     }
-
-    /*
-      clear unnecessary characters
-    */
-    getClearName = (key: string): string => key ? key.replace('./', '').replace('.svg', '') : '';
-
     /*
       get really path for svg image in root folder
     */
-    getUrlSvg = (name: string): string => name ? `../../../assets/img-accessories/${name}.svg` : '';
+    getUrlSvg = (name: string): string => name ? `'../../../assets/img-accessories/${name}.svg` : '';
 
     /*
      get string background image for dropdown
@@ -258,18 +238,39 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
       converting an unreadable picture file to a normal state for display
     */
     previewFile(files: any): void {
-        const arr = Array.from(files);
+        const arr = files ? Array.from(files) : [];
+        this.imageError = [];
         arr.forEach((file: any) => {
+            if (!file || (file && !this.isValidImage(file.name))) {
+                return this.imageError.push(`${file.name} - no jpg, jpeg, png`);
+            }
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                this.loadedPhoto.push({
-                    isMain: false,
-                    file,
-                    url: reader.result
-                });
+                const img:any = new Image();
+                const vm = this;
+                img.onload = function() {
+                    const width = this.width;
+                    const height = this.height;
+                    if(width >= 1500 && height >= 1000){
+                        vm.loadedPhoto.push({
+                            isMain: false,
+                            file,
+                            url: reader.result
+                        });
+                    } else {
+                        vm.imageError.push(`${file.name} - ${width}x${height}`);
+                    }
+                };
+                img.src = reader.result;
             };
         });
+    }
+
+
+    isValidImage(value) {
+        const $file_type = value.split('.').pop();
+        return $file_type === "jpeg" || $file_type === "jpg" || $file_type === "png";
     }
 
     /*
@@ -401,7 +402,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                     return false;
                 }
                 if (id) {
-                    data.append(`ride[images][${index}][id]`, id);
+                    data.append(`ride[images][${index}][id]`, `${id}`);
                 } else {
                     data.append(`ride[new_images][${index}][file]`, file);
                 }
@@ -470,9 +471,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             );
     }
 
-    SetRound = (day: number, base: number, data: number | string | any): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0;
+    SetRound = (
+      day: number,
+      base: number,
+      data: any
+    ): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0;
 
-    getName = (day) => `price${day}`;
+    getName = (day: string | number ):string => `price${day}`;
 
     setCustomizeBasePrice(pricesData): void {
         if (Array.isArray(pricesData)) {
@@ -524,6 +529,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     /*
       set google Autocomplete to field
     */
+
+
     private getPlaceAutocomplete(): void {
         if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
             return;

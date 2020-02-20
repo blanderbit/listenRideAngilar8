@@ -33,7 +33,7 @@ export class LoadedImageInterface {
   file: any;
   url: string | any;
   isMain: boolean;
-  id?
+  id?:number
 }
 
 export class SizeListInterface {

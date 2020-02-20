@@ -4,8 +4,7 @@ import {ListMyBikeRoutingModule} from './list-my-bike-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {UserResolver} from './service/resolver';
 import {UserEditDataResolver} from './service/resolverEdit';
-
-
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,7 @@ import {UserEditDataResolver} from './service/resolverEdit';
   ],
   imports: [
     ListMyBikeRoutingModule,
-
+    MatGoogleMapsAutocompleteModule,
     SharedModule,
   ],
   entryComponents: [
