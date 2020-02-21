@@ -1,17 +1,15 @@
-<div class="swiper-container" [swiper]="config">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div *ngFor="let brand of brands" class="swiper-slide cursor-pointer brands-list">
-        <a target="_blank" href="/brands/{{brand.title}}">
-          <img src="{{brand.tile_image}}"/>
-        </a>
-      </div>
-    </div>
+<div class="swiper-container swiper-brands">
+  <div class="swiper-wrapper"
+       *ngIf="brands$">
+    <a *ngFor="let brand of brands$ | async"
+       [ngStyle]="{ 'background-image': 'url(' + brand.tile_image + ')'}"
+       class="swiper-slide brands-list"
+       href="/brands/{{brand.title| lowercase}}"
+    >
+    </a>
   </div>
   <div class="d-none d-lg-block">
-    <div class="swiper-button-prev">
-    </div>
-    <div class="swiper-button-next">
-    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </div>
