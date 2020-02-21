@@ -1,5 +1,10 @@
 @import "../../../assets/scss/variables";
 
+.my-bikes-toolbar{
+  justify-content: space-between;
+  padding-bottom: -1rem;
+}
+
 button {
   margin: 0.5rem;
 

@@ -34,3 +34,11 @@
     text-align: center;
   }
 }
+
+
+@media (max-width: $device-xs) {
+  .top-location-list {
+    max-height: 40rem;
+    text-align: center;
+  }
+}

@@ -1,8 +1,23 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Observable, throwError} from 'rxjs';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import {of, Subject, throwError} from 'rxjs';
 import {Bike} from '@models/bike/bike.types';
-import {catchError, filter, map, tap} from 'rxjs/operators';
+import {
+  catchError,
+  delay, expand,
+  filter,
+  takeUntil,
+  tap
+} from 'rxjs/operators';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
@@ -13,45 +28,54 @@ import {MyBikesDuplicateModalComponent} from '../shared/modals/my-bikes-duplicat
 import {MyBikesDeleteModalComponent} from '../shared/modals/my-bikes-delete-modal/my-bikes-delete-modal.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MyBikesAvailabilityModalComponent} from '../shared/modals/my-bikes-availability-modal/my-bikes-availability-modal.component';
-import {Router} from "@angular/router";
+import {select, Store} from '@ngrx/store';
+import {MyBikesState} from '../my-bikes.types';
+import {User} from '@models/user/user';
+import {
+  DeleteBike,
+  GetMyBikes,
+  SetMyBikesLoading,
+  UnmergeBikes,
+  UpdateBike,
+  WatchBikeJob
+} from '../store/my-bikes.actions';
+import {getBikes} from '../store';
+import {MyBikesMergeModalComponent} from '../shared/modals/my-bikes-merge-modal/my-bikes-merge-modal.component';
 
 @Component({
   selector: 'lnr-my-bikes-table-view',
   templateUrl: './my-bikes-table-view.component.html',
   styleUrls: ['./my-bikes-table-view.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
-      state('expanded', style({ height: '*', visibility: 'visible' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
-export class MyBikesTableViewComponent implements OnInit, OnChanges {
+export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filter: string;
+  @Output() selectedBikes = new EventEmitter();
 
   displayedColumns = ['select', 'bike', 'brand', 'model', 'location', 'id', 'size', 'price', 'grouped', 'actions'];
   dataSource = new MatTableDataSource();
-  expandedElement: any;
   selection = new SelectionModel<Bike>(true, []);
   dialogConfig = new DialogConfig('400px');
+  user: User;
+  destroy$ = new Subject();
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  isExpansionDetailRow = (i: number, row) => row.hasOwnProperty('detailRow');
 
-  constructor(
-    private apiRidesService: ApiRidesService,
-    private dialog: MatDialog,
-    private router: Router
-  ) {
+  constructor(private apiRidesService: ApiRidesService, private dialog: MatDialog, private store: Store<MyBikesState>) {
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.fetchBikes();
+    this.store.dispatch(GetMyBikes());
+
+    this.store.pipe(
+      select(getBikes),
+      takeUntil(this.destroy$),
+      filter(resp => !!resp.length)
+    )
+      .subscribe(bikes => this.dataSource.data = bikes);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,6 +102,11 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
       this.dataSource.data.forEach((row: Bike) => this.selection.select(row));
   }
 
+  rowToggle(row) {
+    this.selection.toggle(row);
+    this.selectedBikes.emit(this.selection.selected);
+  }
+
   checkboxLabel(row?: Bike): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -85,23 +114,38 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  fetchBikes() {
-    this.apiRidesService.getByUserId('17282').pipe(
-      filter(resp => !!resp),
-      tap(resp => console.log(resp)),
-      map(resp => resp.bikes)
-    )
-      .subscribe(bikes => {
-        console.log('1', bikes);
-        this.dataSource.data = bikes;
-      });
-  }
-
-  openDuplicateModal(id: string) {
+  // <TODO> Refactor this and removed from component
+  openDuplicateModal(id: number) {
     const dialogRef = this.dialog.open(MyBikesDuplicateModalComponent, this.dialogConfig);
 
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+      this.apiRidesService.duplicateBike(id, {
+        duplicate: {
+          quantity: data
+        }
+      })
+        .subscribe(resp => {
+          this.watchJob(id, resp.job_id);
+          // this.store.dispatch(WatchBikeJob({bikeId: id, jobId: resp.job_id}));
+        });
+    });
+  }
+
+  // <TODO> this also
+  watchJob(bikeId, jobId) {
+   const destroyed$ = new Subject();
+   const getBikeStatus = this.apiRidesService.getBikeJobStatus(bikeId, jobId).pipe(delay(3000), takeUntil(destroyed$));
+
+   getBikeStatus
+      .pipe(
+        tap(res => this.store.dispatch(SetMyBikesLoading({loading: true}))),
+        expand( res => res.status !== 'completed' ? getBikeStatus : of(res)),
+        filter(res => res.status === 'complete'),
+      )
+      .subscribe(data => {
+        this.store.dispatch(GetMyBikes());
+        destroyed$.next();
+        destroyed$.complete();
     });
   }
 
@@ -113,24 +157,17 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
     });
   }
 
-  openDeleteModal(id: string) {
+  openDeleteModal(bikeId: number) {
     const dialogRef = this.dialog.open(MyBikesDeleteModalComponent, this.dialogConfig);
 
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
       if (data.approved) {
-        this.apiRidesService.deleteBike(id).pipe(
-          catchError(error => throwError(error.message || 'error occured'))
-        )
-          .subscribe(resp => {
-            console.log('deleted', resp);
-            this.fetchBikes();
-          });
+        this.store.dispatch(DeleteBike({bikeId}));
       }
     });
   }
 
-  toggleAvailability(bikeId: string, availability: boolean) {
+  toggleAvailability(bikeId: number, availability: boolean) {
     const bikePayload = {
       ride: {
         id: bikeId,
@@ -138,13 +175,22 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
       }
     };
 
-    this.apiRidesService.updateBike(bikeId, bikePayload).pipe(
-      catchError(error => throwError(error.message || 'error occured'))
-    )
-      .subscribe(resp => {
-        console.log('updated', resp);
-        this.fetchBikes();
-      });
+    this.store.dispatch(UpdateBike({bikeId, bike: bikePayload}));
+  }
+
+  openUnMergeModal(clusterId: number) {
+    const dialogRef = this.dialog.open(MyBikesMergeModalComponent, this.dialogConfig);
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data.approved) {
+        this.store.dispatch(UnmergeBikes({clusterId}));
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
   }
 
 }

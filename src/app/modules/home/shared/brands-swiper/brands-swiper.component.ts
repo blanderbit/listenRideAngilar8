@@ -1,42 +1,48 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApiSeoService} from '@api/api-seo/api-seo.service';
-import {SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import {Observable} from 'rxjs';
+import {SeoBrandRequest} from '@models/seo/seo-requests';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'lnr-brands-swiper',
   templateUrl: './brands-swiper.component.html',
   styleUrls: ['./brands-swiper.component.scss']
 })
-export class BrandsSwiperComponent implements OnInit {
-  brands;
+export class BrandsSwiperComponent implements OnInit, AfterViewInit {
+  brands$: Observable<Array<SeoBrandRequest>>;
+  public brandSwiper;
 
-  config: SwiperConfigInterface = {
-    a11y: true,
-    direction: 'horizontal',
-    slidesPerView: 3,
-    centeredSlides: true,
-    loop: true,
-    slidesOffsetBefore: 24,
-    slidesOffsetAfter: 24,
-    spaceBetween: 24,
-    pagination: {el: '.swiper-pagination', clickable: true},
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    breakpoints: {
-      960: {
-        slidesPerView: 2
+  swiperConfig() {
+    this.brandSwiper = new Swiper('.swiper-brands', {
+      direction: 'horizontal',
+      slidesPerView: 'auto',
+      centeredSlides: false,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      breakpoints: {
+        960: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        }
       }
-    }
-  };
+    });
+
+  }
 
   constructor(private apiSeoService: ApiSeoService) {
   }
 
   ngOnInit() {
-    this.apiSeoService.getBrands().subscribe((data) => {
-      this.brands = data;
-    });
+    this.brands$ = this.apiSeoService.getBrands();
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.swiperConfig();
+    }, 1000);
   }
 }

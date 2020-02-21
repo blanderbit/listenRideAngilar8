@@ -16,7 +16,7 @@
   <div *ngFor="let city of cities"
        class="wrap-destination col-lg-2 col-md-4 col-sm-6">
     <div class="flex direction-column">
-      <a routerLink="./cities/{{city.name[this.apiSeoService.retrieveLocale()] | lowercase}}">
+      <a routerLink="./{{city.name[this.apiSeoService.retrieveLocale()] | lowercase}}">
         <h5 class="main-blue-font-color thin text-decoration-none">
           {{city.name[this.apiSeoService.retrieveLocale()]}}
         </h5>

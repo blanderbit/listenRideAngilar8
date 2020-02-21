@@ -34,3 +34,16 @@
     }
   }
 }
+
+@media (max-width: $device-xs) {
+  .wrap-recommended-destinations {
+    .destination-card {
+      @for $i from 1 through 12 {
+        a:nth-child(#{$i}) {
+          $h: (random(26) + 4) + rem;
+          max-width: $h;
+        }
+      }
+    }
+  }
+}

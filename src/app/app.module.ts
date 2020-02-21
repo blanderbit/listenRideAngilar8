@@ -20,7 +20,6 @@ import {HttpUrlInterceptor} from '@core/interceptors/http-url-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SWIPER_CONFIG, SwiperConfigInterface, SwiperModule} from 'ngx-swiper-wrapper';
 
 export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
@@ -35,11 +34,6 @@ export function provideAuthServiceConfig() {
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '/assets/i18n/default/');
 }
-
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-  direction: 'horizontal',
-  slidesPerView: 'auto'
-};
 
 export const APP_PROVIDERS = [
   {
@@ -56,10 +50,6 @@ export const APP_PROVIDERS = [
     provide: AuthServiceConfig,
     useFactory: provideAuthServiceConfig
   },
-  {
-    provide: SWIPER_CONFIG,
-    useValue: DEFAULT_SWIPER_CONFIG
-  }
 ];
 
 @NgModule({
@@ -73,7 +63,6 @@ export const APP_PROVIDERS = [
     SocialLoginModule,
     BrowserAnimationsModule,
     LayoutModule,
-    SwiperModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

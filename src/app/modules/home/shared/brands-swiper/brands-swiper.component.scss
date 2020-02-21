@@ -1,11 +1,16 @@
 @import "../../../../../assets/scss/variables";
 
 .brands-list {
-  img {
-    border-radius: 0.8rem;
-    width: 32rem;
-    height: 21rem;
-    object-fit: cover;
+  border-radius: 0.8rem;
+  width: 32rem !important;
+  height: 21rem !important;
+  background-position: center;
+  background-size: cover;
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
