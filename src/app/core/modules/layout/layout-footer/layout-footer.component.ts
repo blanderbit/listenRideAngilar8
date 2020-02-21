@@ -11,8 +11,6 @@ import {CountriesForFooter} from '@models/seo/seo-requests';
 })
 export class LayoutFooterComponent implements OnInit {
   countries$: Observable<CountriesForFooter[]>;
-  language: string;
-
   links = LayoutFooterListLinksConfig;
   currentYear: number = new Date().getFullYear();
 
@@ -21,10 +19,5 @@ export class LayoutFooterComponent implements OnInit {
 
   ngOnInit() {
     this.countries$ = this.apiSeoService.getCountriesFooter();
-    console.log(this.countries$);
-  }
-
-  getLanguage() {
-    return this.language = this.apiSeoService.retrieveLocale();
   }
 }
