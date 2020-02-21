@@ -34,7 +34,7 @@
     left: 20%;
 
     .mat-horizontal-stepper-header {
-      //pointer-events: none !important;
+      pointer-events: none !important;
 
       height: 4.8rem;
       cursor: pointer;
@@ -66,7 +66,6 @@
 
       .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
         padding: 0;
-        border: none;
         margin-top: 0;
       }
     }
@@ -112,7 +111,7 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: 1rem;
+        padding: 0.5rem;
         border-radius: .5rem;
 
         &.activeSelect {
@@ -121,6 +120,11 @@
 
           ::ng-deep svg {
             fill: $white !important;
+
+            .mat-icon{
+              height: 24px !important;
+              width: 24px !important;
+            }
 
             g {
               fill: $white !important;
@@ -441,13 +445,16 @@
     .addVariants {
       display: flex;
       justify-content: flex-end;
-      margin-right: 10%;
+      margin-right: 7%;
       color: $submit-button-color;
       font-style: normal;
       font-weight: normal;
       font-size: $h6-fontsize;
       line-height: 120%;
-      cursor: pointer;
+
+      a {
+        cursor: pointer;
+      }
     }
 
     .category {
@@ -483,7 +490,7 @@
 
         .imgCheckboxContainer {
           display: flex;
-          align-items: baseline;
+          align-items: center;
           font-style: normal;
           font-weight: 500;
           font-size: $h6-fontsize;

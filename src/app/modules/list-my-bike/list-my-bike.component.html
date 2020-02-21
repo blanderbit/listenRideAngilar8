@@ -113,8 +113,7 @@
               <label class="quantity">Quantity</label>
               <input matInput
                      class="quantity"
-                     value="{{i + 1}}"
-                     disabled
+                     value="1"
               >
             </div>
           </mat-form-field>
@@ -203,10 +202,8 @@
           </mat-form-field>
         </div>
 
-        <div class="addVariants"
-             (click)="addVariants()"
-        >
-          Add variants
+        <div class="addVariants">
+          <a (click)="addVariants()"> Add variants</a>
         </div>
         <div class="button-container">
           <button class="mat-button-stepper"
