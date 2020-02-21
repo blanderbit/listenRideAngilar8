@@ -27,7 +27,9 @@ export class MyBikesComponent implements OnInit, OnDestroy {
   dialogConfig = new DialogConfig('400px');
   destroyed$ = new Subject();
 
-  constructor(private apiRidesService: ApiRidesService, private dialog: MatDialog, private store: Store<MyBikesState>) { }
+  constructor(private apiRidesService: ApiRidesService,
+              private dialog: MatDialog,
+              private store: Store<MyBikesState>) { }
 
   ngOnInit() {
     this.store.dispatch(GetMyBikes());
@@ -42,7 +44,7 @@ export class MyBikesComponent implements OnInit, OnDestroy {
       select(getLoadingState),
       takeUntil(this.destroyed$),
       tap(res => console.log(res))
-      )
+      );
   }
 
   applyFilter(event: Event) {

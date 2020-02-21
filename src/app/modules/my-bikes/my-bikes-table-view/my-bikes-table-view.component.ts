@@ -41,6 +41,7 @@ import {
 } from '../store/my-bikes.actions';
 import {getBikes} from '../store';
 import {MyBikesMergeModalComponent} from '../shared/modals/my-bikes-merge-modal/my-bikes-merge-modal.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'lnr-my-bikes-table-view',
@@ -62,7 +63,10 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private apiRidesService: ApiRidesService, private dialog: MatDialog, private store: Store<MyBikesState>) {
+  constructor(private apiRidesService: ApiRidesService,
+              private dialog: MatDialog,
+              private store: Store<MyBikesState>,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -88,7 +92,7 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  routeToEdit = (id: number | string): Promise<boolean> => this.router.navigate([`/list-bike/${id}`])
+  routeToEdit = (id: number | string): Promise<boolean> => this.router.navigate([`/list-bike/${id}`]);
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
