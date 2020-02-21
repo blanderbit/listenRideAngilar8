@@ -8,5 +8,5 @@ import {LinkConfig} from '../link.config';
 })
 export class LinkListComponent {
   @Input() title: string;
-  @Input() links: LinkConfig[];
+  @Input() links?: LinkConfig[];
 }

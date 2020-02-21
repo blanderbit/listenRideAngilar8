@@ -64,4 +64,8 @@ export class ApiSeoService {
   getTestimonials(): Observable<any> {
     return this.httpClient.get(`/seo_testimonials?page_type=home_page`);
   }
+
+  getCountriesFooter(): Observable<any> {
+    return this.httpClient.get(`/seo_countries/footer`);
+  }
 }

@@ -49,30 +49,6 @@ export const LayoutFooterListLinksConfig: { [key: string]: LinkConfig[] } = {
       href: 'http://journal.listnride.com'
     }
   ],
-
-  topCountries: [
-    {
-      translationKey: 'Germany',
-      href: '/germany'
-    },
-    {
-      translationKey: 'Italy',
-      href: '/italy'
-    },
-    {
-      translationKey: 'Spain',
-      href: '/spain'
-    },
-    {
-      translationKey: 'Netherlands',
-      href: '/netherlands'
-    },
-    {
-      translationKey: 'Switzerland',
-      href: '/switzerland'
-    }
-  ],
-
   legal: [
     {
       translationKey: 'footer.terms-and-conditions',

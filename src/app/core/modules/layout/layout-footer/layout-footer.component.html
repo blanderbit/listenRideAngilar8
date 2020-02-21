@@ -8,7 +8,16 @@
         <lnr-link-list [title]="'Learn more'" [links]="links.learnMore"></lnr-link-list>
       </div>
       <div class="lnr-footer_content-block">
-        <lnr-link-list [title]="'Top countries'" [links]="links.topCountries"></lnr-link-list>
+        <lnr-link-list [title]="'Top countries'">
+          <div *ngIf="countries$ | async as countries"
+               class="flex direction-column countries-list">
+            <a *ngFor="let country of countries"
+               class="lnr-white-link regular white text-decoration-none"
+               routerLink="./{{country.name.en | lowercase}}">
+              {{country.name[this.apiSeoService.retrieveLocale()]}}
+            </a>
+          </div>
+        </lnr-link-list>
       </div>
       <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Legal'" [links]="links.legal"></lnr-link-list>
