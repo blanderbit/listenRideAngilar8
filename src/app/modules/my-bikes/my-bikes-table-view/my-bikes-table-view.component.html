@@ -72,7 +72,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="router.navigate(['/list-bike/' + bike.id])">
+          <button mat-menu-item (click)="routeToEdit(bike.id)">
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>

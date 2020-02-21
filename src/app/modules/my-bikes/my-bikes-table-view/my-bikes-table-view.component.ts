@@ -64,6 +64,8 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges {
     }
   }
 
+  routeToEdit = (id: number | string): Promise<boolean> => this.router.navigate([`/list-bike/${id}`])
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
