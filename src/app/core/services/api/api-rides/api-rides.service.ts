@@ -20,24 +20,36 @@ export class ApiRidesService {
     return this.httpClient.get<Bike>(`/rides/${id}`, {params});
   }
 
-  getUnavailable(startDate, duration): Observable<Bike[]> {
-    const params: any = {start_date: startDate, duration};
-    return this.httpClient.get<Bike[]>(`/rides/unavailable`, {params});
+  getByUserId(userId: number): Observable<any> {
+    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`);
   }
 
-  getByUserId(userId: string): Observable<any> {
-    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`);
+  getBikeJobStatus(bikeId: number, jobId: number): Observable<any> {
+    return this.httpClient.get(`/rides/${bikeId}/status/${jobId}`);
   }
 
   createBike(data): Observable<any> {
     return this.httpClient.post(`/rides`, data);
   }
 
-  updateBike(bikeId: string, bike: any): Observable<any> {
+  duplicateBike(bikeId: number, payload: any): Observable<any> {
+    console.log(payload);
+    return this.httpClient.post(`/rides/${bikeId}/duplicates`, payload);
+  }
+
+  updateBike(bikeId: number, bike: any): Observable<any> {
     return this.httpClient.put(`/rides/${bikeId}`, bike);
   }
 
-  deleteBike(bikeId: string): Observable<any> {
+  deleteBike(bikeId: number): Observable<any> {
     return this.httpClient.delete(`/rides/${bikeId}`);
+  }
+
+  clusterizeBikes(bikeIds: number[]): Observable<any> {
+    return this.httpClient.post(`/clusters`, {cluster: {ride_ids: bikeIds}});
+  }
+
+  declusterizeBikes(clusterId: number): Observable<any> {
+    return this.httpClient.put(`/clusters/${clusterId}/unmerge`, {});
   }
 }

@@ -10,6 +10,10 @@ import { MyBikesAvailabilityModalComponent } from './shared/modals/my-bikes-avai
 import { MyBikesDeleteModalComponent } from './shared/modals/my-bikes-delete-modal/my-bikes-delete-modal.component';
 import { MyBikesActivateModalComponent } from './shared/modals/my-bikes-activate-modal/my-bikes-activate-modal.component';
 import { MyBikesDuplicateModalComponent } from './shared/modals/my-bikes-duplicate-modal/my-bikes-duplicate-modal.component';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {MyBikesReducer} from './store/my-bikes.reducers';
+import {MyBikesEffects} from './store/my-bikes.effects';
 
 
 
@@ -27,6 +31,8 @@ import { MyBikesDuplicateModalComponent } from './shared/modals/my-bikes-duplica
     CommonModule,
     MyBikesRoutingModule,
     SharedModule,
+    StoreModule.forFeature('myBikes', MyBikesReducer),
+    EffectsModule.forFeature([MyBikesEffects]),
   ],
   entryComponents: [
     MyBikesMergeModalComponent,

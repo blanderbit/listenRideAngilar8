@@ -1,1 +1,19 @@
-<p>Merge this bikes?</p>
+<div class="lnr-dialog-header lnr-text-align-ctr">
+  <h2 mat-dialog-title>Cluster Bikes</h2>
+  <lnr-button-close (closed)="close()"></lnr-button-close>
+</div>
+
+<mat-dialog-content>
+  Do you really want to merge/unmerge these bikes?
+</mat-dialog-content>
+
+<mat-dialog-actions class="lnr-d-flex lnr-space-btw">
+
+  <button mat-flat-button color="secondary" (click)="close()">
+    No
+  </button>
+  <button mat-raised-button color="primary" type="submit" (click)="submit()">
+    Yes
+  </button>
+
+</mat-dialog-actions>

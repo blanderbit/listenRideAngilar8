@@ -1,5 +1,31 @@
+@import "../../../../assets/scss/variables";
+
 .bikes-grid-wrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+
+  .bike-tile-grid {
+
+    ::ng-deep .bike-tile {
+      border-bottom: none;
+    }
+
+    .bike-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin-top: -1rem;
+      border: 0.1rem solid $input-border;
+
+      button {
+        mat-icon {
+          width: 100%;
+          color: $light-grey-font;
+        }
+      }
+    }
+  }
 }
+
+
