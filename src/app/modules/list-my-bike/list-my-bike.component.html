@@ -113,8 +113,7 @@
               <label class="quantity">Quantity</label>
               <input matInput
                      class="quantity"
-                     value="{{i + 1}}"
-                     disabled
+                     value="1"
               >
             </div>
           </mat-form-field>
@@ -203,10 +202,8 @@
           </mat-form-field>
         </div>
 
-        <div class="addVariants"
-             (click)="addVariants()"
-        >
-          Add variants
+        <div class="addVariants">
+          <a (click)="addVariants()"> Add variants</a>
         </div>
         <div class="button-container">
           <button class="mat-button-stepper"
@@ -346,8 +343,7 @@
             </mat-form-field>
           </div>
 
-          <div
-            *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
+          <div>
             <div class="inner-container">
               <h3>Your bike rental comes with automatic insurance!</h3>
               <p>Your bike is insured whenever it is rented. In order to provide you<br>
@@ -359,8 +355,7 @@
             </div>
           </div>
 
-          <div
-            *ngIf="((regionsCountry.value).toLowerCase() === 'deutschland') || ((regionsCountry.value).toLowerCase() === 'austria')">
+          <div>
             <div class="inner-container category">
 
               <h3>What is the value of your bike?</h3>
