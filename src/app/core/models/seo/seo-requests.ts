@@ -21,3 +21,15 @@ export interface RecommendedDestinationsRequest {
   };
   image_url: string;
 }
+
+export interface CountriesForFooter {
+  id: number;
+  name: {
+    de: string;
+    en: string;
+    es: string;
+    fr: string;
+    it: string;
+    nl: string;
+  };
+}

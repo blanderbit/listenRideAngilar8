@@ -4,11 +4,12 @@
       *ngIf="title">
     {{title}}
   </h3>
+  <ng-content></ng-content>
   <mat-list-item *ngFor="let link of links">
     <lnr-link class="lnr-link"
               mat-line
               [href]="link.href">
-              {{ link.translationKey | translate }}
+      {{ link.translationKey | translate }}
     </lnr-link>
   </mat-list-item>
 </mat-list>

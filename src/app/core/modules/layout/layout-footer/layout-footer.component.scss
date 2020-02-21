@@ -79,3 +79,15 @@
     }
   }
 }
+
+.countries-list {
+  a {
+    line-height: 2.4rem;
+    margin-left: 1.6rem;
+
+    &:hover {
+      text-decoration: none;
+      color: $light-grey;
+    }
+  }
+}
