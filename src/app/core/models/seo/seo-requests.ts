@@ -9,6 +9,15 @@ export interface SeoEventRequest {
   thumb_image?: string;
 }
 
+export interface SeoBrandRequest {
+  id: number;
+  logo?: string;
+  title?: string;
+  categories?: Array<number>;
+  pins?: Array<any>;
+  tile_image?: string;
+}
+
 export interface RecommendedDestinationsRequest {
   id: number;
   name: {

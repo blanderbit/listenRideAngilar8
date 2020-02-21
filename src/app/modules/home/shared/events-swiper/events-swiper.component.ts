@@ -16,17 +16,18 @@ export class EventsSwiperComponent implements OnInit, AfterViewInit {
   swiperConfig() {
     this.eventSwiper = new Swiper('.swiper-events', {
       direction: 'horizontal',
-      slidesPerView: 3,
+      slidesPerView: 'auto',
       centeredSlides: false,
       loop: false,
-      spaceBetween: 10,
+      spaceBetween: 20,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
       breakpoints: {
         960: {
-          slidesPerView: 2
+          slidesPerView: 3,
+          spaceBetween: 20,
         }
       }
     });
