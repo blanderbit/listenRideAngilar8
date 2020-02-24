@@ -5,6 +5,7 @@
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static"],
   "image": "heroku/nodejs",
+  "stack": "heroku-18",
   "env": {
     "LNR_WEBAPP_URL": {
       "required": true
