@@ -8,8 +8,10 @@
       />
     </div>
     <div class="bike-info">
-      <div *ngIf="bike?.cluster" class="bike-available regular">
-        {{bike?.cluster ? bike?.cluster?.variations.length : null}} Variants available
+      <div *ngIf="bike?.is_cluster"
+           class="bike-available regular">
+        {{bike?.is_cluster ? bike?.rides_count : null}}
+        Variants available
       </div>
       <div class="flex justify-content-between">
         <div class="bike-info_content flex direction-column">

@@ -11,6 +11,8 @@ export interface Bike {
   rating_average: number;
   ratings_total: number;
   distance: number;
+  rides_count: number;
+  is_cluster: boolean;
   // TODO: add type
   cluster: any;
 }
