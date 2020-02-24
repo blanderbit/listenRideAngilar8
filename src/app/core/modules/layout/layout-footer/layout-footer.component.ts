@@ -14,7 +14,7 @@ export class LayoutFooterComponent implements OnInit {
   links = LayoutFooterListLinksConfig;
   currentYear: number = new Date().getFullYear();
 
-  constructor(private apiSeoService: ApiSeoService) {
+  constructor(public apiSeoService: ApiSeoService) {
   }
 
   ngOnInit() {

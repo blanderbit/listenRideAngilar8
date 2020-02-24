@@ -1,15 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {ApiRidesService} from '@api/api-rides/api-rides.service';
 import {Bike} from '@models/bike/bike.types';
 import {Observable, Subject} from 'rxjs';
 import {filter, takeUntil, tap} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
 import {getBikes, getLoadingState} from './store';
 import {MyBikesState} from './my-bikes.types';
-import {GetMyBikes, MergeBikes} from './store/my-bikes.actions';
-import {MyBikesMergeModalComponent} from './shared/modals/my-bikes-merge-modal/my-bikes-merge-modal.component';
+import {GetMyBikes, GetMyFilteredBikes} from './store/my-bikes.actions';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogConfig} from '@core/configs/dialog/dialog.config';
+import {BikesModalService} from './services/bikes-modal.service';
 
 @Component({
   selector: 'lnr-my-bikes',
@@ -24,10 +22,11 @@ export class MyBikesComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   gridView = false;
   viewLabel = 'Grid View';
-  dialogConfig = new DialogConfig('400px');
   destroyed$ = new Subject();
 
-  constructor(private apiRidesService: ApiRidesService,
+  mergeBikes = this.bikesModalService.openMergeModal;
+
+  constructor(private bikesModalService: BikesModalService,
               private dialog: MatDialog,
               private store: Store<MyBikesState>) { }
 
@@ -43,13 +42,17 @@ export class MyBikesComponent implements OnInit, OnDestroy {
     this.loading$ = this.store.pipe(
       select(getLoadingState),
       takeUntil(this.destroyed$),
-      tap(res => console.log(res))
       );
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filterValue = filterValue.trim().toLowerCase();
+    if (this.gridView) {
+      this.filterValue.length
+       ? this.store.dispatch(GetMyFilteredBikes({ params: {q: this.filterValue} }))
+        : this.store.dispatch(GetMyBikes());
+    }
   }
 
   toggleView() {
@@ -58,17 +61,7 @@ export class MyBikesComponent implements OnInit, OnDestroy {
   }
 
   updateSelection(bikes) {
-    this.selectedBikes = bikes.map(bike => bike.id);
-  }
-
-  mergeBikes() {
-    const dialogRef = this.dialog.open(MyBikesMergeModalComponent, this.dialogConfig);
-
-    dialogRef.afterClosed().subscribe(data => {
-      if (data.approved) {
-        this.store.dispatch(MergeBikes({bikeIds: this.selectedBikes}));
-      }
-    });
+    this.selectedBikes = bikes;
   }
 
   ngOnDestroy(): void {

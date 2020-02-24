@@ -2,23 +2,26 @@
 
 mat-header-row{
   background-color: $table-header-color;
+  position: sticky;
+  top: 6rem!important;
+
+  @media (max-width: $device-xs) {
+    top: 10rem!important;
+  }
 }
 .element-row {
   position: relative;
 }
 
-.element-row:not(.expanded) {
+.element-row {
   cursor: pointer;
 }
 
-.element-row:not(.expanded):hover {
-  background: #f5f5f5;
+.element-row:hover {
+  background: $table-header-color;
 }
 
-.element-row.expanded {
-  border-bottom-color: transparent;
-}
 
 .element-row.disabled {
-  opacity: 0.2;
+  opacity: 0.3;
 }

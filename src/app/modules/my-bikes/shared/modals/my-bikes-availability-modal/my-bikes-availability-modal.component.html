@@ -1,40 +1,25 @@
 <div class="lnr-dialog-header lnr-text-align-ctr">
-  <h2 mat-dialog-title>Log in</h2>
+  <h2 mat-dialog-title>Availability</h2>
   <lnr-button-close (closed)="close()"></lnr-button-close>
 </div>
 
 <mat-dialog-content>
 
   <form [formGroup]="availabilityForm">
-    <div class="row">
+    <div class="row" *ngFor="let key of availabilityIds">
       <mat-form-field appearance="outline">
         <input matInput
                class="filter-input"
                placeholder="Choose a date"
-               formControlName="start"
+               [formControlName]=key
                [max]="maxDate"
-               [satDatepicker]="startResultPicker"
+               [satDatepicker]="picker"
                (dateInput)="onDateInput($event)"
                (dateChange)="onDateChange($event)">
         <sat-datepicker panelClass="hdd-datepicker"
-                        #startResultPicker [rangeMode]="true">
+                        #picker [rangeMode]="true">
         </sat-datepicker>
-        <sat-datepicker-toggle matSuffix [for]="startResultPicker"></sat-datepicker-toggle>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <input matInput
-               class="filter-input"
-               placeholder="Choose a date"
-               formControlName="end"
-               [max]="maxDate"
-               [satDatepicker]="endResultPicker"
-               (dateInput)="onDateInput($event)"
-               (dateChange)="onDateChange($event)">
-        <sat-datepicker panelClass="hdd-datepicker"
-                        #endResultPicker [rangeMode]="true">
-        </sat-datepicker>
-        <sat-datepicker-toggle matSuffix [for]="endResultPicker"></sat-datepicker-toggle>
+        <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
       </mat-form-field>
     </div>
   </form>

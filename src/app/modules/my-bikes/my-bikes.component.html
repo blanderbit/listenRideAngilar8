@@ -5,13 +5,13 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Name, Model, City">
     </mat-form-field>
     <div class="toolbar-buttons row-col-md-4">
-      <button mat-flat-button color="primary" (click)="mergeBikes()">Group bikes</button>
+      <button mat-flat-button color="primary" (click)="mergeBikes(selectedBikes)">Group bikes</button>
       <button mat-flat-button color="primary" (click)="toggleView()">{{viewLabel}}</button>
       <button mat-flat-button color="accent"> <a routerLink="../list-bike"> List My Bike</a> </button>
     </div>
     <mat-progress-bar mode="indeterminate" *ngIf="(loading$ | async)"></mat-progress-bar>
   </div>
 
-  <lnr-my-bikes-grid-view [hidden]="!gridView" [bikes$]="bikes$"></lnr-my-bikes-grid-view>
+  <lnr-my-bikes-grid-view [hidden]="!gridView" [bikes$]="bikes$" (selectedBikes)="updateSelection($event)"></lnr-my-bikes-grid-view>
   <lnr-my-bikes-table-view [hidden]="gridView" [filter]="filterValue" (selectedBikes)="updateSelection($event)"></lnr-my-bikes-table-view>
 </div>

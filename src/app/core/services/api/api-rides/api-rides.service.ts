@@ -20,8 +20,8 @@ export class ApiRidesService {
     return this.httpClient.get<Bike>(`/rides/${id}`, {params});
   }
 
-  getByUserId(userId: number): Observable<any> {
-    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`);
+  getByUserId(userId: number, params?: any): Observable<any> {
+    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`, {params});
   }
 
   getBikeJobStatus(bikeId: number, jobId: number): Observable<any> {
@@ -32,7 +32,7 @@ export class ApiRidesService {
     return this.httpClient.post(`/rides`, data);
   }
 
-  duplicateBike(bikeId: number, payload: any): Observable<any> {
+  duplicateBike(bikeId: number | string, payload: any): Observable<any> {
     console.log(payload);
     return this.httpClient.post(`/rides/${bikeId}/duplicates`, payload);
   }

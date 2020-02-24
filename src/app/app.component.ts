@@ -87,6 +87,26 @@ export class AppComponent implements OnInit, OnDestroy {
       .addSvgIcon(
         'lnr-bike-cat-7',
         this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_7.svg')
+      )
+      .addSvgIcon(
+      'lnr-copy',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_copy_icon.svg')
+      )
+      .addSvgIcon(
+        'lnr-merge',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_merge_icon.svg')
+      )
+      .addSvgIcon(
+        'lnr-unmerge',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_unmerge_icon.svg')
+      )
+      .addSvgIcon(
+        'lnr-visibility',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_visibility_icon.svg')
+      )
+      .addSvgIcon(
+        'lnr-visibility-off',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_visibility_off_icon.svg')
       );
   }
 

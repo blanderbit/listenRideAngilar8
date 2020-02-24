@@ -2,6 +2,7 @@ import {createAction, props} from '@ngrx/store';
 import {Bike} from '@models/bike/bike.types';
 
 export const GetMyBikes = createAction('[My Bikes] - Get Bikes');
+export const GetMyFilteredBikes = createAction('[My Bikes] - Get Filtered Bikes', props<{ params?: {q?: string, page?: number}}>());
 export const SuccessGetMyBikes = createAction('[My Bikes] - Get bikes success', props<{ payload: Bike[] }>());
 export const SetMyBikesLoading = createAction('[My Bikes] - Set Loader', props<{ loading: boolean }>());
 export const UpdateBike = createAction('[My Bikes] - Update Bike', props<{ bikeId: number, bike: any }>());

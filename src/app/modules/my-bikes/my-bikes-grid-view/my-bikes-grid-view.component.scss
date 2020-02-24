@@ -4,11 +4,45 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  position: relative;
 
   .bike-tile-grid {
 
+    &:hover .bike-selection-overlay {
+      display: flex;
+    }
+
+    &.disabled {
+      opacity: 0.3;
+    }
+
     ::ng-deep .bike-tile {
       border-bottom: none;
+    }
+
+    .bike-selection-overlay{
+      position: absolute;
+      top: 1.0rem;
+      left: 1.5rem;
+      width: 87%;
+      height: 50%;
+      padding: 0.5rem;
+      z-index: 3;
+      background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,rgba(0,0,0,.5)),color-stop(60%,transparent));
+      background-image: linear-gradient(180deg,rgba(0,0,0,.5) 10%,transparent 60%);
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+
+      ::ng-deep .mat-checkbox .mat-checkbox-frame {
+        border-color: $white;
+      }
+
+      @media (max-width: $device-xs) {
+        width: 100%;
+      }
     }
 
     .bike-toolbar {
@@ -17,11 +51,18 @@
       flex-direction: row;
       margin-top: -1rem;
       border: 0.1rem solid $input-border;
+      justify-content: space-between;
 
       button {
         mat-icon {
           width: 100%;
-          color: $light-grey-font;
+         color: $light-grey-font;
+        }
+
+        &.btn-delete {
+          mat-icon {
+            color: $error-color;
+          }
         }
       }
     }

@@ -60,7 +60,7 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
       <mat-cell *matCellDef="let bike">
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -68,21 +68,22 @@
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="openDuplicateModal(bike.id)">
-            <mat-icon>Edit</mat-icon>
+          <button mat-menu-item (click)="openUnMergeModal(bike.cluster_id)" *ngIf="bike.is_cluster">
+            <mat-icon svgIcon="lnr-unmerge">edit</mat-icon>
+            <span>Unmerge bikes</span>
+          </button>
+          <button mat-menu-item (click)="openDuplicateModal(bike.id)" [disabled]="bike.is_cluster">
+            <mat-icon svgIcon="lnr-copy">Copy</mat-icon>
             <span>Duplicate</span>
           </button>
-          <button mat-menu-item (click)="openUnMergeModal(bike.cluster_id)">
-            <mat-icon>edit</mat-icon>
-            <span>Merge/Unmerge</span>
-          </button>
-          <button mat-menu-item (click)="openAvailabilityModal(bike.id)">
+          <button mat-menu-item (click)="openAvailabilityModal(bike.id, bike.availabilities)" [disabled]="bike.is_cluster">
             <mat-icon>alarm</mat-icon>
             <span>Availability</span>
           </button>
           <button mat-menu-item (click)="toggleAvailability(bike.id, bike.available)">
-            <mat-icon>close</mat-icon>
-            <span>Toggle availability</span>
+            <mat-icon *ngIf="!bike.available" svgIcon="lnr-visibility">activate</mat-icon>
+            <mat-icon *ngIf="bike.available" svgIcon="lnr-visibility-off">deactivate</mat-icon>
+            <span>{{bike.available ? 'Deactivate' : 'Activate'}}</span>
           </button>
           <button mat-menu-item (click)="openDeleteModal(bike.id)">
             <mat-icon>delete</mat-icon>

@@ -24,13 +24,14 @@ export class MyBikesEffects {
 
   loadMyBikes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(myBikes.GetMyBikes),
+      ofType(myBikes.GetMyBikes, myBikes.GetMyFilteredBikes),
       withLatestFrom(this.store.select(fromAuth.selectAuthGetUser)),
       filter(([action, userState]) => !!userState.id),
+      tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap(([action, state]) => {
-          return this.apiRidesService.getByUserId(state.id)
+          const params = action.type === myBikes.GetMyFilteredBikes.type ? action.params : null;
+          return this.apiRidesService.getByUserId(state.id, params)
             .pipe(
-              tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
               switchMap(results => {
                 return [
                   myBikes.SuccessGetMyBikes(results),
@@ -63,6 +64,7 @@ export class MyBikesEffects {
   mergeBike$ = createEffect (() =>
     this.actions$.pipe(
       ofType(myBikes.MergeBikes),
+      tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap((action) => this.apiRidesService.clusterizeBikes(action.bikeIds)
         .pipe(
           map(del => myBikes.GetMyBikes()),
@@ -75,6 +77,7 @@ export class MyBikesEffects {
   unmergeBike$ = createEffect (() =>
     this.actions$.pipe(
       ofType(myBikes.UnmergeBikes),
+      tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap((action) => this.apiRidesService.declusterizeBikes(action.clusterId)
         .pipe(
           map(del => myBikes.GetMyBikes()),
@@ -87,6 +90,7 @@ export class MyBikesEffects {
   updateBike$ = createEffect(() =>
     this.actions$.pipe(
       ofType(myBikes.UpdateBike),
+      tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap((action) => this.apiRidesService.updateBike(action.bikeId, action.bike)
         .pipe(
           map(del => myBikes.GetMyBikes()),
@@ -99,6 +103,7 @@ export class MyBikesEffects {
   deleteBike$ = createEffect (() =>
     this.actions$.pipe(
       ofType(myBikes.DeleteBike),
+      tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap((action) => this.apiRidesService.deleteBike(action.bikeId)
         .pipe(
           map(del => myBikes.GetMyBikes()),
