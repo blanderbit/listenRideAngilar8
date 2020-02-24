@@ -45,7 +45,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div *ngIf="!categoryFormGroup.invalid">
+        <div *ngIf="!categoryFormGroup?.invalid">
           <p class="description">What accessories does your bike have?</p>
           <div class="select-category-container">
             <div *ngFor="let item of accessoriesARrr"
@@ -60,8 +60,8 @@
         </div>
         <div class="button-container first">
           <button class="next mat-button-stepper"
-                  [ngClass]="{active: !categoryFormGroup.invalid}"
-                  [disabled]="categoryFormGroup.invalid"
+                  [ngClass]="{active: !categoryFormGroup?.invalid}"
+                  [disabled]="categoryFormGroup?.invalid"
                   mat-button
                   matStepperNext
           >
@@ -82,12 +82,12 @@
 
             <mat-form-field class="brand col-12">
               <label class="brand">Brand*</label>
-              <input matInput formControlName="brand" class="brand">
+              <input matInput formControlName="brand" (input)="maxValue($event, 'brand')" class="brand">
             </mat-form-field>
 
             <mat-form-field class="model col-12">
               <label class="model">Model*</label>
-              <input matInput formControlName="name" class="model">
+              <input matInput formControlName="name" (input)="maxValue($event, 'name')" class="model">
             </mat-form-field>
 
           </div>
@@ -202,8 +202,10 @@
           </mat-form-field>
         </div>
 
-        <div class="addVariants">
-          <a (click)="addVariants()"> Add variants</a>
+        <div class="addVariants"
+             (click)="addVariants()"
+        >
+          Add variants
         </div>
         <div class="button-container">
           <button class="mat-button-stepper"
@@ -213,8 +215,8 @@
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !detailsFormGroup.invalid && !isRider()}"
-                  [disabled]="detailsFormGroup.invalid || isRider()"
+                  [ngClass]="{active: !detailsFormGroup?.invalid && !isRider()}"
+                  [disabled]="detailsFormGroup?.invalid || isRider()"
                   mat-button
                   matStepperNext
           >
@@ -338,12 +340,13 @@
             <mat-form-field class="col-12">
               <div class="col-12">
                 <label>Country*</label>
-                <input matInput #regionsCountry formControlName="country">
+                <input matInput #regionsCountry (input)="changeCountry($event)" formControlName="country">
               </div>
             </mat-form-field>
           </div>
 
-          <div>
+          <div
+            *ngIf="isCoverage">
             <div class="inner-container">
               <h3>Your bike rental comes with automatic insurance!</h3>
               <p>Your bike is insured whenever it is rented. In order to provide you<br>
@@ -355,7 +358,8 @@
             </div>
           </div>
 
-          <div>
+          <div
+            *ngIf="isCoverage">
             <div class="inner-container category">
 
               <h3>What is the value of your bike?</h3>
@@ -384,8 +388,8 @@
             Back
           </button>
           <button class="mat-button-stepper next"
-                  [ngClass]="{active: !locationFormGroup.invalid}"
-                  [disabled]="locationFormGroup.invalid"
+                  [ngClass]="{active: !locationFormGroup?.invalid}"
+                  [disabled]="locationFormGroup?.invalid"
                   mat-button
                   matStepperNext
           >
@@ -500,8 +504,8 @@
           <button class="mat-button-stepper"
                   mat-button
                   (click)="request(editData)"
-                  [ngClass]="{active: !pricingFormGroup.invalid}"
-                  [disabled]="pricingFormGroup.invalid"
+                  [ngClass]="{active: !pricingFormGroup?.invalid}"
+                  [disabled]="pricingFormGroup?.invalid"
           >
             {{editData ? 'Save changes' : 'List my bike'}}
           </button>
@@ -509,9 +513,6 @@
       </form>
     </mat-step>
   </mat-horizontal-stepper>
-</div>
-<div *ngIf="!userId" class="message">
-  Loading...
 </div>
 <div *ngIf="!data" class="message">
   We don`t have this ride

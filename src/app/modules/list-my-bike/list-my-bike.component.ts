@@ -1,4 +1,12 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    Input,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 
 import {Store} from '@ngrx/store';
 
@@ -26,6 +34,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {getClearName} from './helpers/helpers';
 import {} from 'google-maps';
+
 declare var require;
 
 const priceCount = [
@@ -71,8 +80,10 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     data: BIKE | any;
     editData: any;
     imageError: Array<string> = [];
-
+    autocomplete: any;
+    @Input() _isCoverage = false;
     getClearName = getClearName;
+    arrCode: Array<string> = ['austria', 'germany'];
 
     @ViewChild('address', {static: true}) address: any;
     @ViewChild('cities', {static: true}) cities: any;
@@ -100,7 +111,8 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         private apiRidesService: ApiRidesService,
         private router: Router,
         private SnackBar: MatSnackBar,
-        private activateRoute: ActivatedRoute
+        private activateRoute: ActivatedRoute,
+        private changeDetection: ChangeDetectorRef
     ) {
         this.accessoriesARrr = this.accessories;
         this.setSvgImageToMat();
@@ -122,6 +134,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                     );
             });
     }
+
     /*
       get really path for svg image in root folder
     */
@@ -199,13 +212,15 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             picturesCtrl_0: ['', Validators.required]
         };
 
-        const locationCtrl = {
-            street: [this.data.street || ''],
-            zip: [this.data.zip || ''],
-            city: [this.data.city || ''],
-            country: [this.data.country || ''],
-            coverage_total: [this.data.coverage_total || '', Validators.required],
+        const locationCtrl: any = {
+            street: [this.data.street || '', Validators.required],
+            zip: [this.data.zip || '', Validators.required],
+            city: [this.data.city || '', Validators.required],
+            country: [this.data.country || '', Validators.required],
         };
+
+        this.checkCountry(this.data.country);
+        this.isCoverage && (locationCtrl.coverage_total = [this.data.coverage_total || '', Validators.required]);
 
         const pricingCtrl = {
             daily: [this.data.discounts.daily || '10', Validators.required],
@@ -218,6 +233,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         this.picturesFormGroup = this.formBuilder.group(picturesCtrl);
         this.locationFormGroup = this.formBuilder.group(locationCtrl);
         this.pricingFormGroup = this.formBuilder.group(pricingCtrl);
+
         this.priceCount.forEach(i => {
             this.pricingFormGroup.addControl(this.getName(i.count), new FormControl('', Validators.required));
         });
@@ -247,12 +263,12 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                const img:any = new Image();
+                const img: any = new Image();
                 const vm = this;
                 img.onload = function() {
                     const width = this.width;
                     const height = this.height;
-                    if(width >= 1200 && height >= 800){
+                    if (width >= 1200 && height >= 800) {
                         vm.loadedPhoto.push({
                             isMain: false,
                             file,
@@ -269,8 +285,14 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
 
 
     isValidImage(value) {
-        const $file_type = value.split('.').pop();
-        return $file_type === "jpeg" || $file_type === "jpg" || $file_type === "png";
+        const $fileType = value.split('.').pop();
+        return $fileType === 'jpeg' || $fileType === 'jpg' || $fileType === 'png';
+    }
+
+    maxValue(e: any, brand: string) {
+        const control = this.detailsFormGroup.controls[brand];
+        const value = control.value;
+        control.setValue(value.slice(0, 25));
     }
 
     /*
@@ -372,7 +394,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         const zip = this.locationFormGroup.controls.zip.value;
         const city = this.locationFormGroup.controls.city.value;
         const country = this.locationFormGroup.controls.country.value;
-        const coverageTotal = this.locationFormGroup.controls.coverage_total.value;
+        const coverageTotal = this.locationFormGroup.controls.coverage_total ? this.locationFormGroup.controls.coverage_total.value : '';
 
         delete virtualData.subCategory;
 
@@ -380,7 +402,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         data.append('ride[location][zip]', zip);
         data.append('ride[location][city]', city);
         data.append('ride[location][country]', country);
-        data.append('ride[coverage_total]', coverageTotal);
+        coverageTotal && data.append('ride[coverage_total]', coverageTotal);
         data.append('ride[category]', category);
         data.append('ride[discounts][daily]', daily);
         data.append('ride[discounts][weekly]', weekly);
@@ -472,12 +494,12 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     }
 
     SetRound = (
-      day: number,
-      base: number,
-      data: any
-    ): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0;
+        day: number,
+        base: number,
+        data: any
+    ): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0
 
-    getName = (day: string | number ):string => `price${day}`;
+    getName = (day: string | number): string => `price${day}`;
 
     setCustomizeBasePrice(pricesData): void {
         if (Array.isArray(pricesData)) {
@@ -535,10 +557,67 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
             return;
         }
-        new google.maps.places.Autocomplete(this.address.nativeElement, {types: ['address']});
-        new google.maps.places.Autocomplete(this.cities.nativeElement, {types: ['(cities)']});
-        new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
-        new google.maps.places.Autocomplete(this.regionsZip.nativeElement, {types: ['(regions)']});
+
+        const address = new google.maps.places.Autocomplete(this.address.nativeElement, {types: ['address']});
+        const cities = new google.maps.places.Autocomplete(this.cities.nativeElement, {types: ['(cities)']});
+        const regionsCountry = new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
+        const regionsZip = new google.maps.places.Autocomplete(this.regionsZip.nativeElement, {types: ['(regions)']});
+        address.addListener('place_changed', () => {
+            this.changeDataGoogleAutocomplete(address, 'route', 'street', this.address.nativeElement);
+        });
+        cities.addListener('place_changed', () => {
+            this.changeDataGoogleAutocomplete(cities, 'locality', 'city', this.cities.nativeElement);
+        });
+        regionsZip.addListener('place_changed', () => {
+            this.changeDataGoogleAutocomplete(regionsZip, 'postal_code', 'zip', this.regionsZip.nativeElement);
+        });
+        regionsCountry.addListener('place_changed', () => {
+            const name = regionsCountry.getPlace();
+            const arrCode = ['DE', 'AT'];
+            const finds = name.address_components
+                .filter(item => item.short_name && item.types.includes('country'));
+            const findData = finds.find(item => arrCode.includes(item.short_name));
+            const find = findData || finds[0];
+            const value = find ? find.long_name || name.name : name.name;
+            this.regionsCountry.nativeElement.value = value;
+            this.locationFormGroup.controls.country.setValue(value);
+            this.isCoverage = !!findData;
+            this.regionsCountry.nativeElement.focus();
+            this.regionsCountry.nativeElement.blur();
+            this.changeDetection.detectChanges();
+        });
+    }
+
+    changeDataGoogleAutocomplete(data: object | any, includeName: string, controlName: string, element: HTMLInputElement): void {
+        const name = data.getPlace();
+
+        const find = name.address_components
+            .find(item => item.short_name && item.types.includes(includeName));
+        const value = find && find.long_name === name.name ? find.long_name : name.name;
+        const control = this.locationFormGroup.controls[controlName];
+
+        control && control.setValue(find && find.long_name === name.name ? find.long_name : name.name);
+        element.value = value;
+    }
+
+    get isCoverage() {
+        return this._isCoverage;
+    }
+
+    set isCoverage(value) {
+        this._isCoverage = value;
+        value ? this.locationFormGroup && this.locationFormGroup.addControl(
+            'coverage_total',
+            new FormControl('', Validators.required)
+        ) : this.locationFormGroup && this.locationFormGroup.controls.coverage_total && this.locationFormGroup.removeControl('coverage_total');
+
+    }
+
+    changeCountry = (e: any): void => this.checkCountry(e.target.value);
+
+    checkCountry(str: string) {
+        const find = this.arrCode.includes(str && str.toLowerCase());
+        this.isCoverage = !!find;
     }
 
     snackBar = (val: string, isGood = false): any => this.SnackBar.open(val, 'Undo', {
