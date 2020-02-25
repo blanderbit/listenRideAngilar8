@@ -5,7 +5,7 @@
     </div>
     <lnr-bike-card [bike]="bike" [isMobileView]="false"></lnr-bike-card>
     <div class="bike-toolbar">
-      <button mat-icon-button matTooltip="Edit">
+      <button mat-icon-button matTooltip="Edit" (click)="routeToEdit(bike.id)">
         <mat-icon>edit</mat-icon>
       </button>
       <button (click)="toggleAvailability(bike.id, bike.available)"

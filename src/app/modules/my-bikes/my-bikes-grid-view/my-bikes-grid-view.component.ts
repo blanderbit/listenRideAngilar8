@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {BikesModalService} from '../services/bikes-modal.service';
 import {MyBikesState} from '../my-bikes.types';
 import {Store} from '@ngrx/store';
+import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'lnr-my-bikes-grid-view',
@@ -26,7 +28,10 @@ export class MyBikesGridViewComponent implements OnInit {
   openDuplicateModal = this.bikesModalService.openDuplicateModal;
   watchJob = this.bikesModalService.watchJob;
 
-  constructor(private bikesModalService: BikesModalService, private store: Store<MyBikesState>) { }
+  constructor(private bikesModalService: BikesModalService,
+              private store: Store<MyBikesState>,
+              private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
     this.bikes$.subscribe(b => {
@@ -34,6 +39,8 @@ export class MyBikesGridViewComponent implements OnInit {
       this.showSelectionOverlay = false;
     });
   }
+
+  routeToEdit = (id: number | string): Promise<boolean> => this.router.navigate([`/list-bike/${id}`]);
 
   toggleBike(bikeId: string) {
     const index = this.selection.indexOf(bikeId);
