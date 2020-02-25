@@ -46,6 +46,6 @@ export class TestimonialsSwiperComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.swiperConfig();
-    }, 1000);
+    }, 1500);
   }
 }

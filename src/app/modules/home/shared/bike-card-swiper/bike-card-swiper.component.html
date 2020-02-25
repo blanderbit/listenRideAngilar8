@@ -3,7 +3,7 @@
        *ngIf="bikes$">
     <div *ngFor="let bike of bikes$ | async"
          class="swiper-slide cursor-pointer">
-      <div class="bike-slide col-md-10 p-0">
+      <div class="bike-slide col-md-12 p-0">
         <lnr-bike-card
           [bike]="bike"
           [isMobileView]="false">

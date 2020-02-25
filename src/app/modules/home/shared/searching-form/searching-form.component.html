@@ -8,11 +8,11 @@
     <div [ngClass]="{'d-block': activeSearch}"
          class="flex direction-column">
       <div class="flex direction-row search-autocomplete">
-        <mat-icon class="m-r-1">location_on</mat-icon>
+        <mat-icon class="location-icon">location_on</mat-icon>
         <input matInput
                required
                matGoogleMapsAutocomplete
-               placeholder="Search"
+               placeholder="e.g. Berlin, Amsterdam, Vienna"
                formControlName="location"
                (onAutocompleteSelected)="onAutocompleteSelected($event)"
         />

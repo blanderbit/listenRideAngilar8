@@ -16,17 +16,17 @@ export class BikeCardSwiperComponent implements OnInit, AfterViewInit {
   swiperConfig() {
     this.bikeSwiper = new Swiper('.swiper-bikes', {
       direction: 'horizontal',
-      slidesPerView: 3,
+      slidesPerView: 'auto',
       centeredSlides: false,
-      spaceBetween: -30,
+      spaceBetween: 10,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
       breakpoints: {
         960: {
-          slidesPerView: 3,
-          spaceBetween: -30
+          slidesPerView: 4,
+          spaceBetween: 10
         },
         760: {
           slidesPerView: 2,
@@ -50,6 +50,6 @@ export class BikeCardSwiperComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.swiperConfig();
-    }, 500);
+    }, 1500);
   }
 }

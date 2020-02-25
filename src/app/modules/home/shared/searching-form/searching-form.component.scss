@@ -14,13 +14,19 @@
   .search-autocomplete {
     border: 1px solid $input-border;
     padding: 0.8rem;
-    border-radius: 0.4rem;
+    border-radius: $border-radius;
     min-width: 32rem;
     width: auto;
   }
 
-  svg {
-    color: $black !important;
+  .location-icon {
+    margin-left: 0.8rem;
+    margin-right: 0.6rem;
+    color: $black;
+  }
+
+  ::ng-deep.mat-form-field-prefix .mat-icon-button .mat-datepicker-toggle-default-icon {
+    color: $black;
   }
 }
 
@@ -28,7 +34,7 @@
   .wrap-form {
     background: $white-font-color;
     box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
-    border-radius: 0.8rem;
+    border-radius: $border-radius;
     position: relative;
     z-index: 2;
     width: 100%;
