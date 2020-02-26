@@ -81,6 +81,10 @@
     &_price-xs, .bike-card-info-mobile {
       display: none;
     }
+
+    &_size, &_rating {
+      margin-top: 0.4rem;
+    }
   }
 }
 
@@ -145,7 +149,7 @@
           font-size: $h6-fontsize;
         }
 
-        &_rating {
+        &_rating, &_size {
           margin-top: 0;
         }
 
