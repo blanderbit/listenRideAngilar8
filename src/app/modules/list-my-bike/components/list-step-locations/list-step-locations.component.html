@@ -1,0 +1,95 @@
+<form id="location-container" [formGroup]="locationFormGroup">
+  <h3>Where can the bike be picked up?</h3>
+  <p>Don’t worry, the exact location of your bike will ONLY be forwarded when you have confirmed a rental
+    request.</p>
+
+  <div class="location-container">
+    <div>
+      <mat-form-field class="col-12">
+        <div class="col-12">
+          <label>Street and number*</label>
+          <input matInput #address formControlName="street" type="search">
+        </div>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <div class="col-12">
+          <label>Zip Code*</label>
+          <input matInput #regionsZip formControlName="zip" type="search">
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="col-12">
+        <div class="col-12">
+          <label>City*</label>
+          <input matInput #cities formControlName="city" type="search">
+        </div>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <div class="col-12">
+          <label>Country*</label>
+          <input matInput
+                 type="search"
+                 autocomplete="off"
+                 #regionsCountry
+                 (input)="changeCountry($event)"
+                 formControlName="country"
+          >
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div
+            *ngIf="isCoverage">
+      <div class="inner-container">
+        <h3>Your bike rental comes with automatic insurance!</h3>
+        <p>Your bike is insured whenever it is rented. In order to provide you
+          with the right protection it's necessary that you enter the value
+          of your bike.
+        <p>Please note that your have to provide proof of your bike's value
+          in case of any claim</p>
+        <p>Learn more about insurance.</p>
+      </div>
+    </div>
+
+    <div
+            *ngIf="isCoverage">
+      <div class="inner-container category">
+
+        <h3>What is the value of your bike?</h3>
+        <div class="mat col-12">
+          <mat-form-field appearance="fill" class="bikeValue w-p-100" id="bikeValue">
+            <mat-select formControlName="coverage_total"
+                        placeholder="Please select your bike value"
+            >
+              <mat-option *ngFor="let item of listPrices"
+                          [value]="item"
+              >
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="mat-button-stepper"
+            mat-button
+            matStepperPrevious
+    >
+      Back
+    </button>
+    <button class="mat-button-stepper next"
+            [ngClass]="{active: !locationFormGroup?.invalid}"
+            [disabled]="locationFormGroup?.invalid"
+            mat-button
+            matStepperNext
+            type="button"
+    >
+      Next
+    </button>
+  </div>
+</form>

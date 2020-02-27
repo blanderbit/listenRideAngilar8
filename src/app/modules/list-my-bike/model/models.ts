@@ -19,16 +19,6 @@ export class AccessoriesInterface {
   gps = false;
 }
 
-export class AccessoriesImageInterface {
-  gps = 'lnr-gps';
-  lock = 'lnr-lock';
-  basket = 'lnr-basket';
-  helmet = 'lnr-helmet';
-  lights = 'lnr-light';
-  trailer = 'lnr-trailer';
-  childseat = 'lnr-child-seat';
-}
-
 export class LoadedImageInterface {
   file: any;
   url: string | any;

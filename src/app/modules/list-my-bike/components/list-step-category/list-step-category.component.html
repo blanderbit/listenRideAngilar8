@@ -1,0 +1,66 @@
+<form class="category" [formGroup]="categoryFormGroup" *ngIf="categoryFormGroup">
+
+  <p class="description">Please select the category and subcategory of your bike.</p>
+  <h3 class="description-what">What type of bike it is?</h3>
+
+  <div class="mat">
+    <mat-form-field appearance="fill">
+      <mat-select
+              formControlName="category"
+              placeholder="Select the bike category"
+              (selectionChange)="changeCategory($event)"
+              [ngClass]="categoryFormGroup?.controls?.category?.value?.src && 'selected-category'"
+              [ngStyle]="{
+                background: getUrlBackground(categoryFormGroup?.controls?.category?.value)
+              }"
+      >
+        <mat-option
+                *ngFor="let category of categoryList"
+                [value]="category"
+        >
+          <img style="width: 3rem" [src]="category.src">
+          {{category.type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-select formControlName="subCategory" placeholder="Specify the subcategory">
+        <mat-option
+                *ngFor="let subcategory of subCategoryList"
+                [value]="subcategory"
+        >
+          {{subcategory.text}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="!categoryFormGroup?.invalid">
+    <p class="description">What accessories does your bike have?</p>
+    <div class="select-category-container">
+      <div *ngFor="let item of accessoriesArrList"
+           class="select-category-accessories"
+           [ngClass]="{activeSelect: accessories[item]}"
+           [ngStyle]="{textTransform: item === 'gps' ? 'uppercase' : 'capitalize'}"
+           (click)="accessories[item] =! accessories[item]"
+      >
+        <mat-icon [svgIcon]="'lnr-' + item"></mat-icon>
+        <div class="text-category">{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container first">
+    <button class="next mat-button-stepper"
+            [ngClass]="{active: !categoryFormGroup?.invalid}"
+            [disabled]="categoryFormGroup?.invalid"
+            mat-button
+            matStepperNext
+            type="button"
+    >
+      Next
+    </button>
+  </div>
+
+</form>

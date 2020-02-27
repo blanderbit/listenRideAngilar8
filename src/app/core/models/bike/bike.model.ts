@@ -1,6 +1,7 @@
 // import {AccessoriesImageInterface} from './models';
 
-import {AccessoriesImageInterface, AccessoriesInterface} from '../../../modules/list-my-bike/model/models';
+
+import { AccessoriesInterface} from '../../../modules/list-my-bike/model/models';
 
 export class BIKE {
     constructor(init?: Partial<BIKE>) {
@@ -10,18 +11,18 @@ export class BIKE {
     new_images: Array<Images> = [];
     variations: Array<Variations> = [];
     // is_equipment: boolean = false;
-    details = '';
-    frame_number = '';
+    details: string = '';
+    frame_number: string = '';
     category: string | number;
-    description = '';
-    brand = '';
-    name = '';
-    bicycle_number = '';
-    frame_size = '';
+    description: string = '';
+    brand: string = '';
+    name: string = '';
+    bicycle_number: string = '';
+    frame_size: string = '';
     coverage_total: number;
     custom_price: number;
     size: number;
-    price: number; // ?
+    price: number;// ?
     user_id: number;
     discounts: Discounts = new Discounts();
     location: Location;
@@ -35,10 +36,10 @@ class Location {
         Object.assign(this, init);
     }
 
-    street = '';
-    zip = '';
-    city = '';
-    country = '';
+    street: string = '';
+    zip: string = '';
+    city: string = '';
+    country: string = '';
 }
 
 
@@ -67,8 +68,8 @@ export class Variations {
     }
 
     size: number | string;
-    frame_size = '';
-    bicycle_number = '';
-    frame_number = '';
-    available = true;
+    frame_size: string = '';
+    bicycle_number: string = '';
+    frame_number: string = '';
+    available: boolean = true;
 }

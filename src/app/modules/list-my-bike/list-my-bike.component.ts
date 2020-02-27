@@ -1,52 +1,22 @@
-import {
-    AfterViewInit,
-    ChangeDetectorRef,
-    Component,
-    Inject,
-    Input,
-    OnInit,
-    ViewChild
-} from '@angular/core';
-
+import { Component, Inject, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
-import {typeList, sizeList} from '@core/constants/filters.const';
+import {typeList} from '@core/constants/filters.const';
 import {DOCUMENT} from '@angular/common';
 import * as fromAuth from '@auth/store/reducers';
 import {
-    AccessoriesImageInterface,
-    AccessoriesInterface,
-    CategoryInterface,
-    LoadedImageInterface,
-    SizeListInterface,
-    SubCategoryInterface
+  AccessoriesInterface, CategoryInterface, LoadedImageInterface, SubCategoryInterface
 } from './model/models';
-import {DomSanitizer} from '@angular/platform-browser';
-
-import {MatIconRegistry} from '@angular/material/icon';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
-import {BIKE, Variations} from '@models/bike/bike.model';
+import {BIKE} from '@models/bike/bike.model';
 import {Subject} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {getClearName} from './helpers/helpers';
+import { formsControlsName, arrCountriesCode} from './consts/consts';
+import { priceCount} from './../../shared/helpers/price-helper';
+import {getName, SetRound, templateMessage, numberValidate, reformatNumberDTC} from './helpers/helpers';
 import {} from 'google-maps';
-
-declare var require;
-
-const priceCount = [
-    {count: 1, start_at: 86400},
-    {count: 2, start_at: 172800},
-    {count: 3, start_at: 259200},
-    {count: 4, start_at: 345600},
-    {count: 5, start_at: 432000},
-    {count: 6, start_at: 518400},
-    {count: 7, start_at: 604800},
-    {count: 8, start_at: 2419200},
-];
 
 @Component({
     selector: 'lnr-list-my-bike',
@@ -54,7 +24,7 @@ const priceCount = [
     styleUrls: ['./list-my-bike.component.scss']
 })
 
-export class ListMyBikeComponent implements OnInit, AfterViewInit {
+export class ListMyBikeComponent implements OnInit {
     isLinear = false;
     categoryFormGroup: FormGroup;
     detailsFormGroup: FormGroup;
@@ -62,116 +32,67 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
     locationFormGroup: FormGroup;
     pricingFormGroup: FormGroup;
     bikeCategoryList: Array<CategoryInterface> = typeList;
-    sizeList: Array<SizeListInterface> = sizeList;
     loadedPhoto: Array<LoadedImageInterface> = [];
     subCategoriesValue: Array<SubCategoryInterface> | null = [];
-    user: Store<fromAuth.State> | any;
     userId: Store<fromAuth.State> | any;
     accessories: AccessoriesInterface | any = new AccessoriesInterface();
-    accessoriesImage: AccessoriesImageInterface | any = new AccessoriesImageInterface();
-    accessoriesArrList: Array<string> = [];
+    accessoriesArrList: Array<string> = Object.keys(this.accessories) || [];
     customisedPricing = false;
     bikeQuantity: any = [{}];
-    listPrices: Array<number> = [1000, 2000, 3000, 4000, 5000, 6000];
     priceCount: Array<any | object> = priceCount;
-    deleted = [];
-    arrVariable: Array<string> = ['categoryFormGroup', 'detailsFormGroup', 'locationFormGroup'];
-    private destroyed$ = new Subject();
+    deleted: Array<number> = [];
+    IsValidVariable : object = formsControlsName;
     data: BIKE | any;
     editData: any;
-    imageError: Array<string> = [];
-    autocomplete: any;
-    @Input() _isCoverage = false;
-    getClearName = getClearName;
-    arrCode: Array<string> = ['austria', 'germany'];
+    street: string;
+    zip: string | number;
+    city: string;
+    country: string;
+    @Input() _hasCoverage = false;
+    arrCountriesName: Array<string> = arrCountriesCode;
 
-    @ViewChild('address', {static: true}) address: any;
-    @ViewChild('cities', {static: true}) cities: any;
-    @ViewChild('regionsZip', {static: true}) regionsZip: any;
-    @ViewChild('regionsCountry', {static: true}) regionsCountry: any;
+    getName = getName;
+    SetRound = SetRound;
+    templateMessage = templateMessage;
+    numberValidate = numberValidate;
+    reformatNumberDTC = reformatNumberDTC;
 
-
-    /*
-      conversations object Accessory keys to array and get this array
-    */
-    get accessoriesARrr() {
-        return (this.accessoriesArrList || []);
-    }
-
-    set accessoriesARrr(value) {
-        this.accessoriesArrList = Object.keys(value);
-    }
+    private destroyed$ = new Subject();
 
     constructor(
         private store: Store<fromAuth.State>,
         private formBuilder: FormBuilder,
         @Inject(DOCUMENT) private document: Document,
-        private matIconRegistry: MatIconRegistry,
-        private domSanitizer: DomSanitizer,
         private apiRidesService: ApiRidesService,
         private router: Router,
         private SnackBar: MatSnackBar,
         private activateRoute: ActivatedRoute,
-        private changeDetection: ChangeDetectorRef
-    ) {
-        this.accessoriesARrr = this.accessories;
-        this.setSvgImageToMat();
-    }
+    ) {}
 
-    /*
-      set svg image to material
-    */
-    setSvgImageToMat(): void {
-        const images = require.context('../../../assets/img-accessories', true, /\.(png|jpg|jpeg|svg)$/);
-        images
-            .keys()
-            .forEach((key: string): void => {
-                const name = this.getClearName(key);
-                this.matIconRegistry
-                    .addSvgIcon(
-                        `lnr-${name}`,
-                        this.domSanitizer.bypassSecurityTrustResourceUrl(this.getUrlSvg(name))
-                    );
-            });
-    }
-
-    /*
-      get really path for svg image in root folder
-    */
-    getUrlSvg = (name: string): string => name ? `'../../../assets/img-accessories/${name}.svg` : '';
-
-    /*
-     get string background image for dropdown
-    */
-    getUrlBackground = (value: any): string => value && value.src ? `url(${value.src}) 9px 3px no-repeat` : '';
-
-    /*
-      set default value to controls
-    */
     ngOnInit(): void {
-
         this.activateRoute.data.pipe(
             map(({user, edit}) => {
                 if (user) {
                     this.userId = user.id;
+                    this.street = user.street;
+                    this.zip = user.zip;
+                    this.city = user.city;
+                    this.country = user.country;
                 }
                 this.editData = !!edit;
                 return edit;
             }),
             takeUntil(this.destroyed$)
         )
-            .subscribe(
-                next => {
-                    this.data = next || new BIKE();
-                    this.setDataToPage();
-                },
-                () => this.snackBar('we have some error')
-            );
+        .subscribe(
+            next => {
+                this.data = next || new BIKE();
+                this.setDataToPage();
+            },
+            () => this.snackBar('we have some error')
+        );
     }
 
-    /*
-        set default data for all forms
-     */
     setDataToPage(): void {
         let editSubcategory;
 
@@ -183,21 +104,22 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         this.accessories = this.data.accessories;
         this.subCategoriesValue = (editCategory && editCategory.categories) || [];
 
-        const category = {
-            category: [editCategory, Validators.required],
-            subCategory: [editSubcategory || '', Validators.required]
-        };
-
-        const detailsCtrl = {
-            available: [true],
-            size: [this.data.size ? this.data.size : typeof this.data.size === 'number' ? 0 : '', Validators.required],
-            frame_size: [this.data.frame_size === 'null' || this.data.frame_size === null ? '' : this.data.frame_size],
-            bicycle_number: [this.data.bicycle_number || ''],
-            frame_number: [this.data.frame_number || ''],
-            brand: [this.data.brand || '', Validators.required],
-            name: [this.data.name || '', Validators.required],
-            description: [this.data.description || '', [Validators.minLength(100), Validators.required]],
-        };
+        const SubcategoryValue = editSubcategory || '';
+        const sizeValue = this.data.size || (typeof this.data.size === 'number' ? 0 : '');
+        const frameSizeValue = this.data.frame_size === 'null' || !this.data.frame_size ? '' : this.data.frame_size;
+        const bicycleNumberValue = this.data.frame_size || '';
+        const frameNumberValue = this.data.frame_number || '';
+        const brandValue = this.data.brand || '';
+        const nameValue = this.data.name || '';
+        const descriptionValue = this.data.description || '';
+        const streetValue = this.data.street || this.street || '';
+        const zipValue = this.data.zip || this.zip || '';
+        const cityValue = this.data.city || this.city || '';
+        const countryValue = this.data.country || this.country || '';
+        const dailyValue = this.data.discounts.daily || '10';
+        const weeklyValue = this.data.discounts.weekly || '20';
+        const dailyPriceValue = this.data.daily_price || '';
+        const coverageTotalValue = this.data.coverage_total || '';
 
         if (this.data.images && Array.isArray(this.data.images)) {
             this.data.images.forEach(i => this.loadedPhoto.push({
@@ -208,24 +130,40 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             }));
         }
 
+        const category = {
+            category: [editCategory, Validators.required],
+            subCategory: [SubcategoryValue, Validators.required]
+        };
+
+        const detailsCtrl = {
+            available: [true],
+            size: [sizeValue, Validators.required],
+            frame_size: [frameSizeValue],
+            bicycle_number: [bicycleNumberValue],
+            frame_number: [frameNumberValue],
+            brand: [brandValue, Validators.required],
+            name: [nameValue, Validators.required],
+            description: [descriptionValue, [Validators.minLength(100), Validators.required]],
+        };
+
         const picturesCtrl = {
             picturesCtrl_0: ['', Validators.required]
         };
 
         const locationCtrl: any = {
-            street: [this.data.street || '', Validators.required],
-            zip: [this.data.zip || '', Validators.required],
-            city: [this.data.city || '', Validators.required],
-            country: [this.data.country || '', Validators.required],
+            street: [streetValue, Validators.required],
+            zip: [zipValue, Validators.required],
+            city: [cityValue, Validators.required],
+            country: [countryValue, Validators.required],
         };
 
-        this.checkCountry(this.data.country);
-        this.isCoverage && (locationCtrl.coverage_total = [this.data.coverage_total || '', Validators.required]);
+        this.checkCountry(this.data.country_code);
+        this.hasCoverage && (locationCtrl.coverage_total = [coverageTotalValue, Validators.required]);
 
         const pricingCtrl = {
-            daily: [this.data.discounts.daily || '10', Validators.required],
-            weekly: [this.data.discounts.weekly || '20', Validators.required],
-            price: [this.data.daily_price || '', Validators.required],
+            daily: [dailyValue, Validators.required],
+            weekly: [weeklyValue, Validators.required],
+            price: [dailyPriceValue, Validators.required],
         };
 
         this.categoryFormGroup = this.formBuilder.group(category);
@@ -235,113 +173,68 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         this.pricingFormGroup = this.formBuilder.group(pricingCtrl);
 
         this.priceCount.forEach(i => {
-            this.pricingFormGroup.addControl(this.getName(i.count), new FormControl('', Validators.required));
+            this.pricingFormGroup.addControl(
+                this.getName(i.count),
+                new FormControl('', Validators.required)
+            );
         });
 
-        // this.setCustomizeBasePrice(!this.editData ? 10: this.data.daily_price);
+
         !this.editData ? this.setCustomizeReCount() : this.setCustomizeBasePrice(this.data.prices);
     }
 
-    /*
-      change Category value and set sub category value
-    */
-    changeCategory(e: any): void {
-        this.categoryFormGroup.controls.subCategory.setValue('');
-        this.subCategoriesValue = e.value.categories;
+    checkCountry(str: string): void {
+        const find = this.arrCountriesName.includes(str && str.toLowerCase());
+        this.hasCoverage = !!find;
     }
 
-    /*
-      converting an unreadable picture file to a normal state for display
-    */
-    previewFile(files: any): void {
-        const arr = files ? Array.from(files) : [];
-        this.imageError = [];
-        arr.forEach((file: any) => {
-            if (!file || (file && !this.isValidImage(file.name))) {
-                return this.imageError.push(`${file.name} - no jpg, jpeg, png`);
+    checkFormValidation(isEdit?: boolean): void {
+        const isValid = Object.keys(this.IsValidVariable).find((item: string) => {
+            if(!this[item]){
+                return false;
             }
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                const img: any = new Image();
-                const vm = this;
-                img.onload = function() {
-                    const width = this.width;
-                    const height = this.height;
-                    if (width >= 1200 && height >= 800) {
-                        vm.loadedPhoto.push({
-                            isMain: false,
-                            file,
-                            url: reader.result
-                        });
-                    } else {
-                        vm.imageError.push(`${file.name} - ${width}x${height}`);
-                    }
-                };
-                img.src = reader.result;
-            };
+            if(item === 'picturesFormGroup'){
+                return this.loadedPhoto.length < 1
+            }
+            return this[item].invalid;
         });
-    }
-
-
-    isValidImage(value) {
-        const $fileType = value.split('.').pop();
-        return $fileType === 'jpeg' || $fileType === 'jpg' || $fileType === 'png';
-    }
-
-    maxValue(e: any, brand: string) {
-        const control = this.detailsFormGroup.controls[brand];
-        const value = control.value;
-        control.setValue(value.slice(0, 25));
-    }
-
-    /*
-      remove one photo object from array
-    */
-    removePhoto(i: number, type): void {
-        if (type === 'image') {
-            const data = this[type].splice(i, 1);
-            this.deleted.push(data.id);
+        if(isValid){
+            return this.snackBar(this.templateMessage(this.IsValidVariable[isValid]));
         }
-        if (type === 'loadedPhoto') {
-            this[type].splice(i, 1);
-        }
+        this.request(isEdit);
     }
 
-    /*
-      create bike
-    */
     request(isEdit?: any): void {
         const data = new FormData();
-        // get value from all controls
 
         const virtualData: any = {};
-        this.arrVariable.forEach(name => {
+        Object.keys(this.IsValidVariable).forEach(name => {
+            if(name === 'picturesFormGroup' || name === 'pricingFormGroup'){
+                return false;
+            }
             if (!this[name] && this[name].controls) {
                 return false;
             }
             const controls = this[name].controls;
             const variable = typeof controls === 'object' ? Object.keys(controls) : [];
             variable.forEach(nameControl => {
+
                 const value = controls[nameControl].value;
-                if (value || typeof value === 'number') {
-                    if (nameControl !== 'category' && nameControl !== 'subCategory') {
-                        data.append(`ride[${nameControl}]`, controls[nameControl].value);
-                    }
-                    virtualData[nameControl] = controls[nameControl].value;
+                if (!(value || typeof value === 'number')) {
+                    return;
                 }
+
+                if (nameControl !== 'category' && nameControl !== 'subCategory') {
+                    data.append(`ride[${nameControl}]`, controls[nameControl].value);
+                }
+
+                virtualData[nameControl] = controls[nameControl].value;
             });
         });
 
-        // we put only filled objects
-        // this.data.accessories = JSON.stringify(this.accessories);
         data.append('ride[accessories]', JSON.stringify(this.accessories));
         virtualData.variations = [...this.bikeQuantity].filter(({available}) => typeof available === 'boolean');
 
-        // we have specific dropdown value which set number value,
-        // but array[] with data for dropdown have 'Unisize = 0', if we select 'Unisize' we can’t validate the formGroup
-        // in order to get around this concept, the value of this dropdown option is its
-        // name, and here we put the desired parameter
         virtualData.variations = virtualData.variations.map(item => {
             if (item.size === 'Unisize') {
                 item.size = 0;
@@ -354,7 +247,6 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             arr.forEach(key => data.append(`ride[variations][${index}][${key}]`, item[key]));
         });
 
-        // get value from control prices
         virtualData.prices = [];
         this.priceCount.forEach(i => {
             const control = this.pricingFormGroup.controls[this.getName(i.count)];
@@ -367,7 +259,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         const weekly = this.pricingFormGroup.controls.weekly.value;
         const price = this.pricingFormGroup.controls.price.value;
 
-        data.append(`ride[prices][0][price]`, price);
+        data.append(`ride[prices][0][price]`, this.reformatNumberDTC(price, ','));
         data.append(`ride[prices][0][start_at]`, `0`);
 
         if (this.editData) {
@@ -379,7 +271,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         if (Array.isArray(prices)) {
             prices.forEach((i, index) => {
                 const mainIndex = index + 1;
-                data.append(`ride[prices][${mainIndex}][price]`, i);
+                data.append(`ride[prices][${mainIndex}][price]`, this.reformatNumberDTC(i, ','));
                 data.append(`ride[prices][${mainIndex}][start_at]`, `${this.priceCount[index].start_at}`);
                 if (this.editData) {
                     data.append(`ride[prices][${mainIndex}][id]`, this.data.prices[mainIndex].id);
@@ -387,14 +279,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             });
         }
 
-        // get value from controls
-
         const category = virtualData.subCategory.value;
         const street = this.locationFormGroup.controls.street.value;
         const zip = this.locationFormGroup.controls.zip.value;
         const city = this.locationFormGroup.controls.city.value;
         const country = this.locationFormGroup.controls.country.value;
-        const coverageTotal = this.locationFormGroup.controls.coverage_total ? this.locationFormGroup.controls.coverage_total.value : '';
+        const coverageTotal: string | any = this.locationFormGroup.controls.coverage_total;
+        const coverageTotalValue = (coverageTotal && coverageTotal.value) || '';
 
         delete virtualData.subCategory;
 
@@ -402,7 +293,7 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         data.append('ride[location][zip]', zip);
         data.append('ride[location][city]', city);
         data.append('ride[location][country]', country);
-        coverageTotal && data.append('ride[coverage_total]', coverageTotal);
+        coverageTotalValue && data.append('ride[coverage_total]', coverageTotalValue);
         data.append('ride[category]', category);
         data.append('ride[discounts][daily]', daily);
         data.append('ride[discounts][weekly]', weekly);
@@ -411,13 +302,13 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         data.append('ride[user_id]', user);
 
         if (Array.isArray(this.deleted)) {
-            this.deleted.forEach((item, index) => data.append(`ride[images_to_remove][${index}]`, item));
+            this.deleted.forEach((item, index) => {
+                data.append(`ride[images_to_remove][${index}]`, `${item}`)
+            });
         }
-
 
         data.append('ride[custom_price]', `${this.customisedPricing}`);
 
-        // set image in form data and add to property
         this.loadedPhoto
             .forEach(({isMain, file, id}, index) => {
                 if (!file) {
@@ -431,8 +322,6 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                 data.append(`ride[new_images][${index}][is_primary]`, `${isMain}`);
                 data.append(`ride[new_images][${index}][position]`, `${index}`);
             });
-
-        // receiving user from store and sending
 
         (isEdit ? this.apiRidesService.updateBike(this.data.id, data) : this.apiRidesService.createBike(data))
             .subscribe(
@@ -449,23 +338,14 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
             );
     }
 
-    /*
-      clear all active observables
-    */
     destroyed(): void {
         this.destroyed$.next();
         this.destroyed$.complete();
     }
 
-    /*
-      adding controllers for the form when activating the checkbox in formGroup
-    */
-    setCustomize = ({checked}: any) => this.customisedPricing = checked;
+    setCustomize = ({checked}: any): undefined => this.customisedPricing = checked;
 
-    /*
-        recalculate custom prices when changing the daily price, daily discount and weekend discount
-    */
-    setCustomizeReCount() {
+    setCustomizeReCount(): void {
 
         const base = parseInt(this.pricingFormGroup.controls.price.value) || 0;
         const weekly = this.pricingFormGroup.controls.weekly.value;
@@ -480,26 +360,12 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
         }
 
         this.pricingFormGroup.controls[this.getName(6)]
-            .setValue(
-                this.SetRound(7, base, weekly || 0)
-            );
+            .setValue(this.SetRound(7, base, weekly || 0));
         this.pricingFormGroup.controls[this.getName(7)]
-            .setValue(
-                this.SetRound(1, base, weekly || 0)
-            );
+            .setValue(this.SetRound(1, base, weekly || 0));
         this.pricingFormGroup.controls[this.getName(8)]
-            .setValue(
-                this.SetRound(28, base, weekly || 0)
-            );
+            .setValue(this.SetRound(28, base, weekly || 0));
     }
-
-    SetRound = (
-        day: number,
-        base: number,
-        data: any
-    ): any => Math.round(day * base * ((100 - parseFloat(data)) / 100)) || 0
-
-    getName = (day: string | number): string => `price${day}`;
 
     setCustomizeBasePrice(pricesData): void {
         if (Array.isArray(pricesData)) {
@@ -512,119 +378,45 @@ export class ListMyBikeComponent implements OnInit, AfterViewInit {
                 const control = this.pricingFormGroup.controls[name];
 
                 if (control) {
-                    control.setValue(item.price);
+                    const price = this.reformatNumberDTC(item.price , '.');
+                    control.setValue(price);
                 }
             });
         }
     }
 
-    /*
-     add one object to array bikeQuantity
-    */
-    addVariants = (): undefined => this.bikeQuantity.push(new Variations());
-
-    /*
-       update one field of one object in the array bikeQuantity
-    */
-    changeData = ({target}: any, obj: Variations | object, key: string): undefined => obj[key] = target.value;
-
-    /*
-       check for filling the "size" field of one object in the array bikeQuantity
-    */
-    isRider(): boolean {
-        const arr = [...this.bikeQuantity];
-        return arr.every((item) => item && item.size);
+    get hasCoverage() {
+        return this._hasCoverage;
     }
 
-    /*
-       delete one variation from array
-    */
-    delQuantity = (index): object => this.bikeQuantity.splice(index, 1);
-
-    /*
-       initialize google Autocomplete
-    */
-    ngAfterViewInit() {
-        this.getPlaceAutocomplete();
-    }
-
-    /*
-      set google Autocomplete to field
-    */
-
-
-    private getPlaceAutocomplete(): void {
-        if (!this.address || !this.cities || !this.regionsCountry || !this.regionsZip) {
-            return;
-        }
-
-        const address = new google.maps.places.Autocomplete(this.address.nativeElement, {types: ['address']});
-        const cities = new google.maps.places.Autocomplete(this.cities.nativeElement, {types: ['(cities)']});
-        const regionsCountry = new google.maps.places.Autocomplete(this.regionsCountry.nativeElement, {types: ['(regions)']});
-        const regionsZip = new google.maps.places.Autocomplete(this.regionsZip.nativeElement, {types: ['(regions)']});
-        address.addListener('place_changed', () => {
-            this.changeDataGoogleAutocomplete(address, 'route', 'street', this.address.nativeElement);
-        });
-        cities.addListener('place_changed', () => {
-            this.changeDataGoogleAutocomplete(cities, 'locality', 'city', this.cities.nativeElement);
-        });
-        regionsZip.addListener('place_changed', () => {
-            this.changeDataGoogleAutocomplete(regionsZip, 'postal_code', 'zip', this.regionsZip.nativeElement);
-        });
-        regionsCountry.addListener('place_changed', () => {
-            const name = regionsCountry.getPlace();
-            const arrCode = ['DE', 'AT'];
-            const finds = name.address_components
-                .filter(item => item.short_name && item.types.includes('country'));
-            const findData = finds.find(item => arrCode.includes(item.short_name));
-            const find = findData || finds[0];
-            const value = find ? find.long_name || name.name : name.name;
-            this.regionsCountry.nativeElement.value = value;
-            this.locationFormGroup.controls.country.setValue(value);
-            this.isCoverage = !!findData;
-            this.regionsCountry.nativeElement.focus();
-            this.regionsCountry.nativeElement.blur();
-            this.changeDetection.detectChanges();
-        });
-    }
-
-    changeDataGoogleAutocomplete(data: object | any, includeName: string, controlName: string, element: HTMLInputElement): void {
-        const name = data.getPlace();
-
-        const find = name.address_components
-            .find(item => item.short_name && item.types.includes(includeName));
-        const value = find && find.long_name === name.name ? find.long_name : name.name;
-        const control = this.locationFormGroup.controls[controlName];
-
-        control && control.setValue(find && find.long_name === name.name ? find.long_name : name.name);
-        element.value = value;
-    }
-
-    get isCoverage() {
-        return this._isCoverage;
-    }
-
-    set isCoverage(value) {
-        this._isCoverage = value;
-        value ? this.locationFormGroup && this.locationFormGroup.addControl(
+    set hasCoverage(value) {
+        this._hasCoverage = value;
+        if(value) {
+            this.locationFormGroup && this.locationFormGroup.addControl(
             'coverage_total',
-            new FormControl('', Validators.required)
-        ) : this.locationFormGroup && this.locationFormGroup.controls.coverage_total && this.locationFormGroup.removeControl('coverage_total');
-
+            new FormControl('', Validators.required))
+        } else {
+            this.locationFormGroup &&
+            this.locationFormGroup.controls.coverage_total &&
+            this.locationFormGroup.removeControl('coverage_total');
+        }
     }
 
-    changeCountry = (e: any): void => this.checkCountry(e.target.value);
-
-    checkCountry(str: string) {
-        const find = this.arrCode.includes(str && str.toLowerCase());
-        this.isCoverage = !!find;
-    }
+    //changeCountry = (e: any): void => this.checkCountry(e.target.value);
+  //
+  //     checkCountry(str: string) {
+  //       const find = this.arrCountriesName.includes(str);
+  //       this.isCoverage = !!find;
+  //     }
 
     snackBar = (val: string, isGood = false): any => this.SnackBar.open(val, 'Undo', {
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'right',
         panelClass: [(!isGood ? 'red-snackbar' : 'green-snackbar')]
-    })
+    });
 
+    verifyNumberInput(event: any): void {
+        event.target.value = this.numberValidate(event.target.value);
+    }
 }

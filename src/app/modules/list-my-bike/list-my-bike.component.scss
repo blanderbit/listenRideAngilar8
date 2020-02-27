@@ -12,7 +12,7 @@
   margin: 4rem auto;
 }
 
-.stepper-container {
+:host::ng-deep .stepper-container {
   width: 100%;
 
   h3 {
@@ -26,7 +26,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: $h6-fontsize;
-    line-height: 120%;
+    line-height: 150%;
     color: $dark-text-color;
   }
 
@@ -61,12 +61,15 @@
       }
     }
 
-
     .mat-horizontal-stepper-content {
 
       .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
         padding: 0;
         margin-top: 0;
+
+        .mat-select-trigger{
+          padding: 0 1.4rem;
+        }
       }
     }
   }
@@ -76,69 +79,6 @@
     justify-content: flex-end;
   }
 
-  .selected-category {
-    background-size: 2.7rem !important;
-
-    ::ng-deep .mat-select-value {
-      padding-left: 3rem;
-    }
-  }
-
-  .category {
-    mat-form-field {
-      width: 26.3rem;
-
-      img {
-        margin-right: 1rem;
-      }
-    }
-
-    mat-icon {
-      margin-right: 1rem;
-    }
-
-    .select-category-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 35rem;
-
-      .select-category-accessories {
-        background-color: $white;
-        width: 30%;
-        color: rgba(85, 85, 85, 1.0);
-        margin: 0 .8rem 1rem 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: 0.5rem;
-        border-radius: .5rem;
-
-        &.activeSelect {
-          color: $white;
-          background: $main-blue;
-
-          ::ng-deep svg {
-            fill: $white !important;
-
-            .mat-icon{
-              height: 24px !important;
-              width: 24px !important;
-            }
-
-            g {
-              fill: $white !important;
-            }
-
-            path {
-              fill: $white !important;
-            }
-          }
-
-        }
-      }
-    }
-  }
 
 
   ::ng-deep {
@@ -159,7 +99,7 @@
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
       background: $white;
       padding: 0;
-      width: 26.3rem;
+      //width: 26.3rem;
 
       .mat-select-placeholder, .mat-select-value-text {
         font-size: 1.4rem;
@@ -240,7 +180,7 @@
           }
 
           .imgCheckboxContainer {
-            margin-left: 2rem;
+            margin-left: 15%;
             display: flex;
             flex-direction: row !important;
 
@@ -342,120 +282,7 @@
       visibility: hidden;
     }
 
-    .details {
-      h3 {
-        margin-top: 4.2rem;
-      }
 
-      #details_container, #details_brand_container {
-        display: flex;
-        margin-top: 3.5rem;
-        padding: 0 !important;
-        width: 100%;
-
-        mat-form-field {
-          margin: 1rem;
-
-          div {
-            padding: 0;
-          }
-
-          mat-icon {
-            padding-left: 1rem;
-            cursor: pointer;
-            display: table;
-          }
-        }
-
-        label, mat-label {
-          font-weight: 500;
-          font-size: $h6-fontsize;
-          line-height: 120%;
-        }
-
-        input, mat-select, textarea {
-          background: none;
-          padding: 0 1rem;
-          border-width: .1rem;
-          border-radius: .4rem;
-          border-style: solid;
-          line-height: 4rem;
-          height: 4.2rem;
-          border-color: $input-border
-        }
-
-        input.quantity {
-          height: 4.2rem;
-          background: $white;
-          border: .1rem solid $input-border;
-          box-sizing: border-box;
-          padding: 0 0 0 1rem;
-          font-size: $h6-fontsize;
-          line-height: 150%;
-        }
-
-        label.quantity, mat-form-field.quantity {
-          margin-right: .5rem;
-          padding: 0;
-        }
-      }
-
-      #details_container {
-        display: grid;
-        grid-template-columns: 6.7rem 23% 23% 23% 23%;
-      }
-
-      #details_brand_container {
-        display: grid;
-        grid-template-columns: 50% 50%;
-
-        mat-form-field {
-          display: flex;
-
-          div.mat-form-field-wrapper {
-            width: 100%;
-
-            .mat-form-field-infix {
-              display: flex;
-              flex-direction: column;
-
-              input {
-                height: 4rem;
-                padding: 0 $h6-fontsize;
-              }
-
-              textarea.description {
-                height: 12.8rem;
-                padding: $h6-fontsize;
-                width: 95%;
-                line-height: 2.56rem;
-                min-height: 4rem;
-              }
-            }
-          }
-
-          mat-hint {
-            margin-top: 1.5rem;
-            margin-right: 3.5rem;
-          }
-        }
-      }
-    }
-
-    .addVariants {
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 7%;
-      color: $submit-button-color;
-      font-style: normal;
-      font-weight: normal;
-      font-size: $h6-fontsize;
-      line-height: 120%;
-
-      a {
-        cursor: pointer;
-      }
-    }
 
     .category {
       .description {
@@ -473,71 +300,14 @@
     }
   }
 
-  .preview-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-    .bikePhotoContainer {
-
-      display: flex;
-      margin-bottom: 2rem;
-
-      .bikeCheckedContainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .imgCheckboxContainer {
-          display: flex;
-          align-items: center;
-          font-style: normal;
-          font-weight: 500;
-          font-size: $h6-fontsize;
-          line-height: 120%;
-
-          input[type="radio"] {
-            display: none;
-          }
-
-          label.custom-checkbox {
-            background: $white;
-            border: .1rem solid $input-border;
-            box-sizing: border-box;
-            width: 1.8em;
-            height: 1.8em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          span {
-            margin-left: 1rem;
-          }
-
-          input:checked ~ label:before {
-            content: "\2714";
-          }
-        }
-
-
-        img.myBikePhoto {
-          width: 16.4rem !important;
-          height: 11rem !important;
-        }
-
-        button.remove {
-          color: $error-color;
-          margin: 0;
-        }
-      }
-    }
-  }
-
   #location-container {
     h3 {
       margin-top: 4.5rem;
       margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    p{
+      padding: 0 1rem;
     }
 
     .location-container {
@@ -650,10 +420,6 @@
         }
       }
     }
-    #details_container {
-      display: grid;
-      grid-template-columns: 100%;
-    }
   }
 
 
@@ -677,11 +443,6 @@
       }
     }
 
-    #details_brand_container {
-      display: grid;
-      grid-template-columns: 100%;
-    }
-
     #location-container {
       .location-container {
         display: grid;
@@ -693,9 +454,14 @@
       .pricing-container, .customised {
         display: grid;
         grid-template-columns: 100%;
+        width: 100%;
 
         mat-form-field {
           display: flex;
+          max-width: 100%;
+          .mat-form-field-wrapper {
+            width: 90%;
+          }
         }
       }
     }
@@ -707,11 +473,11 @@
 
 }
 
-::ng-deep .red-snackbar {
+:host::ng-deep .red-snackbar {
   background: $error-color;
 }
 
-::ng-deep .green-snackbar {
+:host::ng-deep .green-snackbar {
   background: $submit-button-color;
 }
 
@@ -723,6 +489,6 @@
   justify-content: center;
 }
 
-::ng-deep .mat-select-panel {
+:host::ng-deep .mat-select-panel {
   max-height: 350px !important;
 }

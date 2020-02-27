@@ -17,7 +17,6 @@ export class ListMyBikeButtonComponent {
   constructor(
     private store: Store<fromAuth.State>
   ) {
-    console.log(this.user);
   }
 
 
