@@ -68,7 +68,7 @@ export const APP_PROVIDERS = [
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
     }),
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {

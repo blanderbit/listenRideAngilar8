@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ApiSeoService} from '@api/api-seo/api-seo.service';
 import {Observable} from 'rxjs';
-import {SeoBrandRequest} from '@models/seo/seo-requests';
 import Swiper from 'swiper';
+import {Brand, ApiBrandsService} from '@api/api-brands';
 
 @Component({
   selector: 'lnr-brands-swiper',
@@ -10,7 +9,7 @@ import Swiper from 'swiper';
   styleUrls: ['./brands-swiper.component.scss']
 })
 export class BrandsSwiperComponent implements OnInit, AfterViewInit {
-  brands$: Observable<Array<SeoBrandRequest>>;
+  brands$: Observable<Array<Brand>>;
   public brandSwiper;
 
   swiperConfig() {
@@ -33,11 +32,11 @@ export class BrandsSwiperComponent implements OnInit, AfterViewInit {
 
   }
 
-  constructor(private apiSeoService: ApiSeoService) {
+  constructor(private brandsService: ApiBrandsService) {
   }
 
   ngOnInit() {
-    this.brands$ = this.apiSeoService.getBrands();
+    this.brands$ = this.brandsService.getAll();
   }
 
   ngAfterViewInit() {

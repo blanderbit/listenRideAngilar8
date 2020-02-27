@@ -6,6 +6,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~saturn-datepicker/theming';
 @import '~bootstrap-4-grid/scss/grid.scss';
+@import "assets/scss/utils/utils";
 @import "assets/scss/variables";
 @import "assets/scss/typography";
 @import "assets/scss/flexbox-helper";
@@ -58,7 +59,6 @@ p {
 .header, .main, .footer {
   flex-shrink: 0;
 }
-
 
 :not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
 .cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),

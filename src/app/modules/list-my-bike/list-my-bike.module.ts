@@ -18,7 +18,7 @@ import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/goog
   entryComponents: [
     ListMyBikeComponent
   ],
-  providers:[UserResolver, UserEditDataResolver]
+  providers: [UserResolver, UserEditDataResolver]
 })
 export class ListMyBikeModule {
 

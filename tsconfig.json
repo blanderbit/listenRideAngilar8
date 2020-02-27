@@ -26,6 +26,9 @@
       ],
       "@validators/*": [
         "app/core/validators/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
       ]
     },
     "outDir": "./dist/out-tsc",

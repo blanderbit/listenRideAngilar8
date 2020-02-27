@@ -1,42 +1,21 @@
-//colors
-$main-blue: #7ab2f8;
-$light-grey: #ccc;
-$dark-text-color: #353441;
-$dark-background: rgb(52, 57, 64);
-$light-text-color: #7c7c84;
-$grey-background: #586067;
-$white-font-color: #FFF;
-$light-grey-font: #949A9F;
-$submit-button-color: #5FC693;
-$submit-button-color-disabled: rgba(225, 230, 230, 1.0);
-$error-color: #FF6E5A;
-$black: #000;
-$white: #fff;
-$social-media-bg: #2b3036;
-$social-media-bg-hover: #1f252c;
-$table-header-color: #ECF1F4;
-
-//inputs colors
-$input-autofill-color: rgb(232, 240, 254);
-$input-border: rgba(206, 212, 216, 0.9);
+@import "colors";
 
 $border-radius: 0.4rem;
+$base-font_size: 1.6rem;
 
-
-// Header Styles
+// Font sizes
 $h1-fontsize: 6rem;
 $h2-fontsize: 5rem;
 $h3-fontsize: 3rem;
 $h4-fontsize: 2rem;
 $h5-fontsize: 1.8rem;
-$h6-fontsize: 1.6rem;
+$h6-fontsize: $base-font_size;
 $small-fontsize: 1.4rem;
 
-//device sizes
+// Breakpoints
 $device-xs: 540px;
 $device-sm: 768px;
 $device-md: 992px;
 $device-tablet: 1100px;
 $device-lg: 1200px;
 $device-xl: 1600px;
-

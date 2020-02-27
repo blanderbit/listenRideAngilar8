@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MyBikesMergeModalComponent } from './my-bikes-merge-modal.component';
+import {MyBikesMergeModalComponent} from './my-bikes-merge-modal.component';
 
 describe('MyBikesMergeModalComponent', () => {
   let component: MyBikesMergeModalComponent;

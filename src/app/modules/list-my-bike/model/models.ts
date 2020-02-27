@@ -10,23 +10,23 @@ export interface CategoryInterface {
 }
 
 export class AccessoriesInterface {
-  lock: boolean = false;
-  helmet: boolean = false;
-  lights: boolean = false;
-  basket: boolean = false;
-  trailer: boolean = false;
-  childseat: boolean = false;
-  gps: boolean = false;
+  lock = false;
+  helmet = false;
+  lights = false;
+  basket = false;
+  trailer = false;
+  childseat = false;
+  gps = false;
 }
 
 export class AccessoriesImageInterface {
-  gps: string = 'lnr-gps';
-  lock: string = 'lnr-lock';
-  basket: string = 'lnr-basket';
-  helmet: string = 'lnr-helmet';
-  lights: string = 'lnr-light';
-  trailer: string = 'lnr-trailer';
-  childseat: string = 'lnr-child-seat';
+  gps = 'lnr-gps';
+  lock = 'lnr-lock';
+  basket = 'lnr-basket';
+  helmet = 'lnr-helmet';
+  lights = 'lnr-light';
+  trailer = 'lnr-trailer';
+  childseat = 'lnr-child-seat';
 }
 
 export class LoadedImageInterface {

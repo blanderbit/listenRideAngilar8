@@ -12,7 +12,8 @@
     "test": "npm run config && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "npm run config && ng build --prod"
+    "heroku-postbuild": "npm run config && ng build --prod",
+    "typecheck": "tsc --noEmit"
   },
   "private": true,
   "engines": {
@@ -85,6 +86,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-eslint-rules": "^5.4.0",
     "typescript": "~3.5.3"
   }
 }

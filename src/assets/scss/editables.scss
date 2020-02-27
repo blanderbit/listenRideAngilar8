@@ -1,0 +1,9 @@
+@import "colors";
+
+.editable {
+  ::ng-deep {
+    a {
+      color: $main-green;
+    }
+  }
+}

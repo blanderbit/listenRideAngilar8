@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { typeList } from '@core/constants/filters.const';
+import {typeList} from '@core/constants/filters.const';
 
 @Component({
   selector: 'lnr-category-multiselect',

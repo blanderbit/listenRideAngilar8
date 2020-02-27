@@ -28,6 +28,7 @@ import {CategoryMultiSelectComponent} from './filters/category-multiselect/categ
 import {CreditCardDirectivesModule} from 'angular-cc-library';
 import {StringPipe} from './pipes/string.pipe';
 import {Phone} from './pipes/phone.pipe';
+import {NeedHelpComponent} from './components/need-help/need-help.component';
 
 const components = [
   FiltersComponent,
@@ -40,7 +41,8 @@ const components = [
   CategoryMultiSelectComponent,
 
   BikeCardComponent,
-  BikeCardMobileComponent
+  BikeCardMobileComponent,
+  NeedHelpComponent
 ];
 
 const formControls = [
@@ -74,7 +76,7 @@ const pipes = [
     ...buttons,
     ...links,
     ...directives,
-    ...pipes
+    ...pipes,
 
   ],
   imports: [

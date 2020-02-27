@@ -16,8 +16,8 @@ import {
   MatPaginatorModule,
   MatSortModule
 } from '@angular/material';
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({

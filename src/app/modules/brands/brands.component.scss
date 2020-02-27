@@ -1,0 +1,18 @@
+@import "../../../assets/scss/utils/utils.scss";
+
+:host mat-grid-list mat-grid-tile {
+  background-size: cover;
+  background-position: 50%;
+  opacity: 1;
+  @include transition(all);
+
+  &:hover {
+    transform: scale(1.04);
+  }
+
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}

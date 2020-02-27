@@ -25,7 +25,7 @@ export class FiltersComponent implements OnInit {
   brandList = brandList;
   sortList = sortList;
 
-  @ViewChild('categorySelect', { static: true }) public categorySelect: TemplateRef<any>;
+  @ViewChild('categorySelect', {static: true}) public categorySelect: TemplateRef<any>;
 
   date: SatDatepickerRangeValue<Date>;
   lastDateInput: SatDatepickerRangeValue<Date> | null;

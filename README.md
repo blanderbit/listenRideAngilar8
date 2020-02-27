@@ -7,7 +7,7 @@ Required software: `npm`, `node`
 ```
 >> git clone git@github.com:listnride/listnride-frontend-new.git
 >> npm ci
->> cp .env.example.txt .env
+>> cp env.example.txt .env
 >> npm run config
 
 
