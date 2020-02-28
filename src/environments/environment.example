@@ -1,5 +1,5 @@
 export const environment = {
-   googleMaps: 'AIzaSyDJIFlj66qnMlaFvjjuaEQd_pqx9d-oHek',
-   apiUrl: 'https://listnride-staging.herokuapp.com/v2',
+   LNR_API_KEY_GOOGLE_MAPS: 'AIzaSyDJIFlj66qnMlaFvjjuaEQd_pqx9d-oHek',
+   LNR_API_ENDPOINT: 'https://listnride-staging.herokuapp.com/v2',
    production: false
 };

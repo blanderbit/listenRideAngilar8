@@ -29,9 +29,8 @@ export class ApiService {
   private readonly authUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = `${environment.apiUrl}/`;
-    this.authUrl = environment.apiUrl;
-
+    this.apiUrl = `${environment.LNR_API_ENDPOINT}/`;
+    this.authUrl = environment.LNR_API_ENDPOINT;
   }
 
   public login(body, url?: string): Observable<any> {

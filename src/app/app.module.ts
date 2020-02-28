@@ -79,7 +79,7 @@ export const APP_PROVIDERS = [
       }
     }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    AgmCoreModule.forRoot({apiKey: environment.googleMaps, libraries: ['places', 'geometry']}),
+    AgmCoreModule.forRoot({apiKey: environment.LNR_API_KEY_GOOGLE_MAPS, libraries: ['places', 'geometry']}),
     MatGoogleMapsAutocompleteModule.forRoot(),
   ],
   providers: [...APP_PROVIDERS],

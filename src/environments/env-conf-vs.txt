@@ -1,6 +1,6 @@
 export const environment = {
   googleMaps: 'AIzaSyDJIFlj66qnMlaFvjjuaEQd_pqx9d-oHek',
-  apiUrl: 'https://listnride-staging.herokuapp.com/v2',
+  LNR_API_ENDPOINT: 'https://listnride-staging.herokuapp.com/v2',
 
   LNR_WEBAPP_URL: 'http://www.staging.listnride.com',
   LNR_API_ENDPOINT: 'https://listnride-staging.herokuapp.com/v2',

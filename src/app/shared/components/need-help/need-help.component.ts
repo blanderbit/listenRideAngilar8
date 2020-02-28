@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./need-help.component.scss']
 })
 export class NeedHelpComponent implements OnInit {
-  private NEED_HELP_IMAGE = require('assets/images/need-help/lnr_support_jean@2x.jpg');
+  NEED_HELP_IMAGE = require('assets/images/need-help/lnr_support_jean@2x.jpg');
 
   constructor() {
   }
