@@ -1,0 +1,40 @@
+<div class="time-line-block timeline">
+  <div class="time-line-block_container p-t-2 p-b-2">
+    <div class="time-line-block_content flex direction-row">
+      <div class="d-none d-sm-block time-line-block_left p-r-4 bold dark-font-color heading-6">
+        <div class="flex align-items-end direction-column">
+          <span>
+              {{seoEvent.pretty_date }}
+          </span>
+          <span>{{seoEvent.location}}</span>
+        </div>
+      </div>
+      <div class="time-line-block_right flex p-l-2">
+        <div class="p-r-2 p-l-2">
+          <h4 class="cursor-pointer"
+              routerLink="./{{seoEvent.name | replaceSpaceToDash | lowercase}}">
+            {{seoEvent.title}}
+          </h4>
+          <div class="d-block d-sm-none bold dark-font-color heading-6">
+            <div class="flex align-items-left direction-column p-t-1 p-b-1">
+          <span>
+              {{seoEvent.pretty_date }}
+          </span>
+              <span>{{seoEvent.location}}</span>
+            </div>
+          </div>
+          <p class="heading-6">
+            {{seoEvent.description}}
+          </p>
+        </div>
+        <img
+          class="cursor-pointer"
+          routerLink="./{{seoEvent.name | replaceSpaceToDash | lowercase}}"
+          alt=""
+          src="{{seoEvent.thumb_image}}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+

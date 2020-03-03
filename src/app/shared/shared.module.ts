@@ -29,6 +29,8 @@ import {CreditCardDirectivesModule} from 'angular-cc-library';
 import {StringPipe} from './pipes/string.pipe';
 import {Phone} from './pipes/phone.pipe';
 import {NeedHelpComponent} from './components/need-help/need-help.component';
+import {ReplaceSpaceToDashPipe} from './pipes/replace-space-to-dash.pipe';
+import {BreadcrumbsComponent} from './components/breadcrumbs/breadcrumbs.component';
 
 const components = [
   FiltersComponent,
@@ -66,7 +68,8 @@ const directives = [
 
 const pipes = [
   StringPipe,
-  Phone
+  Phone,
+  ReplaceSpaceToDashPipe
 ];
 
 @NgModule({
@@ -77,7 +80,7 @@ const pipes = [
     ...links,
     ...directives,
     ...pipes,
-
+    BreadcrumbsComponent
   ],
   imports: [
     CommonModule,
@@ -107,6 +110,7 @@ const pipes = [
     SubscribeInputComponent,
     CreditCardDirectivesModule,
     TranslateModule,
+    BreadcrumbsComponent,
   ],
   entryComponents: []
 })

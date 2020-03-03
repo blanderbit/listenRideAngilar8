@@ -1,0 +1,35 @@
+@import "../../../../assets/scss/variables";
+
+.breadcrumb {
+  background: none;
+  font-size: $h6-fontsize;
+  margin: 0;
+
+  a {
+    color: $black;
+
+    &:hover {
+      color: $light-grey-font;
+      text-decoration: none;
+    }
+
+    li {
+      list-style: none;
+      float: left;
+      margin: 0.4rem;
+
+      &:last-child {
+        margin-right: 2rem;
+      }
+
+      &::after {
+        content: ">";
+        color: $light-grey-font;
+      }
+
+      &:last-child::after {
+        content: "";
+      }
+    }
+  }
+}
