@@ -1,7 +1,18 @@
 {
   "shared": {
     "learn-more": "Learn More",
+    "size": "Size",
     "img-alt": "{{bikeBrand}} {{bikeName}} bike rental in {{bikeCity}}",
+    "bike_location": "Bike location",
+    "cancellations": "Cancellations",
+    "multiple_sizes": "Multiple sizes available",
+    "read_more": "Read more",
+    "dates": "Dates",
+    "bookings": {
+      "include_message_to_lister": "Include a message to the Lister here..",
+      "you_wont_be_charged": "You won't be charged yet.",
+      "may_require_deposit": "Certain bookings may also require a security deposit."
+    },
     "request": "Request",
     "non-availability-type": "Type of unavailability ",
     "event": "Event",
@@ -210,6 +221,16 @@
   "invoice": {
     "settlement_history": "Settlement History"
   },
+  "bike_page": {
+    "location": {
+      "disclaimer": "Exact location information is provided after a booking is confirmed."
+    },
+    "cancellations": {
+      "disclaimer": "Full refund, minus the service fees, until 5 days before the start of the rental. For cancellations made less than five full days before the start date of the booking, but at least one day before the start date of the period of use, you will be reimbursed 50% of the rental fee. For cancellations occurring less than 24 hours before the start of the rental, you will receive a 50% refund, minus the first day and the service fees.",
+      "read_more": "Read more about our cancellation policy."
+    },
+    "add_dates_btn": "Add dates"
+  },
   "request": {
     "payment-failed": "Uh-oh. Unfortunately, your payment failed. Please double check the data you have entered, as well as the payment settings of your payment provider!",
     "waiting_for_capture": "Thank you for your booking request! The payment is currently being processed, you'll receive an email when it is confirmed.",
@@ -300,6 +321,13 @@
       "meta-title": "Rent a road bike for the Gent-Wevelgem Sportive | listnride",
       "meta-description": "Rent a high-end racing bike for the Gent-Wevelgem sportive with listnride! The well-specced bikes will be in ready for you at the starting line. Explore the Belgian hills with our fantastic selection of rental bikes!"
     },
+    "giro-sicilia": {
+      "description": "What: <b0>Giro della Sicilia</b0> | Where: <b1>Noto, Sicily</b1> | When: <b2>April 25 - May 1 2020</b2>",
+      "text": "<p><a href=\"https://www.girodellasicilia.com/en/\" target=\"_blank\">The Giro della Sicilia</a> is the perfect destination to discover the historical and natural treasures of Sicily! Let yourself be surprised by the the colours and tastes during this 5-stage race. The Prologue will be a 3km race on the Noto Velodrome, while the 5 stages will be more inland, over incredible mountains!</p>\n\nPrologue: 2,96km on the Noto Velodrome<br>\nStage 1: 137km<br>\nStage 2: 131km<br>\nStage 3: 131km<br>\nStage 4: 133km<br>\nStage 5: 34km individual time trial\n\n<p>Save yourself time, trouble, and money by simply renting a high-end bike. They will be ready-to-go near the starting line in Noto. All you need to bring is your set of lights, helmet, pedals, and of course: you and your eagerness!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Group bookings available here!</a>",
+      "meta-title": "Rent a high-end road bike for Giro della Sicilia | listnride",
+      "meta-description": "Rent a road bike online for Giro della Sicilia. Choose the bike that fits your needs!",
+      "title": "Rent a high-end road bike for Giro della Sicilia "
+    },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
       "meta-description": "Rent a road bike online easy and secure with listnride for the Mecklenburger Seenrunde 2020. Choose the perfect bike that fits your needs."
@@ -353,8 +381,8 @@
       "calendar-subtitle": "Book your free 8bar bike for our weekly Club Ride"
     },
     "cyclingworld": {
-      "meta-title": "Rent a gravel bike for Cyclingworld Düsseldorf!",
-      "meta-description": "Tempted in test riding a gravel bike? Rent yours from 8bar, Salsa or Veloheld for an epic gravel ride at Cyclingworld!"
+      "meta-title": "Rent a high-end road bike for Cyclingworld Düsseldorf!",
+      "meta-description": "Hire a high-end road bike for listnride's coffee spin at Cyclingworld Düsseldorf! We offer premium bike rental online, only on listnride!"
     },
     "black-friday": {
       "banner": {
@@ -368,15 +396,15 @@
       "meta-description": "The aim of the Epic Gran Canaria is to deliver a professional experience on bike for amateur riders"
     },
     "velorace-dresden": {
-      "meta-title": "Rent a road bike for Velorace Dresden 2019 | listnride",
-      "meta-description": "With listnride you can securely rent a road bike online for Velorace Dresden 2019. Choose the perfect bike that fits your needs!"
+      "meta-title": "Rent a road bike for the Škoda Velorace Dresden 2020 | listnride",
+      "meta-description": "Rent a road bike online for the Škoda Velorace Dresden 2020. Choose the bike that fits your needs!"
     },
     "berlin-triathlon-xl": {
       "meta-description": "Rent a road bike with listnride for the Berlin Triathlon 2020. Choose a high-quality racing bike that fits you best!",
       "meta-title": "Rent a road bike for the Berlin Triathlon XL 2019 | listnride"
     },
     "vatternrundan": {
-      "meta-title": "Rent a road bike for Vätternrundan 2020 | listnride",
+      "meta-title": "Rent a high-end road bike for Vätternrundan 2020 | listnride",
       "meta-description": "Rent a road bike online for Vätternrundan 2020. Choose the bike that fits your needs!"
     },
     "lardita-arezzo": {
@@ -423,6 +451,21 @@
       "order-online": "We want to make the best and coolest eBikes for any rider, any journey, any situation. By making eBikes cool, sexy, practical and affordable, we wish to take bicycling global as the preferred mode of transportation for more people in urban areas. Our mission is simple: More miles on bikes.\nLearn more on <a href=\"https://mate.bike/\" target=\"_blank\"> Mate.bike</a>\n",
       "item3-title": "Affordable, fun, and awesome",
       "optional": "1) Optional throttle upgrade. Price available on request. <br> 2) Standard limited maximum speed. Unlocking the max speed requires the color display <br> 3) Optional upgrade to a 48V 17.5 AmpH battery. Price available on request <br>"
+    },
+    "sushibikes": {
+      "title": "JOKO MAKES SUSHI: how new e-bikes make green mobility affordable in cities",
+      "description": " <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">SUSHI Bikes</a> developed an e-bike that, at a price of 999 Euro, costs less than half of the average price of an electric bicycle. It surprises at every turn of the pedal with the pure design of a single-speed bike, quality, and lightness. How that's related to the Japanese specialty? \n\nOne thing rolls the other are rolls. So who doesn't immediately connect e-bikes with SUSHI? SUSHI Bikes – this is how we roll.",
+      "item1-title": "Mobile battery technology",
+      "item1-description": "Small and handy, and hardly visible. The SUSHI battery, made by Samsung, could be mistaken for a drinking bottle. And it can be removed just as easily and used as a power bank. Or simply recharge it in the office or at university.",
+      "item2-title": "Not a single gram too much",
+      "item2-description": "While normal e-bikes often weigh more than 25 kg, Sushi bikes don't have a single gram of fat and aren't heavier than normal bikes without drive. You'll feel it while riding, handling or carrying the bike. Easy as that!\n",
+      "item3-title": "Perfectly synchronized components",
+      "item3-description": "Engine or battery, frame or attachments, saddle, handlebar, and pedals – Sushi Bikes put a lot of thought into every component and optimally synchronized them. For more riding pleasure, comfort and reliability. ",
+      "find-out-more": "Rent and test your Sushi bike today!",
+      "optional": "",
+      "meta-title": "Rent and test your Sushi bike today! Only available on listnride!\n",
+      "meta-description": "Test the Sushi bike today! The wonderful and affordable e-bike can only be rented through listnride in Berlin, Hamburg, and Vienna!\n",
+      "order-online": "By the way: every Sushi bike comes with lights (conform to the StVO and rechargeable via USB), reflectors, and a chain guard. This way you're directly equipped for the urban traffic.\nLearn more at <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
       "item2-description": "Organic design with<br>\nhigh recognition value<br>\nand an elastic rear triangle<br>\nfor more driving comfort"
@@ -572,6 +615,10 @@
       "ampler": {
         "meta-title": "E-Bike Test Ride Program",
         "meta-descr": "Test ride an e-bike today! The ebikes from Ampler are available on listnride. Rent one in Amsterdam, Berlin, Düsseldorf,  Munich or Zurich."
+      },
+      "matebikes": {
+        "meta-title": "Rent and test ride the Mate bike, the coolest foldable electric bike! Available only on listnride!",
+        "meta-description": "Test ride the Mate bike today! The fun, affordable, and foldable e-bike is available for hire, only on listnride, in the cities of Berlin, Cologne, Hamburg and Munich! "
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -734,7 +781,7 @@
       "login-facebook": "Log in with Facebook",
       "already-member": "Already a member?",
       "register": "Register",
-      "not-member": "No member yet?"
+      "not-member": "Not a member yet?"
     },
     "details": {
       "tab": "Personal Details",
@@ -756,7 +803,7 @@
       "current-method": "Current payment method",
       "getting-saved": "Your payment details are being saved",
       "select-method": "Select your Payment Method",
-      "subtitle": "Please select your favorite payment method. We only charge you after the lister accepted your request.",
+      "subtitle": "Please select your preferred payment method. We only charge you after the lister accepted your request.",
       "credit-card": "Credit Card",
       "card-name": "Name on Card",
       "invalid-name": "Please provide valid name",
@@ -780,7 +827,6 @@
       },
       "model": "Model",
       "bike-rental": "Your bike rental",
-      "size": "Size",
       "location": "Location",
       "invoice-address": "Invoice Address",
       "premium-insurance": "Premium insurance",

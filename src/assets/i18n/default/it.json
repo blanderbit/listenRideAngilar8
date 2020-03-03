@@ -1,6 +1,7 @@
 {
   "shared": {
     "learn-more": "Per saperne di più",
+    "size": "Taglia",
     "img-alt": "Noleggio {{bikeBrand}} {{bikeName}} a {{bikeCity}}",
     "request": "Richiesta",
     "non-availability-type": "Tipo di indisponibilità ",
@@ -297,6 +298,13 @@
       "meta-title": "Noleggia una bici da corsa per Il Gent-Wevelgem Sportive | listnride",
       "meta-description": "Noleggia una bici da corsa di ottima qualità per il Gent-Wevelgem Sportive\" con listnride. Le biciclette saranno pronte alla linea du partenza. Esplora le colline belghe con la nostra fantastica selezione di biciclette da corsa!"
     },
+    "giro-sicilia": {
+      "description": "Cosa: <b0>Giro della Sicilia</b0> | Dove: <b1>Noto, Sicilia</b1> | Quando: <b2>25 Aprile - 1 Maggio</b2>",
+      "text": "<p>Il <a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Giro della Sicilia</a> è l´occasione perfetta per scoprire le meraviglie storiche e naturali della Sicilia! Lasciati soprendere dai colori e dai sapori della Sicilia durante le 5 tappe della gara. Il Prologo si terrà nel Velodromo di Noto, mentre le altre 5 tappe si sposteranno verso l´interno dell´isola, dove potrai scoprire delle incredibili montagne!</p>\n\nPrologo: 2,96 km nel Velodromo di Noto<br>\n1ª tappa: 137 km<br>\n2ª tappa: 131 km<br>\n3ª tappa: 131 km<br>\n4ª tappa: 133 km<br> \n5ª tappa: 34 km di prova cronometrata individuale \n\n<p>Risparmia tempo, problemi e denaro e noleggia una bicicletta di alta gamma. Le biciclette saranno pronte direttamente alla linea di partenza a Noto. Tutto quello che devi portare sono le tue luci, il casco, i pedali e naturalmente: tu e il tuo entusiasmo!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Noleggi di gruppo disponibili qui</a>",
+      "meta-title": "Noleggia una bicicletta da corsa di alta gamma per il Giro della Sicilia | listnride ",
+      "meta-description": "Noleggia online una bicicletta da corsa per il Giro della Sicilia. Scegli la bicicletta che meglio si adatta alle tue esigenze!",
+      "title": "Noleggia una bicicletta da corsa di alta gamma per il Giro della Sicilia"
+    },
     "msr": {
       "meta-title": "Rent a road bike for MSR 2020 | listnride",
       "meta-description": "Noleggia una bici da corsa online con listnride per il Mecklenburger Seerunde 2020. Scegli la bici perfetta che meglio si adatta alle tue esigenze. "
@@ -365,8 +373,8 @@
       "meta-description": "L'obiettivo di Epic Gran Canaria è di offrire un'esperienza professionale a ciclisti amatoriali"
     },
     "velorace-dresden": {
-      "meta-title": "Rent a road bike for Velorace Dresden 2019 | listnride",
-      "meta-description": "With listnride you can securely rent a road bike online for Velorace Dresden 2019. Choose the perfect bike that fits your needs!"
+      "meta-title": "Rent a road bike for Škoda Velorace Dresden 2020 | listnride",
+      "meta-description": "With listnride you can securely rent a road bike online for Škoda Velorace Dresden 2020. Choose the perfect bike that fits your needs!"
     },
     "berlin-triathlon-xl": {
       "meta-description": "Noleggia una bici da corsa online in sicurezza con listnride per il Triathlon di Berlino 2020. Scegli la bici perfetta per te!",
@@ -420,6 +428,9 @@
       "order-online": "Vogliamo produrre le migliori e-bike, che si adattino ad ogni ciclista, situazione e tipo di viaggio. Creando e-bikes esteticamente belle, sexy, pratiche ed economiche, vogliamo fare in modo che la bicicletta diventi il mezzo di trasporto preferito a livello mondiale per un numero sempre maggiore di persone che vivono nelle aree urbane. La nostra missione è semplice: più chilometri con le nostre biciclette. Scopri di più su <a href=\"https://mate.bike/\" target=\"_blank\">Mate.bike</a>",
       "item3-title": "Economiche, divertenti e fantastiche",
       "optional": "1) Possibilità di aumentare la potenza di accelerazione. Prezzo disponibile su richiesta. <br>2) Limite di velocità standard. Per sbloccare la velocità massima c´è bisogno del display a colori. <br>3) Possibiltà di avere una una batteria di 48v 17,5 AmpH. Prezzo disponibile su richiesta<br>"
+    },
+    "sushibikes": {
+      "title": "title\n"
     },
     "urwahn": {
       "item2-description": "Organic design with<br>\nhigh recognition value<br>\nand an elastic rear triangle<br>\nfor more driving comfort"
@@ -569,6 +580,10 @@
       "ampler": {
         "meta-title": "E-Bike Test ",
         "meta-descr": "Prova a guidare una e-bike oggi! Le ebikes di Ampler sono disponibili su listnride. Noleggiane una a Amsterdam, Berlino, Düsseldorf, Monaco o Zurigo."
+      },
+      "matebikes": {
+        "meta-title": "Noleggia e prova le biciclette Mate, le più belle biciclette elettriche piegabili! Disponibili solo su listnride!",
+        "meta-description": "Prova le biciclette Mate! Le divertenti, economiche e pieghevoli biciclette elettrich sono disponibili al noleggio, solo su listnride nelle città di Berlino, Colonia, Amburgo e Monaco di Baviera!"
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -775,7 +790,6 @@
       },
       "model": "Modello",
       "bike-rental": "La bici selzionata",
-      "size": "Taglia",
       "location": "Località",
       "invoice-address": "Indirizzo di fatturazione",
       "premium-insurance": "Assicurazione Premium",
@@ -1232,7 +1246,7 @@
   },
   "calendar": {
     "invalid-date": "Le date non sono valide",
-    "rent-bike": "Prenota ora",
+    "rent-bike": "Pronota ora ",
     "ability-to-pick-half-day": "Puoi prenotare questa bici per mezza giornata. <br>\nSi prega di selezionare la fascia oraria:",
     "status-closed": "chiuso",
     "status-in-past": "nel passato",

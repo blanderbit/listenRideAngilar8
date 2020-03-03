@@ -1,7 +1,11 @@
 {
   "shared": {
     "learn-more": "Meer info",
+    "size": "Grootte",
     "img-alt": "{{bikeBrand}} {{bikeName}} fietsverhuur {{bikeCity}}",
+    "bike_location": "Locatie van de fiets",
+    "cancellations": "Annuleringen",
+    "multiple_sizes": "Meerdere maten beschikbaar",
     "request": "Request",
     "non-availability-type": "Klassificering",
     "event": "Event",
@@ -203,6 +207,16 @@
   "invoice": {
     "settlement_history": "Geschiedenis van nederzetting "
   },
+  "bike_page": {
+    "location": {
+      "disclaimer": "Exacte locatie-informatie wordt verstrekt nadat een boeking is bevestigd."
+    },
+    "cancellations": {
+      "disclaimer": "Volledige terugbetaling, minus de servicekosten, tot 5 dagen voor aanvang van de huur. Bij annulering minder dan vijf volle dagen voor de aanvangsdatum van de boeking, maar ten minste één dag voor de aanvangsdatum van de gebruiksperiode, krijgt u 50% van de huursom terug. Voor annuleringen die minder dan 24 uur voor aanvang van de huurperiode plaatsvinden, ontvangt u 50% restitutie, verminderd met de eerste dag en de servicekosten.",
+      "read_more": "Lees meer over onze annuleringsvoorwaarden."
+    },
+    "add_dates_btn": "Voeg datums toe"
+  },
   "request": {
     "payment-failed": "Oops.. Helaas is je betaling mislukt. Check nog eens de gegevens die je hebt ingevoerd alsook de betalingsinstellingen bij je betalingsprovider!",
     "waiting_for_capture": "Bedankt voor je boekingsaanvraag! De betaling wordt momenteel verwerkt. Je ontvangt een e-mail, zodra deze is bevestigd.",
@@ -290,6 +304,13 @@
       "meta-title": "Racefiets huren voor de Gent-Wevelgem Cyclo | listnride",
       "meta-description": "Huur een high-end racefiets voor de Gent-Wevelgem Cyclo met listnride! De uitstekend gespecificeerde fietsen staan voor je klaar aan de startlijn. Verken de Belgische heuvels met onze fantastische selectie huurfietsen!"
     },
+    "giro-sicilia": {
+      "description": "Wat: <b0>Giro della Sicilia</b0> | Waar:<b1>Noto, Sicilië</b1> | Wanneer: <b2>25 april - 1 mei 2020</b2>",
+      "text": "<p><a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">De Giro della Sicilia</a> is de perfecte bestemming om de historische en natuurlijke schatten van Sicilië te ontdekken! Laat u verrassen door de kleuren en smaken tijdens deze 5-fasenwedstrijd. De Proloog wordt een 3 km lange race op de Noto Velodrome, terwijl de 5 etappes meer landinwaarts gaan, over ongelofelijke bergen!</p>\n\nProloog: 2,96 km op de Noto Velodrome<br>\nFase 1: 137km<br>\nFase 2: 131km<br>\nFase 3: 131km<br>\nFase 4: 133km<br>\nFase 5: 34 km individuele tijdrit\n\n<p>Bespaar jezelf tijd, moeite en geld door simpelweg de perfecte fiets te huren. Ze zullen klaar zijn bij de startlijn in Noto. Het enige wat je hoeft mee te nemen is je setje lichten, helm, pedalen, en natuurlijk: jij en je gretigheid!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Groepsreserveringen zijn hier beschikbaar!</a>",
+      "meta-title": "Huur een racefiets voor de Giro Sardegna | listnride",
+      "meta-description": "Huur online een racefiets voor de Giro della Sicilia. Kies de fiets die bij u past!",
+      "title": "Huur een hoogwaardige  racefiets voor Giro della Sicilia "
+    },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
       "meta-description": "Rent a road bike online easy and secure with listnride for the Mecklenburger Seenrunde 2020. Choose the perfect bike that fits your needs."
@@ -358,8 +379,8 @@
       "meta-description": "The aim of the Epic Gran Canaria is to deliver a professional experience on bike for amateur riders"
     },
     "velorace-dresden": {
-      "meta-title": "Rent a road bike for Velorace Dresden 2019 | listnride",
-      "meta-description": "With listnride you can securely rent a road bike online for Velorace Dresden 2019. Choose the perfect bike that fits your needs!"
+      "meta-title": "Rent a road bike for Škoda Velorace Dresden 2020 | listnride",
+      "meta-description": "With listnride you can securely rent a road bike online for Škoda Velorace Dresden 2020. Choose the perfect bike that fits your needs!"
     },
     "berlin-triathlon-xl": {
       "meta-description": "Huur een racefiets online gemakkelijk en veilig met listnride voor de Berlin Triathlon 2020. Kies de perfecte fiets die bij je past!",
@@ -413,6 +434,20 @@
       "order-online": "We willen de beste en coolste eBikes maken voor elke rijder, elke reis en elke situatie. Door het maken van coole, sexy, praktische en betaalbaare eBikes, willen wij fietsen wereldwijd als de voorkeurswijze voor transport voor meer mensen in stedelijke gebieden, mogelijk maken. Onze missie is eenvoudig: Meer kilometers op de fiets. Meer informatie op <a href=\"https://mate.bike/\" target=\"_blank\">mate.bike.</a>",
       "item3-title": "Betaalbaar, leuk en geweldig...",
       "optional": "1) Optionele gasklepupgrade. Prijs op aanvraag. <br> 2) Standaard beperkte maximum snelheid. Voor het deblokkeren van de maximum snelheid is het kleurendisplay <br> 3) nodig. Optionele upgrade naar een 48V 17,5 AmpH batterij. Prijs op aanvraag <br>"
+    },
+    "sushibikes": {
+      "title": "JOKO MAKES SUSHI: hoe nieuwe e-bikes groene mobiliteit betaalbaar maken in steden",
+      "description": "<a href=\"https://www.sushi-bikes.com\" target=\"_blank\">SUSHI Bikes</a> heeft een e-bike ontwikkeld tegen een prijs van 999 euro, de helft minder dan de gemiddelde prijs van een elektrische fiets. Elke trap op het pedaal verrast door het pure ontwerp van een single-speed fiets, kwaliteit en lichtheid. Wat heeft dat te maken met de Japanse specialiteit? \n\nOne thing rolls the other are rolls. Dus wie verbindt niet meteen e-bikes met SUSHI? SUSHI Bikes - this is how we roll.",
+      "item1-title": "Mobiele batterij technologie",
+      "item1-description": "Klein, handig, en nauwelijks zichtbaar. De SUSHI batterij, gemaakt door Samsung, kan worden verward met een drinkfles. En het kan net zo gemakkelijk verwijderd worden en gebruikt worden als een elektriciteitsbank. Laden doe je eenvoudig op kantoor of op school. ",
+      "item2-title": "Geen gram te veel",
+      "item2-description": "Terwijl normale e-bikes vaak meer dan 25 kg wegen, hebben Sushi-fietsen geen grammetje vet teveel en zijn ze niet zwaarder dan normale fietsen zonder aandrijving. Je zal het voelen tijdens het rijden, het besturen of het dragen van de motor. Zo makkelijk is het!\n",
+      "item3-title": "Perfect gesynchroniseerde componenten",
+      "item3-description": "Motor of accu, frame of opzetstukken, zadel, stuur en pedalen - Sushi Bikes hebben aan elk onderdeel gedacht en deze optimaal gesynchroniseerd. Voor meer rijplezier, comfort en betrouwbaarheid ",
+      "find-out-more": "Huur en test de Sushi fiets vandaag nog!",
+      "meta-title": "Huur en test de Sushi fiets vandaag nog! Alleen beschikbaar op listnride!\n",
+      "meta-description": "Test de Sushi fiets vandaag! De prachtige en betaalbare e-bike is alleen te huur via listnride in Berlijn, Hamburg en Wenen!\n",
+      "order-online": "Overigens: elke Sushi-fiets wordt geleverd met verlichting (conform StVO en oplaadbaar via USB), reflectoren en een kettingbeschermer. Op deze manier bent u direct toegerust voor het stadsverkeer.\nMeer informatie op <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
       "item2-description": "Organic design with<br>\nhigh recognition value<br>\nand an elastic rear triangle<br>\nfor more driving comfort"
@@ -562,6 +597,10 @@
       "ampler": {
         "meta-title": "E-Bike Test Ride Program",
         "meta-descr": "Test een elektrische fiets vandaag! De elektrische fietsen van Ampler zijn nu direkt beschikbaar op listnride. Huur er één in Amsterdam, Berlijn, Düsseldorf, München of Zürich."
+      },
+      "matebikes": {
+        "meta-title": "Huur en testrit met de Mate fiets, de coolste opvouwbare elektrische fiets! Alleen beschikbaar op listnride!\n",
+        "meta-description": "Maak vandaag nog een testrit met de Mate bike! De leuke, betaalbare en opvouwbare e-bike is te huur, alleen op listnride, in de steden Berlijn, Keulen, Hamburg en München! "
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -770,7 +809,6 @@
       },
       "model": "Model",
       "bike-rental": "Je gekozen fiets",
-      "size": "Grootte",
       "location": "Locatie",
       "invoice-address": "Factuuradres",
       "premium-insurance": "Premium insurance",

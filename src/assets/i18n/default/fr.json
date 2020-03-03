@@ -1,7 +1,11 @@
 {
   "shared": {
     "learn-more": "En savoir plus",
+    "size": "Taille",
     "img-alt": "Location vélo {{bikeBrand}} {{bikeName}} à {{bikeCity}}",
+    "bike_location": "Localisation des vélos",
+    "cancellations": "Annulations",
+    "multiple_sizes": "Plusieurs tailles disponibles",
     "request": "Demande",
     "non-availability-type": "Type d'indisponibilité",
     "event": "Evénement",
@@ -208,6 +212,16 @@
   "invoice": {
     "settlement_history": "Settlement History"
   },
+  "bike_page": {
+    "location": {
+      "disclaimer": "Les informations sur le lieu exact sont fournies après confirmation de la réservation."
+    },
+    "cancellations": {
+      "disclaimer": "Remboursement intégral, moins les frais de service, jusqu'à 5 jours avant le début de la location. Pour les annulations effectuées moins de cinq jours complets avant la date de début de la réservation, mais au moins un jour avant celle-ci, vous serez remboursé de 50 % du montant de la location. Pour les annulations effectuées moins de 24 heures avant le début de la location, vous recevrez un remboursement de 50 %, moins le premier jour et les frais de service.",
+      "read_more": "En savoir plus sur notre politique d'annulation."
+    },
+    "add_dates_btn": "Ajouter des dates"
+  },
   "request": {
     "payment-failed": "Uh-oh. Malheureusement, votre paiement a échoué. Veuillez vérifier les données que vous avez saisies, ainsi que les paramètres de paiement de votre fournisseur de paiement !",
     "waiting_for_capture": "Merci pour votre demande de réservation! Le paiement est en cours de traitement, vous recevrez un email lors de sa confirmation.",
@@ -295,6 +309,13 @@
       "meta-title": "Location vélo de route pour la Gent-Wevelgem Cyclo | listnride",
       "meta-description": "Louez un vélo de course haut de gamme pour le Gent-Wevelgem sportive avec listnride! Les vélos bien spécifiés seront prêts pour vous sur la ligne de départ. Explorez les collines belges avec notre fantastique sélection de vélos de location!"
     },
+    "giro-sicilia": {
+      "description": "Quoi : <b0>Giro della Sicillia</b0> | Où : <b1>Noto, Sicily</b1> | Quand : <b2>25 Avril - 1er Mai 2020</b2>",
+      "text": "<p><a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Le Giro della Sicilia</a> est la destination idéale pour découvrir les trésors historiques et naturels de la Sicile ! Laissez-vous surprendre par les couleurs et les goûts de cette course en 5 étapes. Le prologue sera une course de 3 km sur le vélodrome de Noto, tandis que les 5 étapes seront plus à l'intérieur des terres, dans des  paysages de montagnes à couper le souffle !</p>\n\nPrologue : 2,96km sur le vélodrome de Noto<br>\nÉtape 1 : 137km<br>\nÉtape 2 : 131 km<br>\nÉtape 3 : 131 km<br>\nÉtape 4 : 133km<br>\nÉtape 5 : Contre-la-montre individuel de 34 km\n\n<p>Économisez du temps, des ennuis et de l'argent en louant simplement le vélo qu'il vous faut. Ils seront prêts à partir près de la ligne de départ à Noto. Vous n'avez plus qu'à apporter votre jeu de lumières, votre casque, vos pédales, et bien sûr votre rage de vaincre !</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Réservations de groupe disponibles ici</a>",
+      "meta-title": "Louez le vélo de route qu'il vous faut pour le Giro della Sicilia | listnride",
+      "meta-description": "Louez un vélo de route en ligne pour le Giro della Sicilia. Choisissez le vélo qui correspond à vos besoins !",
+      "title": "Louez un vélo de route haut de gamme pour le Giro della Sicilia "
+    },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
       "meta-description": "Rent a road bike online easy and secure with listnride for the Mecklenburger Seenrunde 2020. Choose the perfect bike that fits your needs."
@@ -363,8 +384,8 @@
       "meta-description": "L’Epic Gran Canaria a pour objectif de fournir aux cyclistes amateurs une expérience professionnelle à vélo"
     },
     "velorace-dresden": {
-      "meta-title": "Location de vélo de route pour la Velorace de Dresden 2019 | listnride",
-      "meta-description": "Avec listnride, vous pouvez louer un vélo de route en ligne en toute sécurité pour la Velorace de Dresden 2019. Choisissez le vélo parfait qui correspond à vos besoins!"
+      "meta-title": "Location de vélo de route pour la Škoda Velorace de Dresden 2020 | listnride",
+      "meta-description": "Avec listnride, vous pouvez louer un vélo de route en ligne en toute sécurité pour la Škoda Velorace de Dresden 2020. Choisissez le vélo parfait qui correspond à vos besoins!"
     },
     "berlin-triathlon-xl": {
       "meta-description": "Louez un vélo de route en ligne facilement et en toute sécurité avec listnride pour le Triathlon de Berlin 2020. Choisissez le vélo parfait qui vous convient le mieux!",
@@ -418,6 +439,20 @@
       "order-online": "Nous voulons fabriquer les meilleurs et les plus cool des eBikes pour tous les cyclistes, tous les voyages et toutes les situations. En rendant les eBikes cool, sexy, pratiques et abordables, nous souhaitons faire du vélo le moyen de transport préféré de bon nombre de personnes en ville. Notre mission est simple : Plus de kilomètres à vélo. En savoir plus sur <a href=\"https://mate.bike/\" target=\"_blank\">mate.bike</a> ",
       "item3-title": "Abordable, sympa et génial",
       "optional": "1) Mise à niveau facultative de l'accélérateur. Prix disponible sur demande. <br>2) Vitesse maximale standard limitée. Le déblocage de la vitesse maximale nécessite l'affichage couleur <br>3) Mise à niveau optionnelle vers une batterie 48V 17,5 AmpH. Prix disponible sur demande <br>"
+    },
+    "sushibikes": {
+      "title": "JOKO MAKES SUSHI : comment les nouveaux vélos électriques rendent la mobilité verte abordable dans les villes",
+      "description": "<a href=\"https://www.sushi-bikes.com\" target=\"_blank\">SUSHI Bikes</a> a développé un vélo électrique au prix imbattable de 999 euros, ce qui représente la moitié du prix moyen d'un vélo électrique. Il surprend à chaque tour de pédale avec le design pur d'un vélo à une vitesse léger et de qualité. Quel est le lien avec la spécialité japonaise ? \n\nUne chose roule, les autres sont des rouleaux. Si vous n'avez toujours pas fait le lien. Les vélos SUSHI - c'est comme ça qu'on roule.",
+      "item1-title": "Technologie des batteries mobiles",
+      "item1-description": "Petite, pratique et à peine visible. La batterie SUSHI, fabriquée par Samsung, pourrait être confondue avec une gourde. Elle peut être retirée aussi facilement et utilisée comme une source d'énergie. Vous pouvez sinon simplement la recharger au bureau ou à la fac.",
+      "item2-title": "Pas un seul gramme de trop ",
+      "item2-description": "Alors que les vélos électriques normaux pèsent souvent plus de 25 kg, les vélos Sushi n'ont pas un seul gramme en trop et ne sont pas plus lourds que les vélos classiques sans moteur. Vous le ressentirez en conduisant, mais surtout en transportant le vélo. \n",
+      "item3-title": "Des composants parfaitement synchronisés",
+      "item3-description": "Que ce soit pour le moteur, la batterie, le cadre ou les accessoires, selle, guidon et pédales - Sushi Bikes a élaboré ses vélos de façon à ce que tous les éléments soient synchronisés entre eux et optimisés. Cela pour plus de plaisir de conduite, de confort et de fiabilité.",
+      "find-out-more": "Louez et testez votre Sushi bike dès aujourd'hui !",
+      "meta-title": "Louez et testez votre Sushi bike dès aujourd'hui ! Disponible uniquement sur listnride !\n",
+      "meta-description": "Testez le Sushi bike aujourd'hui ! Le vélo électrique le plus abordable ne peut être loué que via listnride à Berlin, Hambourg et Vienne !\n",
+      "order-online": "Au fait, chaque Sushi bike est livré avec des feux (conformes à la StVO et rechargeables via USB), des réflecteurs et un garde-chaîne. De cette façon, vous êtes directement équipé pour la circulation urbaine.\nPour en savoir plus <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
       "item2-description": "Conception organique avec <br>\nvaleur de reconnaissance élevée <br>\net un triangle arrière élastique <br>\npour plus de confort de conduite"
@@ -567,6 +602,10 @@
       "ampler": {
         "meta-title": "Programme de test de vélo électrique",
         "meta-descr": "Testez un vélo électrique aujourd'hui! Les vélos électriques de Ampler sont disponibles sur listnride. Louez-en un à Amsterdam, Berlin, Düsseldorf, Munich ou Zurich."
+      },
+      "matebikes": {
+        "meta-title": "Louez et essayez les Mate Bike ; les vélos pliants électriques les plus cools ! Disponibles seulement sur listnride!",
+        "meta-description": "Essayez les Mate Bike aujourd'hui ! Les vélos électriques pliants et fun sont disponibles seulement sur listnride dans les villes de Berlin, Cologne, Hambourg et Munich!"
       },
       "rossignol": {
         "meta-title": "Louer et tester des vélos Rossignol. Les vélos Rossignol sont disponibles à la location sur listnride.",
@@ -775,7 +814,6 @@
       },
       "model": "Modèle",
       "bike-rental": "Votre location de vélo",
-      "size": "Taille",
       "location": "Emplacement",
       "invoice-address": "Adresse de facturation",
       "premium-insurance": "Assurance Premium",
