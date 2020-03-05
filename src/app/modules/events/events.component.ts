@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {SeoEventResponse} from '@models/seo/seo-requests';
-import {ApiSeoService} from '@api/api-seo/api-seo.service';
+import {ApiEventsService, Event} from '@api/api-events';
 
 @Component({
   selector: 'lnr-events',
@@ -9,12 +8,12 @@ import {ApiSeoService} from '@api/api-seo/api-seo.service';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  events$: Observable<Array<SeoEventResponse>>;
+  events$: Observable<Array<Event>>;
 
-  constructor(private apiSeoService: ApiSeoService) {
+  constructor(private apiEventsService: ApiEventsService) {
   }
 
   ngOnInit() {
-    this.events$ = this.apiSeoService.getEvents();
+    this.events$ = this.apiEventsService.getAllEvents();
   }
 }

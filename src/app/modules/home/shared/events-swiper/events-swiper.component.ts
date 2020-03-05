@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ApiSeoService} from '@api/api-seo/api-seo.service';
 import Swiper from 'swiper';
 import {Observable} from 'rxjs';
-import {SeoEventResponse} from '@models/seo/seo-requests';
+import {ApiEventsService, Event} from '@api/api-events';
 
 @Component({
   selector: 'lnr-events-swiper',
@@ -10,7 +9,7 @@ import {SeoEventResponse} from '@models/seo/seo-requests';
   styleUrls: ['./events-swiper.component.scss']
 })
 export class EventsSwiperComponent implements OnInit, AfterViewInit {
-  events$: Observable<Array<SeoEventResponse>>;
+  events$: Observable<Array<Event>>;
   public eventSwiper;
 
   swiperConfig() {
@@ -34,11 +33,11 @@ export class EventsSwiperComponent implements OnInit, AfterViewInit {
 
   }
 
-  constructor(private apiSeoService: ApiSeoService) {
+  constructor(private apiEventsService: ApiEventsService) {
   }
 
   ngOnInit() {
-    this.events$ = this.apiSeoService.getEvents();
+    this.events$ = this.apiEventsService.getAllEvents();
   }
 
   ngAfterViewInit() {

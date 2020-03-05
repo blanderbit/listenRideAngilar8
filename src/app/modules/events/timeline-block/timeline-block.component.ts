@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SeoEvent} from '@models/seo/seo-requests';
+import {SeoEvent} from '@api/api-events/types';
 
 @Component({
   selector: 'lnr-timeline-block',

@@ -1,20 +1,3 @@
-export interface SeoEventResponse {
-  past_events: SeoEvent[];
-  future_events: SeoEvent[];
-}
-
-export interface SeoEvent {
-  id: number;
-  name: string;
-  start_date?: string;
-  end_date?: string;
-  pretty_date?: string;
-  location?: string;
-  title?: string;
-  description?: string;
-  thumb_image?: string;
-}
-
 export interface RecommendedDestinationsRequest {
   id: number;
   name: {

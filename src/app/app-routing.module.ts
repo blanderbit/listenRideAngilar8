@@ -11,6 +11,10 @@ const routes: Routes = [
   {path: 'my-bikes', loadChildren: () => import('./modules/my-bikes').then(m => m.MyBikesModule)},
   {path: 'brands', loadChildren: () => import('./modules/brands').then(m => m.BrandsModule)},
   {path: 'events', loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule)},
+  {
+    path: `events/:${{name}}`,
+    loadChildren: () => import('./modules/event-template/event-template.module').then(m => m.EventTemplateModule)
+  },
   {path: '**', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
 ];
 

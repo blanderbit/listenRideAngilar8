@@ -1,0 +1,69 @@
+@import "../../../../../assets/scss/variables";
+@import "../../../../../assets/scss/utils/mixins";
+
+.welcome-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &_image {
+    z-index: 0;
+    height: 42rem;
+    width: 60%;
+    border-radius: $border-radius;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_content {
+    width: 40%;
+    position: absolute;
+    right: 4rem;
+    z-index: 1;
+    text-align: left;
+
+    &_block {
+      height: auto;
+      background: $white;
+      box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
+      border-radius: $border-radius;
+      padding: 4rem 2rem 8rem 2rem;
+    }
+
+    &_date {
+      padding-left: 6rem;
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+@include if-smaller-than(md) {
+  .welcome-screen {
+    flex-direction: column;
+
+    &_image {
+      width: 100%;
+      height: 22rem;
+    }
+
+    &_content {
+      width: 100%;
+      right: 0;
+      position: relative;
+
+      &_block {
+        box-shadow: none;
+        padding: 4rem 0 8rem 0;
+      }
+
+      &_date {
+        padding-left: 0;
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}

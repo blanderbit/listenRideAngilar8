@@ -53,14 +53,6 @@ export class ApiSeoService {
     return this.httpClient.get(`/featured`);
   }
 
-  getBrands(): Observable<any> {
-    return this.httpClient.get(`/brand_pages`);
-  }
-
-  getEvents(): Observable<any> {
-    return this.httpClient.get(`/events`);
-  }
-
   getTestimonials(): Observable<any> {
     return this.httpClient.get(`/seo_testimonials?page_type=home_page`);
   }
