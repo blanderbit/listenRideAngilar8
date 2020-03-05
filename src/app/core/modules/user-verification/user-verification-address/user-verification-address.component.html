@@ -1,104 +1,44 @@
 <div class="step-content">
-  <h5>What is your address(private)</h5>
 
-  <form [formGroup]="form">
-    <mat-error>
-      <lnr-http-error-message [error]="null"></lnr-http-error-message>
-    </mat-error>
+  <div class="step-content-header">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <mat-google-maps-autocomplete
-          [appearance]="'outline'"
-          (onAutocompleteSelected)="onAutocompleteSelected($event)"
-        >
-        </mat-google-maps-autocomplete>
-      </div>
-    </div>
+    <h3 class="step-title">What is your address <sup>
+      <lnr-view-template-status [value]="'private'"></lnr-view-template-status>
+    </sup></h3>
 
-    <div class="row">
+    <p>By providing your address you will have some another description</p>
 
-      <div class="col-sm-9">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>Street</mat-label>
-          <input formControlName="street"
-                 type="text"
-                 matInput
-                 placeholder="Enter street"
-          >
-          <mat-error *ngIf="form.get('street').touched && form.get('street').errors">
-            <small *ngIf="form.get('street').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
+  </div>
 
-      <div class="col-sm-3">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>Number</mat-label>
-          <input formControlName="number"
-                 type="number"
-                 matInput
-                 placeholder="Enter number"
-          >
-          <mat-error *ngIf="form.get('number').touched && form.get('number').errors">
-            <small *ngIf="form.get('number').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
+  <mat-error class="lnr-text-align-l">
+    <lnr-http-error-message [error]="addressError"></lnr-http-error-message>
+  </mat-error>
 
-    </div>
-
-    <div class="row">
-
-      <div class="col-sm-4">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>Zip Code</mat-label>
-          <input formControlName="zip"
-                 type="number"
-                 matInput
-                 placeholder="Enter zip"
-          >
-          <mat-error *ngIf="form.get('zip').touched && form.get('zip').errors">
-            <small *ngIf="form.get('zip').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-sm-4">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>City</mat-label>
-          <input formControlName="city"
-                 type="text"
-                 matInput
-                 placeholder="Enter city"
-          >
-          <mat-error *ngIf="form.get('city').touched && form.get('city').errors">
-            <small *ngIf="form.get('city').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-sm-4">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>Country</mat-label>
-          <input formControlName="country"
-                 type="text"
-                 matInput
-                 placeholder="Enter country"
-          >
-          <mat-error *ngIf="form.get('country').touched && form.get('country').errors">
-            <small *ngIf="form.get('country').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-    </div>
-
-  </form>
+  <lnr-address (addressReady)="onAddressReady($event)" (addressInvalid)="onAddressInvalid($event)"></lnr-address>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
-    <button mat-button matStepperPrevious>Back</button>
+  <div class="left-side" *ngIf="isDesktop || isTablet">
+    <button mat-button
+            matStepperPrevious
+            class="lnr-btn-back"
+            [hidden]="isItFirstStep">
+      <mat-icon svgIcon="arrow-left"></mat-icon>
+      Back
+    </button>
+  </div>
 
-    <button mat-raised-button matStepperNext>Next</button>
+  <div  class="right-side">
+    <button mat-stroked-button color="primary"
+            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+
+    <button mat-raised-button
+            color="primary"
+            class="lnt-btn-min-width lnr-mrg-l-16"
+            [hidden]="addressSaved"
+            [disabled]="!address"
+            (click)="submit()">Save & {{isItLastStep ? 'complete' : 'proceed'}}
+      <lnr-loader-spinner-small [hidden]="!addressPending"></lnr-loader-spinner-small>
+    </button>
+  </div>
 </div>

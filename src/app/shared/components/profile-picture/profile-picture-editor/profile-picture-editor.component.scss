@@ -1,0 +1,118 @@
+@import "../../../../../assets/scss/variables";
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 220px;
+  height: 60px;
+  border: 1px solid $main-blue;
+  border-radius: 6px;
+  cursor: pointer;
+  color: $main-blue;
+  padding-left: 32px;
+
+  &:hover {
+    border: 2px solid $main-blue;
+
+    &:before, &:after {
+      width: 2px;
+      left: -59%;
+    }
+  }
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 26px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: -58%;
+    margin: auto;
+    background-color: $main-blue;
+  }
+
+  &:after {
+    transform: rotate(90deg);
+  }
+}
+
+.lnr-img-file-upload-cropper {
+
+  .controls {
+    text-align: left;
+
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+
+    @media (max-width: $device-sm) {
+      text-align: center;
+    }
+
+    button {
+      border: none;
+      background: transparent;
+      color: #868686;
+      padding: 0 5px;
+
+      :hover {
+        color: #000000;
+      }
+    }
+  }
+
+  .cropper {
+    display: flex;
+    justify-content: space-between;
+
+    image-cropper {
+      max-width: 50%;
+      max-height: 300px;
+
+      @media (max-width: $device-sm) {
+        max-width: 100%;
+      }
+    }
+
+    .preview {
+      position: relative;
+      width: 100%;
+
+      @media (max-width: $device-sm) {
+        display: none;
+      }
+
+      .image-wrapper {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+      }
+
+      img {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.editor-description{
+  color: #929292;
+}

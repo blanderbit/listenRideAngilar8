@@ -7,5 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 
 export class LoaderSpinnerSmallComponent {
-  @Input() color = '#fff';
+  @Input() color = null;
 }

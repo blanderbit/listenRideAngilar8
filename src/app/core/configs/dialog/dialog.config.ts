@@ -3,9 +3,10 @@ import {MatDialogConfig} from '@angular/material';
 export class DialogConfig extends MatDialogConfig {
   autoFocus = true;
 
-  constructor(width: string = '760px') {
+  constructor(width: string = '760px', data: any = null) {
     super();
     this.width = width;
+    this.data = data;
   }
 
   setDisableClose(): DialogConfig {

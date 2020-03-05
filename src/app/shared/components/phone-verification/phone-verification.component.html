@@ -1,0 +1,19 @@
+<ng-container *ngIf="timeout">
+  <form [formGroup]="form">
+    <ngx-intl-tel-input #phoneInput class="lnr-w-100"
+                        [cssClass]="'phone-input'"
+                        [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="defaultCountry"
+                        [maxLength]="15"
+                        [tooltipField]="TooltipLabel.Name"
+                        [phoneValidation]="true"
+                        [separateDialCode]="true"
+                        name="phone" formControlName="phone_number">
+    </ngx-intl-tel-input>
+  </form>
+</ng-container>

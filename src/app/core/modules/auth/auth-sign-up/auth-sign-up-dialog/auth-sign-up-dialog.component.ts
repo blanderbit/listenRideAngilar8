@@ -7,130 +7,178 @@ import {environment} from '@environment/environment';
 import {Subject} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import * as fromAuth from '../../store/reducers';
-import {SignUpDialogActions} from '@core/modules/auth/store/actions';
+import {AuthActions, SignUpDialogActions} from '@core/modules/auth/store/actions';
 import {takeUntil} from 'rxjs/operators';
+import {SignUpFacebookRequest} from '@models/sign-up/sign-up-facebook-request';
+import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
+import {NavigationEnd, Router} from '@angular/router';
 
-enum TabsEnum {
-  PRIVATE = 'PRIVATE',
-  BUSINESS = 'BUSINESS',
-}
+type TabType = 'private' | 'business';
 
 @Component({
-  selector: 'lnr-auth-sign-up-dialog',
-  templateUrl: './auth-sign-up-dialog.component.html',
-  styleUrls: ['./auth-sign-up-dialog.component.scss']
+    selector: 'lnr-auth-sign-up-dialog',
+    templateUrl: './auth-sign-up-dialog.component.html',
+    styleUrls: ['./auth-sign-up-dialog.component.scss']
 })
 export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
-  private destroyed$ = new Subject();
-  tab = TabsEnum.PRIVATE;
-  TabsEnum = TabsEnum;
-  form: FormGroup;
-  pending$ = this.store.pipe(select(fromAuth.selectSignUpDialogPending));
-  error$ = this.store.pipe(select(fromAuth.selectSignUpDialogError));
-  loginPending$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginPending));
-  loginError$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginError));
-  createBusinessPending$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreatePending));
-  createBusinessError$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreateError));
+    private destroyed$ = new Subject();
+    tabType: TabType = 'private';
+    form: FormGroup;
+    signUpPending$ = this.store.pipe(select(fromAuth.selectSignUpDialogPending));
+    signUpError$ = this.store.pipe(select(fromAuth.selectSignUpDialogError));
 
-  get submitBtnTooltip(): string {
-    return this.userForm.get('terms').invalid ? 'Agree our Terms and Conditions and Privacy policy' : null;
-  }
+    getSocialUserPending = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private reCaptchaV3Service: ReCaptchaV3Service,
-    private store: Store<fromAuth.State>
-  ) {
-  }
+    signUpFacebookPending$ = this.store.pipe(select(fromAuth.selectSignUpFacebookPending));
+    signUpFacebookError$ = this.store.pipe(select(fromAuth.selectSignUpFacebookError));
+    signUpLoginFacebookPending$ = this.store.pipe(select(fromAuth.selectSignUpLoginFacebookPending));
+    signUpLoginFacebookError$ = this.store.pipe(select(fromAuth.selectSignUpLoginFacebookError));
 
-  ngOnInit(): void {
-    this.form = this.getForm();
-    this.pending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
-    this.loginPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
-    this.createBusinessPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
-  }
+    signUpLoginPending$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginPending));
+    signUpLoginError$ = this.store.pipe(select(fromAuth.selectSignUpDialogLoginError));
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
-  }
+    signUpBusinessPending$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreatePending));
+    signUpBusinessError$ = this.store.pipe(select(fromAuth.selectSignUpBusinessCreateError));
 
-  onSave() {
-    if (this.form.invalid) {
-      return;
+    get submitBtnTooltip(): string {
+        return this.userForm.get('terms').invalid ? 'Agree our Terms and Conditions and Privacy policy' : null;
     }
 
-    let signUpRequest: SignUpRequest = {
-      ...this.form.value,
-    };
+    constructor(
+        private fb: FormBuilder,
+        private reCaptchaV3Service: ReCaptchaV3Service,
+        private apiOauthService: ApiOauthService,
+        private store: Store<fromAuth.State>,
+        private router: Router
+    ) {
+    }
 
-    this.reCaptchaV3Service.execute(environment.LNR_API_RECAPTCHA_V3_PUBLIC, 'homepage', (token) => {
-      signUpRequest = this.setReCaptchaToken(signUpRequest, token);
-      signUpRequest = this.setIsShop(signUpRequest);
+    ngOnInit(): void {
+        this.form = this.getForm();
+        this.signUpPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+        this.signUpLoginPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+        this.signUpBusinessPending$.pipe(takeUntil(this.destroyed$)).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+    }
 
-      this.signUp(signUpRequest);
-    });
-  }
+    ngOnDestroy(): void {
+        this.destroyed$.next();
+        this.destroyed$.complete();
+    }
 
-  close() {
-    this.store.dispatch(SignUpDialogActions.close());
-  }
-
-  toggleTab(tab: TabsEnum) {
-    this.tab = tab;
-  }
-
-  get businessForm(): AbstractControl | null {
-    return this.form.get('business');
-  }
-
-  get userForm(): AbstractControl | null {
-    return this.form.get('user');
-  }
-
-  private getForm() {
-    const formControls = {
-      business: this.fb.group(
-        {
-          company_name: ['testCompanyName', Validators.required],
+    onSave() {
+        if ((this.showPrivate && this.userForm.invalid) || (this.showBusiness && (this.userForm.invalid || this.businessForm.invalid))) {
+            return;
         }
-      ),
-      user: this.fb.group(
-        {
-          first_name: ['test', Validators.required],
-          last_name: ['test', Validators.required],
-          email: ['vasiliy.test+1@gmail.com', [Validators.required]],
-          password: ['Test@123', Validators.required],
-          terms: [false, ValidatorsLnr.checkboxRequired],
-          language: ['en']
-        }
-      ),
-      notification_preference: this.fb.group(
-        {
-          newsletter: [false]
-        }
-      ),
-      is_shop: [false],
-      recaptcha_token: [null]
-    };
 
-    return this.fb.group({
-      ...formControls
-    });
-  }
+        let signUpRequest: SignUpRequest = {
+            ...this.form.value,
+        };
 
-  private signUp(signUpRequest: SignUpRequest) {
-    this.store.dispatch(SignUpDialogActions.signUp({signUpRequest}));
-  }
+        this.reCaptchaV3Service.execute(environment.LNR_API_RECAPTCHA_V3_PUBLIC, 'homepage', (token) => {
+            signUpRequest = this.setReCaptchaToken(signUpRequest, token);
+            signUpRequest = this.setIsShop(signUpRequest);
 
-  private setReCaptchaToken(signUpRequest: SignUpRequest, token: string): SignUpRequest {
-    signUpRequest.recaptcha_token = token;
-    return signUpRequest;
-  }
+            this.signUp(signUpRequest);
+        });
+    }
 
-  private setIsShop(signUpRequest: SignUpRequest): SignUpRequest {
-    signUpRequest.is_shop = this.tab === TabsEnum.BUSINESS;
-    return signUpRequest;
-  }
+    close() {
+        this.store.dispatch(SignUpDialogActions.close());
+    }
+
+    signInWithFB(): void {
+        this.getSocialUserPending = true;
+        const signUpRequest: SignUpRequest = {
+            ...this.form.value,
+        };
+
+        this.apiOauthService.loginFacebook()
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe((user) => {
+                if (user && user.authToken) {
+                    this.getSocialUserPending = false;
+                    const signUpFacebookRequest: SignUpFacebookRequest = {
+                        user: {
+                            facebook_access_token: user.authToken
+                        },
+                        is_shop: false,
+                        notification_preference: signUpRequest.notification_preference
+                    };
+                    this.store.dispatch(SignUpDialogActions.signUpFacebook({signUpFacebookRequest}));
+                }
+            }, (error) => {
+                this.getSocialUserPending = false;
+            });
+    }
+
+    toggleTab(tab: TabType) {
+        this.tabType = tab;
+    }
+
+    openLoginDialog() {
+        this.store.dispatch(SignUpDialogActions.close());
+        this.store.dispatch(AuthActions.openLoginDialog());
+    }
+
+    get showPrivate() {
+        return this.tabType === 'private';
+    }
+
+    get showBusiness() {
+        return this.tabType === 'business';
+    }
+
+    get businessForm(): AbstractControl | null {
+        return this.form.get('business');
+    }
+
+    get userForm(): AbstractControl | null {
+        return this.form.get('user');
+    }
+
+    private getForm() {
+        const formControls = {
+            business: this.fb.group(
+                {
+                    company_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                }
+            ),
+            user: this.fb.group(
+                {
+                    first_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                    last_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                    email: ['', [Validators.required, ValidatorsLnr.email]],
+                    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+                    terms: [false, ValidatorsLnr.checkboxRequired],
+                    language: ['en']
+                }
+            ),
+            notification_preference: this.fb.group(
+                {
+                    newsletter: [false]
+                }
+            ),
+            is_shop: [false],
+            recaptcha_token: [null]
+        };
+
+        return this.fb.group({
+            ...formControls
+        });
+    }
+
+    private signUp(signUpRequest: SignUpRequest) {
+        this.store.dispatch(SignUpDialogActions.signUp({signUpRequest}));
+    }
+
+    private setReCaptchaToken(signUpRequest: SignUpRequest, token: string): SignUpRequest {
+        signUpRequest.recaptcha_token = token;
+        return signUpRequest;
+    }
+
+    private setIsShop(signUpRequest: SignUpRequest): SignUpRequest {
+        signUpRequest.is_shop = this.tabType === 'business';
+        return signUpRequest;
+    }
 
 }

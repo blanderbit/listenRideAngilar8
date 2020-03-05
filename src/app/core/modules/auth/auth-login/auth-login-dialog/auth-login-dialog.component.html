@@ -1,17 +1,28 @@
-<div class="lnr-dialog-header lnr-text-align-ctr">
-  <h2 mat-dialog-title>Log in</h2>
+<div class="lnr-dialog-header">
+  <h2 mat-dialog-title class="lnr-text-align-ctr">Log in</h2>
+
+  <mat-error>
+    <lnr-http-error-message
+      [error]="(loginError$ | async) || (loginFacebookError$ | async) || forgotPasswordError"></lnr-http-error-message>
+  </mat-error>
+
   <lnr-button-close (closed)="close()"></lnr-button-close>
+
 </div>
 
 <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" lnrFocusFirstInvalidField>
 
   <mat-dialog-content>
 
-    <mat-error>
-      <lnr-http-error-message [error]="error$ | async"></lnr-http-error-message>
-    </mat-error>
-
-    <lnr-auth-login-facebook-button class="lnr-w-100 lnr-mrg-btm"></lnr-auth-login-facebook-button>
+    <button mat-raised-button
+            type="button"
+            class="lnr-w-100 lnr-mrg-btm lnr-fb-button"
+            color="primary"
+            (click)="signInWithFB()"
+    >Login with Facebook
+      <lnr-loader-spinner-small
+        [hidden]="!socialUserPending && !(loginFacebookPending$ | async)"></lnr-loader-spinner-small>
+    </button>
 
     <lnr-divider class="lnr-mrg-btm" text="or"></lnr-divider>
 
@@ -24,11 +35,11 @@
              lnrAutofocus
       >
       <mat-error *ngIf="form.get('email').touched && form.get('email').errors">
-        <small *ngIf="form.get('email').errors?.required">Email is required</small>
-        <small *ngIf="form.get('email').errors?.wrongMail">Email is wrong</small>
-        <small *ngIf="form.get('email').errors?.noAt">Email need contain "@"</small>
-        <small *ngIf="form.get('email').errors?.noName">Wrong email format</small>
-        <small *ngIf="form.get('email').errors?.wrongDomain">Wrong domain</small>
+        <span *ngIf="form.get('email').errors?.required">Email is required</span>
+        <span *ngIf="form.get('email').errors?.wrongMail">Email is wrong</span>
+        <span *ngIf="form.get('email').errors?.noAt">Email need contain "@"</span>
+        <span *ngIf="form.get('email').errors?.noName">Wrong email format</span>
+        <span *ngIf="form.get('email').errors?.wrongDomain">Wrong domain</span>
       </mat-error>
     </mat-form-field>
 
@@ -39,7 +50,7 @@
              matInput
              placeholder="Password">
       <mat-error *ngIf="form.get('password').touched && form.get('password').errors">
-        <small *ngIf="form.get('password').errors.required">Password is required</small>
+        <span *ngIf="form.get('password').errors.required">Password is required</span>
       </mat-error>
     </mat-form-field>
 
@@ -47,11 +58,14 @@
 
   <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
 
-    <lnr-auth-forgot-password-button></lnr-auth-forgot-password-button>
+    <a (click)="forgotPassword()" [class.disabled]="form.get('email').invalid" [matTooltip]="forgotPasswordTooltip">Forgot
+      password?
+      <lnr-loader-spinner-small [hidden]="!forgotPasswordPending" [color]="'#5FC693'"></lnr-loader-spinner-small>
+    </a>
 
     <button mat-raised-button color="primary" type="submit">
       Log in
-      <lnr-loader-spinner-small *ngIf="pending$ | async"></lnr-loader-spinner-small>
+      <lnr-loader-spinner-small [hidden]="!(loginPending$ | async)"></lnr-loader-spinner-small>
     </button>
 
   </mat-dialog-actions>

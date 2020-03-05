@@ -1,18 +1,35 @@
-<div class="lnr-dialog-header lnr-text-align-ctr">
-  <h2 mat-dialog-title>Sign up</h2>
-  <p *ngIf="tab === TabsEnum.BUSINESS">Please fill form with company contact person information.</p>
+<div class="lnr-dialog-header">
+  <h2 mat-dialog-title class="lnr-text-align-ctr">Sign up</h2>
+
+  <mat-error>
+    <lnr-http-error-message
+      [error]="(signUpError$ | async) ||
+      (signUpLoginError$ | async) ||
+      (signUpBusinessError$ | async) ||
+      (signUpFacebookError$ | async) ||
+      (signUpLoginFacebookError$ | async)"></lnr-http-error-message>
+  </mat-error>
+
   <lnr-button-close (closed)="close()"></lnr-button-close>
+
 </div>
 
 <mat-dialog-content>
 
-  <mat-error>
-    <lnr-http-error-message [error]="(error$ | async) || (loginError$ | async) || (createBusinessError$ | async)"></lnr-http-error-message>
-  </mat-error>
+  <div class="row lnr-mrg-btm">
+    <div class="col-sm-12">
+      <div class="tabs">
+        <div class="buttons-wrap" [ngClass]="tabType">
+          <button mat-button (click)="toggleTab('private')" [ngClass]="{'active': showPrivate}">Private</button>
+          <button mat-button (click)="toggleTab('business')" [ngClass]="{'active': showBusiness}">Business</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSave()" lnrFocusFirstInvalidField>
 
-    <div formGroupName="business" *ngIf="tab === TabsEnum.BUSINESS">
+    <div formGroupName="business" [hidden]="!(tabType === 'business')">
 
       <div class="row">
         <div class="col-sm-12">
@@ -23,7 +40,9 @@
                    matInput
                    placeholder="Enter your company name">
             <mat-error *ngIf="businessForm.get('company_name').touched && businessForm.get('company_name').errors">
-              <small *ngIf="businessForm.get('company_name').errors?.required">Company name is required</small>
+              <span *ngIf="businessForm.get('company_name').errors?.required">Company name is required</span>
+              <span *ngIf="businessForm.get('company_name').errors?.minlength">Min length is 2</span>
+              <span *ngIf="businessForm.get('company_name').errors?.maxlength">Max length is 50</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -43,7 +62,9 @@
                    placeholder="Enter your first name"
                    lnrAutofocus>
             <mat-error *ngIf="userForm.get('first_name').touched && userForm.get('first_name').errors">
-              <small *ngIf="userForm.get('first_name').errors?.required">First name is required</small>
+              <span *ngIf="userForm.get('first_name').errors?.required">First name is required</span>
+              <span *ngIf="userForm.get('first_name').errors?.minlength">Min length is 2</span>
+              <span *ngIf="userForm.get('first_name').errors?.maxlength">Max length is 50</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -56,7 +77,9 @@
                    matInput
                    placeholder="Enter your last name">
             <mat-error *ngIf="userForm.get('last_name').touched && userForm.get('last_name').errors">
-              <small *ngIf="userForm.get('last_name').errors?.required">Last name is required</small>
+              <span *ngIf="userForm.get('last_name').errors?.required">Last name is required</span>
+              <span *ngIf="userForm.get('last_name').errors?.minlength">Min length is 2</span>
+              <span *ngIf="userForm.get('last_name').errors?.maxlength">Max length is 50</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -71,11 +94,15 @@
                    matInput
                    placeholder="Enter your email">
             <mat-error *ngIf="userForm.get('email').touched && userForm.get('email').errors">
-              <small *ngIf="userForm.get('email').errors?.required">Email is required</small>
-              <small *ngIf="userForm.get('email').errors?.wrongMail">Email is wrong</small>
-              <small *ngIf="userForm.get('email').errors?.noAt">Email need contain "@"</small>
-              <small *ngIf="userForm.get('email').errors?.noName">Wrong email format</small>
-              <small *ngIf="userForm.get('email').errors?.wrongDomain">Wrong domain</small>
+              <span *ngIf="userForm.get('email').errors?.required">Email is required</span>
+              <span *ngIf="!userForm.get('email').errors?.required && userForm.get('email').errors?.wrongMail">Email is
+                wrong</span>
+              <span *ngIf="!userForm.get('email').errors?.required && userForm.get('email').errors?.noAt">Email need
+                contain "@"</span>
+              <span *ngIf="!userForm.get('email').errors?.required && userForm.get('email').errors?.noName">Wrong email
+                format</span>
+              <span *ngIf="!userForm.get('email').errors?.required && userForm.get('email').errors?.wrongDomain">Wrong
+                domain</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -87,66 +114,78 @@
                    matInput
                    placeholder="Password">
             <mat-error *ngIf="userForm.get('password').touched && userForm.get('password').errors">
-              <small *ngIf="userForm.get('password').errors.required">Password is required</small>
+              <span *ngIf="userForm.get('password').errors.required">Password is required</span>
+              <span *ngIf="userForm.get('password').errors?.minlength">Min length is 6</span>
+              <span *ngIf="userForm.get('password').errors?.maxlength">Max length is 50</span>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
     </div>
 
-    <lnr-divider class="lnr-mrg-btm" text="Accept our Terms and Conditions*"></lnr-divider>
+    <!--    <lnr-divider class="lnr-mrg-btm-sm" text="Accept our Terms and Conditions" [required]="true"></lnr-divider>-->
 
-    <lnr-checkbox-terms-and-conditions [parentForm]="form"
-                                       [parentFormGroupName]="'user'"
-                                       [parentFormControlName]="'terms'"
-    ></lnr-checkbox-terms-and-conditions>
+    <div class="lnr-checkbox" formGroupName="user">
+      <mat-checkbox formControlName="terms">
+        I hereby agree to the
+        <a target="_blank" rel="noopener noreferrer" [routerLink]="'/terms'">
+          Terms and Conditions
+        </a>
+        and agree to the
+        <a target="_blank" rel="noopener noreferrer" [routerLink]="'/privacy'">
+          Privacy Policy
+        </a>
+        .
+      </mat-checkbox>
+    </div>
+
+    <!--    <lnr-divider class="lnr-mrg-btm-sm" text="Subscribe to newsletter"></lnr-divider>-->
+
+    <div class="lnr-checkbox lnr-mrg-btm" formGroupName="notification_preference">
+      <mat-checkbox formControlName="newsletter">
+        I would like to receive the listnride e-mail newsletter
+      </mat-checkbox>
+    </div>
+
 
     <div [matTooltip]="submitBtnTooltip">
       <button mat-raised-button
               color="primary"
-              class="lnr-w-100 lnr-mrg-btm"
+              class="lnr-w-100 lnr-mrg-btm-sm"
               type="submit"
-              [disabled]="userForm.get('terms').invalid"
+              [disabled]="(showPrivate && userForm.invalid) ||
+              (showBusiness && (userForm.invalid || businessForm.invalid))"
               [matTooltip]="submitBtnTooltip"
       >Sign up
-        <lnr-loader-spinner-small *ngIf="(pending$ | async) || (loginPending$ | async)"></lnr-loader-spinner-small>
+        <lnr-loader-spinner-small
+          [hidden]="!(signUpPending$ | async) &&
+          !(signUpLoginPending$ | async) &&
+          !(signUpBusinessPending$ | async)">
+        </lnr-loader-spinner-small>
       </button>
     </div>
 
-    <lnr-divider class="lnr-mrg-btm" text="or"></lnr-divider>
+    <lnr-divider class="lnr-mrg-btm-sm" text="or" [hidden]="(tabType === 'business')"></lnr-divider>
 
+    <div>
+      <button mat-raised-button
+              type="button"
+              class="lnr-w-100 lnr-mrg-btm lnr-fb-button"
+              color="primary"
+              (click)="signInWithFB()"
+              [hidden]="(tabType === 'business')">Sign up with Facebook
+        <lnr-loader-spinner-small
+          [hidden]="!getSocialUserPending &&
+          !(signUpFacebookPending$ | async) &&
+          !(signUpLoginFacebookPending$ | async)">
+        </lnr-loader-spinner-small>
+      </button>
+    </div>
 
   </form>
-
-  <div [matTooltip]="submitBtnTooltip">
-    <lnr-auth-login-facebook-button class="lnr-w-100 lnr-mrg-btm"
-                                    [disabled]="userForm.get('terms').invalid"
-    ></lnr-auth-login-facebook-button>
-  </div>
-
-  <lnr-divider class="lnr-mrg-btm" text="Subscribe to newsletter"></lnr-divider>
-
-  <lnr-checkbox-subscribe-to-newsletter [parentForm]="form"
-                                        [parentFormGroupName]="'notification_preference'"
-                                        [parentFormControlName]="'newsletter'"
-  ></lnr-checkbox-subscribe-to-newsletter>
 
 </mat-dialog-content>
 
 <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
-
-  <lnr-auth-login-button text="Already signed up?"></lnr-auth-login-button>
-
-  <button mat-raised-button
-          *ngIf="tab === TabsEnum.PRIVATE"
-          (click)="toggleTab(TabsEnum.BUSINESS)">
-    Are you managing a bike shop?
-  </button>
-
-  <button mat-raised-button
-          *ngIf="tab === TabsEnum.BUSINESS"
-          (click)="toggleTab(TabsEnum.PRIVATE)">
-    Private
-  </button>
-
+  <a (click)="openLoginDialog()">Already signed up?</a>
 </mat-dialog-actions>

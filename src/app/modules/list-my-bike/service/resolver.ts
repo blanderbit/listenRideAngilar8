@@ -19,7 +19,7 @@ export class UserResolver implements Resolve<any> {
             first(),
             tap(item => {
                 if (!item || (item && !item.id)) {
-                    this.store.dispatch(AuthActions.headerOpenLoginDialog());
+                    this.store.dispatch(AuthActions.openLoginDialog());
                     this.router.navigate(['/']);
                 }
             }),

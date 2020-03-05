@@ -31,22 +31,22 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.pipe(
-      select(fromAuth.selectAuthGetUserCombine),
-      takeUntil(this.destroyed$),
-      map(([me, user]) => [
-          (me || this.lS_Select('ME')),
-          (user || this.lS_Select('USER'))
-        ]
-      )
-    )
-      .subscribe(([me, user]) => {
-          if (me && user) {
-            this.store.dispatch(UserApiActions.UserDataInitialize({me, user}));
-            this.destroyed();
-          }
-        },
-        (e) => console.log(e));
+    // this.store.pipe(
+    //   select(fromAuth.selectAuthGetUserCombine),
+    //   takeUntil(this.destroyed$),
+    //   map(([me, user]) => [
+    //       (me || this.lS_Select('ME')),
+    //       (user || this.lS_Select('USER'))
+    //     ]
+    //   )
+    // )
+    //   .subscribe(([me, user]) => {
+    //       if (me && user) {
+    //         this.store.dispatch(UserApiActions.UserDataInitialize({me, user}));
+    //         this.destroyed();
+    //       }
+    //     },
+    //     (e) => console.log(e));
 
     this.matIconRegistry.addSvgIcon(
       'lnr-filter',
@@ -61,16 +61,16 @@ export class AppComponent implements OnInit, OnDestroy {
         this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/sort_icon.svg')
       )
       .addSvgIcon(
-      'lnr-bike-cat-1',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_1.svg')
+        'lnr-bike-cat-1',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_1.svg')
       )
       .addSvgIcon(
-      'lnr-bike-cat-2',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_2.svg')
+        'lnr-bike-cat-2',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_2.svg')
       )
       .addSvgIcon(
-      'lnr-bike-cat-3',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_3.svg')
+        'lnr-bike-cat-3',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_3.svg')
       )
       .addSvgIcon(
         'lnr-bike-cat-4',
@@ -110,13 +110,13 @@ export class AppComponent implements OnInit, OnDestroy {
       );
   }
 
-  private lS_Select(type) {
-    try {
-      return JSON.parse(localStorage.getItem(type));
-    } catch (e) {
-      return false;
-    }
-  }
+  // private lS_Select(type) {
+  //   try {
+  //     return JSON.parse(localStorage.getItem(type));
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.destroyed();

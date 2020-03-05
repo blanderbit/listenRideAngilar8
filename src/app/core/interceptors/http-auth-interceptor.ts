@@ -6,6 +6,9 @@ import {TokensEnum} from '@enums/tokens.enum';
 import {OauthRefreshRequest} from '@models/oauth/oauth-refresh-request';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {ErrorHttpEnum} from '@enums/error-http.enum';
+import {AuthActions} from '@auth/store/actions';
+import {Store} from '@ngrx/store';
+import * as fromAuth from '@auth/store/reducers';
 
 @Injectable()
 export class HttpAuthInterceptor implements HttpInterceptor {
@@ -13,7 +16,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
   private tokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private apiOauthService = this.injector.get(ApiOauthService);
 
-  constructor(private injector: Injector) {
+  constructor(private injector: Injector, private storeAuth: Store<fromAuth.State>) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -103,7 +106,8 @@ export class HttpAuthInterceptor implements HttpInterceptor {
   }
 
   private logoutUser(error) {
-    localStorage.clear();
+    this.storeAuth.dispatch(AuthActions.openLoginDialog());
     return observableThrowError(error);
   }
+
 }

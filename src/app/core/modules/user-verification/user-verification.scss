@@ -1,0 +1,72 @@
+@import "../../../../assets/scss/variables";
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  margin-bottom: 14px;
+  color: $dark-text-color;
+
+  @media (max-width: $device-sm) {
+    font-size: 18px;
+  }
+}
+
+::ng-deep .mat-step-icon {
+
+  &.mat-step-icon-state-error {
+    color: $lnr-warn;
+  }
+
+  &.mat-step-icon-state-done{
+    background-color: $lnr-success;
+  }
+
+  .mat-icon {
+    display: flex;
+  }
+}
+
+::ng-deep .mat-step-label {
+  &.mat-step-label-active {
+
+    &.mat-step-label-error {
+      color: $lnr-warn;
+    }
+  }
+}
+
+.step-content {
+  min-height: 300px;
+}
+
+.step-content-header {
+  margin: 0 auto 50px auto;
+
+  @media (max-width: $device-sm) {
+    padding-top: 12px;
+  }
+}
+
+.step-actions {
+  padding-bottom: 5px;
+
+  .right-side{
+    @media (max-width: $device-sm) {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
+
+.icon {
+  width: 68px;
+}
+
+.small-form {
+  width: 360px;
+  margin: 0 auto;
+  @media (max-width: $device-sm) {
+    width: 100%;
+  }
+}
+

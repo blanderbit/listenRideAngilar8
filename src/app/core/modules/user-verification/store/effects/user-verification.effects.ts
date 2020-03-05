@@ -15,7 +15,9 @@ export class UserVerificationEffects {
 
   userVerificationDialogOpen$ = createEffect(() => {
       return this.actions$.pipe(
-        ofType(UserVerificationActions.headerOpenUserVerificationDialog),
+        ofType(
+          UserVerificationActions.headerOpenUserVerificationDialog,
+          UserVerificationActions.openUserVerificationDialogFromListBike),
         exhaustMap(() => {
           const dialogConfig = new DialogConfig();
           const dialogRef = this.dialog.open(UserVerificationDialogComponent, dialogConfig);

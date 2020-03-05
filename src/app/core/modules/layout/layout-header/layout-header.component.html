@@ -35,7 +35,7 @@
           </a>
         </div>
         <div>
-          <lnr-menu [isLoggedIn]="false"></lnr-menu>
+          <lnr-menu [isLoggedIn]="isLoggedIn$ | async"></lnr-menu>
         </div>
       </div>
     </div>

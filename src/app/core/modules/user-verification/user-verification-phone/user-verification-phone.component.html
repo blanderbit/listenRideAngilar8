@@ -1,80 +1,95 @@
 <div class="step-content">
-  <h5>What is your phone number (private)</h5>
 
-  <p>Verify your phone number, so that you can receive SMS notifications for future requests. Simply enter your number
-    and
-    click 'Send Confirmation'. You'll receive a code via SMS that you can then enter below.</p>
+  <div class="step-content-header">
 
-  <form [formGroup]="phoneForm" (ngSubmit)="submitPhone()">
-    <mat-error>
-      <lnr-http-error-message [error]="phoneError"></lnr-http-error-message>
+    <h3 class="step-title" *ngIf="isMobile">Verify your phone<sup>
+      <lnr-view-template-status [value]="'private'"></lnr-view-template-status>
+    </sup></h3>
+
+    <h3 class="step-title" *ngIf="!isMobile">Verify your phone number <sup>
+      <lnr-view-template-status [value]="'private'"></lnr-view-template-status>
+    </sup></h3>
+
+    <p class="lnr-mrg-btm">You can receive SMS notifications for future requests.</p>
+
+  </div>
+
+  <div class="small-form">
+    <mat-error class="lnr-text-align-l">
+      <lnr-http-error-message [error]="phoneError || otpError || resendOtpError"></lnr-http-error-message>
     </mat-error>
 
-    <div class="row lnr-mrg-btm">
+    <ng-container *ngIf="!stepCompleted && !phoneConfirmed">
 
-      <div class="col-sm-8">
-        <ngx-intl-tel-input style="display: block; position: relative" class="lnr-w-100"
-                            [cssClass]="'phone-input'"
-                            [preferredCountries]="preferredCountries"
-                            [enableAutoCountrySelect]="true"
-                            [enablePlaceholder]="true"
-                            [searchCountryFlag]="true"
-                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                            [selectFirstCountry]="false"
-                            [selectedCountryISO]="defaultCountry"
-                            [maxLength]="15"
-                            [tooltipField]="TooltipLabel.Name"
-                            [phoneValidation]="true"
-                            [separateDialCode]="true"
-                            name="phone" formControlName="phone_number">
-        </ngx-intl-tel-input>
-      </div>
+      <lnr-phone-verification (phoneReady)="onPhoneReady($event)"
+                              (phoneInvalid)="onPhoneInvalid($event)"></lnr-phone-verification>
 
-      <div class="col-sm-4">
-        <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="phoneForm.invalid">
-          Send confirmation
-          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
-        </button>
-      </div>
+    </ng-container>
 
-    </div>
+    <ng-container *ngIf="!stepCompleted && phoneConfirmed">
+      <lnr-otp-verification (otpReady)="onOtpReady($event)"
+                            (otpInvalid)="onOtpInvalid($event)"></lnr-otp-verification>
 
-  </form>
+      <p class="lnr-d-flex-center" [hidden]="stepCompleted"><span
+        [hidden]="isMobile">Didn't receive a code to <b>{{phoneControlOutput?.internationalNumber}}</b>?</span> &nbsp;
+      </p>
 
-  <form [formGroup]="codeForm" (ngSubmit)="submitCode()">
-    <mat-error *ngIf="codeError">
-      <lnr-http-error-message [error]="codeError"></lnr-http-error-message>
-    </mat-error>
+      <p class="lnr-d-flex-center">
 
-    <div class="row">
-      <div class="col-sm-8">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>SMS Code</mat-label>
-          <input formControlName="phone_confirmation_code"
-                 type="number"
-                 matInput
-                 placeholder="SMS Code">
-          <mat-error
-            *ngIf="codeForm.get('phone_confirmation_code').touched && codeForm.get('phone_confirmation_code').errors">
-            <small *ngIf="codeForm.get('phone_confirmation_code').errors.required">SMS code is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
+        <a class="lnr-d-flex" [class.disabled]="resendOtpPending" (click)="resendOtp()">Resend SMS
+          <lnr-loader-spinner-small [hidden]="!resendOtpPending"></lnr-loader-spinner-small>
+          <span [hidden]="!resendOtpSuccess || resendOtpPending">(sent)</span>
+        </a>
 
-      <div class="col-sm-4">
-        <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="codeForm.invalid">
-          Confirm code
-          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
-        </button>
-      </div>
-    </div>
+        <span>&nbsp; or &nbsp;</span>
 
-  </form>
+        <a [class.disabled]="false" (click)="changeNumber()">Change number </a>
+
+      </p>
+
+    </ng-container>
+
+    <ng-container *ngIf="stepCompleted">
+
+      <h5>Your phone number is: <b>{{user.phone_number | phone}}</b></h5>
+      <a (click)="changeNumber()">Change number</a>
+
+    </ng-container>
+  </div>
 
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
-  <button mat-button matStepperPrevious>Back</button>
+  <div class="left-side" *ngIf="isDesktop || isTablet">
+    <button mat-button
+            matStepperPrevious
+            class="lnr-btn-back"
+            [hidden]="isItFirstStep">
+      <mat-icon svgIcon="arrow-left"></mat-icon>
+      Back
+    </button>
+  </div>
 
-  <button mat-raised-button matStepperNext>Next</button>
+  <div class="right-side">
+    <button mat-stroked-button color="primary"
+            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+
+    <button mat-raised-button
+            color="primary"
+            class="lnt-btn-min-width lnr-mrg-l-16"
+            [hidden]="phoneConfirmed || stepCompleted"
+            [disabled]="!phoneControlOutput"
+            (click)="requestOtp()">Send confirmation
+      <lnr-loader-spinner-small [hidden]="!phonePending"></lnr-loader-spinner-small>
+    </button>
+
+    <button mat-raised-button
+            color="primary"
+            class="lnt-btn-min-width lnr-mrg-l-16"
+            [hidden]="!phoneConfirmed"
+            [disabled]="!otp"
+            (click)="confirmOtp()">Confirm & {{isItLastStep ? 'complete' : 'proceed'}}
+      <lnr-loader-spinner-small [hidden]="!otpPending"></lnr-loader-spinner-small>
+    </button>
+  </div>
 </div>

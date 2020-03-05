@@ -1,32 +1,51 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {interval, Subject} from 'rxjs';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges
+} from '@angular/core';
+import {Subject} from 'rxjs';
+import {FormBuilder} from '@angular/forms';
 import {ApiUserService} from '@api/api-user/api-user.service';
-import {MatHorizontalStepper} from '@angular/material/stepper';
-import {switchMap, takeUntil} from 'rxjs/operators';
+import {MatHorizontalStepper, MatVerticalStepper} from '@angular/material/stepper';
 import {User} from '@models/user/user';
+import {HttpErrorResponse} from '@angular/common/http';
+import {AuthActions} from '@auth/store/actions';
+import {Store} from '@ngrx/store';
+import * as fromAuth from '@auth/store/reducers';
+import {MatDialogRef} from '@angular/material/dialog';
+import {UserVerificationDialogComponent} from '@user-verification/user-verification-dialog/user-verification-dialog.component';
+import {UserVerificationStep} from '@user-verification/user-verification-step';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'lnr-user-verification-email',
   templateUrl: './user-verification-email.component.html',
-  styleUrls: ['./user-verification-email.component.scss']
+  styleUrls: ['../user-verification.scss', './user-verification-email.component.scss'],
 })
-export class UserVerificationEmailComponent implements OnInit, OnDestroy {
+export class UserVerificationEmailComponent extends UserVerificationStep implements OnDestroy, OnChanges {
   private destroyed$ = new Subject();
-  private emailConfirmed$ = new Subject<boolean>();
-  @Input() stepper: MatHorizontalStepper;
-  user: User;
+  @Input() stepper: MatHorizontalStepper | MatVerticalStepper;
+  @Input() dialogRef: MatDialogRef<UserVerificationDialogComponent>;
+  @Input() isDesktop = true;
+  @Input() isTablet = false;
+  @Input() isMobile = false;
+  @Input() user: User;
   verified = false;
-  form: FormGroup;
+  emailResend = false;
+  emailPending = false;
+  emailError: HttpErrorResponse;
+
+  verificationPending = false;
+  verificationError: HttpErrorResponse;
 
   constructor(private fb: FormBuilder,
-              private apiUserService: ApiUserService) {
-  }
-
-  ngOnInit(): void {
-    this.form = this.getForm();
-
-    this.getUserUntilEmailWillBeConfirmed();
+              private apiUserService: ApiUserService,
+              private store: Store<fromAuth.State>) {
+    super();
   }
 
   ngOnDestroy(): void {
@@ -34,42 +53,44 @@ export class UserVerificationEmailComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  submit() {
-    if (this.form.invalid) {
-      return;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user) {
+      super.stepCompleted = this.user.confirmed_email;
     }
+  }
+
+  resendEmail() {
+    this.emailPending = true;
+    this.emailError = null;
 
     this.apiUserService.emailRequestConfirm()
       .subscribe((res) => {
+        this.emailPending = false;
+        this.emailResend = true;
       }, (error) => {
+        this.emailPending = false;
+        this.emailError = error;
       });
   }
 
-  private getForm() {
-    const formControls = {
-      email: [{value: 'test@test.test', disabled: true}, [Validators.required]],
-    };
+  checkIfAlreadyConfirmed() {
+    this.verificationPending = true;
+    this.verificationError = null;
 
-    return this.fb.group({
-      ...formControls
-    });
+    this.apiUserService.read(this.user.id)
+      .pipe(take(1))
+      .subscribe((user) => {
+        this.verificationPending = false;
+        super.stepCompleted = user.confirmed_email;
+        this.store.dispatch(AuthActions.updateUser({user}));
+        if (user.confirmed_email) {
+          this.nextOrCloseIfLastStep();
+        }
+
+      }, (error) => {
+        this.verificationPending = false;
+        this.verificationError = error;
+      });
   }
 
-  private getUserUntilEmailWillBeConfirmed() {
-    interval(3000).pipe(
-      takeUntil(this.destroyed$),
-      takeUntil(this.emailConfirmed$),
-      switchMap(() => this.apiUserService.read(17282)),
-    ).subscribe((user) => {
-      this.user = user;
-      if (user.confirmed_email) {
-        this.emailConfirmed$.next(true);
-        this.emailConfirmed$.complete();
-        // this.form.disable();
-        // this.verified = true;
-      }
-    }, (error) => {
-
-    });
-  }
 }

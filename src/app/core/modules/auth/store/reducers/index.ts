@@ -2,9 +2,7 @@ import {Action, combineReducers, createFeatureSelector, createSelector} from '@n
 import * as fromAuth from './auth.reducer';
 import * as fromLoginDialog from './login-dialog.reducer';
 import * as fromSignUpDialog from './sign-up-dialog.reducer';
-import * as fromSignUpBusinessDialog from './sign-up-business-dialog.reducer';
 import {TokensEnum} from '@enums/tokens.enum';
-
 
 export const authFeatureKey = 'auth';
 
@@ -12,7 +10,6 @@ export interface AuthState {
   [fromAuth.statusFeatureKey]: fromAuth.State;
   [fromLoginDialog.loginDialogFeatureKey]: fromLoginDialog.State;
   [fromSignUpDialog.signUpDialogFeatureKey]: fromSignUpDialog.State;
-  [fromSignUpBusinessDialog.signUpBusinessDialogFeatureKey]: fromSignUpBusinessDialog.State;
 }
 
 export interface State {
@@ -24,7 +21,6 @@ export function reducers(state: AuthState | undefined, action: Action) {
     [fromAuth.statusFeatureKey]: fromAuth.reducer,
     [fromLoginDialog.loginDialogFeatureKey]: fromLoginDialog.reducer,
     [fromSignUpDialog.signUpDialogFeatureKey]: fromSignUpDialog.reducer,
-    [fromSignUpBusinessDialog.signUpBusinessDialogFeatureKey]: fromSignUpBusinessDialog.reducer,
   })(state, action);
 }
 
@@ -46,66 +42,27 @@ export const isLoggedIn = createSelector(
   }
 );
 
-export const selectLoginDialogError = createSelector(
-  selectLoginDialogState,
-  fromLoginDialog.getError
-);
+export const selectLoginDialogError = createSelector(selectLoginDialogState, fromLoginDialog.getLoginError);
+export const selectLoginDialogPending = createSelector(selectLoginDialogState, fromLoginDialog.getLoginPending);
 
-export const selectLoginDialogPending = createSelector(
-  selectLoginDialogState,
-  fromLoginDialog.getPending
-);
+export const selectLoginFacebookError = createSelector(selectLoginDialogState, fromLoginDialog.getLoginFacebookError);
+export const selectLoginFacebookPending = createSelector(selectLoginDialogState, fromLoginDialog.getLoginFacebookPending);
 
-export const selectSignUpDialogState = createSelector(
-  selectAuthState,
-  (state: AuthState) => state[fromSignUpDialog.signUpDialogFeatureKey]
-);
+export const selectSignUpDialogState = createSelector(selectAuthState, (state: AuthState) => state[fromSignUpDialog.signUpDialogFeatureKey]);
+export const selectSignUpDialogError = createSelector(selectSignUpDialogState, fromSignUpDialog.getError);
+export const selectSignUpDialogPending = createSelector(selectSignUpDialogState, fromSignUpDialog.getPending);
+export const selectSignUpDialogLoginError = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpLoginError);
+export const selectSignUpDialogLoginPending = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpLoginPending);
 
-export const selectSignUpDialogError = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getError
-);
+export const selectSignUpFacebookError = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpFacebookError);
+export const selectSignUpFacebookPending = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpFacebookPending);
+export const selectSignUpLoginFacebookError = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpLoginFacebookError);
+export const selectSignUpLoginFacebookPending = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpLoginFacebookPending);
 
-export const selectSignUpDialogPending = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getPending
-);
+export const selectSignUpBusinessCreateError = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpBusinessError);
+export const selectSignUpBusinessCreatePending = createSelector(selectSignUpDialogState, fromSignUpDialog.getSignUpBusinessPending);
+export const selectFromAuth = createSelector(selectAuthState, (state: AuthState) => state[fromAuth.statusFeatureKey]);
 
-export const selectSignUpDialogLoginError = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getSignUpLoginError
-);
-
-export const selectSignUpDialogLoginPending = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getSignUpLoginPending
-);
-
-export const selectSignUpBusinessCreateError = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getSignUpBusinessCreateError
-);
-
-export const selectSignUpBusinessCreatePending = createSelector(
-  selectSignUpDialogState,
-  fromSignUpDialog.getSignUpBusinessCreatePending
-);
-
-export const selectFromAuth = createSelector(
-    selectAuthState,
-    (state: AuthState) => state[fromAuth.statusFeatureKey]
-);
-export const selectAuthGetMe = createSelector(
-    selectFromAuth,
-    fromAuth.getMe
-);
-
-export const selectAuthGetUser = createSelector(
-    selectFromAuth,
-    fromAuth.getUser
-);
-
-export const selectAuthGetUserCombine = createSelector(
-    selectFromAuth,
-    fromAuth.getUserCombine
-);
+// TODO: rename selectors
+export const selectAuthGetMe = createSelector(selectFromAuth, fromAuth.getMe);
+export const selectAuthGetUser = createSelector(selectFromAuth, fromAuth.getUser);

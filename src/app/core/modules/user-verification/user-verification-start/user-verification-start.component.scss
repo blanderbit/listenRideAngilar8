@@ -1,0 +1,27 @@
+@import "../../../../../assets/scss/variables";
+
+:host {
+  padding: 40px;
+  display: block;
+
+  @media (max-width: $device-sm) {
+    padding: 0;
+  }
+}
+
+.step-content {
+  margin-top: -70px;
+
+  @media (max-width: $device-sm) {
+    margin-top: 0;
+  }
+
+  .step-content-header {
+    max-width: 402px;
+  }
+}
+
+.icon {
+  width: 100px;
+  margin-bottom: 40px;
+}

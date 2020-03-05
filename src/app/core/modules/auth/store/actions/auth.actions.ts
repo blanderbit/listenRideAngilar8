@@ -12,9 +12,10 @@ export const saveMeError = createAction('[Auth] Save Me Error', props<{ exceptio
 export const saveUserSuccess = createAction('[Auth] Save User Success', props<{ user: User }>());
 export const saveUserError = createAction('[Auth] Save User Error', props<{ exception: any }>());
 
-export const headerOpenLoginDialog = createAction('[Header] Open Login Dialog');
-export const headerLogout = createAction('[Header] Log Out');
+export const openLoginDialog = createAction('[Auth] Open Login Dialog');
+export const openSignUpDialog = createAction('[Auth] Open Sign Up Dialog');
 
-export const headerOpenSignUpDialog = createAction('[Header] Open Sign Up Dialog');
+export const updateUser = createAction('[Auth] Update User', props<{ user: User }>());
+export const updateUserByApi = createAction('[Auth] Update User By Api');
 
-export const headerOpenSignUpBusinessDialog = createAction('[Header] Open Sign Up Business Dialog');
+export const logout = createAction('[Auth] Log Out');

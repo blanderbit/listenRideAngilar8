@@ -27,7 +27,7 @@ export class UserEditDataResolver implements Resolve<any> {
             catchError(() => this.router.navigate(['/'])),
             tap(item => {
                 if (!user || (user && !user.id)) {
-                    this.store.dispatch(AuthActions.headerOpenLoginDialog());
+                    this.store.dispatch(AuthActions.openLoginDialog());
                     return this.router.navigate(['/']);
                 }
                 if (!item || (user.id !== (item && item.user && item.user.id))) {

@@ -1,0 +1,16 @@
+<h4>Verified through</h4>
+<ul>
+  <li>
+    <mat-icon svgIcon="check-circle-outline" [class.active]="user?.confirmed_phone"></mat-icon>
+    <span>Phone Number</span>
+  </li>
+  <li>
+    <mat-icon svgIcon="check-circle-outline" [class.active]="user?.confirmed_email"></mat-icon>
+    <span>Email Address</span>
+  </li>
+  <li>
+    <!--    TODO: asc BE for field confirmed_payment-->
+    <mat-icon svgIcon="check-circle-outline" [class.active]="false"></mat-icon>
+    <span>Payment Method</span>
+  </li>
+</ul>

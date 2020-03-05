@@ -20,6 +20,8 @@ import {HttpUrlInterceptor} from '@core/interceptors/http-url-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthGuard} from '@core/guards/auth.guard';
+import {UserVerificationGuard} from '@core/guards/user-verification.guard';
 
 export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
@@ -50,6 +52,8 @@ export const APP_PROVIDERS = [
     provide: AuthServiceConfig,
     useFactory: provideAuthServiceConfig
   },
+  AuthGuard,
+  UserVerificationGuard
 ];
 
 @NgModule({

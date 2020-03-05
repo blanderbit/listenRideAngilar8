@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ButtonCloseComponent {
   @Input() disabled = false;
-  @Input() color = '#ccc';
+  @Input() color = '#444444';
   @Output() closed = new EventEmitter<boolean>();
 
   onClose() {

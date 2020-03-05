@@ -1,19 +1,67 @@
+@import "../../../../../assets/scss/variables";
+
 :host {
   position: relative;
   display: block;
-  padding-top: 90px;
-
   text-align: center;
 
   mat-dialog-content {
-    min-height: 400px;
+    &.desktop {
+      padding-top: 90px;
+    }
+
   }
 
   .lnr-dialog-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+
+    &.desktop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    @media (max-width: $device-sm) {
+      min-height: 32px;
+    }
+
+  }
+
+  .mat-dialog-content {
+    min-height: 453px;
+
+    &.mobile {
+      max-height: 87vh;
+    }
+  }
+
+  ::ng-deep .mat-stepper-vertical {
+
+    .mat-stepper-vertical-line {
+      &::before {
+        @media (max-width: $device-sm) {
+          top: 0;
+          bottom: 0;
+        }
+      }
+    }
+
+    .mat-vertical-stepper-header {
+      padding: 24px 0;
+
+      @media (max-width: $device-sm) {
+        padding: 12px 0;
+      }
+    }
+
+    .mat-vertical-content-container {
+      margin-left: 11px;
+
+      .mat-vertical-content {
+        padding: 0 6px 24px 12px;
+      }
+    }
+
   }
 
   ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
@@ -24,6 +72,7 @@
     max-width: 500px;
     margin: auto;
     padding: 4px;
+    justify-content: center;
 
     .mat-horizontal-stepper-header {
       padding: 5px;
@@ -44,6 +93,3 @@
   }
 }
 
-::ng-deep .step-content {
-  min-height: 350px;
-}

@@ -5,6 +5,7 @@ import {User} from '@models/user/user';
 import {SignUpRequest} from '@models/sign-up/sign-up-request';
 import {PhoneUpdateRequest} from '@models/user/phone-update-request';
 import {PhoneConfirmRequest} from '@models/user/phone-confirm-request';
+import {SignUpFacebookRequest} from '@models/sign-up/sign-up-facebook-request';
 
 @Injectable({providedIn: 'root'})
 export class ApiUserService {
@@ -17,7 +18,7 @@ export class ApiUserService {
     return this.httpClient.get<Partial<User>>(`/users/me`);
   }
 
-  create(signUpRequest: SignUpRequest): Observable<User> {
+  create(signUpRequest: SignUpRequest | SignUpFacebookRequest): Observable<User> {
     return this.httpClient.post<User>(`/users`, signUpRequest);
   }
 

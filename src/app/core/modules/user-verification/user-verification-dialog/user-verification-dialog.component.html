@@ -1,44 +1,209 @@
-<div class="lnr-dialog-header lnr-text-align-ctr">
+<div class="lnr-dialog-header lnr-text-align-ctr"
+     [class.desktop]="isDesktop"
+     [class.tablet]="isTablet"
+     [class.mobile]="isMobile">
   <lnr-button-close (click)="close()"></lnr-button-close>
 </div>
-<mat-dialog-content>
 
-  <mat-error>
-    <lnr-http-error-message [error]="null"></lnr-http-error-message>
-  </mat-error>
+<mat-dialog-content [class.desktop]="isDesktop"
+                    [class.tablet]="isTablet"
+                    [class.mobile]="isMobile">
 
-  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <ng-container *ngIf="!showStepper">
+    <lnr-user-verification-start [dialogRef]="dialogRef"
+                                 [user]="user"
+                                 [isDesktop]="isDesktop"
+                                 [isTablet]="isTablet"
+                                 [isMobile]="isMobile"
+                                 (letsStart)="showSteps()"></lnr-user-verification-start>
+  </ng-container>
 
-    <mat-step>
-      <ng-template matStepLabel>Start</ng-template>
-      <lnr-user-verification-home [stepper]="stepper"></lnr-user-verification-home>
-    </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>Email</ng-template>
-      <lnr-user-verification-email [stepper]="stepper"></lnr-user-verification-email>
-    </mat-step>
+  <ng-container *ngIf="showStepper">
 
-    <mat-step [optional]="false">
-      <ng-template matStepLabel>Logo</ng-template>
-      <lnr-user-verification-logo [stepper]="stepper"></lnr-user-verification-logo>
-    </mat-step>
+    <ng-container *ngIf="(isDesktop || isTablet) && stepsToShow">
+      <mat-horizontal-stepper labelPosition="bottom" #stepper>
 
-    <mat-step>
-      <ng-template matStepLabel>Phone</ng-template>
-      <lnr-user-verification-phone [stepper]="stepper"></lnr-user-verification-phone>
-    </mat-step>
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.EMAIL] ">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.EMAIL)" state="email">
+            <ng-template matStepLabel>Email</ng-template>
+            <lnr-user-verification-email [stepper]="stepper"
+                                         [dialogRef]="dialogRef"
+                                         [user]="user"
+                                         [isDesktop]="isDesktop"
+                                         [isTablet]="isTablet"
+                                         [isMobile]="isMobile"></lnr-user-verification-email>
+          </mat-step>
+        </ng-container>
 
-    <mat-step>
-      <ng-template matStepLabel>Address</ng-template>
-      <lnr-user-verification-address [stepper]="stepper"></lnr-user-verification-address>
-    </mat-step>
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.LOGO]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.LOGO)" state="logo">
+            <ng-template matStepLabel>Logo</ng-template>
+            <lnr-user-verification-logo [stepper]="stepper"
+                                        [dialogRef]="dialogRef"
+                                        [user]="user"
+                                        [isDesktop]="isDesktop"
+                                        [isTablet]="isTablet"
+                                        [isMobile]="isMobile"></lnr-user-verification-logo>
+          </mat-step>
+        </ng-container>
 
-    <mat-step>
-      <ng-template matStepLabel>VAT</ng-template>
-      <lnr-user-verification-vat [stepper]="stepper"></lnr-user-verification-vat>
-    </mat-step>
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.PHONE]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.PHONE)" state="phone">
+            <ng-template matStepLabel>Phone</ng-template>
+            <lnr-user-verification-phone [stepper]="stepper"
+                                         [dialogRef]="dialogRef"
+                                         [user]="user"
+                                         [isDesktop]="isDesktop"
+                                         [isTablet]="isTablet"
+                                         [isMobile]="isMobile"></lnr-user-verification-phone>
+          </mat-step>
+        </ng-container>
 
-  </mat-horizontal-stepper>
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.ADDRESS]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.ADDRESS)" state="address">
+            <ng-template matStepLabel>Address</ng-template>
+            <lnr-user-verification-address [stepper]="stepper"
+                                           [dialogRef]="dialogRef"
+                                           [user]="user"
+                                           [isDesktop]="isDesktop"
+                                           [isTablet]="isTablet"
+                                           [isMobile]="isMobile"></lnr-user-verification-address>
+          </mat-step>
+        </ng-container>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.COMPANY]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.COMPANY)" state="company">
+            <ng-template matStepLabel>VAT</ng-template>
+            <lnr-user-verification-vat [stepper]="stepper"
+                                       [dialogRef]="dialogRef"
+                                       [user]="user"
+                                       [isDesktop]="isDesktop"
+                                       [isTablet]="isTablet"
+                                       [isMobile]="isMobile"></lnr-user-verification-vat>
+          </mat-step>
+        </ng-container>
+
+        <!-- Icon overrides. -->
+        <ng-template matStepperIcon="phone">
+          <mat-icon>call_end</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="email">
+          <mat-icon>alternate_email</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="address">
+          <mat-icon>home</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="logo">
+          <mat-icon svgIcon="account-box-outline"></mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="company">
+          <mat-icon svgIcon="account-tie"></mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="warning">
+          <mat-icon svgIcon="exclamation"></mat-icon>
+        </ng-template>
+
+      </mat-horizontal-stepper>
+    </ng-container>
+
+    <ng-container *ngIf="isMobile">
+      <mat-vertical-stepper #stepperVertical>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.EMAIL]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.EMAIL)" state="email">
+            <ng-template matStepLabel>Email</ng-template>
+            <lnr-user-verification-email [stepper]="stepperVertical"
+                                         [dialogRef]="dialogRef"
+                                         [user]="user"
+                                         [isDesktop]="isDesktop"
+                                         [isTablet]="isTablet"
+                                         [isMobile]="isMobile"></lnr-user-verification-email>
+          </mat-step>
+        </ng-container>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.LOGO]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.LOGO)" state="logo">
+            <ng-template matStepLabel>Logo</ng-template>
+            <lnr-user-verification-logo [stepper]="stepperVertical"
+                                        [dialogRef]="dialogRef"
+                                        [user]="user"
+                                        [isDesktop]="isDesktop"
+                                        [isTablet]="isTablet"
+                                        [isMobile]="isMobile"></lnr-user-verification-logo>
+          </mat-step>
+        </ng-container>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.PHONE]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.PHONE)" state="phone">
+            <ng-template matStepLabel>Phone</ng-template>
+            <lnr-user-verification-phone [stepper]="stepperVertical"
+                                         [dialogRef]="dialogRef"
+                                         [user]="user"
+                                         [isDesktop]="isDesktop"
+                                         [isTablet]="isTablet"
+                                         [isMobile]="isMobile"></lnr-user-verification-phone>
+          </mat-step>
+        </ng-container>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.ADDRESS]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.ADDRESS)" state="address">
+            <ng-template matStepLabel>Address</ng-template>
+            <lnr-user-verification-address [stepper]="stepperVertical"
+                                           [dialogRef]="dialogRef"
+                                           [user]="user"
+                                           [isDesktop]="isDesktop"
+                                           [isTablet]="isTablet"
+                                           [isMobile]="isMobile"></lnr-user-verification-address>
+          </mat-step>
+        </ng-container>
+
+        <ng-container *ngIf="stepsToShow[UserVerificationStepsEnum.COMPANY]">
+          <mat-step [stepControl]="form.get(UserVerificationStepsEnum.COMPANY)" state="company">
+            <ng-template matStepLabel>VAT</ng-template>
+            <lnr-user-verification-vat [stepper]="stepperVertical"
+                                       [dialogRef]="dialogRef"
+                                       [user]="user"
+                                       [isDesktop]="isDesktop"
+                                       [isTablet]="isTablet"
+                                       [isMobile]="isMobile"></lnr-user-verification-vat>
+          </mat-step>
+        </ng-container>
+
+        <!-- Icon overrides. -->
+        <ng-template matStepperIcon="phone">
+          <mat-icon>call_end</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="email">
+          <mat-icon>alternate_email</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="address">
+          <mat-icon>home</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="logo">
+          <mat-icon svgIcon="account-box-outline"></mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="company">
+          <mat-icon svgIcon="account-tie"></mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="warning">
+          <mat-icon svgIcon="exclamation"></mat-icon>
+        </ng-template>
+
+      </mat-vertical-stepper>
+    </ng-container>
+
+  </ng-container>
+
 
 </mat-dialog-content>

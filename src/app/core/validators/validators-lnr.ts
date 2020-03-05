@@ -1,4 +1,4 @@
-import {FormControl} from '@angular/forms';
+import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {isEmpty, pickBy} from 'lodash';
 
 export class ValidatorsLnr {
@@ -36,10 +36,7 @@ export class ValidatorsLnr {
   }
 
   static email(control: FormControl): { [s: string]: boolean } {
-    const expression =
-      '^((?=.*[a-z])|(?=.*[A-Z])|(?=.*\\d)|(?=.*[$!%*?#\\.\\^\\-_&])|([-!$%^&*()_+|~=`{}\\[\\]:";\'<>?,' +
-      '.\\/])|[A-Za-z\\d$$!%*?#\\.\\^\\-_&]{1,254})@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0' +
-      '-9]+\\.)+[a-zA-Z]{2,}))$';
+    const expression = /(?!^[.+&'_-]*@.*$)(^[_\w\d+&'-]+(\.[_\w\d+&'-]*)*@[\w\d-]+(\.[\w\d-]+)*\.(([\d]{1,3})|([\w]{2,}))$)/i;
     const val = control.value;
     if (!new RegExp(expression).test(val)) {
       if (!/@/.test(val) || val.match(/@/g).length > 1) {
@@ -58,5 +55,31 @@ export class ValidatorsLnr {
       return {wrongMail: true};
     }
     return null;
+  }
+
+  static minLength(minLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+
+      const value: string = String(control.value);
+
+      if (value.length && (value.length < +minLength)) {
+        return {minlength: true, requiredValue: minLength};
+      }
+
+      return null;
+    };
+  }
+
+  static maxLength(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+
+      const value: string = String(control.value);
+
+      if (value.length > +maxLength) {
+        return {maxlength: true, requiredValue: maxLength};
+      }
+
+      return null;
+    };
   }
 }

@@ -1,0 +1,26 @@
+// TODO: add color from variable
+
+a {
+  color: #5FC693;
+
+  &:hover {
+    color: #5FC693;
+  }
+
+  &:not([href]) {
+    color: #5FC693;
+    cursor: pointer;
+
+    &:hover {
+      color: #5FC693;
+      text-decoration: underline;
+    }
+  }
+
+  &.disabled {
+    color: #00000042 !important;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

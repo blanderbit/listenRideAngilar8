@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchModel} from '../../../../modules/search/search.types';
 import * as SearchActions from '../../../../modules/search/store/search.actions';
+import * as fromAuth from '@auth/store/reducers';
 
 @Component({
   selector: 'lnr-layout-header',
@@ -14,8 +15,12 @@ export class LayoutHeaderComponent implements OnInit {
   reason: string;
   location: string;
 
+  isLoggedIn$ = this.storeAuth.pipe(select(fromAuth.isLoggedIn));
+  user$ = this.storeAuth.pipe(select(fromAuth.selectAuthGetUser));
+
   constructor(
     private store: Store<SearchModel>,
+    private storeAuth: Store<fromAuth.State>,
     private route: ActivatedRoute,
   ) {
   }

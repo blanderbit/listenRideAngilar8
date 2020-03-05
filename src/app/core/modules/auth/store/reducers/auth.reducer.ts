@@ -1,6 +1,6 @@
 import {User} from '@models/user/user';
 import {createReducer, on} from '@ngrx/store';
-import {UserApiActions} from '@auth/store/actions';
+import {AuthActions, UserApiActions} from '@auth/store/actions';
 
 export const statusFeatureKey = 'status';
 
@@ -23,9 +23,16 @@ export const reducer = createReducer(
   on(UserApiActions.getUserByIdSuccess, (state, {user}) => ({
     ...state,
     user
-  }))
+  })),
+  on(AuthActions.updateUser, (state, {user}) => ({
+    ...state,
+    user
+  })),
+  on(AuthActions.logout, (state) => ({
+    ...initialState
+  })),
 );
 
 export const getMe = (state: State) => state.me;
 export const getUser = (state: State) => state.user;
-export const getUserCombine = (state: State | any) => [state.me, state.user];
+// export const getUserCombine = (state: State | any) => [state.me, state.user];

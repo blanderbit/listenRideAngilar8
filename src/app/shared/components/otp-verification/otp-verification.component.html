@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+
+  <mat-form-field appearance="outline" class="lnr-w-100">
+    <mat-label>SMS Code</mat-label>
+    <input formControlName="phone_confirmation_code"
+           type="text"
+           mask="0000"
+           matInput
+           placeholder="_ _ _ _">
+    <mat-error
+      *ngIf="form.get('phone_confirmation_code').touched && form.get('phone_confirmation_code').errors">
+      <span *ngIf="form.get('phone_confirmation_code').errors.required">SMS code is required</span>
+      <span *ngIf="form.get('phone_confirmation_code').errors.minlength">Min length is 4</span>
+      <span *ngIf="form.get('phone_confirmation_code').errors.maxlength">Max length is 6</span>
+    </mat-error>
+  </mat-form-field>
+
+</form>

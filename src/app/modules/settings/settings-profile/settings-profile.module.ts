@@ -8,15 +8,12 @@ import {SettingsPictureComponent} from '../shared/settings-picture/settings-pict
 import {SharedModule} from '../../../shared/shared.module';
 import {PasswordUpdateComponent} from '../shared/password-update/password-update.component';
 import {PhoneUpdateComponent} from '../shared/phone-update/phone-update.component';
-import {ImageCropperModule} from 'ngx-image-cropper';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {SettingsPhoneComponent} from '../shared/settings-phone/settings-phone.component';
 import {SettingsPasswordComponent} from '../shared/settings-password/settings-password.component';
-import {ProfilePictureComponent} from '../shared/profile-picture/profile-picture.component';
-import {ProfilePictureDialogComponent} from '../shared/profile-picture/profile-picture-dialog/profile-picture-dialog.component';
 import {PasswordUpdateDialogComponent} from '../shared/password-update/password-update-dialog/password-update-dialog.component';
 import {PhoneUpdateDialogComponent} from '../shared/phone-update/phone-update-dialog/phone-update-dialog.component';
 
@@ -34,19 +31,15 @@ import {PhoneUpdateDialogComponent} from '../shared/phone-update/phone-update-di
     PasswordUpdateDialogComponent,
     PhoneUpdateComponent,
     PhoneUpdateDialogComponent,
-    ProfilePictureComponent,
-    ProfilePictureDialogComponent,
   ],
   imports: [
     SharedModule,
-    ImageCropperModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
     AgmCoreModule,
     MatGoogleMapsAutocompleteModule,
   ],
   entryComponents: [
-    ProfilePictureDialogComponent,
     PasswordUpdateDialogComponent,
     PhoneUpdateDialogComponent,
   ],

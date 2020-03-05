@@ -1,3 +1,5 @@
+@import "../../../../../assets/scss/variables";
+
 :host {
   display: block;
   position: absolute;
@@ -85,7 +87,7 @@
     bottom: 0;
     left: 0;
     margin: auto;
-    background-color: #777;
+    background-color: $dark-background;
   }
 
   .line {
@@ -100,7 +102,7 @@
     height: 6px;
     z-index: 1;
     border-radius: 50%;
-    background: #1f252c;
+    background: $dark-text-color;
   }
 
   .rotation {

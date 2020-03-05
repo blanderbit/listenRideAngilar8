@@ -1,105 +1,43 @@
 <div class="step-content">
-  <ng-container *ngIf="mode === 'create'">
-    <h5>Upload your Shop Logo (public)</h5>
+  <div class="step-content-header">
+
+    <h3 class="step-title">Upload your Profile logo <sup>
+      <lnr-view-template-status [value]="'public'"></lnr-view-template-status>
+    </sup></h3>
+
     <p>Having your logo shown on listnride is a great way to attract more request</p>
 
-    <div [hidden]="showCropper">
-      <label for="file-upload" class="lnr-img-file-upload-btn">
-        <mat-icon svgIcon="plus-circle-outline"></mat-icon>
-      </label>
-      <input #addInput id="file-upload" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
-    </div>
+  </div>
 
-    <div class="lnr-img-file-upload-cropper" [hidden]="!showCropper">
-      <button (click)="rotateLeft()">
-        <mat-icon svgIcon="rotate-left"></mat-icon>
-      </button>
-      <button (click)="rotateRight()">
-        <mat-icon svgIcon="rotate-right"></mat-icon>
-      </button>
-      <button (click)="flipHorizontal()">
-        <mat-icon svgIcon="axis-z-rotate-counterclockwise"></mat-icon>
-      </button>
-      <button (click)="flipVertical()">
-        <mat-icon svgIcon="axis-y-rotate-counterclockwise"></mat-icon>
-      </button>
-      <button (click)="zoomOut()">
-        <mat-icon svgIcon="magnify-minus-outline"></mat-icon>
-      </button>
-      <button (click)="zoomIn()">
-        <mat-icon svgIcon="magnify-plus-outline"></mat-icon>
-      </button>
-      <button (click)="resetImage()">
-        <mat-icon svgIcon="reload"></mat-icon>
-      </button>
-      <button (click)="deleteImage(addInput)">
-        <mat-icon svgIcon="delete"></mat-icon>
-      </button>
+  <div>
+    <mat-error class="lnr-text-align-l">
+      <lnr-http-error-message [error]="error"></lnr-http-error-message>
+    </mat-error>
 
-      <div class="cropper">
-        <image-cropper
-          [imageChangedEvent]="imageChangedEvent"
-          [maintainAspectRatio]="true"
-          [resizeToWidth]="256"
-          [cropperMinWidth]="128"
-          [onlyScaleDown]="true"
-          [roundCropper]="true"
-          [canvasRotation]="canvasRotation"
-          [transform]="transform"
-          [alignImage]="'left'"
-          [style.display]="showCropper ? null : 'none'"
-          format="png"
-          (imageCropped)="imageCropped($event)"
-          (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady($event)"
-          (loadImageFailed)="loadImageFailed()"
-        ></image-cropper>
-        <div class="preview">
-          <div class="image-wrapper">
-            <img class="lnr-mrg-btm" [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'"/>
-            <button mat-raised-button color="primary" class="lnr-w-100" (click)="submit()">Save
-              <lnr-loader-spinner-small *ngIf="uploading"></lnr-loader-spinner-small>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div [hidden]="showCropper">
-      <p>Please upload only formats as jpg, jpeg, png. Maximum size is 20mb. Minimum dimension is 100px x 100px.</p>
-
-      <p><small>By uploading a picture, I agree that listnride saves the picture as described in the Privacy Policy. I
-        can
-        delete it at any time.</small></p>
-    </div>
-
-  </ng-container>
-
-  <ng-container *ngIf="mode === 'update'">
-
-  </ng-container>
-
+    <lnr-profile-picture-editor [uploadButtonText]="'Chose your logo'"
+                                (imageEmpty)="onImageEmpty()"
+                                (imageReady)="onImageReady($event)"></lnr-profile-picture-editor>
+  </div>
 </div>
-<!--<div class="step-actions">-->
-<!--&lt;!&ndash;  <mat-dialog-actions class="lnr-d-flex lnr-space-btw">&ndash;&gt;-->
-<!--&lt;!&ndash;    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <button mat-raised-button color="primary" [disabled]="!uploaded" (click)="onSubmit()">Back</button>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <button mat-raised-button color="primary" *ngIf="!uploaded && croppedImageBlob" [disabled]="!croppedImageBlob"&ndash;&gt;-->
-<!--&lt;!&ndash;              (click)="onSubmit()">Save and proceed&ndash;&gt;-->
-<!--&lt;!&ndash;        <lnr-loader-spinner-small *ngIf="uploading"></lnr-loader-spinner-small>&ndash;&gt;-->
-<!--&lt;!&ndash;      </button>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      <button mat-raised-button color="primary" [disabled]="!uploaded" (click)="onSubmit()">Next</button>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;  </mat-dialog-actions>&ndash;&gt;-->
-<!--</div>-->
-
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
-  <button mat-button matStepperPrevious>Back</button>
+  <div class="left-side" *ngIf="isDesktop || isTablet">
+    <button mat-button
+            matStepperPrevious
+            class="lnr-btn-back"
+            [hidden]="isItFirstStep">
+      <mat-icon svgIcon="arrow-left"></mat-icon>
+      Back
+    </button>
+  </div>
 
-  <button mat-raised-button matStepperNext>Next</button>
+  <div class="right-side">
+    <button mat-stroked-button color="primary"
+            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+
+    <button mat-raised-button color="primary" class="lnt-btn-min-width lnr-mrg-l-16" [hidden]="!croppedImage || saved"
+            (click)="submit()">Save & {{isItLastStep ? 'complete' : 'proceed'}}
+      <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
+    </button>
+  </div>
 </div>

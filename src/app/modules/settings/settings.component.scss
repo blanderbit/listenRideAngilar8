@@ -1,9 +1,13 @@
+@import "../../../assets/scss/variables";
+
 .tabs {
   text-align: center;
   background: white;
+
   .buttons-wrap {
     display: inline-block;
     position: relative;
+
     &:after {
       content: '';
       display: block;
@@ -12,19 +16,22 @@
       bottom: 0;
       width: 33.3%;
       height: 3px;
-      background: #7ab2f8;
-      transition: left 0.3s;
+      background: $main-blue;
+      transition: left 0.1s;
     }
+
     &.profile {
       &:after {
         left: 0;
       }
     }
+
     &.account {
       &:after {
         left: 33.3%;
       }
     }
+
     &.availability {
       &:after {
         left: 66.6%;
@@ -32,13 +39,16 @@
     }
 
   }
+
   button {
     position: relative;
     box-sizing: content-box;
     border-radius: 0;
     height: 41px;
+
     &.active {
       color: #7ab2f8;
+
       &:after {
 
       }

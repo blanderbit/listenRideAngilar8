@@ -1,4 +1,3 @@
-import {AuthState} from '@auth/store/reducers';
 import {Action, combineReducers, createFeatureSelector, createSelector} from '@ngrx/store';
 import * as fromUserVerificationDialog from './user-verification-dialog.reducer';
 

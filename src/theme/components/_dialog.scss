@@ -4,3 +4,31 @@
     min-height: 50px;
   }
 }
+
+@media (max-width: 768px) {
+  .cdk-overlay-pane {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    top: 0!important;
+    left: 0!important;
+    transform: none!important;
+
+    mat-dialog-container {
+      border-radius: 0;
+      padding: 15px;
+
+      .mat-dialog-title {
+        margin-bottom: 8px;
+      }
+
+      .mat-dialog-content {
+        max-height: 75vh;
+      }
+    }
+  }
+  p {
+    font-size: 13px;
+  }
+}

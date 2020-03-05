@@ -11,25 +11,22 @@
           close
         </mat-icon>
         <mat-nav-list *ngIf="!isLoggedIn">
-          <a mat-list-item routerLink=".">Sign Up</a>
-          <a mat-list-item routerLink=".">Login</a>
+          <a mat-list-item (click)="signUp()">Sign Up</a>
+          <a mat-list-item (click)="login()">Login</a>
           <a mat-list-item routerLink=".">List a bike</a>
           <a mat-list-item routerLink=".">How it works</a>
           <a mat-list-item routerLink=".">Trust & Safety</a>
         </mat-nav-list>
         <mat-nav-list *ngIf="isLoggedIn"
                       class="t-align-center m-t-2">
-          <img
-            class="sidenav-user-avatar p-2"
-            src="https://s3.eu-central-1.amazonaws.com/listnride/assets/default_profile_picture.jpg"
-            alt="user-avatar"
-          />
+          <img  class="sidenav-user-avatar p-2" [src]="(user$ | async)?.profile_picture?.profile_picture?.url | profilePicturePipe" alt="user-avatar"/>
+
           <a mat-list-item routerLink=".">My Bike</a>
           <a mat-list-item routerLink=".">List a bike</a>
-          <a mat-list-item routerLink=".">Settings</a>
+          <a mat-list-item routerLink="/settings">Settings</a>
           <a mat-list-item routerLink=".">Invite Friends</a>
           <a mat-list-item routerLink=".">Invoices</a>
-          <a mat-list-item routerLink=".">Log out</a>
+          <a mat-list-item (click)="logOut()">Log out</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -61,20 +58,14 @@
           <button mat-menu-item>Help & Support</button>
         </mat-menu>
       </li>
-      <li class="header-list-item">
-        <lnr-list-my-bike-button></lnr-list-my-bike-button>
-      </li>
-      <li *ngIf="!isLoggedIn"
-          class="header-list-item lnr-d-flex">
+<!--      <li class="header-list-item">-->
+<!--        <lnr-list-my-bike-button></lnr-list-my-bike-button>-->
+<!--      </li>-->
+      <li *ngIf="!isLoggedIn" class="header-list-item lnr-d-flex">
+        <button mat-button color="white" routerLink="/list-bike">List a bike</button>
+        <button mat-button color="white" (click)="signUp()">Sign up</button>
+        <button mat-button color="white" (click)="login()">Login</button>
 
-        <lnr-user-verification-button-temp></lnr-user-verification-button-temp>
-        <lnr-auth-login-button></lnr-auth-login-button>
-        <lnr-auth-sign-up-button></lnr-auth-sign-up-button>
-
-      </li>
-      <li *ngIf="!isLoggedIn"
-          class="header-list-item">
-        <lnr-auth-login-button></lnr-auth-login-button>
       </li>
       <li *ngIf="isLoggedIn"
           class="header-list-item">
@@ -86,24 +77,19 @@
           mat-button
           [matMenuTriggerFor]="userMenu"
           class="user-avatar">
-          <img
-            src="https://s3.eu-central-1.amazonaws.com/listnride/assets/default_profile_picture.jpg"
-            alt="user-avatar"
-          />
+          <img [src]="(user$ | async)?.profile_picture?.profile_picture?.url | profilePicturePipe" alt="user-avatar"/>
         </button>
 
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item>Profile</button>
+          <button mat-menu-item [routerLink]="'/users/' + (user$ | async)?.id">Profile</button>
           <button mat-menu-item>Requests</button>
           <button mat-menu-item>My Bikes</button>
           <mat-divider></mat-divider>
-          <button mat-menu-item>Settings</button>
+          <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item>Invite Friends</button>
           <button mat-menu-item>Invoices</button>
           <mat-divider></mat-divider>
-          <button mat-menu-item>
-            <lnr-auth-logout-button></lnr-auth-logout-button>
-          </button>
+          <button mat-menu-item (click)="logOut()">Log out</button>
         </mat-menu>
       </li>
     </ul>

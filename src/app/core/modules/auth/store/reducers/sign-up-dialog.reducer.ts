@@ -1,9 +1,10 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {createReducer, on} from '@ngrx/store';
-import {AuthApiActions, BusinessApiActions, SignUpDialogActions} from '@core/modules/auth/store/actions';
+import {AuthActions, AuthApiActions, BusinessApiActions, SignUpDialogActions} from '@core/modules/auth/store/actions';
 import {User} from '@models/user/user';
 import {SignUpRequest} from '@models/sign-up/sign-up-request';
 import {Business} from '@models/business/business';
+import {SignUpFacebookRequest} from '@models/sign-up/sign-up-facebook-request';
 
 export const signUpDialogFeatureKey = 'signUpDialog';
 
@@ -13,11 +14,16 @@ export interface State {
   pending: boolean;
   user: User;
   dialogId: string;
-  loginPending: boolean;
-  loginError: HttpErrorResponse;
   business: Business;
-  businessCreatePending: boolean;
-  businessCreateError: HttpErrorResponse;
+  signUpBusinessPending: boolean;
+  signUpBusinessError: HttpErrorResponse;
+  signUpFacebookRequest: SignUpFacebookRequest;
+  signUpFacebookPending: boolean;
+  signUpFacebookError: HttpErrorResponse;
+  signUpLoginFacebookPending: boolean;
+  signUpLoginFacebookError: HttpErrorResponse;
+  signUpLoginPending: boolean;
+  signUpLoginError: HttpErrorResponse;
 }
 
 export const initialState: State = {
@@ -26,15 +32,28 @@ export const initialState: State = {
   pending: false,
   user: null,
   dialogId: null,
-  loginPending: false,
-  loginError: null,
   business: null,
-  businessCreatePending: false,
-  businessCreateError: null
+  signUpBusinessPending: false,
+  signUpBusinessError: null,
+  signUpFacebookRequest: null,
+  signUpFacebookPending: false,
+  signUpFacebookError: null,
+  signUpLoginFacebookPending: false,
+  signUpLoginFacebookError: null,
+  signUpLoginPending: false,
+  signUpLoginError: null
 };
 
 export const reducer = createReducer(
   initialState,
+
+  on(SignUpDialogActions.signUp, (state, {signUpRequest}) => ({
+    ...state,
+    signUpRequest,
+    error: null,
+    pending: true
+  })),
+
   on(AuthApiActions.signUpSuccess, (state, {user}) => ({
     ...state,
     user,
@@ -48,43 +67,75 @@ export const reducer = createReducer(
     pending: false
   })),
 
-  on(SignUpDialogActions.signUp, (state, {signUpRequest}) => ({
+  on(SignUpDialogActions.signUpFacebook, (state, {signUpFacebookRequest}) => ({
     ...state,
-    signUpRequest,
-    error: null,
-    pending: true
+    signUpFacebookRequest,
+    signUpFacebookError: null,
+    signUpFacebookPending: true
+  })),
+
+  on(AuthApiActions.signUpFacebookSuccess, (state, {user}) => ({
+    ...state,
+    user,
+    signUpFacebookError: null,
+    signUpFacebookPending: false
+  })),
+
+  on(AuthApiActions.signUpFacebookFailure, (state, {signUpFacebookError}) => ({
+    ...state,
+    signUpFacebookError,
+    signUpFacebookPending: false
+  })),
+
+  on(SignUpDialogActions.signUpLoginFacebook, state => ({
+    ...state,
+    loginFacebookError: null,
+    signUpLoginFacebookPending: true
+  })),
+
+  on(AuthApiActions.signUpLoginFacebookSuccess, (state, {tokens}) => ({
+    ...state,
+    tokens,
+    loginFacebookError: null,
+    signUpLoginFacebookPending: false
+  })),
+
+  on(AuthApiActions.signUpLoginFacebookFailure, (state, {signUpLoginFacebookError}) => ({
+    ...state,
+    signUpLoginFacebookError,
+    signUpLoginFacebookPending: false
   })),
 
   on(SignUpDialogActions.signUpLogin, state => ({
     ...state,
-    loginError: null,
-    loginPending: true
+    signUpLoginError: null,
+    signUpLoginPending: true
   })),
 
   on(AuthApiActions.signUpLoginSuccess, (state, {tokens}) => ({
     ...state,
     tokens,
-    loginError: null,
-    loginPending: false
+    signUpLoginError: null,
+    signUpLoginPending: false
   })),
 
   on(AuthApiActions.signUpLoginFailure, (state, {error}) => ({
     ...state,
-    loginError: error,
-    loginPending: false
+    signUpLoginError: error,
+    signUpLoginPending: false
   })),
 
   on(BusinessApiActions.createSuccess, (state, {business}) => ({
     ...state,
     business,
-    businessCreateError: null,
-    businessCreatePending: false
+    signUpBusinessError: null,
+    signUpBusinessPending: false
   })),
 
   on(BusinessApiActions.createFailure, (state, {error}) => ({
     ...state,
-    businessCreateError: error,
-    businessCreatePending: false
+    signUpBusinessError: error,
+    signUpBusinessPending: false
   })),
 
   on(SignUpDialogActions.opened, (state, {dialogId}) => ({
@@ -98,11 +149,19 @@ export const reducer = createReducer(
     error: null,
     pending: false
   })),
+
+  on(AuthActions.logout, (state) => ({
+    ...initialState
+  })),
 );
 
 export const getError = (state: State) => state.error;
 export const getPending = (state: State) => state.pending;
-export const getSignUpLoginError = (state: State) => state.loginError;
-export const getSignUpLoginPending = (state: State) => state.loginPending;
-export const getSignUpBusinessCreateError = (state: State) => state.loginError;
-export const getSignUpBusinessCreatePending = (state: State) => state.loginPending;
+export const getSignUpFacebookError = (state: State) => state.signUpFacebookError;
+export const getSignUpFacebookPending = (state: State) => state.signUpFacebookPending;
+export const getSignUpLoginFacebookError = (state: State) => state.signUpLoginFacebookError;
+export const getSignUpLoginFacebookPending = (state: State) => state.signUpLoginFacebookPending;
+export const getSignUpLoginError = (state: State) => state.signUpLoginError;
+export const getSignUpLoginPending = (state: State) => state.signUpLoginPending;
+export const getSignUpBusinessError = (state: State) => state.signUpBusinessError;
+export const getSignUpBusinessPending = (state: State) => state.signUpBusinessPending;

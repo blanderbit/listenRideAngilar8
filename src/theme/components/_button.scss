@@ -2,6 +2,8 @@
   button {
     outline: none;
     cursor: pointer;
+    font-weight: normal;
+    letter-spacing: .5px;
 
     &:focus {
       outline: none;
@@ -11,6 +13,16 @@
       mat-icon {
         font-size: 17px;
         line-height: 22px;
+      }
+    }
+
+    &.lnr-btn-back{
+      font-weight: bold;
+      color: #555555;
+      mat-icon {
+        font-size: 23px;
+        line-height: 15px;
+        margin-top: -3px;
       }
     }
   }
@@ -29,5 +41,9 @@
       text-decoration: underline;
     }
 
+  }
+
+  .lnr-fb-button, .lnr-fb-button.mat-primary {
+    background-color: #3b5998;
   }
 }

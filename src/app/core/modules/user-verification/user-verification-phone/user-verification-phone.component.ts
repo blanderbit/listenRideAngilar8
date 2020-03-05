@@ -1,100 +1,166 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Subject} from 'rxjs';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {ApiUserService} from '@api/api-user/api-user.service';
-import {CountryISO, SearchCountryField, TooltipLabel} from 'ngx-intl-tel-input';
 import {PhoneConfirmRequest} from '@models/user/phone-confirm-request';
 import {PhoneUpdateRequest} from '@models/user/phone-update-request';
 import {HttpErrorResponse} from '@angular/common/http';
-import {MatHorizontalStepper} from '@angular/material/stepper';
+import {MatHorizontalStepper, MatVerticalStepper} from '@angular/material/stepper';
+import {User} from '@models/user/user';
+import {PhoneControlOutput} from '../../../../shared/components/phone-verification/phone-control-output';
+import {AuthActions} from '@auth/store/actions';
+import {Store} from '@ngrx/store';
+import * as fromAuth from '@auth/store/reducers';
+import {MatDialogRef} from '@angular/material/dialog';
+import {UserVerificationDialogComponent} from '@user-verification/user-verification-dialog/user-verification-dialog.component';
+import {UserVerificationStep} from '@user-verification/user-verification-step';
 
 @Component({
   selector: 'lnr-user-verification-phone',
   templateUrl: './user-verification-phone.component.html',
-  styleUrls: ['./user-verification-phone.component.scss']
+  styleUrls: ['../user-verification.scss', './user-verification-phone.component.scss'],
 })
-export class UserVerificationPhoneComponent implements OnInit {
+export class UserVerificationPhoneComponent extends UserVerificationStep implements OnChanges, OnDestroy {
   private destroyed$ = new Subject();
-  @Input() stepper: MatHorizontalStepper;
-  SearchCountryField = SearchCountryField;
-  TooltipLabel = TooltipLabel;
-  defaultCountry = CountryISO.Germany;
-  phoneForm: FormGroup;
-  codeForm: FormGroup;
+  @Input() stepper: MatHorizontalStepper | MatVerticalStepper;
+  @Input() dialogRef: MatDialogRef<UserVerificationDialogComponent>;
+  @Input() isDesktop = true;
+  @Input() isTablet = false;
+  @Input() isMobile = false;
+  @Input() user: User;
+
+  phoneControlOutput: PhoneControlOutput;
+  phoneConfirmed = false;
+  phonePending = false;
   phoneError: HttpErrorResponse;
-  codeError: HttpErrorResponse;
-  preferredCountries: CountryISO[] = [
-    CountryISO.Germany,
-    CountryISO.Austria,
-    CountryISO.Netherlands,
-    CountryISO.CzechRepublic,
-    CountryISO.UnitedKingdom,
-    CountryISO.France,
-    CountryISO.Estonia,
-    CountryISO.Italy,
-    CountryISO.Denmark,
-    CountryISO.Portugal,
-    CountryISO.Belgium,
-    CountryISO.Poland,
-  ];
+
+  otp: string;
+  otpConfirmed = false;
+  otpPending = false;
+  otpError: HttpErrorResponse;
+
+  resendOtpSuccess = false;
+  resendOtpPending = false;
+  resendOtpError: HttpErrorResponse;
 
   constructor(private fb: FormBuilder,
-              private apiUserService: ApiUserService) {
+              private apiUserService: ApiUserService,
+              private store: Store<fromAuth.State>) {
+    super();
   }
 
-  ngOnInit(): void {
-    this.phoneForm = this.getPhoneForm();
-    this.codeForm = this.getCodeForm();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user && !changes.firstChange) {
+      this.checkIfUserPhoneIsNotVerified(this.user);
+    }
   }
 
-  submitPhone() {
-    if (this.phoneForm.invalid) {
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  requestOtp() {
+    this.phonePending = true;
+    this.phoneError = null;
+    this.otp = null;
+    this.otpConfirmed = false;
+
+    const phoneUpdateRequest: PhoneUpdateRequest = {
+      phone_number: this.phoneControlOutput.internationalNumber
+    };
+
+    this.apiUserService.phoneUpdate(this.user.id, phoneUpdateRequest)
+      .subscribe((res) => {
+        this.phoneConfirmed = true;
+        this.phonePending = false;
+      }, (error) => {
+        this.phoneConfirmed = false;
+        this.phonePending = false;
+        this.phoneError = error;
+      });
+  }
+
+  confirmOtp() {
+    if (!this.otp) {
+      return;
+    }
+
+    this.otpPending = true;
+    this.otpError = null;
+
+    const phoneConfirmRequest: PhoneConfirmRequest = {phone_confirmation_code: this.otp};
+
+    this.apiUserService.phoneConfirm(phoneConfirmRequest)
+      .subscribe((res) => {
+        this.otpConfirmed = true;
+        this.otpPending = false;
+        this.store.dispatch(AuthActions.updateUserByApi());
+        this.changeNumber();
+
+        this.store.dispatch(AuthActions.updateUserByApi());
+        super.stepCompleted = true;
+        super.nextOrCloseIfLastStep();
+      }, (error) => {
+        this.otpConfirmed = false;
+        this.otpPending = false;
+        this.otpError = error;
+        super.stepCompleted = false;
+      });
+  }
+
+  resendOtp() {
+    if (!this.phoneControlOutput.internationalNumber) {
       return;
     }
 
     const phoneUpdateRequest: PhoneUpdateRequest = {
-      phone_number: this.phoneForm.value.phone_number.internationalNumber
+      phone_number: this.phoneControlOutput.internationalNumber
     };
 
-    this.apiUserService.phoneUpdate(17289, phoneUpdateRequest)
+    this.resendOtpSuccess = false;
+    this.resendOtpPending = true;
+
+    this.apiUserService.phoneUpdate(this.user.id, phoneUpdateRequest)
       .subscribe((res) => {
+        this.resendOtpSuccess = true;
+        this.phoneConfirmed = true;
+        this.resendOtpPending = false;
       }, (error) => {
+        this.phoneConfirmed = false;
+        this.phonePending = false;
         this.phoneError = error;
       });
-
   }
 
-  submitCode() {
-    if (this.codeForm.invalid) {
-      return;
+  onPhoneReady(phoneControlOutput: PhoneControlOutput) {
+    this.phoneControlOutput = phoneControlOutput;
+  }
+
+  onPhoneInvalid(invalid: boolean) {
+    this.phoneControlOutput = null;
+  }
+
+  onOtpReady(otp: string) {
+    this.otp = otp;
+  }
+
+  onOtpInvalid(invalid: boolean) {
+    this.otp = null;
+  }
+
+  changeNumber() {
+    this.phoneConfirmed = false;
+    this.phoneError = null;
+    this.otp = null;
+    this.otpConfirmed = false;
+    this.otpError = null;
+    super.stepCompleted = false;
+  }
+
+  private checkIfUserPhoneIsNotVerified(user: User) {
+    if (user.confirmed_phone) {
+      super.stepCompleted = true;
     }
-
-    const phoneConfirmRequest: PhoneConfirmRequest = {...this.codeForm.value};
-
-    this.apiUserService.phoneConfirm(phoneConfirmRequest)
-      .subscribe((res) => {
-      }, (error) => {
-        this.codeError = error;
-      });
-  }
-
-  private getPhoneForm() {
-    const formControls = {
-      phone_number: [null, [Validators.required]],
-    };
-
-    return this.fb.group({
-      ...formControls
-    });
-  }
-
-  private getCodeForm() {
-    const formControls = {
-      phone_confirmation_code: [null, [Validators.required]],
-    };
-
-    return this.fb.group({
-      ...formControls
-    });
   }
 }

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {CountryISO, SearchCountryField, TooltipLabel} from 'ngx-intl-tel-input';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CountryISO, NgxIntlTelInputComponent, SearchCountryField, TooltipLabel} from 'ngx-intl-tel-input';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ApiUserService} from '@api/api-user/api-user.service';
@@ -12,6 +12,8 @@ import {PhoneConfirmRequest} from '@models/user/phone-confirm-request';
   styleUrls: ['./phone-update.component.scss']
 })
 export class PhoneUpdateComponent implements OnInit {
+  // TODO: update library when https://github.com/webcat12345/ngx-intl-tel-input/pull/241/files#diff-c92eb7ffbcee4f7ce18e22d1725ba6ff will be merged
+
   SearchCountryField = SearchCountryField;
   TooltipLabel = TooltipLabel;
   defaultCountry = CountryISO.Germany;
@@ -33,6 +35,7 @@ export class PhoneUpdateComponent implements OnInit {
   codeForm: FormGroup;
   phoneError: HttpErrorResponse;
   codeError: HttpErrorResponse;
+
 
   constructor(
     // public dialogRef: MatDialogRef<PhoneUpdateDialogComponent>,

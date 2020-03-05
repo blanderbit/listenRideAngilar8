@@ -8,7 +8,7 @@ export interface SignUpRequest {
     language: string;
   };
   notification_preference: {
-    newsletter: true
+    newsletter: boolean;
   };
   is_shop: boolean;
   recaptcha_token: string;

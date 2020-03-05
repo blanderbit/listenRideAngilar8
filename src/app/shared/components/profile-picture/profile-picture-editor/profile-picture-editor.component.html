@@ -1,0 +1,61 @@
+<div [hidden]="showCropper" class="lnr-mrg-btm">
+  <label for="file-upload" class="file-upload-btn">{{uploadButtonText}}</label>
+  <input #addInput id="file-upload" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+</div>
+
+<div class="lnr-img-file-upload-cropper" [hidden]="!showCropper">
+  <div class="controls">
+    <button (click)="rotateLeft()">
+      <mat-icon svgIcon="rotate-left"></mat-icon>
+    </button>
+    <button (click)="rotateRight()">
+      <mat-icon svgIcon="rotate-right"></mat-icon>
+    </button>
+    <button (click)="flipHorizontal()">
+      <mat-icon svgIcon="axis-z-rotate-counterclockwise"></mat-icon>
+    </button>
+    <button (click)="flipVertical()">
+      <mat-icon svgIcon="reload"></mat-icon>
+    </button>
+    <button (click)="zoomOut()">
+      <mat-icon svgIcon="magnify-minus-outline"></mat-icon>
+    </button>
+    <button (click)="zoomIn()">
+      <mat-icon svgIcon="magnify-plus-outline"></mat-icon>
+    </button>
+    <button (click)="deleteImage(addInput)">
+      <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+  </div>
+  <div class="cropper">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [resizeToWidth]="256"
+      [cropperMinWidth]="128"
+      [onlyScaleDown]="true"
+      [roundCropper]="true"
+      [canvasRotation]="canvasRotation"
+      [transform]="transform"
+      [alignImage]="'left'"
+      [style.display]="showCropper ? null : 'none'"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady($event)"
+      (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="preview">
+      <div class="image-wrapper">
+        <img alt="cropped image" [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'"/>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div [hidden]="showCropper" class="editor-description">
+  <p>Max size is 20mb. Min dimension is 100px * 100px of jpg, jpeg, png.</p>
+
+  <p>By uploading a picture, I agree the <a>Privacy Policy</a></p>
+</div>

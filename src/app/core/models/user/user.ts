@@ -27,17 +27,25 @@ export interface User {
   //   BusinessLocation[] |
   //   {primary: BusinessLocation} |
   //   {billing: BusinessLocation};
-  rating_lister?: 0;
-  rating_rider?: 0;
-  status?: 1;
-  has_phone_number?: false;
-  has_description?: true;
-  has_business?: true;
-  confirmed_email?: true;
-  phone_number?: null;
-  unconfirmed_phone?: null;
+
+  street?: string;
+  zip?: string;
+  city?: string;
+  country?: string;
+  lat?: string;
+  lng?: string;
+
+  rating_lister?: number;
+  rating_rider?: number;
+  status?: number;
+  has_phone_number?: boolean;
+  has_description?: boolean;
+  has_business?: boolean;
+  confirmed_email?: boolean;
+  phone_number?: string;
+  unconfirmed_phone?: string;
   pretty_phone_number?: string;
-  balance?: 0;
+  balance?: number;
   notification_preference?: any;
   rides?: any[];
   ratings?: any[];

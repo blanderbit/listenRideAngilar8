@@ -1,0 +1,15 @@
+lnr-profile-picture {
+  margin-right: 24px;
+}
+
+rating {
+  font-size: 28px;
+  line-height: 20px;
+  color: #cccccc;
+
+ ::ng-deep span {
+    &.active {
+      color: #ffa500;
+    }
+  }
+}

@@ -1,45 +1,65 @@
 <div class="step-content">
-  <p>Validate your email address by clicking on the link in the confirmation email that we've sent to you after signup.
-    If
-    you can't find it, you can resend the email. If you still can't find it, make sure to look in your spam folder.</p>
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <mat-error>
-      <lnr-http-error-message [error]="null"></lnr-http-error-message>
-    </mat-error>
+  <div class="step-content-header">
 
-    <div class="row">
-      <div class="col-sm-8">
-        <mat-form-field appearance="outline" class="lnr-w-100">
-          <mat-label>Email</mat-label>
-          <input formControlName="email"
-                 type="email"
-                 matInput
-                 placeholder="Enter your email"
-                 lnrAutofocus
-          >
-          <mat-error *ngIf="form.get('email').touched && form.get('email').errors">
-            <small *ngIf="form.get('email').errors.required">Field is required</small>
-          </mat-error>
-        </mat-form-field>
-      </div>
+    <h3 class="step-title">Confirm your Email address</h3>
 
-      <div class="col-sm-4">
-        <button mat-raised-button type="submit" color="primary" class="lnr-w-100"
-                [disabled]="form.invalid">
-          Resend email
-          <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
-        </button>
-      </div>
+    <p>If you can't find your confirmation email, you can resend it.Please, check your spam folder if you still can’t
+      find this email</p>
+
+  </div>
+
+  <div style="display: inline-block">
+
+    <div class="lnr-d-flex lnr-space-btw">
+      <mat-error class="lnr-text-align-l">
+        <lnr-http-error-message [error]="emailError || verificationError"></lnr-http-error-message>
+      </mat-error>
     </div>
 
-    <h6 *ngIf="verified">Email address successfully verified!</h6>
+    <h6 class="lnr-mrg-btm heading-6"><b>{{user?.email | stringPipe}}</b></h6>
 
-  </form>
+    <div class="email-description">
+
+      <p class="lnr-d-flex-center" [hidden]="stepCompleted"><span [hidden]="isMobile">Didn't confirm?</span> &nbsp;
+        <a class="lnr-d-flex-center" [class.disabled]="emailPending" (click)="resendEmail()">Resend confirmation email
+          &nbsp;
+          <lnr-loader-spinner-small [hidden]="!emailPending"></lnr-loader-spinner-small>
+          <span [hidden]="!emailResend || emailPending">(sent)</span>
+        </a>
+      </p>
+
+      <p>To change your email pls contact <a href="mailto:privacy@listnride.com"
+                                             target="_blank">privacy@listnride.com</a></p>
+    </div>
+
+  </div>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
-  <button mat-button matStepperPrevious>Back</button>
 
-  <button mat-raised-button matStepperNext>Next</button>
+  <div class="left-side" *ngIf="isDesktop || isTablet">
+    <button mat-button
+            matStepperPrevious
+            class="lnr-btn-back"
+            [hidden]="isItFirstStep">
+      <mat-icon svgIcon="arrow-left"></mat-icon>
+      Back
+    </button>
+  </div>
+
+  <div class="right-side">
+    <button mat-stroked-button color="primary"
+            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+
+    <button mat-raised-button
+            color="primary"
+            class="lnt-btn-min-width lnr-mrg-l-16"
+            [hidden]="stepCompleted"
+            [disabled]="verificationPending"
+            (click)="checkIfAlreadyConfirmed()">Already confirmed
+      <lnr-loader-spinner-small [hidden]="!verificationPending"></lnr-loader-spinner-small>
+    </button>
+  </div>
+
 </div>

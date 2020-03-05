@@ -9,8 +9,38 @@
     margin-bottom: 24px;
   }
 
+  .lnr-mrg-btm-sm {
+    margin-bottom: 12px;
+  }
+
+  .lnr-mrg-r-16 {
+    margin-right: 16px;
+  }
+
+  .lnr-mrg-l-16 {
+    margin-left: 16px;
+  }
+
+  .lnt-btn-min-width {
+    min-width: 160px;
+  }
+
   .lnr-d-flex {
     display: flex;
+  }
+
+  .lnr-d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lnr-flex-justify-center {
+    justify-content: center;
+  }
+
+  .lnr-flex-align-center {
+    align-items: center;
   }
 
   .lnr-space-btw {
@@ -22,10 +52,10 @@
   }
 
   .lnr-text-align-r {
-    text-align: center;
+    text-align: right;
   }
 
   .lnr-text-align-l {
-    text-align: center;
+    text-align: left;
   }
 }

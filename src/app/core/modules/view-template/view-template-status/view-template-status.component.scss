@@ -1,0 +1,41 @@
+@import "../../../../../assets/scss/variables";
+
+:host {
+  display: inline-block;
+}
+
+$status-dang: #ff445b;
+$status-worn: #feb35b;
+$status-success: #5fc693;
+
+$status-list: (
+  public: $status-success,
+  active: $status-success,
+  private: $status-worn,
+  blocked: $status-dang,
+);
+
+.lnr-status {
+  text-transform: capitalize;
+  margin-left: 16px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: $white;
+  max-height: 21px;
+
+  @media (max-width: $device-sm) {
+    padding: 1px 3px;
+    margin-left: 5px;
+  }
+
+}
+
+@each $class-name, $color in $status-list {
+  .lnr-status-#{$class-name} {
+    @extend .lnr-status;
+    background-color: $color;
+  }
+}
