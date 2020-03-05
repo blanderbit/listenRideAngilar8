@@ -3,7 +3,6 @@
     Start searching
   </h5>
   <form [formGroup]="searchingForm"
-        (ngSubmit)="onSubmit($event)"
   >
     <div [ngClass]="{'d-block': activeSearch}"
          class="flex direction-column">
@@ -33,9 +32,10 @@
         </sat-datepicker>
       </mat-form-field>
       <!--      TODO when category select will work correct-->
-      <!--      <lnr-category-multiselect #categorySelect></lnr-category-multiselect>-->
+      <lnr-category-multiselect #categorySelect></lnr-category-multiselect>
       <button mat-flat-button
               [disabled]="!searchingForm.valid"
+              (click)="onSubmit($event)"
               color="accent"
               class="m-t-1"
               type="submit">

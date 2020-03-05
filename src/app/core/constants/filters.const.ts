@@ -10,7 +10,7 @@ const AllTerrain = require('./../../../assets/img-category/all-terrain.svg');
 export const sizeList = [
     {
         text: 'All Sizes',
-        value: -1,
+        value: null,
     },
     {
         text: 'Unisize',

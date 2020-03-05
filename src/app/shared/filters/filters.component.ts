@@ -50,12 +50,14 @@ export class FiltersComponent implements OnInit {
     this.store.pipe(select(getFilterPayload), take(1))
       .subscribe(filters => {
         this.filtersForm.patchValue({
-          date: filters.start_date || 'null',
+          date: filters.start_date ? {
+                  begin: filters.start_date,
+                  end: new Date(new Date(filters.start_date).getTime() + (filters.duration * 1000))
+                } : null,
           size: filters.height || null,
-          type: filters.category ? filters.category.split(',') : [],
-          brand: filters.brand ? filters.brand.split(',') :  [],
+          type: filters.category ? filters.category.split(',') : null,
+          brand: filters.brand ? filters.brand.split(',') :  null,
           sorting: filters.sort_direction && filters.sort_by ? `${filters.sort_by}-${filters.sort_direction}` : null
-
         });
       });
 
@@ -65,28 +67,28 @@ export class FiltersComponent implements OnInit {
       });
 
     this.filtersForm.valueChanges.subscribe(val => {
+      this.store.dispatch(SearchActions.SetSearchMetaData({metaData: {page: 1}}));
       this.store.dispatch(SearchActions.SetSearchPayload(this.formatPayload(val)));
     });
   }
 
   formatPayload(formData) {
-    const filterPayload: SearchPayload = {
-      page: 1
-    };
+    const filterPayload: SearchPayload = {};
 
-    if (formData.date) {
+    if (formData.date && formData.date.begin) {
       filterPayload.start_date = formData.date.begin.toISOString();
       filterPayload.duration = Math.round((new Date(formData.date.end).getTime() - new Date(formData.date.begin).getTime()) / 1000);
     }
-    if (formData.size) { filterPayload.height = formData.size; }
-    if (formData.type) { filterPayload.category = formData.type.join(','); }
-    if (formData.brand) { filterPayload.brand = formData.brand.join(','); }
+    if (formData.size)  { filterPayload.height = formData.size; }
+    if (formData.type)  { filterPayload.category = formData.type.length > 0 ? formData.type.join(',') : []; }
+    if (formData.brand) { filterPayload.brand = formData.brand.length > 0 ? formData.brand.join(',') : []; }
     if (formData.sorting) {
       const sortParams = formData.sorting.split('-');
       filterPayload.sort_by = sortParams[0];
       filterPayload.sort_direction = sortParams[1];
     }
 
+    console.log(filterPayload);
     return filterPayload;
   }
 

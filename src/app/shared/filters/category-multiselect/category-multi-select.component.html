@@ -1,14 +1,15 @@
 <button
   mat-flat-button
   class="btn-category-filter"
-  (click)="toggleFilter()"
+  [matMenuTriggerFor]="categoriesMenu"
 > Type
 </button>
-<div class="category-filter" [ngClass]="{active : showFilter}">
-  <div class="category" *ngFor="let category of categories; let i = index">
+<mat-menu #categoriesMenu="matMenu" class="category-filter">
+  <div class="category" *ngFor="let category of categories; let i = index" (click) = handleMenuClick($event)>
     <div class="category-label">
       <mat-checkbox
         (change)="handleCategoryChange(i)"
+        [checked]="checkCategorySelected(i)"
         [indeterminate]="checkIndeterminate(i)"
       ></mat-checkbox>
       <span (click)="toggleCategory(i)">{{ category.type }}</span>
@@ -25,4 +26,4 @@
       </div>
     </div>
   </div>
-</div>
+</mat-menu>

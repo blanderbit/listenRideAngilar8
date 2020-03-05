@@ -1,19 +1,25 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as SearchActions from './search.actions';
-import {SearchModel, SearchPayload} from '../search.types';
+import {SearchMetaData, SearchModel, SearchPayload} from '../search.types';
+
+export const initialSearchPayload: SearchPayload = {
+};
+
+export const initialSearchMetadata: SearchMetaData = {
+  page: 1,
+  limit: 21,
+};
 
 export const initialState: SearchModel = {
   bikes: [],
   location: [],
   bikes_coordinates: [],
   showFilter: false,
-  showSorting: false
+  showSorting: false,
+  metaData: initialSearchMetadata,
+  loading: false
 };
 
-export const initialSearchPayload: SearchPayload = {
-  page: 1,
-  limit: 21,
-};
 
 const reducer = createReducer(
   initialState,
@@ -37,6 +43,9 @@ const reducer = createReducer(
   on(SearchActions.setSearchSortingToggle, (state: SearchModel, payload) => {
     return {...state, ...payload};
   }),
+  on(SearchActions.setSearchLoading, (state: SearchModel, payload) => {
+    return {...state, ...payload};
+  }),
   on(SearchActions.SetSearchPayload, (state: SearchModel, payload) => {
     const nextState = {...state};
     const filterPayload = {} as SearchPayload;
@@ -47,12 +56,32 @@ const reducer = createReducer(
       }
     });
 
-    nextState.filterPayload = {...nextState.filterPayload, ...filterPayload};
+    nextState.filterPayload = {...filterPayload};
     return nextState;
   }),
   on(SearchActions.ResetSearchPayload, (state: SearchModel) => {
     const nextState = {...state};
-    nextState.filterPayload = {location: nextState.filterPayload.location, ...initialSearchPayload};
+    nextState.filterPayload = initialSearchPayload;
+    return nextState;
+  }),
+  on(SearchActions.SetSearchMetaData, (state: SearchModel, payload) => {
+    const nextState = {...state};
+    console.log(payload.metaData);
+
+    const searchMetaData = {} as SearchMetaData;
+
+    Object.keys(payload.metaData).forEach( (key) => {
+      if (!!payload.metaData[key]) {
+        searchMetaData[key] = payload.metaData[key];
+      }
+    });
+
+    nextState.metaData = {...nextState.metaData, ...searchMetaData};
+    return nextState;
+  }),
+  on(SearchActions.ResetSearchMetaData, (state: SearchModel) => {
+    const nextState = {...state};
+    nextState.metaData = initialSearchMetadata;
     return nextState;
   })
 );

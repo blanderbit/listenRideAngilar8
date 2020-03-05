@@ -4,9 +4,11 @@ export interface SearchModel {
   bikes: Bike[];
   bikes_coordinates: any[];
   location: any;
+  loading: boolean;
   showFilter?: boolean;
   showSorting?: boolean;
   filterPayload?: SearchPayload;
+  metaData?: SearchMetaData;
 }
 
 export interface Location {
@@ -18,14 +20,19 @@ export interface Location {
 }
 
 export interface SearchPayload {
-  location?: string;
-  page?: number;
-  limit?: number;
   category?: string;
   height?: number;
   brand?: string;
   sort_by?: string;
   sort_direction?: string;
-  start_date?: Date;
+  start_date?: Date | string;
   duration?: number;
 }
+
+export interface SearchMetaData {
+  location?: string;
+  page?: number;
+  limit?: number;
+}
+
+export type SearchQueryParams = SearchPayload & SearchMetaData;

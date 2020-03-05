@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {typeList} from '@core/constants/filters.const';
 
 @Component({
@@ -8,22 +8,22 @@ import {typeList} from '@core/constants/filters.const';
 })
 export class CategoryMultiSelectComponent implements OnInit {
 
-  showFilter = false;
   categories = typeList;
-  categoriesTree = this.categories.map( cat => cat.categories.map( subcat => subcat.value));
+  categoriesTree = this.categories.map( cat => cat.categories.map( subCat => subCat.value));
   categoriesForm = {};
 
+  @Input() inputSelectedCategories: string[] = [];
   @Output() multiSelectUpdate = new EventEmitter();
-
-  constructor() { }
 
   ngOnInit() {
     const flatCat = [].concat(...this.categoriesTree);
-    flatCat.forEach(cat => this.categoriesForm[cat] = false);
+    flatCat.forEach(cat => {
+      this.categoriesForm[cat] = this.inputSelectedCategories ? this.inputSelectedCategories.includes(cat) : false;
+    } );
   }
 
-  toggleFilter() {
-    this.showFilter = !this.showFilter;
+  handleMenuClick(ev) {
+    ev.stopPropagation(); // prevent menu from closing
   }
 
   toggleCategory(i) {
@@ -31,8 +31,10 @@ export class CategoryMultiSelectComponent implements OnInit {
   }
 
   handleCategoryChange(i) {
-    this.categoriesTree[i].forEach(el => this.categoriesForm[el] = !this.categoriesForm[el]);
-    this.toggleCategory(i);
+    const nextState = !this.checkCategorySelected(i);
+    this.categoriesTree[i].forEach(el => {
+      this.categoriesForm[el] = nextState;
+    });
     this.handleSubcategoryChange();
   }
 
@@ -45,6 +47,10 @@ export class CategoryMultiSelectComponent implements OnInit {
     }
 
     this.multiSelectUpdate.emit(selectedCategories);
+  }
+
+  checkCategorySelected(i) {
+    return this.categoriesTree[i].filter(el => this.categoriesForm[el]).length === this.categoriesTree[i].length;
   }
 
   checkIndeterminate(i) {

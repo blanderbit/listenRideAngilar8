@@ -1,17 +1,23 @@
-@import "../../../assets/scss/variables";
+@import "variables";
+@import "utils/utils";
 
+mat-progress-bar{
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+}
 .wrap-search-page-layout {
   display: flex;
   flex-direction: row;
 
-  @media (max-width: $device-xs) {
+  @include if-smaller-than(xs) {
     flex-direction: column;
   }
 
   .map-container {
     flex: 0 0 30%;
 
-    @media (max-width: $device-tablet) {
+    @include if-smaller-than(tablet) {
       flex: 1;
     }
 
@@ -20,7 +26,7 @@
       height: calc(100vh - 50px);
       width: 30vw;
 
-      @media (max-width: $device-tablet) {
+      @include if-smaller-than(tablet) {
         flex: 1;
         width: 100vw;
       }
@@ -35,7 +41,7 @@
     margin: 0 auto;
     overflow: scroll;
 
-    @media (max-width: $device-tablet) {
+    @include if-smaller-than(xs) {
       flex: 0 0 100%;
       height: auto;
     }
@@ -56,7 +62,7 @@
         border-bottom: 0.1rem solid $light-grey;
         margin: 1rem 0;
 
-        @media (max-width: $device-xs) {
+        @include if-smaller-than(xs) {
           border: none;
         }
       }
@@ -65,6 +71,10 @@
         display: flex;
         font-weight: 400;
         padding: 1rem;
+
+        @include if-smaller-than(xs) {
+          font-size: $small-fontsize!important;
+        }
       }
 
       .bikes-for {
@@ -80,7 +90,7 @@
         }
       }
 
-      @media (max-width: $device-xs) {
+      @include if-smaller-than(xs) {
         display: flex;
         border-top: 0.1rem solid $light-grey;
       }
@@ -141,7 +151,7 @@
         }
       }
 
-      @media only screen and (max-width: $device-xs) {
+      @include if-smaller-than(xs) {
         display: flex;
       }
     }
@@ -156,7 +166,7 @@
 }
 
 
-@media (min-width: $device-xl) {
+@include if-bigger-than(xl) {
   .bike-tile-grid {
     flex: 0 0 25%;
     max-width: 25%;
@@ -172,14 +182,14 @@
   }
 }
 
-@media (min-width: $device-lg) {
+@include if-bigger-than($device-lg) {
   .bike-tile-grid {
     padding-left: 0.8rem;
     padding-right: 0.8rem;
   }
 }
 
-@media (max-width: $device-tablet) {
+@include if-smaller-than(tablet) {
   .wrap-search-page-layout {
     display: flex;
     flex-direction: column;

@@ -1,26 +1,18 @@
 .lnr {
   .lnr-dialog-header {
     position: relative;
-    min-height: 50px;
+    min-height: 5rem;
   }
 }
 
 @media (max-width: 768px) {
   .cdk-overlay-pane {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    top: 0!important;
-    left: 0!important;
-    transform: none!important;
-
     mat-dialog-container {
       border-radius: 0;
-      padding: 15px;
+      padding: 1.5rem;
 
       .mat-dialog-title {
-        margin-bottom: 8px;
+        margin-bottom: 0.8rem;
       }
 
       .mat-dialog-content {

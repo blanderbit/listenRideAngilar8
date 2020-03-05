@@ -1,28 +1,36 @@
 import {Component, OnInit} from '@angular/core';
 import * as SearchActions from './store/search.actions';
-import {Location, SearchModel, SearchPayload} from './search.types';
+import {Location, SearchMetaData, SearchModel, SearchPayload} from './search.types';
 import {select, Store} from '@ngrx/store';
-import {filter, take} from 'rxjs/operators';
+import {distinctUntilChanged, filter, take} from 'rxjs/operators';
 import {Bike} from '@core/models/bike/bike.types';
-import {getBikes, getBikesPins, getFilterPayload, getFilterToggle, getLocations, getSortingToggle} from './store';
+import {
+  getBikes,
+  getBikesPins,
+  getFilterPayload,
+  getFilterToggle,
+  getLocations, getSearchLoading,
+  getSearchMetadata,
+  getSortingToggle
+} from './store';
 import {mapClusterStyle, mapColorScheme, mapDefaultOptions} from '@core/configs/map/map.config';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiRidesService} from '@api/api-rides/api-rides.service';
+import {combineLatest, Observable} from 'rxjs';
 
 @Component({
   selector: 'lnr-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
   bikes: Bike[];
-  page = 1;
-  pageAmount = 21;
   pins;
   mapToggle = false;
   showFilter = false;
   showSorting = true;
+  loading$: Observable<boolean>;
   isTablet = false;
   isMobile = false;
   isDesktop = false;
@@ -30,6 +38,7 @@ export class SearchComponent implements OnInit {
   openedWindow: string;
   activeBike = {} as Bike;
   filterPayload: SearchPayload;
+  metaData: SearchMetaData;
 
   location: Location = mapDefaultOptions;
   mapStyles = mapColorScheme;
@@ -44,7 +53,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(SearchActions.SetSearchPayload({page: this.page, limit: this.pageAmount}));
     this.isTablet = this.deviceService.isTablet();
     this.isMobile = this.deviceService.isMobile();
     this.isDesktop = this.deviceService.isDesktop();
@@ -52,20 +60,23 @@ export class SearchComponent implements OnInit {
     this.route.queryParamMap
       .pipe(take(1))
       .subscribe((paramMap) => {
-        const queryParams: SearchPayload = {
+        const metaData: SearchMetaData = {
           location: paramMap.get('location') || null,
-          page: paramMap.get('page') ? parseInt(paramMap.get('page'), 10) : null,
-          limit: paramMap.get('limit') ? parseInt(paramMap.get('limit'), 10) : null,
-          category: paramMap.get('category') || null,
-          height: paramMap.get('height') ? parseInt(paramMap.get('height'), 10) : null,
-          brand: paramMap.get('brand') || null,
-          sort_by: paramMap.get('sort_by') || null,
-          sort_direction: paramMap.get('sort_direction') || null,
-          start_date: paramMap.get('start_date') ? new Date(paramMap.get('start_date')) : null,
-          duration: paramMap.get('duration') ? parseInt(paramMap.get('duration'), 10) : null,
+          page:     paramMap.get('page') ? parseInt(paramMap.get('page'), 10) : null,
+          limit:    paramMap.get('limit') ? parseInt(paramMap.get('limit'), 10) : null,
         };
-        console.log('params', queryParams);
-        this.store.dispatch(SearchActions.SetSearchPayload(queryParams));
+        const filterParams: SearchPayload = {
+          category:   paramMap.get('category') || null,
+          height:     paramMap.get('height') ? parseInt(paramMap.get('height'), 10) : null,
+          brand:      paramMap.get('brand') || null,
+          start_date: paramMap.get('start_date') ? new Date(paramMap.get('start_date')).toISOString() : null,
+          duration:   paramMap.get('duration') ? parseInt(paramMap.get('duration'), 10) : null,
+          sort_by:    paramMap.get('sort_by') || null,
+          sort_direction: paramMap.get('sort_direction') || null,
+        };
+
+        this.store.dispatch(SearchActions.SetSearchMetaData({metaData}));
+        this.store.dispatch(SearchActions.SetSearchPayload(filterParams));
       });
 
     this.store.pipe(
@@ -83,16 +94,19 @@ export class SearchComponent implements OnInit {
     )
       .subscribe(locations => this.location = {city: locations.formatted_address, ...locations.geometry.location});
 
-    this.store.pipe(
-      select(getFilterPayload),
-      filter(filterPayload => !!filterPayload && !!filterPayload.location)
+    combineLatest(
+      this.store.select(getFilterPayload),
+      this.store.select(getSearchMetadata),
+    ).pipe(
+      filter(([filterPayload, metaData]) => !!metaData && !!metaData.location),
+      distinctUntilChanged()
     )
-      .subscribe(filterPayload => {
-        this.filterPayload = {...filterPayload};
+      .subscribe(([filterPayload, metaData]) => {
+        this.metaData = {...metaData};
         this.store.dispatch(SearchActions.GetBikes());
 
         this.router.navigate([], {
-          queryParams: {...filterPayload},
+          queryParams: {...metaData, ...filterPayload},
           replaceUrl: true
         });
       });
@@ -102,17 +116,18 @@ export class SearchComponent implements OnInit {
 
     this.store.pipe(select(getSortingToggle))
       .subscribe(showSorting => this.showSorting = showSorting);
+
+    this.loading$ = this.store.pipe(select(getSearchLoading));
   }
 
   onScrollDown(ev) {
     this.scrolled = true;
-    this.filterPayload.page++;
-    this.store.dispatch(SearchActions.SetSearchPayload(this.filterPayload));
+    this.metaData.page++;
+    this.store.dispatch(SearchActions.SetSearchMetaData({metaData: this.metaData}));
   }
 
   onScrollUp(ev) {
     this.scrolled = false;
-    console.log(this.scrolled);
   }
 
   toggleMap() {

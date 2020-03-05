@@ -8,6 +8,10 @@
   }
 }
 
+::ng-deep .mat-menu-panel {
+  width: 320px;
+}
+
 .btn-category-filter {
   color: $light-text-color;
   font-weight: 400;
@@ -25,25 +29,7 @@
     margin-left: 0.1rem;
   }
 }
-.category-filter {
-  display: none;
-  box-shadow: 0 0.2rem 0.4rem -0.1rem rgba(0,0,0,.09), 0 0.4rem 0.5rem 0 rgba(0,0,0,.06), 0 0.1rem 1rem 0 rgba(0,0,0,.05);
 
-  &.active {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    max-height: 90vh;
-    overflow-y: scroll;
-    position: absolute;
-    width: 25rem;
-    z-index: 999;
-
-    @media (max-width: $device-xs) {
-      width: 100%;
-    }
-  }
-}
 .category {
   background: $white;
   display: flex;

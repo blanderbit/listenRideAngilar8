@@ -7,4 +7,6 @@ export const getBikesPins = createSelector(getSearchState, state => state.bikes_
 export const getLocations = createSelector(getSearchState, state => state.location);
 export const getFilterToggle = createSelector(getSearchState, state => state.showFilter);
 export const getSortingToggle = createSelector(getSearchState, state => state.showSorting);
+export const getSearchLoading = createSelector(getSearchState, state => state.loading);
 export const getFilterPayload = createSelector(getSearchState, state => state.filterPayload);
+export const getSearchMetadata = createSelector(getSearchState, state => state.metaData);

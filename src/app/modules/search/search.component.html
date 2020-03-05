@@ -19,13 +19,13 @@
       </div>
     </div>
     <div class="toolbar">
-      <lnr-filters *ngIf="isDesktop|| !isDesktop && showFilter"></lnr-filters>
+      <lnr-filters [hidden]="!isDesktop && !showFilter"></lnr-filters>
       <lnr-mobile-sorting *ngIf="showSorting"></lnr-mobile-sorting>
       <div class="sub-toolbar">
         <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-rent">
           Bikes to rent in {{location.city}} : {{pins.length}}</div>
         <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-groups">
-          Bikes rental for large groups
+          Group booking
         </div>
       </div>
     </div>
@@ -62,4 +62,5 @@
       </agm-marker-cluster>
     </agm-map>
   </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="(loading$ | async)"></mat-progress-bar>
 </div>
