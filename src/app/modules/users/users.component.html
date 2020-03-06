@@ -4,7 +4,7 @@
     <div class="col-md-8 lnr-d-flex lnr-flex-align-center">
       <lnr-profile-picture></lnr-profile-picture>
       <div>
-        <h3>{{user?.first_name}} {{user?.last_name}}</h3>
+        <h3>{{user?.firstName}} {{user?.lastName}}</h3>
         <rating #rating [max]="5" [titles]="['1', 'two', 'three', 'four', 'five']" readonly="true"></rating>
         <p>{{user?.city}}, {{user?.country}}</p>
       </div>

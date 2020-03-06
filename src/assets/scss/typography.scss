@@ -9,6 +9,11 @@ body {
   font-size: $base-font_size;
 }
 
+a {
+  color: $main-green;
+  font-weight: 500;
+}
+
 h1, .heading-1 {
   font-size: $h1-fontsize;
 }
@@ -31,6 +36,10 @@ h5, .heading-5 {
 
 h6, .heading-6 {
   font-size: $h6-fontsize;
+}
+
+.small {
+  font-size: $small-fontsize;
 }
 
 .thin {

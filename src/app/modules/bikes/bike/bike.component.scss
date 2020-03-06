@@ -1,0 +1,73 @@
+
+@import 'variables';
+@import 'utils/utils';
+
+p {
+  &:not(.medium) {
+    margin-bottom: 0;
+  }
+}
+
+.bike-meta,
+.bike-user-meta {
+  img {
+    width: 6rem;
+    border-radius: 50%;
+  }
+}
+
+.bike-rating {
+  color: $grey-background;
+
+  .rating-icon {
+    font-size: $h5-fontsize;
+  }
+}
+
+::ng-deep :root {
+  --swiper-theme-color: #{$main-blue};
+}
+
+.static-map {
+  height: 40rem;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  @include if-smaller-than(md) {
+    height: 17.5rem;
+  }
+}
+
+.bike-accessories,
+.insurance-info {
+  img {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.bike-booking-snackbar {
+  max-width: unset;
+  width: 100vw;
+  margin: 0;
+  border-radius: 0;
+  color: inherit;
+  background: $white;
+}
+
+lnr-top-location ::ng-deep .top-location-list {
+  text-align: left;
+
+  p {
+    a {
+      font-size: $base-font_size;
+    }
+  }
+}

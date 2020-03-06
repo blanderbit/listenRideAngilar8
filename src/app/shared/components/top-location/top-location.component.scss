@@ -1,4 +1,4 @@
-@import "../../../../../assets/scss/variables";
+@import 'variables';
 
 .top-location-list {
   display: flex;
@@ -16,7 +16,7 @@
   .city-link {
     &:hover {
       text-decoration: none;
-      color: $light-text-color
+      color: $light-text-color;
     }
   }
 }
@@ -34,7 +34,6 @@
     text-align: center;
   }
 }
-
 
 @media (max-width: $device-xs) {
   .top-location-list {

@@ -19,7 +19,7 @@
         </mat-nav-list>
         <mat-nav-list *ngIf="isLoggedIn"
                       class="t-align-center m-t-2">
-          <img  class="sidenav-user-avatar p-2" [src]="(user$ | async)?.profile_picture?.profile_picture?.url | profilePicturePipe" alt="user-avatar"/>
+          <img  class="sidenav-user-avatar p-2" [src]="(user$ | async)?.profilePicture?.profilePicture?.url | profilePicturePipe" alt="user-avatar"/>
 
           <a mat-list-item routerLink="/my-bikes">My Bikes</a>
           <a mat-list-item routerLink="/list-bike">List a bike</a>
@@ -81,7 +81,7 @@
           mat-button
           [matMenuTriggerFor]="userMenu"
           class="user-avatar">
-          <img [src]="(user$ | async)?.profile_picture?.profile_picture?.url | profilePicturePipe" alt="user-avatar"/>
+          <img [src]="(user$ | async)?.profilePicture?.profilePicture?.url | profilePicturePipe" alt="user-avatar"/>
         </button>
 
         <mat-menu #userMenu="matMenu">

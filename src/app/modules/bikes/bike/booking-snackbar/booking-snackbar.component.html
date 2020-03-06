@@ -1,0 +1,26 @@
+<div class="bike-booking-snackbar d-lg-none">
+  <div class="d-flex justify-content-between col-12 py-1 align-items-center">
+    <div>
+      <p class="heading-4 m-0 main-blue-font-color">
+        {{ bikeData?.dailyPrice | lnr_currency }} /
+        {{ 'shared.day' | translate }}
+      </p>
+      <p>
+        {{ bikeData?.weeklyPrice * 7 | lnr_currency }} /
+        {{ 'shared.week' | translate }}
+      </p>
+    </div>
+    <div>
+      <button
+        class="m-t-2 m-b-2 mat-flat-button mat-button-base mat-accent"
+        (click)="onAddDatesClick()"
+      >
+        <span class="mat-button-wrapper">
+          <span class="white regular">
+            {{ 'bike_page.add_dates_btn' | translate }}
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

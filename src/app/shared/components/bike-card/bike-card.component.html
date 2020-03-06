@@ -1,4 +1,4 @@
-<div [ngClass]="{'bike-tile_mobile-view': isMobileView}">
+<div [routerLink]="['/bikes/' + bike.id]" [ngClass]="{'bike-tile_mobile-view': isMobileView}">
   <div class="bike-tile text-decoration-none flex direction-column"
        [ngClass]="{'bike-tile_map-view': isMapView}"
        *ngIf="!isMobileMap; else mobileBikeTemplate">

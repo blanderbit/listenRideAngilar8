@@ -1,0 +1,15 @@
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngIf="!images?.length">
+      <div class="swiper-lazy-preloader"></div>
+    </div>
+    <div
+      class="swiper-slide"
+      *ngFor="let image of images"
+      [style.backgroundImage]="'url(' + image.medium + ')'"
+    ></div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>

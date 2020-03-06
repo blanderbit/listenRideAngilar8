@@ -1,3 +1,5 @@
+import {FormsModule} from '@angular/forms';
+import {MbscModule} from '@mobiscroll/angular';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {environment} from '@environment/environment';
@@ -61,6 +63,8 @@ export const APP_PROVIDERS = [
     AppComponent,
   ],
   imports: [
+    FormsModule,
+    MbscModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

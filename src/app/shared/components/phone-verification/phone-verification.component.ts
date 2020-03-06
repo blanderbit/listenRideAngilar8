@@ -47,9 +47,8 @@ export class PhoneVerificationComponent implements OnInit {
 
     this.user$
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(({phone_number}) => {
-        phone_number = this.addPlusToPhone(phone_number);
-        this.form.patchValue({phone_number});
+      .subscribe(({phoneNumber}) => {
+        this.form.patchValue({phone_number: this.addPlusToPhone(phoneNumber)});
       });
 
     this.form.get('phone_number').valueChanges

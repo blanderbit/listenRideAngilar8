@@ -5,7 +5,7 @@ import {SettingsGeneralComponent} from '../shared/settings-general/settings-gene
 import {SettingsAddressComponent} from '../shared/settings-address/settings-address.component';
 import {SettingsInvoiceAddressComponent} from '../shared/settings-invoice-address/settings-invoice-address.component';
 import {SettingsPictureComponent} from '../shared/settings-picture/settings-picture.component';
-import {SharedModule} from '../../../shared/shared.module';
+import {SharedModule} from '@shared/shared.module';
 import {PasswordUpdateComponent} from '../shared/password-update/password-update.component';
 import {PhoneUpdateComponent} from '../shared/phone-update/phone-update.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
@@ -16,6 +16,7 @@ import {SettingsPhoneComponent} from '../shared/settings-phone/settings-phone.co
 import {SettingsPasswordComponent} from '../shared/settings-password/settings-password.component';
 import {PasswordUpdateDialogComponent} from '../shared/password-update/password-update-dialog/password-update-dialog.component';
 import {PhoneUpdateDialogComponent} from '../shared/phone-update/phone-update-dialog/phone-update-dialog.component';
+import {ProfilePictureComponent} from '@shared/components/profile-picture/profile-picture.component';
 
 @NgModule({
   declarations: [
@@ -30,23 +31,16 @@ import {PhoneUpdateDialogComponent} from '../shared/phone-update/phone-update-di
     PasswordUpdateComponent,
     PasswordUpdateDialogComponent,
     PhoneUpdateComponent,
-    PhoneUpdateDialogComponent,
+    PhoneUpdateDialogComponent
   ],
   imports: [
     SharedModule,
     BsDropdownModule.forRoot(),
     NgxIntlTelInputModule,
     AgmCoreModule,
-    MatGoogleMapsAutocompleteModule,
+    MatGoogleMapsAutocompleteModule
   ],
-  entryComponents: [
-    PasswordUpdateDialogComponent,
-    PhoneUpdateDialogComponent,
-  ],
-  exports: [
-    SettingsProfileComponent
-  ]
+  entryComponents: [PasswordUpdateDialogComponent, PhoneUpdateDialogComponent],
+  exports: [SettingsProfileComponent, ProfilePictureComponent]
 })
-export class SettingsProfileModule {
-
-}
+export class SettingsProfileModule {}

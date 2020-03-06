@@ -27,6 +27,9 @@ import {Phone} from './pipes/phone.pipe';
 import {NeedHelpComponent} from './components/need-help/need-help.component';
 import {ReplaceSpaceToDashPipe} from './pipes/replace-space-to-dash.pipe';
 import {BreadcrumbsComponent} from './components/breadcrumbs/breadcrumbs.component';
+import {TopLocationComponent} from './components/top-location/top-location.component';
+import {MbscFormsModule} from '@mobiscroll/angular';
+import {CurrencyCustomPipe} from '@shared/pipes/currency.custom.pipe';
 import {ProfilePicturePipe} from './pipes/profile-picture.pipe';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {ProfilePictureComponent} from './components/profile-picture/profile-picture.component';
@@ -55,6 +58,8 @@ const components = [
 
   BikeCardComponent,
   BikeCardMobileComponent,
+  NeedHelpComponent,
+  TopLocationComponent,
   NeedHelpComponent,
   ProfilePictureComponent,
   ProfilePictureEditorComponent,
@@ -86,7 +91,9 @@ const pipes = [
   StringPipe,
   Phone,
   ReplaceSpaceToDashPipe,
-  ProfilePicturePipe
+  ProfilePicturePipe,
+  ReplaceSpaceToDashPipe,
+  CurrencyCustomPipe
 ];
 
 @NgModule({
@@ -97,7 +104,6 @@ const pipes = [
     ...directives,
     ...pipes,
     ...dialogs
-
   ],
   imports: [
     CommonModule,
@@ -108,11 +114,14 @@ const pipes = [
     MaterialModule,
     NgxCaptchaModule,
     TranslateModule,
+    RouterModule,
+    TranslateModule,
     ImageCropperModule,
     NgxIntlTelInputModule,
     AgmCoreModule,
     MatGoogleMapsAutocompleteModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    MbscFormsModule
   ],
   exports: [
     ...components,

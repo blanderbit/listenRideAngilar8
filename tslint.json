@@ -89,7 +89,8 @@
       "spaces",
       4
     ],
-    "object-curly-spacing": [true, "never"]
+    "object-curly-spacing": [true, "never"],
+    "camelcase": [2, {"properties": "always"}]
   },
   "rulesDirectory": [
     "codelyzer",

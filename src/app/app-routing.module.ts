@@ -23,16 +23,18 @@ const routes: Routes = [
   {path: 'terms', loadChildren: () => import('./modules/terms').then(m => m.TermsModule)},
   {path: 'my-bikes', loadChildren: () => import('./modules/my-bikes').then(m => m.MyBikesModule)},
   {path: 'brands', loadChildren: () => import('./modules/brands').then(m => m.BrandsModule)},
+  {path: 'bikes', loadChildren: () => import('./modules/bikes').then(m => m.BikesModule)},
   {path: 'events', loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule)},
+  {path: '404', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
   {
     path: `events/:${{name}}`,
     loadChildren: () => import('./modules/event-template/event-template.module').then(m => m.EventTemplateModule)
   },
-  {path: '**', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
+  {path: '**', redirectTo: '404'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

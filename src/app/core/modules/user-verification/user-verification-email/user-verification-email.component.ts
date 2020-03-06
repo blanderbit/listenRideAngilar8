@@ -55,7 +55,7 @@ export class UserVerificationEmailComponent extends UserVerificationStep impleme
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.user) {
-      super.stepCompleted = this.user.confirmed_email;
+      super.stepCompleted = this.user.confirmedEmail;
     }
   }
 
@@ -81,9 +81,9 @@ export class UserVerificationEmailComponent extends UserVerificationStep impleme
       .pipe(take(1))
       .subscribe((user) => {
         this.verificationPending = false;
-        super.stepCompleted = user.confirmed_email;
+        super.stepCompleted = user.confirmedEmail;
         this.store.dispatch(AuthActions.updateUser({user}));
-        if (user.confirmed_email) {
+        if (user.confirmedEmail) {
           this.nextOrCloseIfLastStep();
         }
 

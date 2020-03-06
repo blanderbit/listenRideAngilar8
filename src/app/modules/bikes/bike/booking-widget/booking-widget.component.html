@@ -1,0 +1,31 @@
+<div class="" *ngIf="prices">
+  <div class="d-flex justify-content-between">
+    <div *ngIf="prices['1/2']">
+      <p class="heading-4">{{ prices['1/2'] | lnr_currency }}</p>
+      <p>1/2 {{ 'shared.day' | translate }}</p>
+    </div>
+    <div>
+      <p class="heading-4">{{ bikeData?.dailyPrice | lnr_currency }}</p>
+      <p>{{ 'shared.per-day' | translate }}</p>
+    </div>
+    <div *ngIf="!prices['1/2']">
+      <p class="heading-4">{{ prices['2'] | lnr_currency }}</p>
+      <p>
+        {{ ('shared.per' | translate) + ' 2 ' + ('shared.days' | translate) }}
+      </p>
+    </div>
+    <div>
+      <p class="heading-4">{{ bikeData?.weeklyPrice * 7 | lnr_currency }}</p>
+      <p>
+        {{ ('shared.per' | translate) + ' ' + ('shared.week' | translate) }}
+      </p>
+    </div>
+  </div>
+  Dates
+  <div class="d-flex">
+    <mbsc-range [(ngModel)]="datesRange" [options]="rangeSettings">
+      <mbsc-range-start></mbsc-range-start>
+      <mbsc-range-end></mbsc-range-end>
+    </mbsc-range>
+  </div>
+</div>

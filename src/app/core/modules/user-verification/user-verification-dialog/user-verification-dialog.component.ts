@@ -93,8 +93,8 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
   }
 
   userHasProfilePicture(user: User): boolean {
-    if (user && user.profile_picture) {
-      const defaultPicture = user.profile_picture.profile_picture.url.indexOf('default_profile_picture');
+    if (user && user.profilePicture) {
+      const defaultPicture = user.profilePicture.profilePicture.url.indexOf('default_profile_picture');
 
       return defaultPicture === -1;
 
@@ -106,11 +106,11 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
   private initStepsToShow(user: User) {
     this.stepsToShow = {};
 
-    if (!user.confirmed_email) {
+    if (!user.confirmedEmail) {
       this.stepsToShow[UserVerificationStepsEnum.EMAIL] = true;
     }
 
-    if (!user.has_address) {
+    if (!user.hasAddress) {
       this.stepsToShow[UserVerificationStepsEnum.ADDRESS] = true;
     }
 
@@ -118,21 +118,21 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
       this.stepsToShow[UserVerificationStepsEnum.LOGO] = true;
     }
 
-    if (!user.confirmed_phone) {
+    if (!user.confirmedPhone) {
       this.stepsToShow[UserVerificationStepsEnum.PHONE] = true;
     }
 
-    if (!(user.has_business && user.business.vat)) {
+    if (!(user.hasBusiness && user.business.vat)) {
       this.stepsToShow[UserVerificationStepsEnum.COMPANY] = true;
     }
   }
 
   private updateFormValue(user: User) {
-    if (user.has_address) {
+    if (user.hasAddress) {
       this.form.get(UserVerificationStepsEnum.ADDRESS).setValue('user has address');
     }
 
-    if (user.confirmed_email) {
+    if (user.confirmedEmail) {
       this.form.get(UserVerificationStepsEnum.EMAIL).setValue('user has email');
     }
 
@@ -144,7 +144,7 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
       this.form.get(UserVerificationStepsEnum.COMPANY).setValue('user has VAT');
     }
 
-    if (user.confirmed_phone) {
+    if (user.confirmedPhone) {
       this.form.get(UserVerificationStepsEnum.PHONE).setValue('user has phone');
     }
 

@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
     this.activateRoute.data.pipe(take(1))
       .subscribe(({user}) => {
         this.user = user;
-        this.initRating(this.user.rating_rider);
+        this.initRating(this.user.ratingRider);
         this.checkUserVerification(user);
       }, (error) => {
         this.error = error;
@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
     if (!user) {
       return;
     }
-    if (!user.confirmed_email || !user.confirmed_phone) {
+    if (!user.confirmedEmail || !user.confirmedPhone) {
       // this.store.dispatch(UserVerificationActions.openUserVerificationDialogFromListBike());
     }
   }

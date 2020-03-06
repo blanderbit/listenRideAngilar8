@@ -15,6 +15,13 @@ sudo sysctl fs.inotify.max_user_watches=524288
 sudo sysctl -p --system
 ```
 
+#### + temporary step (install mobiscroll)
+```
+npm install -g @mobiscroll/cli
+mobiscroll config angular // you will be asked for credentials
+>> user: b.yuriy@fasterthanlight.me
+>> password @FVMe2pRfpfjfZ@
+```
 ## Development server
 
 Run `ng serve` or `npm run start1` for a dev server. Navigate to `http://localhost:4200/`.

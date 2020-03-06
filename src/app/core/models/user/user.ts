@@ -1,32 +1,27 @@
-import {BusinessLocation} from '@models/business/business-location';
 import {Business} from '@models/business/business';
 
 export interface User {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   token: string;
   email: string;
-  facebook_id: string;
+  facebookId: string;
   // TODO: ASK BE for enum
-  sign_up_type: any;
+  signUpType: any;
   // TODO: ASK BE for type
-  unread_messages: any;
+  unreadMessages: any;
   description: string;
-  has_address: boolean;
-  ref_code: string;
+  hasAddress: boolean;
+  refCode: string;
   // TODO: ASK BE for enum
-  ref_status: any;
-  profile_picture: {
-    profile_picture: { url: string; }
+  refStatus: any;
+  profilePicture: {
+    profilePicture: {url: string};
   };
-  confirmed_phone: boolean;
+  confirmedPhone: boolean;
 
   locations?: any;
-  // locations?:
-  //   BusinessLocation[] |
-  //   {primary: BusinessLocation} |
-  //   {billing: BusinessLocation};
 
   street?: string;
   zip?: string;
@@ -35,21 +30,20 @@ export interface User {
   lat?: string;
   lng?: string;
 
-  rating_lister?: number;
-  rating_rider?: number;
+  ratingLister?: number;
+  ratingRider?: number;
   status?: number;
-  has_phone_number?: boolean;
-  has_description?: boolean;
-  has_business?: boolean;
-  confirmed_email?: boolean;
-  phone_number?: string;
-  unconfirmed_phone?: string;
-  pretty_phone_number?: string;
+  hasPhoneNumber?: boolean;
+  hasDescription?: boolean;
+  hasBusiness?: boolean;
+  confirmedEmail?: boolean;
+  phoneNumber?: string;
+  unconfirmedPhone?: string;
+  prettyPhoneNumber?: string;
   balance?: number;
-  notification_preference?: any;
+  notificationPreference?: any;
   rides?: any[];
   ratings?: any[];
   business: Business;
-  me?: { admin?: boolean };
-
+  me?: {admin?: boolean};
 }

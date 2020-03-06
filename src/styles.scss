@@ -159,3 +159,14 @@ p {
     display: none;
   }
 }
+
+$mbsc-material-accent: $main-blue;
+$mbsc-material-background: $white;
+
+
+
+::ng-deep .mbsc-material.mbsc-input {
+  margin: 0;
+}
+
+@import "~@mobiscroll/angular/dist/css/mobiscroll.scss";

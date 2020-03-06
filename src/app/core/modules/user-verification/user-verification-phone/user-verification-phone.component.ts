@@ -159,7 +159,7 @@ export class UserVerificationPhoneComponent extends UserVerificationStep impleme
   }
 
   private checkIfUserPhoneIsNotVerified(user: User) {
-    if (user.confirmed_phone) {
+    if (user.confirmedPhone) {
       super.stepCompleted = true;
     }
   }

@@ -1,22 +1,31 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Bike} from '@models/bike/bike.types';
+import {map} from 'rxjs/operators';
+import {Bike, ExpandedBikeData} from '@models/bike/bike.types';
+import {CamelCaseResponseKeys} from '@shared/decorators/camelcase-response-keys';
+import {RideResponse} from '@api/api-rides/types';
+import {processRideResponse} from '@api/api-rides/helpers/process-ride-response';
 
 @Injectable({providedIn: 'root'})
 export class ApiRidesService {
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   // TODO: add type
   getByQuery(params: any): Observable<any> {
     return this.httpClient.get<any>(`/rides`, {params});
   }
 
-  getById(id: any, light = true): Observable<Bike> {
+  @CamelCaseResponseKeys()
+  getExpandedBikeData(bikeId: string): Observable<ExpandedBikeData> {
+    return this.httpClient
+      .get<RideResponse>(`/rides/${bikeId}`)
+      .pipe(map(processRideResponse));
+  }
+
+  getById(bikeId: string, light = true): Observable<Bike> {
     const params: any = {light};
-    return this.httpClient.get<Bike>(`/rides/${id}`, {params});
+    return this.httpClient.get<Bike>(`/rides/${bikeId}`, {params});
   }
 
   getByUserId(userId: number, params?: any): Observable<any> {

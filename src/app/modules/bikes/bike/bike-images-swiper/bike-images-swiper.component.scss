@@ -1,0 +1,27 @@
+
+@import 'variables';
+@import 'utils/utils';
+
+.swiper-container {
+  @include if-smaller-than(lg) {
+    margin: 0 -1.5rem;
+  }
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+  padding-top: (2 / 3) * 100%;
+}
+
+::ng-deep .swiper-pagination-bullet {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 15%;
+  background: $light-grey;
+  opacity: 1;
+}
+
+::ng-deep .swiper-pagination-bullet-active {
+  background: $main-blue;
+}
