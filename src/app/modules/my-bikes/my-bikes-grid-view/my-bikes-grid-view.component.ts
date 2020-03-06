@@ -6,6 +6,7 @@ import {MyBikesState} from '../my-bikes.types';
 import {Store} from '@ngrx/store';
 import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
+import {ApiRidesService} from "@api/api-rides/api-rides.service";
 
 @Component({
   selector: 'lnr-my-bikes-grid-view',
@@ -29,6 +30,7 @@ export class MyBikesGridViewComponent implements OnInit {
   watchJob = this.bikesModalService.watchJob;
 
   constructor(private bikesModalService: BikesModalService,
+              private apiRidesService: ApiRidesService,
               private store: Store<MyBikesState>,
               private dialog: MatDialog,
               private router: Router) { }

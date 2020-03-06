@@ -13,7 +13,7 @@
         <mat-nav-list *ngIf="!isLoggedIn">
           <a mat-list-item (click)="signUp()">Sign Up</a>
           <a mat-list-item (click)="login()">Login</a>
-          <a mat-list-item routerLink=".">List a bike</a>
+          <a mat-list-item routerLink="/list-bike">List a bike</a>
           <a mat-list-item routerLink=".">How it works</a>
           <a mat-list-item routerLink=".">Trust & Safety</a>
         </mat-nav-list>
@@ -21,8 +21,8 @@
                       class="t-align-center m-t-2">
           <img  class="sidenav-user-avatar p-2" [src]="(user$ | async)?.profile_picture?.profile_picture?.url | profilePicturePipe" alt="user-avatar"/>
 
-          <a mat-list-item routerLink=".">My Bike</a>
-          <a mat-list-item routerLink=".">List a bike</a>
+          <a mat-list-item routerLink="/my-bikes">My Bikes</a>
+          <a mat-list-item routerLink="/list-bike">List a bike</a>
           <a mat-list-item routerLink="/settings">Settings</a>
           <a mat-list-item routerLink=".">Invite Friends</a>
           <a mat-list-item routerLink=".">Invoices</a>
@@ -73,6 +73,10 @@
       </li>
       <li *ngIf="isLoggedIn"
           class="header-list-item">
+        <a href="/list-bike">List a bike</a>
+      </li>
+      <li *ngIf="isLoggedIn"
+          class="header-list-item">
         <button
           mat-button
           [matMenuTriggerFor]="userMenu"
@@ -83,7 +87,7 @@
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item [routerLink]="'/users/' + (user$ | async)?.id">Profile</button>
           <button mat-menu-item>Requests</button>
-          <button mat-menu-item>My Bikes</button>
+          <button mat-menu-item routerLink="/my-bikes">My Bikes</button>
           <mat-divider></mat-divider>
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item>Invite Friends</button>

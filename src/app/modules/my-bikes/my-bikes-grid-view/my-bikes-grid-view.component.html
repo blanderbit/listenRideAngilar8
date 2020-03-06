@@ -32,7 +32,7 @@
               matTooltip="Unmerge Bikes">
         <mat-icon svgIcon="lnr-unmerge"></mat-icon>
       </button>
-      <button mat-icon-button aria-label="delete" matTooltip="Delete" class="btn-delete">
+      <button mat-icon-button aria-label="delete" matTooltip="Delete" class="btn-delete" (click)="openDeleteModal(bike.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
