@@ -14,14 +14,21 @@ import {map, takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { formsControlsName, arrCountriesCode} from './consts/consts';
-import { priceCount} from './../../shared/helpers/price-helper';
+import { priceCount} from '../../shared/helpers/price-helper';
 import {getName, SetRound, templateMessage, numberValidate, reformatNumberDTC} from './helpers/helpers';
 import {} from 'google-maps';
+import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
+import {DeviceDetectorService} from "ngx-device-detector";
+import {log} from "util";
+
 
 @Component({
-    selector: 'lnr-list-my-bike',
-    templateUrl: './list-my-bike.component.html',
-    styleUrls: ['./list-my-bike.component.scss']
+  selector: 'lnr-list-my-bike',
+  templateUrl: './list-my-bike.component.html',
+  styleUrls: ['./list-my-bike.component.scss'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true, displayDefaultIndicatorType: false}
+  }]
 })
 
 export class ListMyBikeComponent implements OnInit {
@@ -50,6 +57,9 @@ export class ListMyBikeComponent implements OnInit {
     country: string;
     @Input() _hasCoverage = false;
     arrCountriesName: Array<string> = arrCountriesCode;
+    isDesktop = true;
+    isTablet = false;
+    isMobile = false;
 
     getName = getName;
     SetRound = SetRound;
@@ -67,7 +77,10 @@ export class ListMyBikeComponent implements OnInit {
         private router: Router,
         private SnackBar: MatSnackBar,
         private activateRoute: ActivatedRoute,
-    ) {}
+        private deviceDetectorService: DeviceDetectorService,
+    ) {
+
+    }
 
     ngOnInit(): void {
         this.activateRoute.data.pipe(
@@ -91,10 +104,16 @@ export class ListMyBikeComponent implements OnInit {
             },
             () => this.snackBar('we have some error')
         );
+
+      this.isTablet = this.deviceDetectorService.isTablet();
+      this.isMobile = this.deviceDetectorService.isMobile();
+      this.isDesktop = this.deviceDetectorService.isDesktop();
+      console.log(this.isTablet, this.isMobile, this.isDesktop)
     }
 
     setDataToPage(): void {
-        let editSubcategory;
+
+      let editSubcategory;
 
         const editCategory = this.bikeCategoryList
             .find(i => editSubcategory = i.categories
@@ -121,6 +140,7 @@ export class ListMyBikeComponent implements OnInit {
         const dailyPriceValue = this.data.daily_price || '';
         const coverageTotalValue = this.data.coverage_total || '';
 
+
         if (this.data.images && Array.isArray(this.data.images)) {
             this.data.images.forEach(i => this.loadedPhoto.push({
                 isMain: i.is_primary,
@@ -136,7 +156,6 @@ export class ListMyBikeComponent implements OnInit {
         };
 
         const detailsCtrl = {
-            available: [true],
             size: [sizeValue, Validators.required],
             frame_size: [frameSizeValue],
             bicycle_number: [bicycleNumberValue],
@@ -145,9 +164,9 @@ export class ListMyBikeComponent implements OnInit {
             name: [nameValue, Validators.required],
             description: [descriptionValue, [Validators.minLength(100), Validators.required]],
         };
-
+        const hasPicture =  this.loadedPhoto.length > 0 ? 'true' : '';
         const picturesCtrl = {
-            picturesCtrl_0: ['', Validators.required]
+            picturesCtrl_0: [hasPicture, Validators.required]
         };
 
         const locationCtrl: any = {
@@ -161,9 +180,9 @@ export class ListMyBikeComponent implements OnInit {
         this.hasCoverage && (locationCtrl.coverage_total = [coverageTotalValue, Validators.required]);
 
         const pricingCtrl = {
-            daily: [dailyValue, Validators.required],
-            weekly: [weeklyValue, Validators.required],
-            price: [dailyPriceValue, Validators.required],
+            daily: [dailyValue],
+          weekly: [weeklyValue],
+          price: [dailyPriceValue, Validators.required]
         };
 
         this.categoryFormGroup = this.formBuilder.group(category);
@@ -178,7 +197,6 @@ export class ListMyBikeComponent implements OnInit {
                 new FormControl('', Validators.required)
             );
         });
-
 
         !this.editData ? this.setCustomizeReCount() : this.setCustomizeBasePrice(this.data.prices);
     }
@@ -259,7 +277,7 @@ export class ListMyBikeComponent implements OnInit {
         const weekly = this.pricingFormGroup.controls.weekly.value;
         const price = this.pricingFormGroup.controls.price.value;
 
-        data.append(`ride[prices][0][price]`, this.reformatNumberDTC(price, ','));
+        data.append(`ride[prices][0][price]`, this.reformatNumberDTC(price.toString(), ','));
         data.append(`ride[prices][0][start_at]`, `0`);
 
         if (this.editData) {
@@ -271,7 +289,7 @@ export class ListMyBikeComponent implements OnInit {
         if (Array.isArray(prices)) {
             prices.forEach((i, index) => {
                 const mainIndex = index + 1;
-                data.append(`ride[prices][${mainIndex}][price]`, this.reformatNumberDTC(i, ','));
+                data.append(`ride[prices][${mainIndex}][price]`, this.reformatNumberDTC(i.toString(), ','));
                 data.append(`ride[prices][${mainIndex}][start_at]`, `${this.priceCount[index].start_at}`);
                 if (this.editData) {
                     data.append(`ride[prices][${mainIndex}][id]`, this.data.prices[mainIndex].id);

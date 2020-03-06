@@ -1,16 +1,17 @@
 <form class="pictureLoader" [formGroup]="picturesFormGroup" *ngIf="picturesFormGroup">
   <p class="pictureLoader">
-    Now select some nice pictures of your bike. Here is a guide on how to make your listing
+    Now select some nice pictures of your bike. <a>Here is a guide</a> on how to make your listing
     look even better!
   </p>
-  <p>Please note that the photos need to be at least 1200x800px!</p>
+  <p><em>Please note that the photos need to be at least 1200x800px!</em></p>
   <div *ngIf="imageError.length > 0" class="errorMessage">
     Invalid images
     Some of your images size is less than the allowable minimum 1200x800px:
-  </div>
+
   <p *ngFor="let item of imageError" class="errorMessage">
     {{item}}
   </p>
+  </div>
   <h3>Upload some pictures of your bike</h3>
 
   <label id="upload-file"
@@ -23,7 +24,7 @@
          type="file"
          (change)="previewFile($event.target.files)"
          accept=".png, .jpg, .jpeg"
-         formControlName="picturesCtrl_0"
+
   >
 
   <div class="preview-container"
@@ -51,7 +52,7 @@
         <span>Make this the main photo</span>
         <button mat-button
                 class="remove"
-                (click)="removePhoto(i, photo.file ? 'loadedPhoto' : 'images')"
+                (click)="removePhoto(i, photo.file ? ['loadedPhoto'] : ['images', 'loadedPhoto'])"
         >
           Remove
         </button>

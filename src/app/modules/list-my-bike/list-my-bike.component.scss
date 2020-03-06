@@ -33,39 +33,93 @@
   ::ng-deep #listMyBike-stepper {
     left: 20%;
 
-    .mat-horizontal-stepper-header {
+    .mat-horizontal-stepper-header, .mat-vertical-stepper-header {
       //pointer-events: none !important;
 
-      height: 4.8rem;
-      cursor: pointer;
-      box-sizing: border-box;
-      border-bottom: .2rem solid white;
-      transition: .5s all;
+      //cursor: pointer;
+      //box-sizing: border-box;
+      //border-bottom: .2rem solid white;
+      //transition: .5s all;
 
-      &[aria-selected="true"] {
-        border-bottom: .2rem solid $main-blue;
-      }
-
-      &[aria-selected="false"] {
-        opacity: .5;
-      }
-
-      div {
-        &.mat-step-icon-state-number.mat-step-icon, &.mat-step-icon-state-edit.mat-step-icon {
-          display: none !important;
+      &[aria-labelledby="stepVerified"]{
+        div {
+          &.mat-step-icon {
+            background: $main-green;
+          }
         }
       }
+
+      div{
+        &.mat-step-icon {
+          width: 2.8rem;
+          height: 2.8rem;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 120%;
+          display: flex;
+          align-items: center;
+          text-align: center;
+        }
+        &.mat-step-label {
+          font-weight: 500;
+          font-size: $h6-fontsize;
+          line-height: 120%;
+          text-align: center;
+        }
+
+        &.mat-step-icon-state-done.mat-step-icon {
+          background: $main-green;
+        }
+      }
+      &[ng-reflect-state="error"] {
+        div {
+          &.mat-step-icon, &.mat-step-label {
+            color: $missing-information-color;
+          }
+        }
+      }
+
+      div.mat-step-label.mat-step-label-active.mat-step-label-selected {
+
+        div.notFilled {
+          color: $missing-information-color;
+        }
+      }
+
+      div.notFilledPicture.picture {
+        color: $missing-information-color;
+      }
+
 
       .mat-step-label-active.mat-step-label-selected {
         opacity: 1;
       }
+
+      .mat-step-icon-state-done{
+        background: $submit-button-color;
+      }
     }
 
-    .mat-horizontal-stepper-content {
+    .mat-horizontal-stepper-content, .mat-vertical-stepper-content {
 
       .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
         padding: 0;
-        margin-top: 0;
+        margin-top: -0.1rem;
+
+        input, textarea, select {
+
+          &.ng-invalid.ng-touched {
+
+            border-color: $error-color;
+          }
+        }
+
+        mat-select{
+          &.mat-select-invalid.ng-touched {
+            border-color: $error-color;
+          }
+        }
+
 
         .mat-select-trigger{
           padding: 0 1.4rem;
@@ -107,6 +161,7 @@
       }
 
       .mat-select {
+
         border: .1rem solid $input-border !important;
         border-radius: .3rem;
         height: 4.2rem;
@@ -114,8 +169,12 @@
         display: grid;
       }
 
-      .mat-select-arrow, .mat-select-invalid {
+      .mat-select-arrow {
         color: $input-border !important;
+      }
+
+      .mat-select-invalid.ng-touched {
+        border-color: $error-color !important;
       }
 
       .ng-valid .mat-select-arrow {
@@ -145,9 +204,9 @@
       color: $white;
     }
 
-    ::ng-deep div.mat-stepper-horizontal-line {
-      display: none !important;
-    }
+    //::ng-deep div.mat-stepper-horizontal-line {
+    //  display: none !important;
+    //}
 
     .header {
       width: 100%;
@@ -161,10 +220,16 @@
       padding: 0 15%;
     }
 
-    .mat-horizontal-content-container {
+    .mat-stepper-vertical{
+      padding: 0;
+      width: 100%;
+      max-width: 160rem;
+    }
+
+    .mat-horizontal-content-container, .mat-vertical-content-container {
       padding: 0 !important;
 
-      .mat-horizontal-stepper-content {
+      .mat-horizontal-stepper-content, .mat-vertical-stepper-content {
         .mat-form-field-underline {
           display: none !important;
         }
@@ -185,7 +250,7 @@
             flex-direction: row !important;
 
             input {
-              background: $white;
+              //background: $white;
               border: .1rem solid $input-border;
               box-sizing: border-box;
               width: 2.4rem;
@@ -267,7 +332,6 @@
     }
 
     #upload-file {
-      font-weight: bold;
       font-size: $h6-fontsize;
       line-height: $h4-fontsize;
       text-align: center;
@@ -491,4 +555,19 @@
 
 :host::ng-deep .mat-select-panel {
   max-height: 350px !important;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: $error-color;
+
+}
+:host::ng-deep a {
+  cursor: pointer;
+  color: $main-green !important;
+}
+
+@media (max-width: $device-sm) {
+  ::ng-deep div.mat-select-panel {
+    margin-top: 50%;
+  }
 }

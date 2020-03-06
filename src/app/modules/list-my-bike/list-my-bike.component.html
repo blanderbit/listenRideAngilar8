@@ -1,178 +1,360 @@
 <div class="stepper-container flex direction-column align-items-center">
-    <h2 class="header">{{editData ? 'Edit' : 'List'}} My Bike</h2>
+  <h2 class="header">{{editData ? 'Edit' : 'List'}} My Bike</h2>
+  <button mat-button *ngIf="editData" (click)="checkFormValidation(editData)" class="active mat-button-stepper">Save
+    Changes
+  </button>
 
-    <button mat-button *ngIf="editData" (click)="checkFormValidation(editData)" class="active mat-button-stepper">Save Changes</button>
 
-    <mat-horizontal-stepper [linear]="isLinear" id="listMyBike-stepper">
+<!--  <ng-template>-->
+    <mat-horizontal-stepper [linear]="isLinear" id="listMyBike-stepper" labelPosition="bottom" *ngIf="(isDesktop || isTablet)">
 
-        <mat-step [stepControl]="categoryFormGroup">
-            <ng-template matStepLabel>Category</ng-template>
-            <lnr-list-step-category
-                    [categoryFormGroup]="categoryFormGroup"
-                    [categoryList]="bikeCategoryList"
-                    [subCategoryList]="subCategoriesValue"
-                    [accessoriesArrList]="accessoriesArrList"
-                    [accessories]="accessories"
+      <mat-step [stepControl]="categoryFormGroup"
+                [aria-labelledby]="editData ? categoryFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Category</ng-template>
+        <lnr-list-step-category
+          [categoryFormGroup]="categoryFormGroup"
+          [categoryList]="bikeCategoryList"
+          [subCategoryList]="subCategoriesValue"
+          [accessoriesArrList]="accessoriesArrList"
+          [accessories]="accessories"
+        >
+        </lnr-list-step-category>
+      </mat-step>
+
+      <mat-step [stepControl]="detailsFormGroup"
+                [aria-labelledby]="editData ? detailsFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Details</ng-template>
+        <lnr-list-step-details
+          [detailsFormGroup]="detailsFormGroup"
+          [bikeQuantity]="bikeQuantity"
+        >
+        </lnr-list-step-details>
+      </mat-step>
+
+      <mat-step [stepControl]="picturesFormGroup"
+                [aria-labelledby]="editData ? picturesFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Pictures</ng-template>
+        <lnr-list-step-pictures
+          [deleted]="deleted"
+          [picturesFormGroup]="picturesFormGroup"
+          [loadedPhoto]="loadedPhoto"
+          [images]="(data && data.images) || []"
+        >
+        </lnr-list-step-pictures>
+      </mat-step>
+
+      <mat-step [stepControl]="locationFormGroup"
+                [aria-labelledby]="editData ? locationFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Location</ng-template>
+        <lnr-list-step-locations
+          [locationFormGroup]="locationFormGroup"
+          [isCoverage]="hasCoverage"
+          (coverage)="hasCoverage = $event"
+        >
+        </lnr-list-step-locations>
+      </mat-step>
+
+      <mat-step [stepControl]="pricingFormGroup"
+                [aria-labelledby]="editData ? pricingFormGroup.valid ? 'stepVerified': null : null">
+
+        <form id="pricing-container" [formGroup]="pricingFormGroup">
+          <ng-template matStepLabel>Pricing</ng-template>
+
+          <h3>The price you charge your bike is up to you.</h3>
+
+          <p>The price should be based on the bike and equipment. To get an<br>
+            idea of market prices, you can view comparable listings. To<br>
+            encourage longer rentals, some listers set a daily or weekly discount.</p>
+          <p><em>listnride</em> charges a 10% commision on all rentals</p>
+
+          <div class="pricing-container">
+            <mat-form-field class="col-11">
+              <label>Daily price (€)*</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     formControlName="price"
+                     (input)="verifyNumberInput($event); setCustomizeReCount()"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>Daily discount (%)</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     (input)="setCustomizeReCount(); verifyNumberInput($event)"
+                     formControlName="daily"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>Weekly Discount (%)</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     (input)="setCustomizeReCount(); verifyNumberInput($event)"
+                     formControlName="weekly"
+              >
+            </mat-form-field>
+          </div>
+          <p>With a weekly discount of {{
+            this.pricingFormGroup.controls?.weekly?.value || 0
+            }}% you'll get {{
+            this.pricingFormGroup.controls?.price6?.value || 0
+            }}€ per week, minus the<br>
+            <em>listnride</em> fees.</p>
+
+          <div>
+            <div class="customised">
+              <p>Customised pricing</p>
+              <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
+            </div>
+
+            <div class="pricing-container"
+                 *ngIf="customisedPricing"
             >
+              <mat-form-field class="col-5">
+                <label>2 days*</label>
+                <input matInput formControlName="price1" (input)="verifyNumberInput($event)">
+              </mat-form-field>
 
-            </lnr-list-step-category>
-        </mat-step>
+              <mat-form-field class="col-5">
+                <label>3 days*</label>
+                <input matInput formControlName="price2" (input)="verifyNumberInput($event)">
+              </mat-form-field>
 
+              <mat-form-field class="col-5">
+                <label>4 days*</label>
+                <input matInput formControlName="price3" (input)="verifyNumberInput($event)">
+              </mat-form-field>
 
-        <mat-step [stepControl]="detailsFormGroup">
-            <ng-template matStepLabel>Details</ng-template>
-            <lnr-list-step-details
-                    [detailsFormGroup]="detailsFormGroup"
-                    [bikeQuantity]="bikeQuantity"
+              <mat-form-field class="col-5">
+                <label>5 days*</label>
+                <input matInput formControlName="price4" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>6 days*</label>
+                <input matInput formControlName="price5" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>7 days (1 week)*</label>
+                <input matInput formControlName="price6" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>8 days onwards (per day)</label>
+                <input matInput formControlName="price7" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>28 days*</label>
+                <input matInput formControlName="price8" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="mat-button-stepper"
+                    mat-button
+                    matStepperPrevious
             >
-
-            </lnr-list-step-details>
-        </mat-step>
-
-        <mat-step [stepControl]="picturesFormGroup">
-            <ng-template matStepLabel>Pictures</ng-template>
-            <lnr-list-step-pictures
-                    [deleted]="deleted"
-                    [picturesFormGroup]="picturesFormGroup"
-                    [loadedPhoto]="loadedPhoto"
+              Back
+            </button>
+            <button class="mat-button-stepper"
+                    mat-button
+                    (click)="checkFormValidation(editData)"
+                    [ngClass]="{active: !pricingFormGroup?.invalid}"
+                    [disabled]="pricingFormGroup?.invalid"
+                    type="button"
             >
-
-            </lnr-list-step-pictures>
-        </mat-step>
-
-        <mat-step [stepControl]="locationFormGroup">
-            <ng-template matStepLabel>Location</ng-template>
-            <lnr-list-step-locations
-                    [locationFormGroup]="locationFormGroup"
-                    [isCoverage]="hasCoverage"
-                    (coverage)="hasCoverage = $event"
-            >
-
-            </lnr-list-step-locations>
-        </mat-step>
-
-        <mat-step [stepControl]="pricingFormGroup">
-
-            <form id="pricing-container" [formGroup]="pricingFormGroup">
-                <ng-template matStepLabel>Pricing</ng-template>
-
-                <h3>The price you charge your bike is up to you.</h3>
-
-                <p>The price should be based on the bike and equipment. To get an<br>
-                    idea of market prices, you can view comparable listings. To<br>
-                    encourage longer rentals, some listers set a daily or weekly discount.</p>
-                <p>listnride charges a 10% commision on all rentals</p>
-
-                <div class="pricing-container">
-                    <mat-form-field class="col-11">
-                        <label>Daily price (€)*</label>
-                        <input matInput
-                               type="search"
-                               autocomplete="off"
-                               formControlName="price"
-                               (input)="verifyNumberInput($event); setCustomizeReCount()"
-                        >
-                    </mat-form-field>
-
-                    <mat-form-field class="col-5">
-                        <label>Daily discount (%)*</label>
-                        <input matInput
-                               type="search"
-                               autocomplete="off"
-                               (input)="setCustomizeReCount(); verifyNumberInput($event)"
-                               formControlName="daily"
-                        >
-                    </mat-form-field>
-
-                    <mat-form-field class="col-5">
-                        <label>Weekly Discount (%)*</label>
-                        <input matInput
-                               type="search"
-                               autocomplete="off"
-                               (input)="setCustomizeReCount(); verifyNumberInput($event)"
-                               formControlName="weekly"
-                        >
-                    </mat-form-field>
-                </div>
-                <p>With a weekly discount of {{
-                    this.pricingFormGroup.controls?.weekly?.value || 0
-                    }}% you'll get {{
-                    this.pricingFormGroup.controls?.price6?.value || 0
-                    }}€ per week, minus the<br>
-                    listnride fees.</p>
-
-                <div>
-                    <div class="customised">
-                        <p>Customised pricing</p>
-                        <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
-                    </div>
-
-                    <div class="pricing-container"
-                         *ngIf="customisedPricing"
-                    >
-                        <mat-form-field class="col-5">
-                            <label>2 days*</label>
-                            <input matInput formControlName="price1" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>3 days*</label>
-                            <input matInput formControlName="price2" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>4 days*</label>
-                            <input matInput formControlName="price3" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>5 days*</label>
-                            <input matInput formControlName="price4" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>6 days*</label>
-                            <input matInput formControlName="price5" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>7 days (1 week)*</label>
-                            <input matInput formControlName="price6" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>8 days onwards (per day)</label>
-                            <input matInput formControlName="price7" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                        <mat-form-field class="col-5">
-                            <label>28 days</label>
-                            <input matInput formControlName="price8" (input)="verifyNumberInput($event)">
-                        </mat-form-field>
-
-                    </div>
-                </div>
-                <div class="button-container">
-                    <button class="mat-button-stepper"
-                            mat-button
-                            matStepperPrevious
-                    >
-                        Back
-                    </button>
-                    <button class="mat-button-stepper"
-                            mat-button
-                            (click)="checkFormValidation(editData)"
-                            [ngClass]="{active: !pricingFormGroup?.invalid}"
-                            [disabled]="pricingFormGroup?.invalid"
-                            type="button"
-                    >
-                        {{editData ? 'Save changes' : 'List my bike'}}
-                    </button>
-                </div>
-            </form>
-        </mat-step>
+              {{editData ? 'Save changes' : 'List my bike'}}
+            </button>
+          </div>
+        </form>
+      </mat-step>
     </mat-horizontal-stepper>
+<!--  </ng-template>-->
+
+
+<!--  <ng-template>-->
+    <mat-vertical-stepper [linear]="isLinear" id="listMyBike-stepper" labelPosition="bottom"
+                          *ngIf="isMobile">
+
+      <mat-step [stepControl]="categoryFormGroup"
+                [aria-labelledby]="editData ? categoryFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Category</ng-template>
+        <lnr-list-step-category
+          [categoryFormGroup]="categoryFormGroup"
+          [categoryList]="bikeCategoryList"
+          [subCategoryList]="subCategoriesValue"
+          [accessoriesArrList]="accessoriesArrList"
+          [accessories]="accessories"
+        >
+        </lnr-list-step-category>
+      </mat-step>
+
+
+      <mat-step [stepControl]="detailsFormGroup"
+                [aria-labelledby]="editData ? detailsFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Details</ng-template>
+        <lnr-list-step-details
+          [detailsFormGroup]="detailsFormGroup"
+          [bikeQuantity]="bikeQuantity"
+        >
+        </lnr-list-step-details>
+      </mat-step>
+
+      <mat-step [stepControl]="picturesFormGroup"
+                [aria-labelledby]="editData ? picturesFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Pictures</ng-template>
+        <lnr-list-step-pictures
+          [deleted]="deleted"
+          [picturesFormGroup]="picturesFormGroup"
+          [loadedPhoto]="loadedPhoto"
+          [images]="(data && data.images) || []"
+        >
+        </lnr-list-step-pictures>
+      </mat-step>
+
+      <mat-step [stepControl]="locationFormGroup"
+                [aria-labelledby]="editData ? locationFormGroup.valid ? 'stepVerified': null : null">
+        <ng-template matStepLabel>Location</ng-template>
+        <lnr-list-step-locations
+          [locationFormGroup]="locationFormGroup"
+          [isCoverage]="hasCoverage"
+          (coverage)="hasCoverage = $event"
+        >
+        </lnr-list-step-locations>
+      </mat-step>
+
+      <mat-step [stepControl]="pricingFormGroup"
+                [aria-labelledby]="editData ? pricingFormGroup.valid ? 'stepVerified': null : null">
+
+        <form id="pricing-container" [formGroup]="pricingFormGroup">
+          <ng-template matStepLabel>Pricing</ng-template>
+
+          <h3>The price you charge your bike is up to you.</h3>
+
+          <p>The price should be based on the bike and equipment. To get an<br>
+            idea of market prices, you can view comparable listings. To<br>
+            encourage longer rentals, some listers set a daily or weekly discount.</p>
+          <p><em>listnride</em> charges a 10% commision on all rentals</p>
+
+          <div class="pricing-container">
+            <mat-form-field class="col-11">
+              <label>Daily price (€)*</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     formControlName="price"
+                     (input)="verifyNumberInput($event); setCustomizeReCount()"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>Daily discount (%)</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     (input)="setCustomizeReCount(); verifyNumberInput($event)"
+                     formControlName="daily"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <label>Weekly Discount (%)</label>
+              <input matInput
+                     type="search"
+                     autocomplete="off"
+                     (input)="setCustomizeReCount(); verifyNumberInput($event)"
+                     formControlName="weekly"
+              >
+            </mat-form-field>
+          </div>
+          <p>With a weekly discount of {{
+            this.pricingFormGroup.controls?.weekly?.value || 0
+            }}% you'll get {{
+            this.pricingFormGroup.controls?.price6?.value || 0
+            }}€ per week, minus the<br>
+            <em>listnride</em> fees.</p>
+
+          <div>
+            <div class="customised">
+              <p>Customised pricing</p>
+              <mat-slide-toggle (change)="setCustomize($event)"></mat-slide-toggle>
+            </div>
+
+            <div class="pricing-container"
+                 *ngIf="customisedPricing"
+            >
+              <mat-form-field class="col-5">
+                <label>2 days*</label>
+                <input matInput formControlName="price1" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>3 days*</label>
+                <input matInput formControlName="price2" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>4 days*</label>
+                <input matInput formControlName="price3" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>5 days*</label>
+                <input matInput formControlName="price4" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>6 days*</label>
+                <input matInput formControlName="price5" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>7 days (1 week)*</label>
+                <input matInput formControlName="price6" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>8 days onwards (per day)</label>
+                <input matInput formControlName="price7" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+                <label>28 days*</label>
+                <input matInput formControlName="price8" (input)="verifyNumberInput($event)">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="mat-button-stepper"
+                    mat-button
+                    matStepperPrevious
+            >
+              Back
+            </button>
+            <button class="mat-button-stepper"
+                    mat-button
+                    (click)="checkFormValidation(editData)"
+                    [ngClass]="{active: !pricingFormGroup?.invalid}"
+                    [disabled]="pricingFormGroup?.invalid"
+                    type="button"
+            >
+              {{editData ? 'Save changes' : 'List my bike'}}
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+<!--  </ng-template>-->
+
 </div>
 <div *ngIf="!data" class="message">
-    We don`t have this ride
+  We don`t have this ride
 </div>

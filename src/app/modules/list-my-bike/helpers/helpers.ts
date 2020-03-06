@@ -34,3 +34,7 @@ export const reformatNumberDTC = (str: string = '', operand): string => {
   return operand === '.' ? str.split('.').join(',') : str.split(',').join('.');
 };
 
+export const split = (item, operator) => isString(item) ? item.split(operator) : [];
+export const concat = (item1, item2) => {
+  return Array.isArray(item1) && Array.isArray(item2)? item1.concat(item2) : [];
+}

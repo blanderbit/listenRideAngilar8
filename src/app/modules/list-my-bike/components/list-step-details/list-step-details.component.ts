@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Variations} from '@models/bike/bike.model';
 import {SizeListInterface} from "../../model/models";
@@ -8,7 +8,7 @@ import {sizeList} from '@core/constants/filters.const';
   templateUrl: './list-step-details.component.html',
   styleUrls: ['./list-step-details.component.scss'],
 })
-export class ListStepDetailsComponent {
+export class ListStepDetailsComponent implements AfterViewInit{
   @Input() detailsFormGroup: FormGroup;
   @Input() bikeQuantity;
   sizeList: Array<SizeListInterface> = sizeList;
@@ -29,5 +29,11 @@ export class ListStepDetailsComponent {
   }
 
   delQuantity = (index): object => this.bikeQuantity.splice(index, 1);
+
+  ngAfterViewInit(): void {
+    this.detailsFormGroup.valid ? this.detailsFormGroup.touched : this.detailsFormGroup.untouched;
+  }
+
+
 }
 

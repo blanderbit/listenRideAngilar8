@@ -11,7 +11,9 @@ export class ListStepPicturesComponent {
     @Input() picturesFormGroup: FormGroup;
     @Input() loadedPhoto: Array<LoadedImageInterface>;
     @Input() deleted: Array<number> ;
+    @Input('images') images;
     imageError: Array<string> = [];
+
 
     previewFile(files: any): void {
         const arr = files ? Array.from(files) : [];
@@ -38,6 +40,7 @@ export class ListStepPicturesComponent {
                         vm.imageError.push(`${file.name} - ${width}x${height}`);
                     }
                 };
+                this.picturesFormGroup.controls['picturesCtrl_0'].setValue('true');
                 img.src = reader.result;
             };
         });
@@ -47,13 +50,19 @@ export class ListStepPicturesComponent {
         return value.includes('jpeg') || value.includes('jpg') || value.includes('png');
     }
 
-    removePhoto(i: number, type): void {
-        if (type === 'image') {
-            const data = this[type].splice(i, 1);
-            this.deleted.push(data.id);
+    removePhoto(i: number, types): void {
+      types.forEach(item => {
+        if (item === 'images' && Array.isArray(this[item]) && this[item].length > -1) {
+          const data = this[item].splice(i, 1);
+          this.deleted.push(data.id);
         }
-        if (type === 'loadedPhoto') {
-            this[type].splice(i, 1);
+        if (item === 'loadedPhoto') {
+          this[item].splice(i, 1);
         }
+
+      });
+      if(!this.loadedPhoto.length) {
+        this.picturesFormGroup.controls['picturesCtrl_0'].setValue('');
+      }
     }
 }

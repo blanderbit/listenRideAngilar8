@@ -7,3 +7,4 @@ export const formsControlsName = {
 };
 
 export const arrCountriesCode: Array<string> = ['de', 'at'];
+export const arrCountriesNames: Array<string> = ['germany', 'austria'];

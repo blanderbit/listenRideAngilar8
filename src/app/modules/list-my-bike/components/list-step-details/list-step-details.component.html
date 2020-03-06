@@ -9,14 +9,14 @@
       </mat-form-field>
 
       <mat-form-field class="model col-12">
-        <label class="model">Model*</label>
-        <input matInput formControlName="name" (input)="maxValue($event, 'name')" class="model">
+        <label for="model" class="model">Model*</label>
+        <input matInput id="model" formControlName="name" (input)="maxValue($event, 'name')" class="model">
       </mat-form-field>
 
     </div>
     <div>
       <mat-form-field class="description col-12">
-        <label class="description">Description(min. 100 characters)</label>
+        <label class="description">Description(min. 100 characters)*</label>
         <textarea #description
                   maxlength="800"
                   matInput
@@ -85,9 +85,11 @@
       <div class="col-12">
         <label>Bicycle number</label>
         <input matInput
+               type="search"
                [formControlName]="'bicycle_number'"
                *ngIf="i === 0">
         <input matInput
+               type="search"
                *ngIf="i > 0"
                (input)="changeData($event, val, 'bicycle_number')"
                [value]="val && val.bicycle_number"
@@ -100,11 +102,13 @@
 
         <div class="frame-number">
           <input matInput
+                 type="search"
                  [type]="!val.hide ? 'password' : 'text'"
                  [formControlName]="'frame_number'"
                  *ngIf="i === 0"
           >
           <input matInput
+                 type="search"
                  [type]="!val.hide ? 'password' : 'text'"
                  [value]="val && val.frame_number"
                  *ngIf="i > 0"
@@ -126,10 +130,8 @@
     </mat-form-field>
   </div>
 
-  <div class="addVariants"
-       (click)="addVariants()"
-  >
-    Add variants
+  <div class="addVariants">
+    <a (click)="addVariants()">Add variants</a>
   </div>
   <div class="button-container">
     <button class="mat-button-stepper"
@@ -144,6 +146,7 @@
             mat-button
             matStepperNext
             type="button"
+
     >
       Next
     </button>

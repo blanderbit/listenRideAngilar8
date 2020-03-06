@@ -1,20 +1,40 @@
 <form id="location-container" [formGroup]="locationFormGroup">
+
   <h3>Where can the bike be picked up?</h3>
   <p>Don’t worry, the exact location of your bike will ONLY be forwarded when you have confirmed a rental
     request.</p>
 
-  <div class="location-container">
+  <div class="location-container test">
+    <div class="spiner" *ngIf="loading"></div>
     <div>
       <mat-form-field class="col-12">
         <div class="col-12">
           <label>Street and number*</label>
-          <input matInput #address formControlName="street" type="search">
+          <input
+             matInput
+             #address
+             formControlName="street"
+             type="search"
+             [ngClass]="{
+                'ng-touched':  isInvalidForm('street'),
+                'ng-invalid':  isInvalidForm('street')
+             }"
+          >
         </div>
       </mat-form-field>
       <mat-form-field class="col-12">
         <div class="col-12">
           <label>Zip Code*</label>
-          <input matInput #regionsZip formControlName="zip" type="search">
+          <input
+            matInput
+            #regionsZip
+            formControlName="zip"
+            type="search"
+            [ngClass]="{
+                'ng-touched':  isInvalidForm('zip'),
+                'ng-invalid':  isInvalidForm('zip')
+             }"
+          >
         </div>
       </mat-form-field>
     </div>
@@ -23,18 +43,31 @@
       <mat-form-field class="col-12">
         <div class="col-12">
           <label>City*</label>
-          <input matInput #cities formControlName="city" type="search">
+          <input
+            matInput
+            #cities
+            formControlName="city"
+            type="search"
+            [ngClass]="{
+                'ng-touched':  isInvalidForm('city'),
+                'ng-invalid':  isInvalidForm('city')
+             }"
+          >
         </div>
       </mat-form-field>
       <mat-form-field class="col-12">
         <div class="col-12">
           <label>Country*</label>
-          <input matInput
-                 type="search"
-                 autocomplete="off"
-                 #regionsCountry
-                 (input)="changeCountry($event)"
-                 formControlName="country"
+          <input
+            matInput
+            type="search"
+            autocomplete="off"
+            #regionsCountry
+            formControlName="country"
+            [ngClass]="{
+                'ng-touched':  isInvalidForm('country'),
+                'ng-invalid':  isInvalidForm('country')
+             }"
           >
         </div>
       </mat-form-field>
@@ -49,7 +82,7 @@
           of your bike.
         <p>Please note that your have to provide proof of your bike's value
           in case of any claim</p>
-        <p>Learn more about insurance.</p>
+        <p><a>Learn more about insurance.</a></p>
       </div>
     </div>
 

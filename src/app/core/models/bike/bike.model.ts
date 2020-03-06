@@ -1,6 +1,7 @@
 // import {AccessoriesImageInterface} from './models';
 
-import {AccessoriesInterface} from '../../../modules/list-my-bike/model/models';
+
+import { AccessoriesInterface} from '../../../modules/list-my-bike/model/models';
 
 export class BIKE {
     constructor(init?: Partial<BIKE>) {

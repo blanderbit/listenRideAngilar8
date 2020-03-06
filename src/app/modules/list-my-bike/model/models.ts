@@ -8,6 +8,11 @@ export interface CategoryInterface {
   src: string;
   categories: Array<SubCategoryInterface>;
 }
+export interface NativeValue {
+  string: string,
+  array : Array<string>
+  specific : Array<string>
+}
 
 export class AccessoriesInterface {
   lock = false;
