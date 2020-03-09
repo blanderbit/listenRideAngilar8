@@ -1,4 +1,4 @@
-export interface Event {
+export interface AllEvents {
   past_events: SeoEvent[];
   future_events: SeoEvent[];
 }
@@ -33,7 +33,7 @@ export interface EventInfo {
   hero_image?: string;
   logo?: string;
   related_events?: RelatedEvents[];
-  testimonials?: Testimonials[];
+  testimonials?: Testimonial[];
   rides: EventsBikes[];
 }
 
@@ -43,13 +43,14 @@ export interface RelatedEvents {
   thumb_image?: string;
 }
 
-export interface Testimonials {
+export interface Testimonial {
   id: number;
   fullname: string;
   facebook_id?: string;
   user_id: number;
   description: string;
   text: string;
+  picture: string;
 }
 
 export interface EventsBikes {

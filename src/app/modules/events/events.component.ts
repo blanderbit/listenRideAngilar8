@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ApiEventsService, Event} from '@api/api-events';
+import {ApiEventsService} from '@api/api-events';
+import {AllEvents} from '@api/api-events/types';
 
 @Component({
   selector: 'lnr-events',
@@ -8,7 +9,7 @@ import {ApiEventsService, Event} from '@api/api-events';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  events$: Observable<Array<Event>>;
+  events$: Observable<AllEvents>;
 
   constructor(private apiEventsService: ApiEventsService) {
   }

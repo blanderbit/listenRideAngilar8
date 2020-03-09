@@ -1,0 +1,7 @@
+<div *ngIf="allEvent$ | async as events">
+  <lnr-small-swiper
+    [responses]="events.future_events"
+    [link]="'events/'"
+  >
+  </lnr-small-swiper>
+</div>

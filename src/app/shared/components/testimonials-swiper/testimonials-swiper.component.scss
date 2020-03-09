@@ -1,0 +1,98 @@
+@import "../../../../assets/scss/variables";
+
+:host .swiper-container {
+  height: 42rem;
+}
+
+.testimonials-list {
+  position: relative;
+
+  &_large-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 72rem;
+    height: 42rem;
+    object-fit: cover;
+    border-radius: $border-radius;
+  }
+
+  &_content {
+    background: $white;
+    position: absolute;
+    width: 44rem;
+    box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
+    border-radius: $border-radius;
+    right: 4rem;
+    text-align: left;
+    height: auto;
+    padding: 4rem 2rem 8rem 2rem;
+  }
+
+  &_small-img {
+    display: none;
+  }
+
+  &_username {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .swiper-pagination {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  ::ng-deep.swiper-pagination-bullet {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 30%;
+    margin: 0.4rem;
+    background: $main-blue;
+  }
+}
+
+@media (max-width: $device-md) {
+  :host .swiper-container {
+    height: 64rem;
+  }
+  .testimonials-list {
+    &_content {
+      position: relative;
+      width: 100%;
+      height: auto;
+      margin-right: 1rem;
+      margin-left: 1rem;
+
+      h3 {
+        font-size: $h4-fontsize;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+    }
+
+    &_username {
+      position: relative;
+    }
+
+    &_username {
+      margin-top: 1rem;
+    }
+
+    &_small-img {
+      display: block;
+      width: 100%;
+      max-height: 20rem;
+      height: inherit;
+      position: relative;
+      object-fit: contain;
+      border-radius: $border-radius;
+    }
+  }
+}
+
+@media (max-width: $device-sm) {
+  :host .swiper-container {
+    height: 56rem;
+  }
+}

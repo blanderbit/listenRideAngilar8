@@ -1,0 +1,31 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/utils/mixins";
+
+.small-swiper {
+  &_list {
+    img {
+      border-radius: $border-radius;
+      width: 32rem;
+      height: 21rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      object-fit: cover;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@include if-smaller-than(xs) {
+  .swiper-slide {
+    width: 17.4rem;
+  }
+  .small-swiper_list {
+    img {
+      width: 16rem;
+      height: 10rem;
+    }
+  }
+}

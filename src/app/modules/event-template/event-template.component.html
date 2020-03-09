@@ -1,7 +1,9 @@
-<div class="container">
+<div class="container"
+     *ngIf="event$ | async as event"
+>
   <div class="row">
     <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
-      <h3>Rent a road bike for the {{events.name | titlecase}}</h3>
+      <h3>Rent a road bike for the {{event.name | titlecase}}</h3>
       <p class="heading-5">
         On listnride you find the best rental bikes
       </p>
@@ -9,7 +11,60 @@
   </div>
   <div class="row">
     <div class="col-md-12 m-t-2 m-b-2">
-      <lnr-event-welcome-screen [event]="events"></lnr-event-welcome-screen>
+      <lnr-event-welcome-screen [event]="event"></lnr-event-welcome-screen>
+    </div>
+  </div>
+  <div class="row m-t-2 m-b-2"
+       *ngIf="event.rides"
+  >
+    <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
+      <h4>{{event.bikes_title}}</h4>
+      <p class="heading-5">
+        {{event.bikes_description}}
+      </p>
+    </div>
+    <div class="col-md-4"
+         *ngFor="let bike of event.rides, let i=index">
+      <div *ngIf="i<6"
+           class="wrap-bikes">
+        <lnr-bike-card [bike]="bike"></lnr-bike-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="row"
+       *ngIf="event.testimonials"
+  >
+    <div class="col-md-12 m-t-2 m-b-2">
+      <div>
+        <lnr-testimonials-swiper
+          [responses]="event.testimonials">
+        </lnr-testimonials-swiper>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
+      <h3>Other events you might be interested in</h3>
+      <p class="heading-5">
+        We are partnering with numerous events across Europe to offer bike rental at the starting line,
+        making it easier for you to take part in awesome races without the need of bringing your own bike!
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 m-t-2 m-b-2">
+      <lnr-events-small-swiper></lnr-events-small-swiper>
+    </div>
+    <div class="col-md-11 offset-md-1 m-t-2 m-b-6">
+      <button mat-flat-button
+              class="m-t-2 m-b-2"
+              routerLink="./events"
+              color="accent">
+          <span class="white regular heading-6">
+             See all events
+          </span>
+      </button>
     </div>
   </div>
 </div>

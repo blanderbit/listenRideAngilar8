@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiEventsService} from '@api/api-events';
+import {AllEvents, ApiEventsService} from '@api/api-events';
 import {EventInfo} from '@api/api-events/types';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'lnr-event-template',
@@ -9,14 +9,13 @@ import {EventInfo} from '@api/api-events/types';
   styleUrls: ['./event-template.component.scss']
 })
 export class EventTemplateComponent implements OnInit {
-  events;
+  event$: Observable<EventInfo>;
 
   constructor(private apiEventsService: ApiEventsService) {
   }
 
   ngOnInit() {
-    this.apiEventsService.getEvent().subscribe((data) => {
-      return this.events = data;
-    });
+    this.event$ = this.apiEventsService.getEvent();
   }
+
 }

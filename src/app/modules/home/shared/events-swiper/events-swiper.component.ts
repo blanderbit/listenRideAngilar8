@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import Swiper from 'swiper';
 import {Observable} from 'rxjs';
-import {ApiEventsService, Event} from '@api/api-events';
+import {ApiEventsService} from '@api/api-events';
+import {AllEvents} from '@api/api-events/types';
 
 @Component({
   selector: 'lnr-events-swiper',
@@ -9,7 +10,7 @@ import {ApiEventsService, Event} from '@api/api-events';
   styleUrls: ['./events-swiper.component.scss']
 })
 export class EventsSwiperComponent implements OnInit, AfterViewInit {
-  events$: Observable<Array<Event>>;
+  events$: Observable<AllEvents>;
   public eventSwiper;
 
   swiperConfig() {

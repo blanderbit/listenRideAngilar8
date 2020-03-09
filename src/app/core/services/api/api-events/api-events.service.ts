@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Event} from '@api/api-events';
-import {EventInfo} from '@api/api-events/types';
+import {AllEvents, EventInfo} from '@api/api-events/types';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +15,11 @@ export class ApiEventsService {
     return url.substr(url.lastIndexOf('/') + 1);
   }
 
-  getAllEvents(): Observable<Array<Event>> {
-    return this.httpClient.get<Array<Event>>(`/events`);
+  getAllEvents(): Observable<AllEvents> {
+    return this.httpClient.get<AllEvents>(`/events`);
   }
 
-  getEvent(): Observable<Array<EventInfo>> {
-    return this.httpClient.get<Array<EventInfo>>(`/events/${this.getEventName()}`);
+  getEvent(): Observable<EventInfo> {
+    return this.httpClient.get<EventInfo>(`/events/${this.getEventName()}`);
   }
 }

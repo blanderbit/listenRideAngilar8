@@ -44,6 +44,8 @@ import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {NgxMaskModule} from 'ngx-mask';
 
+import {TestimonialsSwiperComponent} from './components/testimonials-swiper/testimonials-swiper.component';
+import {SmallSwiperComponent} from './components/small-swiper/small-swiper.component';
 
 const components = [
   AddressComponent,
@@ -65,7 +67,9 @@ const components = [
   ProfilePictureEditorComponent,
   PhoneVerificationComponent,
   OtpVerificationComponent,
-  BreadcrumbsComponent
+  BreadcrumbsComponent,
+  TestimonialsSwiperComponent,
+  SmallSwiperComponent
 ];
 
 const dialogs = [
@@ -141,6 +145,9 @@ const pipes = [
     SubscribeInputComponent,
     CreditCardDirectivesModule,
     TranslateModule,
+    BreadcrumbsComponent,
+    TestimonialsSwiperComponent,
+    SmallSwiperComponent,
   ],
   entryComponents: [
     ...dialogs

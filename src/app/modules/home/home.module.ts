@@ -24,6 +24,13 @@ import {EventsSwiperComponent} from './shared/events-swiper/events-swiper.compon
     RecommendedDestinationsComponent,
     EventsSwiperComponent
   ],
-  imports: [SharedModule, MatGoogleMapsAutocompleteModule, HomeRoutingModule]
+  exports: [
+    TestimonialsSwiperComponent,
+    EventsSwiperComponent
+  ],
+  imports: [
+    SharedModule,
+    MatGoogleMapsAutocompleteModule,
+    HomeRoutingModule]
 })
 export class HomeModule {}

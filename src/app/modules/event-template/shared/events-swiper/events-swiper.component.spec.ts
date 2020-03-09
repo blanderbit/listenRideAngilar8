@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {EventWelcomeScreenComponent} from './event-welcome-screen.component';
+import {EventsSwiperComponent} from './events-swiper.component';
 
-describe('EventWelcomeScreenComponent', () => {
-  let component: EventWelcomeScreenComponent;
-  let fixture: ComponentFixture<EventWelcomeScreenComponent>;
+describe('EventsSwiperComponent', () => {
+  let component: EventsSwiperComponent;
+  let fixture: ComponentFixture<EventsSwiperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EventWelcomeScreenComponent]
+      declarations: [EventsSwiperComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventWelcomeScreenComponent);
+    fixture = TestBed.createComponent(EventsSwiperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
