@@ -1,4 +1,5 @@
-@import "../../../assets/scss/variables";
+@import "variables";
+@import 'utils/utils';
 
 :host {
   display: flex;
@@ -66,14 +67,13 @@
       margin-left: 0.5rem;
 
       ::ng-deep .mat-form-field-infix {
-        width: 120px;
+        width: 12rem;
         padding: 1rem 0 1rem 0;
       }
 
       @media (max-width: $device-xs) {
         flex: 1;
         margin: auto 1rem;
-        border-bottom: 1px solid $light-grey;
 
         ::ng-deep .mat-form-field-wrapper {
           width: 100%;
@@ -82,7 +82,7 @@
         }
 
         ::ng-deep .mat-form-field-infix {
-          width: 250px;
+          width: 25rem;
         }
       }
 
@@ -114,6 +114,18 @@
       @media (max-width: $device-xs) {
         display: none;
       }
+    }
+  }
+}
+
+
+@include if-bigger-than(md) {
+  .wrap-lnr-category-multiselect {
+    margin-top: 0.4rem;
+    margin-left: 0.4rem;
+
+    ::ng-deep.btn-category-filter {
+      padding: 0 0 0.2rem 1rem;
     }
   }
 }

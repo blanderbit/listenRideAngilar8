@@ -9,17 +9,19 @@ import {typeList} from '@core/constants/filters.const';
 export class CategoryMultiSelectComponent implements OnInit {
 
   categories = typeList;
-  categoriesTree = this.categories.map( cat => cat.categories.map( subCat => subCat.value));
+  categoriesTree = this.categories.map(cat => cat.categories.map(subCat => subCat.value));
   categoriesForm = {};
 
   @Input() inputSelectedCategories: string[] = [];
+  @Input() label: string;
+  @Input() labelIcon: boolean;
   @Output() multiSelectUpdate = new EventEmitter();
 
   ngOnInit() {
     const flatCat = [].concat(...this.categoriesTree);
     flatCat.forEach(cat => {
       this.categoriesForm[cat] = this.inputSelectedCategories ? this.inputSelectedCategories.includes(cat) : false;
-    } );
+    });
   }
 
   handleMenuClick(ev) {
@@ -27,7 +29,7 @@ export class CategoryMultiSelectComponent implements OnInit {
   }
 
   toggleCategory(i) {
-    this.categories[i].active  = !this.categories[i].active;
+    this.categories[i].active = !this.categories[i].active;
   }
 
   handleCategoryChange(i) {
@@ -42,8 +44,10 @@ export class CategoryMultiSelectComponent implements OnInit {
     const selectedCategories = [];
     const formArray = Object.entries(this.categoriesForm);
 
-    for ( const [key, value] of formArray) {
-      if (value) { selectedCategories.push(key); }
+    for (const [key, value] of formArray) {
+      if (value) {
+        selectedCategories.push(key);
+      }
     }
 
     this.multiSelectUpdate.emit(selectedCategories);

@@ -9,10 +9,10 @@
   height: auto;
   width: 100%;
   padding: 2rem;
-  left: 4rem;
+  left: 0;
 
   .search-autocomplete {
-    border: 1px solid $input-border;
+    border: 0.1rem solid $input-border;
     padding: 0.8rem;
     border-radius: $border-radius;
     min-width: 32rem;
@@ -50,5 +50,28 @@
 @media (min-width: $device-xl) {
   .wrap-form {
     max-width: 40rem;
+  }
+}
+
+.calendar-icon {
+  display: flex !important;
+
+  img {
+    width: 100%;
+    padding: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}
+
+.form-icon {
+  width: 2.2rem;
+  margin: 0 1rem 0 0.8rem;
+}
+
+.category-multiselect {
+  margin: -1rem 0 2rem 0;
+
+  ::ng-deep.btn-category-filter {
+    height: 4.2rem;
   }
 }

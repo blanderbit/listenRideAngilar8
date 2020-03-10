@@ -2,10 +2,17 @@
   mat-flat-button
   class="btn-category-filter"
   [matMenuTriggerFor]="categoriesMenu"
-> Type
+>
+  <img
+    class="label-icon"
+    *ngIf="labelIcon"
+    alt=""
+    src="../../../../assets/ui_icons/bikes/bike.svg"
+  />
+  {{label}}
 </button>
 <mat-menu #categoriesMenu="matMenu" class="category-filter">
-  <div class="category" *ngFor="let category of categories; let i = index" (click) = handleMenuClick($event)>
+  <div class="category" *ngFor="let category of categories; let i = index" (click)=handleMenuClick($event)>
     <div class="category-label">
       <mat-checkbox
         (change)="handleCategoryChange(i)"

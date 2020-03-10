@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
-import {SearchMetaData, SearchModel, SearchPayload, SearchQueryParams} from '../../../search/search.types';
+import {SearchModel, SearchQueryParams} from '../../../search/search.types';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -19,8 +19,7 @@ export class SearchingFormComponent implements OnInit {
   lastDateChange: SatDatepickerRangeValue<Date> | null;
   maxDate = new Date('20-12-2024');
 
-  // TODO when category select will work correct
-   @ViewChild('categorySelect', {static: true}) public categorySelect: TemplateRef<any>;
+  @ViewChild('categorySelect', {static: true}) public categorySelect: TemplateRef<any>;
 
   onDateInput = (e: SatDatepickerInputEvent<Date>) => this.lastDateInput = e.value as SatDatepickerRangeValue<Date>;
   onDateChange = (e: SatDatepickerInputEvent<Date>) => this.lastDateChange = e.value as SatDatepickerRangeValue<Date>;
@@ -38,7 +37,6 @@ export class SearchingFormComponent implements OnInit {
       type: [],
     });
 
-    // TODO when category select will work correct
     this.categorySelect[`multiSelectUpdate`]
       .subscribe((categories) => {
         this.searchingForm.get('type').setValue(categories);

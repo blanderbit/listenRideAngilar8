@@ -4,8 +4,7 @@
   @media (max-width: $device-xs) {
     flex: 1;
     margin: auto 1rem;
-    border-bottom: 0.1rem solid $light-grey;
-  }
+    }
 }
 
 ::ng-deep .mat-menu-panel {
@@ -17,11 +16,9 @@
   font-weight: 400;
   border: 0.1rem solid $input-border;
   border-radius: 0.4rem;
-  margin-left: 0.5rem;
-  margin-top: 0.4rem;
-  height: 3.6rem;
-  padding-top: -0.7rem;
-  width: 12.5rem;
+  min-width: 12.5rem;
+  width: 100%;
+  text-align: left;
 
   @media (max-width: $device-xs) {
     width: 100%;
@@ -46,7 +43,7 @@
     justify-content: space-between;
     color: $light-grey-font;
 
-    mat-icon{
+    mat-icon {
       align-self: flex-end;
     }
   }
@@ -70,3 +67,7 @@
 
 }
 
+.label-icon {
+  margin-right: 0.2rem;
+  margin-left: -0.4rem;
+}

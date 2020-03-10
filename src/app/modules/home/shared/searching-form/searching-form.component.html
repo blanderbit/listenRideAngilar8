@@ -2,12 +2,15 @@
   <h5 class="m-b-2">
     Start searching
   </h5>
-  <form [formGroup]="searchingForm"
-  >
+  <form [formGroup]="searchingForm">
     <div [ngClass]="{'d-block': activeSearch}"
          class="flex direction-column">
       <div class="flex direction-row search-autocomplete">
-        <mat-icon class="location-icon">location_on</mat-icon>
+        <img
+          class="form-icon"
+          alt=""
+          src="../../../../../assets/ui_icons/map.svg"
+        />
         <input matInput
                required
                matGoogleMapsAutocomplete
@@ -17,7 +20,13 @@
         />
       </div>
       <mat-form-field class="m-t-1" appearance="outline">
-        <sat-datepicker-toggle matPrefix [for]="resultPicker"></sat-datepicker-toggle>
+        <mat-datepicker-toggle matPrefix [for]="resultPicker">
+          <mat-icon class="calendar-icon"
+                    matDatepickerToggleIcon>
+            <img alt=""
+                 src="../../../../../assets/ui_icons/calendar.svg"
+            /></mat-icon>
+        </mat-datepicker-toggle>
         <input matInput
                class="filter-input"
                placeholder="Choose a date"
@@ -31,8 +40,12 @@
                         [rangeMode]="true">
         </sat-datepicker>
       </mat-form-field>
-      <!--      TODO when category select will work correct-->
-      <lnr-category-multiselect #categorySelect></lnr-category-multiselect>
+      <lnr-category-multiselect
+        class="m-b-2 category-multiselect"
+        [labelIcon]="true"
+        [label]="'Any type of bike'"
+        #categorySelect>
+      </lnr-category-multiselect>
       <button mat-flat-button
               [disabled]="!searchingForm.valid"
               (click)="onSubmit($event)"

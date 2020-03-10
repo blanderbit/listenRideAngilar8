@@ -111,7 +111,7 @@ p {
 }
 
 .hdd-datepicker .mat-calendar-body-label {
-  color: white;
+  display: none;
 }
 
 .hdd-datepicker .mat-calendar-body {
@@ -120,6 +120,14 @@ p {
 
 .hdd-datepicker.mat-calendar {
   height: 320px !important;
+}
+
+.mat-form-field-outline-start {
+  border-radius: $border-radius 0 0 $border-radius !important;
+}
+
+.mat-form-field-outline-end {
+  border-radius: 0 $border-radius $border-radius 0 !important;
 }
 
 /* Styles for Swiper */
@@ -162,7 +170,6 @@ p {
 
 $mbsc-material-accent: $main-blue;
 $mbsc-material-background: $white;
-
 
 
 ::ng-deep .mbsc-material.mbsc-input {

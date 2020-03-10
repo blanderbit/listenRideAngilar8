@@ -39,7 +39,13 @@
             </mat-select>
           </mat-form-field>
 
-          <lnr-category-multiselect [inputSelectedCategories]="filtersForm.get('type').value" #categorySelect></lnr-category-multiselect>
+          <lnr-category-multiselect
+            class="wrap-lnr-category-multiselect"
+            [label]="'Type'"
+            [labelIcon]="false"
+            [inputSelectedCategories]="filtersForm.get('type').value"
+            #categorySelect>
+          </lnr-category-multiselect>
 
           <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
