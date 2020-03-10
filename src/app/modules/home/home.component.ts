@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {random} from 'lodash';
 
 @Component({
   selector: 'lnr-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
 
 
   pickRandomHeroshot() {
-    const heroShotId = Math.floor(Math.random() * Math.floor(4)) + 1;
+    const heroShotId = random(1,6);
     this.heroShotUrl = '../../../assets/images/img-home/hero/lnr_hero_' + heroShotId + '.jpg';
   }
 
