@@ -7,17 +7,17 @@ import {AuthActions} from '@auth/store/actions';
 
 @Component({
   selector: 'lnr-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  templateUrl: './layout-header-menu.component.html',
+  styleUrls: ['./layout-header-menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class LayoutHeaderMenuComponent implements OnInit {
   @Input() isLoggedIn = false;
   mobileQuery: MediaQueryList;
   @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
 
   reason = '';
 
-  user$ = this.storeAuth.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
   constructor(
     private storeAuth: Store<fromAuth.State>,

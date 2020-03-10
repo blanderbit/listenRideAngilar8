@@ -6,7 +6,6 @@ import {Injectable} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {UserVerificationActions, UserVerificationDialogActions} from '@core/modules/user-verification/store/actions';
 import {UserVerificationDialogComponent} from '@core/modules/user-verification/user-verification-dialog/user-verification-dialog.component';
-import {SignUpDialogActions} from '@auth/store/actions';
 import {select, Store} from '@ngrx/store';
 import * as fromUserVerification from '../reducers/index';
 
@@ -19,6 +18,7 @@ export class UserVerificationEffects {
           UserVerificationActions.headerOpenUserVerificationDialog,
           UserVerificationActions.openUserVerificationDialogFromListBike),
         exhaustMap(() => {
+
           const dialogConfig = new DialogConfig();
           const dialogRef = this.dialog.open(UserVerificationDialogComponent, dialogConfig);
 

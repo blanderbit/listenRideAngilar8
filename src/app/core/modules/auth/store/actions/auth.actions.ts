@@ -1,10 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {OauthTokenResponse} from '@models/oauth/oauth-token-response';
 import {User} from '@models/user/user';
-
-export const saveTokens = createAction('[Auth] Save Tokens', props<{ tokens: OauthTokenResponse }>());
-export const saveTokensSuccess = createAction('[Auth] Save Tokens Success');
-export const saveTokensError = createAction('[Auth] Save Tokens Error', props<{ exception: any }>());
 
 export const saveMeSuccess = createAction('[Auth] Save Me Success', props<{ me: Partial<User> }>());
 export const saveMeError = createAction('[Auth] Save Me Error', props<{ exception: any }>());

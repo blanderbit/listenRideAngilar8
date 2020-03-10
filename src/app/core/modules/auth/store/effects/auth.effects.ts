@@ -1,13 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, exhaustMap, map, withLatestFrom} from 'rxjs/operators';
-import {
-  AuthActions,
-  AuthApiActions,
-  LoginDialogActions,
-  SignUpDialogActions,
-  UserApiActions
-} from '@core/modules/auth/store/actions';
+import {AuthActions, UserApiActions} from '@core/modules/auth/store/actions';
 import {of} from 'rxjs';
 import {ApiOauthService} from '@api/api-oauth/api-oauth.service';
 import {ApiUserService} from '@api/api-user/api-user.service';
@@ -20,56 +14,10 @@ import {ApiBusinessService} from '@api/api-business/api-business.service';
 import {LocalStorageKeysEnum} from '@enums/local-storage-keys.enum';
 import {Router} from '@angular/router';
 import * as fromAuth from '@auth/store/reducers';
-import {OauthTokenFacebookRequest} from '@models/oauth/oauth-token-facebook-request';
-import {OauthGrantTypeEnum} from '@enums/oauth-grant-type.enum';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 
 @Injectable()
 export class AuthEffects {
-
-  saveTokens$ = createEffect(() => {
-      return this.actions$.pipe(
-        ofType(AuthActions.saveTokens),
-        map((action) => {
-          try {
-            localStorage.setItem(TokensEnum.ACCESS_TOKEN, action.tokens.access_token);
-            localStorage.setItem(TokensEnum.REFRESH_TOKEN, action.tokens.refresh_token);
-            localStorage.setItem(TokensEnum.TOKEN_TYPE, action.tokens.token_type);
-
-            return AuthActions.saveTokensSuccess();
-          } catch (exception) {
-            return AuthActions.saveTokensError({exception});
-          }
-        })
-      );
-    }
-  );
-
-  saveTokensSuccess$ = createEffect(() => {
-      return this.actions$.pipe(
-        ofType(AuthActions.saveTokensSuccess),
-        exhaustMap(() =>
-          this.apiUserService.me().pipe(
-            map(me => UserApiActions.getMeSuccess({me})),
-            catchError(error => of(UserApiActions.getMeFailure({error})))
-          )
-        )
-      );
-    }
-  );
-
-  saveMeSuccess$ = createEffect(() => {
-      return this.actions$.pipe(
-        ofType(AuthActions.saveMeSuccess),
-        exhaustMap(({me}) =>
-          this.apiUserService.read(me.id).pipe(
-            map(user => UserApiActions.getUserByIdSuccess({user})),
-            catchError(error => of(UserApiActions.getUserByIdFailure({error})))
-          )
-        )
-      );
-    }
-  );
 
   loginDialogOpen$ = createEffect(() => {
       return this.actions$.pipe(
@@ -80,9 +28,8 @@ export class AuthEffects {
 
           return of(dialogRef.id);
         }),
-        map(dialogId => LoginDialogActions.opened({dialogId}))
       );
-    }
+    }, {dispatch: false}
   );
 
   signUpDialogOpen$ = createEffect(() => {
@@ -94,15 +41,14 @@ export class AuthEffects {
 
           return of(dialogRef.id);
         }),
-        map(dialogId => SignUpDialogActions.opened({dialogId}))
       );
-    }
+    }, {dispatch: false}
   );
 
   updateUserByApi$ = createEffect(() => {
       return this.actions$.pipe(
         ofType(AuthActions.updateUserByApi),
-        withLatestFrom(this.store.select(fromAuth.selectAuthGetUser)),
+        withLatestFrom(this.store.select(fromAuth.selectUser)),
         exhaustMap(([{}, {id}]) =>
           this.apiUserService.read(id).pipe(
             map(user => UserApiActions.getUserByIdSuccess({user})),

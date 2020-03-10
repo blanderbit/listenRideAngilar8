@@ -36,7 +36,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 export class UserVerificationDialogComponent implements OnInit, AfterViewChecked, OnDestroy {
   private destroyed$ = new Subject();
-  user$ = this.storeAuth.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
   user: User;
 
   showStepper = false;
@@ -55,8 +55,7 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
               private store: Store<fromUserVerification.State>,
               private storeAuth: Store<fromAuth.State>,
               private fb: FormBuilder,
-              private deviceDetectorService: DeviceDetectorService,
-  ) {
+              private deviceDetectorService: DeviceDetectorService) {
   }
 
   ngOnInit(): void {
@@ -106,12 +105,12 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
   private initStepsToShow(user: User) {
     this.stepsToShow = {};
 
-    if (!user.confirmedEmail) {
-      this.stepsToShow[UserVerificationStepsEnum.EMAIL] = true;
-    }
-
     if (!user.hasAddress) {
       this.stepsToShow[UserVerificationStepsEnum.ADDRESS] = true;
+    }
+
+    if (!user.confirmedEmail) {
+      this.stepsToShow[UserVerificationStepsEnum.EMAIL] = true;
     }
 
     if (!this.userHasProfilePicture(user)) {
@@ -122,7 +121,7 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
       this.stepsToShow[UserVerificationStepsEnum.PHONE] = true;
     }
 
-    if (!(user.hasBusiness && user.business.vat)) {
+    if (user.business && !user.business.vat) {
       this.stepsToShow[UserVerificationStepsEnum.COMPANY] = true;
     }
   }
@@ -140,7 +139,7 @@ export class UserVerificationDialogComponent implements OnInit, AfterViewChecked
       this.form.get(UserVerificationStepsEnum.LOGO).setValue('user has logo');
     }
 
-    if (user.business.vat) {
+    if (user.business && user.business.vat) {
       this.form.get(UserVerificationStepsEnum.COMPANY).setValue('user has VAT');
     }
 

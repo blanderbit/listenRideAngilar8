@@ -7,7 +7,7 @@ import {SettingsNotificationsComponent} from '../shared/settings-notifications/s
 import {SettingsPaymentMethodComponent} from '../shared/settings-payment-method/settings-payment-method.component';
 import {SettingsPayoutMethodComponent} from '../shared/settings-payout-method/settings-payout-method.component';
 import {SettingsVouchersComponent} from '../shared/settings-vouchers/settings-vouchers.component';
-import {SharedModule} from '../../../shared/shared.module';
+import {SharedModule} from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {SharedModule} from '../../../shared/shared.module';
     SettingsNotificationsComponent,
     SettingsPaymentMethodComponent,
     SettingsPayoutMethodComponent,
-    SettingsVouchersComponent
+    SettingsVouchersComponent,
   ],
   imports: [SharedModule],
   exports: [SettingsAccountComponent]

@@ -19,7 +19,7 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
 
   isLoggedIn$ = this.storeAuth.pipe(select(fromAuth.isLoggedIn));
-  user$ = this.storeAuth.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
   constructor(
     private store: Store<SearchModel>,

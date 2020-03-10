@@ -25,7 +25,7 @@ export class MyBikesEffects {
   loadMyBikes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(myBikes.GetMyBikes, myBikes.GetMyFilteredBikes),
-      withLatestFrom(this.store.select(fromAuth.selectAuthGetUser)),
+      withLatestFrom(this.store.select(fromAuth.selectUser)),
       filter(([action, userState]) => !!userState.id),
       tap(res => this.store.dispatch(myBikes.SetMyBikesLoading({loading: true}))),
       switchMap(([action, state]) => {

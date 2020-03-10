@@ -7,7 +7,3 @@ export const getMeFailure = createAction('[User/API] Get Me Failure', props<{ er
 
 export const getUserByIdSuccess = createAction('[User/API] Get User By Id Success', props<{ user: User }>());
 export const getUserByIdFailure = createAction('[User/API] Get User By Id Failure', props<{ error: HttpErrorResponse }>());
-export const UserDataInitialize = createAction('[User/API] User Initialize', props<{
-  me: Partial<User>,
-  user: User
-}>());

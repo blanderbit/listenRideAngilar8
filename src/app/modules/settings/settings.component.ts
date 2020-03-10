@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '@models/user/user';
+import {select, Store} from '@ngrx/store';
+import * as fromAuth from '@auth/store/reducers';
 
 type TabType = 'account' | 'availability' | 'profile';
 
@@ -8,12 +10,11 @@ type TabType = 'account' | 'availability' | 'profile';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
-  tabType: TabType = 'profile';
-  user: User;
+export class SettingsComponent {
+  tabType: TabType = 'account';
+  user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
-  ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('USER'));
+  constructor(private storeAuth: Store<fromAuth.State>) {
   }
 
   get showAccount() {

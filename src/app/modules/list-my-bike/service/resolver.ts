@@ -14,7 +14,7 @@ export class UserResolver implements Resolve<any> {
 
     resolve() {
         return this.store.pipe(
-            select(fromAuth.selectAuthGetUser),
+            select(fromAuth.selectUser),
             tap(loaded => loaded),
             first(),
             tap(item => {

@@ -2,12 +2,8 @@
   <h2 mat-dialog-title class="lnr-text-align-ctr">Sign up</h2>
 
   <mat-error>
-    <lnr-http-error-message
-      [error]="(signUpError$ | async) ||
-      (signUpLoginError$ | async) ||
-      (signUpBusinessError$ | async) ||
-      (signUpFacebookError$ | async) ||
-      (signUpLoginFacebookError$ | async)"></lnr-http-error-message>
+    <lnr-http-error-message [error]="signUpError || signUpFacebookError || socialUserError">
+    </lnr-http-error-message>
   </mat-error>
 
   <lnr-button-close (closed)="close()"></lnr-button-close>
@@ -27,7 +23,7 @@
     </div>
   </div>
 
-  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSave()" lnrFocusFirstInvalidField>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="signUp()" lnrFocusFirstInvalidField>
 
     <div formGroupName="business" [hidden]="!(tabType === 'business')">
 
@@ -154,30 +150,26 @@
               class="lnr-w-100 lnr-mrg-btm-sm"
               type="submit"
               [disabled]="(showPrivate && userForm.invalid) ||
-              (showBusiness && (userForm.invalid || businessForm.invalid))"
+              (showBusiness && (userForm.invalid || businessForm.invalid)) ||
+              signUpPending || signUpFacebookPending"
               [matTooltip]="submitBtnTooltip"
       >Sign up
-        <lnr-loader-spinner-small
-          [hidden]="!(signUpPending$ | async) &&
-          !(signUpLoginPending$ | async) &&
-          !(signUpBusinessPending$ | async)">
+        <lnr-loader-spinner-small [hidden]="!signUpPending">
         </lnr-loader-spinner-small>
       </button>
     </div>
 
-    <lnr-divider class="lnr-mrg-btm-sm" text="or" [hidden]="(tabType === 'business')"></lnr-divider>
+    <lnr-divider class="lnr-mrg-btm-sm" text="or"></lnr-divider>
 
     <div>
       <button mat-raised-button
               type="button"
               class="lnr-w-100 lnr-mrg-btm lnr-fb-button"
               color="primary"
-              (click)="signInWithFB()"
-              [hidden]="(tabType === 'business')">Sign up with Facebook
-        <lnr-loader-spinner-small
-          [hidden]="!getSocialUserPending &&
-          !(signUpFacebookPending$ | async) &&
-          !(signUpLoginFacebookPending$ | async)">
+              (click)="signUpFB()"
+              [disabled]="signUpPending || signUpFacebookPending || (showBusiness && businessForm.invalid)">
+        Sign up with Facebook
+        <lnr-loader-spinner-small [hidden]="!socialUserPending && !signUpFacebookPending">
         </lnr-loader-spinner-small>
       </button>
     </div>

@@ -1,0 +1,15 @@
+.lnr-adyen-input-holder {
+  display: block;
+  height: 15px;
+  opacity: 0;
+}
+
+.mat-focused{
+  .lnr-adyen-input-holder {
+    opacity: 1;
+  }
+}
+
+.mat-hint{
+  color: #ff5722;
+}

@@ -41,7 +41,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
   }
 
   handle401Error(req: HttpRequest<any>, next: HttpHandler, error: HttpErrorResponse) {
-    switch (error.error.code) {
+    switch (error.error.errors[0].detail) {
       case ErrorHttpEnum.ERROR_UNAUTHORIZED_TOKEN_EXPIRED: {
         return this.refreshToken(req, next);
       }

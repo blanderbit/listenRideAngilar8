@@ -18,7 +18,7 @@ export class UsersResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | User> {
     const userId = route.params.id;
     return this.store.pipe(
-      select(fromAuth.selectAuthGetUser),
+      select(fromAuth.selectUser),
       exhaustMap((user) => {
         if (+userId === +user.id) {
           return of(user);

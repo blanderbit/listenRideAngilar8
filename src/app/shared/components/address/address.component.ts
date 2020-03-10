@@ -27,7 +27,7 @@ export class AddressComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
   @Output() addressReady = new EventEmitter<Address>();
   @Output() addressInvalid = new EventEmitter<boolean>();
-  user$ = this.store.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.store.pipe(select(fromAuth.selectUser));
   form: FormGroup;
 
   constructor(private fb: FormBuilder,

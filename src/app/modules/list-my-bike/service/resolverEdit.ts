@@ -19,7 +19,7 @@ export class UserEditDataResolver implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot) {
         let user;
         return this.store.pipe(
-            select(fromAuth.selectAuthGetUser),
+            select(fromAuth.selectUser),
             tap(loaded => user = loaded),
             first(),
             switchMap(() => this.apiRidesService.getById(route.params.id, false)),

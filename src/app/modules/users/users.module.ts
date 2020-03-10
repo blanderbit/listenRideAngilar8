@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {UsersComponent} from './users.component';
-import {SharedModule} from '../../shared/shared.module';
+import {SharedModule} from '@shared/shared.module';
 import {UsersRoutingModule} from './users-routing.module';
 import {UsersResolver} from './users.resolver';
 import {UserVerifiedThroughComponent} from './user-verified-through/user-verified-through.component';

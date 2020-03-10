@@ -21,9 +21,9 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <lnr-settings-profile [hidden]="!showProfile" [user]="user"></lnr-settings-profile>
-      <lnr-settings-account [hidden]="!showAccount" [user]="user"></lnr-settings-account>
-      <lnr-settings-availability [hidden]="!showAvailability" [user]="user"></lnr-settings-availability>
+      <lnr-settings-profile [hidden]="!showProfile" [user]="user$ | async"></lnr-settings-profile>
+      <lnr-settings-account [hidden]="!showAccount" [user]="user$ | async"></lnr-settings-account>
+      <lnr-settings-availability [hidden]="!showAvailability" [user]="user$ | async"></lnr-settings-availability>
     </div>
   </div>
 

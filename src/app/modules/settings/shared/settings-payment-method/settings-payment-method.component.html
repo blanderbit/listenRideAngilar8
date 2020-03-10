@@ -3,7 +3,6 @@
     <h6>Payment method</h6>
   </div>
 
-
   <div class="col-sm-12 col-md-8">
     <ng-container *ngIf="mode === 'update'">
       <div class="row">
@@ -18,61 +17,9 @@
       <form [formGroup]="form" novalidate>
 
         <div class="row">
-
-          <div class="col-sm-12 col-md-4">
-            <mat-form-field appearance="outline" class="lnr-w-100">
-              <mat-label>Name on card</mat-label>
-              <input formControlName="holderName"
-                     type="text"
-                     matInput
-                     placeholder="Enter value"
-              >
-              <mat-error *ngIf="form.get('holderName').touched && form.get('holderName').errors">
-                <small *ngIf="form.get('holderName').errors.required">Field is required</small>
-              </mat-error>
-            </mat-form-field>
+          <div class="col-sm-12">
+            <lnr-payment-method-card></lnr-payment-method-card>
           </div>
-
-          <div class="col-sm-12 col-md-4">
-            <mat-form-field appearance="outline" class="lnr-w-100">
-              <mat-label>Card number</mat-label>
-              <input matInput id="cc-number" formControlName="creditCard" type="tel" autocomplete="cc-number"
-                     placeholder="•••• •••• •••• ••••" ccNumber>
-              <mat-error *ngIf="form.get('creditCard').touched && form.get('creditCard').errors">
-                <small *ngIf="form.get('creditCard').errors.required && form.get('creditCard').errors.ccNumber">Field is
-                  required</small>
-                <small *ngIf="!form.get('creditCard').errors.required && form.get('creditCard').errors.ccNumber">Credit
-                  Card is invalid</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm-12 col-md-2">
-            <mat-form-field appearance="outline" class="lnr-w-100">
-              <mat-label>Exp. date</mat-label>
-              <input matInput id="cc-exp-date" formControlName="expDate" type="tel" autocomplete="cc-exp"
-                     placeholder="•• / ••" ccExp>
-              <mat-error *ngIf="form.get('expDate').touched && form.get('expDate').errors">
-                <small *ngIf="form.get('expDate').errors.required && form.get('expDate').errors.expDate">Field is
-                  required</small>
-                <small *ngIf="!form.get('expDate').errors.required && form.get('expDate').errors.expDate">Date
-                  invalid</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="col-sm-12 col-md-2">
-            <mat-form-field appearance="outline" class="lnr-w-100">
-              <mat-label>Cvc</mat-label>
-              <input matInput id="cc-cvc" formControlName="cvc" type="tel" autocomplete="off" placeholder="•••" ccCVC>
-              <mat-error *ngIf="form.get('cvc').touched && form.get('cvc').errors">
-                <small *ngIf="form.get('cvc').errors.required">Field is required</small>
-                <small *ngIf="form.get('cvc').errors.minlength">Min length is 3</small>
-                <small *ngIf="form.get('cvc').errors.maxlength">Max length is 4</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
         </div>
 
         <div class="row">

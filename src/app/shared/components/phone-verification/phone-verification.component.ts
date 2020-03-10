@@ -18,7 +18,7 @@ import {PhoneControlOutput} from './phone-control-output';
 })
 export class PhoneVerificationComponent implements OnInit {
   private destroyed$ = new Subject();
-  user$ = this.store.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.store.pipe(select(fromAuth.selectUser));
   @Output() phoneReady = new EventEmitter<PhoneControlOutput>();
   @Output() phoneInvalid = new EventEmitter<boolean>();
 

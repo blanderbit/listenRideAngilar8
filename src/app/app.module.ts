@@ -1,10 +1,9 @@
-import {FormsModule} from '@angular/forms';
 import {MbscModule} from '@mobiscroll/angular';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {environment} from '@environment/environment';
 
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -16,14 +15,15 @@ import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
 import {MatIconRegistry} from '@angular/material';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {HttpAuthInterceptor} from '@core/interceptors/http-auth-interceptor';
 import {HttpUrlInterceptor} from '@core/interceptors/http-url-interceptor';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {LayoutModule} from '@core/modules/layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthGuard} from '@core/guards/auth.guard';
-import {UserVerificationGuard} from '@core/guards/user-verification.guard';
+import {AuthModule} from '@auth/auth.module';
+import {UserVerificationModule} from '@user-verification/user-verification.module';
 
 export function provideAuthServiceConfig() {
   return new AuthServiceConfig([
@@ -55,7 +55,6 @@ export const APP_PROVIDERS = [
     useFactory: provideAuthServiceConfig
   },
   AuthGuard,
-  UserVerificationGuard
 ];
 
 @NgModule({
@@ -63,14 +62,15 @@ export const APP_PROVIDERS = [
     AppComponent,
   ],
   imports: [
-    FormsModule,
     MbscModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     SocialLoginModule,
     BrowserAnimationsModule,
+    AuthModule,
     LayoutModule,
+    UserVerificationModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

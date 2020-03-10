@@ -6,6 +6,6 @@ import {User} from '@models/user/user';
   templateUrl: './settings-account.component.html',
   styleUrls: ['./settings-account.component.scss']
 })
-export class SettingsAccountComponent {
+export class SettingsAccountComponent{
   @Input() user: User;
 }

@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatHorizontalStepper, MatVerticalStepper} from '@angular/material/stepper';
 import {User} from '@models/user/user';
-import {CroppedImage} from '../../../../shared/components/profile-picture/profile-picture-editor/cropped-image';
+import {CroppedImage} from '@shared/components/profile-picture/profile-picture-editor/cropped-image';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ApiUserService} from '@api/api-user/api-user.service';
 import {Store} from '@ngrx/store';
@@ -40,7 +40,6 @@ export class UserVerificationLogoComponent extends UserVerificationStep {
     if (!this.croppedImage) {
       return;
     }
-
     return this.apiUserService.updateLogo(this.user.id, this.croppedImage.blob, this.croppedImage.name)
       .subscribe((user) => {
         this.pending = false;

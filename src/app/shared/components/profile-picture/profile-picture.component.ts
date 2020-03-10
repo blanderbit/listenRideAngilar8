@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from '@models/user/user';
+import {Component, Input} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogConfig} from '@core/configs/dialog/dialog.config';
 import {ProfilePictureDialogComponent} from './profile-picture-dialog/profile-picture-dialog.component';
@@ -13,7 +12,7 @@ import * as fromAuth from '@auth/store/reducers';
 })
 export class ProfilePictureComponent {
   @Input() editable = false;
-  user$ = this.store.pipe(select(fromAuth.selectAuthGetUser));
+  user$ = this.store.pipe(select(fromAuth.selectUser));
 
   constructor(private dialog: MatDialog,
               private store: Store<fromAuth.State>) {

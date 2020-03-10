@@ -23,7 +23,7 @@ export class CategoryMultiSelectComponent implements OnInit {
   }
 
   handleMenuClick(ev) {
-    ev.stopPropagation(); // prevent menu from closing
+    ev.stopPropagation(); // prevent layout-header-menu from closing
   }
 
   toggleCategory(i) {
