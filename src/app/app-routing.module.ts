@@ -4,10 +4,8 @@ import {AuthGuard} from '@core/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./modules/home').then(m => m.HomeModule)},
-  {
-    path: 'list-bike',
-    loadChildren: () => import('./modules/list-my-bike').then(m => m.ListMyBikeModule),
-  },
+  {path: 'list-bike', loadChildren: () => import('./modules/list-my-bike').then(m => m.ListMyBikeModule)},
+  {path: 'booking', loadChildren: () => import('./modules/bikes-request-flow').then(m => m.BikesRequestFlowModule)},
   {path: 'privacy', loadChildren: () => import('./modules/privacy').then(m => m.PrivacyModule)},
   {path: 'search', loadChildren: () => import('./modules/search').then(m => m.SearchModule)},
   {

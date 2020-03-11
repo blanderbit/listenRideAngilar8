@@ -44,41 +44,44 @@ const dialogs = [
 ];
 
 @NgModule({
-  declarations: [
-    ...components,
-    ...dialogs
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatStepperModule,
-    HttpErrorMessageModule,
-    ButtonsModule,
-    LoadersModule,
+    declarations: [
+        ...components,
+        ...dialogs
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatStepperModule,
+        HttpErrorMessageModule,
+        ButtonsModule,
+        LoadersModule,
 
-    DeviceDetectorModule.forRoot(),
-    ViewTemplateModule,
-    AddressModule,
-    ProfilePictureModule,
-    PhoneVerificationModule,
-    OtpVerificationModule,
-    PipesModule,
-    DirectivesModule,
+        DeviceDetectorModule.forRoot(),
+        ViewTemplateModule,
+        AddressModule,
+        ProfilePictureModule,
+        PhoneVerificationModule,
+        OtpVerificationModule,
+        PipesModule,
+        DirectivesModule,
 
-    StoreModule.forFeature(fromUserVerification.userVerificationFeatureKey, fromUserVerification.reducers),
-    EffectsModule.forFeature([UserVerificationEffects]),
+        StoreModule.forFeature(fromUserVerification.userVerificationFeatureKey, fromUserVerification.reducers),
+        EffectsModule.forFeature([UserVerificationEffects]),
 
-  ],
+    ],
+    exports: [
+        UserVerificationPhoneComponent
+    ],
 
-  entryComponents: [
-    ...dialogs
-  ]
+    entryComponents: [
+        ...dialogs
+    ]
 })
 export class UserVerificationModule {
 

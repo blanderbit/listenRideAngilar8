@@ -1,0 +1,38 @@
+<form class="pictureLoader" [formGroup]="paymentMethodFormGroup" *ngIf="paymentMethodFormGroup">
+
+  <h3><b>Select your Payment Method</b></h3>
+  <p>Please select your favourite payment method. We only charge you after lister accepted your request.</p>
+  <div class="paymentMethod">
+    <div class="pay">
+<!--      <div>-->
+      <div>
+        <div>
+          <input type="radio" name="payment" id="credit_card" #payment>
+          <label for="credit_card" class="custom-checkbox"></label>
+        </div>
+        <span><b>Credit Card</b></span>
+      </div>
+      <div>
+        <img src="https://seeklogo.com/images/M/mastercard-logo-71F11EE373-seeklogo.com.png" alt="">
+        <img src="https://seeklogo.com/images/V/VISA-logo-A32D589D31-seeklogo.com.png" alt="">
+      </div>
+<!--      </div>-->
+<!--      <lnr-payment-method-card *ngIf="payment.checked"></lnr-payment-method-card>-->
+
+    </div>
+
+    <div class="pay">
+      <div>
+        <div>
+          <input type="radio" name="payment" id="paypal">
+          <label for="paypal" class="custom-checkbox"></label>
+        </div>
+        <span><b>Paypal</b></span>
+      </div>
+      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_payments_by_pp_2line.png" alt="">
+    </div>
+  </div>
+
+
+
+</form>

@@ -46,4 +46,5 @@ export interface User {
   ratings?: any[];
   business: Business;
   me?: {admin?: boolean};
+  directBookingScheme?: boolean;
 }

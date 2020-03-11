@@ -1,0 +1,101 @@
+@import "../../../../../assets/scss/variables";
+
+.main_container {
+  padding: 0;
+  box-sizing: border-box;
+  width: 76rem;
+  height: 30rem;
+  margin: 0;
+  border-bottom: .1rem solid $input-border;
+
+  .leftContainer {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    margin-top: 2rem;
+
+    img {
+      width: 26rem;
+      height: 17.4rem;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      font-size: $h5-fontsize;
+    }
+  }
+}
+
+.insurance_container {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 60% 40%;
+
+  .premium_insurance {
+    border-right: .1rem solid $input-border;
+
+    div {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      div {
+        display: grid;
+        grid-template-columns: 10% 90%;
+      }
+
+      mat-icon {
+        color: $main-blue;
+      }
+    }
+
+    button {
+      color: $white;
+      width: 20.7rem;
+      height: 4.2rem;
+      background: $main-green;
+      font-weight: bold;
+      font-size: $base-font_size;
+      line-height: 100%;
+      border: none;
+      border-radius: .4rem;
+      margin: 1.7rem 1rem 1rem 4rem;
+
+    }
+  }
+
+  .voucher {
+    padding-left: 2rem;
+
+    h4, h5, p {
+      margin-bottom: 2rem;
+    }
+
+    .input_voucher {
+      margin-bottom: 3rem;
+      input {
+        width: 16.7rem;
+        height: 4.2rem;
+        border: 0.15rem solid $input-border;
+        border-radius: .5rem;
+        padding-left: 2rem;
+      }
+      input::-webkit-input-placeholder {font-size: $small-fontsize}
+      input::-moz-placeholder          {font-size: $small-fontsize}
+      input:-moz-placeholder           {font-size: $small-fontsize}
+      input:-ms-input-placeholder      {font-size: $small-fontsize}
+
+      button {
+        border: none;
+        border-radius: .4rem;
+        height: 4.2rem;
+        width: 9.5rem;
+        background: $main-green;
+        font-weight: bold;
+        color: $white;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+

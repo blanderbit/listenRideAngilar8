@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {typeList} from '@core/constants/filters.const';
@@ -108,7 +108,7 @@ export class ListMyBikeComponent implements OnInit {
       this.isTablet = this.deviceDetectorService.isTablet();
       this.isMobile = this.deviceDetectorService.isMobile();
       this.isDesktop = this.deviceDetectorService.isDesktop();
-      console.log(this.isTablet, this.isMobile, this.isDesktop)
+      console.log(this.isTablet, this.isMobile, this.isDesktop);
     }
 
     setDataToPage(): void {
@@ -285,7 +285,7 @@ export class ListMyBikeComponent implements OnInit {
         }
 
         const prices = virtualData.prices;
-
+debugger
         if (Array.isArray(prices)) {
             prices.forEach((i, index) => {
                 const mainIndex = index + 1;

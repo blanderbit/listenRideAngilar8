@@ -27,6 +27,7 @@ import {MbscModule} from '@mobiscroll/angular';
     SettingsProfileModule,
     MbscModule
   ],
+  exports:[BookingWidgetComponent],
   entryComponents: [BookingModalComponent]
 })
 export class BikesModule {}

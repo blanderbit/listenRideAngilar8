@@ -1,0 +1,53 @@
+@import 'variables.scss';
+
+h3 {
+  font-size: $h3-fontsize;
+  font-weight: normal;
+  margin-bottom: 14px;
+  color: $social-media-bg-hover;
+}
+div.paymentMethod {
+  div.pay:first-child {
+    border-bottom: 1px solid $input-border;
+    border-top: 1px solid $input-border;
+    padding: 2rem;
+  }
+  div.pay{
+    border-bottom: 1px solid $input-border;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  div.pay > div {
+    display: flex;
+  }
+
+  img{
+    height: 3rem;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  label.custom-checkbox {
+    border: .1rem solid $input-border;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span {
+    margin-left: 1rem;
+  }
+
+  input:checked ~ label:before {
+    content: "\2714";
+  }
+}

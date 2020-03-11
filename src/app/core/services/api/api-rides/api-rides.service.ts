@@ -60,4 +60,8 @@ export class ApiRidesService {
   declusterizeBikes(clusterId: number): Observable<any> {
     return this.httpClient.put(`/clusters/${clusterId}/unmerge`, {});
   }
+
+  getBikesByCluster(clusterId: number, start_date, duration): Observable<any> {
+    return this.httpClient.get(`/clusters/${clusterId}?start_date=${start_date}&duration${duration}`);
+  }
 }

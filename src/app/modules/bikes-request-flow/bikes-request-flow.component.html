@@ -1,0 +1,230 @@
+<div class="stepper-container flex direction-column align-items-center">
+  <div class="flex justify-content-sm-center container" [ngClass]="isMobile ? 'direction-column' : 'direction-row'">
+
+    <mat-horizontal-stepper [linear]="isLinear" id="requestFlow-stepper" labelPosition="bottom" #stepper
+                            *ngIf="(isDesktop || isTablet)">
+
+      <mat-step [stepControl]="durationFormGroup">
+        <ng-template matStepLabel>Duration</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="false"
+        >
+
+        </lnr-step-duration>
+      </mat-step>
+
+
+      <mat-step [stepControl]="signInFormGroup">
+        <ng-template matStepLabel>Sign In</ng-template>
+        <h3><b>Log in to listnride</b></h3>
+                <lnr-auth-login-dialog (login)="testLogin($event)"
+                >
+                </lnr-auth-login-dialog>
+      </mat-step>
+
+      <mat-step [stepControl]="phoneFormGroup" state="phone">
+        <ng-template matStepLabel>Phone</ng-template>
+<!--        <h3><b>Verify your phone number </b></h3>-->
+<!--        <p class="lnr-mrg-btm">You can receive SMS notifications for future requests.</p>-->
+                <lnr-user-verification-phone [stepper]="stepper"
+                                             [dialogRef]="ok"
+                                             [user]="user"
+                                             [isDesktop]="isDesktop"
+                                             [isTablet]="isTablet"
+                                             [isMobile]="isMobile"
+                >
+                </lnr-user-verification-phone>
+
+
+      </mat-step>
+
+
+      <mat-step [stepControl]="personalDetailsFormGroup" state="address">
+        <ng-template matStepLabel>Address</ng-template>
+        <h3><b>What is your address </b></h3>
+        <p>By providing your address you will have some another description</p>
+
+        <lnr-address
+        >
+        </lnr-address>
+      </mat-step>
+
+
+      <mat-step [stepControl]="paymentMethodFormGroup">
+        <ng-template matStepLabel>Payment method</ng-template>
+        <lnr-step-payment
+          [paymentMethodFormGroup]="paymentMethodFormGroup"
+        >
+
+        </lnr-step-payment>
+        <br/>
+<!--        <lnr-payment-method-card></lnr-payment-method-card>-->
+<!--        <lnr-payment-method-pay-pal></lnr-payment-method-pay-pal>-->
+
+      </mat-step>
+
+      <mat-step [stepControl]="rentalOverviewFormGroup">
+        <ng-template matStepLabel>Rental overview</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="hasInsurance"
+        >
+
+        </lnr-step-duration>
+
+      </mat-step>
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="phone">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="email">
+        <mat-icon>alternate_email</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="address">
+        <mat-icon>home</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="company">
+        <mat-icon svgIcon="account-tie"></mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="warning">
+        <mat-icon svgIcon="exclamation"></mat-icon>
+      </ng-template>
+
+    </mat-horizontal-stepper>
+
+    <mat-vertical-stepper [linear]="isLinear" id="requestFlow-stepper" labelPosition="bottom" #stepper1
+                          *ngIf="isMobile">
+
+      <mat-step [stepControl]="durationFormGroup">
+        <ng-template matStepLabel>Duration</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="false"
+        >
+
+        </lnr-step-duration>
+      </mat-step>
+
+
+      <mat-step [stepControl]="signInFormGroup">
+        <ng-template matStepLabel>Sign In</ng-template>
+        <h4><b>Log in to listnride</b></h4>
+        <lnr-auth-login-dialog>
+        </lnr-auth-login-dialog>
+      </mat-step>
+
+      <mat-step [stepControl]="phoneFormGroup" state="phone">
+        <ng-template matStepLabel>Phone</ng-template>
+                <lnr-user-verification-phone [stepper]="stepper1"
+                                             [dialogRef]="ok"
+                                             [user]="user"
+                                             [isDesktop]="isDesktop"
+                                             [isTablet]="isTablet"
+                                             [isMobile]="isMobile"
+                >
+                </lnr-user-verification-phone>
+      </mat-step>
+
+
+      <mat-step [stepControl]="personalDetailsFormGroup" state="address">
+        <ng-template matStepLabel>Address</ng-template>
+
+        <h3><b>What is your address </b></h3>
+        <p>By providing your address you will have some another description</p>
+
+        <lnr-address
+        >
+        </lnr-address>
+
+        <!--        <lnr-user-verification-address [stepper]="stepper"-->
+        <!--                                       [dialogRef]="ok"-->
+        <!--                                       [user]="user"-->
+        <!--                                       [isDesktop]="isDesktop"-->
+        <!--                                       [isTablet]="isTablet"-->
+        <!--                                       [isMobile]="isMobile"-->
+        <!--        >-->
+        <!--        </lnr-user-verification-address>-->
+        <!--        <lnr-help></lnr-help>-->
+      </mat-step>
+
+
+      <mat-step [stepControl]="paymentMethodFormGroup">
+        <ng-template matStepLabel>Payment method</ng-template>
+        <lnr-step-payment
+          [paymentMethodFormGroup]="paymentMethodFormGroup"
+        >
+
+        </lnr-step-payment>
+      </mat-step>
+
+      <mat-step [stepControl]="rentalOverviewFormGroup">
+        <ng-template matStepLabel>Rental overview</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="hasInsurance"
+        >
+
+        </lnr-step-duration>
+
+      </mat-step>
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="phone">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="email">
+        <mat-icon>alternate_email</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="address">
+        <mat-icon>home</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="company">
+        <mat-icon svgIcon="account-tie"></mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="warning">
+        <mat-icon svgIcon="exclamation"></mat-icon>
+      </ng-template>
+
+
+    </mat-vertical-stepper>
+
+
+    <lnr-book-widget
+      [insuranceEnable]="(user && user.has_business && user.business) ? user.business.insurance_enabled : true"
+      [priceForOne]="data.prices[0] && data.prices[0].price"
+      [durations]="duration"
+      [weekly]="data.discounts.weekly"
+      [coverage_total]="data.coverage_total"
+      [daily]="data.discounts.daily"
+      [form]="durationFormGroup"
+      [datesRange]="datesRange"
+      (setData)="test($event)"
+      (clickToNext)="next($event)"
+      #widget
+    >
+
+    </lnr-book-widget>
+
+
+  </div>
+
+  <lnr-need-help></lnr-need-help>
+
+</div>
+<div *ngIf="!data" class="message">
+  We don`t have this ride
+</div>

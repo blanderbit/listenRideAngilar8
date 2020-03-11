@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -17,6 +17,8 @@ export class AuthLoginDialogComponent {
   error: HttpErrorResponse;
   pending = false;
 
+  @Output('login') isLogin = new EventEmitter();
+
   constructor(public dialogRef: MatDialogRef<AuthLoginDialogComponent>) {
   }
 
@@ -34,12 +36,16 @@ export class AuthLoginDialogComponent {
 
   onLoginSuccess() {
     this.pending = false;
+    this.isLogin.emit(true);
+
     this.close();
+
   }
 
   onLoginError(error: HttpErrorResponse) {
     this.pending = false;
     this.error = error;
+
   }
 
   login() {

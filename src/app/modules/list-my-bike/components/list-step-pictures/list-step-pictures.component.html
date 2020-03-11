@@ -8,9 +8,9 @@
     Invalid images
     Some of your images size is less than the allowable minimum 1200x800px:
 
-  <p *ngFor="let item of imageError" class="errorMessage">
-    {{item}}
-  </p>
+    <p *ngFor="let item of imageError" class="errorMessage">
+      {{item}}
+    </p>
   </div>
   <h3>Upload some pictures of your bike</h3>
 
@@ -49,14 +49,14 @@
 
         </div>
         <div class="imgCheckboxButton">
-        <span>Make this the main photo</span>
-        <button mat-button
-                class="remove"
-                (click)="removePhoto(i, photo.file ? ['loadedPhoto'] : ['images', 'loadedPhoto'])"
-        >
-          Remove
-        </button>
-      </div>
+          <span>Make this the main photo</span>
+          <button mat-button
+                  class="remove"
+                  (click)="removePhoto(i, photo.file ? ['loadedPhoto'] : ['images', 'loadedPhoto'])"
+          >
+            Remove
+          </button>
+        </div>
       </div>
     </div>
   </div>

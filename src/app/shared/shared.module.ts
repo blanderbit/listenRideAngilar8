@@ -15,7 +15,7 @@ import {CreditCardDirectivesModule} from 'angular-cc-library';
 import {NeedHelpComponent} from './components/need-help/need-help.component';
 import {BreadcrumbsComponent} from './components/breadcrumbs/breadcrumbs.component';
 import {TopLocationComponent} from './components/top-location/top-location.component';
-import {MbscFormsModule} from '@mobiscroll/angular';
+import {MbscFormsModule, MbscModule} from '@mobiscroll/angular';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {NgxMaskModule} from 'ngx-mask';
@@ -38,6 +38,7 @@ import {DialogsModule} from '@shared/dialogs/dialogs.module';
 
 import {TestimonialsSwiperComponent} from './components/testimonials-swiper/testimonials-swiper.component';
 import {SmallSwiperComponent} from './components/small-swiper/small-swiper.component';
+import {BookWidgetComponent} from "@shared/components/book-widget/book-widget.component";
 
 const components = [
   FiltersComponent,
@@ -55,6 +56,7 @@ const components = [
   BreadcrumbsComponent,
   TestimonialsSwiperComponent,
   SmallSwiperComponent,
+  BookWidgetComponent
 ];
 
 const modules = [
@@ -71,7 +73,8 @@ const modules = [
   ProfilePictureModule,
   PhoneVerificationModule,
   OtpVerificationModule,
-  DialogsModule
+  DialogsModule,
+  MbscModule
 ];
 
 
