@@ -1,7 +1,7 @@
 <div class="swiper-container swiper-brands">
   <div class="swiper-wrapper"
-       *ngIf="brands$">
-    <a *ngFor="let brand of brands$ | async"
+       *ngIf="brands$ | async as brands">
+    <a *ngFor="let brand of brands"
        [ngStyle]="{ 'background-image': 'url(' + brand.tile_image + ')'}"
        class="swiper-slide brands-list"
        href="/brands/{{brand.title| lowercase}}"

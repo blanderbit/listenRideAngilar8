@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AllEvents, ApiEventsService} from '@api/api-events';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ApiEventsService} from '@api/api-events';
 import {EventInfo} from '@api/api-events/types';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'lnr-event-template',
@@ -9,13 +9,23 @@ import {Observable} from 'rxjs';
   styleUrls: ['./event-template.component.scss']
 })
 export class EventTemplateComponent implements OnInit {
-  event$: Observable<EventInfo>;
+  public event: EventInfo;
 
-  constructor(private apiEventsService: ApiEventsService) {
+  constructor(
+    private route: ActivatedRoute,
+    private apiEventsService: ApiEventsService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
-    this.event$ = this.apiEventsService.getEvent();
+    this.route.params.subscribe(({name}) => {
+      this.apiEventsService.getEvent(name).subscribe(data => {
+        this.event = data;
+      }, error => {
+        this.router.navigate(['404']);
+      });
+    });
   }
 
 }

@@ -4,7 +4,7 @@
     <a *ngFor="let event of futureEvents['future_events']"
        [ngStyle]="{ 'background-image': 'url(' + event.thumb_image + ')'}"
        class="swiper-slide swiper-list"
-       href="/events/{{event.name | lowercase}}"
+       href="/events/{{event.name}}"
     >
     </a>
   </div>

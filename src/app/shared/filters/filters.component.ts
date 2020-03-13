@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {select, Store} from '@ngrx/store';
 import {SatDatepickerInputEvent, SatDatepickerRangeValue} from 'saturn-datepicker';
-import {brandList, sizeList, sortList, typeList} from '@core/constants/filters.const';
+import {brandList, sizeList, sortList} from '@core/constants/filters.const';
 import {take} from 'rxjs/operators';
 import * as SearchActions from '../../modules/search/store/search.actions';
 import {SearchModel, SearchPayload} from '../../modules/search/search.types';
@@ -87,8 +87,6 @@ export class FiltersComponent implements OnInit {
       filterPayload.sort_by = sortParams[0];
       filterPayload.sort_direction = sortParams[1];
     }
-
-    console.log(filterPayload);
     return filterPayload;
   }
 

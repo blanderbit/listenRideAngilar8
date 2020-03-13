@@ -1,6 +1,6 @@
-<div *ngIf="allEvent$ | async as events">
+<div *ngIf="allEvent$ | async as futureEvents">
   <lnr-small-swiper
-    [responses]="events.future_events"
+    [responses]="futureEvents['future_events']"
     [link]="'events/'"
   >
   </lnr-small-swiper>

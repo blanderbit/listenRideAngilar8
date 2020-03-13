@@ -22,10 +22,9 @@ const routes: Routes = [
   {path: 'my-bikes', loadChildren: () => import('./modules/my-bikes').then(m => m.MyBikesModule)},
   {path: 'brands', loadChildren: () => import('./modules/brands').then(m => m.BrandsModule)},
   {path: 'bikes', loadChildren: () => import('./modules/bikes').then(m => m.BikesModule)},
-  {path: 'events', loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule)},
   {path: '404', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
   {
-    path: `events/:${{name}}`,
+    path: 'events',
     loadChildren: () => import('./modules/event-template/event-template.module').then(m => m.EventTemplateModule)
   },
   {path: '**', redirectTo: '404'},

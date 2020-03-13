@@ -11,11 +11,11 @@
       </div>
       <div class="time-line-block_right flex p-l-2">
         <div class="p-r-2 p-l-2">
-          <h4 class="cursor-pointer"
-              routerLink="./{{seoEvent.name | replaceSpaceToDash}}">
+          <a class="cursor-pointer heading-4 dark-font-color"
+             href="events/{{seoEvent.name}}">
             {{seoEvent.title}}
-          </h4>
-          <div class="d-block d-sm-none bold dark-font-color heading-6">
+          </a>
+          <div class="d-block d-sm-none dark-font-color dark-font-color heading-6">
             <div class="flex align-items-left direction-column p-t-1 p-b-1">
           <span>
               {{seoEvent.pretty_date }}
@@ -29,7 +29,6 @@
         </div>
         <img
           class="cursor-pointer"
-          routerLink="./{{seoEvent.name | replaceSpaceToDash}}"
           alt=""
           src="{{seoEvent.thumb_image}}"
         />

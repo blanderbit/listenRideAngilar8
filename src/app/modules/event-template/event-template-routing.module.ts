@@ -2,7 +2,10 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {EventTemplateComponent} from './event-template.component';
 
-const routes: Routes = [{path: '', component: EventTemplateComponent}];
+const routes: Routes = [
+  {path: '', loadChildren: () => import('../../modules/events/events.module').then(m => m.EventsModule)},
+  {path: ':name', component: EventTemplateComponent}
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
