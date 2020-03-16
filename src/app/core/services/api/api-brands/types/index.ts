@@ -1,8 +1,8 @@
 export interface Brand {
   id: number;
+  name?: string;
   logo?: string;
-  title?: string;
   categories?: Array<number>;
   pins?: Array<any>;
-  tile_image?: string;
+  thumb_image?: string;
 }

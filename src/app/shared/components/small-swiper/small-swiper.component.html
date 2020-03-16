@@ -1,7 +1,7 @@
 <div class="swiper-container small-swiper">
   <div class="swiper-wrapper">
     <a *ngFor="let item of responses"
-       class="swiper-slidel small-swiper_list"
+       class="swiper-slide cursor-pointer small-swiper_list"
        href="{{link}}{{item.name}}"
     >
       <img alt=""
@@ -9,7 +9,7 @@
       />
     </a>
   </div>
-  <div class="">
+  <div class="d-none d-lg-block">
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>

@@ -1,4 +1,5 @@
-@import "../../../../assets/scss/variables";
+@import 'variables';
+@import 'utils/utils';
 
 :host .swiper-container {
   height: 42rem;
@@ -37,25 +38,18 @@
     position: absolute;
     bottom: 0;
   }
-
-  .swiper-pagination {
-    bottom: 1rem;
-    right: 1rem;
-  }
-
-  ::ng-deep.swiper-pagination-bullet {
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 30%;
-    margin: 0.4rem;
-    background: $main-blue;
-  }
 }
 
-@media (max-width: $device-md) {
+@include if-smaller-than(md) {
   :host .swiper-container {
-    height: 64rem;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
+  .testimonials-list_content {
+    right: 0;
+  }
+
   .testimonials-list {
     &_content {
       position: relative;
@@ -90,9 +84,28 @@
     }
   }
 }
+//
+//::ng-deep .swiper-pagination-bullet {
+//  width: 1.6rem;
+//  height: 1.6rem;
+//  border-radius: 15%;
+//  background: $light-grey;
+//  opacity: 1;
+//}
+//
+//::ng-deep .swiper-pagination-bullet-active {
+//  background: $main-blue;
+//}
 
-@media (max-width: $device-sm) {
-  :host .swiper-container {
-    height: 56rem;
-  }
+.swiper-pagination {
+  bottom: 1rem;
+  right: 1rem;
+}
+
+::ng-deep.swiper-pagination-bullet {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 30%;
+  margin: 0.4rem;
+  background: $main-blue;
 }

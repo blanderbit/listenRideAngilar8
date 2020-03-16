@@ -25,22 +25,8 @@ export interface CountriesForFooter {
 
 export interface TestimonialsRequest {
   id: number;
-  text: {
-    de: string;
-    en: string;
-    es: string;
-    fr: string;
-    it: string;
-    nl: string;
-  };
-  description: {
-    de: string;
-    en: string;
-    es: string;
-    fr: string;
-    it: string;
-    nl: string;
-  };
+  text: string;
+  description: string;
   fullname: string;
   facebook_id?: string;
   user_id?: number;

@@ -14,12 +14,12 @@
       >
         <mat-grid-tile
           class="rounded"
-          title="{{brand?.title}}"
+          title="{{brand?.name}}"
           *ngFor="let brand of brandsList$ | async"
-          [style.backgroundImage]="'url(' + brand?.tile_image + ')'"
+          [style.backgroundImage]="'url(' + brand?.thumb_image + ')'"
         >
           <!-- TODO: update with ui-href after BE update with standart Brand page -->
-          <a href="/brands/{{ brand?.title | lowercase }}"></a>
+          <a href="/brands/{{ brand?.name | lowercase }}"></a>
 
         </mat-grid-tile>
       </mat-grid-list>

@@ -21,7 +21,8 @@ export class TestimonialsSwiperComponent implements OnInit, OnDestroy {
       initialSlide: 0,
       pagination: {
         el: '.swiper-pagination',
-        type: 'bullets'
+        type: 'bullets',
+        clickable: true
       },
       navigation: {
         nextEl: '.swiper-button-next',

@@ -1,15 +1,7 @@
-<div class="swiper-container swiper-events">
-  <div class="swiper-wrapper"
-       *ngIf="events$ | async as futureEvents">
-    <a *ngFor="let event of futureEvents['future_events']"
-       [ngStyle]="{ 'background-image': 'url(' + event.thumb_image + ')'}"
-       class="swiper-slide swiper-list"
-       href="/events/{{event.name}}"
-    >
-    </a>
-  </div>
-  <div class="d-none d-lg-block">
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </div>
+<div *ngIf="events$ | async as futureEvents">
+  <lnr-small-swiper
+    [responses]="futureEvents['future_events']"
+    [link]="'events/'"
+  >
+  </lnr-small-swiper>
 </div>
