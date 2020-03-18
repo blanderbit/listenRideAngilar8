@@ -3,6 +3,16 @@
     "learn-more": "Aprende Más",
     "size": "Tamaño",
     "img-alt": "Alquiler de bicicletas {{bikeBrand}} {{bikeName}} en {{bikeCity}}",
+    "bike_location": "Localización de la bicicleta",
+    "cancellations": "Cancelaciónes",
+    "multiple_sizes": "Tallas diferentes disponibles",
+    "read_more": "Para saber más ",
+    "dates": "Fechas",
+    "bookings": {
+      "include_message_to_lister": "Incluye un mensaje para el Lister aquí ...",
+      "you_wont_be_charged": "No te cobramos ahora.",
+      "may_require_deposit": "Algunas solicutudes de alquiler necesitan de una garantía."
+    },
     "request": "Request",
     "non-availability-type": "Tipo de indisponibilidad",
     "event": "Event",
@@ -206,8 +216,15 @@
       "subheader": "Conoce a personas con tus mismas pasiones y gana dinero extra"
     }
   },
-  "invoice": {
-    "settlement_history": "Settlement History"
+  "bike_page": {
+    "location": {
+      "disclaimer": "La información de la ubicación se proporcionará al confirmar la reserva. "
+    },
+    "cancellations": {
+      "disclaimer": "Reembolso completo, con exclusión de la tasa de servicio, si cancelas tu solicitud 5 días antes del alquiler. Si cancelas tu solicitud menos de 5 días antes del alquiler, pero un diá antes, te reembolsamos el 50% del importe del alquiler. Po las solicitudes canceladas menos de 24 horas antes del alquiler, te reembolsamos el 50%, con exclusión de la tasa de servicio y el primer día de alquiler. ",
+      "read_more": "Para saber más sobre nuesta política de cancelacíon. "
+    },
+    "add_dates_btn": "Añadir fechas"
   },
   "request": {
     "payment-failed": "Uh-oh. Desafortunadamente, tu pago falló. Por favor, comprueba los datos que has introducido, así como la configuración de pago de tu proveedor de pagos!",
@@ -235,7 +252,7 @@
     "john-potsdam": "Tengo unas cuantas bicicletas por ahí y creo que es genial alquilarlas y ofrecerlas a los visitantes de mi ciudad. Siempre hemos tenido grandes alquiladores hasta ahora!",
     "cornelia-basel": "Visitamos Berlín y esta vez queríamos probar una buena e-bike. Encontramos bicicletas electrónicas Ampler en listnride y alquilamos dos de ellas. Resultó perfecto y a buen precio!",
     "rider-1": "Visitamos Viena y quisimos descubrir activamente la ciudad y el campo. Encontrmos 2 bicicletas para alquilar en listnride, lo pasamos genial y fue un gran descubrimiento!",
-    "rider-2": "Estaba visitando a un amigo en Berlín y no quería traer mi propia bicicleta conmigo. En vez de eso, alquilé una linda bicicleta con listnrdie - muy cerca de ella. Funcionó perfectamente y a buen precio.",
+    "rider-2": "Estaba visitando a un amigo en Berlín y no quería traer mi propia bicicleta conmigo. En vez de eso, alquilé una linda bicicleta con listnride - muy cerca de ella. Funcionó perfectamente y a buen precio.",
     "rider-3": "En Munich nos encontramos con listnride y encontramos dos elegantes bicicletas de ciudad a un precio adecuado. El dueño era un tipo amistoso que nos invitaba a tomar un café. Me dio algunos consejos muy buenos, ¡muy buenos!",
     "rider-4": "Trabajo regularmente en Berlín. Desde que descubrí listnride, a menudo alquilo una buena bicicleta. La selección de bicicletas es grande y es fácil y segura.",
     "lister-1": "Recientemente descubrí listnride, enumeré 3 bicicletas de carretera y ahora las alquilo regularmente. Lo mejor de todo es conocer gente agradable, con la que a veces también voy a dar un paseo.",
@@ -428,7 +445,16 @@
       "optional": "1) Posibilidad de incrementar la aceleración. Precio disponible bajo pedido. <br>\n2) Límite de velocidad estándar. Para desbloquer el límite máximo se necesita pantalla con colores. <br>\n3) Batería 48V 17.5 AmpH disponible. Precio disponible bajo pedido. <br>"
     },
     "sushibikes": {
-      "title": "title\n"
+      "title": "JOKO MAKES SUSHI: how new e-bikes make green mobility affordable in cities\n",
+      "description": "<a href=\"https://www.sushi-bikes.com\" target=\"_blank\">SUSHI Bikes</a> developed an e-bike that, at a price of 999 Euro, costs less than half of the average price of an electric bicycle. It surprises at every turn of the pedal with the pure design of a single-speed bike, quality, and lightness. How that's related to the Japanese specialty? \n\nOne thing rolls the other are rolls. So who doesn't immediately connect e-bikes with SUSHI? SUSHI Bikes – this is how we roll.",
+      "item1-title": "Mobile battery technology",
+      "item1-description": "Small and handy, and hardly visible. The SUSHI battery, made by Samsung, could be mistaken for a drinking bottle. And it can be removed just as easily and used as a power bank. Or simply recharge it in the office or at university.",
+      "item2-title": "Not a single gram too much",
+      "item2-description": "While normal e-bikes often weigh more than 25 kg, Sushi bikes don't have a single gram of fat and aren't heavier than normal bikes without drive. You'll feel it while riding, handling or carrying the bike. Easy as that!",
+      "item3-title": "Perfectly synchronized components",
+      "item3-description": "Engine or battery, frame or attachments, saddle, handlebar, and pedals – Sushi Bikes put a lot of thought into every component and optimally synchronized them. For more riding pleasure, comfort and reliability. ",
+      "find-out-more": "Rent and test your Sushi bike today!",
+      "order-online": "By the way: every Sushi bike comes with lights (conform to the StVO and rechargeable via USB), reflectors, and a chain guard. This way you're directly equipped for the urban traffic.\nLearn more at <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
       "item2-description": "Organic design with<br>\nhigh recognition value<br>\nand an elastic rear triangle<br>\nfor more driving comfort"
@@ -582,6 +608,10 @@
       "matebikes": {
         "meta-title": "Alquila y prueba las bicicletas Mate, las bicicletas eléctricas plegables más bonitas! Disponible solamente con listnride! ",
         "meta-description": "Prueba la bicicleta Mate! La divertida, barata y plegable bicicleta eléctrica puede ser alquilada, solo con listnride, en las ciudades de Berlín, Colonia, Hamburgo y Munich!"
+      },
+      "sushibikes": {
+        "meta-title": "Rent and test your Sushi bike today! Only available on listnride!",
+        "meta-description": "Test the Sushi bike today! The wonderful and affordable e-bike can only be rented through listnride in Berlin, Hamburg, and Vienna!"
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -1570,6 +1600,7 @@
     "payout_date": "Fecha de pago",
     "date": "Date",
     "batch": "Batch",
+    "settlement_history": "Settlement History",
     "credit-notes": "Notas de credito",
     "bike": "Bici",
     "start_date": "Fecha de inicio",
@@ -1583,8 +1614,8 @@
     "download-csv": "Descargar CSV",
     "download-pdf": "Descargar PDF",
     "no-rentals": "No has tenido alquileres todavía",
-    "as-lister": "Como anunciante",
-    "as-rider": "Como ciclista",
+    "as_lister": "Como anunciante",
+    "as_rider": "Como ciclista",
     "no-rides": "No has tenido alquileres todavía"
   },
   "invite-landing": {
@@ -1680,6 +1711,7 @@
   },
   "seo": {
     "header": "Alquila las mejores bicicletas en",
+    "top_locations": "Lugares mejores para alquilar una bicicleta con listnride",
     "header-2": "Alquila las mejores bicicletas en",
     "rent-the-best": "Rent the best",
     "bikes": "bikes",

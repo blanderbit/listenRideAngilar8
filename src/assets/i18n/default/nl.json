@@ -6,6 +6,13 @@
     "bike_location": "Locatie van de fiets",
     "cancellations": "Annuleringen",
     "multiple_sizes": "Meerdere maten beschikbaar",
+    "read_more": "Lees meer",
+    "dates": "Datums",
+    "bookings": {
+      "include_message_to_lister": "Schrijf hier een bericht aan de Lister...",
+      "you_wont_be_charged": "Je hoeft nu nog niks te betalen.",
+      "may_require_deposit": "Bij bepaalde boekingen kan ook een borgsom worden gevraagd."
+    },
     "request": "Request",
     "non-availability-type": "Klassificering",
     "event": "Event",
@@ -203,9 +210,6 @@
       "header": "Verhuur je fiets!",
       "subheader": "Ontmoet gelijkgestemden. Verdien wat erbij."
     }
-  },
-  "invoice": {
-    "settlement_history": "Geschiedenis van nederzetting "
   },
   "bike_page": {
     "location": {
@@ -445,8 +449,6 @@
       "item3-title": "Perfect gesynchroniseerde componenten",
       "item3-description": "Motor of accu, frame of opzetstukken, zadel, stuur en pedalen - Sushi Bikes hebben aan elk onderdeel gedacht en deze optimaal gesynchroniseerd. Voor meer rijplezier, comfort en betrouwbaarheid ",
       "find-out-more": "Huur en test de Sushi fiets vandaag nog!",
-      "meta-title": "Huur en test de Sushi fiets vandaag nog! Alleen beschikbaar op listnride!\n",
-      "meta-description": "Test de Sushi fiets vandaag! De prachtige en betaalbare e-bike is alleen te huur via listnride in Berlijn, Hamburg en Wenen!\n",
       "order-online": "Overigens: elke Sushi-fiets wordt geleverd met verlichting (conform StVO en oplaadbaar via USB), reflectoren en een kettingbeschermer. Op deze manier bent u direct toegerust voor het stadsverkeer.\nMeer informatie op <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
@@ -601,6 +603,10 @@
       "matebikes": {
         "meta-title": "Huur en testrit met de Mate fiets, de coolste opvouwbare elektrische fiets! Alleen beschikbaar op listnride!\n",
         "meta-description": "Maak vandaag nog een testrit met de Mate bike! De leuke, betaalbare en opvouwbare e-bike is te huur, alleen op listnride, in de steden Berlijn, Keulen, Hamburg en München! "
+      },
+      "sushibikes": {
+        "meta-title": "Huur en test de Sushi fiets vandaag nog! Alleen beschikbaar op listnride!\n",
+        "meta-description": "Test de Sushi fiets vandaag! De prachtige en betaalbare e-bike is alleen te huur via listnride in Berlijn, Hamburg en Wenen!\n"
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -1587,6 +1593,7 @@
     "payout_date": "Uitbetaald op",
     "date": "Datum",
     "batch": "Partij",
+    "settlement_history": "Geschiedenis van nederzetting ",
     "credit-notes": "Creditnota's",
     "bike": "Fiets",
     "start_date": "Start datum",
@@ -1598,8 +1605,8 @@
     "download-csv": "Download CSV",
     "download-pdf": "Download PDF",
     "no-rentals": "Nog geen verhuurtransacties gerealiseerd",
-    "as-lister": "Als Verhuurder",
-    "as-rider": "Als huurder",
+    "as_lister": "Als Verhuurder",
+    "as_rider": "Als huurder",
     "no-rides": "Nog geen huurtransacties gerealiseerd"
   },
   "invite-landing": {
@@ -1696,6 +1703,7 @@
   },
   "seo": {
     "header": "Huur de beste fietsen in",
+    "top_locations": "Toplocaties om een fiets te huren met listnride",
     "header-2": "Huur de beste fietsen op",
     "rent-the-best": "Huur de beste",
     "bikes": "fietsen",

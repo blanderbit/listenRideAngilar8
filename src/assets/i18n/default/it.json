@@ -3,6 +3,16 @@
     "learn-more": "Per saperne di più",
     "size": "Taglia",
     "img-alt": "Noleggio {{bikeBrand}} {{bikeName}} a {{bikeCity}}",
+    "bike_location": "Localizzazione della bicicletta",
+    "cancellations": "Cancellazioni",
+    "multiple_sizes": "Diverse taglie disponibili",
+    "read_more": "Per saperne di più",
+    "dates": "Date",
+    "bookings": {
+      "include_message_to_lister": "Includi un messaggio per il Lister qui ...",
+      "you_wont_be_charged": "I costi non ti verranno addebitati adesso.",
+      "may_require_deposit": "Per alcuni noleggi può anche essere necessaria una cauzione."
+    },
     "request": "Richiesta",
     "non-availability-type": "Tipo di indisponibilità ",
     "event": "Event",
@@ -208,8 +218,15 @@
       "subheader": "Incontra persone che condividono la tua stessa passione e guadagna qualcosa in più"
     }
   },
-  "invoice": {
-    "settlement_history": "Settlement History"
+  "bike_page": {
+    "location": {
+      "disclaimer": "Le informazioni sull´indirizzo di ritiro verranno fornite quando il noleggio viene confermato. "
+    },
+    "cancellations": {
+      "disclaimer": "Rimborso completo, escluso il costo di servizio, per cancellazioni fino a 5 giorni precedenti la data di inizio del noleggio. Per cancellazioni richieste con meno di 5 giorni di anticipo, ma con minimo un giorno di anticipo rispetto all´inizio del noleggio verrà rimborsato il 50% del costo di noleggio. Per cancellazioni richieste meno di 24 ore prima l´inzio del noleggio, verrà rimborsato il 50%, esclusi i costi del primo giorno di noleggio e i costi di servizio. ",
+      "read_more": "Per saperne di più sulla nostra politica di cancellazione. "
+    },
+    "add_dates_btn": "Aggiungi date"
   },
   "request": {
     "payment-failed": "Ops! Sfortunatamente, il tuo pagamento non è riuscito. Per favore ricontrolla i dati che hai inserito e le impostazioni di pagamento del tuo fornitore di pagamento!",
@@ -237,7 +254,7 @@
     "john-potsdam": "Ho un paio di bici in giro e penso che sia fantastico noleggiarle e offrire una bici interessante ai visitatori della mia città. Finora abbiamo sempre avuto grandi affittuari!",
     "cornelia-basel": "Abbiamo visitato Berlino e questa volta abbiamo voluto provare una bella e-bike. Abbiamo trovato le bici elettriche Ampler su listnride e ne abbiamo noleggiate due. Si è rivelato perfettamente e ad un buon prezzo!",
     "rider-1": "Abbiamo visitato Vienna e volevamo scoprire attivamente la città e la campagna. Abbiamo trovato 2 fantastiche biciclette a noleggio su listnride, ci siamo trovati benissimo, una grande successo!",
-    "rider-2": "Stavo visitando un amico a Berlino e non volevo portare la mia bici con me. Invece ho noleggiato una bella bici con listnrdie - molto vicino a lei. Ha funzionato perfettamente e ad un buon prezzo.",
+    "rider-2": "Stavo visitando un amico a Berlino e non volevo portare la mia bici con me. Invece ho noleggiato una bella bici con listnride - molto vicino a lei. Ha funzionato perfettamente e ad un buon prezzo.",
     "rider-3": "A Monaco ci siamo imbattuti in listnride e abbiamo trovato due eleganti city bike a un prezzo adeguato. Il proprietario era un ragazzo gentile che ci invitava a prendere un caffè. Ha dato alcuni consigli interessanti, davvero belli!",
     "rider-4": "Lavoro regolarmente a Berlino. Da quando ho scoperto listnride, noleggio spesso una bella bici. La selezione di biciclette è ottima ed è facile e sicura.",
     "lister-1": "Recentemente ho scoperto listnride e registrato 3 biciclette da corsa, che ora noleggio regolarmente. La cosa bella è incontrare persone simpatiche, con le quali a volte vado a fare un giro.",
@@ -430,7 +447,16 @@
       "optional": "1) Possibilità di aumentare la potenza di accelerazione. Prezzo disponibile su richiesta. <br>2) Limite di velocità standard. Per sbloccare la velocità massima c´è bisogno del display a colori. <br>3) Possibiltà di avere una una batteria di 48v 17,5 AmpH. Prezzo disponibile su richiesta<br>"
     },
     "sushibikes": {
-      "title": "title\n"
+      "title": "JOKO MAKES SUSHI: how new e-bikes make green mobility affordable in cities",
+      "description": "<a href=\"https://www.sushi-bikes.com\" target=\"_blank\">SUSHI Bikes</a> developed an e-bike that, at a price of 999 Euro, costs less than half of the average price of an electric bicycle. It surprises at every turn of the pedal with the pure design of a single-speed bike, quality, and lightness. How that's related to the Japanese specialty? \n\nOne thing rolls the other are rolls. So who doesn't immediately connect e-bikes with SUSHI? SUSHI Bikes – this is how we roll.",
+      "item1-title": "Mobile battery technology",
+      "item1-description": "Small and handy, and hardly visible. The SUSHI battery, made by Samsung, could be mistaken for a drinking bottle. And it can be removed just as easily and used as a power bank. Or simply recharge it in the office or at university.",
+      "item2-title": "Not a single gram too much",
+      "item2-description": "While normal e-bikes often weigh more than 25 kg, Sushi bikes don't have a single gram of fat and aren't heavier than normal bikes without drive. You'll feel it while riding, handling or carrying the bike. Easy as that!",
+      "item3-title": "Perfectly synchronized components",
+      "item3-description": "Engine or battery, frame or attachments, saddle, handlebar, and pedals – Sushi Bikes put a lot of thought into every component and optimally synchronized them. For more riding pleasure, comfort and reliability. ",
+      "find-out-more": "Rent and test your Sushi bike today!",
+      "order-online": "By the way: every Sushi bike comes with lights (conform to the StVO and rechargeable via USB), reflectors, and a chain guard. This way you're directly equipped for the urban traffic.\nLearn more at <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
       "item2-description": "Organic design with<br>\nhigh recognition value<br>\nand an elastic rear triangle<br>\nfor more driving comfort"
@@ -584,6 +610,10 @@
       "matebikes": {
         "meta-title": "Noleggia e prova le biciclette Mate, le più belle biciclette elettriche piegabili! Disponibili solo su listnride!",
         "meta-description": "Prova le biciclette Mate! Le divertenti, economiche e pieghevoli biciclette elettrich sono disponibili al noleggio, solo su listnride nelle città di Berlino, Colonia, Amburgo e Monaco di Baviera!"
+      },
+      "sushibikes": {
+        "meta-title": "Rent and test your Sushi bike today! Only available on listnride!",
+        "meta-description": "Test the Sushi bike today! The wonderful and affordable e-bike can only be rented through listnride in Berlin, Hamburg, and Vienna!"
       },
       "rossignol": {
         "meta-title": "Rent and test ride Rossignol bikes. Rossignol bikes are available to rent on listnride.",
@@ -1572,6 +1602,7 @@
     "payout_date": "Data del rimborso",
     "date": "Date",
     "batch": "Batch",
+    "settlement_history": "Settlement History",
     "credit-notes": "Note di credito",
     "bike": "Bicicletta",
     "start_date": "Data d'inizio",
@@ -1585,8 +1616,8 @@
     "download-csv": "Scarica CSV",
     "download-pdf": "Scarica il PDF",
     "no-rentals": "Non hai ancora noleggi",
-    "as-lister": "Come Lister",
-    "as-rider": "Come Rider",
+    "as_lister": "Come Lister",
+    "as_rider": "Come Rider",
     "no-rides": "Nessuna bicicletta ancora noleggiata"
   },
   "invite-landing": {
@@ -1683,6 +1714,7 @@
   },
   "seo": {
     "header": "Noleggia le migliori bici a",
+    "top_locations": "Destinazioni migliori per noleggiare una bicicletta con listnride",
     "header-2": "Noleggia le migliori bici in",
     "rent-the-best": "Noleggia le migliori",
     "bikes": "biciclette",

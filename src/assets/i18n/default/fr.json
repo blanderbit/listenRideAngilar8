@@ -6,6 +6,13 @@
     "bike_location": "Localisation des vélos",
     "cancellations": "Annulations",
     "multiple_sizes": "Plusieurs tailles disponibles",
+    "read_more": "En savoir plus",
+    "dates": "Dates",
+    "bookings": {
+      "include_message_to_lister": "Laissez un message au Lister ici...",
+      "you_wont_be_charged": "Vous ne serez pas encore débité",
+      "may_require_deposit": "Certaines réservations peuvent également nécessiter une caution."
+    },
     "request": "Demande",
     "non-availability-type": "Type d'indisponibilité",
     "event": "Evénement",
@@ -209,9 +216,6 @@
       "subheader": "Rencontrez des gens qui partagent les mêmes passions et gagnez de l'argent de poche"
     }
   },
-  "invoice": {
-    "settlement_history": "Settlement History"
-  },
   "bike_page": {
     "location": {
       "disclaimer": "Les informations sur le lieu exact sont fournies après confirmation de la réservation."
@@ -248,7 +252,7 @@
     "john-potsdam": "J'ai quelques vélos qui traînent et je pense que c'est bien de les offrir aux visiteurs de ma ville. Nous avons toujours eu d'excellents locataires jusqu'à présent!",
     "cornelia-basel": "Nous sommes allés à Berlin et voulions essayer un bon vélo électrique cette fois-ci. Nous avons trouvé des vélos électriques Ampler sur listnride et en avons loué deux. Il s'est avéré parfaitement et à un bon prix!",
     "rider-1": "Nous avons visité Vienne et voulait découvrir activement la ville et la campagne. Nous avons trouvé 2 super vélos de location sur listnride, nous avons passé un super séjour, une belle découverte!",
-    "rider-2": "Je rendais visite à un amie à Berlin et je ne voulais pas emmener mon propre vélo avec moi. Au lieu de cela, j'ai loué un joli vélo avec listnrdie - très proche d'elle. Cela a fonctionné parfaitement et à un bon prix.",
+    "rider-2": "Je rendais visite à un amie à Berlin et je ne voulais pas emmener mon propre vélo avec moi. Au lieu de cela, j'ai loué un joli vélo avec listnride - très proche d'elle. Cela a fonctionné parfaitement et à un bon prix.",
     "rider-3": "À Munich, nous sommes tombés sur le listnride et avons trouvé deux vélos de ville élégants à un prix approprié. Le propriétaire était un gars sympathique nous invitant sur un café. Il a donné quelques bons conseils, vraiment sympa!",
     "rider-4": "Je travaille régulièrement à Berlin. Depuis que j'ai découvert le listnride, je loue souvent un beau vélo. La sélection de vélos est excellente et facile et sûre.",
     "lister-1": "J'ai découvert listnride récemment, et j'ai enregistré mes3 vélos de route, et les loue maintenant régulièrement. Ce qu'est bien c'est de rencontrer des gens sympas, avec qui je vais aussi parfois faire un tour.",
@@ -450,8 +454,6 @@
       "item3-title": "Des composants parfaitement synchronisés",
       "item3-description": "Que ce soit pour le moteur, la batterie, le cadre ou les accessoires, selle, guidon et pédales - Sushi Bikes a élaboré ses vélos de façon à ce que tous les éléments soient synchronisés entre eux et optimisés. Cela pour plus de plaisir de conduite, de confort et de fiabilité.",
       "find-out-more": "Louez et testez votre Sushi bike dès aujourd'hui !",
-      "meta-title": "Louez et testez votre Sushi bike dès aujourd'hui ! Disponible uniquement sur listnride !\n",
-      "meta-description": "Testez le Sushi bike aujourd'hui ! Le vélo électrique le plus abordable ne peut être loué que via listnride à Berlin, Hambourg et Vienne !\n",
       "order-online": "Au fait, chaque Sushi bike est livré avec des feux (conformes à la StVO et rechargeables via USB), des réflecteurs et un garde-chaîne. De cette façon, vous êtes directement équipé pour la circulation urbaine.\nPour en savoir plus <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
@@ -606,6 +608,10 @@
       "matebikes": {
         "meta-title": "Louez et essayez les Mate Bike ; les vélos pliants électriques les plus cools ! Disponibles seulement sur listnride!",
         "meta-description": "Essayez les Mate Bike aujourd'hui ! Les vélos électriques pliants et fun sont disponibles seulement sur listnride dans les villes de Berlin, Cologne, Hambourg et Munich!"
+      },
+      "sushibikes": {
+        "meta-title": "Louez et testez votre Sushi bike dès aujourd'hui ! Disponible uniquement sur listnride !\n",
+        "meta-description": "Testez le Sushi bike aujourd'hui ! Le vélo électrique le plus abordable ne peut être loué que via listnride à Berlin, Hambourg et Vienne !\n"
       },
       "rossignol": {
         "meta-title": "Louer et tester des vélos Rossignol. Les vélos Rossignol sont disponibles à la location sur listnride.",
@@ -978,14 +984,14 @@
     "add-voucher": "Ajouter un bon",
     "meta-title": "Paramètres du profil",
     "meta-description": "Modifier votre profil et les paramètres de paiement",
-    "company-name": "Nom de la compagnie",
+    "company-name": "Nom de la l'enseigne",
     "company-information": "Informations sur la compagnie",
     "vat": "T.V.A.",
     "payment-info": "Afficher le paiement actuel",
     "add-invoice-address": "Ajouter une adresse de facturation",
     "delete-invoice-address": "Supprimer l'adresse de facturation",
     "invoice-address": "Adresse de facturation",
-    "invoice-name": "Nom de la compagnie"
+    "invoice-name": "Nom de la l'enseigne"
   },
   "verification": {
     "lets-start": "Commençons!",
@@ -1195,7 +1201,7 @@
     "zip": "Code postal",
     "city": "Ville",
     "country": "Pays",
-    "company-name": "Nom de la compagnie",
+    "company-name": "Nom de la l'enseigne",
     "update-contact": "Changer le numéro de téléphone",
     "update-contact-mobile": "Numéro de téléphone",
     "company-contact-info": "Veuillez remplir le formulaire avec les coordonnées de la société.",
@@ -1251,7 +1257,7 @@
     "default-placeholder": "Où voudriez-vous louer un vélo?"
   },
   "search": {
-    "no-bikes": "Il n'y a malheureusement pas encore de vélos à cet endroit. Comme nous grandissons rapidement, veuillez vérifier à nouveau dans quelque temps, nous aurons probablement des vélos enregistrés d'ici là! Sinon, essayez de chercher un autre endroit à proximité.\n<br><br>\nAidez les autres à trouver d'excellents vélos en inscrivant votre propre vélo ou en communiquant avec votre magasin de vélo pour les embarquer avec nous ! ",
+    "no-bikes": "Il n'y a malheureusement pas encore de vélos à cet endroit. Comme nous sommes en pleine croissance, n'hésitez pas à vérifier à nouveau dans quelque temps, nous aurons probablement des vélos enregistrés d'ici là ! Sinon, essayez de chercher un autre endroit à proximité.\n<br><br>\nAidez notre communauté à trouver le bon vélo en proposant votre propre vélo ou en communiquant avec votre magasin de vélo pour qu'il rejoigne notre réseau ! ",
     "unisize": "Taille unique",
     "book-multiple-bikes": "Location de vélos pour les grands groupes",
     "bikes-found": "Vélos trouvés:",
@@ -1597,6 +1603,7 @@
     "payout_date": "Date de remboursement",
     "date": "Date",
     "batch": "Batch",
+    "settlement_history": "Settlement History",
     "credit-notes": "Notes de crédit",
     "bike": "Vélo",
     "start_date": "Date de début",
@@ -1610,8 +1617,8 @@
     "download-csv": "Télécharger CSV",
     "download-pdf": "Télécharger le fichier PDF",
     "no-rentals": "Vous n'avez pas encore eu de locations",
-    "as-lister": "Comme Lister",
-    "as-rider": "Comme Rider",
+    "as_lister": "Comme Lister",
+    "as_rider": "Comme Rider",
     "no-rides": "Vous n'avez pas encore eu de locations"
   },
   "invite-landing": {
@@ -1707,6 +1714,7 @@
   },
   "seo": {
     "header": "Louez un vélo à",
+    "top_locations": "Les meilleurs endroits pour louer un vélo avec listnride",
     "header-2": "Louez un vélo sur",
     "rent-the-best": "Louez un",
     "bikes": "vélo",

@@ -6,6 +6,13 @@
     "bike_location": "Standort des Rads",
     "cancellations": "Stornierungen",
     "multiple_sizes": "Mehrere Größen verfügbar",
+    "read_more": "Erfahre mehr",
+    "dates": "Datum",
+    "bookings": {
+      "include_message_to_lister": "Füge hier eine Nachricht für den Vermieter ein...",
+      "you_wont_be_charged": "Dir wird noch nichts kostenpflichtig berechnet.",
+      "may_require_deposit": "Für bestimmte Buchungen kann auch eine Kaution erforderlich sein."
+    },
     "request": "Anfrage",
     "non-availability-type": "Art der Verfügbarkeit",
     "event": "Veranstaltung",
@@ -210,9 +217,6 @@
       "header": "Liste dein Rad",
       "subheader": "Triff Gleichgesinnte und verdiene dir etwas dazu."
     }
-  },
-  "invoice": {
-    "settlement_history": "Settlement History"
   },
   "bike_page": {
     "location": {
@@ -455,8 +459,6 @@
       "item3-title": "Perfekt abgestimmte Komponenten",
       "item3-description": "Egal ob Motor und Akku, Rahmen und Anbauteile, Sattel, Lenker und Pedale – Sushi Bikes hat sich bei der Auswahl der Komponenten viele Gedanken gemacht und sie optimal aufeinander abgestimmt. Für mehr Fahrvergnügen, Komfort und Zuverlässigkeit.",
       "find-out-more": "Miete und teste dein Sushi Bike heute!",
-      "meta-title": "Miete und teste dein Sushi Bike heute! Nur auf listnride verfügbar!",
-      "meta-description": "Teste das Sushi Bike heute! Das wunderbare und günstige E-Bike kann nur auf listnride in den Städten Berlin, Hamburg und Wien gemietet werden! ",
       "order-online": "Übrigens: Jedes SUSHI Bike wird mit Beleuchtung (StVO-konform und via USB aufladbar), Reflektoren und einem Kettenschutz ausgeliefert. Somit bist du direkt für den Stadtverkehr gewappnet\nErfahre mehr auf <a href=\"https://www.sushi-bikes.com\" target=\"_blank\">sushi-bikes.com</a>"
     },
     "urwahn": {
@@ -611,6 +613,10 @@
       "matebikes": {
         "meta-title": "Miete und teste das Mate Bike, das coolste faltbare Elektrofahrrad! Nur auf listnride verfügbar!",
         "meta-description": "Teste das Mate Bike heute! Das wunderbare, günstige und faltbare E-Bike kann nur auf listnride in den Städten Berlin, Köln, Hamburg und München gemietet werden! "
+      },
+      "sushibikes": {
+        "meta-title": "Miete und teste dein Sushi Bike heute! Nur auf listnride verfügbar!",
+        "meta-description": "Teste das Sushi Bike heute! Das wunderbare und günstige E-Bike kann nur auf listnride in den Städten Berlin, Hamburg und Wien gemietet werden! "
       },
       "rossignol": {
         "meta-title": "Miete und teste Rossignol Räder bei listnride. ",
@@ -1602,6 +1608,7 @@
     "payout_date": "Auszahlungsdatum",
     "date": "Date",
     "batch": "Batch",
+    "settlement_history": "Settlement History",
     "credit-notes": "Gutschriften",
     "bike": "Rad",
     "start_date": "Startdatum",
@@ -1615,8 +1622,8 @@
     "download-csv": "CSV herunterladen",
     "download-pdf": "PDF herunterladen",
     "no-rentals": "Du hattest noch keine Vermietungen",
-    "as-lister": "Als Vermieter",
-    "as-rider": "Als Mieter",
+    "as_lister": "Als Vermieter",
+    "as_rider": "Als Mieter",
     "no-rides": "Du hast noch keine Räder gemietet"
   },
   "invite-landing": {
@@ -1712,6 +1719,7 @@
   },
   "seo": {
     "header": "Miete die besten Räder in",
+    "top_locations": "Top-Orte um mit listnride ein Fahrrad zu mieten",
     "header-2": "Miete die besten Räder auf",
     "rent-the-best": "Miete die besten",
     "bikes": "Räder",
