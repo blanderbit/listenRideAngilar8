@@ -1,0 +1,24 @@
+@import "utils/utils";
+@import "variables";
+
+.brand-page {
+  &_column-img {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    object-position: center;
+    @include if-smaller-than(xs) {
+      height: 15rem;
+    }
+  }
+
+  &_technical-img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  ::ng-deep mat-divider {
+    border-top-color: $light-grey-font;
+  }
+
+}

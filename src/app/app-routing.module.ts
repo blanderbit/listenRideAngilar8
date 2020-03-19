@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {path: 'terms', loadChildren: () => import('./modules/terms').then(m => m.TermsModule)},
   {path: 'my-bikes', loadChildren: () => import('./modules/my-bikes').then(m => m.MyBikesModule)},
-  {path: 'brands', loadChildren: () => import('./modules/brands').then(m => m.BrandsModule)},
+  {path: 'brands', loadChildren: () => import('./modules/brand-template/brand-template.module').then(m => m.BrandTemplateModule)},
   {path: 'bikes', loadChildren: () => import('./modules/bikes').then(m => m.BikesModule)},
   {path: '404', loadChildren: () => import('./modules/no-content').then(m => m.NoContentModule)},
   {

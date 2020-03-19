@@ -1,0 +1,16 @@
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div *ngFor="let item of responses"
+         class="swiper-slide hero-img"
+         data-swiper-autoplay="6000"
+         [ngStyle]="{ 'background-image': 'url(' + item + ')'}">
+      <div *ngIf="logo">
+        <img
+          class="hero-img_logo"
+          alt="logo"
+          src="{{logo}}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
