@@ -1,7 +1,9 @@
-@import "../../../../../assets/scss/variables";
+@import "variables";
+@import "utils/utils";
 
 :host::ng-deep .details {
-  @media(max-width: $device-md) {
+
+  @include if-smaller-than(md) {
     grid-template-columns: 100%;
   }
   h3 {
@@ -63,7 +65,8 @@
   #details_container {
     display: grid;
     grid-template-columns: 6.7rem 23% 23% 23% 23%;
-    @media(max-width: $device-md) {
+
+    @include if-smaller-than(md) {
       display: grid;
       grid-template-columns: 100%;
     }
@@ -73,7 +76,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
 
-    @media (max-width: $device-sm) {
+    @include if-smaller-than(sm) {
       display: grid;
       grid-template-columns: 100%;
 
@@ -101,7 +104,7 @@
             line-height: 2.56rem;
             min-height: 4rem;
 
-            @media (max-width: $device-md) {
+            @include if-smaller-than(md) {
               width: 100%
             }
           }

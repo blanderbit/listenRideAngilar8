@@ -1,4 +1,5 @@
-@import "../../../assets/scss/variables";
+@import "variables";
+@import "utils/utils";
 
 
 .header {
@@ -36,12 +37,8 @@
     .mat-horizontal-stepper-header, .mat-vertical-stepper-header {
       //pointer-events: none !important;
 
-      //cursor: pointer;
-      //box-sizing: border-box;
-      //border-bottom: .2rem solid white;
-      //transition: .5s all;
 
-      &[aria-labelledby="stepVerified"]{
+      &[aria-labelledby="stepVerified"] {
         div {
           &.mat-step-icon {
             background: $main-green;
@@ -49,7 +46,7 @@
         }
       }
 
-      div{
+      div {
         &.mat-step-icon {
           width: 2.8rem;
           height: 2.8rem;
@@ -60,6 +57,7 @@
           align-items: center;
           text-align: center;
         }
+
         &.mat-step-label {
           font-weight: 500;
           font-size: $h6-fontsize;
@@ -71,6 +69,7 @@
           background: $main-green;
         }
       }
+
       &[ng-reflect-state="error"] {
         div {
           &.mat-step-icon, &.mat-step-label {
@@ -95,7 +94,7 @@
         opacity: 1;
       }
 
-      .mat-step-icon-state-done{
+      .mat-step-icon-state-done {
         background: $submit-button-color;
       }
     }
@@ -114,14 +113,14 @@
           }
         }
 
-        mat-select{
+        mat-select {
           &.mat-select-invalid.ng-touched {
             border-color: $error-color;
           }
         }
 
 
-        .mat-select-trigger{
+        .mat-select-trigger {
           padding: 0 1.4rem;
         }
       }
@@ -132,7 +131,6 @@
     display: flex;
     justify-content: flex-end;
   }
-
 
 
   ::ng-deep {
@@ -153,7 +151,6 @@
     .mat-horizontal-stepper-content .category .mat-form-field-flex {
       background: $white;
       padding: 0;
-      //width: 26.3rem;
 
       .mat-select-placeholder, .mat-select-value-text {
         font-size: 1.4rem;
@@ -204,10 +201,6 @@
       color: $white;
     }
 
-    //::ng-deep div.mat-stepper-horizontal-line {
-    //  display: none !important;
-    //}
-
     .header {
       width: 100%;
       max-width: 160rem;
@@ -220,7 +213,7 @@
       padding: 0 15%;
     }
 
-    .mat-stepper-vertical{
+    .mat-stepper-vertical {
       padding: 0;
       width: 100%;
       max-width: 160rem;
@@ -326,7 +319,8 @@
       h3 {
         margin-top: 2.3rem;
       }
-      .errorMessage{
+
+      .errorMessage {
         color: $error-color;
       }
     }
@@ -345,7 +339,6 @@
     #upload {
       visibility: hidden;
     }
-
 
 
     .category {
@@ -370,7 +363,8 @@
       margin-bottom: 2rem;
       padding: 0 1rem;
     }
-    p{
+
+    p {
       padding: 0 1rem;
     }
 
@@ -474,7 +468,8 @@
     }
   }
 
-  @media(max-width: $device-md) {
+
+  @include if-smaller-than(md) {
     .preview-container {
       grid-template-columns: 100%;
 
@@ -487,7 +482,7 @@
   }
 
 
-  @media (max-width: $device-sm) {
+  @include if-smaller-than(sm) {
     .mat-stepper-horizontal {
       padding: 0 5%;
       width: 100%;
@@ -523,6 +518,7 @@
         mat-form-field {
           display: flex;
           max-width: 100%;
+
           .mat-form-field-wrapper {
             width: 90%;
           }
@@ -561,12 +557,14 @@ input.ng-invalid.ng-touched {
   border-color: $error-color;
 
 }
+
 :host::ng-deep a {
   cursor: pointer;
   color: $main-green !important;
 }
 
-@media (max-width: $device-sm) {
+
+@include if-smaller-than(sm) {
   ::ng-deep div.mat-select-panel {
     margin-top: 50%;
   }

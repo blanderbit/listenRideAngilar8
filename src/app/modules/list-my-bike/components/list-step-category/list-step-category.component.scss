@@ -1,17 +1,23 @@
-@import "../../../../../assets/scss/variables";
-:host::ng-deep .category{
+@import "variables";
+@import "utils/utils";
+
+:host::ng-deep .category {
   .selected-category {
     background-size: 2.7rem !important;
 
     .mat-select-trigger .mat-select-value {
       padding-left: 3rem;
+      padding-top: .6rem;
     }
   }
+
   mat-form-field {
     width: 26.3rem;
 
-    @media (max-width: $device-xs) {
+    @include if-smaller-than(xs) {
       width: 100%;
+      border: 1px solid $input-border;
+      border-radius: 0.4rem;
     }
 
     img {
@@ -28,7 +34,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 35rem;
-    @media (max-width: $device-xs) {
+    @include if-smaller-than(xs) {
       width: 100%;
 
     }
@@ -43,7 +49,7 @@
       padding: 0.5rem;
       border-radius: .5rem;
 
-      @media (max-width: $device-xs) {
+      @include if-smaller-than(xs) {
         width: 45%;
 
       }
@@ -55,7 +61,7 @@
         ::ng-deep svg {
           fill: $white !important;
 
-          .mat-icon{
+          .mat-icon {
             height: 24px !important;
             width: 24px !important;
           }
