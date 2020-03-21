@@ -37,7 +37,10 @@ import { FiltersComponent } from './filters/filters.component';
 
 import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
 import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
-// import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
+import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
+import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
+import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
+import { ContentLayoutsModule } from '@shared/components/content-layouts/content-layouts.module';
 
 const components = [
   FiltersComponent,
@@ -55,6 +58,7 @@ const components = [
   BreadcrumbsComponent,
   TestimonialsSwiperComponent,
   SmallSwiperComponent,
+  BookWidgetComponent
 ];
 
 const modules = [
@@ -72,6 +76,7 @@ const modules = [
   PhoneVerificationModule,
   OtpVerificationModule,
   DialogsModule,
+  ContentLayoutsModule,
 ];
 
 @NgModule({
@@ -88,6 +93,7 @@ const modules = [
     TranslateModule,
     RouterModule,
     AgmCoreModule,
+    ContentLayoutsModule,
     MatGoogleMapsAutocompleteModule,
     NgxMaskModule.forRoot(),
   ],
@@ -102,7 +108,7 @@ const modules = [
     SatNativeDateModule,
     MaterialModule,
     CreditCardDirectivesModule,
-    TranslateModule,
+    TranslateModule
   ],
 })
 export class SharedModule {}

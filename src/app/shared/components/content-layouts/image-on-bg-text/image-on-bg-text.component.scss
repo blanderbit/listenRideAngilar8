@@ -1,0 +1,12 @@
+.image-on-bg {
+  &_image {
+    position: relative;
+    height: 23rem;
+    width: 100%;
+    background-size: cover;
+    background-position: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

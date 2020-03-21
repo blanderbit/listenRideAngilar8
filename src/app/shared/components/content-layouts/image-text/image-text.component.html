@@ -1,0 +1,20 @@
+<div class="image-text w-p-100">
+  <div class="image-text_content"
+       [ngClass]="{
+        'right': imageAlign === 'right',
+        'left': imageAlign === 'left',
+        'top': imageAlign === 'top',
+        'bottom': imageAlign === 'bottom'
+        }"
+  >
+    <div class="col-md-6">
+      <img class="image-text_image"
+           alt=""
+           src="{{imageUrl}}"/>
+    </div>
+    <div class="col-md-6">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+

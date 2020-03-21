@@ -69,6 +69,12 @@ const routes: Routes = [
         m => m.EventTemplateModule,
       ),
   },
+  { path: 'about',
+    loadChildren: () =>
+      import('./modules/about-us/about-us.module').then(m => m.AboutUsModule) },
+  { path: 'press',
+    loadChildren: () =>
+      import('./modules/press/press.module').then(m => m.PressModule) },
   { path: '**', redirectTo: '404' },
 ];
 

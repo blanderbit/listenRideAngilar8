@@ -1,0 +1,36 @@
+@import "utils/utils";
+
+.image-text {
+  &_image {
+    position: relative;
+    max-height: 37rem;
+    width: 100%;
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    @include if-smaller-than(xs) {
+      flex-direction: column;
+    }
+  }
+
+  .right {
+    flex-direction: row-reverse;
+  }
+
+  .top {
+    flex-direction: column;
+  }
+
+  .bottom {
+    flex-direction: column-reverse;
+  }
+
+  .right, .top, .bottom {
+    @include if-smaller-than(xs) {
+      flex-direction: column;
+    }
+  }
+}
