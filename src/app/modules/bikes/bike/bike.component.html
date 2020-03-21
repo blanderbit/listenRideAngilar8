@@ -22,9 +22,9 @@
                   </span>
                   <span *ngIf="!bikeData.isCluster">
                     {{
-                      bikeData.prettySize === 'Unisize'
-                        ? bikeData.prettySize
-                        : ('shared.size' | translate) + ': ' + bikeData.prettySize
+                    bikeData.prettySize === 'Unisize'
+                      ? bikeData.prettySize
+                      : ('shared.size' | translate) + ': ' + bikeData.prettySize
                     }}
                   </span>
                 </p>
@@ -35,7 +35,7 @@
                 </p>
               </div>
             </div>
-            <hr class="d-md-none" />
+            <hr class="d-md-none"/>
           </div>
           <div class="col-sm-12 col-md-4">
             <div
@@ -54,12 +54,12 @@
                 <div class="bike-rating d-flex" *ngIf="bikeData.ratingsTotal">
                   <mat-icon class="rating-icon">star</mat-icon>
                   {{ bikeData.ratingAverage | number: '1.1-1' }} ({{
-                    bikeData.ratingsTotal
+                  bikeData.ratingsTotal
                   }})
                 </div>
               </div>
             </div>
-            <hr class="d-md-none" />
+            <hr class="d-md-none"/>
           </div>
         </div>
         <div class="row py-md-4">
@@ -85,7 +85,7 @@
               />
             </div>
             <div class="d-flex insurance-info" *ngIf="isInsuranceIncluded">
-              <img [src]="SECURE_IMAGE" alt="insurance-included" />
+              <img [src]="SECURE_IMAGE" alt="insurance-included"/>
               <div>
                 <p>
                   {{ 'calendar.basic-insurance-included' | translate }}
@@ -105,7 +105,7 @@
               {{ 'bike_page.location.disclaimer' | translate }}
             </p>
             <div class="static-map mt-2">
-              <img [src]="staticMapSrc" alt="Google Map" />
+              <img [src]="staticMapSrc" alt="Google Map"/>
             </div>
           </div>
         </div>
@@ -136,8 +136,7 @@
   <div class="row py-4">
     <div class="col-sm-12 col-md-8">
       <p class="medium">
-        <!-- TODO: Add translation -->
-        Top locations to rent a bike with listnride:
+        {{'seo.top_locations' | translate}}
       </p>
       <lnr-top-location class="test"></lnr-top-location>
     </div>

@@ -14,7 +14,7 @@
         <input matInput
                required
                matGoogleMapsAutocomplete
-               placeholder="e.g. Berlin, Amsterdam, Vienna"
+               placeholder="{{'shared.search-placeholder' | translate}}"
                formControlName="location"
                (onAutocompleteSelected)="onAutocompleteSelected($event)"
         />
@@ -43,7 +43,7 @@
       <lnr-category-multiselect
         class="m-b-2 category-multiselect"
         [labelIcon]="true"
-        [label]="'Any type of bike'"
+        [label]="'shared.search_any_bike'| translate"
         #categorySelect>
       </lnr-category-multiselect>
       <button mat-flat-button
@@ -53,7 +53,7 @@
               class="m-t-1"
               type="submit">
        <span class=" white">
-         Search
+         {{'shared.search' | translate}}
        </span>
       </button>
     </div>

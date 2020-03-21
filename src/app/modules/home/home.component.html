@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <h3 class="home-page_subtitles col-sm-6 col-md-12">
-            The perfect bike. Simply rent it.
+            {{'home.landing-section-header' | translate}}
           </h3>
         </div>
       </div>
@@ -19,8 +19,10 @@
     <div class="home-page_desktop m-t-6 m-b-6 d-none d-md-block">
       <div class="row">
         <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
-          <h3 class="home-page_subtitles">The perfect bike. Simply rent it.</h3>
-          <p>Join listnride and find the bike that is right for you</p>
+          <h3 class="home-page_subtitles">
+            {{'home.landing-section-header' | translate}}
+          </h3>
+          <p>{{'home.landing-section-subheader' | translate}}</p>
         </div>
       </div>
       <div class="row home-page_content flex direction-row">
@@ -34,10 +36,9 @@
     <div class="row m-b-6 p-t-2 d-none d-sm-block">
       <div class="col-md-7 col-sm-12 offset-md-1">
         <h3 class="home-page_subtitles">
-          Bike Rental: Our Community’s Favorites:
+          {{'home.featured-bikes-header' | translate}}
         </h3>
-        <p> Whether it’s road bikes, mountain bikes, cargo bikes, city bikes or e-bikes, you can rent them all.
-          These are the current favorite rental bikes of the community.</p>
+        <p>{{'home.featured-bikes-subheader' | translate}}</p>
       </div>
       <div class="col-md-12">
         <lnr-bike-tile-swiper></lnr-bike-tile-swiper>
@@ -49,10 +50,9 @@
     <div class="row">
       <div class="col-md-10 col-sm-12 m-t-2 m-b-2 offset-md-1">
         <h3 class="home-page_subtitles">
-          Ride your favourite bike before you buy it!
+          {{'home.featured-tiles-header' | translate}}
         </h3>
-        <p> We are partnering with innovative bike brands, which offer their latest models for test-riding.
-          Simply rent a test-bike for a day or a weekend and make a well-considered decision!
+        <p> {{'home.featured-tiles-subheader' | translate }}
         </p>
       </div>
       <div class="col-md-12 m-b-2">
@@ -64,7 +64,7 @@
                 routerLink="./brands"
                 color="accent">
           <span class="white regular heading-6">
-             See all brands
+            {{'home.see-all-brands-and-bikes' | translate}}
           </span>
         </button>
       </div>
@@ -75,11 +75,10 @@
     <div class="row m-t-4 m-b-2">
       <div class="col-md-8 col-sm-12 m-t-2 m-b-2 offset-md-1">
         <h3 class="home-page_subtitles">
-          Rent great bikes for exciting events!
+          {{'home.events_block.title' | translate}}
         </h3>
         <p>
-          We are supporting fantastic events all around Europe so that you can enjoy the ride,
-          without worrying about transporting your bike to the starting line!
+          {{'home.events_block.subtitle' | translate}}
         </p>
       </div>
       <div class="col-md-12 m-b-2">
@@ -91,7 +90,7 @@
                 routerLink="./events"
                 color="accent">
           <span class="white regular heading-6">
-             See all events
+            {{'shared.button_see_all_events' | translate}}
           </span>
         </button>
       </div>
@@ -99,32 +98,30 @@
     <div class="row m-b-2">
       <div class="col-md-11 offset-md-1">
         <h3 class="home-page_subtitles m-b-2">
-          Why you should you rent with us:
+          {{'rent-a-bike.info-section.header' | translate}}
         </h3>
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
           [image]="'../../../assets/images/img-home/Icon_rent-easy 1.svg'"
-          [title]="'Bike rental, made easy'"
-          [paragraph]="'Search and rent a bike in mere seconds.\n'+'No more phone calls or emails needed!'"
+          [title]="'rent-a-bike.info-section.choice-title' | translate"
+          [paragraph]="'rent-a-bike.info-section.choice-content'| translate"
         >
         </lnr-our-pros>
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
           [image]="'../../../assets/images/img-home/Icon_rent-variety 1.svg'"
-          [title]="'Variety of choice, everywhere'"
-          [paragraph]="' Road bikes, mountain bikes, e-bikes, city bikes -' +
-         ' we have the greatest selection of rental bikes!'"
+          [title]="'rent-a-bike.info-section.easy-title'| translate"
+          [paragraph]="'rent-a-bike.info-section.easy-content' | translate"
         >
         </lnr-our-pros>
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
           [image]="'../../../assets/images/img-home/Icon_rent-secure 1.svg'"
-          [title]="'We care about quality'"
-          [paragraph]="'Premium road bikes, reliable e-bikes, and sturdy city bikes:' +
-           ' were more than just a simple bike rental service!'"
+          [title]="'rent-a-bike.info-section.price-title' | translate"
+          [paragraph]="'rent-a-bike.info-section.price-title' | translate"
         >
         </lnr-our-pros>
       </div>
@@ -132,8 +129,11 @@
     <div class="row m-b-6">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
         <h3 class="home-page_subtitles m-b-2">
-          What others say about listnride
+          {{'rent-a-bike.testmonials-section.header' | translate}}
         </h3>
+        <p>
+          {{'rent-a-bike.testmonials-section.subheader' | translate}}
+        </p>
       </div>
       <div class="col-md-12">
         <lnr-testimonal-swiper></lnr-testimonal-swiper>
@@ -142,11 +142,10 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 offset-md-1 m-t-2">
         <h3 class="home-page_subtitles">
-          With listnride you are never without a perfect bike.
+          {{'home.featured-cities-header' | translate}}
         </h3>
         <p>
-          listnride’s bike rental service is available in Germany, Austria, Netherlands, Italy, Spain and more!
-          Here are some cities we recommend renting a bike in:
+          {{'home.featured-cities-subheader' | translate}}
         </p>
       </div>
       <div class="col-md-12 m-t-2">
@@ -157,7 +156,7 @@
                   routerLink="./cities"
                   color="accent">
           <span class="white regular heading-6">
-             See all locations
+            {{'home.button_see_location' | translate}}
           </span>
           </button>
         </div>
@@ -165,7 +164,9 @@
     </div>
     <div class="row m-b-6">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
-        <h3 class="home-page_subtitles">Top locations to rent a bike with listnride:</h3>
+        <h3 class="home-page_subtitles">
+          {{'seo.top_locations' | translate}}
+        </h3>
       </div>
       <div class="col-md-12 m-t-2 m-b-2">
         <lnr-top-location></lnr-top-location>

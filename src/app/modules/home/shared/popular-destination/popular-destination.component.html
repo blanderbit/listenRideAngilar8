@@ -2,9 +2,9 @@
   <div class="col-md-11 col-sm-12 offset-md-1 m-b-2">
     <h3 class="subtitles m-b-2"
         *ngIf="cities">
-      Popular bike rental locations in
+     {{'home.popular_destination.header' | translate}}
       <span *ngIf="this.apiSeoService.getCountryDomain() === 'com'">
-        the world :
+        {{'home.popular_destination.header_helper' | translate}} :
       </span>
       <span *ngIf="this.apiSeoService.getCountryDomain() !== 'com'">
         {{cities[0]?.seo_country?.name[this.apiSeoService.retrieveLocale()]}} :
@@ -21,7 +21,7 @@
           {{city.name[this.apiSeoService.retrieveLocale()]}}
         </h5>
       </a>
-      <p>€{{city?.average_price | number: '1.0-0'}} / day average</p>
+      <p>€{{city?.average_price | number: '1.0-0'}} / {{'shared.day_average' | translate}}</p>
     </div>
   </div>
 </div>
