@@ -35,11 +35,9 @@ import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorti
 import { MaterialModule } from './material/material.module';
 import { FiltersComponent } from './filters/filters.component';
 
-import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
 import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
 import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
-import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
-import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
+// import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
 import { ContentLayoutsModule } from '@shared/components/content-layouts/content-layouts.module';
 
 const components = [
@@ -58,7 +56,6 @@ const components = [
   BreadcrumbsComponent,
   TestimonialsSwiperComponent,
   SmallSwiperComponent,
-  BookWidgetComponent
 ];
 
 const modules = [
