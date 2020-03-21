@@ -254,5 +254,5 @@ export class BikesRequestFlowComponent implements OnInit {
   // this.widget.setCalendarCounts(this.duration);
   // }
 
-  // testLogin($event: any) {}
+  testLogin($event: any) {}
 }

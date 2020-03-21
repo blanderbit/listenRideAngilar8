@@ -36,7 +36,7 @@ export class BikeBookingWidgetComponent implements OnChanges {
 
   public unavailableDates: EngagedDays;
 
-  private unavailableHours: EngagedHours;
+  public unavailableHours: EngagedHours;
 
   public isHalfDay: boolean;
 
@@ -50,11 +50,11 @@ export class BikeBookingWidgetComponent implements OnChanges {
 
   public isTimePickerShown: boolean;
 
-  private availableMonthsData: Array<string>;
+  public availableMonthsData: Array<string>;
 
-  private startHour: number;
+  public startHour: number;
 
-  private endHour: number;
+  public endHour: number;
 
   user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
