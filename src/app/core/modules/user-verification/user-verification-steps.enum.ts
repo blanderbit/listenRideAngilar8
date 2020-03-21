@@ -3,5 +3,5 @@ export enum UserVerificationStepsEnum {
   EMAIL = 'EMAIL',
   LOGO = 'LOGO',
   PHONE = 'PHONE',
-  COMPANY = 'COMPANY'
+  COMPANY = 'COMPANY',
 }

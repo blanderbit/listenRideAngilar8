@@ -1,42 +1,42 @@
-@import "../../../../../assets/scss/variables";
-@import "../../../../../assets/scss/utils/mixins";
+@import '../../../../../assets/scss/variables';
+@import '../../../../../assets/scss/utils/mixins';
 
 .welcome-screen {
-  position: relative;
-  display: flex;
   align-items: center;
+  display: flex;
+  position: relative;
 
   &_image {
-    z-index: 0;
-    height: 42rem;
-    width: 60%;
-    border-radius: $border-radius;
+    align-items: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: $border-radius;
     display: flex;
-    align-items: center;
+    height: 42rem;
     justify-content: center;
+    width: 60%;
+    z-index: 0;
   }
 
   &_content {
-    width: 40%;
     position: absolute;
     right: 4rem;
-    z-index: 1;
     text-align: left;
+    width: 40%;
+    z-index: 1;
 
     &_block {
-      height: auto;
       background: $white;
-      box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
       border-radius: $border-radius;
-      padding: 4rem 2rem 8rem 2rem;
+      box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
+      height: auto;
+      padding: 4rem 2rem 8rem;
     }
 
     &_date {
-      padding-left: 6rem;
       padding-bottom: 2rem;
+      padding-left: 6rem;
     }
   }
 }
@@ -46,23 +46,23 @@
     flex-direction: column;
 
     &_image {
-      width: 100%;
       height: 22rem;
+      width: 100%;
     }
 
     &_content {
-      width: 100%;
-      right: 0;
       position: relative;
+      right: 0;
+      width: 100%;
 
       &_block {
         box-shadow: none;
-        padding: 4rem 0 8rem 0;
+        padding: 4rem 0 8rem;
       }
 
       &_date {
-        padding-left: 0;
         padding-bottom: 2rem;
+        padding-left: 0;
       }
     }
   }

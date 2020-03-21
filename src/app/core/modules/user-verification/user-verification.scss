@@ -1,9 +1,14 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark-text-color;
   font-weight: normal;
   margin-bottom: 14px;
-  color: $dark-text-color;
 
   @media (max-width: $device-sm) {
     font-size: 18px;
@@ -11,12 +16,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::ng-deep .mat-step-icon {
-
   &.mat-step-icon-state-error {
     color: $lnr-warn;
   }
 
-  &.mat-step-icon-state-done{
+  &.mat-step-icon-state-done {
     background-color: $lnr-success;
   }
 
@@ -27,7 +31,6 @@ h1, h2, h3, h4, h5, h6 {
 
 ::ng-deep .mat-step-label {
   &.mat-step-label-active {
-
     &.mat-step-label-error {
       color: $lnr-warn;
     }
@@ -39,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .step-content-header {
-  margin: 0 auto 50px auto;
+  margin: 0 auto 50px;
 
   @media (max-width: $device-sm) {
     padding-top: 12px;
@@ -49,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 .step-actions {
   padding-bottom: 5px;
 
-  .right-side{
+  .right-side {
     @media (max-width: $device-sm) {
       display: flex;
       justify-content: space-between;
@@ -63,8 +66,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .small-form {
-  width: 360px;
   margin: 0 auto;
+  width: 360px;
   @media (max-width: $device-sm) {
     width: 100%;
   }

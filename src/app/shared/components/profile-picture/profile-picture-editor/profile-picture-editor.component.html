@@ -1,6 +1,14 @@
 <div [hidden]="showCropper" class="lnr-mrg-btm">
-  <label for="file-upload" class="file-upload-btn">{{uploadButtonText}}</label>
-  <input #addInput id="file-upload" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+  <label for="file-upload" class="file-upload-btn">{{
+    uploadButtonText
+  }}</label>
+  <input
+    #addInput
+    id="file-upload"
+    type="file"
+    accept="image/*"
+    (change)="fileChangeEvent($event)"
+  />
 </div>
 
 <div class="lnr-img-file-upload-cropper" [hidden]="!showCropper">
@@ -47,11 +55,14 @@
     ></image-cropper>
     <div class="preview">
       <div class="image-wrapper">
-        <img alt="cropped image" [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'"/>
+        <img
+          alt="cropped image"
+          [src]="croppedImage"
+          [style.border]="croppedImage ? '1px solid black' : 'none'"
+        />
       </div>
     </div>
   </div>
-
 </div>
 
 <div [hidden]="showCropper" class="editor-description">

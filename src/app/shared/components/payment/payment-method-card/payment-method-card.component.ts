@@ -1,9 +1,19 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {environment} from '@environment/environment';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
-import {PaymentCardFieldsEnum} from './payment-card-fields.enum';
-import {MatFormField} from '@angular/material/form-field';
-import {AdyenCardOutput} from '@models/adien/adyen-card-output';
+// TODO Fix all the esLint errors and warnings
+/* eslint-disable */
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { environment } from '@environment/environment';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatFormField } from '@angular/material/form-field';
+import { AdyenCardOutput } from '@models/adien/adyen-card-output';
+import { PaymentCardFieldsEnum } from './payment-card-fields.enum';
 
 @Component({
   selector: 'lnr-payment-method-card',
@@ -11,25 +21,30 @@ import {AdyenCardOutput} from '@models/adien/adyen-card-output';
   styleUrls: ['./payment-method-card.component.scss'],
 })
 export class PaymentMethodCardComponent implements OnInit {
-  @ViewChild('adyenDropin', {static: false}) adyenDropin: ElementRef;
-  @ViewChild('numberInput', {static: false}) numberInput: MatFormField;
-  @ViewChild('expDateInput', {static: false}) expDateInput: MatFormField;
-  @ViewChild('cvcInput', {static: false}) cvcInput: MatFormField;
+  @ViewChild('adyenDropin', { static: false }) adyenDropin: ElementRef;
+
+  @ViewChild('numberInput', { static: false }) numberInput: MatFormField;
+
+  @ViewChild('expDateInput', { static: false }) expDateInput: MatFormField;
+
+  @ViewChild('cvcInput', { static: false }) cvcInput: MatFormField;
 
   @Output() valueValid = new EventEmitter<AdyenCardOutput>();
+
   @Output() valueInvalid = new EventEmitter<boolean>();
 
   holderNameControl = new FormControl('', [
     Validators.minLength(2),
-    Validators.maxLength(100)
+    Validators.maxLength(100),
   ]);
 
   cardNumberError: string;
+
   expDateError: string;
+
   cvcError: string;
 
-  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {
-  }
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -51,29 +66,27 @@ export class PaymentMethodCardComponent implements OnInit {
         type: 'card',
         styles: {
           error: {
-            color: 'red'
+            color: 'red',
           },
           validated: {
-            color: 'green'
+            color: 'green',
           },
           placeholder: {
-            color: '#d8d8d8'
-          }
+            color: '#d8d8d8',
+          },
         },
-        onValid: (event) => {
+        onValid: event => {
           this.onValid(event.data);
         },
-        onLoad() {
-        },
-        onConfigSuccess() {
-        },
-        onFieldValid: (event) => {
+        onLoad() {},
+        onConfigSuccess() {},
+        onFieldValid: event => {
           this.onValidField(event.fieldType);
         },
-        onError: (event) => {
+        onError: event => {
           this.onErrorField(event.fieldType, event.i18n);
         },
-        onFocus: (event) => {
+        onFocus: event => {
           this.onFocusField(event.fieldType);
         },
       })
@@ -110,7 +123,6 @@ export class PaymentMethodCardComponent implements OnInit {
   }
 
   onErrorField(fieldType: PaymentCardFieldsEnum, error: string) {
-
     this.valueInvalid.emit(true);
 
     if (fieldType === PaymentCardFieldsEnum.CARD_NUMBER) {
@@ -132,17 +144,22 @@ export class PaymentMethodCardComponent implements OnInit {
 
   private focusField(matFormField: MatFormField) {
     matFormField._elementRef.nativeElement.classList.add('mat-focused');
-    matFormField._elementRef.nativeElement.classList.add('mat-form-field-should-float');
+    matFormField._elementRef.nativeElement.classList.add(
+      'mat-form-field-should-float',
+    );
   }
 
   private validField(matFormField: MatFormField) {
     matFormField._elementRef.nativeElement.classList.remove('ng-error');
-    matFormField._elementRef.nativeElement.classList.remove('mat-form-field-invalid');
+    matFormField._elementRef.nativeElement.classList.remove(
+      'mat-form-field-invalid',
+    );
   }
 
   private errorField(matFormField: MatFormField) {
     matFormField._elementRef.nativeElement.classList.add('ng-error');
-    matFormField._elementRef.nativeElement.classList.add('mat-form-field-invalid');
+    matFormField._elementRef.nativeElement.classList.add(
+      'mat-form-field-invalid',
+    );
   }
-
 }

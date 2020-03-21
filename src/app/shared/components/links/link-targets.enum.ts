@@ -1,3 +1,3 @@
 export enum LinkTargetsEnum {
-  BLANK = '_blank'
+  BLANK = '_blank',
 }

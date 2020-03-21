@@ -1,18 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+// TODO Fix all the esLint errors
+/* eslint-disable */
+import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null,
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
   selector: 'lnr-subscribe-input',
   templateUrl: './subscribe-input.component.html',
-  styleUrls: ['./subscribe-input.component.scss']
+  styleUrls: ['./subscribe-input.component.scss'],
 })
 export class SubscribeInputComponent {
   emailFormControl = new FormControl('', [
@@ -21,5 +35,4 @@ export class SubscribeInputComponent {
   ]);
 
   matcher = new MyErrorStateMatcher();
-
 }

@@ -1,4 +1,4 @@
-import {Address} from '@models/user/address';
+import { Address } from '@models/user/address';
 
 export interface AddressUpdateRequest {
   locations: { [key: string]: Address };

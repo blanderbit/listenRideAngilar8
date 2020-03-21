@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {CategoryMultiSelectComponent} from './category-multi-select.component';
+import { CategoryMultiSelectComponent } from './category-multi-select.component';
 
 describe('CategoryMultiselectComponent', () => {
   let component: CategoryMultiSelectComponent;
@@ -8,9 +8,8 @@ describe('CategoryMultiselectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryMultiSelectComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryMultiSelectComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,34 +1,43 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-import {distinctUntilChanged, filter} from 'rxjs/operators';
-import {BreadCrumb} from '@shared/components/breadcrumbs/breadcrumb.interface';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { BreadCrumb } from '@shared/components/breadcrumbs/breadcrumb.interface';
 
 @Component({
   selector: 'lnr-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+  styleUrls: ['./breadcrumbs.component.scss'],
 })
 export class BreadcrumbsComponent implements OnInit {
   public breadcrumbs: BreadCrumb[];
 
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
   }
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      distinctUntilChanged(),
-    ).subscribe(() => {
-      this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-    });
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        distinctUntilChanged(),
+      )
+      .subscribe(() => {
+        this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+      });
   }
 
-  buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: BreadCrumb[] = []): BreadCrumb[] {
+  buildBreadCrumb(
+    route: ActivatedRoute,
+    url = '',
+    breadcrumbs: BreadCrumb[] = [],
+  ): BreadCrumb[] {
     // If no routeConfig is available we are on the root path
-    let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
-    let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+    let label =
+      route.routeConfig && route.routeConfig.data
+        ? route.routeConfig.data.breadcrumb
+        : '';
+    let path =
+      route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
 
     // If the route is dynamic route such as ':id', remove it
     const lastRoutePart = path.split('/').pop();
@@ -48,7 +57,9 @@ export class BreadcrumbsComponent implements OnInit {
       url: nextUrl,
     };
     // Only adding route with non-empty label
-    const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
+    const newBreadcrumbs = breadcrumb.label
+      ? [...breadcrumbs, breadcrumb]
+      : [...breadcrumbs];
     if (route.firstChild) {
       // If we are not on our current path yet,
       // there will be more children to look after, to build our breadcrumb
@@ -56,5 +67,4 @@ export class BreadcrumbsComponent implements OnInit {
     }
     return newBreadcrumbs;
   }
-
 }

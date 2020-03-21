@@ -1,4 +1,4 @@
-import {Bike} from '@models/bike/bike.types';
+import { Bike } from '@models/bike/bike.types';
 
 export interface MyBikesState {
   bikes: Bike[];

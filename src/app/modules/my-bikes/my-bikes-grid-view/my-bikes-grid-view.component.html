@@ -1,6 +1,13 @@
 <div class="content bikes-grid-wrapper">
-  <div *ngFor="let bike of bikes$ | async" [ngClass]="{'disabled': !bike.available}" class="bike-tile-grid col-md-3 col-lg-2 col-xs-1 сol-xl-2">
-    <div class="bike-selection-overlay" [ngClass]="{'active': showSelectionOverlay}">
+  <div
+    *ngFor="let bike of bikes$ | async"
+    [ngClass]="{ disabled: !bike.available }"
+    class="bike-tile-grid col-md-3 col-lg-2 col-xs-1 сol-xl-2"
+  >
+    <div
+      class="bike-selection-overlay"
+      [ngClass]="{ active: showSelectionOverlay }"
+    >
       <mat-checkbox (change)="toggleBike(bike.id)"></mat-checkbox>
     </div>
     <lnr-bike-card [bike]="bike" [isMobileView]="false"></lnr-bike-card>
@@ -8,31 +15,48 @@
       <button mat-icon-button matTooltip="Edit" (click)="routeToEdit(bike.id)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button (click)="toggleAvailability(bike.id, bike.available)"
-              mat-icon-button
-              matTooltip="Toggle activity">
+      <button
+        (click)="toggleAvailability(bike.id, bike.available)"
+        mat-icon-button
+        matTooltip="Toggle activity"
+      >
         <mat-icon *ngIf="!bike.available" svgIcon="lnr-visibility"></mat-icon>
-        <mat-icon *ngIf="bike.available" svgIcon="lnr-visibility-off"></mat-icon>
+        <mat-icon
+          *ngIf="bike.available"
+          svgIcon="lnr-visibility-off"
+        ></mat-icon>
       </button>
-      <button (click)="openAvailabilityModal(bike.id, bike.availabilities)"
-              [disabled]="bike.is_cluster"
-              mat-icon-button
-              matTooltip="Set Availability">
+      <button
+        (click)="openAvailabilityModal(bike.id, bike.availabilities)"
+        [disabled]="bike.is_cluster"
+        mat-icon-button
+        matTooltip="Set Availability"
+      >
         <mat-icon>alarm</mat-icon>
       </button>
-      <button *ngIf="!bike.is_cluster"
-              (click)="openDuplicateModal(bike.id)"
-              mat-icon-button
-              matTooltip="Copy">
+      <button
+        *ngIf="!bike.is_cluster"
+        (click)="openDuplicateModal(bike.id)"
+        mat-icon-button
+        matTooltip="Copy"
+      >
         <mat-icon svgIcon="lnr-copy">Copy</mat-icon>
       </button>
-      <button *ngIf="bike.is_cluster"
-              (click)="openUnMergeModal(bike.cluster_id)"
-              mat-icon-button
-              matTooltip="Unmerge Bikes">
+      <button
+        *ngIf="bike.is_cluster"
+        (click)="openUnMergeModal(bike.cluster_id)"
+        mat-icon-button
+        matTooltip="Unmerge Bikes"
+      >
         <mat-icon svgIcon="lnr-unmerge"></mat-icon>
       </button>
-      <button mat-icon-button aria-label="delete" matTooltip="Delete" class="btn-delete" (click)="openDeleteModal(bike.id)">
+      <button
+        mat-icon-button
+        aria-label="delete"
+        matTooltip="Delete"
+        class="btn-delete"
+        (click)="openDeleteModal(bike.id)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>

@@ -1,4 +1,4 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 .subscribe-form {
   margin-top: -1rem;
@@ -7,13 +7,13 @@
     white-space: nowrap;
 
     input {
-      padding: 1rem;
       border: 0.1rem solid $grey-background;
-      border-top-left-radius: 0.4rem;
       border-bottom-left-radius: 0.4rem;
-      width: 18rem;
+      border-top-left-radius: 0.4rem;
       color: $white-font-color;
       font-size: $small-fontsize;
+      padding: 1rem;
+      width: 18rem;
 
       &::placeholder {
         color: $light-text-color;
@@ -23,11 +23,11 @@
   }
 
   &_button {
-    height: 3.7rem;
-    border-top-right-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
     background: $submit-button-color;
     border: none;
+    border-bottom-right-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    height: 3.7rem;
     width: 4rem;
   }
 

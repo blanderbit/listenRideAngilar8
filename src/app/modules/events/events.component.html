@@ -18,12 +18,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12"
-           *ngIf="events$ | async as futureEvents">
+      <div class="col-md-12" *ngIf="events$ | async as futureEvents">
         <div *ngFor="let event of futureEvents['future_events']">
-          <lnr-timeline-block
-            [seoEvent]="event">
-          </lnr-timeline-block>
+          <lnr-timeline-block [seoEvent]="event"> </lnr-timeline-block>
         </div>
       </div>
     </div>
@@ -40,20 +37,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12"
-           *ngIf="events$ | async as pastEvents">
-        <div *ngFor="let event of pastEvents['past_events'] ">
-          <lnr-timeline-block
-            [seoEvent]="event">
-          </lnr-timeline-block>
+      <div class="col-md-12" *ngIf="events$ | async as pastEvents">
+        <div *ngFor="let event of pastEvents['past_events']">
+          <lnr-timeline-block [seoEvent]="event"> </lnr-timeline-block>
         </div>
       </div>
     </div>
-<!--    TODO add breadcrumbs-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-12 m-t-2 m-b-2">-->
-<!--        <lnr-breadcrumbs></lnr-breadcrumbs>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    TODO add breadcrumbs-->
+    <!--    <div class="row">-->
+    <!--      <div class="col-md-12 m-t-2 m-b-2">-->
+    <!--        <lnr-breadcrumbs></lnr-breadcrumbs>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </div>

@@ -7,33 +7,33 @@
 
 @media (max-width: $device-xs) {
   #right {
-    min-width: 100%;
     margin: 4rem 0;
+    min-width: 100%;
 
   }
 }
 
 .header {
-  font-weight: bold;
-  font-size: 3rem;
-  line-height: 120%;
   color: $dark-text-color;
   display: flex;
+  font-size: 3rem;
+  font-weight: bold;
   justify-content: flex-start;
-  padding: 0 10%;
+  line-height: 120%;
   margin: 4rem auto;
+  padding: 0 10%;
 }
 
 :host::ng-deep {
   .mat-select {
-    font-weight: normal;
     font-size: $h5-fontsize;
+    font-weight: normal;
     line-height: 150%;
 
     .mat-select-trigger {
+      border: 0.1rem solid $input-border;
+      border-radius: 0.4rem;
       padding: 0.5em 1em;
-      border: .1rem solid $input-border;
-      border-radius: .4rem;
 
       .mat-select-arrow {
         color: $input-border;
@@ -43,19 +43,19 @@
   }
 
   .mbsc-material {
-    position: relative;
-    font-weight: normal;
     font-size: $h5-fontsize;
+    font-weight: normal;
     line-height: 150%;
+    position: relative;
 
     .arrow-right {
-      background-image: url("./../../../assets/img/arrow-right.svg");
-      background-size: contain;
-      width: 5.5rem;
-      height: 100%;
-      background-repeat: no-repeat;
+      background-image: url('./../../../assets/img/arrow-right.svg');
       background-position: center;
-      margin-right: .5rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      margin-right: 0.5rem;
+      width: 5.5rem;
       //position:;
 
     }
@@ -66,7 +66,7 @@
 
     &.mbsc-input {
       .mbsc-control {
-        border: none
+        border: none;
       }
     }
   }
@@ -76,18 +76,18 @@
   width: 100%;
 
   h4 {
-    font-weight: normal;
-    font-size: $h4-fontsize;
-    line-height: 120%;
     color: $dark-text-color;
+    font-size: $h4-fontsize;
+    font-weight: normal;
+    line-height: 120%;
   }
 
   h5 {
+    color: $dark-text-color;
+    font-size: $h5-fontsize;
     font-style: normal;
     font-weight: normal;
-    font-size: $h5-fontsize;
     line-height: 150%;
-    color: $dark-text-color;
   }
 
   lnr-phone-verification {
@@ -97,22 +97,22 @@
   }
 
   ::ng-deep #requestFlow-stepper {
+    font-size: $h5-fontsize;
     left: 20%;
     margin-top: 9rem;
-    font-size: $h5-fontsize;
 
     .mat-horizontal-stepper-header {
+      border-bottom: 0.2rem solid white;
+      box-sizing: border-box;
 
       cursor: pointer;
-      box-sizing: border-box;
-      border-bottom: .2rem solid white;
-      transition: .5s all;
       padding: 2rem 0 0;
+      transition: 0.5s all;
 
       div {
         &.mat-step-icon {
-          width: 2.8rem;
           height: 2.8rem;
+          width: 2.8rem;
         }
 
         &.mat-step-icon-state-done.mat-step-icon {
@@ -131,10 +131,11 @@
     }
 
     .mat-horizontal-stepper-content {
-
-      .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
-        padding: 0;
+      .mat-form-field-wrapper,
+      .mat-form-field-infix,
+      .mat-form-field-infix .mat-select {
         margin-top: 0;
+        padding: 0;
 
         .mat-select-trigger {
           padding: 0 1.4rem;
@@ -145,14 +146,13 @@
     .mat-horizontal-content-container {
       padding-top: 4rem;
 
-      [aria-labelledby="cdk-step-label-0-1"] {
+      [aria-labelledby='cdk-step-label-0-1'] {
         h4 {
           margin-bottom: 3rem;
         }
       }
 
       lnr-auth-login-dialog {
-
         .lnr-dialog-header {
           display: none;
         }
@@ -162,30 +162,30 @@
         }
       }
 
-        lnr-address {
-          div.row {
-            margin: 3rem -1.5rem;
-          }
+      lnr-address {
+        div.row {
+          margin: 3rem -1.5rem;
         }
+      }
 
     }
   }
 
   ::ng-deep mat-vertical-stepper#requestFlow-stepper {
-    width: 100%;
     margin: 0 auto;
+    width: 100%;
 
     lnr-step-duration {
       .main_container {
-        width: 100%;
         height: 100%;
+        width: 100%;
 
         .leftContainer {
           grid-template-columns: 100%;
 
           .container {
-            margin: 2rem 0;
             grid-template-columns: 40% 70%;
+            margin: 2rem 0;
 
           }
         }
@@ -196,7 +196,7 @@
 
         .premium_insurance {
           border: none;
-          border-bottom: .1rem solid $input-border;
+          border-bottom: 0.1rem solid $input-border;
           padding-bottom: 2rem;
 
           button {
@@ -206,8 +206,8 @@
         }
 
         .voucher {
-          padding: 0;
           margin: 2rem 0;
+          padding: 0;
 
           .input_voucher {
             input {
@@ -220,7 +220,6 @@
     }
 
     lnr-auth-login-dialog {
-
       .lnr-dialog-header {
         display: none;
       }
@@ -241,7 +240,6 @@
   }
 
   .mat-horizontal-stepper-content {
-
     .duration {
       display: flex;
       flex-direction: column;
@@ -272,9 +270,9 @@
 
   ::ng-deep {
     .mat-button-stepper {
-      width: 16.6rem;
       height: 4.2rem;
       margin: 4rem 4% 4rem 0;
+      width: 16.6rem;
 
       &[disabled] {
         background: $submit-button-color-disabled;
@@ -307,15 +305,16 @@
       padding: 0 5%;
       width: 100%;
     }
+
     .header {
-      width: 100%;
       padding: 0 10%;
+      width: 100%;
     }
 
     .mat-horizontal-stepper-header-container {
-      left: 20%;
       display: flex;
       justify-content: space-around;
+      left: 20%;
 
       .mat-horizontal-stepper-header {
         padding: 0 !important;
@@ -330,7 +329,8 @@
     }
 
     #pricing-container {
-      .pricing-container, .customised {
+      .pricing-container,
+      .customised {
         display: grid;
         grid-template-columns: 100%;
         width: 100%;
@@ -362,11 +362,11 @@
 }
 
 .message {
-  width: 100%;
-  height: 60vh;
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 60vh;
   justify-content: center;
+  width: 100%;
 }
 
 :host::ng-deep .mat-select-panel {

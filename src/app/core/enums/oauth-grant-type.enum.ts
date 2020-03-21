@@ -1,4 +1,4 @@
 export enum OauthGrantTypeEnum {
   PASSWORD = 'password',
-  ASSERTION = 'assertion'
+  ASSERTION = 'assertion',
 }

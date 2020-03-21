@@ -1,19 +1,15 @@
 <form id="location-container" [formGroup]="personalDetailsFormGroup">
-
-
   <div class="button-container">
-    <button class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
-    >
+    <button class="mat-button-stepper" mat-button matStepperPrevious>
       Back
     </button>
-    <button class="mat-button-stepper next"
-            [ngClass]="{active: !personalDetailsFormGroup?.invalid}"
-            [disabled]="personalDetailsFormGroup?.invalid"
-            mat-button
-            matStepperNext
-            type="button"
+    <button
+      class="mat-button-stepper next"
+      [ngClass]="{ active: !personalDetailsFormGroup?.invalid }"
+      [disabled]="personalDetailsFormGroup?.invalid"
+      mat-button
+      matStepperNext
+      type="button"
     >
       Next
     </button>

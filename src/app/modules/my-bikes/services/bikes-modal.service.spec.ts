@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {BikesModalService} from './bikes-modal.service';
+import { BikesModalService } from './bikes-modal.service';
 
 describe('BikesModal.ServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

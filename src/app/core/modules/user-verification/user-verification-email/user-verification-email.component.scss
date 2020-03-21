@@ -1,4 +1,4 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 .step-content {
   .step-content-header {
@@ -7,7 +7,7 @@
 }
 
 h6 {
-  letter-spacing: .6px;
+  letter-spacing: 0.6px;
 
   @media (max-width: $device-sm) {
     font-size: 1.3rem;

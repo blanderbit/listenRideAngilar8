@@ -1,20 +1,15 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
-import {TokensEnum} from '@enums/tokens.enum';
-import {Store} from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { TokensEnum } from '@enums/tokens.enum';
+import { Store } from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
-import {AuthActions} from '@auth/store/actions';
+import { AuthActions } from '@auth/store/actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthGuard implements CanActivate {
-  constructor(
-    private store: Store<fromAuth.State>,
-    public router: Router
-  ) {
-  }
+  constructor(private store: Store<fromAuth.State>, public router: Router) {}
 
   canActivate(): boolean {
     const access = localStorage.getItem(TokensEnum.ACCESS_TOKEN);

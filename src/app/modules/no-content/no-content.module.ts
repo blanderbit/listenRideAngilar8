@@ -1,10 +1,9 @@
-import {NgModule} from '@angular/core';
-import {NoContentComponent} from './no-content.component';
-import {NoContentRoutingModule} from './no-content-routing.module';
+import { NgModule } from '@angular/core';
+import { NoContentComponent } from './no-content.component';
+import { NoContentRoutingModule } from './no-content-routing.module';
 
 @NgModule({
   declarations: [NoContentComponent],
-  imports: [NoContentRoutingModule]
+  imports: [NoContentRoutingModule],
 })
-export class NoContentModule {
-}
+export class NoContentModule {}

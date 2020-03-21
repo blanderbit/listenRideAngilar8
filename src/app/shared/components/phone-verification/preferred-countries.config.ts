@@ -1,4 +1,4 @@
-import {CountryISO} from 'ngx-intl-tel-input';
+import { CountryISO } from 'ngx-intl-tel-input';
 
 export const preferredCountries = [
   CountryISO.Germany,

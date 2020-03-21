@@ -4,9 +4,14 @@
     <div class="col-md-8 lnr-d-flex lnr-flex-align-center">
       <lnr-profile-picture></lnr-profile-picture>
       <div>
-        <h3>{{user?.firstName}} {{user?.lastName}}</h3>
-        <rating #rating [max]="5" [titles]="['1', 'two', 'three', 'four', 'five']" readonly="true"></rating>
-        <p>{{user?.city}}, {{user?.country}}</p>
+        <h3>{{ user?.firstName }} {{ user?.lastName }}</h3>
+        <rating
+          #rating
+          [max]="5"
+          [titles]="['1', 'two', 'three', 'four', 'five']"
+          readonly="true"
+        ></rating>
+        <p>{{ user?.city }}, {{ user?.country }}</p>
       </div>
     </div>
     <div class="col-md-4">
@@ -37,5 +42,4 @@
       <lnr-user-rental-bikes [user]="user"></lnr-user-rental-bikes>
     </div>
   </div>
-
 </div>

@@ -1,9 +1,9 @@
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import * as camelcaseKeys from 'camelcase-keys';
 
 const STOP_PATHS: string[] = [
   // Engaged time response
-  'hours'
+  'hours',
 ];
 
 /**
@@ -15,19 +15,23 @@ export function CamelCaseResponseKeys(): MethodDecorator {
   return function(
     target: any,
     propertyKey: string,
-    descriptor: PropertyDescriptor
+    descriptor: PropertyDescriptor,
   ) {
     const original = descriptor.value;
 
     // tslint:disable-next-line:only-arrow-functions
+    // eslint-disable-next-line no-param-reassign
     descriptor.value = function() {
-      return original
-        .apply(this, arguments)
-        .pipe(
-          map((response: {[key: string]: unknown}) =>
-            camelcaseKeys(response, {deep: true, stopPaths: STOP_PATHS})
+      return (
+        original
+          // eslint-disable-next-line prefer-rest-params
+          .apply(this, arguments)
+          .pipe(
+            map((response: { [key: string]: unknown }) =>
+              camelcaseKeys(response, { deep: true, stopPaths: STOP_PATHS }),
+            ),
           )
-        );
+      );
     };
     return descriptor;
   };

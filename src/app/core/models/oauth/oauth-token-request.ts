@@ -1,4 +1,4 @@
-import {OauthGrantTypeEnum} from '@enums/oauth-grant-type.enum';
+import { OauthGrantTypeEnum } from '@enums/oauth-grant-type.enum';
 
 export interface OauthTokenRequest {
   email: string;

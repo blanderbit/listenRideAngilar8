@@ -1,10 +1,10 @@
 .image-wrapper {
-  position: relative;
   border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
-  max-width: 120px;
   max-height: 120px;
+  max-width: 120px;
+  overflow: hidden;
+  position: relative;
 
   &:hover {
     .overlay {
@@ -19,14 +19,14 @@
   }
 
   .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    bottom: -100px;
+    color: #fff;
+    left: 0;
+    padding: 3px;
     position: absolute;
     right: 0;
-    bottom: -100px;
-    left: 0;
     text-align: center;
-    color: #FFFFFF;
-    background: rgba(0, 0, 0, .4);
-    padding: 3px;
-    transition: bottom .2s;
+    transition: bottom 0.2s;
   }
 }

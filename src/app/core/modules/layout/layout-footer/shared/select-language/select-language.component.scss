@@ -1,9 +1,9 @@
-@import "../../../../../../../assets/scss/variables";
+@import '../../../../../../../assets/scss/variables';
 
 .select-languages {
   mat-select {
-    width: 14rem;
     height: inherit;
+    width: 14rem;
 
     .mat-select-value-text {
       color: $white-font-color;

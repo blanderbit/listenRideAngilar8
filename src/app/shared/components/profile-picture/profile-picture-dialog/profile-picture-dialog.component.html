@@ -3,16 +3,20 @@
   <lnr-button-close (click)="close()"></lnr-button-close>
 </div>
 <mat-dialog-content>
-
   <mat-error>
     <lnr-http-error-message [error]="null"></lnr-http-error-message>
   </mat-error>
 
   <ng-container *ngIf="mode === 'create'">
-
     <div [hidden]="showCropper" class="lnr-mrg-btm">
       <label for="file-upload" class="file-upload-btn"> </label>
-      <input #addInput id="file-upload" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+      <input
+        #addInput
+        id="file-upload"
+        type="file"
+        accept="image/*"
+        (change)="fileChangeEvent($event)"
+      />
     </div>
 
     <div class="lnr-img-file-upload-cropper" [hidden]="!showCropper">
@@ -62,31 +66,43 @@
         ></image-cropper>
         <div class="preview">
           <div class="image-wrapper">
-            <img class="lnr-mrg-btm" [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'"/>
-            <button mat-raised-button color="primary" class="lnr-w-100" (click)="submit()">Save
-              <lnr-loader-spinner-small *ngIf="uploading"></lnr-loader-spinner-small>
+            <img
+              class="lnr-mrg-btm"
+              [src]="croppedImage"
+              [style.border]="croppedImage ? '1px solid black' : 'none'"
+            />
+            <button
+              mat-raised-button
+              color="primary"
+              class="lnr-w-100"
+              (click)="submit()"
+            >
+              Save
+              <lnr-loader-spinner-small
+                *ngIf="uploading"
+              ></lnr-loader-spinner-small>
             </button>
           </div>
         </div>
       </div>
-
     </div>
 
     <div [hidden]="showCropper">
-      <p>Please upload only formats as jpg, jpeg, png. Maximum size is 20mb. Minimum dimension is 100px x 100px.</p>
+      <p>
+        Please upload only formats as jpg, jpeg, png. Maximum size is 20mb.
+        Minimum dimension is 100px x 100px.
+      </p>
 
-      <p><small>By uploading a picture, I agree that listnride saves the picture as described in the Privacy Policy. I
-        can
-        delete it at any time.</small></p>
+      <p>
+        <small
+          >By uploading a picture, I agree that listnride saves the picture as
+          described in the Privacy Policy. I can delete it at any time.</small
+        >
+      </p>
     </div>
-
   </ng-container>
 
-  <ng-container *ngIf="mode === 'update'">
-
-  </ng-container>
-
-
+  <ng-container *ngIf="mode === 'update'"> </ng-container>
 </mat-dialog-content>
 
 <!--<mat-dialog-actions class="lnr-d-flex lnr-space-btw">-->

@@ -1,30 +1,31 @@
-@import "variables";
+@import 'variables';
 
-.needHelp{
-  width: 45.8rem;
-  height: 18.4rem;
+.needHelp {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 18.4rem;
   justify-content: center;
   margin-top: 2rem;
+  width: 45.8rem;
 
   @media (max-width: $device-xs) {
-  width: 100%;
+    width: 100%;
   }
 
-    a{
+  a {
     color: $main-green;
   }
-  div{
+
+  div {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    img{
-      width: 7.5rem;
-      height: 7.5rem;
+    img {
       border-radius: 50%;
+      height: 7.5rem;
+      width: 7.5rem;
     }
   }
 }

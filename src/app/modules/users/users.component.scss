@@ -3,11 +3,11 @@ lnr-profile-picture {
 }
 
 rating {
+  color: #ccc;
   font-size: 28px;
   line-height: 20px;
-  color: #cccccc;
 
- ::ng-deep span {
+  ::ng-deep span {
     &.active {
       color: #ffa500;
     }

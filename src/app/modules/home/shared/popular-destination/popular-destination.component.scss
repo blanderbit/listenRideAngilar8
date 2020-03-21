@@ -1,4 +1,4 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 .subtitles {
   font-size: 2.6rem;
@@ -6,8 +6,8 @@
 
 .popular-destination-list {
   a:hover {
-    text-decoration: none;
     opacity: 0.8;
+    text-decoration: none;
   }
 }
 
@@ -16,10 +16,11 @@
     font-size: 2.3rem;
     text-align: center;
   }
+
   .wrap-destination {
-    text-align: center;
     -webkit-box-flex: 0;
     flex: 0 0 50%;
     max-width: 50%;
+    text-align: center;
   }
 }

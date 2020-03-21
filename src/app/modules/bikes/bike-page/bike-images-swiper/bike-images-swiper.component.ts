@@ -1,11 +1,11 @@
-import {Component, OnInit, Input, OnDestroy} from '@angular/core';
-import {BikeImage} from '@models/bike/bike.types';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { BikeImage } from '@models/bike/bike.types';
 import Swiper from 'swiper';
 
 @Component({
   selector: 'lnr-bike-images-swiper',
   templateUrl: './bike-images-swiper.component.html',
-  styleUrls: ['./bike-images-swiper.component.scss']
+  styleUrls: ['./bike-images-swiper.component.scss'],
 })
 export class BikeImagesSwiperComponent implements OnInit, OnDestroy {
   @Input()
@@ -22,18 +22,20 @@ export class BikeImagesSwiperComponent implements OnInit, OnDestroy {
       pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
-        clickable: true
+        clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.swiper-button-prev',
       },
       observer: true,
-      watchOverflow: true
+      watchOverflow: true,
     });
   }
 
   ngOnDestroy(): void {
-    this.swiper && this.swiper.destroy(true, true);
+    if (this.swiper) {
+      this.swiper.destroy(true, true);
+    }
   }
 }

@@ -1,4 +1,4 @@
-import {Business} from '@models/business/business';
+import { Business } from '@models/business/business';
 
 export interface User {
   id: number;
@@ -17,7 +17,7 @@ export interface User {
   // TODO: ASK BE for enum
   refStatus: any;
   profilePicture: {
-    profilePicture: {url: string};
+    profilePicture: { url: string };
   };
   confirmedPhone: boolean;
 
@@ -45,6 +45,6 @@ export interface User {
   rides?: any[];
   ratings?: any[];
   business: Business;
-  me?: {admin?: boolean};
+  me?: { admin?: boolean };
   directBookingScheme?: boolean;
 }

@@ -1,11 +1,14 @@
-<div class="wrap-recommended-destinations"
-     *ngIf="cities$">
-  <a *ngFor="let city of cities$ | async"
-     class="destination-card"
-     routerLink="./{{city.name[this.apiSeoService.retrieveLocale()] | lowercase}}"
-     [ngStyle]="{ 'background-image': 'url(' + city.image_url + ')'}">
+<div class="wrap-recommended-destinations" *ngIf="cities$">
+  <a
+    *ngFor="let city of cities$ | async"
+    class="destination-card"
+    routerLink="./{{
+      city.name[this.apiSeoService.retrieveLocale()] | lowercase
+    }}"
+    [ngStyle]="{ 'background-image': 'url(' + city.image_url + ')' }"
+  >
     <h5 class="white regular">
-      {{city.name[this.apiSeoService.retrieveLocale()]}}
+      {{ city.name[this.apiSeoService.retrieveLocale()] }}
     </h5>
   </a>
 </div>

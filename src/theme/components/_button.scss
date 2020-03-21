@@ -1,9 +1,9 @@
 .lnr {
   button {
-    outline: none;
     cursor: pointer;
     font-weight: normal;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
+    outline: none;
 
     &:focus {
       outline: none;
@@ -16,9 +16,10 @@
       }
     }
 
-    &.lnr-btn-back{
+    &.lnr-btn-back {
+      color: #555;
       font-weight: bold;
-      color: #555555;
+
       mat-icon {
         font-size: 23px;
         line-height: 15px;
@@ -28,14 +29,14 @@
   }
 
   .lnr-btn-link {
-    border: none;
-    padding: 0;
     background: transparent;
+    border: none;
     // TODO: add var
     color: green;
     font-size: 14px;
     font-weight: 500;
     height: 18px;
+    padding: 0;
 
     &:hover {
       text-decoration: underline;
@@ -43,7 +44,8 @@
 
   }
 
-  .lnr-fb-button, .lnr-fb-button.mat-primary {
+  .lnr-fb-button,
+  .lnr-fb-button.mat-primary {
     background-color: #3b5998;
   }
 }

@@ -1,12 +1,15 @@
 <div class="step-content">
   <div class="step-content-header">
+    <h3 class="step-title">
+      Upload your Profile logo
+      <sup>
+        <lnr-view-template-status [value]="'public'"></lnr-view-template-status>
+      </sup>
+    </h3>
 
-    <h3 class="step-title">Upload your Profile logo <sup>
-      <lnr-view-template-status [value]="'public'"></lnr-view-template-status>
-    </sup></h3>
-
-    <p>Having your logo shown on listnride is a great way to attract more request</p>
-
+    <p>
+      Having your logo shown on listnride is a great way to attract more request
+    </p>
   </div>
 
   <div>
@@ -14,29 +17,44 @@
       <lnr-http-error-message [error]="error"></lnr-http-error-message>
     </mat-error>
 
-    <lnr-profile-picture-editor [uploadButtonText]="'Chose your logo'"
-                                (imageEmpty)="onImageEmpty()"
-                                (imageReady)="onImageReady($event)"></lnr-profile-picture-editor>
+    <lnr-profile-picture-editor
+      [uploadButtonText]="'Chose your logo'"
+      (imageEmpty)="onImageEmpty()"
+      (imageReady)="onImageReady($event)"
+    ></lnr-profile-picture-editor>
   </div>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
   <div class="left-side" *ngIf="isDesktop || isTablet">
-    <button mat-button
-            matStepperPrevious
-            class="lnr-btn-back"
-            [hidden]="isItFirstStep">
+    <button
+      mat-button
+      matStepperPrevious
+      class="lnr-btn-back"
+      [hidden]="isItFirstStep"
+    >
       <mat-icon svgIcon="arrow-left"></mat-icon>
       Back
     </button>
   </div>
 
   <div class="right-side">
-    <button mat-stroked-button color="primary"
-            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="nextOrCloseIfLastStep()"
+    >
+      {{ stepCompleted ? 'Next' : 'Skip' }}
+    </button>
 
-    <button mat-raised-button color="primary" class="lnt-btn-min-width lnr-mrg-l-16" [hidden]="!croppedImage || saved"
-            (click)="submit()">Save & {{isItLastStep ? 'complete' : 'proceed'}}
+    <button
+      mat-raised-button
+      color="primary"
+      class="lnt-btn-min-width lnr-mrg-l-16"
+      [hidden]="!croppedImage || saved"
+      (click)="submit()"
+    >
+      Save & {{ isItLastStep ? 'complete' : 'proceed' }}
       <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
     </button>
   </div>

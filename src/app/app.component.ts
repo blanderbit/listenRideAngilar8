@@ -1,15 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {TranslateService} from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 import * as fromAuth from './core/modules/auth/store/reducers';
-import {Subject} from 'rxjs';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'lnr-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'listnride-frontend-new';
@@ -18,76 +17,107 @@ export class AppComponent implements OnInit {
     private store: Store<fromAuth.State>,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    public translate: TranslateService
+    public translate: TranslateService,
   ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
+    // this language will be used as a fallback when
+    // a translation isn't found in the current language
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
   }
 
-  ngOnInit() {
-
-    this.matIconRegistry.addSvgIcon(
-      'lnr-filter',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/filter_icon.svg')
-    )
+  ngOnInit(): void {
+    this.matIconRegistry
+      .addSvgIcon(
+        'lnr-filter',
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../assets/ui_icons/filter_icon.svg',
+        ),
+      )
       .addSvgIcon(
         'lnr-reset-filter',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/ui_icons/reset_filter_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../assets/ui_icons/reset_filter_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-sort',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/sort_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/sort_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-1',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_1.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_1.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-2',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_2.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_2.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-3',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_3.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_3.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-4',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_4.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_4.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-5',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_5.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_5.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-6',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_6.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_6.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-bike-cat-7',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/bikes/biketype_7.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/bikes/biketype_7.svg',
+        ),
       )
       .addSvgIcon(
-      'lnr-copy',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_copy_icon.svg')
+        'lnr-copy',
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/lnr_copy_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-merge',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_merge_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/lnr_merge_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-unmerge',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_unmerge_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/lnr_unmerge_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-visibility',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_visibility_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/lnr_visibility_icon.svg',
+        ),
       )
       .addSvgIcon(
         'lnr-visibility-off',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/ui_icons/lnr_visibility_off_icon.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          '../../../assets/ui_icons/lnr_visibility_off_icon.svg',
+        ),
       );
   }
 }

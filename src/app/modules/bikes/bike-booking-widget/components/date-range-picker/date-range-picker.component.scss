@@ -1,16 +1,16 @@
 @import 'variables';
 
 .dates-range {
-  cursor: pointer;
   border: 1px solid $light-grey;
-  padding: 1rem 1.5rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
 
   mat-icon {
-    height: $base-font_size;
-    width: $base-font_size;
     font-size: $base-font_size;
+    height: $base-font_size;
     margin-right: 0.5rem;
+    width: $base-font_size;
   }
 }
 
@@ -25,19 +25,20 @@
 
     &.is-loading {
       .md-drppicker {
-        &:after {
-          content: 'sync';
-          font-family: 'Material Icons', sans-serif;
-          position: absolute;
-          top: 50%;
-          left: calc(50% - (5rem / 2));
-          font-size: 5rem;
-          color: $main-blue;
-          animation-name: spin;
+        &::after {
           animation-duration: 1500ms;
           animation-iteration-count: infinite;
+          animation-name: spin;
           animation-timing-function: linear;
+          color: $main-blue;
+          content: 'sync';
+          font-family: 'Material Icons', sans-serif;
+          font-size: 5rem;
+          left: calc(50% - (5rem / 2));
+          position: absolute;
+          top: 50%;
         }
+
         .calendar {
           opacity: 0.7;
           pointer-events: none;
@@ -48,15 +49,15 @@
 
   .date-range-picker {
     input {
-      height: 0;
       border: 0;
-      outline: 0;
       color: transparent;
+      height: 0;
+      outline: 0;
     }
 
     .md-drppicker {
-      box-shadow: none;
       border: 1px solid $light-grey;
+      box-shadow: none;
 
       td.active,
       td.active:hover,
@@ -96,8 +97,8 @@
       }
 
       th.month {
-        font-weight: bold;
         color: $black;
+        font-weight: bold;
       }
 
       td.off.disabled:not(.in-range) {
@@ -112,6 +113,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

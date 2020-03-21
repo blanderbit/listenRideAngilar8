@@ -10,10 +10,19 @@
     "start": "node server.js",
     "build": "npm run config && ng build",
     "test": "npm run config && ng test",
-    "lint": "ng lint",
+    "stylelint": "stylelint '**/*.scss'",
+    "lint": "eslint --fix-dry-run 'src/**/*.ts'",
+    "lint-quiet": "eslint --fix-dry-run --quiet 'src/**/*.ts'",
+    "lint-fix": "eslint --fix \"src/**/*.ts\"",
     "e2e": "ng e2e",
     "heroku-postbuild": "npm run config && ng build --prod",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "github-checks": "npm run lint-quiet && npm run typecheck"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run github-checks"
+    }
   },
   "private": true,
   "engines": {
@@ -34,7 +43,6 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@mobiscroll/angular": "https://npm.mobiscroll.com/@mobiscroll/angular-trial/-/angular-trial-4.10.3.tgz",
     "@ngrx/effects": "^8.5.2",
     "@ngrx/store": "^8.5.2",
     "@ngrx/store-devtools": "^8.5.2",
@@ -84,7 +92,21 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/lodash-es": "^4.17.3",
     "@types/swiper": "^5.2.1",
+    "@typescript-eslint/eslint-plugin": "2.23.0",
+    "@typescript-eslint/parser": "2.23.0",
     "codelyzer": "^5.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "husky": "^4.2.3",
+    "jasmine": "^3.5.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -92,10 +114,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "prettier": "^1.19.1",
     "protractor": "~5.4.0",
+    "stylelint": "^13.2.1",
+    "stylelint-config-sass-guidelines": "^7.0.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "tslint-eslint-rules": "^5.4.0",
     "typescript": "~3.5.3"
   }
 }

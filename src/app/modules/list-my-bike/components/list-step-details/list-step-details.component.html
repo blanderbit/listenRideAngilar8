@@ -2,98 +2,99 @@
   <h3>What is the brand, model, and size of your bike?</h3>
   <div id="details_brand_container">
     <div>
-
       <mat-form-field class="brand col-12">
         <label class="brand">Brand*</label>
-        <input matInput formControlName="brand" (input)="maxValue($event, 'brand')" class="brand">
+        <input
+          matInput
+          formControlName="brand"
+          (input)="maxValue($event, 'brand')"
+          class="brand"
+        />
       </mat-form-field>
 
       <mat-form-field class="model col-12">
         <label for="model" class="model">Model*</label>
-        <input matInput id="model" formControlName="name" (input)="maxValue($event, 'name')" class="model">
+        <input
+          matInput
+          id="model"
+          formControlName="name"
+          (input)="maxValue($event, 'name')"
+          class="model"
+        />
       </mat-form-field>
-
     </div>
     <div>
       <mat-form-field class="description col-12">
         <label class="description">Description(min. 100 characters)*</label>
-        <textarea #description
-                  maxlength="800"
-                  matInput
-                  formControlName="description"
-                  class="description"
+        <textarea
+          #description
+          maxlength="800"
+          matInput
+          formControlName="description"
+          class="description"
         ></textarea>
-        <mat-hint align="end">{{description.value.length}}/800</mat-hint>
+        <mat-hint align="end">{{ description.value.length }}/800</mat-hint>
       </mat-form-field>
     </div>
   </div>
 
   <h3>How many variants would you like to add?</h3>
 
-  <div id="details_container" *ngFor="let val of bikeQuantity; let i = index;">
+  <div id="details_container" *ngFor="let val of bikeQuantity; let i = index">
     <mat-form-field class="quantity">
       <div class="col-12">
         <label class="quantity">Quantity</label>
-        <input matInput
-               class="quantity"
-               [value]="'' + (i + 1)"
-               disabled
-        >
+        <input matInput class="quantity" [value]="'' + (i + 1)" disabled />
       </div>
     </mat-form-field>
 
     <mat-form-field>
       <div class="col-12">
         <label>Rider height*</label>
-        <mat-select [formControlName]="'size'"
-                    *ngIf="i === 0"
-        >
-          <mat-option *ngFor="let size of sizeList"
-                      [value]="size.value"
-          >
-            {{size.text}}
+        <mat-select [formControlName]="'size'" *ngIf="i === 0">
+          <mat-option *ngFor="let size of sizeList" [value]="size.value">
+            {{ size.text }}
           </mat-option>
         </mat-select>
-        <mat-select [(value)]=" val.size"
-                    *ngIf="i > 0">
+        <mat-select [(value)]="val.size" *ngIf="i > 0">
           <mat-option
-                  *ngFor="let size of sizeList"
-                  [value]="'Unisize' === size.text ? 'Unisize' :size.value"
+            *ngFor="let size of sizeList"
+            [value]="'Unisize' === size.text ? 'Unisize' : size.value"
           >
-            {{size.text}}
+            {{ size.text }}
           </mat-option>
         </mat-select>
       </div>
     </mat-form-field>
 
     <mat-form-field>
-
       <div class="col-12">
         <label>Frame size</label>
-        <input matInput
-               [formControlName]="'frame_size'"
-               *ngIf="i === 0"
-        >
-        <input matInput
-               *ngIf="i > 0"
-               [value]="val && val.frame_size"
-               (input)="changeData($event, val, 'frame_size')"
-        >
+        <input matInput [formControlName]="'frame_size'" *ngIf="i === 0" />
+        <input
+          matInput
+          *ngIf="i > 0"
+          [value]="val && val.frame_size"
+          (input)="changeData($event, val, 'frame_size')"
+        />
       </div>
     </mat-form-field>
     <mat-form-field>
       <div class="col-12">
         <label>Bicycle number</label>
-        <input matInput
-               type="search"
-               [formControlName]="'bicycle_number'"
-               *ngIf="i === 0">
-        <input matInput
-               type="search"
-               *ngIf="i > 0"
-               (input)="changeData($event, val, 'bicycle_number')"
-               [value]="val && val.bicycle_number"
-        >
+        <input
+          matInput
+          type="search"
+          [formControlName]="'bicycle_number'"
+          *ngIf="i === 0"
+        />
+        <input
+          matInput
+          type="search"
+          *ngIf="i > 0"
+          (input)="changeData($event, val, 'bicycle_number')"
+          [value]="val && val.bicycle_number"
+        />
       </div>
     </mat-form-field>
     <mat-form-field>
@@ -101,29 +102,26 @@
         <label>Frame number</label>
 
         <div class="frame-number">
-          <input matInput
-                 type="search"
-                 [type]="!val.hide ? 'password' : 'text'"
-                 [formControlName]="'frame_number'"
-                 *ngIf="i === 0"
-          >
-          <input matInput
-                 type="search"
-                 [type]="!val.hide ? 'password' : 'text'"
-                 [value]="val && val.frame_number"
-                 *ngIf="i > 0"
-                 (input)="changeData($event, val, 'frame_number')"
-          >
-          <mat-icon id="hideFrameNumber"
-                    (click)="val.hide = !val.hide"
-          >
-            {{!val.hide ? 'visibility_off' : 'visibility'}}
+          <input
+            matInput
+            type="search"
+            [type]="!val.hide ? 'password' : 'text'"
+            [formControlName]="'frame_number'"
+            *ngIf="i === 0"
+          />
+          <input
+            matInput
+            type="search"
+            [type]="!val.hide ? 'password' : 'text'"
+            [value]="val && val.frame_number"
+            *ngIf="i > 0"
+            (input)="changeData($event, val, 'frame_number')"
+          />
+          <mat-icon id="hideFrameNumber" (click)="val.hide = !val.hide">
+            {{ !val.hide ? 'visibility_off' : 'visibility' }}
           </mat-icon>
-          <mat-icon id="delQuantity"
-                    *ngIf="i > 0"
-                    (click)="delQuantity(i)"
-          >
-            {{'delete'}}
+          <mat-icon id="delQuantity" *ngIf="i > 0" (click)="delQuantity(i)">
+            {{ 'delete' }}
           </mat-icon>
         </div>
       </div>
@@ -134,19 +132,16 @@
     <a (click)="addVariants()">Add variants</a>
   </div>
   <div class="button-container">
-    <button class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
-    >
+    <button class="mat-button-stepper" mat-button matStepperPrevious>
       Back
     </button>
-    <button class="mat-button-stepper next"
-            [ngClass]="{active: !detailsFormGroup?.invalid && !isRider()}"
-            [disabled]="detailsFormGroup?.invalid || isRider()"
-            mat-button
-            matStepperNext
-            type="button"
-
+    <button
+      class="mat-button-stepper next"
+      [ngClass]="{ active: !detailsFormGroup?.invalid && !isRider() }"
+      [disabled]="detailsFormGroup?.invalid || isRider()"
+      mat-button
+      matStepperNext
+      type="button"
     >
       Next
     </button>

@@ -15,6 +15,5 @@ export enum PeriodStartDate {
   SIX_DAYS = 432000,
   SEVEN_DAYS = 518400,
   EIGHT_DAYS = 604800,
-  MONTH = 2419200
+  MONTH = 2419200,
 }
-

@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {BikeDescriptionBlockComponent} from './bike-description-block.component';
+import { BikeDescriptionBlockComponent } from './bike-description-block.component';
 
 describe('BikeDescriptionBlockComponent', () => {
   let component: BikeDescriptionBlockComponent;
@@ -8,7 +8,7 @@ describe('BikeDescriptionBlockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BikeDescriptionBlockComponent]
+      declarations: [BikeDescriptionBlockComponent],
     }).compileComponents();
   }));
 

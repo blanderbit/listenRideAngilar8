@@ -1,17 +1,17 @@
 /*lnr theme global styles*/
-@import "theme/index";
+@import 'theme/index';
 
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/theming";
+@import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~saturn-datepicker/theming';
 @import '~bootstrap-4-grid/scss/grid.scss';
-@import "assets/scss/utils/utils";
-@import "assets/scss/variables";
-@import "assets/scss/typography";
-@import "assets/scss/flexbox-helper";
-@import "assets/scss/padding-helper";
-@import "assets/scss/sizes-helper";
+@import 'assets/scss/utils/utils';
+@import 'assets/scss/variables';
+@import 'assets/scss/typography';
+@import 'assets/scss/flexbox-helper';
+@import 'assets/scss/padding-helper';
+@import 'assets/scss/sizes-helper';
 @import '~swiper/css/swiper.min.css';
 
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
@@ -22,11 +22,12 @@
   top: -1.5em;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  transform: translateY(-1.1em) scale(.75);
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
   width: 133.33333%;
 }
-
 
 @include mat-core();
 
@@ -36,40 +37,51 @@ body {
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #555;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   font-size: 1.4rem;
-  color: #555555;
+  margin: 0;
 }
 
 p {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
 }
 
 .wrap-page {
-  min-height: 100%;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  min-height: 100%;
 }
 
 .main {
   flex-grow: 1;
 }
 
-.header, .main, .footer {
+.header,
+.main,
+.footer {
   flex-shrink: 0;
 }
 
-:not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
-.cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
-.cdk-program-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected) {
+:not(.mat-calendar-body-disabled):hover
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
+.cdk-keyboard-focused
+  .mat-calendar-body-active
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected),
+.cdk-program-focused
+  .mat-calendar-body-active
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-semi-selected) {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
 :not(.mat-calendar-body-disabled):hover > .mat-calendar-body-semi-selected,
-.cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-semi-selected,
-.cdk-program-focused .mat-calendar-body-active > .mat-calendar-body-semi-selected {
+.cdk-keyboard-focused
+  .mat-calendar-body-active
+  > .mat-calendar-body-semi-selected,
+.cdk-program-focused
+  .mat-calendar-body-active
+  > .mat-calendar-body-semi-selected {
   background-color: #3f51b5;
   color: white;
 }
@@ -80,16 +92,19 @@ p {
 }
 
 .mat-calendar-body-begin-range:not(.mat-calendar-body-end-range) {
-  border-radius: 100% 0 0 100%;
   background-color: #e8eaf6;
+  border-radius: 100% 0 0 100%;
 }
 
 .mat-calendar-body-end-range:not(.mat-calendar-body-begin-range) {
-  border-radius: 0 100% 100% 0;
   background-color: #e8eaf6;
+  border-radius: 0 100% 100% 0;
 }
 
-.mat-calendar-body > tr .mat-calendar-cell-semi-selected ~ .mat-calendar-cell-semi-selected {
+.mat-calendar-body
+  > tr
+  .mat-calendar-cell-semi-selected
+  ~ .mat-calendar-cell-semi-selected {
   border-radius: 0;
 }
 
@@ -97,17 +112,16 @@ p {
   background-color: #e8eaf6;
 }
 
-
 /* New stuff */
 .hdd-datepicker .mat-calendar-body-cell-content {
-  border-radius: 0px;
-  padding-top: 4px;
   border-color: #ddd;
-  width: 103%;
+  border-radius: 0;
   height: 103%;
-  top: 0;
   left: 0;
   line-height: 0;
+  padding-top: 4px;
+  top: 0;
+  width: 103%;
 }
 
 .hdd-datepicker .mat-calendar-body-label {
@@ -138,26 +152,27 @@ p {
   }
 
   .swiper-slide {
-    text-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
     /* Center slide text vertically */
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
-    align-items: center;
+    text-align: center;
   }
 
-  .swiper-button-prev, .swiper-button-next {
+  .swiper-button-prev,
+  .swiper-button-next {
     background: $submit-button-color;
     border-radius: 50%;
-    line-height: 1.6rem;
     color: $white-font-color;
-    width: 4.8rem;
-    height: 4.8rem;
     font-size: $h4-fontsize;
+    height: 4.8rem;
+    line-height: 1.6rem;
+    width: 4.8rem;
 
-    &:after {
+    &::after {
       font-size: $h4-fontsize;
       font-weight: 900;
     }
@@ -167,13 +182,3 @@ p {
     display: none;
   }
 }
-
-$mbsc-material-accent: $main-blue;
-$mbsc-material-background: $white;
-$mbsc-windows-frame-background: $white;
-
-::ng-deep .mbsc-material.mbsc-input {
-  margin: 0;
-}
-
-@import "~@mobiscroll/angular/dist/css/mobiscroll.scss";

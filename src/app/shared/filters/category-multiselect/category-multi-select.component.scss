@@ -1,10 +1,10 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 :host {
   @media (max-width: $device-xs) {
     flex: 1;
     margin: auto 1rem;
-    }
+  }
 }
 
 ::ng-deep .mat-menu-panel {
@@ -12,36 +12,36 @@
 }
 
 .btn-category-filter {
-  color: $light-text-color;
-  font-weight: 400;
   border: 0.1rem solid $input-border;
   border-radius: 0.4rem;
+  color: $light-text-color;
+  font-weight: 400;
   min-width: 12.5rem;
-  width: 100%;
   text-align: left;
+  width: 100%;
 
   @media (max-width: $device-xs) {
-    width: 100%;
-    text-align: left;
     margin-left: 0.1rem;
+    text-align: left;
+    width: 100%;
   }
 }
 
 .category {
   background: $white;
+  border-bottom: 0.1rem solid $light-grey;
   display: flex;
-  max-width: 100%;
   flex: 0 0 100%;
   flex-direction: column;
+  max-width: 100%;
   padding: 1.6rem;
-  border-bottom: 0.1rem solid $light-grey;
 
   .category-label {
+    color: $light-grey-font;
     display: flex;
     flex: 1 0 100%;
     flex-direction: row;
     justify-content: space-between;
-    color: $light-grey-font;
 
     mat-icon {
       align-self: flex-end;
@@ -54,11 +54,11 @@
   display: none;
 
   &.active {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    flex: 1 0 100%;
     color: $light-grey-font;
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .option {
@@ -68,6 +68,6 @@
 }
 
 .label-icon {
-  margin-right: 0.2rem;
   margin-left: -0.4rem;
+  margin-right: 0.2rem;
 }

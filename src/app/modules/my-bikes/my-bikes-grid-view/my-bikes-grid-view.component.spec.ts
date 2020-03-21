@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MyBikesGridViewComponent} from './my-bikes-grid-view.component';
+import { MyBikesGridViewComponent } from './my-bikes-grid-view.component';
 
 describe('MyBikesGridViewComponent', () => {
   let component: MyBikesGridViewComponent;
@@ -8,9 +8,8 @@ describe('MyBikesGridViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyBikesGridViewComponent ]
-    })
-    .compileComponents();
+      declarations: [MyBikesGridViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

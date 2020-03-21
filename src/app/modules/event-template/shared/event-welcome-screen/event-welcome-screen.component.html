@@ -1,7 +1,9 @@
 <div class="welcome-screen">
-  <div class="welcome-screen_image"
-       [ngStyle]="{ 'background-image': 'url(' + event.hero_image + ')'}">
-    <img src="{{event.logo}}"/>
+  <div
+    class="welcome-screen_image"
+    [ngStyle]="{ 'background-image': 'url(' + event.hero_image + ')' }"
+  >
+    <img src="{{ event.logo }}" />
   </div>
   <div class="welcome-screen_content">
     <div class="welcome-screen_content_date d-none d-sm-block">
@@ -9,13 +11,13 @@
         <span class="thin">
           When:
         </span>
-        {{event.pretty_date}}
+        {{ event.pretty_date }}
       </h5>
       <h5>
         <span class="thin">
           Where:
         </span>
-        {{event.location}}
+        {{ event.location }}
       </h5>
     </div>
     <div class="welcome-screen_content_block">
@@ -24,22 +26,21 @@
           <span class="thin">
             When:
           </span>
-          {{event.pretty_date}}
+          {{ event.pretty_date }}
         </h6>
         <h6>
           <span class="thin">
             Where:
           </span>
-          {{event.location}}
+          {{ event.location }}
         </h6>
       </div>
       <h4 class="m-b-2 dark-font-color">
-        {{event.title}}
+        {{ event.title }}
       </h4>
       <p class="heading-5 thin dark-font-color">
-        {{event.description}}
+        {{ event.description }}
       </p>
     </div>
   </div>
-
 </div>

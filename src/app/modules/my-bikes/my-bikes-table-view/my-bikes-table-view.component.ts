@@ -7,26 +7,23 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import {Subject} from 'rxjs';
-import {Bike} from '@models/bike/bike.types';
-import {
-  filter,
-  takeUntil,
-} from 'rxjs/operators';
-import {ApiRidesService} from '@api/api-rides/api-rides.service';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatDialog} from '@angular/material/dialog';
-import {SelectionModel} from '@angular/cdk/collections';
-import {select, Store} from '@ngrx/store';
-import {MyBikesState} from '../my-bikes.types';
-import {GetMyBikes} from '../store/my-bikes.actions';
-import {getBikes} from '../store';
-import {Router} from '@angular/router';
-import {BikesModalService} from '../services/bikes-modal.service';
+import { Subject } from 'rxjs';
+import { Bike } from '@models/bike/bike.types';
+import { filter, takeUntil } from 'rxjs/operators';
+import { ApiRidesService } from '@api/api-rides/api-rides.service';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectionModel } from '@angular/cdk/collections';
+import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { MyBikesState } from '../my-bikes.types';
+import { GetMyBikes } from '../store/my-bikes.actions';
+import { getBikes } from '../store';
+import { BikesModalService } from '../services/bikes-modal.service';
 
 @Component({
   selector: 'lnr-my-bikes-table-view',
@@ -35,41 +32,67 @@ import {BikesModalService} from '../services/bikes-modal.service';
 })
 export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filter: string;
+
   @Output() selectedBikes = new EventEmitter();
 
-  displayedColumns = ['select', 'bike', 'brand', 'model', 'location', 'id', 'size', 'price', 'grouped', 'actions'];
+  displayedColumns = [
+    'select',
+    'bike',
+    'brand',
+    'model',
+    'location',
+    'id',
+    'size',
+    'price',
+    'grouped',
+    'actions',
+  ];
+
   dataSource = new MatTableDataSource();
+
   selection = new SelectionModel<Bike>(true, []);
+
   destroy$ = new Subject();
 
   openDeleteModal = this.bikesModalService.openDeleteModal;
+
   toggleAvailability = this.bikesModalService.toggleAvailability;
+
   openUnMergeModal = this.bikesModalService.openUnMergeModal;
+
   openAvailabilityModal = this.bikesModalService.openAvailabilityModal;
+
   openDuplicateModal = this.bikesModalService.openDuplicateModal;
+
   watchJob = this.bikesModalService.watchJob;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private apiRidesService: ApiRidesService,
-              private bikesModalService: BikesModalService,
-              private dialog: MatDialog,
-              private store: Store<MyBikesState>,
-              private router: Router) {
-  }
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  constructor(
+    private apiRidesService: ApiRidesService,
+    private bikesModalService: BikesModalService,
+    private dialog: MatDialog,
+    private store: Store<MyBikesState>,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.store.pipe(
-      select(getBikes),
-      takeUntil(this.destroy$),
-      filter(resp => !!resp.length)
-    )
-      .subscribe(bikes => this.dataSource.data = bikes);
+    this.store
+      .pipe(
+        select(getBikes),
+        takeUntil(this.destroy$),
+        filter(resp => !!resp.length),
+      )
+      .subscribe(bikes => {
+        this.dataSource.data = bikes;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -82,7 +105,8 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  routeToEdit = (id: number | string): Promise<boolean> => this.router.navigate([`/list-bike/${id}`]);
+  routeToEdit = (id: number | string): Promise<boolean> =>
+    this.router.navigate([`/list-bike/${id}`]);
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -91,9 +115,11 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
       this.dataSource.data.forEach((row: Bike) => this.selection.select(row));
+    }
   }
 
   rowToggle(row) {
@@ -105,13 +131,13 @@ export class MyBikesTableViewComponent implements OnInit, OnChanges, OnDestroy {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${
+      this.selection.isSelected(row) ? 'deselect' : 'select'
+    } row ${row.id + 1}`;
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.unsubscribe();
   }
-
 }
-

@@ -1,39 +1,40 @@
 <div class="time-line-block timeline">
   <div class="time-line-block_container p-t-2 p-b-2">
     <div class="time-line-block_content flex direction-row">
-      <div class="d-none d-sm-block time-line-block_left p-r-4 bold dark-font-color heading-6">
+      <div
+        class="d-none d-sm-block time-line-block_left p-r-4 bold dark-font-color heading-6"
+      >
         <div class="flex align-items-end direction-column">
           <span>
-              {{seoEvent.pretty_date }}
+            {{ seoEvent.pretty_date }}
           </span>
-          <span>{{seoEvent.location}}</span>
+          <span>{{ seoEvent.location }}</span>
         </div>
       </div>
       <div class="time-line-block_right flex p-l-2">
         <div class="p-r-2 p-l-2">
-          <a class="cursor-pointer heading-4 dark-font-color"
-             href="events/{{seoEvent.name}}">
-            {{seoEvent.title}}
+          <a
+            class="cursor-pointer heading-4 dark-font-color"
+            href="events/{{ seoEvent.name }}"
+          >
+            {{ seoEvent.title }}
           </a>
-          <div class="d-block d-sm-none dark-font-color dark-font-color heading-6">
+          <div
+            class="d-block d-sm-none dark-font-color dark-font-color heading-6"
+          >
             <div class="flex align-items-left direction-column p-t-1 p-b-1">
-          <span>
-              {{seoEvent.pretty_date }}
-          </span>
-              <span>{{seoEvent.location}}</span>
+              <span>
+                {{ seoEvent.pretty_date }}
+              </span>
+              <span>{{ seoEvent.location }}</span>
             </div>
           </div>
           <p class="heading-6">
-            {{seoEvent.description}}
+            {{ seoEvent.description }}
           </p>
         </div>
-        <img
-          class="cursor-pointer"
-          alt=""
-          src="{{seoEvent.thumb_image}}"
-        />
+        <img class="cursor-pointer" alt="" src="{{ seoEvent.thumb_image }}" />
       </div>
     </div>
   </div>
 </div>
-

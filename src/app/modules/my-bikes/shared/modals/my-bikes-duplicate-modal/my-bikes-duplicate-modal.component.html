@@ -3,24 +3,21 @@
   <lnr-button-close (closed)="close()"></lnr-button-close>
 </div>
 
-  <mat-dialog-content>
-    <mat-form-field appearance="outline" class="lnr-w-100">
-      <mat-label>Email</mat-label>
-      <input
-             type="number"
-             matInput
-             placeholder="how many bikes to copy?"
-             lnrAutofocus
-             [(ngModel)]="bikesCount"
-      >
-    </mat-form-field>
-  </mat-dialog-content>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="lnr-w-100">
+    <mat-label>Email</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="how many bikes to copy?"
+      lnrAutofocus
+      [(ngModel)]="bikesCount"
+    />
+  </mat-form-field>
+</mat-dialog-content>
 
-  <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
-
-    <button mat-raised-button color="primary" type="submit" (click)="submit()">
-      Duplicate
-    </button>
-
-  </mat-dialog-actions>
-
+<mat-dialog-actions class="lnr-d-flex lnr-space-btw">
+  <button mat-raised-button color="primary" type="submit" (click)="submit()">
+    Duplicate
+  </button>
+</mat-dialog-actions>

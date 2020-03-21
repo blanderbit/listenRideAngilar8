@@ -1,9 +1,9 @@
-@import "variables";
-@import "utils/utils";
+@import 'variables';
+@import 'utils/utils';
 
 mat-progress-bar {
-  position: fixed;
   bottom: 0;
+  position: fixed;
   z-index: 100;
 }
 
@@ -47,19 +47,24 @@ mat-progress-bar {
     }
 
     .toolbar {
-      width: 100%;
-      max-width: 1200px;
       display: flex;
       flex-direction: column;
       margin: 0 auto;
+      max-width: 1200px;
+      width: 100%;
+
+      @include if-smaller-than(xs) {
+        border-top: 0.1rem solid $light-grey;
+        display: flex;
+      }
 
       .sub-toolbar {
+        border-bottom: 0.1rem solid $light-grey;
+        border-top: 0.1rem solid $light-grey;
         display: flex;
         flex: 1 1 100%;
-        justify-content: space-between;
         flex-direction: row;
-        border-top: 0.1rem solid $light-grey;
-        border-bottom: 0.1rem solid $light-grey;
+        justify-content: space-between;
         margin: 1rem 0;
 
         @include if-smaller-than(xs) {
@@ -67,7 +72,8 @@ mat-progress-bar {
         }
       }
 
-      .bikes-for-rent, .bikes-for-groups {
+      .bikes-for-rent,
+      .bikes-for-groups {
         display: flex;
         font-weight: 400;
         padding: 1rem;
@@ -90,37 +96,36 @@ mat-progress-bar {
           font-size: $h6-fontsize;
         }
       }
-
-      @include if-smaller-than(xs) {
-        display: flex;
-        border-top: 0.1rem solid $light-grey;
-      }
     }
 
     .mobile-toolbar {
-      width: 100vw;
+      display: flex;
       flex-direction: row;
       padding: 1.6rem 0.4rem;
       transition: all ease-out 0.7s;
-      display: flex;
+      width: 100vw;
+
+      @include if-smaller-than(xs) {
+        display: flex;
+      }
 
       .toggle {
-        display: flex;
-        flex-direction: row;
         background-color: $white-font-color;
         border: 0.1rem solid $light-grey;
         border-radius: 0.2rem;
-        padding: 1rem 0.5rem;
         cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        padding: 1rem 0.5rem;
 
         span {
-          margin-top: 0.4rem;
-          margin-left: 0.4rem;
           color: $dark-text-color;
-          font-weight: bold;
           font-size: $small-fontsize;
-          line-height: 1.4rem;
+          font-weight: bold;
           letter-spacing: 0.5px;
+          line-height: 1.4rem;
+          margin-left: 0.4rem;
+          margin-top: 0.4rem;
           text-transform: uppercase;
         }
       }
@@ -134,9 +139,9 @@ mat-progress-bar {
       }
 
       .toggle-sorting {
-        width: 4rem;
         align-self: flex-start;
         margin-left: 1rem;
+        width: 4rem;
 
         .mat-icon {
           color: $submit-button-color;
@@ -151,17 +156,13 @@ mat-progress-bar {
           color: $main-blue;
         }
       }
-
-      @include if-smaller-than(xs) {
-        display: flex;
-      }
     }
 
     .bike-grid {
       display: flex;
       flex: 1;
-      flex-wrap: wrap;
       flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 }

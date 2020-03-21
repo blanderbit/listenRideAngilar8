@@ -1,24 +1,28 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SearchModel} from '../../../../modules/search/search.types';
-import * as SearchActions from '../../../../modules/search/store/search.actions';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as fromAuth from '@auth/store/reducers';
-import {takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import * as SearchActions from '../../../../modules/search/store/search.actions';
+import { SearchModel } from '../../../../modules/search/search.types';
 
 @Component({
   selector: 'lnr-layout-header',
   templateUrl: './layout-header.component.html',
-  styleUrls: ['./layout-header.component.scss']
+  styleUrls: ['./layout-header.component.scss'],
 })
 export class LayoutHeaderComponent implements OnInit, OnDestroy {
   @Input() activeSearch = false;
+
   reason: string;
+
   location: string;
+
   destroyed$ = new Subject();
 
   isLoggedIn$ = this.storeAuth.pipe(select(fromAuth.isLoggedIn));
+
   user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
   constructor(
@@ -26,14 +30,12 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
     private storeAuth: Store<fromAuth.State>,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
-  }
-
+  ) {}
 
   ngOnInit() {
     this.route.queryParamMap
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((paramMap) => {
+      .subscribe(paramMap => {
         this.location = paramMap.get('location');
       });
   }
@@ -43,12 +45,14 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
   }
 
   search(searchLocation) {
-    this.store.dispatch(SearchActions.SetSearchMetaData({
-      metaData: {
-        location: searchLocation,
-        page: 1
-      }
-    }));
+    this.store.dispatch(
+      SearchActions.SetSearchMetaData({
+        metaData: {
+          location: searchLocation,
+          page: 1,
+        },
+      }),
+    );
   }
 
   showSearch($event) {

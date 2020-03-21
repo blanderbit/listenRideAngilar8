@@ -1,14 +1,15 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
-mat-header-row{
+mat-header-row {
   background-color: $table-header-color;
   position: sticky;
-  top: 6rem!important;
+  top: 6rem !important;
 
   @media (max-width: $device-xs) {
-    top: 10rem!important;
+    top: 10rem !important;
   }
 }
+
 .element-row {
   position: relative;
 }

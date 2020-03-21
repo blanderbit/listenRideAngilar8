@@ -1,11 +1,9 @@
 <div class="row lnr-mrg-btm">
-
   <div class="col-sm-12 col-md-2 offset-md-1">
     <h6>Company information</h6>
   </div>
 
   <div class="col-sm-12 col-md-8">
-
     <ng-container *ngIf="mode === 'update'">
       <form [formGroup]="form">
         <mat-error>
@@ -13,16 +11,24 @@
         </mat-error>
 
         <div class="row" formGroupName="business">
-
           <div class="col-sm-6">
             <mat-form-field appearance="outline" class="lnr-w-100">
               <mat-label>Company name</mat-label>
-              <input formControlName="company_name"
-                     type="text"
-                     matInput
-                     placeholder="Enter your company name">
-              <mat-error *ngIf="businessForm.get('company_name').touched && businessForm.get('company_name').errors">
-                <small *ngIf="businessForm.get('company_name').errors?.required">Company name is required</small>
+              <input
+                formControlName="company_name"
+                type="text"
+                matInput
+                placeholder="Enter your company name"
+              />
+              <mat-error
+                *ngIf="
+                  businessForm.get('company_name').touched &&
+                  businessForm.get('company_name').errors
+                "
+              >
+                <small *ngIf="businessForm.get('company_name').errors?.required"
+                  >Company name is required</small
+                >
               </mat-error>
             </mat-form-field>
           </div>
@@ -30,31 +36,48 @@
           <div class="col-sm-6">
             <mat-form-field appearance="outline" class="lnr-w-100">
               <mat-label>VAT</mat-label>
-              <input formControlName="vat"
-                     type="number"
-                     matInput
-                     placeholder="Enter your company VAT">
-              <mat-error *ngIf="businessForm.get('vat').touched && businessForm.get('vat').errors">
-                <small *ngIf="businessForm.get('vat').errors?.required">VAT is required</small>
+              <input
+                formControlName="vat"
+                type="number"
+                matInput
+                placeholder="Enter your company VAT"
+              />
+              <mat-error
+                *ngIf="
+                  businessForm.get('vat').touched &&
+                  businessForm.get('vat').errors
+                "
+              >
+                <small *ngIf="businessForm.get('vat').errors?.required"
+                  >VAT is required</small
+                >
               </mat-error>
             </mat-form-field>
           </div>
-
         </div>
 
         <div class="row">
           <div class="col-sm-12 col-md-7"></div>
           <div class="col-sm-12 col-md-2">
-            <button mat-stroked-button class="lnr-w-100" (click)="openView()">Close</button>
+            <button mat-stroked-button class="lnr-w-100" (click)="openView()">
+              Close
+            </button>
           </div>
           <div class="col-sm-12 col-md-3">
-            <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="form?.invalid">
+            <button
+              mat-raised-button
+              type="submit"
+              color="primary"
+              class="lnr-w-100"
+              [disabled]="form?.invalid"
+            >
               Save
-              <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+              <lnr-loader-spinner-small
+                *ngIf="false"
+              ></lnr-loader-spinner-small>
             </button>
           </div>
         </div>
-
       </form>
     </ng-container>
 
@@ -81,5 +104,4 @@
       </div>
     </ng-container>
   </div>
-
 </div>

@@ -1,44 +1,61 @@
 <div class="step-content">
-
   <div class="step-content-header">
-
-    <h3 class="step-title">What is your address <sup>
-      <lnr-view-template-status [value]="'private'"></lnr-view-template-status>
-    </sup></h3>
+    <h3 class="step-title">
+      What is your address
+      <sup>
+        <lnr-view-template-status
+          [value]="'private'"
+        ></lnr-view-template-status>
+      </sup>
+    </h3>
 
     <p>By providing your address you will have some another description</p>
-
   </div>
 
   <mat-error class="lnr-text-align-l">
     <lnr-http-error-message [error]="addressError"></lnr-http-error-message>
   </mat-error>
 
-  <lnr-address (addressReady)="onAddressReady($event)" (addressInvalid)="onAddressInvalid($event)"></lnr-address>
+  <lnr-address
+    (addressReady)="onAddressReady($event)"
+    (addressInvalid)="onAddressInvalid($event)"
+  ></lnr-address>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
   <div class="left-side" *ngIf="isDesktop || isTablet">
-    <button mat-button
-            matStepperPrevious
-            class="lnr-btn-back"
-            [hidden]="isItFirstStep">
+    <button
+      mat-button
+      matStepperPrevious
+      class="lnr-btn-back"
+      [hidden]="isItFirstStep"
+    >
       <mat-icon svgIcon="arrow-left"></mat-icon>
       Back
     </button>
   </div>
 
-  <div  class="right-side">
-    <button mat-stroked-button color="primary"
-            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+  <div class="right-side">
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="nextOrCloseIfLastStep()"
+    >
+      {{ stepCompleted ? 'Next' : 'Skip' }}
+    </button>
 
-    <button mat-raised-button
-            color="primary"
-            class="lnt-btn-min-width lnr-mrg-l-16"
-            [hidden]="addressSaved"
-            [disabled]="!address"
-            (click)="submit()">Save & {{isItLastStep ? 'complete' : 'proceed'}}
-      <lnr-loader-spinner-small [hidden]="!addressPending"></lnr-loader-spinner-small>
+    <button
+      mat-raised-button
+      color="primary"
+      class="lnt-btn-min-width lnr-mrg-l-16"
+      [hidden]="addressSaved"
+      [disabled]="!address"
+      (click)="submit()"
+    >
+      Save & {{ isItLastStep ? 'complete' : 'proceed' }}
+      <lnr-loader-spinner-small
+        [hidden]="!addressPending"
+      ></lnr-loader-spinner-small>
     </button>
   </div>
 </div>

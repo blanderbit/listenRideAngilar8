@@ -1,3 +1,3 @@
 export enum TokenTypeEnum {
-  BEARER = 'Bearer'
+  BEARER = 'Bearer',
 }

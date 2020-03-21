@@ -1,4 +1,4 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 .breadcrumb {
   background: none;
@@ -14,8 +14,8 @@
     }
 
     li {
-      list-style: none;
       float: left;
+      list-style: none;
       margin: 0.4rem;
 
       &:last-child {
@@ -23,12 +23,12 @@
       }
 
       &::after {
-        content: ">";
         color: $light-grey-font;
+        content: '>';
       }
 
       &:last-child::after {
-        content: "";
+        content: '';
       }
     }
   }

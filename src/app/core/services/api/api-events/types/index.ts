@@ -67,14 +67,18 @@ export interface EventsBikes {
   image_file: string;
   cluster?: {
     id: number;
-    sizes: [{
-      size: number;
-      amount: number;
-    }];
+    sizes: [
+      {
+        size: number;
+        amount: number;
+      },
+    ];
     primary_id: number;
-    variations: [{
-      id: number;
-      size: number;
-    }]
+    variations: [
+      {
+        id: number;
+        size: number;
+      },
+    ];
   };
 }

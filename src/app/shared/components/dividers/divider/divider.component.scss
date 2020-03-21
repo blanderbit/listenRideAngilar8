@@ -3,11 +3,11 @@
 }
 
 .lnr-divider {
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 
   .line {
     flex: 1;

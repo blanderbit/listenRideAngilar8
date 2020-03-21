@@ -1,22 +1,22 @@
-@import "variables";
+@import 'variables';
 @import 'utils/utils';
 
 :host {
   display: flex;
-  width: 100%;
   margin-top: 1rem;
+  width: 100%;
 
   @media (max-width: $device-xs) {
-    position: fixed;
-    z-index: 100;
-    top: 0;
+    background-color: $white-font-color;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 29px 23px 50px rgba(86, 89, 96, 0.76);
     left: 0;
     margin-top: 0;
     padding: 1rem 0;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 29px 23px 50px rgba(86, 89, 96, 0.76);
-    background-color: $white-font-color;
+    position: fixed;
+    top: 0;
     width: 100%;
+    z-index: 100;
   }
 
   .filters-toolbar {
@@ -26,9 +26,10 @@
       display: flex;
     }
 
-    .filters-label, .filters-close {
-      text-align: center;
+    .filters-label,
+    .filters-close {
       cursor: pointer;
+      text-align: center;
     }
   }
 
@@ -36,11 +37,11 @@
     display: none;
 
     .btn-filter-submit {
-      flex: 1;
-      text-align: center;
       background-color: $submit-button-color;
+      flex: 1;
       height: 50px;
       margin: auto 1rem;
+      text-align: center;
     }
 
     @media (max-width: $device-xs) {
@@ -67,8 +68,8 @@
       margin-left: 0.5rem;
 
       ::ng-deep .mat-form-field-infix {
+        padding: 1rem 0;
         width: 12rem;
-        padding: 1rem 0 1rem 0;
       }
 
       @media (max-width: $device-xs) {
@@ -76,9 +77,9 @@
         margin: auto 1rem;
 
         ::ng-deep .mat-form-field-wrapper {
-          width: 100%;
           margin: 0.5rem 0;
           padding: 0.5rem 0;
+          width: 100%;
         }
 
         ::ng-deep .mat-form-field-infix {
@@ -98,13 +99,13 @@
     }
 
     .btn-clear-filters {
-      color: $light-text-color;
-      font-weight: 400;
       border: 0.1rem solid $error-color;
       border-radius: 0.4rem;
+      color: $light-text-color;
+      font-weight: 400;
+      height: 3.6rem;
       margin-left: 0.5rem;
       margin-top: 0.4rem;
-      height: 3.6rem;
       padding-top: -0.5rem;
 
       mat-icon {
@@ -121,8 +122,8 @@
 
 @include if-bigger-than(md) {
   .wrap-lnr-category-multiselect {
-    margin-top: 0.4rem;
     margin-left: 0.4rem;
+    margin-top: 0.4rem;
 
     ::ng-deep.btn-category-filter {
       padding: 0 0 0.2rem 1rem;

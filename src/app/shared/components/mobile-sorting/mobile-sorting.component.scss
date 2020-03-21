@@ -1,37 +1,37 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 :host {
-
   .sorting-apply {
     color: $submit-button-color;
   }
 
   .sorting-label {
-    text-transform: uppercase;
     font-weight: bold;
+    text-transform: uppercase;
   }
+
   mat-list-item {
     color: $light-text-color;
 
     &:hover {
-      color: $dark-text-color;
-      border-top: 0.1rem solid $light-grey;
       border-bottom: 0.1rem solid $light-grey;
+      border-top: 0.1rem solid $light-grey;
+      color: $dark-text-color;
     }
   }
 
   @media (max-width: $device-xs) {
-    flex: 1;
-    width: 100%;
-    position: fixed;
-    z-index: 100;
+    background-color: $white-font-color;
+    border-radius: 1.2rem 1.2rem 0 0;
     bottom: 0;
+    box-shadow: 2.9rem 2.3rem 3rem rgba(86, 89, 96, 0.36);
+    flex: 1;
     left: 0;
     margin-bottom: 0;
     padding: 1rem 0;
+    position: fixed;
     text-align: center;
-    border-radius: 1.2rem 1.2rem 0 0;
-    box-shadow: 2.9rem 2.3rem 3.0rem rgba(86, 89, 96, 0.36);
-    background-color: $white-font-color;
+    width: 100%;
+    z-index: 100;
   }
 }

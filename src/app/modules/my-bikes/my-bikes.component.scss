@@ -1,17 +1,18 @@
-@import "../../../assets/scss/variables";
+@import '../../../assets/scss/variables';
+
 :host {
   ::ng-deep .mat-form-field-wrapper {
     padding-bottom: 0;
   }
 
-  .my-bikes-toolbar{
+  .my-bikes-toolbar {
+    background-color: $white;
+    height: 6rem;
     justify-content: space-between;
     padding-bottom: 0;
     position: sticky;
-    z-index: 100;
     top: 0;
-    height: 6rem;
-    background-color: $white;
+    z-index: 100;
 
     @media (max-width: $device-xs) {
       height: 10rem;
@@ -22,8 +23,8 @@
     margin: 0.5rem;
 
     a {
-      text-decoration: none;
       color: $white;
+      text-decoration: none;
     }
   }
 

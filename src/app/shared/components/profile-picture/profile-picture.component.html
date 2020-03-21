@@ -1,5 +1,8 @@
 <div class="image-wrapper" (click)="openDialog()">
-  <img alt="profile picture" [src]="(user$ | async)?.profilePicture?.profilePicture.url"/>
+  <img
+    alt="profile picture"
+    [src]="(user$ | async)?.profilePicture?.profilePicture.url"
+  />
   <div class="overlay" [hidden]="!editable">
     <mat-icon svgIcon="camera"></mat-icon>
   </div>

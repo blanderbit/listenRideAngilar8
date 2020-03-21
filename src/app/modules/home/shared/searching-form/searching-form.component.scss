@@ -1,28 +1,28 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 .wrap-form {
   background: $white-font-color;
-  box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
   border-radius: 0.6rem;
-  position: relative;
-  z-index: 2;
+  box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
   height: auto;
-  width: 100%;
-  padding: 2rem;
   left: 0;
+  padding: 2rem;
+  position: relative;
+  width: 100%;
+  z-index: 2;
 
   .search-autocomplete {
     border: 0.1rem solid $input-border;
-    padding: 0.8rem;
     border-radius: $border-radius;
     min-width: 32rem;
+    padding: 0.8rem;
     width: auto;
   }
 
   .location-icon {
+    color: $black;
     margin-left: 0.8rem;
     margin-right: 0.6rem;
-    color: $black;
   }
 
   ::ng-deep.mat-form-field-prefix .mat-icon-button .mat-datepicker-toggle-default-icon {
@@ -33,13 +33,13 @@
 @media (max-width: $device-sm) {
   .wrap-form {
     background: $white-font-color;
-    box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
     border-radius: $border-radius;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    top: -10rem;
+    box-shadow: 0.4rem 0.4rem 24rem rgba(65, 83, 105, 0.2);
     left: 0;
+    position: relative;
+    top: -10rem;
+    width: 100%;
+    z-index: 2;
 
     .search-autocomplete {
       min-width: 29rem;
@@ -57,19 +57,19 @@
   display: flex !important;
 
   img {
-    width: 100%;
-    padding: 0.2rem;
     margin-right: 0.2rem;
+    padding: 0.2rem;
+    width: 100%;
   }
 }
 
 .form-icon {
-  width: 2.2rem;
   margin: 0 1rem 0 0.8rem;
+  width: 2.2rem;
 }
 
 .category-multiselect {
-  margin: -1rem 0 2rem 0;
+  margin: -1rem 0 2rem;
 
   ::ng-deep.btn-category-filter {
     height: 4.2rem;

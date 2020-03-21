@@ -1,53 +1,55 @@
 @import 'variables.scss';
 
 h3 {
+  color: $social-media-bg-hover;
   font-size: $h3-fontsize;
   font-weight: normal;
   margin-bottom: 14px;
-  color: $social-media-bg-hover;
 }
+
 div.paymentMethod {
   div.pay:first-child {
     border-bottom: 1px solid $input-border;
     border-top: 1px solid $input-border;
     padding: 2rem;
   }
-  div.pay{
+
+  div.pay {
+    align-items: center;
     border-bottom: 1px solid $input-border;
-    padding: 2rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    padding: 2rem;
   }
 
   div.pay > div {
     display: flex;
   }
 
-  img{
+  img {
     height: 3rem;
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
 
   label.custom-checkbox {
-    border: .1rem solid $input-border;
+    align-items: center;
+    border: 0.1rem solid $input-border;
     border-radius: 50%;
     box-sizing: border-box;
-    width: 3rem;
-    height: 3rem;
     display: flex;
-    align-items: center;
+    height: 3rem;
     justify-content: center;
+    width: 3rem;
   }
 
   span {
     margin-left: 1rem;
   }
 
-  input:checked ~ label:before {
-    content: "\2714";
+  input:checked ~ label::before {
+    content: '\2714';
   }
 }

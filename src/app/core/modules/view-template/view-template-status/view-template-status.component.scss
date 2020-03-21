@@ -1,4 +1,4 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 :host {
   display: inline-block;
@@ -16,19 +16,19 @@ $status-list: (
 );
 
 .lnr-status {
-  text-transform: capitalize;
-  margin-left: 16px;
-  padding: 3px 8px;
   border-radius: 2px;
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: 0.6px;
   color: $white;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  line-height: 1;
+  margin-left: 16px;
   max-height: 21px;
+  padding: 3px 8px;
+  text-transform: capitalize;
 
   @media (max-width: $device-sm) {
-    padding: 1px 3px;
     margin-left: 5px;
+    padding: 1px 3px;
   }
 
 }

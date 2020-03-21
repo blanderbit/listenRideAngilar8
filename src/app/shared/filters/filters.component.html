@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row filters-toolbar">
     <div class="col-2 justify-content-start">
-      <div class="filters-close"
-           (click)=close()>
+      <div class="filters-close" (click)="close()">
         <mat-icon>close</mat-icon>
       </div>
     </div>
@@ -10,7 +9,7 @@
       <span>FILTERS</span>
     </div>
     <div class="col-2">
-      <span (click)=reset()>Reset</span>
+      <span (click)="reset()">Reset</span>
     </div>
   </div>
   <div class="row">
@@ -18,24 +17,34 @@
       <form [formGroup]="filtersForm">
         <div class="row">
           <mat-form-field appearance="outline">
-            <input matInput
-                   class="filter-input"
-                   placeholder="Choose a date"
-                   formControlName="date"
-                   [max]="maxDate"
-                   [satDatepicker]="resultPicker"
-                   (dateInput)="onDateInput($event)"
-                   (dateChange)="onDateChange($event)">
-            <sat-datepicker panelClass="hdd-datepicker"
-                            #resultPicker [rangeMode]="true">
+            <input
+              matInput
+              class="filter-input"
+              placeholder="Choose a date"
+              formControlName="date"
+              [max]="maxDate"
+              [satDatepicker]="resultPicker"
+              (dateInput)="onDateInput($event)"
+              (dateChange)="onDateChange($event)"
+            />
+            <sat-datepicker
+              panelClass="hdd-datepicker"
+              #resultPicker
+              [rangeMode]="true"
+            >
             </sat-datepicker>
-            <sat-datepicker-toggle matSuffix [for]="resultPicker"></sat-datepicker-toggle>
+            <sat-datepicker-toggle
+              matSuffix
+              [for]="resultPicker"
+            ></sat-datepicker-toggle>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Size</mat-label>
             <mat-select placeholder="Size" formControlName="size">
-              <mat-option *ngFor="let size of sizeList" [value]="size.value">{{size.text}}</mat-option>
+              <mat-option *ngFor="let size of sizeList" [value]="size.value">{{
+                size.text
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -44,27 +53,35 @@
             [label]="'Type'"
             [labelIcon]="false"
             [inputSelectedCategories]="filtersForm.get('type').value"
-            #categorySelect>
+            #categorySelect
+          >
           </lnr-category-multiselect>
 
           <mat-form-field appearance="outline">
             <mat-label>Brand</mat-label>
             <mat-select placeholder="Type" formControlName="brand" multiple>
-              <mat-option *ngFor="let brand of brandList" [value]="brand.value">{{brand.text}}</mat-option>
+              <mat-option
+                *ngFor="let brand of brandList"
+                [value]="brand.value"
+                >{{ brand.text }}</mat-option
+              >
             </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="sorting-filter">
             <mat-label>Sort</mat-label>
             <mat-select placeholder="Type" formControlName="sorting">
-              <mat-option *ngFor="let sort of sortList" [value]="sort.value">{{sort.text}}</mat-option>
+              <mat-option *ngFor="let sort of sortList" [value]="sort.value">{{
+                sort.text
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <button
-            mat-flat-button
-            class="btn-clear-filters"
-            (click)=reset()>
-            <mat-icon aria-hidden="false" svgIcon="filter-remove-outline" aria-label="reset icon"></mat-icon>
+          <button mat-flat-button class="btn-clear-filters" (click)="reset()">
+            <mat-icon
+              aria-hidden="false"
+              svgIcon="filter-remove-outline"
+              aria-label="reset icon"
+            ></mat-icon>
             Clear Filters
           </button>
         </div>
@@ -73,7 +90,8 @@
             mat-flat-button
             class="btn-filter-submit"
             color="primary"
-            (click)=applyFilters()>
+            (click)="applyFilters()"
+          >
             Apply
           </button>
         </div>
@@ -81,5 +99,3 @@
     </div>
   </div>
 </div>
-
-

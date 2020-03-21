@@ -10,7 +10,7 @@ export interface Business {
 }
 
 export interface TimeSlot {
-  startTime: {hour: number; minute: number};
-  endTime: {hour: number; minute: number};
+  startTime: { hour: number; minute: number };
+  endTime: { hour: number; minute: number };
 }
 export type TimeSlots = [TimeSlot, TimeSlot];

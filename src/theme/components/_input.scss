@@ -9,7 +9,7 @@
 }
 
 .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  transform: translateY(-1.1em) scale(.75) !important;;
+  transform: translateY(-1.1em) scale(0.75) !important;
   width: 133.33333% !important;
 }
 
@@ -17,6 +17,7 @@
 //  font-size: 13px!important;
 //}
 
-.mat-placeholder-required, .mat-form-field-required-marker {
+.mat-placeholder-required,
+.mat-form-field-required-marker {
   color: $error-color !important;
 }

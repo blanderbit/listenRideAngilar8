@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -12,7 +12,8 @@ import {
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule, MatInput,
+  MatIconModule,
+  MatInput,
   MatInputModule,
   MatListModule,
   MatMenuModule,
@@ -27,9 +28,14 @@ import {
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
-  MatSortModule, MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
 } from '@angular/material';
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 const modules = [
   MatAutocompleteModule,
@@ -69,28 +75,36 @@ const modules = [
 
 @NgModule({
   imports: [...modules],
-  exports: [...modules]
+  exports: [...modules],
 })
 export class MaterialModule {
   constructor() {
     Object.defineProperty(MatInput.prototype, 'required', {
       get(): boolean {
+        /* eslint-disable no-underscore-dangle */
         if (this._required) {
           return this._required;
         }
 
         // The required attribute is set
         // when the control return an error from validation with an empty value
-        if (this.ngControl && this.ngControl.control && this.ngControl.control.validator) {
-          const emptyValueControl = Object.assign({}, this.ngControl.control);
+        if (
+          this.ngControl &&
+          this.ngControl.control &&
+          this.ngControl.control.validator
+        ) {
+          const emptyValueControl = { ...this.ngControl.control };
           (emptyValueControl as any).value = null;
-          return 'required' in (this.ngControl.control.validator(emptyValueControl) || {});
+          return (
+            'required' in
+            (this.ngControl.control.validator(emptyValueControl) || {})
+          );
         }
         return false;
       },
       set(value: boolean) {
         this._required = coerceBooleanProperty(value);
-      }
+      },
     });
   }
 }

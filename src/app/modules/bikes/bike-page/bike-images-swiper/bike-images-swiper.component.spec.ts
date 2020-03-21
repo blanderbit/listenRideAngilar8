@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {BikeImagesSwiperComponent} from './bike-images-swiper.component';
+import { BikeImagesSwiperComponent } from './bike-images-swiper.component';
 
 describe('BikeImagesSwiperComponent', () => {
   let component: BikeImagesSwiperComponent;
@@ -8,7 +8,7 @@ describe('BikeImagesSwiperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BikeImagesSwiperComponent]
+      declarations: [BikeImagesSwiperComponent],
     }).compileComponents();
   }));
 

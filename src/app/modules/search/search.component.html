@@ -1,19 +1,43 @@
 <div class="wrap-search-page-layout">
-  <div class="content search-page-layout" infinite-scroll [infiniteScrollDistance]="5"
-       [scrollWindow]="isMobile || isTablet"
-       (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
-    <div *ngIf="isTablet || isMobile" class="mobile-toolbar" [class.scrolled]="scrolled">
+  <div
+    class="content search-page-layout"
+    infinite-scroll
+    [infiniteScrollDistance]="5"
+    [scrollWindow]="isMobile || isTablet"
+    (scrolled)="onScrollDown($event)"
+    (scrolledUp)="onScrollUp($event)"
+  >
+    <div
+      *ngIf="isTablet || isMobile"
+      class="mobile-toolbar"
+      [class.scrolled]="scrolled"
+    >
       <div class="toggle toggle-filters" (click)="toggleFilters()">
-        <mat-icon aria-hidden="false" svgIcon="lnr-filter" aria-label="toggle icon"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          svgIcon="lnr-filter"
+          aria-label="toggle icon"
+        ></mat-icon>
         <span>Filters</span>
       </div>
       <div class="toggle toggle-sorting" (click)="toggleSorting()">
-        <mat-icon aria-hidden="false" svgIcon="lnr-sort" aria-label="sort"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          svgIcon="lnr-sort"
+          aria-label="sort"
+        ></mat-icon>
       </div>
 
       <div class="toggle toggle-map" (click)="toggleMap()">
-        <mat-icon *ngIf="!mapToggle" aria-hidden="false" aria-label="toggle icon">map</mat-icon>
-        <mat-icon *ngIf="mapToggle" aria-hidden="false" aria-label="toggle icon">list</mat-icon>
+        <mat-icon
+          *ngIf="!mapToggle"
+          aria-hidden="false"
+          aria-label="toggle icon"
+          >map</mat-icon
+        >
+        <mat-icon *ngIf="mapToggle" aria-hidden="false" aria-label="toggle icon"
+          >list</mat-icon
+        >
         <span *ngIf="!mapToggle">Map</span>
         <span *ngIf="mapToggle">List</span>
       </div>
@@ -22,47 +46,75 @@
       <lnr-filters [hidden]="!isDesktop && !showFilter"></lnr-filters>
       <lnr-mobile-sorting *ngIf="showSorting"></lnr-mobile-sorting>
       <div class="sub-toolbar">
-        <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-rent">
-          Bikes to rent in {{location.city}} : {{pins.length}}</div>
-        <div *ngIf="isDesktop || !isDesktop && !mapToggle" class="bikes-for-groups">
+        <div
+          *ngIf="isDesktop || (!isDesktop && !mapToggle)"
+          class="bikes-for-rent"
+        >
+          Bikes to rent in {{ location.city }} : {{ pins.length }}
+        </div>
+        <div
+          *ngIf="isDesktop || (!isDesktop && !mapToggle)"
+          class="bikes-for-groups"
+        >
           Group booking
         </div>
       </div>
     </div>
-    <div *ngIf="isDesktop || !isDesktop && !mapToggle"
-         class="wrap-bike-tile-grid flex row direction-row row-wrap m-1">
-      <div *ngFor="let bike of bikes" class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3">
+    <div
+      *ngIf="isDesktop || (!isDesktop && !mapToggle)"
+      class="wrap-bike-tile-grid flex row direction-row row-wrap m-1"
+    >
+      <div
+        *ngFor="let bike of bikes"
+        class="bike-tile-grid col-md-6 col-lg-4 col-xs-1 сol-xl-3"
+      >
         <lnr-bike-card [bike]="bike"></lnr-bike-card>
       </div>
     </div>
   </div>
 
-  <div *ngIf=" isDesktop || !isDesktop && mapToggle"
-       class="map-container">
-    <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="10" [styles]="mapStyles">
+  <div *ngIf="isDesktop || (!isDesktop && mapToggle)" class="map-container">
+    <agm-map
+      [latitude]="location.lat"
+      [longitude]="location.lng"
+      [zoom]="10"
+      [styles]="mapStyles"
+    >
       <agm-marker-cluster [minimumClusterSize]="2" [styles]="clusterStyles">
-        <agm-marker *ngFor="let pin of pins"
-                    (markerClick)="openWindow(pin.id)"
-                    [latitude]="pin.lat_rnd"
-                    [longitude]="pin.lng_rnd"
-                    [iconUrl]="{url:'./assets/ui_icons/map/pin_map_white.png', anchor: {x: 28, y: 56},labelOrigin: {x: 28, y: 22}}"
-                    [label]="{text: pin.daily_price + '€', color: '#599EFF', fontSize: '13px', fontWeight: 'bold'}"
+        <agm-marker
+          *ngFor="let pin of pins"
+          (markerClick)="openWindow(pin.id)"
+          [latitude]="pin.lat_rnd"
+          [longitude]="pin.lng_rnd"
+          [iconUrl]="{
+            url: './assets/ui_icons/map/pin_map_white.png',
+            anchor: { x: 28, y: 56 },
+            labelOrigin: { x: 28, y: 22 }
+          }"
+          [label]="{
+            text: pin.daily_price + '€',
+            color: '#599EFF',
+            fontSize: '13px',
+            fontWeight: 'bold'
+          }"
         >
           <agm-info-window
             [isOpen]="isInfoWindowOpened(pin.id)"
             [latitude]="pin.lat_rnd"
-            [longitude]="pin.lng_rnd">
-
+            [longitude]="pin.lng_rnd"
+          >
             <lnr-bike-card
               [bike]="activeBike"
               [isMobileMap]="isTablet"
               [isMapView]="true"
             ></lnr-bike-card>
           </agm-info-window>
-
         </agm-marker>
       </agm-marker-cluster>
     </agm-map>
   </div>
-  <mat-progress-bar mode="indeterminate" *ngIf="(loading$ | async)"></mat-progress-bar>
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="loading$ | async"
+  ></mat-progress-bar>
 </div>

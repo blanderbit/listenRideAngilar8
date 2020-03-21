@@ -1,12 +1,11 @@
 <div class="swiper-container small-swiper">
   <div class="swiper-wrapper">
-    <a *ngFor="let item of responses"
-       class="swiper-slide cursor-pointer small-swiper_list"
-       href="{{link}}{{item.name}}"
+    <a
+      *ngFor="let item of responses"
+      class="swiper-slide cursor-pointer small-swiper_list"
+      href="{{ link }}{{ item.name }}"
     >
-      <img alt=""
-           src="{{item.thumb_image}}"
-      />
+      <img alt="" src="{{ item.thumb_image }}" />
     </a>
   </div>
   <div class="d-none d-lg-block">

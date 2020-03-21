@@ -1,3 +1,3 @@
 export enum PaymentMethodEnum {
-  CREDIT_CARD = 'credit-card'
+  CREDIT_CARD = 'credit-card',
 }

@@ -1,18 +1,18 @@
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
 .lnr-img-file-upload-btn {
   border: none;
+  cursor: pointer;
   display: inline-block;
   padding: 6px 12px;
-  cursor: pointer;
   text-align: center;
   width: 100%;
 
   mat-icon {
-    width: 135px;
     height: 135px;
+    width: 135px;
   }
 }
 
@@ -22,8 +22,8 @@ input[type="file"] {
     justify-content: space-between;
 
     image-cropper {
-      max-width: 50%;
       max-height: 300px;
+      max-width: 50%;
     }
 
     .preview {
@@ -31,15 +31,15 @@ input[type="file"] {
       width: 100%;
 
       .image-wrapper {
-        position: absolute;
-        width: 100px;
-        height: 150px;
-
-        top: 0;
-        right: 0;
         bottom: 0;
+        height: 150px;
         left: 0;
         margin: auto;
+        position: absolute;
+        right: 0;
+
+        top: 0;
+        width: 100px;
       }
 
       img {

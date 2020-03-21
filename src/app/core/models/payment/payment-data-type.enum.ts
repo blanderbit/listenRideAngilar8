@@ -1,3 +1,3 @@
 export enum PaymentDataTypeEnum {
-  SCHEME = 'scheme'
+  SCHEME = 'scheme',
 }

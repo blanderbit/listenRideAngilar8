@@ -1,23 +1,22 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 
 @Component({
   selector: 'lnr-brand-template-welcome-screen',
   templateUrl: './brand-template-welcome-screen.component.html',
-  styleUrls: ['./brand-template-welcome-screen.component.scss']
+  styleUrls: ['./brand-template-welcome-screen.component.scss'],
 })
 export class BrandTemplateWelcomeScreenComponent implements OnInit {
   @Input() responses;
-  @Input() logo: string;
-  private swiper: Swiper;
 
-  constructor() {
-  }
+  @Input() logo: string;
+
+  private swiper: Swiper;
 
   ngOnInit() {
     this.swiper = new Swiper('.swiper-container', {
       fadeEffect: {
-        crossFade: true
+        crossFade: true,
       },
       effect: 'fade',
       speed: 1500,
@@ -29,7 +28,7 @@ export class BrandTemplateWelcomeScreenComponent implements OnInit {
         delay: 6000,
       },
       observer: true,
-      watchOverflow: true
+      watchOverflow: true,
     });
   }
 }

@@ -1,28 +1,28 @@
 @import 'src/assets/scss/variables';
 
 #right {
-  min-width: 36rem;
-  margin-top: 9rem;
-  border: .2rem solid $input-border;
-  border-radius: .4rem;
+  border: 0.2rem solid $input-border;
+  border-radius: 0.4rem;
   box-sizing: border-box;
-  padding: 1rem;
   margin-left: 4rem;
+  margin-top: 9rem;
+  min-width: 36rem;
+  padding: 1rem;
 
   > div:last-child {
     margin-top: -2rem;
   }
 
   div.d-flex {
-    border-bottom: .1rem solid $input-border;
+    border-bottom: 0.1rem solid $input-border;
     box-sizing: border-box;
     font-size: $small-fontsize;
     line-height: 2.4rem;
   }
 
   div.dates {
-    border: .1rem solid $input-border;
-    border-radius: .4rem;
+    border: 0.1rem solid $input-border;
+    border-radius: 0.4rem;
   }
 
   div.d-flex:last-child {
@@ -33,44 +33,44 @@
   }
 
   span {
-    font-weight: 500;
     font-size: $base-font_size;
+    font-weight: 500;
     line-height: 250%;
-    padding: .1rem 0;
+    padding: 0.1rem 0;
 
   }
 
   button {
     background: $main-green;
-    border-radius: .4rem;
-    font-weight: bold;
-    font-size: $base-font_size;
-    line-height: 1.9rem;
-    color: $white;
     border: none;
+    border-radius: 0.4rem;
+    color: $white;
+    font-size: $base-font_size;
+    font-weight: bold;
+    line-height: 1.9rem;
+    margin: 1rem 0 3rem;
     width: 100%;
-        margin: 1rem 0 3rem 0;
 
   }
 
   input {
-    width: 100%;
+    border: 0.1rem solid $input-border;
+    border-radius: 0.4rem;
     height: 5rem;
-    border-radius: .4rem;
-    border: .1rem solid $input-border;
     padding-left: 2rem;
+    width: 100%;
 
   }
 
   textarea::placeholder {
-    color: black
+    color: black;
   }
 }
 
 @media (max-width: $device-xs) {
   #right {
-    min-width: 100%;
     margin: 4rem 0;
+    min-width: 100%;
 
   }
 }

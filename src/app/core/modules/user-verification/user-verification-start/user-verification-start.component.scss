@@ -1,8 +1,8 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 :host {
-  padding: 40px;
   display: block;
+  padding: 40px;
 
   @media (max-width: $device-sm) {
     padding: 0;
@@ -22,6 +22,6 @@
 }
 
 .icon {
-  width: 100px;
   margin-bottom: 40px;
+  width: 100px;
 }

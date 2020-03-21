@@ -1,8 +1,8 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 :host {
-  position: relative;
   display: block;
+  position: relative;
   text-align: center;
 
   mat-dialog-content {
@@ -13,12 +13,11 @@
   }
 
   .lnr-dialog-header {
-
     &.desktop {
-      position: absolute;
-      top: 0;
       left: 0;
+      position: absolute;
       right: 0;
+      top: 0;
     }
 
     @media (max-width: $device-sm) {
@@ -36,12 +35,11 @@
   }
 
   ::ng-deep .mat-stepper-vertical {
-
     .mat-stepper-vertical-line {
       &::before {
         @media (max-width: $device-sm) {
-          top: 0;
           bottom: 0;
+          top: 0;
         }
       }
     }
@@ -65,25 +63,26 @@
   }
 
   ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    max-width: 500px;
-    margin: auto;
-    padding: 4px;
     justify-content: center;
+    left: 0;
+    margin: auto;
+    max-width: 500px;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     .mat-horizontal-stepper-header {
       padding: 5px;
 
-      &:before, &:after {
+      &::before,
+      &::after {
         top: 16px;
       }
 
       .mat-step-label {
-        padding: 0;
         font-size: 12px;
+        padding: 0;
       }
     }
 

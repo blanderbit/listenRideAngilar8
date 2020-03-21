@@ -1,14 +1,14 @@
 .hero-img {
-  height: 54rem;
-  background-size: cover;
   background-position: center;
+  background-size: cover;
+  height: 54rem;
   position: relative;
 
   &_logo {
-    position: absolute;
-    top: 50%;
     left: 50%;
     margin: 0 auto;
+    position: absolute;
+    top: 50%;
     width: 10rem;
   }
 }

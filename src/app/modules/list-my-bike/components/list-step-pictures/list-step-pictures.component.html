@@ -1,58 +1,62 @@
-<form class="pictureLoader" [formGroup]="picturesFormGroup" *ngIf="picturesFormGroup">
+<form
+  class="pictureLoader"
+  [formGroup]="picturesFormGroup"
+  *ngIf="picturesFormGroup"
+>
   <p class="pictureLoader">
-    Now select some nice pictures of your bike. <a>Here is a guide</a> on how to make your listing
-    look even better!
+    Now select some nice pictures of your bike. <a>Here is a guide</a> on how to
+    make your listing look even better!
   </p>
   <p><em>Please note that the photos need to be at least 1200x800px!</em></p>
   <div *ngIf="imageError.length > 0" class="errorMessage">
-    Invalid images
-    Some of your images size is less than the allowable minimum 1200x800px:
+    Invalid images Some of your images size is less than the allowable minimum
+    1200x800px:
 
     <p *ngFor="let item of imageError" class="errorMessage">
-      {{item}}
+      {{ item }}
     </p>
   </div>
   <h3>Upload some pictures of your bike</h3>
 
-  <label id="upload-file"
-         for="upload"
-  >
+  <label id="upload-file" for="upload">
     Upload photos
   </label>
-  <input id="upload"
-         multiple
-         type="file"
-         (change)="previewFile($event.target.files)"
-         accept=".png, .jpg, .jpeg"
+  <input
+    id="upload"
+    multiple
+    type="file"
+    (change)="previewFile($event.target.files)"
+    accept=".png, .jpg, .jpeg"
+  />
 
-  >
-
-  <div class="preview-container"
-       id="load_photo"
-       *ngIf="loadedPhoto"
-  >
-    <div class="bikePhotoContainer"
-         *ngFor="let photo of loadedPhoto; let i = index"
+  <div class="preview-container" id="load_photo" *ngIf="loadedPhoto">
+    <div
+      class="bikePhotoContainer"
+      *ngFor="let photo of loadedPhoto; let i = index"
     >
-      <img src="{{photo.url}}" class="myBikePhoto">
+      <img src="{{ photo.url }}" class="myBikePhoto" />
       <div class="bikeCheckedContainer">
         <div class="imgCheckboxContainer">
-          <input type="radio"
-                 [id]="'pictures' + i"
-                 name="picturesCtrl"
-                 [(value)]="photo.isMain"
-                 [checked]="photo.isMain"
-          >
-          <label [for]="'pictures' + i"
-                 class="custom-checkbox"
-          ></label>
-
+          <input
+            type="radio"
+            [id]="'pictures' + i"
+            name="picturesCtrl"
+            [(value)]="photo.isMain"
+            [checked]="photo.isMain"
+          />
+          <label [for]="'pictures' + i" class="custom-checkbox"></label>
         </div>
         <div class="imgCheckboxButton">
           <span>Make this the main photo</span>
-          <button mat-button
-                  class="remove"
-                  (click)="removePhoto(i, photo.file ? ['loadedPhoto'] : ['images', 'loadedPhoto'])"
+          <button
+            mat-button
+            class="remove"
+            (click)="
+              removePhoto(
+                i,
+                photo.file ? ['loadedPhoto'] : ['images', 'loadedPhoto']
+              )
+            "
           >
             Remove
           </button>
@@ -62,18 +66,16 @@
   </div>
 
   <div class="button-container">
-    <button class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
-    >
+    <button class="mat-button-stepper" mat-button matStepperPrevious>
       Back
     </button>
-    <button class="mat-button-stepper next"
-            [ngClass]="{active: loadedPhoto.length > 0 }"
-            [disabled]="loadedPhoto.length < 1"
-            mat-button
-            matStepperNext
-            type="button"
+    <button
+      class="mat-button-stepper next"
+      [ngClass]="{ active: loadedPhoto.length > 0 }"
+      [disabled]="loadedPhoto.length < 1"
+      mat-button
+      matStepperNext
+      type="button"
     >
       Next
     </button>

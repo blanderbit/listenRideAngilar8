@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {EventWelcomeScreenComponent} from './event-welcome-screen.component';
+import { EventWelcomeScreenComponent } from './event-welcome-screen.component';
 
 describe('EventWelcomeScreenComponent', () => {
   let component: EventWelcomeScreenComponent;
@@ -8,9 +8,8 @@ describe('EventWelcomeScreenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EventWelcomeScreenComponent]
-    })
-      .compileComponents();
+      declarations: [EventWelcomeScreenComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

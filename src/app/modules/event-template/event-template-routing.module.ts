@@ -1,15 +1,18 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {EventTemplateComponent} from './event-template.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { EventTemplateComponent } from './event-template.component';
 
 const routes: Routes = [
-  {path: '', loadChildren: () => import('../../modules/events/events.module').then(m => m.EventsModule)},
-  {path: ':name', component: EventTemplateComponent}
-  ];
+  {
+    path: '',
+    loadChildren: () =>
+      import('../events/events.module').then(m => m.EventsModule),
+  },
+  { path: ':name', component: EventTemplateComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EventTemplateRoutingModule {
-}
+export class EventTemplateRoutingModule {}

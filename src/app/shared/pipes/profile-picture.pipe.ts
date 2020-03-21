@@ -1,8 +1,12 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'profilePicturePipe'})
+@Pipe({ name: 'profilePicturePipe' })
 export class ProfilePicturePipe implements PipeTransform {
+  // eslint-disable-next-line class-methods-use-this
   transform(value: string): string {
-    return value ? value : 'https://s3.eu-central-1.amazonaws.com/listnride/assets/default_profile_picture.jpg';
+    return (
+      value ||
+      'https://s3.eu-central-1.amazonaws.com/listnride/assets/default_profile_picture.jpg'
+    );
   }
 }

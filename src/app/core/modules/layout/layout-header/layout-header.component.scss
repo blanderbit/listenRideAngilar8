@@ -1,19 +1,19 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 .wrap-toolbar-component {
-  width: 100%;
   background-color: $main-blue;
   color: $white-font-color;
   max-height: 6rem;
+  width: 100%;
 }
 
 .logo {
   width: 100%;
 
   img {
-    width: 12rem;
     height: 2rem;
     margin: 2rem;
+    width: 12rem;
   }
 }
 
@@ -22,29 +22,29 @@
 }
 
 ::ng-deep .mat-form-field {
-
   .mat-form-field-wrapper {
     //padding-bottom: 0;
   }
 }
 
 .search-autocomplete {
-  background: rgba($white-font-color, 0.8);
-  color: $dark-text-color;
-  width: 45rem;
-  line-height: 4rem;
-  height: 4rem;
   align-items: center;
-  padding: 1.2rem;
+  background: rgba($white-font-color, 0.8);
   border-radius: 0.4rem;
+  color: $dark-text-color;
+  height: 4rem;
+  line-height: 4rem;
+  padding: 1.2rem;
+  width: 45rem;
 
   input {
-    font-size: $small-fontsize;
-    width: 100%;
     background: transparent;
     border: none;
+    font-size: $small-fontsize;
+    width: 100%;
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       border: none;
     }
   }
@@ -93,16 +93,16 @@
 }
 
 .toolbar-component-container {
-  width: 100%;
-  padding-right: 3rem;
-  padding-left: 3rem;
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  width: 100%;
 }
 
 @media (min-width: $device-xs) and (max-width: $device-sm) {
   .search-autocomplete {
-    width: 35rem;
     margin: 1.2rem;
+    width: 35rem;
   }
 }

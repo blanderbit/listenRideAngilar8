@@ -1,65 +1,85 @@
 <div class="step-content">
-
   <div class="step-content-header">
-
     <h3 class="step-title">Confirm your Email address</h3>
 
-    <p>If you can't find your confirmation email, you can resend it.Please, check your spam folder if you still can’t
-      find this email</p>
-
+    <p>
+      If you can't find your confirmation email, you can resend it.Please, check
+      your spam folder if you still can’t find this email
+    </p>
   </div>
 
   <div style="display: inline-block">
-
     <div class="lnr-d-flex lnr-space-btw">
       <mat-error class="lnr-text-align-l">
-        <lnr-http-error-message [error]="emailError || verificationError"></lnr-http-error-message>
+        <lnr-http-error-message
+          [error]="emailError || verificationError"
+        ></lnr-http-error-message>
       </mat-error>
     </div>
 
-    <h6 class="lnr-mrg-btm heading-6"><b>{{user?.email | stringPipe}}</b></h6>
+    <h6 class="lnr-mrg-btm heading-6">
+      <b>{{ user?.email | stringPipe }}</b>
+    </h6>
 
     <div class="email-description">
-
-      <p class="lnr-d-flex-center" [hidden]="stepCompleted"><span [hidden]="isMobile">Didn't confirm?</span> &nbsp;
-        <a class="lnr-d-flex-center" [class.disabled]="emailPending" (click)="resendEmail()">Resend confirmation email
-          &nbsp;
-          <lnr-loader-spinner-small [hidden]="!emailPending"></lnr-loader-spinner-small>
+      <p class="lnr-d-flex-center" [hidden]="stepCompleted">
+        <span [hidden]="isMobile">Didn't confirm?</span> &nbsp;
+        <a
+          class="lnr-d-flex-center"
+          [class.disabled]="emailPending"
+          (click)="resendEmail()"
+          >Resend confirmation email &nbsp;
+          <lnr-loader-spinner-small
+            [hidden]="!emailPending"
+          ></lnr-loader-spinner-small>
           <span [hidden]="!emailResend || emailPending">(sent)</span>
         </a>
       </p>
 
-      <p>To change your email pls contact <a href="mailto:privacy@listnride.com"
-                                             target="_blank">privacy@listnride.com</a></p>
+      <p>
+        To change your email pls contact
+        <a href="mailto:privacy@listnride.com" target="_blank"
+          >privacy@listnride.com</a
+        >
+      </p>
     </div>
-
   </div>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
-
   <div class="left-side" *ngIf="isDesktop || isTablet">
-    <button mat-button
-            matStepperPrevious
-            class="lnr-btn-back"
-            [hidden]="isItFirstStep">
+    <button
+      mat-button
+      matStepperPrevious
+      class="lnr-btn-back"
+      [hidden]="isItFirstStep"
+    >
       <mat-icon svgIcon="arrow-left"></mat-icon>
       Back
     </button>
   </div>
 
   <div class="right-side">
-    <button mat-stroked-button color="primary"
-            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="nextOrCloseIfLastStep()"
+    >
+      {{ stepCompleted ? 'Next' : 'Skip' }}
+    </button>
 
-    <button mat-raised-button
-            color="primary"
-            class="lnt-btn-min-width lnr-mrg-l-16"
-            [hidden]="stepCompleted"
-            [disabled]="verificationPending"
-            (click)="checkIfAlreadyConfirmed()">Already confirmed
-      <lnr-loader-spinner-small [hidden]="!verificationPending"></lnr-loader-spinner-small>
+    <button
+      mat-raised-button
+      color="primary"
+      class="lnt-btn-min-width lnr-mrg-l-16"
+      [hidden]="stepCompleted"
+      [disabled]="verificationPending"
+      (click)="checkIfAlreadyConfirmed()"
+    >
+      Already confirmed
+      <lnr-loader-spinner-small
+        [hidden]="!verificationPending"
+      ></lnr-loader-spinner-small>
     </button>
   </div>
-
 </div>

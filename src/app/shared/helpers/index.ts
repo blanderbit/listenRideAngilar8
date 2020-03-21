@@ -1,11 +1,11 @@
-import {typeList} from '@core/constants/filters.const';
+import { typeList } from '@core/constants/filters.const';
+import { DEFAULT_MAP_OPTIONS } from '@core/constants/map-options';
+import { environment } from '@environment/environment';
+import { Accessories } from '@models/bike/bike.types';
 import {
   CategoryInterface,
-  SubCategoryInterface
+  SubCategoryInterface,
 } from '../../modules/list-my-bike/model/models';
-import {DEFAULT_MAP_OPTIONS} from '@core/constants/map-options';
-import {environment} from '@environment/environment';
-import {Accessories} from '@models/bike/bike.types';
 
 const ACCESSORIES_IMG_PATH = 'assets/img-accessories/';
 
@@ -20,27 +20,27 @@ export interface AccessoryImage {
 }
 
 export const getCategoryDataBySubcategoryId = (
-  id: number
+  id: number,
 ): CategoryData | undefined =>
   typeList.reduce((accumulator: CategoryData | undefined, category) => {
     const subcategory = category.categories.find(
-      ({value}) => Number(value) === id
+      ({ value }) => Number(value) === id,
     );
 
     if (subcategory !== undefined) {
       return {
         category,
-        subcategory
+        subcategory,
       };
     }
     return accumulator;
   }, undefined);
 
 export const getStaticMapSrc = (latitude: number, longitude: number) => {
-  const {zoom, icon} = DEFAULT_MAP_OPTIONS;
+  const { zoom, icon } = DEFAULT_MAP_OPTIONS;
 
   return (
-    `https://maps.googleapis.com/maps/api/staticmap?` +
+    'https://maps.googleapis.com/maps/api/staticmap?' +
     `center=${latitude},${longitude}&zoom=${zoom}` +
     `&size=1280x400&scale=2&markers=icon:${icon}|` +
     `${latitude},${longitude}&key=${environment.LNR_API_KEY_GOOGLE_MAPS}`
@@ -49,5 +49,5 @@ export const getStaticMapSrc = (latitude: number, longitude: number) => {
 
 export const getAccessoryImage = (name: keyof Accessories): AccessoryImage => ({
   name,
-  src: `${ACCESSORIES_IMG_PATH}${name}.svg`
+  src: `${ACCESSORIES_IMG_PATH}${name}.svg`,
 });

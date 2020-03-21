@@ -9,10 +9,14 @@
     alt=""
     src="../../../../assets/ui_icons/bikes/bike.svg"
   />
-  {{label}}
+  {{ label }}
 </button>
 <mat-menu #categoriesMenu="matMenu" class="category-filter">
-  <div class="category" *ngFor="let category of categories; let i = index" (click)=handleMenuClick($event)>
+  <div
+    class="category"
+    *ngFor="let category of categories; let i = index"
+    (click)="handleMenuClick($event)"
+  >
     <div class="category-label">
       <mat-checkbox
         (change)="handleCategoryChange(i)"
@@ -20,14 +24,19 @@
         [indeterminate]="checkIndeterminate(i)"
       ></mat-checkbox>
       <span (click)="toggleCategory(i)">{{ category.type }}</span>
-      <mat-icon aria-hidden="false" svgIcon="lnr-bike-cat-{{i+1}}" aria-label="category icon"></mat-icon>
+      <mat-icon
+        aria-hidden="false"
+        svgIcon="lnr-bike-cat-{{ i + 1 }}"
+        aria-label="category icon"
+      ></mat-icon>
     </div>
 
-    <div class="sub-category" [ngClass]="{active : category.active}">
+    <div class="sub-category" [ngClass]="{ active: category.active }">
       <div class="option" *ngFor="let subcategory of category.categories">
         <mat-checkbox
           [(ngModel)]="categoriesForm[subcategory.value]"
-          (change)="handleSubcategoryChange()">
+          (change)="handleSubcategoryChange()"
+        >
           {{ subcategory.text }}
         </mat-checkbox>
       </div>

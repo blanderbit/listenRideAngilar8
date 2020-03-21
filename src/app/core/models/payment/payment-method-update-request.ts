@@ -1,5 +1,5 @@
-import {PaymentTypeEnum} from '@models/payment/payment-type.enum';
-import {PaymentDataTypeEnum} from '@models/payment/payment-data-type.enum';
+import { PaymentTypeEnum } from '@models/payment/payment-type.enum';
+import { PaymentDataTypeEnum } from '@models/payment/payment-data-type.enum';
 
 export interface PaymentMethodUpdateRequest {
   payment_method: {
@@ -10,7 +10,7 @@ export interface PaymentMethodUpdateRequest {
       encryptedExpiryMonth: string;
       encryptedExpiryYear: string;
       encryptedSecurityCode: string;
-      holderName: string
-    }
+      holderName: string;
+    };
   };
 }

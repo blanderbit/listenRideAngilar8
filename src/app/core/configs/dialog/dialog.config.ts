@@ -1,9 +1,9 @@
-import {MatDialogConfig} from '@angular/material';
+import { MatDialogConfig } from '@angular/material';
 
 export class DialogConfig extends MatDialogConfig {
   autoFocus = true;
 
-  constructor(width: string = '760px', data: any = null) {
+  constructor(width = '760px', data: any = null) {
     super();
     this.width = width;
     this.data = data;
@@ -13,5 +13,4 @@ export class DialogConfig extends MatDialogConfig {
     this.disableClose = true;
     return this;
   }
-
 }

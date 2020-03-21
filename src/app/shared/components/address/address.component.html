@@ -9,23 +9,28 @@
         [appearance]="'outline'"
         (onAutocompleteSelected)="onAutocompleteSelected($event)"
         [requiredErrorText]="'You can define address by this autocomplete'"
-        [invalidErrorText]="'Address invalid'">
+        [invalidErrorText]="'Address invalid'"
+      >
       </mat-google-maps-autocomplete>
     </div>
   </div>
 
   <div class="row">
-
     <div class="col-sm-8">
       <mat-form-field appearance="outline" class="lnr-w-100">
         <mat-label>Street</mat-label>
-        <input formControlName="street"
-               type="text"
-               matInput
-               placeholder="Enter street"
+        <input
+          formControlName="street"
+          type="text"
+          matInput
+          placeholder="Enter street"
+        />
+        <mat-error
+          *ngIf="form.get('street').touched && form.get('street').errors"
         >
-        <mat-error *ngIf="form.get('street').touched && form.get('street').errors">
-          <small *ngIf="form.get('street').errors.required">Field is required</small>
+          <small *ngIf="form.get('street').errors.required"
+            >Field is required</small
+          >
         </mat-error>
       </mat-form-field>
     </div>
@@ -33,31 +38,37 @@
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
         <mat-label>Number</mat-label>
-        <input formControlName="number"
-               type="number"
-               matInput
-               placeholder="Enter number"
+        <input
+          formControlName="number"
+          type="number"
+          matInput
+          placeholder="Enter number"
+        />
+        <mat-error
+          *ngIf="form.get('number').touched && form.get('number').errors"
         >
-        <mat-error *ngIf="form.get('number').touched && form.get('number').errors">
-          <small *ngIf="form.get('number').errors.required">Field is required</small>
+          <small *ngIf="form.get('number').errors.required"
+            >Field is required</small
+          >
         </mat-error>
       </mat-form-field>
     </div>
-
   </div>
 
   <div class="row">
-
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
         <mat-label>Zip Code</mat-label>
-        <input formControlName="zip"
-               type="number"
-               matInput
-               placeholder="Enter zip"
-        >
+        <input
+          formControlName="zip"
+          type="number"
+          matInput
+          placeholder="Enter zip"
+        />
         <mat-error *ngIf="form.get('zip').touched && form.get('zip').errors">
-          <small *ngIf="form.get('zip').errors.required">Field is required</small>
+          <small *ngIf="form.get('zip').errors.required"
+            >Field is required</small
+          >
         </mat-error>
       </mat-form-field>
     </div>
@@ -65,13 +76,16 @@
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
         <mat-label>City</mat-label>
-        <input formControlName="city"
-               type="text"
-               matInput
-               placeholder="Enter city"
-        >
+        <input
+          formControlName="city"
+          type="text"
+          matInput
+          placeholder="Enter city"
+        />
         <mat-error *ngIf="form.get('city').touched && form.get('city').errors">
-          <small *ngIf="form.get('city').errors.required">Field is required</small>
+          <small *ngIf="form.get('city').errors.required"
+            >Field is required</small
+          >
         </mat-error>
       </mat-form-field>
     </div>
@@ -79,17 +93,20 @@
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
         <mat-label>Country</mat-label>
-        <input formControlName="country"
-               type="text"
-               matInput
-               placeholder="Enter country"
+        <input
+          formControlName="country"
+          type="text"
+          matInput
+          placeholder="Enter country"
+        />
+        <mat-error
+          *ngIf="form.get('country').touched && form.get('country').errors"
         >
-        <mat-error *ngIf="form.get('country').touched && form.get('country').errors">
-          <small *ngIf="form.get('country').errors.required">Field is required</small>
+          <small *ngIf="form.get('country').errors.required"
+            >Field is required</small
+          >
         </mat-error>
       </mat-form-field>
     </div>
-
   </div>
-
 </form>

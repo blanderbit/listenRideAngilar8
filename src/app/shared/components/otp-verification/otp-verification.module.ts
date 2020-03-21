@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {OtpVerificationComponent} from '@shared/components/otp-verification/otp-verification.component';
-import {MatInputModule} from '@angular/material/input';
-import {NgxMaskModule} from 'ngx-mask';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OtpVerificationComponent } from '@shared/components/otp-verification/otp-verification.component';
+import { MatInputModule } from '@angular/material/input';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [OtpVerificationComponent],
@@ -12,10 +12,8 @@ import {NgxMaskModule} from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
-  exports: [OtpVerificationComponent]
+  exports: [OtpVerificationComponent],
 })
-export class OtpVerificationModule {
-
-}
+export class OtpVerificationModule {}

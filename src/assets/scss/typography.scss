@@ -1,5 +1,5 @@
-@import "variables";
-@import "colors";
+@import 'variables';
+@import 'colors';
 
 html {
   font-size: 62.5%; /* default 10px = 1rem! */
@@ -14,27 +14,33 @@ a {
   font-weight: 500;
 }
 
-h1, .heading-1 {
+h1,
+.heading-1 {
   font-size: $h1-fontsize;
 }
 
-h2, .heading-2 {
+h2,
+.heading-2 {
   font-size: $h2-fontsize;
 }
 
-h3, .heading-3 {
+h3,
+.heading-3 {
   font-size: $h3-fontsize;
 }
 
-h4, .heading-4 {
+h4,
+.heading-4 {
   font-size: $h4-fontsize;
 }
 
-h5, .heading-5 {
+h5,
+.heading-5 {
   font-size: $h5-fontsize;
 }
 
-h6, .heading-6 {
+h6,
+.heading-6 {
   font-size: $h6-fontsize;
 }
 
@@ -63,10 +69,10 @@ h6, .heading-6 {
 }
 
 .text-ellipsis {
-  white-space: nowrap;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  white-space: nowrap;
 }
 
 .hyphens-auto {

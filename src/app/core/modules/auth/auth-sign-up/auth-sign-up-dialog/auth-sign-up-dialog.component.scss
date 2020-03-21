@@ -1,47 +1,48 @@
-@import "../../../../../../assets/scss/variables";
+@import '../../../../../../assets/scss/variables';
 
 ::ng-deep .tabs {
-  text-align: center;
   background: $white;
+  text-align: center;
 
   .buttons-wrap {
     display: inline-block;
     position: relative;
 
-    &:after {
+    &::after {
+      background: $main-blue;
+      bottom: 0;
       content: '';
       display: block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 50%;
       height: 3px;
-      background: $main-blue;
+      left: 0;
+      position: absolute;
       transition: left 0.1s;
+      width: 50%;
     }
 
     &.private {
-      &:after {
+      &::after {
         left: 0;
       }
     }
 
     &.business {
-      &:after {
+      &::after {
         left: 50%;
       }
     }
   }
 
   button {
-    position: relative;
-    box-sizing: content-box;
     border-radius: 0;
+    box-sizing: content-box;
     height: 41px;
+    position: relative;
 
     &.active {
       color: $main-blue;
-      &:after {
+
+      &::after {
 
       }
     }

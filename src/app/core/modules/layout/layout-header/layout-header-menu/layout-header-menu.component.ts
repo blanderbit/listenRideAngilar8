@@ -1,19 +1,21 @@
-import {ChangeDetectorRef, Component, OnInit, Input, ViewChild} from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {MatSidenav} from '@angular/material';
-import {select, Store} from '@ngrx/store';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
+import { select, Store } from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
-import {AuthActions} from '@auth/store/actions';
+import { AuthActions } from '@auth/store/actions';
 
 @Component({
   selector: 'lnr-menu',
   templateUrl: './layout-header-menu.component.html',
-  styleUrls: ['./layout-header-menu.component.scss']
+  styleUrls: ['./layout-header-menu.component.scss'],
 })
-export class LayoutHeaderMenuComponent implements OnInit {
+export class LayoutHeaderMenuComponent {
   @Input() isLoggedIn = false;
+
   mobileQuery: MediaQueryList;
-  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
+
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
   reason = '';
 
@@ -22,11 +24,9 @@ export class LayoutHeaderMenuComponent implements OnInit {
   constructor(
     private storeAuth: Store<fromAuth.State>,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher) {
+    media: MediaMatcher,
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 990px)');
-  }
-
-  ngOnInit() {
   }
 
   close(reason: string) {

@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MyBikesMergeModalComponent} from './my-bikes-merge-modal.component';
+import { MyBikesMergeModalComponent } from './my-bikes-merge-modal.component';
 
 describe('MyBikesMergeModalComponent', () => {
   let component: MyBikesMergeModalComponent;
@@ -8,9 +8,8 @@ describe('MyBikesMergeModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyBikesMergeModalComponent ]
-    })
-    .compileComponents();
+      declarations: [MyBikesMergeModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

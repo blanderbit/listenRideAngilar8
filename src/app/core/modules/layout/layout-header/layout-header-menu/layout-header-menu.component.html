@@ -1,13 +1,14 @@
 <div class="wrap-top-menu">
   <div class="d-block d-lg-none">
     <mat-sidenav-container>
-      <mat-sidenav #sidenav
-                   (keydown.escape)="close('escape')"
-                   disableClose
-                   [fixedInViewport]="mobileQuery.matches"
-                   fixedTopGap="0">
-        <mat-icon class="white"
-                  (click)="close('toggle button')">
+      <mat-sidenav
+        #sidenav
+        (keydown.escape)="close('escape')"
+        disableClose
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="0"
+      >
+        <mat-icon class="white" (click)="close('toggle button')">
           close
         </mat-icon>
         <mat-nav-list *ngIf="!isLoggedIn">
@@ -17,9 +18,15 @@
           <a mat-list-item routerLink=".">How it works</a>
           <a mat-list-item routerLink=".">Trust & Safety</a>
         </mat-nav-list>
-        <mat-nav-list *ngIf="isLoggedIn"
-                      class="t-align-center m-t-2">
-          <img  class="sidenav-user-avatar p-2" [src]="(user$ | async)?.profilePicture?.profilePicture?.url | profilePicturePipe" alt="user-avatar"/>
+        <mat-nav-list *ngIf="isLoggedIn" class="t-align-center m-t-2">
+          <img
+            class="sidenav-user-avatar p-2"
+            [src]="
+              (user$ | async)?.profilePicture?.profilePicture?.url
+                | profilePicturePipe
+            "
+            alt="user-avatar"
+          />
 
           <a mat-list-item routerLink="/my-bikes">My Bikes</a>
           <a mat-list-item routerLink="/list-bike">List a bike</a>
@@ -42,8 +49,10 @@
     <ul class="flex direction-row content-end align-items-center header-list">
       <li class="header-list-item">
         <button
-          mat-button [matMenuTriggerFor]="subMenu"
-          class="d-none d-md-block">
+          mat-button
+          [matMenuTriggerFor]="subMenu"
+          class="d-none d-md-block"
+        >
           Learn more
           <mat-icon class="white">
             arrow_drop_down
@@ -58,34 +67,37 @@
           <button mat-menu-item>Help & Support</button>
         </mat-menu>
       </li>
-<!--      <li class="header-list-item">-->
-<!--        <lnr-list-my-bike-button></lnr-list-my-bike-button>-->
-<!--      </li>-->
+      <!--      <li class="header-list-item">-->
+      <!--        <lnr-list-my-bike-button></lnr-list-my-bike-button>-->
+      <!--      </li>-->
       <li *ngIf="!isLoggedIn" class="header-list-item lnr-d-flex">
-        <button mat-button color="white" routerLink="/list-bike">List a bike</button>
+        <button mat-button color="white" routerLink="/list-bike">
+          List a bike
+        </button>
         <button mat-button color="white" (click)="signUp()">Sign up</button>
         <button mat-button color="white" (click)="login()">Login</button>
-
       </li>
-      <li *ngIf="isLoggedIn"
-          class="header-list-item">
+      <li *ngIf="isLoggedIn" class="header-list-item">
         <a href="">Request</a>
       </li>
-      <li *ngIf="isLoggedIn"
-          class="header-list-item">
+      <li *ngIf="isLoggedIn" class="header-list-item">
         <a href="/list-bike">List a bike</a>
       </li>
-      <li *ngIf="isLoggedIn"
-          class="header-list-item">
-        <button
-          mat-button
-          [matMenuTriggerFor]="userMenu"
-          class="user-avatar">
-          <img [src]="(user$ | async)?.profilePicture?.profilePicture?.url | profilePicturePipe" alt="user-avatar"/>
+      <li *ngIf="isLoggedIn" class="header-list-item">
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-avatar">
+          <img
+            [src]="
+              (user$ | async)?.profilePicture?.profilePicture?.url
+                | profilePicturePipe
+            "
+            alt="user-avatar"
+          />
         </button>
 
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item [routerLink]="'/users/' + (user$ | async)?.id">Profile</button>
+          <button mat-menu-item [routerLink]="'/users/' + (user$ | async)?.id">
+            Profile
+          </button>
           <button mat-menu-item>Requests</button>
           <button mat-menu-item routerLink="/my-bikes">My Bikes</button>
           <mat-divider></mat-divider>

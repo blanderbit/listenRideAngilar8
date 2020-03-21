@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TimelineBlockComponent} from './timeline-block.component';
+import { TimelineBlockComponent } from './timeline-block.component';
 
 describe('TimelineBlockComponent', () => {
   let component: TimelineBlockComponent;
@@ -8,9 +8,8 @@ describe('TimelineBlockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TimelineBlockComponent]
-    })
-      .compileComponents();
+      declarations: [TimelineBlockComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

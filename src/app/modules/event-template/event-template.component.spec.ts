@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {EventTemplateComponent} from './event-template.component';
+import { EventTemplateComponent } from './event-template.component';
 
 describe('EventTemplateComponent', () => {
   let component: EventTemplateComponent;
@@ -8,9 +8,8 @@ describe('EventTemplateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EventTemplateComponent]
-    })
-      .compileComponents();
+      declarations: [EventTemplateComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

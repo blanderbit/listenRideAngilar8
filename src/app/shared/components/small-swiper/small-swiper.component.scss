@@ -5,21 +5,21 @@
   &_list {
     img {
       border-radius: $border-radius;
-      width: 100%;
       height: 21rem;
-      object-fit: cover;
       margin-left: 1rem;
-
-      &:hover {
-        opacity: 0.8;
-      }
+      object-fit: cover;
+      width: 100%;
 
       @include if-bigger-than(lg) {
         width: 32rem;
       }
       @include if-smaller-than(md) {
-        width: 100%;
         height: 10rem;
+        width: 100%;
+      }
+
+      &:hover {
+        opacity: 0.8;
       }
     }
   }

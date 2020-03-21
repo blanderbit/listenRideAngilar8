@@ -1,5 +1,5 @@
-@import "variables";
-@import "utils/utils";
+@import 'variables';
+@import 'utils/utils';
 
 :host::ng-deep .preview-container {
   display: grid;
@@ -21,50 +21,51 @@
       }
 
       .imgCheckboxContainer {
-        display: flex;
         align-items: center;
+        display: flex;
+        font-size: $h6-fontsize;
         font-style: normal;
         font-weight: 500;
-        font-size: $h6-fontsize;
+        height: 6rem;
         line-height: 120%;
         width: 7rem;
-        height: 6rem;
 
-        input[type="radio"] {
+        input[type='radio'] {
           display: none;
         }
 
         label.custom-checkbox {
-          border: .1rem solid $input-border;
-          box-sizing: border-box;
-          width: 100%;
-          height: 100%;
-          max-width: 1.8em;
-          max-height: 1.8em;
-          display: flex;
           align-items: center;
+          border: 0.1rem solid $input-border;
+          box-sizing: border-box;
+          display: flex;
+          height: 100%;
           justify-content: center;
+          max-height: 1.8em;
+          max-width: 1.8em;
+          width: 100%;
         }
 
         span {
           margin-left: 1rem;
         }
 
-        input:checked ~ label:before {
-          content: "\2714";
+        input:checked ~ label::before {
+          content: '\2714';
         }
       }
+
       .imgCheckboxButton {
+        align-items: baseline;
         display: flex;
         flex-direction: column;
-        align-items: baseline;
         margin: 1.8rem 2rem 0 0;
       }
 
 
       img.myBikePhoto {
-        width: 16.4rem !important;
         height: 11rem !important;
+        width: 16.4rem !important;
       }
 
       button.remove {

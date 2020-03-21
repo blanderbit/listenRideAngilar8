@@ -1,22 +1,26 @@
 export const objTypeControl = {
   findRoute: {
     type: 'route',
-    control: 'street'
-  }, findLocality: {
+    control: 'street',
+  },
+  findLocality: {
     type: 'locality',
-    control: 'city'
-  }, findPostCode: {
+    control: 'city',
+  },
+  findPostCode: {
     type: 'postal_code',
-    control: 'zip'
-  }, findCountry: {
+    control: 'zip',
+  },
+  findCountry: {
     type: 'country',
-    control: 'country'
-  }, findStreetNumber: {
+    control: 'country',
+  },
+  findStreetNumber: {
     type: 'street_number',
-    control: 'street'
-  }
+    control: 'street',
+  },
 };
 
 export const staticField = {
-  static: true
+  static: true,
 };

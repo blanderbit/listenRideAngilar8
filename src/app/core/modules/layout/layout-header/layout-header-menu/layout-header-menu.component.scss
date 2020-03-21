@@ -1,4 +1,4 @@
-@import "../../../../../../assets/scss/variables";
+@import '../../../../../../assets/scss/variables';
 
 .wrap-top-menu {
   ul {
@@ -8,11 +8,11 @@
 
   .header-list-item {
     a {
-      text-decoration: none;
-      font-size: $small-fontsize;
       color: $white-font-color;
+      font-size: $small-fontsize;
       margin-left: 1rem;
       margin-right: 1rem;
+      text-decoration: none;
     }
   }
 
@@ -25,7 +25,6 @@
 
 @media (max-width: $device-md) {
   .wrap-top-menu {
-
     .mat-drawer-container {
       background: none;
     }
@@ -37,26 +36,26 @@
     }
 
     .mat-drawer {
-      right: 0;
-      width: 100%;
-      z-index: 4;
       background: $dark-background;
       padding: 2rem;
+      right: 0;
       transform: scaleX(0);
       transform-origin: right;
-      transition: all .25s ease-out;
+      transition: all 0.25s ease-out;
+      width: 100%;
+      z-index: 4;
     }
   }
 }
 
 .user-avatar {
   img {
-    max-width: 3.4rem;
     border-radius: 50%;
+    max-width: 3.4rem;
   }
 }
 
 .sidenav-user-avatar {
-  max-width: 7rem;
   border-radius: 50%;
+  max-width: 7rem;
 }

@@ -1,21 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import {CountryISO, SearchCountryField, TooltipLabel} from 'ngx-intl-tel-input';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpErrorResponse} from '@angular/common/http';
-import {PhoneUpdateRequest} from '@models/user/phone-update-request';
-import {PhoneConfirmRequest} from '@models/user/phone-confirm-request';
-import {ApiUserService} from '@api/api-user/api-user.service';
+// TODO Fix to avoid eslint-ignore
+/* eslint-disable */
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import {
+  CountryISO,
+  SearchCountryField,
+  TooltipLabel,
+} from 'ngx-intl-tel-input';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PhoneUpdateRequest } from '@models/user/phone-update-request';
+import { PhoneConfirmRequest } from '@models/user/phone-confirm-request';
+import { ApiUserService } from '@api/api-user/api-user.service';
 
 @Component({
   selector: 'lnr-phone-update-dialog',
   templateUrl: './phone-update-dialog.component.html',
-  styleUrls: ['./phone-update-dialog.component.scss']
+  styleUrls: ['./phone-update-dialog.component.scss'],
 })
 export class PhoneUpdateDialogComponent implements OnInit {
   SearchCountryField = SearchCountryField;
+
   TooltipLabel = TooltipLabel;
+
   defaultCountry = CountryISO.Germany;
+
   preferredCountries: CountryISO[] = [
     CountryISO.Germany,
     CountryISO.Austria,
@@ -30,17 +39,20 @@ export class PhoneUpdateDialogComponent implements OnInit {
     CountryISO.Belgium,
     CountryISO.Poland,
   ];
+
   phoneForm: FormGroup;
+
   codeForm: FormGroup;
+
   phoneError: HttpErrorResponse;
+
   codeError: HttpErrorResponse;
 
   constructor(
     public dialogRef: MatDialogRef<PhoneUpdateDialogComponent>,
     private fb: FormBuilder,
-    private apiUserService: ApiUserService
-  ) {
-  }
+    private apiUserService: ApiUserService,
+  ) {}
 
   close() {
     this.dialogRef.close();
@@ -57,15 +69,15 @@ export class PhoneUpdateDialogComponent implements OnInit {
     }
 
     const phoneUpdateRequest: PhoneUpdateRequest = {
-      phone_number: this.phoneForm.value.phone_number.internationalNumber
+      phone_number: this.phoneForm.value.phone_number.internationalNumber,
     };
 
-    this.apiUserService.phoneUpdate(17289, phoneUpdateRequest)
-      .subscribe((res) => {
-      }, (error) => {
+    this.apiUserService.phoneUpdate(17289, phoneUpdateRequest).subscribe(
+      res => {},
+      error => {
         this.phoneError = error;
-      });
-
+      },
+    );
   }
 
   submitCode() {
@@ -73,13 +85,14 @@ export class PhoneUpdateDialogComponent implements OnInit {
       return;
     }
 
-    const phoneConfirmRequest: PhoneConfirmRequest = {...this.codeForm.value};
+    const phoneConfirmRequest: PhoneConfirmRequest = { ...this.codeForm.value };
 
-    this.apiUserService.phoneConfirm(phoneConfirmRequest)
-      .subscribe((res) => {
-      }, (error) => {
+    this.apiUserService.phoneConfirm(phoneConfirmRequest).subscribe(
+      res => {},
+      error => {
         this.codeError = error;
-      });
+      },
+    );
   }
 
   private getPhoneForm() {
@@ -88,7 +101,7 @@ export class PhoneUpdateDialogComponent implements OnInit {
     };
 
     return this.fb.group({
-      ...formControls
+      ...formControls,
     });
   }
 
@@ -98,7 +111,7 @@ export class PhoneUpdateDialogComponent implements OnInit {
     };
 
     return this.fb.group({
-      ...formControls
+      ...formControls,
     });
   }
 }

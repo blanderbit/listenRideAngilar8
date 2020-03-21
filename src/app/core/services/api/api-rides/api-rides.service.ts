@@ -1,19 +1,20 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Bike, ExpandedBikeData} from '@models/bike/bike.types';
-import {CamelCaseResponseKeys} from '@shared/decorators/camelcase-response-keys';
-import {RideResponse, EngagedTimeResponse} from '@api/api-rides/types';
-import {processRideResponse} from '@api/api-rides/helpers/process-ride-response';
-import * as snakecaseKeys from 'snakecase-keys';
-@Injectable({providedIn: 'root'})
+// TODO Fix to avoid eslint-disable (see below in file)
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Bike, ExpandedBikeData } from '@models/bike/bike.types';
+import { CamelCaseResponseKeys } from '@shared/decorators/camelcase-response-keys';
+import { RideResponse, EngagedTimeResponse } from '@api/api-rides/types';
+import { processRideResponse } from '@api/api-rides/helpers/process-ride-response';
+import * as snakeCaseKeys from 'snakecase-keys';
+@Injectable({ providedIn: 'root' })
 export class ApiRidesService {
   constructor(private httpClient: HttpClient) {}
 
   // TODO: add type
   getByQuery(params: any): Observable<any> {
-    return this.httpClient.get<any>(`/rides`, {params});
+    return this.httpClient.get<any>('/rides', { params });
   }
 
   @CamelCaseResponseKeys()
@@ -24,12 +25,12 @@ export class ApiRidesService {
   }
 
   getById(bikeId: string, light = true): Observable<Bike> {
-    const params: any = {light};
-    return this.httpClient.get<Bike>(`/rides/${bikeId}`, {params});
+    const params: any = { light };
+    return this.httpClient.get<Bike>(`/rides/${bikeId}`, { params });
   }
 
   getByUserId(userId: number, params?: any): Observable<any> {
-    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`, {params});
+    return this.httpClient.get<Bike[]>(`/users/${userId}/rides`, { params });
   }
 
   getBikeJobStatus(bikeId: number, jobId: number): Observable<any> {
@@ -37,11 +38,10 @@ export class ApiRidesService {
   }
 
   createBike(data): Observable<any> {
-    return this.httpClient.post(`/rides`, data);
+    return this.httpClient.post('/rides', data);
   }
 
   duplicateBike(bikeId: number | string, payload: any): Observable<any> {
-    console.log(payload);
     return this.httpClient.post(`/rides/${bikeId}/duplicates`, payload);
   }
 
@@ -54,29 +54,37 @@ export class ApiRidesService {
   }
 
   clusterizeBikes(bikeIds: number[]): Observable<any> {
-    return this.httpClient.post(`/clusters`, {cluster: {ride_ids: bikeIds}});
+    return this.httpClient.post('/clusters', {
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      cluster: { ride_ids: bikeIds },
+    });
   }
 
   declusterizeBikes(clusterId: number): Observable<any> {
     return this.httpClient.put(`/clusters/${clusterId}/unmerge`, {});
   }
 
+  // TODO: Use snakeCase!
+  // eslint-disable-next-line @typescript-eslint/camelcase
   getBikesByCluster(clusterId: number, start_date, duration): Observable<any> {
-    return this.httpClient.get(`/clusters/${clusterId}?start_date=${start_date}&duration${duration}`);
+    return this.httpClient.get(
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      `/clusters/${clusterId}?start_date=${start_date}&duration${duration}`,
+    );
   }
 
   @CamelCaseResponseKeys()
   getEngagedTimeData(
     bikeId: number,
     startDate: string,
-    endDate: string
+    endDate: string,
   ): Observable<EngagedTimeResponse> {
-    const params = snakecaseKeys({startDate, endDate}) as {
+    const params = snakeCaseKeys({ startDate, endDate }) as {
       [key: string]: string;
     };
     return this.httpClient.get<EngagedTimeResponse>(
       `/rides/${bikeId}/engaged_time`,
-      {params}
+      { params },
     );
   }
 }

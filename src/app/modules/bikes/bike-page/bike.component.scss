@@ -10,8 +10,8 @@ p {
 .bike-meta,
 .bike-user-meta {
   img {
-    width: 6rem;
     border-radius: 50%;
+    width: 6rem;
   }
 }
 
@@ -30,35 +30,35 @@ p {
 .static-map {
   height: 40rem;
 
-  img {
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-  }
-
   @include if-smaller-than(md) {
     height: 17.5rem;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
   }
 }
 
 .bike-accessories,
 .insurance-info {
   img {
-    width: 4rem;
-    height: 4rem;
     display: inline-block;
-    margin-right: 1rem;
+    height: 4rem;
     margin-bottom: 1rem;
+    margin-right: 1rem;
+    width: 4rem;
   }
 }
 
 .bike-booking-snackbar {
-  max-width: unset;
-  width: 100vw;
-  margin: 0;
+  background: $white;
   border-radius: 0;
   color: inherit;
-  background: $white;
+  margin: 0;
+  max-width: unset;
+  width: 100vw;
 }
 
 lnr-top-location ::ng-deep .top-location-list {
@@ -72,7 +72,7 @@ lnr-top-location ::ng-deep .top-location-list {
 }
 
 .booking-widget-container {
+  margin-bottom: 1rem;
   position: sticky;
   top: 1rem;
-  margin-bottom: 1rem;
 }

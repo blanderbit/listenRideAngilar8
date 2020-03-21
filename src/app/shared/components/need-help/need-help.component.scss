@@ -1,10 +1,10 @@
-@import "~assets/scss/colors";
-@import "~assets/scss/editables";
+@import '~assets/scss/colors';
+@import '~assets/scss/editables';
 
 img {
-  width: 7rem;
-  height: 7rem;
   border: 3px solid $white;
   border-radius: 50%;
+  height: 7rem;
   object-fit: cover;
+  width: 7rem;
 }

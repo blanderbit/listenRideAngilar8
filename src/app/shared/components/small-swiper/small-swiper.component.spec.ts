@@ -8,9 +8,8 @@ describe('SmallSwiperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmallSwiperComponent ]
-    })
-    .compileComponents();
+      declarations: [SmallSwiperComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,8 +1,9 @@
 <form id="location-container" [formGroup]="locationFormGroup">
-
   <h3>Where can the bike be picked up?</h3>
-  <p>Don’t worry, the exact location of your bike will ONLY be forwarded when you have confirmed a rental
-    request.</p>
+  <p>
+    Don’t worry, the exact location of your bike will ONLY be forwarded when you
+    have confirmed a rental request.
+  </p>
 
   <div class="location-container test">
     <div class="spiner" *ngIf="loading"></div>
@@ -11,15 +12,15 @@
         <div class="col-12">
           <label>Street and number*</label>
           <input
-             matInput
-             #address
-             formControlName="street"
-             type="search"
-             [ngClass]="{
-                'ng-touched':  isInvalidForm('street'),
-                'ng-invalid':  isInvalidForm('street')
-             }"
-          >
+            matInput
+            #address
+            formControlName="street"
+            type="search"
+            [ngClass]="{
+              'ng-touched': isInvalidForm('street'),
+              'ng-invalid': isInvalidForm('street')
+            }"
+          />
         </div>
       </mat-form-field>
       <mat-form-field class="col-12">
@@ -31,10 +32,10 @@
             formControlName="zip"
             type="search"
             [ngClass]="{
-                'ng-touched':  isInvalidForm('zip'),
-                'ng-invalid':  isInvalidForm('zip')
-             }"
-          >
+              'ng-touched': isInvalidForm('zip'),
+              'ng-invalid': isInvalidForm('zip')
+            }"
+          />
         </div>
       </mat-form-field>
     </div>
@@ -49,10 +50,10 @@
             formControlName="city"
             type="search"
             [ngClass]="{
-                'ng-touched':  isInvalidForm('city'),
-                'ng-invalid':  isInvalidForm('city')
-             }"
-          >
+              'ng-touched': isInvalidForm('city'),
+              'ng-invalid': isInvalidForm('city')
+            }"
+          />
         </div>
       </mat-form-field>
       <mat-form-field class="col-12">
@@ -65,41 +66,46 @@
             #regionsCountry
             formControlName="country"
             [ngClass]="{
-                'ng-touched':  isInvalidForm('country'),
-                'ng-invalid':  isInvalidForm('country')
-             }"
-          >
+              'ng-touched': isInvalidForm('country'),
+              'ng-invalid': isInvalidForm('country')
+            }"
+          />
         </div>
       </mat-form-field>
     </div>
 
-    <div
-            *ngIf="isCoverage">
+    <div *ngIf="isCoverage">
       <div class="inner-container">
         <h3>Your bike rental comes with automatic insurance!</h3>
-        <p>Your bike is insured whenever it is rented. In order to provide you
-          with the right protection it's necessary that you enter the value
-          of your bike.
-        <p>Please note that your have to provide proof of your bike's value
-          in case of any claim</p>
+        <p>
+          Your bike is insured whenever it is rented. In order to provide you
+          with the right protection it's necessary that you enter the value of
+          your bike.
+        </p>
+
+        <p>
+          Please note that your have to provide proof of your bike's value in
+          case of any claim
+        </p>
         <p><a>Learn more about insurance.</a></p>
       </div>
     </div>
 
-    <div
-            *ngIf="isCoverage">
+    <div *ngIf="isCoverage">
       <div class="inner-container category">
-
         <h3>What is the value of your bike?</h3>
         <div class="mat col-12">
-          <mat-form-field appearance="fill" class="bikeValue w-p-100" id="bikeValue">
-            <mat-select formControlName="coverage_total"
-                        placeholder="Please select your bike value"
+          <mat-form-field
+            appearance="fill"
+            class="bikeValue w-p-100"
+            id="bikeValue"
+          >
+            <mat-select
+              formControlName="coverage_total"
+              placeholder="Please select your bike value"
             >
-              <mat-option *ngFor="let item of listPrices"
-                          [value]="item"
-              >
-                {{item}}
+              <mat-option *ngFor="let item of listPrices" [value]="item">
+                {{ item }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -109,18 +115,16 @@
   </div>
 
   <div class="button-container">
-    <button class="mat-button-stepper"
-            mat-button
-            matStepperPrevious
-    >
+    <button class="mat-button-stepper" mat-button matStepperPrevious>
       Back
     </button>
-    <button class="mat-button-stepper next"
-            [ngClass]="{active: !locationFormGroup?.invalid}"
-            [disabled]="locationFormGroup?.invalid"
-            mat-button
-            matStepperNext
-            type="button"
+    <button
+      class="mat-button-stepper next"
+      [ngClass]="{ active: !locationFormGroup?.invalid }"
+      [disabled]="locationFormGroup?.invalid"
+      mat-button
+      matStepperNext
+      type="button"
     >
       Next
     </button>

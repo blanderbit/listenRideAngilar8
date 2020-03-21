@@ -10,9 +10,26 @@
     <div class="col-sm-12">
       <div class="tabs lnr-mrg-btm">
         <div class="buttons-wrap" [ngClass]="tabType">
-          <button mat-button (click)="toggleTab('profile')" [ngClass]="{'active': showProfile}">Profile</button>
-          <button mat-button (click)="toggleTab('account')" [ngClass]="{'active': showAccount}">Account</button>
-          <button mat-button (click)="toggleTab('availability')" [ngClass]="{'active': showAvailability}">Availability
+          <button
+            mat-button
+            (click)="toggleTab('profile')"
+            [ngClass]="{ active: showProfile }"
+          >
+            Profile
+          </button>
+          <button
+            mat-button
+            (click)="toggleTab('account')"
+            [ngClass]="{ active: showAccount }"
+          >
+            Account
+          </button>
+          <button
+            mat-button
+            (click)="toggleTab('availability')"
+            [ngClass]="{ active: showAvailability }"
+          >
+            Availability
           </button>
         </div>
       </div>
@@ -21,10 +38,18 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <lnr-settings-profile [hidden]="!showProfile" [user]="user$ | async"></lnr-settings-profile>
-      <lnr-settings-account [hidden]="!showAccount" [user]="user$ | async"></lnr-settings-account>
-      <lnr-settings-availability [hidden]="!showAvailability" [user]="user$ | async"></lnr-settings-availability>
+      <lnr-settings-profile
+        [hidden]="!showProfile"
+        [user]="user$ | async"
+      ></lnr-settings-profile>
+      <lnr-settings-account
+        [hidden]="!showAccount"
+        [user]="user$ | async"
+      ></lnr-settings-account>
+      <lnr-settings-availability
+        [hidden]="!showAvailability"
+        [user]="user$ | async"
+      ></lnr-settings-availability>
     </div>
   </div>
-
 </div>

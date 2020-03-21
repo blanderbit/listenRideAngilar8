@@ -8,9 +8,8 @@ describe('BikeBookingWidgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BikeBookingWidgetComponent ]
-    })
-    .compileComponents();
+      declarations: [BikeBookingWidgetComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,17 +1,15 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 
 @Component({
   selector: 'lnr-testimonials-swiper',
   templateUrl: './testimonials-swiper.component.html',
-  styleUrls: ['./testimonials-swiper.component.scss']
+  styleUrls: ['./testimonials-swiper.component.scss'],
 })
 export class TestimonialsSwiperComponent implements OnInit, OnDestroy {
   @Input() responses;
-  private swiper: Swiper;
 
-  constructor() {
-  }
+  private swiper: Swiper;
 
   ngOnInit() {
     this.swiper = new Swiper('.testimonials-swiper', {
@@ -22,14 +20,14 @@ export class TestimonialsSwiperComponent implements OnInit, OnDestroy {
       pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
-        clickable: true
+        clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.swiper-button-prev',
       },
       observer: true,
-      watchOverflow: true
+      watchOverflow: true,
     });
   }
 

@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {BrandTemplateBikeListComponent} from './brand-template-bike-list.component';
+import { BrandTemplateBikeListComponent } from './brand-template-bike-list.component';
 
 describe('BrandTemplateBikeListComponent', () => {
   let component: BrandTemplateBikeListComponent;
@@ -8,9 +8,8 @@ describe('BrandTemplateBikeListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BrandTemplateBikeListComponent]
-    })
-      .compileComponents();
+      declarations: [BrandTemplateBikeListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

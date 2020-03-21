@@ -1,4 +1,4 @@
-import {BikesCluster, ExpandedBikeData} from '@models/bike/bike.types';
+import { BikesCluster, ExpandedBikeData } from '@models/bike/bike.types';
 
 export interface RideResponse {
   current: Omit<ExpandedBikeData, 'cluster' | 'category' | 'subcategory'> & {

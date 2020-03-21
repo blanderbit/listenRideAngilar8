@@ -1,18 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 
 @Component({
   selector: 'lnr-small-swiper',
   templateUrl: './small-swiper.component.html',
-  styleUrls: ['./small-swiper.component.scss']
+  styleUrls: ['./small-swiper.component.scss'],
 })
 export class SmallSwiperComponent implements OnInit {
   @Input() responses;
-  @Input() link = '';
-  private smallSwiper: Swiper;
 
-  constructor() {
-  }
+  @Input() link = '';
+
+  private smallSwiper: Swiper;
 
   ngOnInit() {
     this.smallSwiper = new Swiper('.small-swiper', {
@@ -22,20 +21,20 @@ export class SmallSwiperComponent implements OnInit {
       initialSlide: 0,
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.swiper-button-prev',
       },
       breakpoints: {
         960: {
           slidesPerView: 3,
-          spaceBetween: 10
+          spaceBetween: 10,
         },
         740: {
           slidesPerView: 2,
-          spaceBetween: 10
+          spaceBetween: 10,
         },
       },
       observer: true,
-      watchOverflow: true
+      watchOverflow: true,
     });
   }
 }

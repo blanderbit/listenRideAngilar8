@@ -1,4 +1,4 @@
-import {TokenTypeEnum} from '@enums/token-type.enum';
+import { TokenTypeEnum } from '@enums/token-type.enum';
 
 export interface OauthTokenResponse {
   access_token: string;

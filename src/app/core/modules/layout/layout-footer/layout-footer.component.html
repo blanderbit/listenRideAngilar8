@@ -2,19 +2,29 @@
   <div class="container">
     <div class="lnr-footer_wrap row flex direction-row content-between">
       <div class="lnr-footer_content-block">
-        <lnr-link-list [title]="'listnride'" [links]="links.listnride"></lnr-link-list>
+        <lnr-link-list
+          [title]="'listnride'"
+          [links]="links.listnride"
+        ></lnr-link-list>
       </div>
       <div class="lnr-footer_content-block">
-        <lnr-link-list [title]="'Learn more'" [links]="links.learnMore"></lnr-link-list>
+        <lnr-link-list
+          [title]="'Learn more'"
+          [links]="links.learnMore"
+        ></lnr-link-list>
       </div>
       <div class="lnr-footer_content-block">
         <lnr-link-list [title]="'Top countries'">
-          <div *ngIf="countries$ | async as countries"
-               class="flex direction-column countries-list">
-            <a *ngFor="let country of countries"
-               class="lnr-white-link regular white text-decoration-none"
-               routerLink="./{{country.name.en | lowercase}}">
-              {{country.name[this.apiSeoService.retrieveLocale()]}}
+          <div
+            *ngIf="countries$ | async as countries"
+            class="flex direction-column countries-list"
+          >
+            <a
+              *ngFor="let country of countries"
+              class="lnr-white-link regular white text-decoration-none"
+              routerLink="./{{ country.name.en | lowercase }}"
+            >
+              {{ country.name[this.apiSeoService.retrieveLocale()] }}
             </a>
           </div>
         </lnr-link-list>
@@ -23,25 +33,33 @@
         <lnr-link-list [title]="'Legal'" [links]="links.legal"></lnr-link-list>
       </div>
       <div class="lnr-footer_partner-block">
-        <lnr-insurance-partners [title]="'Insurance Partner'"></lnr-insurance-partners>
+        <lnr-insurance-partners
+          [title]="'Insurance Partner'"
+        ></lnr-insurance-partners>
         <lnr-social-media-block></lnr-social-media-block>
       </div>
       <div class="lnr-footer_subscribe-form">
         <h3 class="white regular" style="padding-top: 16px;">
-          {{'footer.subscribe-title' | translate}}
+          {{ 'footer.subscribe-title' | translate }}
         </h3>
         <lnr-subscribe-input></lnr-subscribe-input>
-        <div class="lnr-footer_recapcha m-t-1 flex direction-row align-items-center">
+        <div
+          class="lnr-footer_recapcha m-t-1 flex direction-row align-items-center"
+        >
           <span>{{ 'footer.recapcha-text' | translate }}:&nbsp;</span>
-          <a class="text-decoration-none"
-             href="https://www.google.com/intl/uk/policies/privacy/"
-             target="_blank">
+          <a
+            class="text-decoration-none"
+            href="https://www.google.com/intl/uk/policies/privacy/"
+            target="_blank"
+          >
             {{ 'footer.privacy-statement' | translate }}
           </a>
           <span>&nbsp;&&nbsp;</span>
-          <a class="text-decoration-none"
-             href="https://www.google.com/intl/uk/policies/terms/"
-             target="_blank">
+          <a
+            class="text-decoration-none"
+            href="https://www.google.com/intl/uk/policies/terms/"
+            target="_blank"
+          >
             {{ 'footer.terms-and-conditions' | translate }}
           </a>
         </div>
@@ -56,14 +74,15 @@
 
     <div class="lnr-footer_bottom-block flex direction-row content-between">
       <div class="flex align-items-center direction-row">
-        <img src="../../../../../assets/images/logos/mini-logo.svg"
-             alt="listnride"
-             class="m-r-1">
+        <img
+          src="../../../../../assets/images/logos/mini-logo.svg"
+          alt="listnride"
+          class="m-r-1"
+        />
         <span class="white">
-          © {{currentYear}} List and Ride GmbH.
-          <a class="white"
-             href="#">
-          {{ 'footer.imprint' | translate }}
+          © {{ currentYear }} List and Ride GmbH.
+          <a class="white" href="#">
+            {{ 'footer.imprint' | translate }}
           </a>
         </span>
       </div>
@@ -73,4 +92,3 @@
     </div>
   </div>
 </footer>
-

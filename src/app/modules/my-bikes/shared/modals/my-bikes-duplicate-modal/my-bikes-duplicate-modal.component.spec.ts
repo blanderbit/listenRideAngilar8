@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MyBikesDuplicateModalComponent} from './my-bikes-duplicate-modal.component';
+import { MyBikesDuplicateModalComponent } from './my-bikes-duplicate-modal.component';
 
 describe('MyBikesDuplicateModalComponent', () => {
   let component: MyBikesDuplicateModalComponent;
@@ -8,9 +8,8 @@ describe('MyBikesDuplicateModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyBikesDuplicateModalComponent ]
-    })
-    .compileComponents();
+      declarations: [MyBikesDuplicateModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

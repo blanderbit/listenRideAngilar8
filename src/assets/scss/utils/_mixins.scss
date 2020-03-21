@@ -3,30 +3,30 @@
 // INPUT: @include transition(width height color);
 // OUTPUT: transition: width, height, color, 0.35s, cubic-bezier(.3, .1, .3, 1);
 @mixin transition($properties, $time: $duration) {
-    $value: ();
-    @each $property in $properties {
-        @if length($value) > 0 {
-            $value: append($value, unquote(",") #{$property} $time $easing);
-        }
-        @else {
-            $value: append($value, #{$property} $time $easing);
-        }
+  $value: ();
+  @each $property in $properties {
+    @if length($value) > 0 {
+      $value: append($value, unquote(',') #{$property} $time $easing);
     }
-    transition: $value;
+    @else {
+      $value: append($value, #{$property} $time $easing);
+    }
+  }
+  transition: $value;
 }
 
 @mixin if-smaller-than($breakpoint-name) {
-    @if map-has-key($responsive-breakpoints, $breakpoint-name) {
-      @media (max-width: map-get($responsive-breakpoints, $breakpoint-name) - 1) {
-        @content;
-      }
+  @if map-has-key($responsive-breakpoints, $breakpoint-name) {
+    @media (max-width: map-get($responsive-breakpoints, $breakpoint-name) - 1) {
+      @content;
     }
   }
+}
   
-  @mixin if-bigger-than($breakpoint-name) {
-    @if map-has-key($responsive-breakpoints, $breakpoint-name) {
-      @media (min-width: map-get($responsive-breakpoints, $breakpoint-name)) {
-        @content;
-      }
+@mixin if-bigger-than($breakpoint-name) {
+  @if map-has-key($responsive-breakpoints, $breakpoint-name) {
+    @media (min-width: map-get($responsive-breakpoints, $breakpoint-name)) {
+      @content;
     }
   }
+}

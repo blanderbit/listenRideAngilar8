@@ -1,20 +1,16 @@
 <div class="swiper-container swiper-bikes">
-  <div class="swiper-wrapper"
-       *ngIf="bikes as topBikes">
-    <div *ngFor="let bike of topBikes | async"
-         class="swiper-slide cursor-pointer col-md-4 col-sm-6">
+  <div class="swiper-wrapper" *ngIf="bikes as topBikes">
+    <div
+      *ngFor="let bike of topBikes | async"
+      class="swiper-slide cursor-pointer col-md-4 col-sm-6"
+    >
       <div class="w-p-100">
-        <lnr-bike-card
-          [bike]="bike"
-          [isMobileView]="false">
-        </lnr-bike-card>
+        <lnr-bike-card [bike]="bike" [isMobileView]="false"> </lnr-bike-card>
       </div>
     </div>
   </div>
   <div class="d-none d-lg-block">
-    <div class="swiper-button-prev">
-    </div>
-    <div class="swiper-button-next">
-    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </div>

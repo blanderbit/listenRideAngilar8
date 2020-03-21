@@ -1,4 +1,4 @@
-import {LinkConfig} from '../../../../shared/components/links/link.config';
+import { LinkConfig } from '../../../../shared/components/links/link.config';
 
 // TODO: add ui-href instead of href here ? and vice versa
 // TODO: add translation for countries or take them from Admin panel
@@ -7,68 +7,68 @@ export const LayoutFooterListLinksConfig: { [key: string]: LinkConfig[] } = {
   listnride: [
     {
       translationKey: 'footer.about',
-      href: '/about'
+      href: '/about',
     },
     {
       translationKey: 'footer.press',
-      href: '/press'
+      href: '/press',
     },
     {
       translationKey: 'footer.jobs',
-      href: '/jobs'
+      href: '/jobs',
     },
     {
       translationKey: 'settings.invite',
-      href: '/invite'
+      href: '/invite',
     },
     {
       translationKey: 'shared.contact',
-      href: '/help'
-    }
+      href: '/help',
+    },
   ],
 
   learnMore: [
     {
       translationKey: 'shared.how-it-works',
-      href: '/howItWorks'
+      href: '/howItWorks',
     },
     {
       translationKey: 'shared.listing-a-bike',
-      href: '/listingABike'
+      href: '/listingABike',
     },
     {
       translationKey: 'shared.for-shops',
-      href: '/businessCommunity'
+      href: '/businessCommunity',
     },
     {
       translationKey: 'shared.brands',
-      href: '/brands'
+      href: '/brands',
     },
     {
       translationKey: 'shared.journal',
-      href: 'http://journal.listnride.com'
-    }
+      href: 'http://journal.listnride.com',
+    },
   ],
   legal: [
     {
       translationKey: 'footer.terms-and-conditions',
-      href: '/terms'
+      href: '/terms',
     },
     {
       translationKey: 'footer.privacy-statement',
-      href: '/privacy'
+      href: '/privacy',
     },
     {
       translationKey: 'footer.sitemap',
-      href: '/sitemap' // or '/countries'
+      href: '/sitemap', // or '/countries'
     },
     {
       translationKey: 'shared.trust-and-safety',
-      href: '/trustAndSafety'
+      href: '/trustAndSafety',
     },
     {
       translationKey: 'footer.insurance',
-      href: '/insurance'
-    }
+      href: '/insurance',
+    },
   ],
 };

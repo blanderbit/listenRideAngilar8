@@ -3,58 +3,63 @@
     Start searching
   </h5>
   <form [formGroup]="searchingForm">
-    <div [ngClass]="{'d-block': activeSearch}"
-         class="flex direction-column">
+    <div [ngClass]="{ 'd-block': activeSearch }" class="flex direction-column">
       <div class="flex direction-row search-autocomplete">
         <img
           class="form-icon"
           alt=""
           src="../../../../../assets/ui_icons/map.svg"
         />
-        <input matInput
-               required
-               matGoogleMapsAutocomplete
-               placeholder="{{'shared.search-placeholder' | translate}}"
-               formControlName="location"
-               (onAutocompleteSelected)="onAutocompleteSelected($event)"
+        <input
+          matInput
+          required
+          matGoogleMapsAutocomplete
+          placeholder="{{ 'shared.search-placeholder' | translate }}"
+          formControlName="location"
+          (onAutocompleteSelected)="onAutocompleteSelected($event)"
         />
       </div>
       <mat-form-field class="m-t-1" appearance="outline">
         <mat-datepicker-toggle matPrefix [for]="resultPicker">
-          <mat-icon class="calendar-icon"
-                    matDatepickerToggleIcon>
-            <img alt=""
-                 src="../../../../../assets/ui_icons/calendar.svg"
-            /></mat-icon>
+          <mat-icon class="calendar-icon" matDatepickerToggleIcon>
+            <img alt="" src="../../../../../assets/ui_icons/calendar.svg"
+          /></mat-icon>
         </mat-datepicker-toggle>
-        <input matInput
-               class="filter-input"
-               placeholder="Choose a date"
-               formControlName="date"
-               [max]="maxDate"
-               [satDatepicker]="resultPicker"
-               (dateInput)="onDateInput($event)"
-               (dateChange)="onDateChange($event)">
-        <sat-datepicker panelClass="hdd-datepicker"
-                        #resultPicker
-                        [rangeMode]="true">
+        <input
+          matInput
+          class="filter-input"
+          placeholder="Choose a date"
+          formControlName="date"
+          [max]="maxDate"
+          [satDatepicker]="resultPicker"
+          (dateInput)="onDateInput($event)"
+          (dateChange)="onDateChange($event)"
+        />
+        <sat-datepicker
+          panelClass="hdd-datepicker"
+          #resultPicker
+          [rangeMode]="true"
+        >
         </sat-datepicker>
       </mat-form-field>
       <lnr-category-multiselect
         class="m-b-2 category-multiselect"
         [labelIcon]="true"
-        [label]="'shared.search_any_bike'| translate"
-        #categorySelect>
+        [label]="'shared.search_any_bike' | translate"
+        #categorySelect
+      >
       </lnr-category-multiselect>
-      <button mat-flat-button
-              [disabled]="!searchingForm.valid"
-              (click)="onSubmit($event)"
-              color="accent"
-              class="m-t-1"
-              type="submit">
-       <span class=" white">
-         {{'shared.search' | translate}}
-       </span>
+      <button
+        mat-flat-button
+        [disabled]="!searchingForm.valid"
+        (click)="onSubmit($event)"
+        color="accent"
+        class="m-t-1"
+        type="submit"
+      >
+        <span class=" white">
+          {{ 'shared.search' | translate }}
+        </span>
       </button>
     </div>
   </form>

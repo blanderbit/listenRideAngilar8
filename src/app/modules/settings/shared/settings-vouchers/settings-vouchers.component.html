@@ -3,7 +3,6 @@
     <h6>Vouchers</h6>
   </div>
 
-
   <div class="col-sm-12 col-md-8">
     <ng-container *ngIf="mode === 'update'">
       <p>Your current balance is 0 euro</p>
@@ -12,12 +11,21 @@
         <div formGroupName="voucher">
           <mat-form-field appearance="outline" class="lnr-w-100">
             <mat-label>Voucher code</mat-label>
-            <input formControlName="code"
-                   type="text"
-                   matInput
-                   placeholder="Enter value">
-            <mat-error *ngIf="voucherForm.get('code').touched && voucherForm.get('code').errors">
-              <small *ngIf="voucherForm.get('code').errors.required">Field is required</small>
+            <input
+              formControlName="code"
+              type="text"
+              matInput
+              placeholder="Enter value"
+            />
+            <mat-error
+              *ngIf="
+                voucherForm.get('code').touched &&
+                voucherForm.get('code').errors
+              "
+            >
+              <small *ngIf="voucherForm.get('code').errors.required"
+                >Field is required</small
+              >
             </mat-error>
           </mat-form-field>
         </div>
@@ -25,12 +33,22 @@
         <div class="row">
           <div class="col-sm-7"></div>
           <div class="col-sm-12 col-md-2">
-            <button mat-stroked-button class="lnr-w-100" (click)="openView()">Close</button>
+            <button mat-stroked-button class="lnr-w-100" (click)="openView()">
+              Close
+            </button>
           </div>
           <div class="col-sm-12 col-md-3">
-            <button mat-raised-button type="submit" color="primary" class="lnr-w-100" [disabled]="form?.invalid">
+            <button
+              mat-raised-button
+              type="submit"
+              color="primary"
+              class="lnr-w-100"
+              [disabled]="form?.invalid"
+            >
               Save
-              <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+              <lnr-loader-spinner-small
+                *ngIf="false"
+              ></lnr-loader-spinner-small>
             </button>
           </div>
         </div>
@@ -59,7 +77,5 @@
         </div>
       </div>
     </ng-container>
-
   </div>
-
 </div>

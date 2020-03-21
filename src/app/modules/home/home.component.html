@@ -1,12 +1,13 @@
 <div class="wrap-home-page">
   <div class="home-page_mobile d-block d-md-none">
-    <div class="wrap-main-img-mobile"
-         [ngStyle]="{ 'background-image': 'url(' + heroShotUrl + ')'}"
+    <div
+      class="wrap-main-img-mobile"
+      [ngStyle]="{ 'background-image': 'url(' + heroShotUrl + ')' }"
     >
       <div class="container">
         <div class="row">
           <h3 class="home-page_subtitles col-sm-6 col-md-12">
-            {{'home.landing-section-header' | translate}}
+            {{ 'home.landing-section-header' | translate }}
           </h3>
         </div>
       </div>
@@ -20,25 +21,24 @@
       <div class="row">
         <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
           <h3 class="home-page_subtitles">
-            {{'home.landing-section-header' | translate}}
+            {{ 'home.landing-section-header' | translate }}
           </h3>
-          <p>{{'home.landing-section-subheader' | translate}}</p>
+          <p>{{ 'home.landing-section-subheader' | translate }}</p>
         </div>
       </div>
       <div class="row home-page_content flex direction-row">
         <lnr-searching-form></lnr-searching-form>
         <div class="wrap-main-img">
-          <img alt=""
-               src="{{heroShotUrl}}">
+          <img alt="" src="{{ heroShotUrl }}" />
         </div>
       </div>
     </div>
     <div class="row m-b-6 p-t-2 d-none d-sm-block">
       <div class="col-md-7 col-sm-12 offset-md-1">
         <h3 class="home-page_subtitles">
-          {{'home.featured-bikes-header' | translate}}
+          {{ 'home.featured-bikes-header' | translate }}
         </h3>
-        <p>{{'home.featured-bikes-subheader' | translate}}</p>
+        <p>{{ 'home.featured-bikes-subheader' | translate }}</p>
       </div>
       <div class="col-md-12">
         <lnr-bike-tile-swiper></lnr-bike-tile-swiper>
@@ -50,21 +50,22 @@
     <div class="row">
       <div class="col-md-10 col-sm-12 m-t-2 m-b-2 offset-md-1">
         <h3 class="home-page_subtitles">
-          {{'home.featured-tiles-header' | translate}}
+          {{ 'home.featured-tiles-header' | translate }}
         </h3>
-        <p> {{'home.featured-tiles-subheader' | translate }}
-        </p>
+        <p>{{ 'home.featured-tiles-subheader' | translate }}</p>
       </div>
       <div class="col-md-12 m-b-2">
         <lnr-brands-swiper></lnr-brands-swiper>
       </div>
       <div class="home-page_button col-md-8 offset-md-1 m-t-2 m-b-4">
-        <button mat-flat-button
-                class="m-t-2 m-b-2"
-                routerLink="./brands"
-                color="accent">
+        <button
+          mat-flat-button
+          class="m-t-2 m-b-2"
+          routerLink="./brands"
+          color="accent"
+        >
           <span class="white regular heading-6">
-            {{'home.see-all-brands-and-bikes' | translate}}
+            {{ 'home.see-all-brands-and-bikes' | translate }}
           </span>
         </button>
       </div>
@@ -75,22 +76,24 @@
     <div class="row m-t-4 m-b-2">
       <div class="col-md-8 col-sm-12 m-t-2 m-b-2 offset-md-1">
         <h3 class="home-page_subtitles">
-          {{'home.events_block.title' | translate}}
+          {{ 'home.events_block.title' | translate }}
         </h3>
         <p>
-          {{'home.events_block.subtitle' | translate}}
+          {{ 'home.events_block.subtitle' | translate }}
         </p>
       </div>
       <div class="col-md-12 m-b-2">
         <lnr-events-swiper></lnr-events-swiper>
       </div>
       <div class="home-page_button col-md-11 offset-md-1 m-t-2 m-b-6">
-        <button mat-flat-button
-                class="m-t-2 m-b-2"
-                routerLink="./events"
-                color="accent">
+        <button
+          mat-flat-button
+          class="m-t-2 m-b-2"
+          routerLink="./events"
+          color="accent"
+        >
           <span class="white regular heading-6">
-            {{'shared.button_see_all_events' | translate}}
+            {{ 'shared.button_see_all_events' | translate }}
           </span>
         </button>
       </div>
@@ -98,21 +101,21 @@
     <div class="row m-b-2">
       <div class="col-md-11 offset-md-1">
         <h3 class="home-page_subtitles m-b-2">
-          {{'rent-a-bike.info-section.header' | translate}}
+          {{ 'rent-a-bike.info-section.header' | translate }}
         </h3>
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
           [image]="'../../../assets/images/img-home/Icon_rent-easy 1.svg'"
           [title]="'rent-a-bike.info-section.choice-title' | translate"
-          [paragraph]="'rent-a-bike.info-section.choice-content'| translate"
+          [paragraph]="'rent-a-bike.info-section.choice-content' | translate"
         >
         </lnr-our-pros>
       </div>
       <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
         <lnr-our-pros
           [image]="'../../../assets/images/img-home/Icon_rent-variety 1.svg'"
-          [title]="'rent-a-bike.info-section.easy-title'| translate"
+          [title]="'rent-a-bike.info-section.easy-title' | translate"
           [paragraph]="'rent-a-bike.info-section.easy-content' | translate"
         >
         </lnr-our-pros>
@@ -129,10 +132,10 @@
     <div class="row m-b-6">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
         <h3 class="home-page_subtitles m-b-2">
-          {{'rent-a-bike.testmonials-section.header' | translate}}
+          {{ 'rent-a-bike.testmonials-section.header' | translate }}
         </h3>
         <p>
-          {{'rent-a-bike.testmonials-section.subheader' | translate}}
+          {{ 'rent-a-bike.testmonials-section.subheader' | translate }}
         </p>
       </div>
       <div class="col-md-12">
@@ -142,22 +145,24 @@
     <div class="row">
       <div class="col-sm-12 col-md-8 offset-md-1 m-t-2">
         <h3 class="home-page_subtitles">
-          {{'home.featured-cities-header' | translate}}
+          {{ 'home.featured-cities-header' | translate }}
         </h3>
         <p>
-          {{'home.featured-cities-subheader' | translate}}
+          {{ 'home.featured-cities-subheader' | translate }}
         </p>
       </div>
       <div class="col-md-12 m-t-2">
         <lnr-recommended-destinations></lnr-recommended-destinations>
         <div class="home-page_button col-md-11 offset-md-1 m-t-2 m-b-6">
-          <button mat-flat-button
-                  class="m-t-2 m-b-2"
-                  routerLink="./cities"
-                  color="accent">
-          <span class="white regular heading-6">
-            {{'home.button_see_location' | translate}}
-          </span>
+          <button
+            mat-flat-button
+            class="m-t-2 m-b-2"
+            routerLink="./cities"
+            color="accent"
+          >
+            <span class="white regular heading-6">
+              {{ 'home.button_see_location' | translate }}
+            </span>
           </button>
         </div>
       </div>
@@ -165,7 +170,7 @@
     <div class="row m-b-6">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
         <h3 class="home-page_subtitles">
-          {{'seo.top_locations' | translate}}
+          {{ 'seo.top_locations' | translate }}
         </h3>
       </div>
       <div class="col-md-12 m-t-2 m-b-2">

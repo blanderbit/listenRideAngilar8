@@ -1,66 +1,97 @@
 <div>
   <mat-table #table [dataSource]="dataSource" matSort>
-
     <ng-container matColumnDef="select">
       <mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event && masterToggle()"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      [aria-label]="checkboxLabel()">
+        <mat-checkbox
+          (change)="$event && masterToggle()"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
         </mat-checkbox>
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <mat-checkbox (change)="$event && rowToggle(row)"
-                      [checked]="selection.isSelected(row)"
-                      [aria-label]="checkboxLabel(row)">
+        <mat-checkbox
+          (change)="$event && rowToggle(row)"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+        >
         </mat-checkbox>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="bike">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Bike </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> <img width="70px" src="{{bike.image_file}}" /> </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Bike
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike">
+        <img width="70px" src="{{ bike.image_file }}" />
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="brand">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Brand </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.brand}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Brand
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{ bike.brand }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="model">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.name}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Model
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{ bike.name }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="location">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.city}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        City
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{ bike.city }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Bike Id </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Bike Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{ bike.id }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="size">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Frame Size </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.frame_size}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Frame Size
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike"> {{ bike.frame_size }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike?.daily_price | number: '1.0-0' }} €/day </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Price
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike">
+        {{ bike?.daily_price | number: '1.0-0' }} €/day
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="grouped">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Grouped </mat-header-cell>
-      <mat-cell *matCellDef="let bike"> {{bike.rides_count > 1 ? bike.rides_count+' bikes' : ''}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Grouped
+      </mat-header-cell>
+      <mat-cell *matCellDef="let bike">
+        {{ bike.rides_count > 1 ? bike.rides_count + ' bikes' : '' }}</mat-cell
+      >
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Actions
+      </mat-header-cell>
       <mat-cell *matCellDef="let bike">
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon menu">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Icon menu"
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -68,22 +99,41 @@
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="openUnMergeModal(bike.cluster_id)" *ngIf="bike.is_cluster">
+          <button
+            mat-menu-item
+            (click)="openUnMergeModal(bike.cluster_id)"
+            *ngIf="bike.is_cluster"
+          >
             <mat-icon svgIcon="lnr-unmerge">edit</mat-icon>
             <span>Unmerge bikes</span>
           </button>
-          <button mat-menu-item (click)="openDuplicateModal(bike.id)" [disabled]="bike.is_cluster">
+          <button
+            mat-menu-item
+            (click)="openDuplicateModal(bike.id)"
+            [disabled]="bike.is_cluster"
+          >
             <mat-icon svgIcon="lnr-copy">Copy</mat-icon>
             <span>Duplicate</span>
           </button>
-          <button mat-menu-item (click)="openAvailabilityModal(bike.id, bike.availabilities)" [disabled]="bike.is_cluster">
+          <button
+            mat-menu-item
+            (click)="openAvailabilityModal(bike.id, bike.availabilities)"
+            [disabled]="bike.is_cluster"
+          >
             <mat-icon>alarm</mat-icon>
             <span>Availability</span>
           </button>
-          <button mat-menu-item (click)="toggleAvailability(bike.id, bike.available)">
-            <mat-icon *ngIf="!bike.available" svgIcon="lnr-visibility">activate</mat-icon>
-            <mat-icon *ngIf="bike.available" svgIcon="lnr-visibility-off">deactivate</mat-icon>
-            <span>{{bike.available ? 'Deactivate' : 'Activate'}}</span>
+          <button
+            mat-menu-item
+            (click)="toggleAvailability(bike.id, bike.available)"
+          >
+            <mat-icon *ngIf="!bike.available" svgIcon="lnr-visibility"
+              >activate</mat-icon
+            >
+            <mat-icon *ngIf="bike.available" svgIcon="lnr-visibility-off"
+              >deactivate</mat-icon
+            >
+            <span>{{ bike.available ? 'Deactivate' : 'Activate' }}</span>
           </button>
           <button mat-menu-item (click)="openDeleteModal(bike.id)">
             <mat-icon>delete</mat-icon>
@@ -93,14 +143,16 @@
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+    ></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-             matRipple
-             class="element-row"
-             [class.disabled]="!row.available"
-             ></mat-row>
-
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      matRipple
+      class="element-row"
+      [class.disabled]="!row.available"
+    ></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[25, 50, 75, 100]"></mat-paginator>
 </div>

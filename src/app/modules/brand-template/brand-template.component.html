@@ -1,4 +1,4 @@
-<div *ngIf="brand$| async as brand">
+<div *ngIf="brand$ | async as brand">
   <lnr-brand-template-welcome-screen
     [logo]="brand.logo"
     [responses]="brand.hero_images"
@@ -7,25 +7,25 @@
     <div class="row justify-content-md-center">
       <div class="m-b-2 m-t-2 col-md-8 col-sm-12">
         <h3 class="dark-font-color text-center">
-          {{brand.texts.main.title}}
+          {{ brand.texts.main.title }}
         </h3>
         <p class="heading-6 text-lg-left text-sm-center">
-          {{brand.texts.main.desc}}
+          {{ brand.texts.main.desc }}
         </p>
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let item of brand.texts.columns"
-           class="col-md-4 col-sm-12">
-        <img alt="brand"
-             class="w-p-100 brand-page_column-img"
-             src="{{item.image}}"
+      <div *ngFor="let item of brand.texts.columns" class="col-md-4 col-sm-12">
+        <img
+          alt="brand"
+          class="w-p-100 brand-page_column-img"
+          src="{{ item.image }}"
         />
         <h4 class="heading-4 m-t-1">
-          {{item.title}}
+          {{ item.title }}
         </h4>
         <p>
-          {{item.desc}}
+          {{ item.desc }}
         </p>
       </div>
     </div>
@@ -36,7 +36,7 @@
     </div>
     <div class="row justify-content-md-center">
       <div class="col-md-6 text-center">
-        <h5 class="light-font">Choose a {{brand.title}} location</h5>
+        <h5 class="light-font">Choose a {{ brand.title }} location</h5>
       </div>
     </div>
     <lnr-brand-template-bike-list [response]="brand.bikes">
@@ -49,26 +49,27 @@
     <div class="row justify-content-md-center">
       <div class="m-b-2 m-t-2 col-md-8 col-sm-12">
         <h3 class="dark-font-color text-center">
-          {{brand.texts.info.title}}
+          {{ brand.texts.info.title }}
         </h3>
         <p class="heading-6 text-lg-left text-sm-center">
-          {{brand.texts.info.desc}}
+          {{ brand.texts.info.desc }}
         </p>
       </div>
-      <div class="col-md-8 m-b-1"
-           *ngIf="brand.technical_specs_image">
-        <img class="brand-page_technical-img"
-             alt="brand technical img"
-             src="{{brand.technical_specs_image}}"/>
+      <div class="col-md-8 m-b-1" *ngIf="brand.technical_specs_image">
+        <img
+          class="brand-page_technical-img"
+          alt="brand technical img"
+          src="{{ brand.technical_specs_image }}"
+        />
       </div>
     </div>
     <div class="row justify-content-md-center">
       <div class="col-md-8">
         <p class="heading-6">
-          {{brand.texts.meta_data.title}}
+          {{ brand.texts.meta_data.title }}
         </p>
         <p class="heading-6">
-          {{brand.texts.meta_data.desc}}
+          {{ brand.texts.meta_data.desc }}
         </p>
       </div>
     </div>

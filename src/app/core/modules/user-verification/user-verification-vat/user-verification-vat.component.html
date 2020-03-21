@@ -1,63 +1,87 @@
 <div class="step-content">
-
   <div class="step-content-header">
-
-    <h3 class="step-title">Company information <sup>
-      <lnr-view-template-status [value]="'private'"></lnr-view-template-status>
-    </sup></h3>
+    <h3 class="step-title">
+      Company information
+      <sup>
+        <lnr-view-template-status
+          [value]="'private'"
+        ></lnr-view-template-status>
+      </sup>
+    </h3>
 
     <p>By providing your VAT you will have some another description</p>
-
   </div>
 
   <div class="small-form">
-
     <form [formGroup]="form" (ngSubmit)="submit()">
       <mat-error>
         <lnr-http-error-message [error]="error"></lnr-http-error-message>
       </mat-error>
 
-      <mat-form-field formGroupName="business" appearance="outline" class="lnr-w-100">
+      <mat-form-field
+        formGroupName="business"
+        appearance="outline"
+        class="lnr-w-100"
+      >
         <mat-label>VAT</mat-label>
-        <input formControlName="vat"
-               type="text"
-               matInput
-               placeholder="Enter VAT"
-               lnrAutofocus>
-        <mat-error *ngIf="businessForm.get('vat').touched && businessForm.get('vat').errors">
-          <span *ngIf="businessForm.get('vat').errors.required">Field is required</span>
-          <span *ngIf="businessForm.get('vat').errors.minlength">Min length is 4</span>
-          <span *ngIf="businessForm.get('vat').errors.maxlength">Max length is 50</span>
+        <input
+          formControlName="vat"
+          type="text"
+          matInput
+          placeholder="Enter VAT"
+          lnrAutofocus
+        />
+        <mat-error
+          *ngIf="
+            businessForm.get('vat').touched && businessForm.get('vat').errors
+          "
+        >
+          <span *ngIf="businessForm.get('vat').errors.required"
+            >Field is required</span
+          >
+          <span *ngIf="businessForm.get('vat').errors.minlength"
+            >Min length is 4</span
+          >
+          <span *ngIf="businessForm.get('vat').errors.maxlength"
+            >Max length is 50</span
+          >
         </mat-error>
       </mat-form-field>
-
     </form>
   </div>
 </div>
 
 <div class="step-actions lnr-d-flex lnr-space-btw">
   <div class="left-side" *ngIf="isDesktop || isTablet">
-    <button mat-button
-            matStepperPrevious
-            class="lnr-btn-back"
-            [hidden]="isItFirstStep">
+    <button
+      mat-button
+      matStepperPrevious
+      class="lnr-btn-back"
+      [hidden]="isItFirstStep"
+    >
       <mat-icon svgIcon="arrow-left"></mat-icon>
       Back
     </button>
   </div>
 
   <div class="right-side">
-
-    <button mat-stroked-button color="primary"
-            (click)="nextOrCloseIfLastStep()">{{stepCompleted ? 'Next' : 'Skip'}}</button>
-
-    <button mat-raised-button
-            color="primary"
-            class="lnt-btn-min-width lnr-mrg-l-16"
-            [disabled]="pending || form.invalid"
-            (click)="submit()">Save & {{isItLastStep ? 'complete' : 'proceed'}}
-      <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="nextOrCloseIfLastStep()"
+    >
+      {{ stepCompleted ? 'Next' : 'Skip' }}
     </button>
 
+    <button
+      mat-raised-button
+      color="primary"
+      class="lnt-btn-min-width lnr-mrg-l-16"
+      [disabled]="pending || form.invalid"
+      (click)="submit()"
+    >
+      Save & {{ isItLastStep ? 'complete' : 'proceed' }}
+      <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
+    </button>
   </div>
 </div>

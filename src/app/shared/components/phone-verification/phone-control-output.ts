@@ -1,4 +1,4 @@
-import {CountryCode} from 'libphonenumber-js';
+import { CountryCode } from 'libphonenumber-js';
 
 export interface PhoneControlOutput {
   number: string;

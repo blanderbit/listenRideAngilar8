@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {ApiBrandsService} from './api-brands.service';
+import { ApiBrandsService } from './api-brands.service';
 import 'jasmine';
 
 describe('ApiBrandsService', () => {

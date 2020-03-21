@@ -9,25 +9,25 @@
   position: relative;
 
   &_large-img {
-    position: absolute;
+    border-radius: $border-radius;
+    height: 42rem;
     left: 0;
+    object-fit: cover;
+    position: absolute;
     top: 0;
     width: 72rem;
-    height: 42rem;
-    object-fit: cover;
-    border-radius: $border-radius;
   }
 
   &_content {
     background: $white;
-    position: absolute;
-    width: 44rem;
-    box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
     border-radius: $border-radius;
+    box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
+    height: auto;
+    padding: 4rem 2rem 8rem;
+    position: absolute;
     right: 4rem;
     text-align: left;
-    height: auto;
-    padding: 4rem 2rem 8rem 2rem;
+    width: 44rem;
   }
 
   &_small-img {
@@ -35,28 +35,29 @@
   }
 
   &_username {
-    position: absolute;
     bottom: 0;
+    position: absolute;
   }
 }
 
 @include if-smaller-than(md) {
   :host .swiper-container {
     height: auto;
-    padding-top: 1rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
   }
+
   .testimonials-list_content {
     right: 0;
   }
 
   .testimonials-list {
     &_content {
+      height: auto;
+      margin-left: 1rem;
+      margin-right: 1rem;
       position: relative;
       width: 100%;
-      height: auto;
-      margin-right: 1rem;
-      margin-left: 1rem;
 
       h3 {
         font-size: $h4-fontsize;
@@ -74,13 +75,13 @@
     }
 
     &_small-img {
-      display: block;
-      width: 100%;
-      max-height: 20rem;
-      height: inherit;
-      position: relative;
-      object-fit: contain;
       border-radius: $border-radius;
+      display: block;
+      height: inherit;
+      max-height: 20rem;
+      object-fit: contain;
+      position: relative;
+      width: 100%;
     }
   }
 }
@@ -103,9 +104,9 @@
 }
 
 ::ng-deep.swiper-pagination-bullet {
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 30%;
-  margin: 0.4rem;
   background: $main-blue;
+  border-radius: 30%;
+  height: 1.2rem;
+  margin: 0.4rem;
+  width: 1.2rem;
 }

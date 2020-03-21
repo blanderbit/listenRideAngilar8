@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TestimonialsSwiperComponent} from './testimonials-swiper.component';
+import { TestimonialsSwiperComponent } from './testimonials-swiper.component';
 
 describe('TestimonialsSwiperComponent', () => {
   let component: TestimonialsSwiperComponent;
@@ -8,9 +8,8 @@ describe('TestimonialsSwiperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestimonialsSwiperComponent]
-    })
-      .compileComponents();
+      declarations: [TestimonialsSwiperComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

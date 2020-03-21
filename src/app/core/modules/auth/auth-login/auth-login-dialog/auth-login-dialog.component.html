@@ -2,32 +2,34 @@
   <h2 mat-dialog-title class="lnr-text-align-ctr">Log in</h2>
 
   <mat-error>
-    <lnr-http-error-message
-      [error]="error"></lnr-http-error-message>
+    <lnr-http-error-message [error]="error"></lnr-http-error-message>
   </mat-error>
 
   <lnr-button-close (closed)="close()"></lnr-button-close>
-
 </div>
 
 <mat-dialog-content>
-
-  <lnr-auth-login-form (valueValid)="onValueValid()"
-                  (valueInvalid)="onValueInvalid()"
-                  (loginPending)="onLoginPending()"
-                  (loginSuccess)="onLoginSuccess()"
-                  (loginError)="onLoginError($event)"
-                  [fireLogin$]="login$"></lnr-auth-login-form>
-
+  <lnr-auth-login-form
+    (valueValid)="onValueValid()"
+    (valueInvalid)="onValueInvalid()"
+    (loginPending)="onLoginPending()"
+    (loginSuccess)="onLoginSuccess()"
+    (loginError)="onLoginError($event)"
+    [fireLogin$]="login$"
+  ></lnr-auth-login-form>
 </mat-dialog-content>
 
 <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
-
   <div></div>
 
-  <button mat-raised-button color="primary" type="submit" (click)="login()" [disabled]="invalid">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="login()"
+    [disabled]="invalid"
+  >
     Log in
     <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
   </button>
-
 </mat-dialog-actions>

@@ -1,32 +1,41 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {typeList} from '@core/constants/filters.const';
+// TODO Fix all the esLint errors and warnings (see below!)
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { typeList } from '@core/constants/filters.const';
 
 @Component({
   selector: 'lnr-category-multiselect',
   templateUrl: './category-multi-select.component.html',
-  styleUrls: ['./category-multi-select.component.scss']
+  styleUrls: ['./category-multi-select.component.scss'],
 })
 export class CategoryMultiSelectComponent implements OnInit {
-
   categories = typeList;
-  categoriesTree = this.categories.map(cat => cat.categories.map(subCat => subCat.value));
+
+  categoriesTree = this.categories.map(cat =>
+    cat.categories.map(subCat => subCat.value),
+  );
+
   categoriesForm = {};
 
   @Input() inputSelectedCategories: string[] = [];
+
   @Input() label: string;
+
   @Input() labelIcon: boolean;
+
   @Output() multiSelectUpdate = new EventEmitter();
 
   ngOnInit() {
     const flatCat = [].concat(...this.categoriesTree);
     flatCat.forEach(cat => {
-      this.categoriesForm[cat] = this.inputSelectedCategories ? this.inputSelectedCategories.includes(cat) : false;
+      this.categoriesForm[cat] = this.inputSelectedCategories
+        ? this.inputSelectedCategories.includes(cat)
+        : false;
     });
   }
 
-  handleMenuClick(ev) {
+  public handleMenuClick = ev => {
     ev.stopPropagation(); // prevent layout-header-menu from closing
-  }
+  };
 
   toggleCategory(i) {
     this.categories[i].active = !this.categories[i].active;
@@ -44,6 +53,7 @@ export class CategoryMultiSelectComponent implements OnInit {
     const selectedCategories = [];
     const formArray = Object.entries(this.categoriesForm);
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of formArray) {
       if (value) {
         selectedCategories.push(key);
@@ -54,10 +64,15 @@ export class CategoryMultiSelectComponent implements OnInit {
   }
 
   checkCategorySelected(i) {
-    return this.categoriesTree[i].filter(el => this.categoriesForm[el]).length === this.categoriesTree[i].length;
+    return (
+      this.categoriesTree[i].filter(el => this.categoriesForm[el]).length ===
+      this.categoriesTree[i].length
+    );
   }
 
   checkIndeterminate(i) {
-    return this.categoriesTree[i].filter(el => this.categoriesForm[el]).length > 0;
+    return (
+      this.categoriesTree[i].filter(el => this.categoriesForm[el]).length > 0
+    );
   }
 }

@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {PhoneVerificationComponent} from '@shared/components/phone-verification/phone-verification.component';
-import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { PhoneVerificationComponent } from '@shared/components/phone-verification/phone-verification.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PhoneVerificationComponent],
@@ -10,10 +10,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
   ],
-  exports: [PhoneVerificationComponent]
+  exports: [PhoneVerificationComponent],
 })
-export class PhoneVerificationModule {
-
-}
+export class PhoneVerificationModule {}

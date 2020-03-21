@@ -1,61 +1,62 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 mat-dialog-content {
   min-height: 300px;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
 .file-upload-btn {
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  width: 150px;
-  height: 150px;
   border: 2px solid;
   border-radius: 50%;
   cursor: pointer;
+  display: block;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+  width: 150px;
 
   &:hover {
     border-width: 4px;
 
-    &:before, &:after {
+    &::before,
+    &::after {
       width: 4px;
     }
   }
 
-  &:before, &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 2px;
-    height: 30px;
-    top: 0;
-    right: 0;
+  &::before,
+  &::after {
+    background-color: $black;
     bottom: 0;
+    content: '';
+    display: block;
+    height: 30px;
     left: 0;
     margin: auto;
-    background-color: $black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2px;
   }
 
-  &:after {
+  &::after {
     transform: rotate(90deg);
   }
 }
 
 .lnr-img-file-upload-cropper {
-
   .controls {
     button {
-      border: none;
       background: transparent;
+      border: none;
       color: #868686;
       padding: 0 5px;
 
       :hover {
-        color: #000000;
+        color: #000;
       }
     }
   }
@@ -65,8 +66,8 @@ input[type="file"] {
     justify-content: space-between;
 
     image-cropper {
-      max-width: 50%;
       max-height: 300px;
+      max-width: 50%;
     }
 
     .preview {
@@ -74,15 +75,15 @@ input[type="file"] {
       width: 100%;
 
       .image-wrapper {
-        position: absolute;
-        width: 100px;
-        height: 150px;
-
-        top: 0;
-        right: 0;
         bottom: 0;
+        height: 150px;
         left: 0;
         margin: auto;
+        position: absolute;
+        right: 0;
+
+        top: 0;
+        width: 100px;
       }
 
       img {

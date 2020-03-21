@@ -1,26 +1,28 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {User} from '@models/user/user';
-import {SignUpRequest} from '@models/sign-up/sign-up-request';
-import {PhoneUpdateRequest} from '@models/user/phone-update-request';
-import {PhoneConfirmRequest} from '@models/user/phone-confirm-request';
-import {CamelCaseResponseKeys} from '@shared/decorators/camelcase-response-keys';
-import {SignUpFacebookRequest} from '@models/sign-up/sign-up-facebook-request';
-import {PaymentMethodUpdateRequest} from '@models/payment/payment-method-update-request';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '@models/user/user';
+import { SignUpRequest } from '@models/sign-up/sign-up-request';
+import { PhoneUpdateRequest } from '@models/user/phone-update-request';
+import { PhoneConfirmRequest } from '@models/user/phone-confirm-request';
+import { CamelCaseResponseKeys } from '@shared/decorators/camelcase-response-keys';
+import { SignUpFacebookRequest } from '@models/sign-up/sign-up-facebook-request';
+import { PaymentMethodUpdateRequest } from '@models/payment/payment-method-update-request';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ApiUserService {
   constructor(private httpClient: HttpClient) {}
 
   @CamelCaseResponseKeys()
   me(): Observable<Partial<User>> {
-    return this.httpClient.get<Partial<User>>(`/users/me`);
+    return this.httpClient.get<Partial<User>>('/users/me');
   }
 
   @CamelCaseResponseKeys()
-  create(signUpRequest: SignUpRequest | SignUpFacebookRequest): Observable<User> {
-    return this.httpClient.post<User>(`/users`, signUpRequest);
+  create(
+    signUpRequest: SignUpRequest | SignUpFacebookRequest,
+  ): Observable<User> {
+    return this.httpClient.post<User>('/users', signUpRequest);
   }
 
   @CamelCaseResponseKeys()
@@ -33,8 +35,14 @@ export class ApiUserService {
     return this.httpClient.put<User>(`/users/${userId}`, user);
   }
 
-  updatePaymentMethods(userId: number, paymentMethodUpdateRequest: PaymentMethodUpdateRequest): Observable<User> {
-    return this.httpClient.put<User>(`/users/${userId}/payment_methods`, paymentMethodUpdateRequest);
+  updatePaymentMethods(
+    userId: number,
+    paymentMethodUpdateRequest: PaymentMethodUpdateRequest,
+  ): Observable<User> {
+    return this.httpClient.put<User>(
+      `/users/${userId}/payment_methods`,
+      paymentMethodUpdateRequest,
+    );
   }
 
   @CamelCaseResponseKeys()
@@ -46,21 +54,24 @@ export class ApiUserService {
   }
 
   emailRequestConfirm(): Observable<any> {
-    return this.httpClient.post<any>(`/send_confirmation_email`, null);
+    return this.httpClient.post<any>('/send_confirmation_email', null);
   }
 
-  phoneUpdate(userId: number, phoneUpdateRequest: PhoneUpdateRequest): Observable<any> {
+  phoneUpdate(
+    userId: number,
+    phoneUpdateRequest: PhoneUpdateRequest,
+  ): Observable<any> {
     return this.httpClient.put<any>(
       `/users/${userId}/update_phone`,
-      phoneUpdateRequest
+      phoneUpdateRequest,
     );
   }
 
   phoneConfirm(phoneConfirmRequest: PhoneConfirmRequest): Observable<any> {
-    return this.httpClient.post<any>(`/confirm_phone`, phoneConfirmRequest);
+    return this.httpClient.post<any>('/confirm_phone', phoneConfirmRequest);
   }
 
   resetPassword(email: string): Observable<any> {
-    return this.httpClient.post(`/users/reset_password`, {email});
+    return this.httpClient.post('/users/reset_password', { email });
   }
 }

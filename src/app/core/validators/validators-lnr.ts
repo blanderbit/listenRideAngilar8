@@ -1,9 +1,16 @@
-import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from '@angular/forms';
-import {isEmpty, pickBy} from 'lodash';
+// TODO Fix to avoid eslint-ignore (see below in file)
+import {
+  AbstractControl,
+  FormControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import isEmpty from 'lodash-es/isEmpty';
+import pickBy from 'lodash-es/pickBy';
 
 export class ValidatorsLnr {
   static checkboxRequired(control: FormControl) {
-    return !control.value ? {required: true} : null;
+    return !control.value ? { required: true } : null;
   }
 
   static passwordValidator(control: FormControl) {
@@ -14,12 +21,15 @@ export class ValidatorsLnr {
     const result = pickBy({
       uppercase: !/[A-Z]/.test(control.value),
       digit: !/\d/.test(control.value),
-      specialchar: !/[!@#\$%^&\*\(\)\[\]\-{}=_+?:;~`"'\.,<>/|\\]/.test(control.value),
+      // eslint-disable-next-line no-useless-escape
+      specialchar: !/[!@#\$%^&\*\(\)\[\]\-{}=_+?:;~`"'\.,<>/|\\]/.test(
+        control.value,
+      ),
       minlength: control.value.length < 8,
-      maxlength: control.value.length > 50
+      maxlength: control.value.length > 50,
     });
 
-    return isEmpty(result) ? null : {format: result};
+    return isEmpty(result) ? null : { format: result };
   }
 
   static passwordsMatchValidator(control: FormControl) {
@@ -27,7 +37,7 @@ export class ValidatorsLnr {
     const confirmation = control.get('confirmPassword').value;
 
     if (password !== confirmation) {
-      control.get('confirmPassword').setErrors({match: true});
+      control.get('confirmPassword').setErrors({ match: true });
     } else {
       control.get('confirmPassword').setErrors(null);
     }
@@ -40,30 +50,29 @@ export class ValidatorsLnr {
     const val = control.value;
     if (!new RegExp(expression).test(val)) {
       if (!/@/.test(val) || val.match(/@/g).length > 1) {
-        return {noAt: true};
+        return { noAt: true };
       }
       if (val.indexOf('@') === 0) {
-        return {noName: true};
+        return { noName: true };
       }
       if (
         !/@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-          val.slice(val.indexOf('@'))
+          val.slice(val.indexOf('@')),
         )
       ) {
-        return {wrongDomain: true};
+        return { wrongDomain: true };
       }
-      return {wrongMail: true};
+      return { wrongMail: true };
     }
     return null;
   }
 
   static minLength(minLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
+      const value = String(control.value);
 
-      const value: string = String(control.value);
-
-      if (value.length && (value.length < +minLength)) {
-        return {minlength: true, requiredValue: minLength};
+      if (value.length && value.length < +minLength) {
+        return { minlength: true, requiredValue: minLength };
       }
 
       return null;
@@ -72,11 +81,10 @@ export class ValidatorsLnr {
 
   static maxLength(maxLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-
-      const value: string = String(control.value);
+      const value = String(control.value);
 
       if (value.length > +maxLength) {
-        return {maxlength: true, requiredValue: maxLength};
+        return { maxlength: true, requiredValue: maxLength };
       }
 
       return null;

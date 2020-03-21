@@ -1,25 +1,25 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 .bike-tile {
   background-color: white;
-  position: relative;
   border: 0.1rem solid $light-grey;
   border-radius: 0.4rem;
-  height: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
   cursor: pointer;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  width: 100%;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
     border-radius: 0.4rem;
+    color: $white-font-color;
+    font-size: $small-fontsize;
     padding: 0.4rem;
     position: absolute;
-    top: 1rem;
     right: 1rem;
-    font-size: $small-fontsize;
-    color: $white-font-color;
+    top: 1rem;
   }
 
   .mat-icon {
@@ -31,13 +31,13 @@
     padding: 0.8rem;
 
     &_brand {
-      font-size: $h5-fontsize;
       color: $dark-text-color;
+      font-size: $h5-fontsize;
     }
 
     &_name {
-      font-size: $small-fontsize;
       color: $dark-text-color;
+      font-size: $small-fontsize;
       max-width: 90%;
     }
 
@@ -46,26 +46,26 @@
     }
 
     &_size {
-      font-size: $small-fontsize;
       color: $light-text-color;
+      font-size: $small-fontsize;
       max-width: 100%;
     }
 
     &_rating {
-      font-size: $small-fontsize;
       color: $light-text-color;
+      font-size: $small-fontsize;
       width: 8.4rem;
     }
 
     &_price {
-      width: 8.4rem;
       line-height: 2rem;
+      width: 8.4rem;
     }
 
     &_content {
-      width: 70%;
-      line-height: 2rem;
       align-items: self-start;
+      line-height: 2rem;
+      width: 70%;
     }
 
     &_price-day {
@@ -78,11 +78,13 @@
       white-space: nowrap;
     }
 
-    &_price-xs, .bike-card-info-mobile {
+    &_price-xs,
+    .bike-card-info-mobile {
       display: none;
     }
 
-    &_size, &_rating {
+    &_size,
+    &_rating {
       margin-top: 0.4rem;
     }
   }
@@ -91,26 +93,26 @@
 @media (min-width: $device-sm) {
   .bike-tile {
     &_wrap-img {
-      width: 100%;
-      position: relative;
       border-bottom: 0.1rem solid $light-grey;
+      position: relative;
+      width: 100%;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
-        padding-top: 67.667%;
         float: left;
+        padding-top: 67.667%;
       }
 
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        top: 0;
-        left: 0;
-        position: absolute;
         border-top-left-radius: 0.4rem;
         border-top-right-radius: 0.4rem;
+        height: 100%;
+        left: 0;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
       }
     }
   }
@@ -120,16 +122,16 @@
   .bike-tile_mobile-view {
     .bike-tile {
       flex-direction: row;
-      width: 100%;
-      margin-top: 1rem;
       margin-bottom: 1rem;
+      margin-top: 1rem;
       max-height: 10rem;
+      width: 100%;
 
       .bike-available {
-        top: 0.2rem;
-        right: initial;
-        left: 0.2rem;
         font-size: 1.2rem;
+        left: 0.2rem;
+        right: initial;
+        top: 0.2rem;
       }
 
       .bike-card-info-mobile {
@@ -137,19 +139,20 @@
       }
 
       .bike-info {
-        width: 55%;
         padding: 0.6rem;
+        width: 55%;
 
         &_content {
           width: 100%;
         }
 
         &_brand {
-          width: 100%;
           font-size: $h6-fontsize;
+          width: 100%;
         }
 
-        &_rating, &_size {
+        &_rating,
+        &_size {
           margin-top: 0;
         }
 
@@ -161,15 +164,19 @@
         }
 
         &_price-day {
-          padding-bottom: 0;
           font-size: $h6-fontsize;
+          padding-bottom: 0;
         }
 
-        &_price, .bike-tile_desktop {
+        &_price,
+        .bike-tile_desktop {
           display: none;
         }
 
-        &_name, &_price-week, &_size, &_rating {
+        &_name,
+        &_price-week,
+        &_size,
+        &_rating {
           font-size: $small-fontsize - 0.2rem;
         }
       }
@@ -180,17 +187,17 @@
 
       .bike-tile {
         &_wrap-img {
-          width: 45%;
           border-right: 1px solid $light-grey;
+          width: 45%;
 
           img {
-            width: 100%;
-            height: 100%;
-            max-width: 19rem;
+            border-bottom-left-radius: 0.4rem;
             border-top-left-radius: 0.4rem;
             border-top-right-radius: 0;
-            border-bottom-left-radius: 0.4rem;
+            height: 100%;
+            max-width: 19rem;
             object-fit: cover;
+            width: 100%;
           }
         }
       }
@@ -202,7 +209,8 @@
 @media (min-width: $device-tablet) and (max-width: $device-lg) {
   .bike-tile {
     .bike-info {
-      &_brand, &_price-day {
+      &_brand,
+      &_price-day {
         font-size: $h5-fontsize;
       }
 
@@ -210,7 +218,10 @@
         font-size: $h5-fontsize;
       }
 
-      &_name, &_price-week, &_size, &_rating {
+      &_name,
+      &_price-week,
+      &_size,
+      &_rating {
         font-size: $small-fontsize - 0.2rem;
       }
     }
@@ -239,7 +250,8 @@
 
 @media (min-width: $device-xl) {
   .bike-info {
-    &_brand, &_price-day {
+    &_brand,
+    &_price-day {
       font-size: $h4-fontsize;
     }
 

@@ -1,22 +1,12 @@
-import {NgModule} from '@angular/core';
-import {ViewTemplateStatusComponent} from '@core/modules/view-template/view-template-status/view-template-status.component';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ViewTemplateStatusComponent } from '@core/modules/view-template/view-template-status/view-template-status.component';
+import { CommonModule } from '@angular/common';
 
-const components = [
-  ViewTemplateStatusComponent
-];
+const components = [ViewTemplateStatusComponent];
 
 @NgModule({
-  declarations: [
-    ...components
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    ...components
-  ]
+  declarations: [...components],
+  imports: [CommonModule],
+  exports: [...components],
 })
-export class ViewTemplateModule {
-
-}
+export class ViewTemplateModule {}

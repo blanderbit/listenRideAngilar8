@@ -3,12 +3,9 @@
     <form [formGroup]="eventsSortingForm">
       <mat-form-field appearance="outline">
         <mat-label>Rider height</mat-label>
-        <mat-select
-          placeholder="Rider height"
-          formControlName="size">
-          <mat-option *ngFor="let size of sizeList"
-                      [value]="size.value">
-            {{size.text}}
+        <mat-select placeholder="Rider height" formControlName="size">
+          <mat-option *ngFor="let size of sizeList" [value]="size.value">
+            {{ size.text }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -16,10 +13,14 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4"
-       [ngClass]="{'d-none':  eventsSortingForm.value.size !== bike.size,
-        'd-block': eventsSortingForm.value.size === null}"
-       *ngFor="let bike of bikes, let i=index">
+  <div
+    class="col-md-4"
+    [ngClass]="{
+      'd-none': eventsSortingForm.value.size !== bike.size,
+      'd-block': eventsSortingForm.value.size === null
+    }"
+    *ngFor="let bike of bikes; let i = index"
+  >
     <div>
       <div class="wrap-bikes">
         <lnr-bike-card [bike]="bike"></lnr-bike-card>

@@ -1,13 +1,12 @@
-@import "../../../../assets/scss/variables";
+@import '../../../../assets/scss/variables';
 
 .bikes-grid-wrapper {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   position: relative;
 
   .bike-tile-grid {
-
     &:hover .bike-selection-overlay {
       display: flex;
     }
@@ -20,17 +19,17 @@
       border-bottom: none;
     }
 
-    .bike-selection-overlay{
-      position: absolute;
-      top: 1.0rem;
-      left: 1.5rem;
-      width: 87%;
-      height: 50%;
-      padding: 0.5rem;
-      z-index: 3;
-      background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,rgba(0,0,0,.5)),color-stop(60%,transparent));
-      background-image: linear-gradient(180deg,rgba(0,0,0,.5) 10%,transparent 60%);
+    .bike-selection-overlay {
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgba(0, 0, 0, 0.5)), color-stop(60%, transparent));
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 10%, transparent 60%);
       display: none;
+      height: 50%;
+      left: 1.5rem;
+      padding: 0.5rem;
+      position: absolute;
+      top: 1rem;
+      width: 87%;
+      z-index: 3;
 
       &.active {
         display: flex;
@@ -46,17 +45,17 @@
     }
 
     .bike-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      margin-top: -1rem;
       border: 0.1rem solid $input-border;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
+      margin-top: -1rem;
 
       button {
         mat-icon {
+          color: $light-grey-font;
           width: 100%;
-         color: $light-grey-font;
         }
 
         &.btn-delete {

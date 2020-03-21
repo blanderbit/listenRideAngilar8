@@ -1,29 +1,39 @@
 <div class="swiper-container testimonials-swiper">
   <div class="swiper-wrapper">
-    <div *ngFor="let response of  responses"
-         class="swiper-slide cursor-pointer testimonials-list">
+    <div
+      *ngFor="let response of responses"
+      class="swiper-slide cursor-pointer testimonials-list"
+    >
       <div class="d-none d-lg-block">
-        <img alt=""
-             class="testimonials-list_large-img"
-             src="{{response.picture}}"/>
+        <img
+          alt=""
+          class="testimonials-list_large-img"
+          src="{{ response.picture }}"
+        />
       </div>
       <div class="testimonials-list_content">
         <h3 class="main-blue-font-color m-b-2 hyphens-auto">
-          {{response.description}}
+          {{ response.description }}
         </h3>
-        <img class="testimonials-list_small-img m-b-1"
-             alt=""
-             src="{{response.picture}}"/>
-        <p class="d-block d-lg-none testimonials-list_username light-font main-blue-font-color hyphens-auto">
+        <img
+          class="testimonials-list_small-img m-b-1"
+          alt=""
+          src="{{ response.picture }}"
+        />
+        <p
+          class="d-block d-lg-none testimonials-list_username light-font main-blue-font-color hyphens-auto"
+        >
           <span>Author:</span>
-          {{response.fullname}}
+          {{ response.fullname }}
         </p>
         <p class="dark-font-color hyphens-auto">
-          {{response.text}}
+          {{ response.text }}
         </p>
-        <p class=" light-font d-none d-lg-block testimonials-list_username hyphens-auto">
+        <p
+          class=" light-font d-none d-lg-block testimonials-list_username hyphens-auto"
+        >
           <span class="light-font">Author:</span>
-          {{response.fullname}}
+          {{ response.fullname }}
         </p>
       </div>
     </div>

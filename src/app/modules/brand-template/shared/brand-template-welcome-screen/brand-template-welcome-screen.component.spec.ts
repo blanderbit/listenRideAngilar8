@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {BrandTemplateWelcomeScreenComponent} from './brand-template-welcome-screen.component';
+import { BrandTemplateWelcomeScreenComponent } from './brand-template-welcome-screen.component';
 
 describe('BrandTemplateWelcomeScreenComponent', () => {
   let component: BrandTemplateWelcomeScreenComponent;
@@ -8,9 +8,8 @@ describe('BrandTemplateWelcomeScreenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BrandTemplateWelcomeScreenComponent]
-    })
-      .compileComponents();
+      declarations: [BrandTemplateWelcomeScreenComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

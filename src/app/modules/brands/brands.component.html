@@ -7,20 +7,15 @@
   </div>
   <div class="p-2">
     <div class="pt-0">
-      <mat-grid-list
-        [cols]="columnsNum"
-        gutterSize="16px"
-        rowHeight="1:0.65"
-      >
+      <mat-grid-list [cols]="columnsNum" gutterSize="16px" rowHeight="1:0.65">
         <mat-grid-tile
           class="rounded"
-          title="{{brand?.name}}"
+          title="{{ brand?.name }}"
           *ngFor="let brand of brandsList$ | async"
           [style.backgroundImage]="'url(' + brand?.thumb_image + ')'"
         >
           <!-- TODO: update with ui-href after BE update with standart Brand page -->
           <a href="/brands/{{ brand?.name }}"></a>
-
         </mat-grid-tile>
       </mat-grid-list>
     </div>

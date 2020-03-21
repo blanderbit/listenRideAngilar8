@@ -9,17 +9,17 @@
 }
 
 .swiper-slide {
-  background-size: cover;
   background-position: center;
+  background-size: cover;
   padding-top: (2 / 3) * 100%;
 }
 
 ::ng-deep .swiper-pagination-bullet {
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 15%;
   background: $light-grey;
+  border-radius: 15%;
+  height: 1.6rem;
   opacity: 1;
+  width: 1.6rem;
 }
 
 ::ng-deep .swiper-pagination-bullet-active {

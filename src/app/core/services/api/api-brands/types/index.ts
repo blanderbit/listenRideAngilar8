@@ -1,4 +1,4 @@
-import {Bike} from '@models/bike/bike.types';
+import { Bike } from '@models/bike/bike.types';
 
 export interface Brand {
   id: number;
@@ -14,7 +14,7 @@ export interface BrandInfo {
   title: string;
   texts: {
     columns: any;
-    faq: Array<string>,
+    faq: Array<string>;
     meta_data: {
       title: string;
       desc: string;

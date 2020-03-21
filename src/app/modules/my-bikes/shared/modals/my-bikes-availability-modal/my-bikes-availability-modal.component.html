@@ -4,31 +4,29 @@
 </div>
 
 <mat-dialog-content>
-
   <form [formGroup]="availabilityForm">
     <div class="row" *ngFor="let key of availabilityIds">
       <mat-form-field appearance="outline">
-        <input matInput
-               class="filter-input"
-               placeholder="Choose a date"
-               [formControlName]=key
-               [max]="maxDate"
-               [satDatepicker]="picker"
-               (dateInput)="onDateInput($event)"
-               (dateChange)="onDateChange($event)">
-        <sat-datepicker panelClass="hdd-datepicker"
-                        #picker [rangeMode]="true">
+        <input
+          matInput
+          class="filter-input"
+          placeholder="Choose a date"
+          [formControlName]="key"
+          [max]="maxDate"
+          [satDatepicker]="picker"
+          (dateInput)="onDateInput($event)"
+          (dateChange)="onDateChange($event)"
+        />
+        <sat-datepicker panelClass="hdd-datepicker" #picker [rangeMode]="true">
         </sat-datepicker>
         <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
       </mat-form-field>
     </div>
   </form>
-
 </mat-dialog-content>
 
 <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
   <button mat-raised-button color="primary" type="submit" (click)="submit()">
     OK
   </button>
-
 </mat-dialog-actions>

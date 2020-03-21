@@ -1,26 +1,26 @@
-@import "../../../../../assets/scss/variables";
+@import '../../../../../assets/scss/variables';
 
 .bike-tile-map-view {
   background-color: white;
-  position: relative;
   border: 0.1rem solid $light-grey;
   border-radius: 0.4rem;
-  height: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  width: 100%;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
     border-radius: 0.4rem;
+    color: $white-font-color;
+    font-size: $small-fontsize;
     padding: 0.4rem;
     position: absolute;
-    top: 1rem;
     right: 1rem;
-    font-size: $small-fontsize;
-    color: $white-font-color;
+    top: 1rem;
   }
 
   .mat-icon {
@@ -32,11 +32,12 @@
     padding: 0.8rem;
 
     &_brand {
-      font-size: $h5-fontsize;
       color: $dark-text-color;
+      font-size: $h5-fontsize;
     }
 
-    &_name, &_price-week {
+    &_name,
+    &_price-week {
       font-size: $small-fontsize;
     }
 
@@ -45,26 +46,26 @@
     }
 
     &_size {
-      font-size: $small-fontsize;
       color: $light-text-color;
+      font-size: $small-fontsize;
       margin-top: 0.4rem;
     }
 
     &_rating {
-      font-size: $small-fontsize;
       color: $light-text-color;
-      width: 8.4rem;
+      font-size: $small-fontsize;
       margin-top: 0.4rem;
+      width: 8.4rem;
     }
 
     &_price {
-      width: 8.4rem;
       line-height: 2rem;
+      width: 8.4rem;
     }
 
     &_content {
-      max-width: 70%;
       line-height: 2rem;
+      max-width: 70%;
     }
 
     &_price-day {
@@ -84,14 +85,14 @@
 
   &_wrap-img {
     border: 0.1rem solid $light-grey;
-    width: 100%;
     position: relative;
+    width: 100%;
 
     img {
-      width: 100%;
-      height: 100%;
       border-top-left-radius: 0.4rem;
       border-top-right-radius: 0.4rem;
+      height: 100%;
+      width: 100%;
     }
   }
 }
@@ -104,7 +105,8 @@
     }
 
     .bike-info {
-      &_brand, &_price-day {
+      &_brand,
+      &_price-day {
         font-size: $h5-fontsize;
       }
 
@@ -112,7 +114,10 @@
         font-size: $h5-fontsize;
       }
 
-      &_name, &_price-week, &_size, &_rating {
+      &_name,
+      &_price-week,
+      &_size,
+      &_rating {
         font-size: $small-fontsize - 0.2rem;
       }
     }
@@ -121,7 +126,8 @@
 
 @media (min-width: $device-xl) {
   .bike-info {
-    &_brand, &_price-day {
+    &_brand,
+    &_price-day {
       font-size: $h4-fontsize;
     }
 

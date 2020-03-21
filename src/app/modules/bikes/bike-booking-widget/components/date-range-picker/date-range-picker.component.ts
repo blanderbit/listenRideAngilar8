@@ -1,3 +1,4 @@
+// TODO Fix to avoid eslint-ignore (see below in file)
 import {
   Component,
   OnInit,
@@ -8,59 +9,71 @@ import {
   EventEmitter,
   KeyValueDiffers,
   KeyValueDiffer,
-  DoCheck
+  DoCheck,
 } from '@angular/core';
-import {DaterangepickerDirective} from 'ngx-daterangepicker-material';
-import {CalendarValues, DatesRange, StartDateChangedEvent} from '../../types';
-import {EngagedDays, EngagedHours} from '@api/api-rides/types';
+import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
+import { EngagedDays, EngagedHours } from '@api/api-rides/types';
 import * as moment from 'moment';
+import { TimeSlots } from '@models/business/business';
+import { Debounce } from '@shared/decorators/debounce';
+import range from 'lodash-es/range';
+import { DATE_FORMAT } from '../../constants';
 import {
   getAvailableHalfDays,
   getAvailableHalfDayPrefix,
-  getAbsentNumbers
+  getAbsentNumbers,
 } from '../../helpers';
-import {TimeSlots} from '@models/business/business';
-import {DATE_FORMAT} from '../../constants';
-import {Debounce} from '@shared/decorators/debounce';
-import range from 'lodash-es/range';
+import { CalendarValues, DatesRange, StartDateChangedEvent } from '../../types';
 
 const NEXT_YEAR = moment().add(14, 'month');
 
 @Component({
   selector: 'lnr-date-range-picker',
   templateUrl: './date-range-picker.component.html',
-  styleUrls: ['./date-range-picker.component.scss']
+  styleUrls: ['./date-range-picker.component.scss'],
 })
 export class DateRangePickerComponent
   implements OnInit, AfterViewInit, DoCheck {
   constructor(private kvDiffers: KeyValueDiffers) {}
 
-  @ViewChild(DaterangepickerDirective, {static: false})
+  @ViewChild(DaterangepickerDirective, { static: false })
   pickerDirective: DaterangepickerDirective;
 
   @Input() datesRange: DatesRange;
+
   @Input() engagedDays: EngagedDays;
+
   @Input() engagedHours: EngagedHours;
+
   @Input() isHalfDay: boolean;
+
   @Input() timeSlots: TimeSlots;
+
   @Input() onNextMonthRequest: (month: string) => Promise<void>;
 
   @Output() datesRangeSet = new EventEmitter<DatesRange>();
 
   public localeOptions = {
     firstDay: 1,
-    applyLabel: 'OK'
+    applyLabel: 'OK',
   };
+
   public minDate: moment.Moment;
+
   public maxDate: moment.Moment;
+
   private flatInvalidDates: Array<string> = [];
+
   private engagedDaysDiffer: KeyValueDiffer<string, Array<string>>;
+
   public isCalendarDataLoading: boolean;
 
   public isInvalidDate = date => this.checkIsInvalidDate(date);
+
   public isCustomDate = date => this.checkIsCustomDate(date);
+
   ngOnInit(): void {
-    const {unavailable, booked, closed} = this.engagedDays;
+    const { unavailable, booked, closed } = this.engagedDays;
     const flatInvalidDates = [...unavailable, ...booked, ...closed];
     const minDate = moment();
 
@@ -72,11 +85,12 @@ export class DateRangePickerComponent
 
     this.engagedDaysDiffer = this.kvDiffers.find(this.engagedDays).create();
   }
+
   ngDoCheck() {
     if (this.engagedDaysDiffer) {
       const changes = this.engagedDaysDiffer.diff(this.engagedDays);
       if (changes) {
-        const {unavailable, booked, closed} = this.engagedDays;
+        const { unavailable, booked, closed } = this.engagedDays;
 
         this.flatInvalidDates = [...unavailable, ...booked, ...closed];
         if (this.pickerDirective) {
@@ -87,20 +101,22 @@ export class DateRangePickerComponent
   }
 
   onStartDateChange(event) {
-    const {startDate} = event as StartDateChangedEvent;
-    const {unavailable, booked, partlyUnavailable} = this.engagedDays;
+    const { startDate } = event as StartDateChangedEvent;
+    const { unavailable, booked, partlyUnavailable } = this.engagedDays;
     const startDayString = startDate.format(DATE_FORMAT);
 
     if (this.pickerDirective.picker.isShown) {
       this.maxDate = [...booked, ...partlyUnavailable, ...unavailable]
         .sort()
+        // eslint-disable-next-line array-callback-return,consistent-return
         .reduce((result: moment.Moment | undefined, current) => {
           if (result) {
             return result;
-          } else if (current >= startDayString) {
+          }
+          if (current >= startDayString) {
             if (partlyUnavailable.includes(current)) {
               const engagedHours = this.engagedHours[current];
-              const {unavailable: unavailableHours, closed} = engagedHours;
+              const { unavailable: unavailableHours, closed } = engagedHours;
 
               if (current === startDayString) {
                 const reversedClosedHours = closed.sort((a, b) => b - a);
@@ -110,12 +126,13 @@ export class DateRangePickerComponent
                 const lastUnavailableHour = Math.max(...unavailableHours);
 
                 if (range(lastUnavailableHour + 1, closingHour).length) {
+                  // eslint-disable-next-line consistent-return
                   return; // Continue looping because this day is OK to start with
                 }
               }
               const firstUnavailableToRange = Math.min(...unavailableHours);
               const availableHours = getAbsentNumbers(closed).filter(
-                n => n < firstUnavailableToRange
+                n => n < firstUnavailableToRange,
               );
 
               if (availableHours.length) {
@@ -133,10 +150,10 @@ export class DateRangePickerComponent
   @Debounce(300)
   onEndDate(event) {
     if (event && event.startDate) {
-      const {startDate, endDate} = event as DatesRange;
+      const { startDate, endDate } = event as DatesRange;
 
       this.toggleDatepicker();
-      this.datesRangeSet.emit({startDate, endDate});
+      this.datesRangeSet.emit({ startDate, endDate });
       this.maxDate = NEXT_YEAR;
     }
   }
@@ -145,19 +162,22 @@ export class DateRangePickerComponent
     return this.maxDate && date.isAfter(this.maxDate, 'day');
   }
 
-  checkIsCustomDate(date: moment.Moment) {
+  // eslint-disable-next-line consistent-return
+  checkIsCustomDate(date: moment.Moment): Array<string> | string | void {
     const dateString = date.format(DATE_FORMAT);
-    const {partlyUnavailable, unavailable, booked} = this.engagedDays;
+    const { partlyUnavailable, unavailable, booked } = this.engagedDays;
     const fullyUnavailable = [...unavailable, ...booked];
 
     if (fullyUnavailable.includes(dateString)) {
       return ['fully-unavailable-day', 'off', 'disabled', 'invalid'];
-    } else if (this.flatInvalidDates.includes(dateString)) {
+    }
+    if (this.flatInvalidDates.includes(dateString)) {
       return ['off', 'disabled', 'invalid'];
-    } else if (this.isHalfDay && partlyUnavailable.includes(dateString)) {
+    }
+    if (this.isHalfDay && partlyUnavailable.includes(dateString)) {
       const [availableHalfDay] = getAvailableHalfDays(
         this.engagedHours[dateString],
-        this.timeSlots
+        this.timeSlots,
       );
       const prefix = getAvailableHalfDayPrefix(availableHalfDay);
 
@@ -170,14 +190,14 @@ export class DateRangePickerComponent
   }
 
   ngAfterViewInit() {
-    const {picker} = this.pickerDirective;
+    const { picker } = this.pickerDirective;
     const originalClickNext = picker.clickNext;
     const originalHide = picker.hide;
 
     picker.clickNext = async side => {
-      const {calendarVariables} = picker;
-      const {left: currentCalendarValues} = calendarVariables;
-      const {month, year} = currentCalendarValues as CalendarValues;
+      const { calendarVariables } = picker;
+      const { left: currentCalendarValues } = calendarVariables;
+      const { month, year } = currentCalendarValues as CalendarValues;
       const nextMonth = String(month + 2).padStart(2, '0'); // January is the 0th
 
       this.isCalendarDataLoading = true;
