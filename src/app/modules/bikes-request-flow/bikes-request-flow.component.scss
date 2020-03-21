@@ -49,15 +49,13 @@
     position: relative;
 
     .arrow-right {
-      background-image: url('./../../../assets/img/arrow-right.svg');
+      background-image: url("./../../../assets/images/icons/shared/long-arrow-right.svg");
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
       height: 100%;
       margin-right: 0.5rem;
       width: 5.5rem;
-      //position:;
-
     }
 
     &.mbsc-control-w {

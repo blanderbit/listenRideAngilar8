@@ -7,7 +7,7 @@ import {
   SubCategoryInterface,
 } from '../../modules/list-my-bike/model/models';
 
-const ACCESSORIES_IMG_PATH = 'assets/img-accessories/';
+const ACCESSORIES_IMG_PATH = 'assets/images/icons/accessories/';
 
 interface CategoryData {
   category: CategoryInterface;

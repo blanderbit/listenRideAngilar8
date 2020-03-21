@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { imagesAmazonFolder } from '@core/constants/external-path';
 import random from 'lodash-es/random';
 
 @Component({
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   pickRandomHeroshot() {
     const heroShotId = random(1, 6);
-    this.heroShotUrl = `../../../assets/images/img-home/hero/lnr_hero_${heroShotId}.jpg`;
+    this.heroShotUrl = `${imagesAmazonFolder}/home/hero/lnr_hero_${heroShotId}.jpg`;
   }
 
   ngOnInit() {

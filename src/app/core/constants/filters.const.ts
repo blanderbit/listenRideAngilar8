@@ -1,13 +1,14 @@
-declare let require;
+declare var require;
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-const Urban = require('../../../assets/img-category/urban.svg');
-const Special = require('../../../assets/img-category/special.svg');
-const Road = require('../../../assets/img-category/road.svg');
-const Kids = require('../../../assets/img-category/kids.svg');
-const eBike = require('../../../assets/img-category/e-bike.svg');
-const Transport = require('../../../assets/img-category/cargo.svg');
-const AllTerrain = require('../../../assets/img-category/all-terrain.svg');
+const Urban = require('./../../../assets/images/icons/categories/urban.svg');
+const Special = require('./../../../assets/images/icons/categories/special.svg');
+const Road = require('./../../../assets/images/icons/categories/road.svg');
+const Kids = require('./../../../assets/images/icons/categories/kids.svg');
+const eBike = require('./../../../assets/images/icons/categories/e-bike.svg');
+const Transport = require('./../../../assets/images/icons/categories/cargo.svg');
+const AllTerrain = require('./../../../assets/images/icons/categories/all-terrain.svg');
+
 
 export const sizeList = [
   {
@@ -50,6 +51,7 @@ export const sizeList = [
 export const typeList = [
   {
     type: 'Urban',
+    name: 'urban',
     src: Urban,
     active: false,
     categories: [
@@ -69,6 +71,7 @@ export const typeList = [
   },
   {
     type: 'E-bike',
+    name: 'e-bike',
     src: eBike,
     active: false,
     categories: [
@@ -104,6 +107,7 @@ export const typeList = [
   },
   {
     type: 'Road',
+    name: 'road',
     src: Road,
     active: false,
     categories: [
@@ -127,6 +131,7 @@ export const typeList = [
   },
   {
     type: 'All terrain',
+    name: 'all-terrain',
     src: AllTerrain,
     active: false,
     categories: [
@@ -150,6 +155,7 @@ export const typeList = [
   },
   {
     type: 'Transport',
+    name: 'transport',
     src: Transport,
     active: false,
     categories: [
@@ -181,6 +187,7 @@ export const typeList = [
   },
   {
     type: 'Kids',
+    name: 'kids',
     src: Kids,
     active: false,
     categories: [
@@ -204,6 +211,7 @@ export const typeList = [
   },
   {
     type: 'Special',
+    name: 'special',
     src: Special,
     active: false,
     categories: [

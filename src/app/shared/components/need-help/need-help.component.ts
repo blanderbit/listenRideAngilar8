@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { imagesAmazonFolder } from '@core/constants/external-path';
 
 @Component({
   selector: 'lnr-need-help',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class NeedHelpComponent {
   // eslint-disable-next-line global-require
-  NEED_HELP_IMAGE = require('assets/images/need-help/lnr_support_jean@2x.jpg');
+  NEED_HELP_IMAGE = `${imagesAmazonFolder}/shared/lnr_support_jean@2x.jpg`;
 }

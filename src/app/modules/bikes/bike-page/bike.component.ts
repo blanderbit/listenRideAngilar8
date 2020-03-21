@@ -26,7 +26,7 @@ export class BikeComponent implements OnInit {
   public accessoriesImages: Array<AccessoryImage>;
 
   // eslint-disable-next-line global-require
-  public SECURE_IMAGE = require('assets/images/img-home/Icon_rent-secure 1.svg');
+  public SECURE_IMAGE = require('assets/images/icons/home/rent-secure.svg');
 
   public isInsuranceIncluded: boolean;
 

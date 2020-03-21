@@ -112,7 +112,7 @@ export class AppModule {
   constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     // TODO: filter mdi.svg to contains just needed icons
     matIconRegistry.addSvgIconSet(
-      domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'),
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/icons/shared/mdi.svg'),
     );
   }
 }

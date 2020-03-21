@@ -1,9 +1,3 @@
-/*
-  clear unnecessary characters
-*/
-export const getClearName = (key: string): string => {
-  return key ? key.replace('./', '').replace('.svg', '') : '';
-};
 
 const isString = (str: string): boolean => typeof str !== 'string';
 

@@ -7,7 +7,7 @@
     class="label-icon"
     *ngIf="labelIcon"
     alt=""
-    src="../../../../assets/ui_icons/bikes/bike.svg"
+    src="../../../../assets/images/icons/shared/bike.svg"
   />
   {{ label }}
 </button>
@@ -26,7 +26,7 @@
       <span (click)="toggleCategory(i)">{{ category.type }}</span>
       <mat-icon
         aria-hidden="false"
-        svgIcon="lnr-bike-cat-{{ i + 1 }}"
+        svgIcon="lnr-{{category.name}}"
         aria-label="category icon"
       ></mat-icon>
     </div>

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { getImagesFromFolder } from './shared/helpers/mat-icons-helper';
 import * as fromAuth from './core/modules/auth/store/reducers';
 
 @Component({
@@ -27,97 +28,54 @@ export class AppComponent implements OnInit {
     translate.use('en');
   }
 
-  ngOnInit(): void {
-    this.matIconRegistry
-      .addSvgIcon(
-        'lnr-filter',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../assets/ui_icons/filter_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-reset-filter',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../assets/ui_icons/reset_filter_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-sort',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/sort_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-1',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_1.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-2',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_2.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-3',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_3.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-4',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_4.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-5',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_5.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-6',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_6.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-bike-cat-7',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/bikes/biketype_7.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-copy',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/lnr_copy_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-merge',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/lnr_merge_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-unmerge',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/lnr_unmerge_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-visibility',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/lnr_visibility_icon.svg',
-        ),
-      )
-      .addSvgIcon(
-        'lnr-visibility-off',
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          '../../../assets/ui_icons/lnr_visibility_off_icon.svg',
-        ),
+  ngOnInit() {
+    const IMAGES_FOLDER_PATH = '../../../assets/images';
+
+    // TODO: maybe it's better to move this longer list to the helper file
+    let importIconsList = [
+      ...getImagesFromFolder('categories'),
+      ...getImagesFromFolder('accessories'),
+      {
+        name: 'filter',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/filter_icon.svg`
+      },
+      {
+        name: 'reset-filter',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/reset_filter_icon.svg`
+      },
+      {
+        name: 'sort',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/sort_icon.svg`
+      },
+      {
+        name: 'copy',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/copy_icon.svg`
+      },
+      {
+        name: 'merge',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/merge_icon.svg`
+      },
+      {
+        name: 'unmerge',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/unmerge_icon.svg`
+      },
+      {
+        name: 'visibility',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_icon.svg`
+      },
+      {
+        name: 'visibility-off',
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_off_icon.svg`
+      },
+    ];
+
+    // set categories to material icons
+    importIconsList.forEach(({name, path}) => {
+      this.matIconRegistry.addSvgIcon(
+        `lnr-${name}`,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(path)
       );
+    });
+
   }
 }
