@@ -235,17 +235,29 @@
   },
   "about-us": {
     "community": {
-      "content-paragraph": "Cependant, nous nous sommes posé la question suivante: pourquoi ne pouvons-nous pas toujours avoir le bon vélo de location où et quand nous en avons besoin? Doit-on toujours louer des vélos bien usés et maltraités des stations de vélopartage? L'idée de listnride était née.",
-      "content-munich-showroom": "Situé centralement, à Maxvorstadt, notre <a href=\"users/6511\" target=\"_blank\">Munich Experience Center </a> propose des vélos de marques telles que 8bar, Bonvelo, Rossignol, Urwahn et Yuba. Nous proposons également les derniers vélos de route Felt et les vélos électriques urbains de BZEN, Cowboy, Leaos et Vello. Cliquez <a href=\"brands\">ici </a> pour en savoir plus sur nos vélos de démo et marques à Munich.",
-      "content-berlin-showroom": "Au cœur de Berlin-Mitte, en face du Hackescher Markt, notre <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center </a>propose des vélos de démo de marques telles que Argon18, Brompton, BZEN et Cowboy. Nous organisons régulièrement des événements, tels que <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">des sorties sociales </a> tous les vendredis matin. Cliquez <a href=\"brands\" target=\"_blank\">ici </a> pour en savoir plus sur nos vélos et marques de démo disponibles à Berlin."
+      "content-paragraph": "Cependant, nous nous sommes posé la question suivante: pourquoi ne pouvons-nous pas toujours avoir le bon vélo de location où et quand nous en avons besoin? Doit-on toujours louer des vélos bien usés et maltraités des stations de vélopartage? L'idée de listnride était née."
     },
     "future": {
       "content-paragraph": "Nous sommes fiers de nos partenaires qui ont répertorié leurs vélos, qu’il s’agisse de détaillants professionnels, de propriétaires de parcs de vélos ou de particuliers. Enfin, vous pouvez découvrir sur des sites sélectionnés à travers l’Europe des marques novatrices qui se sont associées à nous pour offrir des services de test rides exclusifs."
+    }
+  },
+  "about_us": {
+    "community": {
+      "title": "Comment tout a commencé",
+      "content": "Chez listnride, nous formons une équipe de cyclistes passionnés: nous aimons toutes les opportunités qui se présentent lorsque nous explorons de nouveaux lieux, rencontrons de nouveaux amis, tout en contribuant à notre santé et à notre environnement.",
+      "content_munich_showroom": "Situé centralement, à Maxvorstadt, notre <a href=\"users/6511\" target=\"_blank\">Munich Experience Center </a> propose des vélos de marques telles que 8bar, Bonvelo, Rossignol, Urwahn et Yuba. Nous proposons également les derniers vélos de route Felt et les vélos électriques urbains de BZEN, Cowboy, Leaos et Vello. Cliquez <a href=\"brands\">ici </a> pour en savoir plus sur nos vélos de démo et marques à Munich.",
+      "content_berlin_showroom": "Au cœur de Berlin-Mitte, en face du Hackescher Markt, notre <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center </a>propose des vélos de démo de marques telles que Argon18, Brompton, BZEN et Cowboy. Nous organisons régulièrement des événements, tels que <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">des sorties sociales </a> tous les vendredis matin. Cliquez <a href=\"brands\" target=\"_blank\">ici </a> pour en savoir plus sur nos vélos et marques de démo disponibles à Berlin."
+    },
+    "future": {
+      "title": "Listnride aujourd'hui",
+      "content": "Le listnride est en croissance constante. Actuellement, nos vélos sont disponibles non seulement dans les grandes villes comme Amsterdam, Berlin ou Vienne, mais aussi dans les destinations de vacances populaires comme les Canaries et la Toscane. Le nombre et la variété de vélos sont vastes, ce qui facilite la location de tout type de vélo: du vélo électrique, du vélo de route ou du vélo de ville."
     },
     "showroom": {
-      "subtitle": "Faites notre connaissance à Berlin ou à Munich et découvrez les derniers vélos à la mode et plus !"
+      "subtitle": "Faites notre connaissance à Berlin ou à Munich et découvrez les derniers vélos à la mode et plus !",
+      "berlin_address": "Oranienburger Strasse 1-3 , 10178 Berlin , Allemagne",
+      "munich_address": "Nymphenburger Str. 86, 80335 Munich, Allemagne"
     },
-    "content-title": "Nous vous aidons à trouver le vélo de location idéal pour chaque occasion, à tout moment et partout"
+    "content_title": "Nous vous aidons à trouver le vélo de location idéal pour chaque occasion, à tout moment et partout"
   },
   "testimonials": {
     "jetske-amsterdam": "Avec listnride, je loue mes vélos, offrant aux familles une solution simple pour découvrir ma ville natale. En plus de rencontrer des gens sympas, je gagne de l'argent de poche!",
@@ -319,6 +331,13 @@
       "meta-title": "Louez le vélo de route qu'il vous faut pour le Giro della Sicilia | listnride",
       "meta-description": "Louez un vélo de route en ligne pour le Giro della Sicilia. Choisissez le vélo qui correspond à vos besoins !",
       "title": "Louez un vélo de route haut de gamme pour le Giro della Sicilia "
+    },
+    "eroica-montalcino": {
+      "description": "Où : <b0>Montalcino, Toscane </b0> | Quoi : <b1>L'Eroica Montalcino </b1> | Quand : <b2>31 mai 2020 </b2>",
+      "text": "<p> <a href=\"https://eroica.cc/en/montalcino\" target=\"_blank\"> L'Eroica - Montalcino : </a> où se rencontrent des paysages à couper le souffle et la culture toscane. Célébrez votre amour pour le vélo en parcourant la Toscane sur un vélo d'époque </p>\n\nVous pouvez choisir entre 5 itinéraires : <br>\n-Longue route (153 km) : à travers le Val d'Orcia et ses trésors inscris au patrimoine mondial de l'UNESCO <br>\n-Itinéraire moyen (96km) <br>\n-Itinéraire court (70 km) : à travers les Crete Senesi <br>\n-La route de Brunello (46km) <br>\n-Itinéraire familial (20 km) : conçu pour donner aux familles et aux enfants la possibilité de vivre l'Eroica et de découvrir la région de Brunello <br>\n\n<p>Vous souhaitez participer à L'Eroica mais vous n'avez pas de vélo d'époque ? Louez-la sur listnride et venez la chercher directement à la ligne de départ </p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=EroicaMontalcino\" target=\"_blank\">Réservations de groupe disponibles ici </a>",
+      "meta-title": "Louez un vélo de route d'époque pour L'Eroica Montalcino, uniquement sur listnride !",
+      "meta-description": "Avec listnride, vous pouvez facilement louer en ligne un vélo de route d'époque pour l'Ardita dell'Alpe di Poti. Choisissez le vélo idéal pour cette incroyable course au cœur de la Toscane !",
+      "title": "Louez un vélo de route d'époque pour L'Eroica Montalcino avec listnride !"
     },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
@@ -548,7 +567,7 @@
         "meta-description": "Réductions Black Friday sur listnride! Grande remise sur votre prochaine location de vélo, uniquement ce week-end!"
       },
       "eroica-gaiole": {
-        "meta-title": "Louez un vélo de route vintage pour L'Eroica",
+        "meta-title": "Louez un vélo de route vintage pour L'Eroica Gaiole, seulement sur listnride !",
         "meta-description": "Louez votre vélo de route vintage pour Eroica sur listnride"
       },
       "toros-de-gravel": {
@@ -1604,7 +1623,7 @@
     "date": "Date",
     "batch": "Batch",
     "settlement_history": "Settlement History",
-    "credit-notes": "Notes de crédit",
+    "credit_notes": "Notes de crédit",
     "bike": "Vélo",
     "start_date": "Date de début",
     "end_date": "Date de fin",
@@ -1614,12 +1633,12 @@
     "you_paid": "You paid",
     "invoice": "Facture",
     "billing": "Factures",
-    "download-csv": "Télécharger CSV",
-    "download-pdf": "Télécharger le fichier PDF",
-    "no-rentals": "Vous n'avez pas encore eu de locations",
+    "download_csv": "Télécharger CSV",
+    "download_pdf": "Télécharger le fichier PDF",
+    "no_rentals": "Vous n'avez pas encore eu de locations",
     "as_lister": "Comme Lister",
     "as_rider": "Comme Rider",
-    "no-rides": "Vous n'avez pas encore eu de locations"
+    "no_rides": "Vous n'avez pas encore eu de locations"
   },
   "invite-landing": {
     "meta-title": "listnride | 10 € pour vous!",

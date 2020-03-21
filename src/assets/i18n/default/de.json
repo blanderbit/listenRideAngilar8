@@ -237,17 +237,29 @@
   },
   "about-us": {
     "community": {
-      "content-paragraph": "Wir haben uns jedoch gefragt: Warum haben wir nicht immer das richtige Leihrad, wann und wo immer wir es brauchen? Muss es immer eines von den verwaisten Bikesharing-Stationen sein? Die Idee zu listnride war geboren.",
-      "content-munich-showroom": "Zentral in der Münchner Maxvorstadt gelegen, bietet unser <a href=\"users/6511\" target=\"_blank\">Münchner Experience Center</a> Fahrräder von Marken wie Bonvelo, Rossignol, Urwahn und Yuba. Wir haben außerdem die neuesten Felt Rennräder im Angebot und urbane E-Bikes von Cowboy und Vello. Klicke <a href=\"brands\">hier</a> um mehr über unsere Testräder und Marken in München zu erfahren.",
-      "content-berlin-showroom": "Im Herzen von Berlin Mitte, gegenüber dem Hackeschen Markt, bietet unser <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">Belin Experience Center</a> Testfahrten mit Rädern von Marken wie Argon18, Bonvelo, Brompton und Cowboy, sowie Aktiv Bekleidung von Biehler. Wir organisieren regelmäßig Veranstaltungen wie den freitäglichen <a href=\"users/7351\" target=\"_blank\">Coffee Spin</a>. Klicke <a href=\"brands\" target=\"_blank\">hier</a> um mehr über verfügbare Testräder und Marken in Berlin zu erfahren."
+      "content-paragraph": "Wir haben uns jedoch gefragt: Warum haben wir nicht immer das richtige Leihrad, wann und wo immer wir es brauchen? Muss es immer eines von den verwaisten Bikesharing-Stationen sein? Die Idee zu listnride war geboren."
     },
     "future": {
       "content-paragraph": "Wir sind stolz auf unsere starken Partner die bei uns ihre Räder gelistet haben - seien es gewerbliche Händler, Fahrradflottenbesitzer oder Privatpersonen. Mit uns kannst du außerdem in ausgewählten Orten angesagte Marken entdecken, welche sich mit uns zusammengeschlossen haben um einen exklusiven Testfahrten Service anzubieten."
+    }
+  },
+  "about_us": {
+    "community": {
+      "title": "Wie alles begann",
+      "content": "Hier bei listnride sind wir ein Team von wirklich leidenschaftlichen Radfahrern: Wir lieben alle Gelegenheiten, die sich ergeben, wenn wir neue Orte erkunden, neue Freunde treffen und gleichzeitig zu unserer Gesundheit und Umwelt beitragen.",
+      "content_munich_showroom": "Zentral in der Münchner Maxvorstadt gelegen, bietet unser <a href=\"users/6511\" target=\"_blank\">Münchner Experience Center</a> Fahrräder von Marken wie Bonvelo, Rossignol, Urwahn und Yuba. Wir haben außerdem die neuesten Felt Rennräder im Angebot und urbane E-Bikes von Cowboy und Vello. Klicke <a href=\"brands\">hier</a> um mehr über unsere Testräder und Marken in München zu erfahren.",
+      "content_berlin_showroom": "Im Herzen von Berlin Mitte, gegenüber dem Hackeschen Markt, bietet unser <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">Belin Experience Center</a> Testfahrten mit Rädern von Marken wie Argon18, Bonvelo, Brompton und Cowboy, sowie Aktiv Bekleidung von Biehler. Wir organisieren regelmäßig Veranstaltungen wie den freitäglichen <a href=\"users/7351\" target=\"_blank\">Coffee Spin</a>. Klicke <a href=\"brands\" target=\"_blank\">hier</a> um mehr über verfügbare Testräder und Marken in Berlin zu erfahren."
+    },
+    "future": {
+      "title": "Listnride heute",
+      "content": "Listnride ist stetig am wachsen. Aktuell sind unsere Fahrräder nicht nur in Metropolen wie Amsterdam, Berlin und Wien verfügbar, sondern auch in beliebten Urlaubsregionen wie den Kanaren und der Toskana. Die Anzahl und Vielfalt unserer Fahrräder ist riesig. Das macht es einfach jede Art von Rad zu mieten die du gerade willst: egal ob es ein E-Bike, Lastenrad oder Stadtrad ist."
     },
     "showroom": {
-      "subtitle": "Triff uns in Berlin oder München und erlebe die neuesten angesagten Fahrräder und mehr!"
+      "subtitle": "Triff uns in Berlin oder München und erlebe die neuesten angesagten Fahrräder und mehr!",
+      "berlin_address": "Oranienburger Straße 1-3, 10178 Berlin, Deutschland",
+      "munich_address": "Nymphenburger Str. 86, 80335 München, Deutschland"
     },
-    "content-title": "Wir helfen dir das perfekte Mietrad für jede Gelegenheit zu finden, immer und überall"
+    "content_title": "Wir helfen dir das perfekte Mietrad für jede Gelegenheit zu finden, immer und überall"
   },
   "testimonials": {
     "jetske-amsterdam": "Ich vermiete über listnride meine Fahrräder und biete Familien so eine einfache Lösung, um meine Heimatstadt zu entdecken. Ich treffe nicht nur nette Leute, sondern verdiene auch ein bisschen Taschengeld nebenher :) ",
@@ -324,6 +336,13 @@
       "meta-title": "Miete ein hochwertiges Rennrad für den Giro della Sicilia | listnride",
       "meta-description": "Miete ein Rennrad für den Giro della Sicilia online. Wähle das Fahrrad, das deinen Bedürfnissen entspricht!",
       "title": "Miete ein hochwertiges Rennrad für den Giro della Sicilia "
+    },
+    "eroica-montalcino": {
+      "description": "Wo: <b0>Montalcino, Toskana</b0> | Was: <b1>L'Eroica Montalcino</b1> | Wann: 31. Mai 2020</b2>",
+      "text": "<p><a href=\"https://eroica.cc/en/montalcino\" target=\"_blank\"> L'Eroica - Montalcino:</a> wo atemberaubende Landschaften und toskanische Kultur aufeinander treffen. Feiern Sie Ihre Liebe zum Radfahren, während Sie mit einem Vintage-Rad durch die Toskana fahren!</p>\n\nSie können zwischen 5 Routen wählen:<br>\n-Lange Route (153 km): durch das Val D'Orcia und seine UNESCO-Schätze<br>\n-Mittlere Route (96km)<br>\n-Kurze Route (70km): durch die Crete Senesi<br>\n-Brunello-Route (46km)<br>\n-Familien Spaß-Route (20 km): soll Familien und Kindern die Möglichkeit geben, L'Eroica zu erleben und die Region Brunello zu entdecken<br>\n\n<p>Möchtest du an der L'Eroica teilnehmen, aber du hast kein Vintage-Rad? Miete es auf listnride und hole es direkt am Start ab!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=EroicaMontalcino\" target=\"_blank\">Gruppenbuchungen sind hier möglich!</a>",
+      "meta-title": "Miete ein vintage Rennrad für L'Eroica Montalcino, nur bei listnride!",
+      "meta-description": "Mit listnride kannst du dir einfach online ein Vintage Rennrad für die L'Eroica Montalcino mieten. Wähle dein perfektes Rad, für dieses unglaubliche Rennen im Herzen der Toskana!",
+      "title": "Miete ein Vintage Rennrad für die L'Eroica Montalcino über listnride!"
     },
     "msr": {
       "meta-title": "Miete ein Rennrad für die Mecklenburger Seenrunde 2020 | listnride",
@@ -553,8 +572,8 @@
         "meta-description": "Black Friday Rabatt bei listnride! Riesiger Nachlass auf deine nächste Fahrradmiete, nur dieses Wochenende."
       },
       "eroica-gaiole": {
-        "meta-title": "Miete dein Vintage-Rennrad für die L'Eroica auf listnride",
-        "meta-description": "Miete dein Vintage-Rennrad für die Eroica"
+        "meta-title": "Miete dein Vintage-Rennrad für die L'Eroica Gaiole, nur auf listnride",
+        "meta-description": "Mit listnride kannst du ganz einfach ein vintage Rennrad für L'Eroica Gaiole online mieten. Wähle das perfekte Fahrrad für dieses unglaubliche Rennen im Herzen der Toskana!"
       },
       "toros-de-gravel": {
         "meta-title": "Miet das perfekte Fahrrad für den Toros de Gravel",
@@ -1609,7 +1628,7 @@
     "date": "Date",
     "batch": "Batch",
     "settlement_history": "Settlement History",
-    "credit-notes": "Gutschriften",
+    "credit_notes": "Gutschriften",
     "bike": "Rad",
     "start_date": "Startdatum",
     "end_date": "Enddatum",
@@ -1619,12 +1638,12 @@
     "you_paid": "Bezahlt",
     "invoice": "Rechnung",
     "billing": "Rechnungen",
-    "download-csv": "CSV herunterladen",
-    "download-pdf": "PDF herunterladen",
-    "no-rentals": "Du hattest noch keine Vermietungen",
+    "download_csv": "CSV herunterladen",
+    "download_pdf": "PDF herunterladen",
+    "no_rentals": "Du hattest noch keine Vermietungen",
     "as_lister": "Als Vermieter",
     "as_rider": "Als Mieter",
-    "no-rides": "Du hast noch keine Räder gemietet"
+    "no_rides": "Du hast noch keine Räder gemietet"
   },
   "invite-landing": {
     "meta-title": "listnride | 10€ für dich!",

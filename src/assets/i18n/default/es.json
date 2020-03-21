@@ -235,17 +235,29 @@
   },
   "about-us": {
     "community": {
-      "content-paragraph": "Siempre nos hemos preguntados por qué es tan difícil alquilar una bicicleta adecuada cuando y donde la necesitamos. ¿Por qué tenemos que alquilar una bicicleta compartida en mal estado? Por eso nació listnride. ",
-      "content-munich-showroom": "Ubicado en el centro de Maxvorstadt, nuestro <a href=\"users/6511\" target=\"_blank\">Munich Experience Center </a>presenta bicicletas de marcas como 8bar, Bonvelo, Rossignol, Urwahn y Yuba. También ofrecemos las últimas bicicletas de carretera Felt y bicicletas eléctricas urbanas de BZEN, Cowboy, Leaos y Vello. Clica <a href=\"brands\">aquí </a> para obtener más información sobre nuestras bicicletas y marcas de prueba en Munich.",
-      "content-berlin-showroom": "En el corazón de Berlin-Mitte, frente al Hackescher Markt, nuestro <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center </a> ofrece paseos de prueba con bicicletas de marcas como Argon18, Bonvelo, Brompton, BZEN y Cowboy. Regularmente organizamos eventos, como <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">excursiones en grupos</a> todos los viernes por la mañana. Clica <a href=\"brands\" target=\"_blank\">aquí </a> para obtener más información sobre nuestras bicicletas de prueba y marcas disponibles en Berlín."
+      "content-paragraph": "Siempre nos hemos preguntados por qué es tan difícil alquilar una bicicleta adecuada cuando y donde la necesitamos. ¿Por qué tenemos que alquilar una bicicleta compartida en mal estado? Por eso nació listnride. "
     },
     "future": {
       "content-paragraph": "Estamos orgullosos de nuestros socios que ofrecen sus bicicletas, sean tiendas de bicicletas o privatos. Además, en algunas ciudades europeas tienes la posibilidad de descubrir marcas innovadoras y probar sus bicicletas de manera exclusiva. "
+    }
+  },
+  "about_us": {
+    "community": {
+      "title": "Cómo todo empezó",
+      "content": "En listnride, somos un equipo de ciclistas aficionados: aprovechamos todas las oportunidades de explorar nuevos lugares, conocer nuevos amigos y contribuir a mejorar nuestra salud y el medio ambiente.",
+      "content_munich_showroom": "Ubicado en el centro de Maxvorstadt, nuestro <a href=\"users/6511\" target=\"_blank\">Munich Experience Center </a>presenta bicicletas de marcas como 8bar, Bonvelo, Rossignol, Urwahn y Yuba. También ofrecemos las últimas bicicletas de carretera Felt y bicicletas eléctricas urbanas de BZEN, Cowboy, Leaos y Vello. Clica <a href=\"brands\">aquí </a> para obtener más información sobre nuestras bicicletas y marcas de prueba en Munich.",
+      "content_berlin_showroom": "En el corazón de Berlin-Mitte, frente al Hackescher Markt, nuestro <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center </a> ofrece paseos de prueba con bicicletas de marcas como Argon18, Bonvelo, Brompton, BZEN y Cowboy. Regularmente organizamos eventos, como <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">excursiones en grupos</a> todos los viernes por la mañana. Clica <a href=\"brands\" target=\"_blank\">aquí </a> para obtener más información sobre nuestras bicicletas de prueba y marcas disponibles en Berlín."
+    },
+    "future": {
+      "title": "Listnride hoy",
+      "content": "Listnride está en continuo crecimiento. Actualmente, nuestras bicicletas están disponibles no solo en las principales ciudades europeas como Ámsterdam, Berlín o Viena, sino también en lugares turísticos como Canarias y Toscana. Ofrecemos diferentes tipos de bicicletas, lo que facilita el alquiler de la bicicleta apta a diferentes ocasiones: ya sea una bicicleta eléctrica, bicicleta de carretera o bicicleta de ciudad."
     },
     "showroom": {
-      "subtitle": "¡Conócenos en Berlín o Múnich, y experimenta las últimas bicicletas de moda y más!"
+      "subtitle": "¡Conócenos en Berlín o Múnich, y experimenta las últimas bicicletas de moda y más!",
+      "berlin_address": "Oranienburger Strasse 1-3, 10178 Berlín, Alemania",
+      "munich_address": "Nymphenburger Str. 86, 80335 Múnich, Alemania"
     },
-    "content-title": "Te ayudamos a encontrar la bicicleta de alquiler perfecta para cada ocasión, momento y lugar"
+    "content_title": "Te ayudamos a encontrar la bicicleta de alquiler perfecta para cada ocasión, momento y lugar"
   },
   "testimonials": {
     "jetske-amsterdam": "En listnride alquilo mis bicicletas para ofrecer a las familias una solución sencilla para descubrir mi ciudad natal. Además de conocer gente agradable, gano algo de dinero extra ☺",
@@ -319,6 +331,13 @@
       "meta-title": "Alquila una bicicleta de carretera de alta gama para el Giro della Sicilia | listnride ",
       "meta-description": "Alquila una bicicleta de carretera para el Giro della Sicilia. Elije la bicicleta perfecta para tus necesidades. ",
       "title": "Alquila una bicicleta de carretara de alta gama para el Giro della Sicilia "
+    },
+    "eroica-montalcino": {
+      "description": "Dónde: <b0>Montalcino, Toscana</b0> | Qué: <b1>L´Eroica Montalcino</b1> | Cuándo: <b2>31 de Mayo 2020</b2>",
+      "text": "<p><a href=\"https://eroica.cc/en/montalcino\" target=\"_blank\">L´Eroica Montalcino:</a> donde los icreíbles paisajes y la cultura toscana se encuentran. Celebra tu amor por el ciclismo y monta en una bicicleta de carretera antigua para descubrir Toscana</p>\n\nPuedes elegir entre 5 rutas:<br>\n- Ruta larga (153 km): descubre los territorios declarados Patrimonio Mundial del UNESCO en Val D´Orcia<br>\n- Ruta media (96 km)<br>\n- Ruta breve: (470 km): descubre las colinas de las Crete Senesi<br>\n- Ruta Brunello (46 km)<br>\n- Ruta familia (20 km): itinerario diseñado para ofrecer, a familias y niños, la posibilidad de participar en L´Eroica y descubrir la región del Brunello<br>\n\n<p>¿Te gustaría participar en L´Eroica pero no tienes una bicicleta de carretera antigua? Alquílala en listnride y recójela directamente en la linea de salida!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=EroicaMontalcino\" target=\"_blank\">Aquileres de grupo disponibles aquí!</a>",
+      "meta-title": "Alquila una bicicleta de carretera antigua para L´Eroica Montalcino. ¡Solo con listnride!",
+      "meta-description": "Con listnride puedes facilmente alquilar una bicicleta de carretera antigua para L´Eroica Montalcino. ¡Elije la bicicleta perfecta para participar en esta increíbl carrera en el corazón de Toscana!",
+      "title": "¡Alquila una bicicleta de carretera antigua para L'Eroica Montalcino con listnride!"
     },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
@@ -548,8 +567,8 @@
         "meta-description": "Black Friday en listnride! Grandes descuentos para tu próximo alquiler, solo por este fin de semana."
       },
       "eroica-gaiole": {
-        "meta-title": "Eroica vintage road bike cycling event",
-        "meta-description": "Rent your vintage road bike for Eroica on listnride"
+        "meta-title": "Alquila una bicicleta de carretera antigua para L´Eroica. ¡Solo con listnride!",
+        "meta-description": "Con listnride puedes alquilar una bicicleta de carretera antigua para L´Eroica. ¡Elije la bicicleta perfecta para participar en esta increible carretera en el corazón de Toscana!"
       },
       "toros-de-gravel": {
         "meta-title": "Alquila una bicicleta de gravel para Toros de Gravel",
@@ -1601,7 +1620,7 @@
     "date": "Date",
     "batch": "Batch",
     "settlement_history": "Settlement History",
-    "credit-notes": "Notas de credito",
+    "credit_notes": "Notas de credito",
     "bike": "Bici",
     "start_date": "Fecha de inicio",
     "end_date": "Fecha de finalización",
@@ -1611,12 +1630,12 @@
     "you_paid": "Has pagado",
     "invoice": "Factura",
     "billing": "Facturación",
-    "download-csv": "Descargar CSV",
-    "download-pdf": "Descargar PDF",
-    "no-rentals": "No has tenido alquileres todavía",
+    "download_csv": "Descargar CSV",
+    "download_pdf": "Descargar PDF",
+    "no_rentals": "No has tenido alquileres todavía",
     "as_lister": "Como anunciante",
     "as_rider": "Como ciclista",
-    "no-rides": "No has tenido alquileres todavía"
+    "no_rides": "No has tenido alquileres todavía"
   },
   "invite-landing": {
     "meta-title": "listnride | ¡10 € para ti!",

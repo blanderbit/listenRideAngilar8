@@ -230,17 +230,29 @@
   },
   "about-us": {
     "community": {
-      "content-paragraph": "We hadden ons echter afgevraagd: waarom kunnen we niet altijd de juiste fiets huren waar en wanneer we die nodig hebben? Moet het altijd één van die gebruikte en verwaarloosde huurfietsen zijn van bike-sharing stations? Het idee van listnride was geboren.",
-      "content-munich-showroom": "Centraal gelegen in Maxvorstadt, presenteren wij in ons <a href=\"users/6511\" target=\"_blank\">München Experience Center</a> fietsen van merken als 8bar, Bonvelo, Rossignol, Urwahn en Yuba. We bieden ook de nieuwste Felt racefietsen en urban e-bikes van BZEN, Cowboy, Leaos en Vello aan. Klik <a href=\"brands\">hier</a> om meer te weten te komen over onze testfietsen en merken in München.",
-      "content-berlin-showroom": "In het hart van Berlin-Mitte, tegenover de Hackescher Markt, bieden wij in ons <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a>testritten aan voor fietsen van merken als Argon18, Bonvelo, Brompton, BZEN en Cowboy. Wij organiseren regelmatig evenementen, zoals <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> elke vrijdagochtend. Klik <a href=\"brands\" target=\"_blank\">hier</a> om meer te weten te komen over onze beschikbare testfietsen en merken in Berlijn."
+      "content-paragraph": "We hadden ons echter afgevraagd: waarom kunnen we niet altijd de juiste fiets huren waar en wanneer we die nodig hebben? Moet het altijd één van die gebruikte en verwaarloosde huurfietsen zijn van bike-sharing stations? Het idee van listnride was geboren."
     },
     "future": {
       "content-paragraph": "Wij zijn trots op onze partners die hun fietsen bij ons aanbieden - of het nu gaat om professionele retailers, eigenaren van een fietsenpark of particulieren. Tenslotte kan je op bepaalde locaties in Europa kennismaken met innovatieve merken die samen met ons exclusieve testritten aanbieden."
+    }
+  },
+  "about_us": {
+    "community": {
+      "title": "Hoe het allemaal begon",
+      "content": "Wij van listnride zijn een team van gepassioneerde fietsers: we houden van alle mogelijkheden die zich voordoen bij het ontdekken van nieuwe bestemmingen, het ontmoeten van nieuwe mensen, en dat terwijl we tegelijkertijd bijdragen aan een betere gezondheid en een beter milieu.",
+      "content_munich_showroom": "Centraal gelegen in Maxvorstadt, presenteren wij in ons <a href=\"users/6511\" target=\"_blank\">München Experience Center</a> fietsen van merken als 8bar, Bonvelo, Rossignol, Urwahn en Yuba. We bieden ook de nieuwste Felt racefietsen en urban e-bikes van BZEN, Cowboy, Leaos en Vello aan. Klik <a href=\"brands\">hier</a> om meer te weten te komen over onze testfietsen en merken in München.",
+      "content_berlin_showroom": "In het hart van Berlin-Mitte, tegenover de Hackescher Markt, bieden wij in ons <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a>testritten aan voor fietsen van merken als Argon18, Bonvelo, Brompton, BZEN en Cowboy. Wij organiseren regelmatig evenementen, zoals <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> elke vrijdagochtend. Klik <a href=\"brands\" target=\"_blank\">hier</a> om meer te weten te komen over onze beschikbare testfietsen en merken in Berlijn."
+    },
+    "future": {
+      "title": "Listnride vandaag",
+      "content": "Listnride groeit continu verder. Op dit moment zijn onze fietsen niet alleen beschikbaar in grote steden als Amsterdam, Berlijn of Wenen, maar ook in populaire vakantiebestemmingen als de Canarische Eilanden en Toscane. Het aantal en de verscheidenheid aan fietsen is groot, waardoor het gemakkelijk is om elke gewenste fiets te huren: of het nu gaat om een e-bike, racefiets of stadsfiets."
     },
     "showroom": {
-      "subtitle": "Leer ons kennen in Berlijn of München en ervaar de nieuwste modieuze fietsen en meer!"
+      "subtitle": "Leer ons kennen in Berlijn of München en ervaar de nieuwste modieuze fietsen en meer!",
+      "berlin_address": "Oranienburger Strasse 1-3 , 10178 Berlijn, Duitsland",
+      "munich_address": "Nymphenburger Str. 86, 80335 München, Duitsland"
     },
-    "content-title": "Wij helpen je bij het vinden van de perfecte huurfiets voor elke gelegenheid, altijd en overal"
+    "content_title": "Wij helpen je bij het vinden van de perfecte huurfiets voor elke gelegenheid, altijd en overal"
   },
   "testimonials": {
     "jetske-amsterdam": "Op listnride verhuur ik mijn fietsen om gezinnen een simpele oplossing te bieden om mijn woonplaats te leren kennen. Naast het ontmoeten van aardige mensen verdien ik wat extra zakgeld ☺",
@@ -314,6 +326,13 @@
       "meta-title": "Huur een racefiets voor de Giro Sardegna | listnride",
       "meta-description": "Huur online een racefiets voor de Giro della Sicilia. Kies de fiets die bij u past!",
       "title": "Huur een hoogwaardige  racefiets voor Giro della Sicilia "
+    },
+    "eroica-montalcino": {
+      "description": "Waar: <b0>Montalcino, Toscane</b0> | Wat: <b1>L'Eroica Montalcino</b1> | Wanneer: <b2>31 mei 2020</b2>",
+      "text": "<p><a href=\"https://eroica.cc/en/montalcino\" target=\"_blank\"> L'Eroica - Montalcino:</a> waar adembenemende landschappen en Toscaanse cultuur elkaar ontmoeten. Vier je liefde voor het fietsen terwijl je op een vintage fiets door Toscane rijdt!</p>\n\nU kunt kiezen tussen 5 routes:<br>\n-Lange route (153 km): door de Val D´Orcia en zijn UNESCO-schatten<br>\n-Middelgrote route (96km)<br>\n-Korte route (70km): door de Crete Senesi<br>\n-Brunello route (46km)<br>\n-Gezinspretroute (20 km): ontworpen om gezinnen en kinderen de mogelijkheid te geven om L'Eroica te ervaren en de Brunello-regio te ontdekken<br>\n\n<p>Wil je meedoen aan L'Eroica, maar heb je geen klassieke fiets? Huur hem dan op listnride en haal hem direct op aan de startlijn!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=EroicaMontalcino\" target=\"_blank\"> Groepsreserveringen zijn hier beschikbaar! </a>",
+      "meta-title": "Huur een vintage racefiets voor L'Eroica Montalcino, exclusief verkrijgbaar op listnride!",
+      "meta-description": "Met listnride kun je eenvoudig online een vintage racefiets huren voor L'Eroica Montalcino. Kies de perfecte fiets voor deze ongelooflijke race in het hart van Toscane!",
+      "title": "Huur een vintage racefiets voor L'Eroica Montalcino, exclusief verkrijgbaar op listnride!"
     },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
@@ -543,8 +562,8 @@
         "meta-description": "Black Friday-korting bij listnride! Enorme korting op  je volgende fietshuur, alleen dit weekend."
       },
       "eroica-gaiole": {
-        "meta-title": "Eroica vintage wielertocht",
-        "meta-description": "Huur een vintage racefiets voor de Eroica on listnride"
+        "meta-title": "Huur een vintage racefiets voor L'Eroica Montalcino, exclusief verkrijgbaar op listnride!",
+        "meta-description": "Met listnride kunt u eenvoudig online een vintage racefiets huren voor L'Eroica Gaiole. Kies de perfecte fiets voor deze ongelooflijke race in het hart van Toscane!"
       },
       "toros-de-gravel": {
         "meta-title": "Huur de perfecte fiets voor Toros de Gravel",
@@ -1594,7 +1613,7 @@
     "date": "Datum",
     "batch": "Partij",
     "settlement_history": "Geschiedenis van nederzetting ",
-    "credit-notes": "Creditnota's",
+    "credit_notes": "Creditnota's",
     "bike": "Fiets",
     "start_date": "Start datum",
     "end_date": "Eind datum",
@@ -1602,12 +1621,12 @@
     "you_paid": "Betaald",
     "invoice": "Factuur",
     "billing": "Facturen",
-    "download-csv": "Download CSV",
-    "download-pdf": "Download PDF",
-    "no-rentals": "Nog geen verhuurtransacties gerealiseerd",
+    "download_csv": "Download CSV",
+    "download_pdf": "Download PDF",
+    "no_rentals": "Nog geen verhuurtransacties gerealiseerd",
     "as_lister": "Als Verhuurder",
     "as_rider": "Als huurder",
-    "no-rides": "Nog geen huurtransacties gerealiseerd"
+    "no_rides": "Nog geen huurtransacties gerealiseerd"
   },
   "invite-landing": {
     "meta-title": "listnride | 10€ voor jou!",

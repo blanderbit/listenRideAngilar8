@@ -13,6 +13,9 @@
       "you_wont_be_charged": "You won't be charged yet.",
       "may_require_deposit": "Certain bookings may also require a security deposit."
     },
+    "button_see_all_events": "See all events",
+    "day_average": "day average",
+    "search_any_bike": "Any type of bike",
     "request": "Request",
     "non-availability-type": "Type of unavailability ",
     "event": "Event",
@@ -237,17 +240,29 @@
   },
   "about-us": {
     "community": {
-      "content-paragraph": "However, we asked ourselves: why can't we always have just the right rental bike whenever and wherever we need it? Does it always have to be one of the used-and-abused from bike-sharing stations? The idea of listnride was born.",
-      "content-munich-showroom": "Centrally located in Maxvorstadt, our <a href=\"users/6511\" target=\"_blank\">Munich Experience Center</a> presents bicycles from brands such as Bonvelo, Rossignol, Urwahn, and Yuba. We also offer the latest Felt road bikes and urban e-bikes from Cowboy, Leaos, and Vello. Click <a href=\"brands\">here</a> to find out more about our test bikes and brands in Munich.",
-      "content-berlin-showroom": "In the heart of Berlin-Mitte, opposite the Hackescher Markt, our <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a> offers test rides with bikes from brands such as Argon18, Bonvelo, Brompton and Cowboy.. We regularly organise events, such as <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> every Friday morning. Click <a href=\"brands\" target=\"_blank\">here</a> to find out more about our available test bikes and brands in Berlin."
+      "content-paragraph": "However, we asked ourselves: why can't we always have just the right rental bike whenever and wherever we need it? Does it always have to be one of the used-and-abused from bike-sharing stations? The idea of listnride was born."
     },
     "future": {
       "content-paragraph": "We are proud of our partners who have listed their bikes - be they professional retailers, bike fleet owners, or individuals. Finally, you can discover at selected locations throughout Europe ground-breaking brands that have partnered up with us to offer exclusive test ride services."
+    }
+  },
+  "about_us": {
+    "community": {
+      "title": "How it all began",
+      "content": "Here at listnride, we are a team of truly passionate cyclists: we love all the opportunities that arise with exploring new places, meeting new friends, all the while contributing to our health and environment.",
+      "content_munich_showroom": "Centrally located in Maxvorstadt, our <a href=\"users/6511\" target=\"_blank\">Munich Experience Center</a> presents bicycles from brands such as Bonvelo, Rossignol, Urwahn, and Yuba. We also offer the latest Felt road bikes and urban e-bikes from Cowboy, Leaos, and Vello. Click <a href=\"brands\">here</a> to find out more about our test bikes and brands in Munich.",
+      "content_berlin_showroom": "In the heart of Berlin-Mitte, opposite the Hackescher Markt, our <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a> offers test rides with bikes from brands such as Argon18, Bonvelo, Brompton and Cowboy.. We regularly organise events, such as <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> every Friday morning. Click <a href=\"brands\" target=\"_blank\">here</a> to find out more about our available test bikes and brands in Berlin."
+    },
+    "future": {
+      "title": "Listnride today",
+      "content": "Listnride is continuously growing. Currently, our bikes are available not only in major cities like Amsterdam, Berlin or Vienna, but also in popular holiday destinations like the Canaries and Tuscany. The number and variety of bikes is expansive, making it easy to rent any kind of bike you want: whether it’s an e-bike, road bike, or city bike."
     },
     "showroom": {
-      "subtitle": "Get to know us in Berlin or Munich, and experience the latest fashionable bikes and more!"
+      "subtitle": "Get to know us in Berlin or Munich, and experience the latest fashionable bikes and more!",
+      "berlin_address": "Oranienburger Strasse 1-3, 10178 Berlin, Germany",
+      "munich_address": "Nymphenburger Str. 86, 80335 Munich, Germany"
     },
-    "content-title": "We help you find the perfect rental bike for every occasion, anytime and everywhere"
+    "content_title": "We help you find the perfect rental bike for every occasion, anytime and everywhere"
   },
   "testimonials": {
     "jetske-amsterdam": "On listnride I rent out my bikes providing families a simple solution to discover my home town. Besides meeting nice people I make some extra pocket money ☺",
@@ -296,6 +311,7 @@
   },
   "imprint": {
     "germany-address": "Steinstraße 17<br>\n10119 Berlin<br>\nGermany",
+    "support_contacts": "Ruf unseren Support unter <a href=\"tel:+49030120870330\"></a> (Mo-Fr 9-18 Uhr) an. Oder schreib uns eine  <a href=\"mailto:contact@listnride.com\">Email</a>\n",
     "contacts": "E-Mail: <a href=\"mailto:contact@listnride.com?Subject=Press%20Contact\" target=\"_top\">contact@listnride.com</a><br>\nWeb: <a href=\"//listnride.com\">www.listnride.com</a><br>\nPhone: +49 (0)30-120870330"
   },
   "events": {
@@ -326,11 +342,11 @@
       "title": "Rent a high-end road bike for Giro della Sicilia "
     },
     "eroica-montalcino": {
-      "description": "description",
-      "text": "text",
-      "meta-title": "meta-title",
-      "meta-description": "meta-description",
-      "title": "title"
+      "description": "Where: <b0>Montalcino, Tuscany</b0> | What: <b1>L'Eroica Montalcino</b1> | When: <b2>31 May 2020</b2>",
+      "text": "<p><a href=\"https://eroica.cc/en/montalcino\" target=\"_blank\"> L'Eroica - Montalcino:</a> where breathtaking landscapes and Tuscan culture meet. Celebrate your love for cycling while riding a vintage bike through Tuscany!</p>\n\nYou can choose between 5 routes:<br>\n-Long route (153km): through the Val D´Orcia and its UNESCO treasures<br>\n-Medium route (96km)<br>\n-Short route (70km): through the Crete Senesi<br>\n-Brunello route (46km)<br>\n-Family Fun route (20km): designed to give families and children the possibility to experience L´Eroica and discover the Brunello region<br>\n\n<p>Would you like to participate in L'Eroica but you don't have a vintage bike? Rent it on listnride and pick it up directly at the starting line!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=EroicaMontalcino\" target=\"_blank\">Group bookings available here!</a>\n",
+      "meta-title": "Rent a vintage road bike for L'Eroica Montalcino, only on listnride!",
+      "meta-description": "With listnride you can easily rent a vintage road bike online for L'Eroica Montalcino. Choose the perfect bike for this incredible race in the heart of Tuscany!",
+      "title": "Rent a vintage road bike for L’Eroica Montalcino with listnride!"
     },
     "msr": {
       "meta-title": "Road bike rental for the Mecklenburger Seenrunde 2020 | listnride",
@@ -560,8 +576,8 @@
         "meta-description": "Black Friday discount on listnride! Huge discount on your next bike rental, only this weekend!"
       },
       "eroica-gaiole": {
-        "meta-title": "Rent a vintage road bike for L'Eroica",
-        "meta-description": "Rent your vintage road bike for Eroica on listnride"
+        "meta-title": "Rent a vintage road bike for L'Eroica Gaiole, only on listnride!",
+        "meta-description": "With listnride you can easily rent a vintage road bike online for L'Eroica Gaiole. Choose the perfect bike for this incredible race in the heart of Tuscany!"
       },
       "toros-de-gravel": {
         "meta-title": "Rent a bike for Toros de Gravel",
@@ -1245,6 +1261,15 @@
   },
   "home": {
     "landing-section-header": "The perfect bike. Simply rent it.",
+    "events_block": {
+      "title": "Rent great bikes for exciting events!",
+      "subtitle": "We are supporting fantastic events all around Europe so that you can enjoy the ride, without worrying about transporting your bike to the starting line!"
+    },
+    "button_see_location": "See all locations",
+    "popular_destination": {
+      "header": "Popular bike rental locations in",
+      "header_helper": "the world"
+    },
     "see-all-brands-and-bikes": "See all brands and bikes",
     "insurance": {
       "description": "No matter if it's a cheap city bike or high-end triathlon bike: Every listnride bike rental in Germany or Austria is insured!",
@@ -1617,7 +1642,7 @@
     "date": "Date",
     "batch": "Batch",
     "settlement_history": "Settlement History",
-    "credit-notes": "Credit notes",
+    "credit_notes": "Credit notes",
     "bike": "Bike",
     "start_date": "Start date",
     "end_date": "End date",
@@ -1627,12 +1652,12 @@
     "you_paid": "You paid",
     "invoice": "Invoice",
     "billing": "Invoices",
-    "download-csv": "Download CSV",
-    "download-pdf": "Download PDF",
-    "no-rentals": "You had no rentals yet",
+    "download_csv": "Download CSV",
+    "download_pdf": "Download PDF",
+    "no_rentals": "You had no rentals yet",
     "as_lister": "As lister",
     "as_rider": "As rider",
-    "no-rides": "You had no rides yet"
+    "no_rides": "You had no rides yet"
   },
   "invite-landing": {
     "meta-title": "listnride | 10€ for you!",
