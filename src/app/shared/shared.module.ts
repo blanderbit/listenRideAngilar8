@@ -34,11 +34,9 @@ import { BikeCardComponent } from './components/bike-card/bike-card.component';
 import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorting.component';
 import { MaterialModule } from './material/material.module';
 import { FiltersComponent } from './filters/filters.component';
-
-import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
 import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
-// import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
-import { ContentLayoutsModule } from '@shared/components/content-layouts/content-layouts.module';
+import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
+import { ContentLayoutsModule } from './components/content-layouts/content-layouts.module';
 
 const components = [
   FiltersComponent,
@@ -90,7 +88,6 @@ const modules = [
     TranslateModule,
     RouterModule,
     AgmCoreModule,
-    ContentLayoutsModule,
     MatGoogleMapsAutocompleteModule,
     NgxMaskModule.forRoot(),
   ],
@@ -105,7 +102,7 @@ const modules = [
     SatNativeDateModule,
     MaterialModule,
     CreditCardDirectivesModule,
-    TranslateModule
+    TranslateModule,
   ],
 })
 export class SharedModule {}

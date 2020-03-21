@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lnr-press',
   templateUrl: './press.component.html',
-  styleUrls: ['./press.component.scss']
+  styleUrls: ['./press.component.scss'],
 })
-export class PressComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class PressComponent {}
