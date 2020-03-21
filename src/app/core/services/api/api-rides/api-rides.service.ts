@@ -4,9 +4,9 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Bike, ExpandedBikeData} from '@models/bike/bike.types';
 import {CamelCaseResponseKeys} from '@shared/decorators/camelcase-response-keys';
-import {RideResponse} from '@api/api-rides/types';
+import {RideResponse, EngagedTimeResponse} from '@api/api-rides/types';
 import {processRideResponse} from '@api/api-rides/helpers/process-ride-response';
-
+import * as snakecaseKeys from 'snakecase-keys';
 @Injectable({providedIn: 'root'})
 export class ApiRidesService {
   constructor(private httpClient: HttpClient) {}
@@ -63,5 +63,20 @@ export class ApiRidesService {
 
   getBikesByCluster(clusterId: number, start_date, duration): Observable<any> {
     return this.httpClient.get(`/clusters/${clusterId}?start_date=${start_date}&duration${duration}`);
+  }
+
+  @CamelCaseResponseKeys()
+  getEngagedTimeData(
+    bikeId: number,
+    startDate: string,
+    endDate: string
+  ): Observable<EngagedTimeResponse> {
+    const params = snakecaseKeys({startDate, endDate}) as {
+      [key: string]: string;
+    };
+    return this.httpClient.get<EngagedTimeResponse>(
+      `/rides/${bikeId}/engaged_time`,
+      {params}
+    );
   }
 }

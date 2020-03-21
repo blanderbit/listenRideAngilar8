@@ -1,7 +1,9 @@
 const SECOND = 1;
 const MINUTE = 60 * SECOND;
 const HOUR = 60 * MINUTE;
-export const DAY = 24 * HOUR;
+export const MIN_OPENING_HOUR = 6;
+export const HOURS_IN_DAY = 24;
+export const DAY = HOURS_IN_DAY * HOUR;
 
 export enum PeriodStartDate {
   HALF_DAY = 43200,

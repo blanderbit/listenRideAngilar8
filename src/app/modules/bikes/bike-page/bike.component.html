@@ -112,9 +112,12 @@
       </div>
     </div>
     <div class="col-md-4 d-none d-lg-block">
-      <mat-card>
+      <mat-card class="booking-widget-container">
         <mat-card-content>
-          <lnr-booking-widget [bikeData]="bikeData"></lnr-booking-widget>
+          <lnr-bike-booking-widget
+            [bikeData]="bikeData"
+            [isPricesSectionShown]="true"
+          ></lnr-bike-booking-widget>
         </mat-card-content>
       </mat-card>
     </div>

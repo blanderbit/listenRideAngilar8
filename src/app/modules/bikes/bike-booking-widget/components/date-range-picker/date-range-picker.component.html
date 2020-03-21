@@ -1,0 +1,38 @@
+<div
+  class="d-flex justify-content-between dates-range ngx-daterangepicker-action mb-2"
+  (click)="toggleDatepicker()"
+>
+  <div class="ngx-daterangepicker-action d-flex">
+    <mat-icon>calendar_today</mat-icon>
+    {{ (datesRange?.startDate | date: 'd MMM y') || 'Pick up' }}
+  </div>
+  <div class="divider ngx-daterangepicker-action">
+    →
+  </div>
+  <div class="ngx-daterangepicker-action">
+    {{ (datesRange?.endDate | date: 'd MMM y') || 'Return' }}
+  </div>
+</div>
+<div
+  class="date-range-picker-wrapper"
+  [class.is-loading]="isCalendarDataLoading"
+>
+  <label>
+    <input
+      type="text"
+      class="date-range-picker"
+      ngxDaterangepickerMd
+      [linkedCalendars]="false"
+      [(ngModel)]="datesRange"
+      [autoApply]="true"
+      [closeOnAutoApply]="true"
+      (startDateChanged)="onStartDateChange($event)"
+      (datesUpdated)="onEndDate($event)"
+      [isInvalidDate]="isInvalidDate"
+      [isCustomDate]="isCustomDate"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [locale]="localeOptions"
+    />
+  </label>
+</div>

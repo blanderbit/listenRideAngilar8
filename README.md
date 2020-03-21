@@ -4,24 +4,13 @@
 Required software: `npm`, `node`
 
 ## Install
-```
->> git clone git@github.com:listnride/listnride-frontend-new.git
->> npm ci
->> cp env.example.txt .env
->> npm run config
-
-
-sudo sysctl fs.inotify.max_user_watches=524288
-sudo sysctl -p --system
+```bash
+$ git clone git@github.com:listnride/listnride-frontend-new.git
+$ npm ci
+$ cp env.example.txt .env
+$ npm run config
 ```
 
-#### + temporary step (install mobiscroll)
-```
-npm install -g @mobiscroll/cli
-mobiscroll config angular // you will be asked for credentials
->> user: b.yuriy@fasterthanlight.me
->> password @FVMe2pRfpfjfZ@
-```
 ## Development server
 
 Run `ng serve` or `npm run start1` for a dev server. Navigate to `http://localhost:4200/`.
@@ -30,3 +19,11 @@ Run `ng serve` or `npm run start1` for a dev server. Navigate to `http://localho
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Tips
+
+
+BUG: Hot Reload not responding to changes on components
+```bash
+sudo sysctl fs.inotify.max_user_watches=524288
+sudo sysctl -p --system
+```

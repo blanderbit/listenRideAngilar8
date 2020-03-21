@@ -1,4 +1,3 @@
-
 @import 'variables';
 @import 'utils/utils';
 
@@ -70,4 +69,10 @@ lnr-top-location ::ng-deep .top-location-list {
       font-size: $base-font_size;
     }
   }
+}
+
+.booking-widget-container {
+  position: sticky;
+  top: 1rem;
+  margin-bottom: 1rem;
 }

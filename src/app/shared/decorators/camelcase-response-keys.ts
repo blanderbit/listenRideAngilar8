@@ -1,6 +1,11 @@
 import {map} from 'rxjs/operators';
 import * as camelcaseKeys from 'camelcase-keys';
 
+const STOP_PATHS: string[] = [
+  // Engaged time response
+  'hours'
+];
+
 /**
  * Here, tslint is disabled because we need to preserve context,
  * so we need to use not-arrow-functions
@@ -20,7 +25,7 @@ export function CamelCaseResponseKeys(): MethodDecorator {
         .apply(this, arguments)
         .pipe(
           map((response: {[key: string]: unknown}) =>
-            camelcaseKeys(response, {deep: true})
+            camelcaseKeys(response, {deep: true, stopPaths: STOP_PATHS})
           )
         );
     };

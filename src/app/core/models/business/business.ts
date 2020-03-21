@@ -4,7 +4,13 @@ export interface Business {
   company_name: string;
   // TODO: ask BE for type
   vat: any;
-  insurance_enabled: boolean;
+  insuranceEnabled: boolean;
   // TODO: ask BE for type
-  time_slots: any[];
+  timeSlots: any[];
 }
+
+export interface TimeSlot {
+  startTime: {hour: number; minute: number};
+  endTime: {hour: number; minute: number};
+}
+export type TimeSlots = [TimeSlot, TimeSlot];

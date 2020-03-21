@@ -1,0 +1,100 @@
+@import 'variables';
+
+::ng-deep.mbsc-material.mbsc-input {
+  margin: 0;
+}
+
+.booking-widget-wrapper {
+  max-width: 37.5rem;
+  margin: auto;
+}
+
+mbsc-range {
+  display: flex;
+}
+
+.heading-4 {
+  margin-bottom: 0;
+}
+
+::ng-deep.loader-spinner-dates {
+  height: 3rem;
+  width: 3rem;
+  margin: auto auto 1rem;
+}
+
+::ng-deep.fully-unavailable-day {
+  color: $lnr-dang;
+}
+
+::ng-deep.first-half-available:not([aria-selected='true']) {
+  .mbsc-cal-day-date:not(:hover) {
+    background: linear-gradient(140deg, white 50%, $light-grey 50%);
+    border: 0;
+    padding: 0.2rem;
+  }
+}
+
+::ng-deep.second-half-available:not([aria-selected='true']) {
+  .mbsc-cal-day-date:not(:hover) {
+    background: linear-gradient(140deg, $light-grey 50%, white 50%);
+    border: 0;
+    padding: 0.2rem;
+  }
+}
+
+::ng-deep.mbsc-range-btn-t {
+  display: none;
+}
+
+::ng-deep mbsc-range {
+  border: 1px solid $input-border;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+
+  .mbsc-windows.mbsc-input {
+    padding: 0;
+  }
+
+  .mbsc-windows.mbsc-input input,
+  .mbsc-windows.mbsc-select input {
+    border: 0;
+  }
+
+  mbsc-range-start {
+    label::after {
+      content: '→';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      padding-right: 1rem;
+    }
+  }
+  .mbsc-material.mbsc-input .mbsc-control {
+    border: 0;
+  }
+}
+::ng-deep.mbsc-material.mbsc-input .mbsc-control:focus,
+.mbsc-material.mbsc-input select:focus ~ input {
+  border-bottom: 0;
+}
+
+::ng-deep.half-day-option {
+  padding: 0.5rem 0.7rem;
+
+  .mat-checkbox-frame {
+    border-color: $white;
+  }
+
+  .mat-checkbox-layout .mat-checkbox-label {
+    color: $white;
+    line-height: 2rem;
+  }
+}
+
+.time-pickers {
+  > div {
+    width: 50%;
+  }
+}

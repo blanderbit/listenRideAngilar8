@@ -11,8 +11,7 @@ import {PaymentMethodUpdateRequest} from '@models/payment/payment-method-update-
 
 @Injectable({providedIn: 'root'})
 export class ApiUserService {
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   @CamelCaseResponseKeys()
   me(): Observable<Partial<User>> {

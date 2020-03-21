@@ -1,4 +1,4 @@
-@import "~assets/scss/colors";
+@import 'variables';
 
 .bike-booking-snackbar {
   position: sticky;
@@ -6,4 +6,5 @@
   background: $white;
   border-top: 0.2rem solid $light-grey;
   margin: 0 -1.5rem;
+  z-index: 1;
 }

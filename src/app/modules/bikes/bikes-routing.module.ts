@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {BikeComponent} from './bike/bike.component';
+import {BikeComponent} from './bike-page/bike.component';
 
 const routes: Routes = [
   {path: ':bikeId', component: BikeComponent},

@@ -1,0 +1,118 @@
+@import 'variables';
+
+.dates-range {
+  cursor: pointer;
+  border: 1px solid $light-grey;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+
+  mat-icon {
+    height: $base-font_size;
+    width: $base-font_size;
+    font-size: $base-font_size;
+    margin-right: 0.5rem;
+  }
+}
+
+::ng-deep {
+  .date-range-picker-wrapper {
+    line-height: 0;
+
+    label,
+    input {
+      width: 100%;
+    }
+
+    &.is-loading {
+      .md-drppicker {
+        &:after {
+          content: 'sync';
+          font-family: 'Material Icons', sans-serif;
+          position: absolute;
+          top: 50%;
+          left: calc(50% - (5rem / 2));
+          font-size: 5rem;
+          color: $main-blue;
+          animation-name: spin;
+          animation-duration: 1500ms;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
+        .calendar {
+          opacity: 0.7;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  .date-range-picker {
+    input {
+      height: 0;
+      border: 0;
+      outline: 0;
+      color: transparent;
+    }
+
+    .md-drppicker {
+      box-shadow: none;
+      border: 1px solid $light-grey;
+
+      td.active,
+      td.active:hover,
+      td.off.in-range,
+      td.in-range {
+        background: $main-green;
+        color: $white;
+        text-decoration: none;
+      }
+
+      td,
+      td.active.available,
+      td.available:hover,
+      th.available:hover {
+        border-radius: 0;
+        font-weight: bold;
+      }
+
+      .first-half-available:not(:hover):not(.start-date):not(.end-date) {
+        background: linear-gradient(140deg, $white 50%, $light-grey 50%);
+      }
+
+      .second-half-available:not(:hover):not(.start-date):not(.end-date) {
+        background: linear-gradient(140deg, $light-grey 50%, $white 50%);
+      }
+
+      .calendar.right {
+        display: none !important;
+      }
+
+      .fully-unavailable-day {
+        color: $error-color;
+      }
+
+      th {
+        font-weight: normal;
+      }
+
+      th.month {
+        font-weight: bold;
+        color: $black;
+      }
+
+      td.off.disabled:not(.in-range) {
+        background: $light-grey;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

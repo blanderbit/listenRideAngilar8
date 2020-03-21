@@ -1,9 +1,10 @@
 import {User} from '@models/user/user';
 import {PeriodStartDate} from '@core/constants/time';
 import {CategoryInterface, SubCategoryInterface} from '../../../modules/list-my-bike/model/models';
+import * as moment from 'moment';
 
 export interface ExpandedBikeData {
-  id: string;
+  id: number;
   brand: string;
   name: string;
   category: CategoryInterface;
