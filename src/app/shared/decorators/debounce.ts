@@ -12,4 +12,4 @@ export function Debounce(ms) {
       return newFunc.apply(this, arguments);
     };
   };
-};
+}

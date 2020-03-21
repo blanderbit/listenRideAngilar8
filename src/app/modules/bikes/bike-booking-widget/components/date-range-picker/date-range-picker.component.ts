@@ -68,22 +68,25 @@ export class DateRangePickerComponent
 
   public isCalendarDataLoading: boolean;
 
-  public isInvalidDate = date => this.checkIsInvalidDate(date);
+  public isInvalidDate = (date): boolean => this.checkIsInvalidDate(date);
 
   public isCustomDate = date => this.checkIsCustomDate(date);
 
   ngOnInit(): void {
-    const { unavailable, booked, closed } = this.engagedDays;
-    const flatInvalidDates = [...unavailable, ...booked, ...closed];
-    const minDate = moment();
+    this.minDate = moment();
+    if (this.engagedDays) {
+      const { unavailable, booked, closed } = this.engagedDays;
+      const flatInvalidDates = [...unavailable, ...booked, ...closed];
+      const minDate = moment();
 
-    while (flatInvalidDates.includes(minDate.format(DATE_FORMAT))) {
-      minDate.add(1, 'day');
+      while (flatInvalidDates.includes(minDate.format(DATE_FORMAT))) {
+        minDate.add(1, 'day');
+      }
+      this.minDate = minDate;
+      this.flatInvalidDates = flatInvalidDates;
+
+      this.engagedDaysDiffer = this.kvDiffers.find(this.engagedDays).create();
     }
-    this.minDate = minDate;
-    this.flatInvalidDates = flatInvalidDates;
-
-    this.engagedDaysDiffer = this.kvDiffers.find(this.engagedDays).create();
   }
 
   ngDoCheck() {
@@ -101,49 +104,53 @@ export class DateRangePickerComponent
   }
 
   onStartDateChange(event) {
-    const { startDate } = event as StartDateChangedEvent;
-    const { unavailable, booked, partlyUnavailable } = this.engagedDays;
-    const startDayString = startDate.format(DATE_FORMAT);
+    if (this.engagedDays) {
+      const { startDate } = event as StartDateChangedEvent;
+      const { unavailable, booked, partlyUnavailable } = this.engagedDays;
+      const startDayString = startDate.format(DATE_FORMAT);
 
-    if (this.pickerDirective.picker.isShown) {
-      this.maxDate = [...booked, ...partlyUnavailable, ...unavailable]
-        .sort()
-        // eslint-disable-next-line array-callback-return,consistent-return
-        .reduce((result: moment.Moment | undefined, current) => {
-          if (result) {
-            return result;
-          }
-          if (current >= startDayString) {
-            if (partlyUnavailable.includes(current)) {
-              const engagedHours = this.engagedHours[current];
-              const { unavailable: unavailableHours, closed } = engagedHours;
+      if (this.pickerDirective.picker.isShown) {
+        this.maxDate = [...booked, ...partlyUnavailable, ...unavailable]
+          .sort()
+          // eslint-disable-next-line array-callback-return,consistent-return
+          .reduce((result: moment.Moment | undefined, current) => {
+            if (result) {
+              return result;
+            }
+            if (current >= startDayString) {
+              if (partlyUnavailable.includes(current)) {
+                const engagedHours = this.engagedHours[current];
+                const { unavailable: unavailableHours, closed } = engagedHours;
 
-              if (current === startDayString) {
-                const reversedClosedHours = closed.sort((a, b) => b - a);
-                const closingHour = reversedClosedHours.reduce((res, curr) => {
-                  return res - curr === 1 ? curr : res;
-                });
-                const lastUnavailableHour = Math.max(...unavailableHours);
+                if (current === startDayString) {
+                  const reversedClosedHours = closed.sort((a, b) => b - a);
+                  const closingHour = reversedClosedHours.reduce(
+                    (res, curr) => {
+                      return res - curr === 1 ? curr : res;
+                    },
+                  );
+                  const lastUnavailableHour = Math.max(...unavailableHours);
 
-                if (range(lastUnavailableHour + 1, closingHour).length) {
-                  // eslint-disable-next-line consistent-return
-                  return; // Continue looping because this day is OK to start with
+                  if (range(lastUnavailableHour + 1, closingHour).length) {
+                    // eslint-disable-next-line consistent-return
+                    return; // Continue looping because this day is OK to start with
+                  }
+                }
+                const firstUnavailableToRange = Math.min(...unavailableHours);
+                const availableHours = getAbsentNumbers(closed).filter(
+                  n => n < firstUnavailableToRange,
+                );
+
+                if (availableHours.length) {
+                  return moment(current);
                 }
               }
-              const firstUnavailableToRange = Math.min(...unavailableHours);
-              const availableHours = getAbsentNumbers(closed).filter(
-                n => n < firstUnavailableToRange,
-              );
-
-              if (availableHours.length) {
-                return moment(current);
-              }
+              return current > startDayString
+                ? moment(current).subtract(1, 'day')
+                : moment(current);
             }
-            return current > startDayString
-              ? moment(current).subtract(1, 'day')
-              : moment(current);
-          }
-        }, undefined);
+          }, undefined);
+      }
     }
   }
 
@@ -164,24 +171,26 @@ export class DateRangePickerComponent
 
   // eslint-disable-next-line consistent-return
   checkIsCustomDate(date: moment.Moment): Array<string> | string | void {
-    const dateString = date.format(DATE_FORMAT);
-    const { partlyUnavailable, unavailable, booked } = this.engagedDays;
-    const fullyUnavailable = [...unavailable, ...booked];
+    if (this.engagedDays) {
+      const dateString = date.format(DATE_FORMAT);
+      const { partlyUnavailable, unavailable, booked } = this.engagedDays;
+      const fullyUnavailable = [...unavailable, ...booked];
 
-    if (fullyUnavailable.includes(dateString)) {
-      return ['fully-unavailable-day', 'off', 'disabled', 'invalid'];
-    }
-    if (this.flatInvalidDates.includes(dateString)) {
-      return ['off', 'disabled', 'invalid'];
-    }
-    if (this.isHalfDay && partlyUnavailable.includes(dateString)) {
-      const [availableHalfDay] = getAvailableHalfDays(
-        this.engagedHours[dateString],
-        this.timeSlots,
-      );
-      const prefix = getAvailableHalfDayPrefix(availableHalfDay);
+      if (fullyUnavailable.includes(dateString)) {
+        return ['fully-unavailable-day', 'off', 'disabled', 'invalid'];
+      }
+      if (this.flatInvalidDates.includes(dateString)) {
+        return ['off', 'disabled', 'invalid'];
+      }
+      if (this.isHalfDay && partlyUnavailable.includes(dateString)) {
+        const [availableHalfDay] = getAvailableHalfDays(
+          this.engagedHours[dateString],
+          this.timeSlots,
+        );
+        const prefix = getAvailableHalfDayPrefix(availableHalfDay);
 
-      return prefix && `${prefix}-half-available`;
+        return prefix && `${prefix}-half-available`;
+      }
     }
   }
 
@@ -194,17 +203,19 @@ export class DateRangePickerComponent
     const originalClickNext = picker.clickNext;
     const originalHide = picker.hide;
 
-    picker.clickNext = async side => {
-      const { calendarVariables } = picker;
-      const { left: currentCalendarValues } = calendarVariables;
-      const { month, year } = currentCalendarValues as CalendarValues;
-      const nextMonth = String(month + 2).padStart(2, '0'); // January is the 0th
+    if (this.engagedDays) {
+      picker.clickNext = async side => {
+        const { calendarVariables } = picker;
+        const { left: currentCalendarValues } = calendarVariables;
+        const { month, year } = currentCalendarValues as CalendarValues;
+        const nextMonth = String(month + 2).padStart(2, '0'); // January is the 0th
 
-      this.isCalendarDataLoading = true;
-      await this.onNextMonthRequest(`${year}-${nextMonth}`);
-      this.isCalendarDataLoading = false;
-      originalClickNext.apply(picker, [side]);
-    };
+        this.isCalendarDataLoading = true;
+        await this.onNextMonthRequest(`${year}-${nextMonth}`);
+        this.isCalendarDataLoading = false;
+        originalClickNext.apply(picker, [side]);
+      };
+    }
     picker.hide = () => {
       this.maxDate = NEXT_YEAR;
       originalHide.apply(picker);

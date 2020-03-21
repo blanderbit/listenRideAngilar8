@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ImageTextComponent} from './image-text.component';
+import { ImageTextComponent } from './image-text.component';
 
 describe('ImageTextComponent', () => {
   let component: ImageTextComponent;
@@ -8,9 +8,8 @@ describe('ImageTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ImageTextComponent]
-    })
-      .compileComponents();
+      declarations: [ImageTextComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

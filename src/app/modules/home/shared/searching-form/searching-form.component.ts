@@ -1,50 +1,33 @@
-// TODO Fix to avoid eslint-ignore
-/* eslint-disable */
 import {
+  AfterViewInit,
   Component,
   Input,
   OnInit,
-  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  SatDatepickerInputEvent,
-  SatDatepickerRangeValue,
-} from 'saturn-datepicker';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryMultiSelectComponent } from '@shared/filters/category-multiselect/category-multi-select.component';
 import { SearchModel, SearchQueryParams } from '../../../search/search.types';
+import { DatesRange } from '../../../bikes/bike-booking-widget/types';
 
 @Component({
   selector: 'lnr-searching-form',
   templateUrl: './searching-form.component.html',
   styleUrls: ['./searching-form.component.scss'],
 })
-export class SearchingFormComponent implements OnInit {
+export class SearchingFormComponent implements OnInit, AfterViewInit {
   @Input() activeSearch = false;
 
   location: string;
 
   searchingForm: FormGroup;
 
-  date: SatDatepickerRangeValue<Date>;
+  public selectedDates: DatesRange;
 
-  lastDateInput: SatDatepickerRangeValue<Date> | null;
-
-  lastDateChange: SatDatepickerRangeValue<Date> | null;
-
-  maxDate = new Date('20-12-2024');
-
-  // TODO Add generic type to ref to avoid this dumb typing
-  @ViewChild('categorySelect', { static: true })
-  public categorySelect: TemplateRef<any> & { multiSelectUpdate: any };
-
-  onDateInput = (e: SatDatepickerInputEvent<Date>) =>
-    (this.lastDateInput = e.value as SatDatepickerRangeValue<Date>);
-
-  onDateChange = (e: SatDatepickerInputEvent<Date>) =>
-    (this.lastDateChange = e.value as SatDatepickerRangeValue<Date>);
+  @ViewChild(CategoryMultiSelectComponent, { static: false })
+  categorySelect: CategoryMultiSelectComponent;
 
   constructor(
     private fb: FormBuilder,
@@ -52,51 +35,56 @@ export class SearchingFormComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchingForm = this.fb.group({
-      date: [this.date],
       location: ['', Validators.required],
       type: [],
     });
-
-    this.categorySelect.multiSelectUpdate.subscribe(categories => {
-      this.searchingForm.get('type').setValue(categories);
-    });
   }
 
-  onAutocompleteSelected(selection) {
+  onAutocompleteSelected(selection): void {
     this.searchingForm.get('location').setValue(selection.formatted_address);
   }
 
-  formatQueryParams(formData) {
+  private formatQueryParams = (formData): SearchQueryParams => {
     const searchParams: SearchQueryParams = {
       page: 1,
     };
     if (formData.location) {
       searchParams.location = formData.location;
     }
-    if (formData.date) {
-      searchParams.start_date = formData.date.begin.toISOString();
-      searchParams.duration = Math.round(
-        (new Date(formData.date.end).getTime() -
-          new Date(formData.date.begin).getTime()) /
-          1000,
-      );
-    }
     if (formData.type) {
       searchParams.category = formData.type.join(',');
     }
 
     return searchParams;
+  };
+
+  onDatesRangeSet({ startDate, endDate }: DatesRange): void {
+    this.selectedDates = { startDate, endDate };
   }
 
-  onSubmit(selection) {
+  onSubmit(): void {
     const searchPayload = this.formatQueryParams(
       this.searchingForm.getRawValue(),
     );
+
+    if (this.selectedDates) {
+      const { startDate, endDate } = this.selectedDates;
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      searchPayload.start_date = startDate.toISOString();
+      searchPayload.duration = endDate.diff(startDate, 'seconds');
+    }
+
     this.router.navigate(['/search'], {
       queryParams: { ...searchPayload },
       replaceUrl: true,
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.categorySelect.multiSelectUpdate.subscribe(categories => {
+      this.searchingForm.get('type').setValue(categories);
     });
   }
 }

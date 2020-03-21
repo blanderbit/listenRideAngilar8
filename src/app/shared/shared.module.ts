@@ -25,6 +25,7 @@ import { OtpVerificationModule } from '@shared/components/otp-verification/otp-v
 import { PaymentMethodCardComponent } from '@shared/components/payment/payment-method-card/payment-method-card.component';
 import { PaymentMethodPayPalComponent } from '@shared/components/payment/payment-method-pay-pal/payment-method-pay-pal.component';
 import { DialogsModule } from '@shared/dialogs/dialogs.module';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { TopLocationComponent } from './components/top-location/top-location.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { NeedHelpComponent } from './components/need-help/need-help.component';
@@ -37,6 +38,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
 import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
 import { ContentLayoutsModule } from './components/content-layouts/content-layouts.module';
+import { DateRangePickerComponent } from '../modules/bikes/bike-booking-widget/components/date-range-picker/date-range-picker.component';
 
 const components = [
   FiltersComponent,
@@ -54,6 +56,7 @@ const components = [
   BreadcrumbsComponent,
   TestimonialsSwiperComponent,
   SmallSwiperComponent,
+  DateRangePickerComponent,
 ];
 
 const modules = [
@@ -90,6 +93,7 @@ const modules = [
     AgmCoreModule,
     MatGoogleMapsAutocompleteModule,
     NgxMaskModule.forRoot(),
+    NgxDaterangepickerMd.forRoot(),
   ],
   exports: [
     ...modules,

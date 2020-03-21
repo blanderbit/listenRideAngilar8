@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ImageOnBgTextComponent} from './image-on-bg-text.component';
+import { ImageOnBgTextComponent } from './image-on-bg-text.component';
 
 describe('ImageOnBgTextComponent', () => {
   let component: ImageOnBgTextComponent;
@@ -8,9 +8,8 @@ describe('ImageOnBgTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ImageOnBgTextComponent]
-    })
-      .compileComponents();
+      declarations: [ImageOnBgTextComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

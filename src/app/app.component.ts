@@ -37,45 +37,44 @@ export class AppComponent implements OnInit {
       ...getImagesFromFolder('accessories'),
       {
         name: 'filter',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/filter_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/filter_icon.svg`,
       },
       {
         name: 'reset-filter',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/reset_filter_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/reset_filter_icon.svg`,
       },
       {
         name: 'sort',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/sort_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/sort_icon.svg`,
       },
       {
         name: 'copy',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/copy_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/copy_icon.svg`,
       },
       {
         name: 'merge',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/merge_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/merge_icon.svg`,
       },
       {
         name: 'unmerge',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/unmerge_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/unmerge_icon.svg`,
       },
       {
         name: 'visibility',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_icon.svg`,
       },
       {
         name: 'visibility-off',
-        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_off_icon.svg`
+        path: `${IMAGES_FOLDER_PATH}/icons/shared/visibility_off_icon.svg`,
       },
     ];
 
     // set categories to material icons
-    importIconsList.forEach(({name, path}) => {
+    importIconsList.forEach(({ name, path }) => {
       this.matIconRegistry.addSvgIcon(
         `lnr-${name}`,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(path)
+        this.domSanitizer.bypassSecurityTrustResourceUrl(path),
       );
     });
-
   }
 }

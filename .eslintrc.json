@@ -43,7 +43,14 @@
     "no-plusplus": "warn",
     "no-console": "error",
     "max-classes-per-file": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "curly": "error"
   },
   "settings": {
     "import/resolver": {

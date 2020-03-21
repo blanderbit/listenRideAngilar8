@@ -1,4 +1,3 @@
-
 const isString = (str: string): boolean => typeof str !== 'string';
 
 export const getName = (day: string | number): string => `price${day}`;

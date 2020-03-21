@@ -12,16 +12,18 @@
     "test": "npm run config && ng test",
     "stylelint": "stylelint '**/*.scss'",
     "lint": "eslint --fix-dry-run 'src/**/*.ts'",
+    "prettier": "prettier --check 'src/**/*.ts'",
+    "prettier-fix": "prettier --write 'src/**/*.ts'",
     "lint-quiet": "eslint --fix-dry-run --quiet 'src/**/*.ts'",
-    "lint-fix": "eslint --fix \"src/**/*.ts\"",
+    "lint-fix": "eslint --fix 'src/**/*.ts'",
     "e2e": "ng e2e",
     "heroku-postbuild": "npm run config && ng build --prod",
     "typecheck": "tsc --noEmit",
-    "github-checks": "npm run lint-quiet && npm run typecheck"
+    "github-checks": "npm run prettier && npm run lint-quiet && npm run typecheck"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run github-checks"
+      "pre-push": "npm run github-checks"
     }
   },
   "private": true,

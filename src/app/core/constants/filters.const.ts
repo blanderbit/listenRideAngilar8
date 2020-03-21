@@ -9,7 +9,6 @@ const eBike = require('./../../../assets/images/icons/categories/e-bike.svg');
 const Transport = require('./../../../assets/images/icons/categories/cargo.svg');
 const AllTerrain = require('./../../../assets/images/icons/categories/all-terrain.svg');
 
-
 export const sizeList = [
   {
     text: 'All Sizes',
