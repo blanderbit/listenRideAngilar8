@@ -2,26 +2,25 @@
   <div class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
       <h1 class="heading-3">
-        {{'privacy.title' | translate}}
+        {{ 'privacy.title' | translate }}
       </h1>
-      <p>{{'privacy.subtitle'| translate}}</p>
+      <p>{{ 'privacy.subtitle' | translate }}</p>
     </div>
   </div>
   <div class="m-t-2 m-b-4">
-    <lnr-image-text
-      [imageAlign]="'left'"
-      [imageUrl]="MAIN_IMAGE_URL"
-    >
+    <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
       <div class="m-t-2 m-b-2">
         <p>
-          {{'privacy.description' | translate}}
+          {{ 'privacy.description' | translate }}
         </p>
         <p>
           <!--TODO add function javascript:gaOptout()-->
-          <a href="#"
-             onclick="alert('Google Analytics successfully deactivated')"
-             class="lnr-center">
-            {{'privacy.ga-opt-out'| translate}}
+          <a
+            href="#"
+            onclick="alert('Google Analytics successfully deactivated')"
+            class="lnr-center"
+          >
+            {{ 'privacy.ga-opt-out' | translate }}
           </a>
         </p>
       </div>

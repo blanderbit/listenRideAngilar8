@@ -1,13 +1,12 @@
 <div class="image-text-on-bg">
   <div class="image-on-bg_content">
     <div class="">
-      <div class="image-on-bg_image"
-           [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')'}">
-        <span
-          *ngIf="imageText"
-          class="white heading-4 bold"
-        >
-          {{imageText}}
+      <div
+        class="image-on-bg_image"
+        [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')' }"
+      >
+        <span *ngIf="imageText" class="white heading-4 bold">
+          {{ imageText }}
         </span>
       </div>
     </div>
