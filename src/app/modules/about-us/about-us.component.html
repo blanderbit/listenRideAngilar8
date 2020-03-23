@@ -12,15 +12,13 @@
     <lnr-image-text
       class="w-p-100"
       [imageAlign]="'left'"
-      [imageUrl]="'https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/about-us-page_main-img1.jpg'"
+      [imageUrl]="MAIN_IMAGE_URL + '/about/about-us-page_main-img1.jpg'"
     >
       <div class="m-t-1 m-b-1">
         <h4 class="main-blue-font-color">
           {{'about_us.community.title' | translate}}
         </h4>
-        <p>
-          {{'about_us.community.content' | translate}}
-        </p>
+        <p [innerHTML]="'about_us.community.content' | translate"></p>
       </div>
     </lnr-image-text>
   </div>
@@ -28,15 +26,13 @@
     <lnr-image-text
       class="w-p-100"
       [imageAlign]="'right'"
-      [imageUrl]="'https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/about-us-page_main-img2.jpg'"
+      [imageUrl]="MAIN_IMAGE_URL + '/about/about-us-page_main-img2.jpg'"
     >
       <div class="m-t-1 m-b-1">
         <h4 class="main-blue-font-color">
           {{'about_us.future.title' | translate}}
         </h4>
-        <p>
-          {{'about_us.future.content' | translate}}
-        </p>
+        <p [innerHTML]="'about_us.future.content' | translate"></p>
       </div>
     </lnr-image-text>
   </div>
@@ -55,19 +51,17 @@
     <div class="col-md-6 m-t-2 m-b-2">
       <lnr-image-on-bg-text
         [imageText]="'Berlin'"
-        [imageUrl]="'https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/berlin.jpg'"
+        [imageUrl]="MAIN_IMAGE_URL + '/about/berlin.jpg'"
       >
         <div class="m-t-1 m-b-1">
-          <p>
-            {{'about_us.community.content_berlin_showroom' | translate}}
-          </p>
+          <p [innerHTML]="'about_us.community.content_berlin_showroom' | translate"></p>
           <div class="map-block m-t-2">
             <a
               href="https://www.google.com/maps/place/List+and+Ride/@52.5237683,13.3992768,17z/data=!3m1!4b1!4m5!3m4!1s0x47a851e3db8dd117:0x5603f6d72224e2b1!8m2!3d52.5237683!4d13.4014655"
               rel="nofollow"
               target="_blank">
               <img class="w-p-100"
-                   src="https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/map-berlin.jpg"
+                   src="{{MAIN_IMAGE_URL}}/about/map-berlin.jpg"
                    alt="berlin_map"/>
             </a>
             <div class="m-t-1 flex direction-row align-items-center">
@@ -81,18 +75,16 @@
     <div class="col-md-6 m-t-2 m-b-2">
       <lnr-image-on-bg-text
         [imageText]="'Munich'"
-        [imageUrl]="'https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/munich.jpg'"
+        [imageUrl]="MAIN_IMAGE_URL + '/about/munich.jpg'"
       >
         <div class="m-t-1 m-b-1">
-          <p>
-            {{'about_us.community.content_munich_showroom' | translate}}
-          </p>
+          <p [innerHTML]="'about_us.community.content_munich_showroom' | translate"></p>
           <div class="map-block m-t-2">
             <a rel="nofollow"
                target="_blank"
                href="https://www.google.com/maps/place/Nymphenburger+Str.+86,+80636+M%C3%BCnchen/@48.150483,11.5465415,20z/data=!4m13!1m7!3m6!1s0x0:0x0!2zNDjCsDA5JzAxLjgiTiAxMcKwMzInNDEuMyJF!3b1!8m2!3d48.1505014!4d11.5447967!3m4!1s0x479e760ed065c633:0x679f8bd3c40ca9!8m2!3d48.1505014!4d11.5469854">
               <img class="w-p-100"
-                   src="https://listnride-assets.s3.eu-central-1.amazonaws.com/images/about/map-munich.jpg"
+                   src="{{MAIN_IMAGE_URL}}/about/map-munich.jpg"
                    alt="map-munich"
               />
             </a>

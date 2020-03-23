@@ -28,11 +28,11 @@ export class AppComponent implements OnInit {
     translate.use('en');
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const IMAGES_FOLDER_PATH = '../../../assets/images';
 
     // TODO: maybe it's better to move this longer list to the helper file
-    let importIconsList = [
+    const importIconsList = [
       ...getImagesFromFolder('categories'),
       ...getImagesFromFolder('accessories'),
       {

@@ -18,7 +18,7 @@ export class LayoutFooterComponent implements OnInit {
 
   constructor(public apiSeoService: ApiSeoService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.countries$ = this.apiSeoService.getCountriesFooter();
   }
 }

@@ -79,6 +79,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/press/press.module').then(m => m.PressModule),
   },
+  {
+    path: 'imprint',
+    loadChildren: () =>
+      import('./modules/impint/impint.module').then(m => m.ImpintModule),
+  },
   { path: '**', redirectTo: '404' },
 ];
 

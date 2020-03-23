@@ -1,0 +1,46 @@
+<article class="container imprint">
+  <!-- STATIC PAGE HEADER -->
+  <section class="row">
+    <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
+      <h1 class="heading-3">
+        {{'imprint.page_title' | translate}}
+      </h1>
+      <!-- TODO: ask Jean about sub title or insert these text below:
+        {{ 'imprint.regulation' | translate }}
+        {{ 'imprint.online-dispute' | translate }}
+        <a href="http://ec.europa.eu/consumers/odr" target="_blank" follow="nofollow">http://ec.europa.eu/consumers/odr</a>
+      -->
+      <p [innerHTML]="'imprint.page_subtitle' | translate"></p>
+    </div>
+  </section>
+
+  <!-- STATIC PAGE CONTENT -->
+  <section class="row m-t-2 m-b-2">
+    <lnr-image-text
+      class="w-p-100"
+      [imageAlign]="'left'"
+      [imageUrl]="MAIN_IMAGE_URL"
+    >
+      <div class="m-t-1 m-b-1">
+        <h4 class="main-blue-font-color">
+          {{'imprint.details_title' | translate}}
+        </h4>
+        <!-- TODO: ask Jean about imprint details_content or insert these text below:
+          <span><strong>List and Ride GmbH</strong></span>
+          <p translate="imprint.germany-address"></p>
+          <p translate="imprint.contacts"></p>
+          <p>
+            {{ 'imprint.managing-director' | translate }}:<br>
+            Johannes Stuhler, Gert-Jan van Wijk<br>
+            <br>
+            {{ 'imprint.commercial-register-number' | translate }}:<br>
+            HRB 161394 B<br>
+            {{ 'imprint.berlin-court-of-registry' | translate }}<br>
+            {{ 'imprint.vat-id' | translate }}: DE 296 394 699
+          </p> -->
+        <p [innerHTML]="'imprint.details_content' | translate"></p>
+      </div>
+    </lnr-image-text>
+  </section>
+
+</article>

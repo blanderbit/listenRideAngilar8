@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedModule } from '@shared/shared.module';
 import { BrandTemplateRoutingModule } from './brand-template-routing.module';
 import { BrandTemplateComponent } from './brand-template.component';
