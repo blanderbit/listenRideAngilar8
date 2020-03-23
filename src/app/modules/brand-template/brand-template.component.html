@@ -15,7 +15,8 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let item of brand.texts.columns" class="col-md-4 col-sm-12">
+      <div *ngFor="let item of brand.texts.columns"
+           class="col-md-4 col-sm-12">
         <img
           alt="brand"
           class="w-p-100 brand-page_column-img"
@@ -35,11 +36,14 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
-      <div class="col-md-6 text-center">
-        <h5 class="light-font">Choose a {{ brand.title }} location</h5>
+      <div class="col-md-6 text-center m-t-1 m-b-1">
+        <h5 class="light-font">
+          Choose a {{ brand.title }} location
+        </h5>
       </div>
     </div>
-    <lnr-brand-template-bike-list [response]="brand.bikes">
+    <lnr-brand-template-bike-list
+      [response]="brand.bikes">
     </lnr-brand-template-bike-list>
     <div class="row d-none d-md-block">
       <div class="col-sm-12 p-t-2 p-b-4">
@@ -55,7 +59,8 @@
           {{ brand.texts.info.desc }}
         </p>
       </div>
-      <div class="col-md-8 m-b-1" *ngIf="brand.technical_specs_image">
+      <div class="col-md-8 m-b-2"
+           *ngIf="brand.technical_specs_image">
         <img
           class="brand-page_technical-img"
           alt="brand technical img"
@@ -64,7 +69,7 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
-      <div class="col-md-8">
+      <div class="col-md-8 m-b-4">
         <p class="heading-6">
           {{ brand.texts.meta_data.title }}
         </p>

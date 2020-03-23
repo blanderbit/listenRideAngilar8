@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row brand-template-page_bikes-tab">
   <mat-tab-group class="col-md-12">
     <mat-tab
       *ngFor="let item of getUniqueCitiesList()"
@@ -10,7 +10,7 @@
           [ngClass]="{ 'd-none': !bike }"
           class="col-md-4"
         >
-          <lnr-bike-card [bike]="bike"> </lnr-bike-card>
+          <lnr-bike-card [bike]="bike"></lnr-bike-card>
         </div>
       </div>
     </mat-tab>
