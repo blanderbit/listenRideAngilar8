@@ -1,5 +1,5 @@
-<div class="lnr-static-page container">
-  <div class="row">
+<article class="lnr-static-page container">
+  <section class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
       <h1
         [innerHTML]="'terms-and-conditions.title' | translate"
@@ -7,8 +7,8 @@
       ></h1>
       <p [innerHTML]="'terms-and-conditions.subheader' | translate"></p>
     </div>
-  </div>
-  <div class="m-t-2 m-b-4">
+  </section>
+  <section class="m-t-2 m-b-4">
     <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
       <div class="m-t-2 m-b-2">
         <h4
@@ -18,6 +18,5 @@
         <p [innerHTML]="'terms-and-conditions.subtitle' | translate"></p>
       </div>
     </lnr-image-text>
-  </div>
-  <lnr-need-help></lnr-need-help>
-</div>
+  </section>
+</article>

@@ -1,11 +1,12 @@
-<div class="container">
-  <div class="row">
+<article class="container">
+  <section class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
       <h1 class="heading-3" [innerHTML]="'press.header' | translate"></h1>
       <p [innerHTML]="'press.subheader' | translate"></p>
     </div>
-  </div>
-  <div class="m-t-2 m-b-4">
+  </section>
+
+  <section class="m-t-2 m-b-4">
     <lnr-image-text [imageUrl]="MAIN_IMAGE_URL" [imageAlign]="'left'">
       <div>
         <div class="m-t-2 m-b-2">
@@ -24,6 +25,5 @@
         </div>
       </div>
     </lnr-image-text>
-  </div>
-  <lnr-need-help></lnr-need-help>
-</div>
+  </section>
+</article>

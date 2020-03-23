@@ -1,12 +1,12 @@
-<div class="container about-us-page">
-  <div class="row">
+<article class="container about-us-page">
+  <section class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
       <h1 class="heading-3" [innerHTML]="'about_us.header' | translate"></h1>
       <p [innerHTML]="'about_us.content_title' | translate"></p>
     </div>
-  </div>
+  </section>
 
-  <div class="row m-t-2 m-b-2">
+  <section class="row m-t-2 m-b-2">
     <lnr-image-text
       class="w-p-100"
       [imageAlign]="'left'"
@@ -20,8 +20,9 @@
         <p [innerHTML]="'about_us.community.content' | translate"></p>
       </div>
     </lnr-image-text>
-  </div>
-  <div class="row m-t-2 m-b-2">
+  </section>
+
+  <section class="row m-t-2 m-b-2">
     <lnr-image-text
       class="w-p-100"
       [imageAlign]="'right'"
@@ -34,9 +35,9 @@
         <p [innerHTML]="'about_us.future.content' | translate"></p>
       </div>
     </lnr-image-text>
-  </div>
+  </section>
 
-  <div class="row">
+  <section class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-2">
       <h4
         class="heading-4"
@@ -44,8 +45,9 @@
       ></h4>
       <p [innerHtml]="'about_us.showroom.subtitle' | translate"></p>
     </div>
-  </div>
-  <div class="row">
+  </section>
+
+  <section class="row">
     <div class="col-md-6 m-t-2 m-b-2">
       <lnr-image-on-bg-text
         [imageText]="'Berlin'"
@@ -79,6 +81,7 @@
         </div>
       </lnr-image-on-bg-text>
     </div>
+
     <div class="col-md-6 m-t-2 m-b-2">
       <lnr-image-on-bg-text
         [imageText]="'Munich'"
@@ -112,6 +115,9 @@
         </div>
       </lnr-image-on-bg-text>
     </div>
-  </div>
-  <lnr-need-help></lnr-need-help>
-</div>
+  </section>
+
+  <section>
+    <lnr-need-help></lnr-need-help>
+  </section>
+</article>
