@@ -1,26 +1,25 @@
-<div class="lnr-static-page">
-  <div
-    class="lnr-static-banner"
-    [style.backgroundImage]="'url(' + MAIN_IMAGE_URL + ')'"
-  ></div>
-
-  <div class="container lnr-text-align-ctr content">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <h3 class="title">
-          List and Ride General Terms and Conditions of Business
-        </h3>
-
-        <h5 class="sub-title">Last updated: September 9th, 2019</h5>
-
-        <p>
-          Please read these Terms carefully as they contain important
-          information about your legal rights, remedies and obligations. By
-          using the listnride platform, you agree to comply with these Terms.
-          Here you can download and read our General Terms and Conditions of
-          Business. Thank you for using listnride!
-        </p>
-      </div>
+<div class="lnr-static-page container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
+      <h1 [innerHTML]="'terms-and-conditions.title' | translate"
+          class="heading-3">
+      </h1>
+      <p [innerHTML]="'terms-and-conditions.subheader' | translate"></p>
     </div>
   </div>
+  <div class="m-t-2 m-b-4">
+    <lnr-image-text
+      [imageAlign]="'left'"
+      [imageUrl]="MAIN_IMAGE_URL"
+    >
+      <div class="m-t-2 m-b-2">
+        <h4 class="main-blue-font-color"
+            [innerHTML]="'terms-and-conditions.header' | translate">
+        </h4>
+        <p [innerHTML]="'terms-and-conditions.subtitle' | translate">
+        </p>
+      </div>
+    </lnr-image-text>
+  </div>
+  <lnr-need-help></lnr-need-help>
 </div>

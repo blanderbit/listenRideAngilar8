@@ -1,10 +1,10 @@
 <div class="container about-us-page">
   <div class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
-      <h1 class="heading-3">
-        {{'about_us.header' | translate}}
+      <h1 class="heading-3"
+          [innerHTML]="'about_us.header' | translate">
       </h1>
-      <p>{{'about_us.content_title' | translate}}</p>
+      <p [innerHTML]="'about_us.content_title' | translate"></p>
     </div>
   </div>
 
@@ -15,8 +15,8 @@
       [imageUrl]="MAIN_IMAGE_URL + '/about/about-us-page_main-img1.jpg'"
     >
       <div class="m-t-1 m-b-1">
-        <h4 class="main-blue-font-color">
-          {{'about_us.community.title' | translate}}
+        <h4 class="main-blue-font-color"
+            [innerHTML]="'about_us.community.title' | translate">
         </h4>
         <p [innerHTML]="'about_us.community.content' | translate"></p>
       </div>
@@ -39,11 +39,9 @@
 
   <div class="row">
     <div class="col-md-8 offset-md-1 m-t-2 m-b-2">
-      <h4 class="heading-4">
-        {{'brands.showroom.header' | translate}}
-      </h4>
-      <p>
-        {{'about_us.showroom.subtitle' | translate}}
+      <h4 class="heading-4"
+          [innerHtml]="'about_us.showroom.header' | translate"></h4>
+      <p [innerHtml]="'about_us.showroom.subtitle' | translate">
       </p>
     </div>
   </div>
@@ -66,7 +64,7 @@
             </a>
             <div class="m-t-1 flex direction-row align-items-center">
               <mat-icon class="map-icon-color">place</mat-icon>
-              <span>{{'about_us.showroom.berlin_address' | translate}}</span>
+              <span [innerHtml]="'about_us.showroom.berlin_address' | translate"></span>
             </div>
           </div>
         </div>
@@ -90,7 +88,7 @@
             </a>
             <div class="m-t-1 flex direction-row align-items-center">
               <mat-icon class="map-icon-color">place</mat-icon>
-              <span>{{'about_us.showroom.munich_address' | translate}}</span>
+              <span [innerHtml]="'about_us.showroom.munich_address' | translate"></span>
             </div>
           </div>
         </div>

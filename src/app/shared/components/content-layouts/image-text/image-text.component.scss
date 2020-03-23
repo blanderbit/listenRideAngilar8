@@ -1,16 +1,23 @@
-@import "utils/utils";
+@import 'utils/utils';
+@import 'variables';
 
 .image-text {
   &_image {
+    border-radius: $border-radius;
+    height: 37rem;
+    object-fit: cover;
+    object-position: center;
     position: relative;
-    max-height: 37rem;
     width: 100%;
+    @include if-smaller-than(tablet) {
+      height: auto;
+    }
   }
 
   &_content {
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     @include if-smaller-than(xs) {
       flex-direction: column;
     }
