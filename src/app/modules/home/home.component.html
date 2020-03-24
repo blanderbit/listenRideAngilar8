@@ -29,7 +29,7 @@
       <div class="row home-page_content flex direction-row">
         <lnr-searching-form></lnr-searching-form>
         <div class="wrap-main-img">
-          <img alt="" src="{{ heroShotUrl }}" />
+          <img alt="" src="{{ heroShotUrl }}"/>
         </div>
       </div>
     </div>
@@ -44,6 +44,38 @@
         <lnr-bike-tile-swiper></lnr-bike-tile-swiper>
       </div>
     </div>
+    <div class="row m-b-2">
+      <div class="col-md-11 offset-md-1">
+        <h3 class="home-page_subtitles m-b-2">
+          {{ 'rent-a-bike.info-section.header' | translate }}
+        </h3>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/icons/home/rent-easy.svg'"
+          [title]="'rent-a-bike.info-section.choice-title' | translate"
+          [paragraph]="'rent-a-bike.info-section.choice-content' | translate"
+        >
+        </lnr-our-pros>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/icons/home/rent-variety.svg'"
+          [title]="'rent-a-bike.info-section.easy-title' | translate"
+          [paragraph]="'rent-a-bike.info-section.easy-content' | translate"
+        >
+        </lnr-our-pros>
+      </div>
+      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
+        <lnr-our-pros
+          [image]="'../../../assets/images/icons/home/rent-secure.svg'"
+          [title]="'rent-a-bike.info-section.price-title' | translate"
+          [paragraph]="'rent-a-bike.info-section.price-content' | translate"
+        >
+        </lnr-our-pros>
+      </div>
+    </div>
+
     <div class="m-b-6 d-block d-sm-none">
       <lnr-popular-destination></lnr-popular-destination>
     </div>
@@ -98,37 +130,7 @@
         </button>
       </div>
     </div>
-    <div class="row m-b-2">
-      <div class="col-md-11 offset-md-1">
-        <h3 class="home-page_subtitles m-b-2">
-          {{ 'rent-a-bike.info-section.header' | translate }}
-        </h3>
-      </div>
-      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
-        <lnr-our-pros
-          [image]="'../../../assets/images/icons/home/rent-easy.svg'"
-          [title]="'rent-a-bike.info-section.choice-title' | translate"
-          [paragraph]="'rent-a-bike.info-section.choice-content' | translate"
-        >
-        </lnr-our-pros>
-      </div>
-      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
-        <lnr-our-pros
-          [image]="'../../../assets/images/icons/home/rent-variety.svg'"
-          [title]="'rent-a-bike.info-section.easy-title' | translate"
-          [paragraph]="'rent-a-bike.info-section.easy-content' | translate"
-        >
-        </lnr-our-pros>
-      </div>
-      <div class="col-md-4 col-sm-12 m-t-2 m-b-2">
-        <lnr-our-pros
-          [image]="'../../../assets/images/icons/home/rent-secure.svg'"
-          [title]="'rent-a-bike.info-section.price-title' | translate"
-          [paragraph]="'rent-a-bike.info-section.price-title' | translate"
-        >
-        </lnr-our-pros>
-      </div>
-    </div>
+
     <div class="row m-b-6">
       <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
         <h3 class="home-page_subtitles m-b-2">

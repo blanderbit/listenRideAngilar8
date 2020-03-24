@@ -1,13 +1,13 @@
-declare var require;
+declare let require;
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-const Urban = require('./../../../assets/images/icons/categories/urban.svg');
-const Special = require('./../../../assets/images/icons/categories/special.svg');
-const Road = require('./../../../assets/images/icons/categories/road.svg');
-const Kids = require('./../../../assets/images/icons/categories/kids.svg');
-const eBike = require('./../../../assets/images/icons/categories/e-bike.svg');
-const Transport = require('./../../../assets/images/icons/categories/cargo.svg');
-const AllTerrain = require('./../../../assets/images/icons/categories/all-terrain.svg');
+const Urban = require('../../../assets/images/icons/categories/urban.svg');
+const Special = require('../../../assets/images/icons/categories/special.svg');
+const Road = require('../../../assets/images/icons/categories/road.svg');
+const Kids = require('../../../assets/images/icons/categories/kids.svg');
+const eBike = require('../../../assets/images/icons/categories/e-bike.svg');
+const Transport = require('../../../assets/images/icons/categories/cargo.svg');
+const AllTerrain = require('../../../assets/images/icons/categories/all-terrain.svg');
 
 export const sizeList = [
   {
