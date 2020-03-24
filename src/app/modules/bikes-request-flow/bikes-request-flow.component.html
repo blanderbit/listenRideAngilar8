@@ -1,205 +1,226 @@
 <div class="stepper-container flex direction-column align-items-center">
-    <div class="flex justify-content-center container" [ngClass]="isMobile ? 'direction-column' : 'direction-row'">
-        <mat-horizontal-stepper
-            [linear]="isLinear"
-            id="requestFlow-stepper-hor"
-            labelPosition="bottom"
-            #stepper
-            *ngIf="(isDesktop || isTablet)"
+  <div
+    class="flex justify-content-center container"
+    [ngClass]="isMobile ? 'direction-column' : 'direction-row'"
+  >
+    <mat-horizontal-stepper
+      [linear]="isLinear"
+      id="requestFlow-stepper-hor"
+      labelPosition="bottom"
+      #stepper
+      *ngIf="isDesktop || isTablet"
+    >
+      <mat-step
+        [stepControl]="durationFormGroup"
+        [aria-label]="durationStep && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Duration</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="false"
+          [image_file]="data.image_file"
+          [brand]="data.brand"
+          [name]="data.name"
+          [type]="type"
+          [city]="data.city"
         >
-            <mat-step
-                [stepControl]="durationFormGroup"
-                [aria-label]="durationStep && 'disabledStep'">
-                <ng-template matStepLabel>Duration</ng-template>
+        </lnr-step-duration>
+      </mat-step>
 
-                <lnr-step-duration
-                    [durationFormGroup]="durationFormGroup"
-                    [hasInsurance]="false"
-                    [image_file]="data.image_file"
-                    [brand]="data.brand"
-                    [name]="data.name"
-                    [type]="type"
-                    [city]="data.city"
-                >
+      <mat-step
+        [stepControl]="signInFormGroup"
+        [aria-label]="signInStep && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Sign In</ng-template>
+        <h3 class="bold">Log in to listnride</h3>
+        <lnr-auth-login-dialog
+          [isRequestFlow]="isRequestFlow"
+        ></lnr-auth-login-dialog>
+      </mat-step>
 
-                </lnr-step-duration>
-            </mat-step>
-
-            <mat-step
-                [stepControl]="signInFormGroup"
-                [aria-label]="signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Sign In</ng-template>
-                <h3 class="bold">Log in to listnride</h3>
-                <lnr-auth-login-dialog [isRequestFlow]="isRequestFlow"></lnr-auth-login-dialog>
-            </mat-step>
-
-            <mat-step [stepControl]="phoneFormGroup" [aria-label]="allOtherSteps && 'disabledStep'">
-                <ng-template matStepLabel>Phone</ng-template>
-                <lnr-user-verification-phone
-                    *ngIf="user"
-                    [stepper]="stepper"
-                    [dialogRef]="dialogRef"
-                    [user]="user"
-                    [isDesktop]="isDesktop"
-                    [isTablet]="isTablet"
-                    [isMobile]="isMobile"
-                >
-                </lnr-user-verification-phone>
-            </mat-step>
-
-            <mat-step [stepControl]="personalDetailsFormGroup" [aria-label]="allOtherSteps && 'disabledStep'">
-                <ng-template matStepLabel>Address</ng-template>
-                <lnr-user-verification-address
-                    *ngIf="user"
-                    [stepper]="stepper"
-                    [dialogRef]="dialogRef"
-                    [user]="user"
-                    [isDesktop]="isDesktop"
-                    [isTablet]="isTablet"
-                    [isMobile]="isMobile"
-                >
-                </lnr-user-verification-address>
-            </mat-step>
-
-            <mat-step [stepControl]="paymentMethodFormGroup" [aria-label]="allOtherSteps && 'disabledStep'">
-                <ng-template matStepLabel>Payment method</ng-template>
-                <lnr-payment
-                    *ngIf="user"
-                    [flowType]="'request-flow'"
-                    [mode]="'update'"
-                    (next)="stepper.next()"
-                    [user]="user"
-                    [paymentMethodFormGroup]="paymentMethodFormGroup"
-                >
-                </lnr-payment>
-                <br/>
-            </mat-step>
-
-           <mat-step [stepControl]="rentalOverviewFormGroup" [aria-label]="allOtherSteps && 'disabledStep'">
-              <ng-template matStepLabel>Rental overview</ng-template>
-
-              <lnr-step-duration
-                  [durationFormGroup]="durationFormGroup"
-                  [hasInsurance]="hasInsurance"
-                  [image_file]="data.image_file"
-                  [brand]="data.brand"
-                  [name]="data.name"
-                  [type]="type"
-                  [city]="data.city"
-              >
-              </lnr-step-duration>
-
-            </mat-step>
-        </mat-horizontal-stepper>
-
-        <mat-vertical-stepper
-            [linear]="isLinear"
-            id="requestFlow-stepper"
-            labelPosition="bottom"
-            #stepper
-            *ngIf="isMobile">
-
-            <mat-step [stepControl]="durationFormGroup" [aria-label]="durationStep && 'disabledStep'">
-                <ng-template matStepLabel>Duration</ng-template>
-                <lnr-step-duration
-                    [durationFormGroup]="durationFormGroup"
-                    [hasInsurance]="false"
-                    [image_file]="data.image_file"
-                    [brand]="data.brand"
-                    [name]="data.name"
-                    [type]="type"
-                    [city]="data.city"
-                >
-                </lnr-step-duration>
-            </mat-step>
-
-            <mat-step [stepControl]="signInFormGroup" [aria-label]="signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Sign In</ng-template>
-                <h4 class="bold">Log in to listnride</h4>
-                <lnr-auth-login-dialog>
-                </lnr-auth-login-dialog>
-            </mat-step>
-
-            <mat-step
-                [stepControl]="phoneFormGroup"
-                [aria-label]="!durationStep || !signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Phone</ng-template>
-                <lnr-user-verification-phone
-                    [stepper]="stepper"
-                    [dialogRef]="dialogRef"
-                    [user]="user"
-                    [isDesktop]="isDesktop"
-                    [isTablet]="isTablet"
-                    [isMobile]="isMobile"
-                >
-                </lnr-user-verification-phone>
-            </mat-step>
-
-            <mat-step
-                [stepControl]="personalDetailsFormGroup"
-                [aria-label]="!durationStep || !signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Address</ng-template>
-                <lnr-user-verification-address
-                    [stepper]="stepper"
-                    [dialogRef]="dialogRef"
-                    [user]="user"
-                    [isDesktop]="isDesktop"
-                    [isTablet]="isTablet"
-                    [isMobile]="isMobile"
-                >
-                </lnr-user-verification-address>
-            </mat-step>
-
-            <mat-step
-                [stepControl]="paymentMethodFormGroup"
-                [aria-label]="!durationStep || !signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Payment method</ng-template>
-                <lnr-payment
-                    [flowType]="'request-flow'"
-                    [mode]="'update'"
-                    (next)="stepper.next()"
-                    [paymentMethodFormGroup]="paymentMethodFormGroup"
-                >
-                </lnr-payment>
-            </mat-step>
-
-            <mat-step
-                [stepControl]="rentalOverviewFormGroup"
-                [aria-label]="!durationStep || !signInStep && 'disabledStep'">
-                <ng-template matStepLabel>Rental overview</ng-template>
-
-                <lnr-step-duration
-                  [durationFormGroup]="durationFormGroup"
-                  [hasInsurance]="hasInsurance"
-                  [image_file]="data.image_file"
-                  [brand]="data.brand"
-                  [name]="data.name"
-                  [type]="type"
-                  [city]="data.city"
-                >
-
-                </lnr-step-duration>
-            </mat-step>
-          </mat-vertical-stepper>
-
-
-        <lnr-book-widget
-            [insuranceEnable]="insuranceEnabled"
-            [priceForOne]="priceForOne"
-            [weekly]="weekly"
-            [coverage_total]="data.coverage_total"
-            [daily]="daily"
-            [form]="durationFormGroup"
-            [datesRange]="datesRange"
-            (setData)="test($event)"
-            (clickToNext)="next($event)"
-            [isLastStep]="isLastStep"
-            #widget
+      <mat-step
+        [stepControl]="phoneFormGroup"
+        [aria-label]="allOtherSteps && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Phone</ng-template>
+        <lnr-user-verification-phone
+          *ngIf="user"
+          [stepper]="stepper"
+          [dialogRef]="dialogRef"
+          [user]="user"
+          [isDesktop]="isDesktop"
+          [isTablet]="isTablet"
+          [isMobile]="isMobile"
         >
+        </lnr-user-verification-phone>
+      </mat-step>
 
-      </lnr-book-widget>
+      <mat-step
+        [stepControl]="personalDetailsFormGroup"
+        [aria-label]="allOtherSteps && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Address</ng-template>
+        <lnr-user-verification-address
+          *ngIf="user"
+          [stepper]="stepper"
+          [dialogRef]="dialogRef"
+          [user]="user"
+          [isDesktop]="isDesktop"
+          [isTablet]="isTablet"
+          [isMobile]="isMobile"
+        >
+        </lnr-user-verification-address>
+      </mat-step>
 
+      <mat-step
+        [stepControl]="paymentMethodFormGroup"
+        [aria-label]="allOtherSteps && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Payment method</ng-template>
+        <lnr-payment
+          *ngIf="user"
+          [flowType]="'request-flow'"
+          [mode]="'update'"
+          (next)="stepper.next()"
+          [user]="user"
+          [paymentMethodFormGroup]="paymentMethodFormGroup"
+        >
+        </lnr-payment>
+        <br />
+      </mat-step>
 
-    </div>
-    <lnr-need-help></lnr-need-help>
+      <mat-step
+        [stepControl]="rentalOverviewFormGroup"
+        [aria-label]="allOtherSteps && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Rental overview</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="hasInsurance"
+          [image_file]="data.image_file"
+          [brand]="data.brand"
+          [name]="data.name"
+          [type]="type"
+          [city]="data.city"
+        >
+        </lnr-step-duration>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+    <mat-vertical-stepper
+      [linear]="isLinear"
+      id="requestFlow-stepper"
+      labelPosition="bottom"
+      #stepper
+      *ngIf="isMobile"
+    >
+      <mat-step
+        [stepControl]="durationFormGroup"
+        [aria-label]="durationStep && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Duration</ng-template>
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="false"
+          [image_file]="data.image_file"
+          [brand]="data.brand"
+          [name]="data.name"
+          [type]="type"
+          [city]="data.city"
+        >
+        </lnr-step-duration>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="signInFormGroup"
+        [aria-label]="signInStep && 'disabledStep'"
+      >
+        <ng-template matStepLabel>Sign In</ng-template>
+        <h4 class="bold">Log in to listnride</h4>
+        <lnr-auth-login-dialog> </lnr-auth-login-dialog>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="phoneFormGroup"
+        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+      >
+        <ng-template matStepLabel>Phone</ng-template>
+        <lnr-user-verification-phone
+          [stepper]="stepper"
+          [dialogRef]="dialogRef"
+          [user]="user"
+          [isDesktop]="isDesktop"
+          [isTablet]="isTablet"
+          [isMobile]="isMobile"
+        >
+        </lnr-user-verification-phone>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="personalDetailsFormGroup"
+        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+      >
+        <ng-template matStepLabel>Address</ng-template>
+        <lnr-user-verification-address
+          [stepper]="stepper"
+          [dialogRef]="dialogRef"
+          [user]="user"
+          [isDesktop]="isDesktop"
+          [isTablet]="isTablet"
+          [isMobile]="isMobile"
+        >
+        </lnr-user-verification-address>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="paymentMethodFormGroup"
+        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+      >
+        <ng-template matStepLabel>Payment method</ng-template>
+        <lnr-payment
+          [flowType]="'request-flow'"
+          [mode]="'update'"
+          (next)="stepper.next()"
+          [paymentMethodFormGroup]="paymentMethodFormGroup"
+        >
+        </lnr-payment>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="rentalOverviewFormGroup"
+        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+      >
+        <ng-template matStepLabel>Rental overview</ng-template>
+
+        <lnr-step-duration
+          [durationFormGroup]="durationFormGroup"
+          [hasInsurance]="hasInsurance"
+          [image_file]="data.image_file"
+          [brand]="data.brand"
+          [name]="data.name"
+          [type]="type"
+          [city]="data.city"
+        >
+        </lnr-step-duration>
+      </mat-step>
+    </mat-vertical-stepper>
+
+    <lnr-book-widget
+      [insuranceEnable]="insuranceEnabled"
+      [priceForOne]="priceForOne"
+      [weekly]="weekly"
+      [coverage_total]="data.coverage_total"
+      [daily]="daily"
+      [form]="durationFormGroup"
+      [datesRange]="datesRange"
+      (setData)="test($event)"
+      (clickToNext)="next($event)"
+      [isLastStep]="isLastStep"
+      #widget
+    >
+    </lnr-book-widget>
+  </div>
+  <lnr-need-help></lnr-need-help>
 </div>

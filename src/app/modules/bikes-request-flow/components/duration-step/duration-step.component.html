@@ -1,53 +1,57 @@
 <form
-    class="duration"
-    [formGroup]="durationFormGroup"
-    *ngIf="durationFormGroup">
-    <div class="main_container">
-        <h3 class="bold">Your bike rental</h3>
-        <div id="left-side-duration-step">
-            <h5>Your booking gets safely processed by listnride, Europe's biggest bike rental platform</h5>
-            <div class="leftContainer">
-                <img
-                    src="{{image_file}}"/>
-                <div class="container">
-                    <div class="bold">Brand</div>
-                    <div>{{brand}}</div>
-                    <div class="bold">Model</div>
-                    <div>{{name}}</div>
-                    <div class="bold">Type</div>
-                    <div>{{type}}</div>
-                    <div class="bold">Location</div>
-                    <div>{{city}}</div>
-                </div>
-            </div>
+  class="duration"
+  [formGroup]="durationFormGroup"
+  *ngIf="durationFormGroup"
+>
+  <div class="main_container">
+    <h3 class="bold">Your bike rental</h3>
+    <div id="left-side-duration-step">
+      <h5>
+        Your booking gets safely processed by listnride, Europe's biggest bike
+        rental platform
+      </h5>
+      <div class="leftContainer">
+        <img src="{{ image_file }}" />
+        <div class="container">
+          <div class="bold">Brand</div>
+          <div>{{ brand }}</div>
+          <div class="bold">Model</div>
+          <div>{{ name }}</div>
+          <div class="bold">Type</div>
+          <div>{{ type }}</div>
+          <div class="bold">Location</div>
+          <div>{{ city }}</div>
         </div>
+      </div>
     </div>
-    <div class="insurance_container" *ngIf="hasInsurance">
-
-        <div class="premium_insurance">
-            <h4 class="bold">Add Premium Insurance Protection</h4>
-            <p>On top of basic insurance, these features are<br/> additionally included:</p>
-            <div>
-                <div>
-                    <mat-icon class="material-icons md-18">done</mat-icon>
-                    <label>Theft protection</label>
-                </div>
-                <div>
-                    <mat-icon>done</mat-icon>
-                    <label>No Retention fee</label>
-                </div>
-            </div>
-            <button id="addPremiumInsurance">Add Premium Insurance</button>
+  </div>
+  <div class="insurance_container" *ngIf="hasInsurance">
+    <div class="premium_insurance">
+      <h4 class="bold">Add Premium Insurance Protection</h4>
+      <p>
+        On top of basic insurance, these features are<br />
+        additionally included:
+      </p>
+      <div>
+        <div>
+          <mat-icon class="material-icons md-18">done</mat-icon>
+          <label>Theft protection</label>
         </div>
-
-        <div class="voucher">
-            <h4 class="bold">Redeem a voucher</h4>
-
-            <div class="input_voucher">
-                <input matInput placeholder="Enter voucher code">
-                <button>Add</button>
-            </div>
-
+        <div>
+          <mat-icon>done</mat-icon>
+          <label>No Retention fee</label>
         </div>
+      </div>
+      <button id="addPremiumInsurance">Add Premium Insurance</button>
+    </div>
+
+    <div class="voucher">
+      <h4 class="bold">Redeem a voucher</h4>
+
+      <div class="input_voucher">
+        <input matInput placeholder="Enter voucher code" />
+        <button>Add</button>
+      </div>
+    </div>
   </div>
 </form>

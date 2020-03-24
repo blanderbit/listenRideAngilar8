@@ -25,10 +25,7 @@ export class PaymentMethodCreditCardAdyenComponent implements AfterViewInit {
   onLoad = true;
   data = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef
-  ) {}
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) {}
 
   changeHolderName(e) {
     if (

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface SubCategoryInterface {
   text: string;
   value: string | number;

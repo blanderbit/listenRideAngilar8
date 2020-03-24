@@ -305,7 +305,7 @@ export class BikesRequestFlowComponent
   ngAfterViewInit(): void {
     // eslint-disable-next-line no-unused-expressions
     this.setStep();
-    if(this.dateDuration){
+    if (this.dateDuration) {
       this.widget.setCalendarCounts(this.dateDuration);
     }
   }

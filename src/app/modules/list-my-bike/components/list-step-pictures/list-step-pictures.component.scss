@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'utils/utils';
+@import "variables";
+@import "utils/utils";
 
 :host::ng-deep .preview-container {
   display: grid;
@@ -9,11 +9,15 @@
 
     display: flex;
     margin-bottom: 2rem;
+    @include if-smaller-than(xs) {
+      flex-direction: column;
+    }
 
     .bikeCheckedContainer {
       display: grid;
       grid-template-columns: 23% 77%;
       justify-content: center;
+
 
       @include if-smaller-than(xs) {
         grid-template-columns: 30% 77%;
@@ -21,51 +25,50 @@
       }
 
       .imgCheckboxContainer {
-        align-items: center;
         display: flex;
-        font-size: $h6-fontsize;
+        align-items: center;
         font-style: normal;
         font-weight: 500;
-        height: 6rem;
+        font-size: $h6-fontsize;
         line-height: 120%;
         width: 7rem;
+        height: 6rem;
 
-        input[type='radio'] {
+        input[type="radio"] {
           display: none;
         }
 
         label.custom-checkbox {
-          align-items: center;
-          border: 0.1rem solid $input-border;
+          border: .1rem solid $input-border;
           box-sizing: border-box;
-          display: flex;
-          height: 100%;
-          justify-content: center;
-          max-height: 1.8em;
-          max-width: 1.8em;
           width: 100%;
+          height: 100%;
+          max-width: 1.8em;
+          max-height: 1.8em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         span {
           margin-left: 1rem;
         }
 
-        input:checked ~ label::before {
-          content: '\2714';
+        input:checked ~ label:before {
+          content: "\2714";
         }
       }
-
       .imgCheckboxButton {
-        align-items: baseline;
         display: flex;
         flex-direction: column;
+        align-items: baseline;
         margin: 1.8rem 2rem 0 0;
       }
 
 
       img.myBikePhoto {
-        height: 11rem !important;
         width: 16.4rem !important;
+        height: 11rem !important;
       }
 
       button.remove {

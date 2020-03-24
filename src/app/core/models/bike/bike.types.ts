@@ -1,6 +1,7 @@
+/* eslint-disable */
 import { User } from '@models/user/user';
 import { PeriodStartDate } from '@core/constants/time';
-import * as moment from 'moment';
+
 import {
   CategoryInterface,
   SubCategoryInterface,

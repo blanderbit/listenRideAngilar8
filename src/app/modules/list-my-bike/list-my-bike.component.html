@@ -98,9 +98,10 @@
 
         <div class="pricing-container">
           <mat-form-field class="col-11">
-            <label>Daily price (€)*</label>
+            <mat-label>Daily price (€)</mat-label>
             <input
               matInput
+              required
               type="search"
               autocomplete="off"
               formControlName="price"
@@ -109,7 +110,7 @@
           </mat-form-field>
 
           <mat-form-field class="col-5">
-            <label>Daily discount (%)</label>
+            <mat-label>Daily discount (%)</mat-label>
             <input
               matInput
               type="search"
@@ -120,7 +121,7 @@
           </mat-form-field>
 
           <mat-form-field class="col-5">
-            <label>Weekly Discount (%)</label>
+            <mat-label>Weekly Discount (%)</mat-label>
             <input
               matInput
               type="search"
@@ -148,8 +149,9 @@
 
           <div class="pricing-container" *ngIf="customisedPricing">
             <mat-form-field class="col-5">
-              <label>2 days*</label>
+              <mat-label>2 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price1"
                 (input)="verifyNumberInput($event)"
@@ -157,8 +159,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>3 days*</label>
+              <mat-label>3 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price2"
                 (input)="verifyNumberInput($event)"
@@ -166,8 +169,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>4 days*</label>
+              <mat-label>4 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price3"
                 (input)="verifyNumberInput($event)"
@@ -175,8 +179,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>5 days*</label>
+              <mat-label>5 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price4"
                 (input)="verifyNumberInput($event)"
@@ -184,8 +189,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>6 days*</label>
+              <mat-label>6 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price5"
                 (input)="verifyNumberInput($event)"
@@ -193,8 +199,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>7 days (1 week)*</label>
+              <mat-label>7 days (1 week)</mat-label>
               <input
+                required
                 matInput
                 formControlName="price6"
                 (input)="verifyNumberInput($event)"
@@ -202,7 +209,7 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>8 days onwards (per day)</label>
+              <mat-label>8 days onwards (per day)</mat-label>
               <input
                 matInput
                 formControlName="price7"
@@ -211,8 +218,9 @@
             </mat-form-field>
 
             <mat-form-field class="col-5">
-              <label>28 days*</label>
+              <mat-label>28 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price8"
                 (input)="verifyNumberInput($event)"
@@ -328,19 +336,21 @@
         <p><em>listnride</em> charges a 10% commision on all rentals</p>
 
         <div class="pricing-container">
-          <mat-form-field class="col-11">
-            <label>Daily price (€)*</label>
+          <mat-form-field class="col-10 price">
+            <mat-label>Daily price (€)</mat-label>
             <input
               matInput
+              required
               type="search"
               autocomplete="off"
               formControlName="price"
+              class="price"
               (input)="verifyNumberInput($event); setCustomizeReCount()"
             />
           </mat-form-field>
 
-          <mat-form-field class="col-5">
-            <label>Daily discount (%)</label>
+          <mat-form-field class="col-10">
+            <mat-label>Daily discount (%)</mat-label>
             <input
               matInput
               type="search"
@@ -350,8 +360,8 @@
             />
           </mat-form-field>
 
-          <mat-form-field class="col-5">
-            <label>Weekly Discount (%)</label>
+          <mat-form-field class="col-10">
+            <mat-label>Weekly Discount (%)</mat-label>
             <input
               matInput
               type="search"
@@ -378,62 +388,68 @@
           </div>
 
           <div class="pricing-container" *ngIf="customisedPricing">
-            <mat-form-field class="col-5">
-              <label>2 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>2 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price1"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>3 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>3 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price2"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>4 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>4 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price3"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>5 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>5 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price4"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>6 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>6 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price5"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>7 days (1 week)*</label>
+            <mat-form-field class="col-10">
+              <mat-label>7 days (1 week)</mat-label>
               <input
+                required
                 matInput
                 formControlName="price6"
                 (input)="verifyNumberInput($event)"
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>8 days onwards (per day)</label>
+            <mat-form-field class="col-10">
+              <mat-label>8 days onwards (per day)</mat-label>
               <input
                 matInput
                 formControlName="price7"
@@ -441,9 +457,10 @@
               />
             </mat-form-field>
 
-            <mat-form-field class="col-5">
-              <label>28 days*</label>
+            <mat-form-field class="col-10">
+              <mat-label>28 days</mat-label>
               <input
+                required
                 matInput
                 formControlName="price8"
                 (input)="verifyNumberInput($event)"

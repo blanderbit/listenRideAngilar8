@@ -1,40 +1,38 @@
 <div class="row mt-4 mb-4">
-    <div class="col-sm-12" [ngClass]="isPaymentRequestFlow ? 'col-md-12' : 'col-md-12' ">
-        <form novalidate>
-            <div class="row">
-                <div class="col-sm-12">
-                    <lnr-payment-method-credit-card-adyen
-                            (onValid)="getValidData($event)"
-                            (onError)="data.active = false"
-                    ></lnr-payment-method-credit-card-adyen>
-                </div>
-            </div>
+  <div
+    class="col-sm-12"
+    [ngClass]="isPaymentRequestFlow ? 'col-md-12' : 'col-md-12'"
+  >
+    <form novalidate>
+      <div class="row">
+        <div class="col-sm-12">
+          <lnr-payment-method-credit-card-adyen
+            (onValid)="getValidData($event)"
+            (onError)="data.active = false"
+          ></lnr-payment-method-credit-card-adyen>
+        </div>
+      </div>
 
-            <div class="row payment-method-card-button">
-
-                <div class="col-sm-12 col-md-3" *ngIf="!isPaymentRequestFlow">
-                    <button
-                            mat-stroked-button
-                            class="lnr-w-100"
-                            (click)="openView()">
-                        Cancel
-                    </button>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <button
-                            mat-raised-button
-                            type="submit"
-                            color="primary"
-                            (click)="save()"
-                            class="lnr-w-100"
-                            [disabled]="!data.active"
-                    >
-                        Save
-                        <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
+      <div class="row payment-method-card-button">
+        <div class="col-sm-12 col-md-3" *ngIf="!isPaymentRequestFlow">
+          <button mat-stroked-button class="lnr-w-100" (click)="openView()">
+            Cancel
+          </button>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            (click)="save()"
+            class="lnr-w-100"
+            [disabled]="!data.active"
+          >
+            Save
+            <lnr-loader-spinner-small *ngIf="false"></lnr-loader-spinner-small>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

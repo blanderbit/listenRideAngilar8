@@ -1,11 +1,11 @@
-.test {
-  position: relative;
-}
+
+@import "variables";
+
 
 .spiner {
-  background: #7ab2f821;
+  width: 100%;
   height: 100%;
+  background: $dark-background;
   position: absolute;
   top: 0;
-  width: 100%;
 }

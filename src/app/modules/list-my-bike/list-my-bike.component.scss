@@ -1,110 +1,41 @@
-@import 'variables';
-@import 'utils/utils';
+@import "variables";
+@import "utils/utils";
 
 
 .header {
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 120%;
   color: $dark-text-color;
   display: flex;
-  font-size: 3rem;
-  font-weight: bold;
   justify-content: flex-start;
-  line-height: 120%;
-  margin: 4rem auto;
   padding: 0 10%;
+  margin: 4rem auto;
 }
 
 :host::ng-deep .stepper-container {
   width: 100%;
 
-
-  @include if-smaller-than(md) {
-    .preview-container {
-      grid-template-columns: 100%;
-
-      .imgCheckboxContainer {
-        input {
-          width: 3.4rem !important;
-        }
-      }
-    }
-  }
-
-
-  @include if-smaller-than(sm) {
-    .mat-stepper-horizontal {
-      padding: 0 5%;
-      width: 100%;
-    }
-
-    .header {
-      padding: 0 10%;
-      width: 100%;
-    }
-
-    .mat-horizontal-stepper-header-container {
-      display: flex;
-      justify-content: space-around;
-      left: 20%;
-
-      .mat-horizontal-stepper-header {
-        padding: 0 !important;
-      }
-    }
-
-    #location-container {
-      .location-container {
-        display: grid;
-        grid-template-columns: 100%;
-      }
-    }
-
-    #pricing-container {
-      .pricing-container,
-      .customised {
-        display: grid;
-        grid-template-columns: 100%;
-        width: 100%;
-
-        mat-form-field {
-          display: flex;
-          max-width: 100%;
-
-          .mat-form-field-wrapper {
-            width: 90%;
-          }
-        }
-      }
-    }
-
-    .stepper-container.preview-container.bikePhotoContainer.bikeCheckedContainer.imgCheckboxContainer.custom-checkbox {
-      width: 3.4rem;
-    }
-  }
-
   h3 {
-    color: $dark-text-color;
-    font-size: $h5-fontsize;
     font-weight: normal;
+    font-size: $h5-fontsize;
     line-height: 120%;
+    color: $dark-text-color;
   }
 
   p {
-    color: $dark-text-color;
-    font-size: $h6-fontsize;
     font-style: normal;
     font-weight: normal;
-    line-height: 150%;
+    font-size: $h6-fontsize;
+    line-height: 180%;
+    color: $dark-text-color;
   }
 
   ::ng-deep #listMyBike-stepper {
     left: 20%;
 
-    .mat-horizontal-stepper-header,
-    .mat-vertical-stepper-header {
-      //pointer-events: none !important;
-
-
-      &[aria-labelledby='stepVerified'] {
+    .mat-horizontal-stepper-header, .mat-vertical-stepper-header {
+      &[aria-labelledby="stepVerified"] {
         div {
           &.mat-step-icon {
             background: $main-green;
@@ -114,19 +45,19 @@
 
       div {
         &.mat-step-icon {
-          align-items: center;
-          display: flex;
-          font-size: 20px;
-          font-weight: bold;
-          height: 2.8rem;
-          line-height: 120%;
-          text-align: center;
           width: 2.8rem;
+          height: 2.8rem;
+          font-weight: bold;
+          font-size: $h4-fontsize;
+          line-height: 120%;
+          display: flex;
+          align-items: center;
+          text-align: center;
         }
 
         &.mat-step-label {
-          font-size: $h6-fontsize;
           font-weight: 500;
+          font-size: $h6-fontsize;
           line-height: 120%;
           text-align: center;
         }
@@ -136,16 +67,16 @@
         }
       }
 
-      &[ng-reflect-state='error'] {
+      &[ng-reflect-state="error"] {
         div {
-          &.mat-step-icon,
-          &.mat-step-label {
+          &.mat-step-icon, &.mat-step-label {
             color: $missing-information-color;
           }
         }
       }
 
       div.mat-step-label.mat-step-label-active.mat-step-label-selected {
+
         div.notFilled {
           color: $missing-information-color;
         }
@@ -165,17 +96,14 @@
       }
     }
 
-    .mat-horizontal-stepper-content,
-    .mat-vertical-stepper-content {
-      .mat-form-field-wrapper,
-      .mat-form-field-infix,
-      .mat-form-field-infix .mat-select {
-        margin-top: -0.1rem;
-        padding: 0;
+    .mat-horizontal-stepper-content, .mat-vertical-stepper-content {
 
-        input,
-        textarea,
-        select {
+      .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
+        padding: 0;
+        margin-top: -0.1rem;
+
+        input, textarea, select {
+
           &.ng-invalid.ng-touched {
 
             border-color: $error-color;
@@ -204,9 +132,9 @@
 
   ::ng-deep {
     .mat-button-stepper {
+      width: 16.6rem;
       height: 4.2rem;
       margin: 4rem 4% 4rem 0;
-      width: 16.6rem;
 
       &[disabled] {
         background: $submit-button-color-disabled;
@@ -214,26 +142,25 @@
     }
 
     div.ng-trigger.ng-trigger-transformPanel.mat-select-panel.mat-primary {
-      height: 300px !important;
+      height: 30rem !important;
     }
 
-    .mat-horizontal-stepper-content .category .mat-form-field-flex {
+    .mat-horizontal-stepper-content .category .mat-form-field-flex, .mat-vertical-stepper-content .category .mat-form-field-flex {
       background: $white;
       padding: 0;
 
-      .mat-select-placeholder,
-      .mat-select-value-text {
+      .mat-select-placeholder, .mat-select-value-text {
         font-size: 1.4rem;
         line-height: 150%;
       }
 
       .mat-select {
-        align-items: center;
 
-        border: 0.1rem solid $input-border !important;
-        border-radius: 0.3rem;
-        display: grid;
+        border: .1rem solid $input-border !important;
+        border-radius: $border-radius;
         height: 4.2rem;
+        align-items: center;
+        display: grid;
       }
 
       .mat-select-arrow {
@@ -257,84 +184,79 @@
       }
 
       .mat-select-trigger {
-        border-radius: 0.3rem;
-        padding: 0.6rem 1.3rem;
+        border-radius: .3rem;
+        padding: .6rem 1.3rem;
       }
     }
 
     .active {
       background: $submit-button-color !important;
-      color: $white;
-      font-size: $h6-fontsize;
       font-weight: bold;
+      font-size: $h6-fontsize;
       line-height: $h4-fontsize;
       text-align: center;
+      color: $white;
     }
 
     .header {
+      width: 100%;
       max-width: 160rem;
       padding: 0 10%;
-      width: 100%;
     }
 
     .mat-stepper-horizontal {
+      width: 100%;
       max-width: 160rem;
       padding: 0 15%;
-      width: 100%;
     }
 
     .mat-stepper-vertical {
-      max-width: 160rem;
       padding: 0;
       width: 100%;
+      max-width: 160rem;
     }
 
-    .mat-horizontal-content-container,
-    .mat-vertical-content-container {
+    .mat-horizontal-content-container, .mat-vertical-content-container {
       padding: 0 !important;
 
-      .mat-horizontal-stepper-content,
-      .mat-vertical-stepper-content {
+      .mat-horizontal-stepper-content, .mat-vertical-stepper-content {
         .mat-form-field-underline {
           display: none !important;
         }
 
-        label,
-        mat-label {
+        label, mat-label {
           font-weight: bold;
         }
 
         .preview-container {
           img {
-            height: 11rem !important;
             width: 16.4rem !important;
+            height: 11rem !important;
           }
 
           .imgCheckboxContainer {
+            margin-left: 15%;
             display: flex;
             flex-direction: row !important;
-            margin-left: 15%;
 
             input {
-              //background: $white;
-              border: 0.1rem solid $input-border;
+              border: .1rem solid $input-border;
               box-sizing: border-box;
-              height: 2.4rem;
               width: 2.4rem;
+              height: 2.4rem;
             }
 
             label {
-              font-size: $h6-fontsize;
               font-weight: 500;
+              font-size: $h6-fontsize;
               line-height: 120%;
-              margin-left: 0.5rem;
+              margin-left: .5rem;
             }
           }
         }
       }
 
-      label,
-      mat-label {
+      label, mat-label {
         font-weight: bold;
       }
 
@@ -343,9 +265,9 @@
           flex-direction: column;
 
           div.frame-number {
-            align-items: center;
             display: flex;
             flex-direction: row;
+            align-items: center;
           }
         }
       }
@@ -355,9 +277,9 @@
           flex-direction: column;
 
           div.frame-number {
-            align-items: center;
             display: flex;
             flex-direction: row;
+            align-items: center;
           }
         }
       }
@@ -367,9 +289,9 @@
           flex-direction: column;
 
           div.frame-number {
-            align-items: center;
             display: flex;
             flex-direction: row;
+            align-items: center;
           }
         }
       }
@@ -400,14 +322,14 @@
     }
 
     #upload-file {
-      background: $submit-button-color;
-      border-radius: 0.4rem;
-      color: $white;
       font-size: $h6-fontsize;
       line-height: $h4-fontsize;
-      margin: $h6-fontsize 0 3.4rem 0;
-      padding: 1.2rem 2.6rem 1rem 2.4rem;
       text-align: center;
+      margin: $h6-fontsize 0 3.4rem 0;
+      color: $white;
+      background: $submit-button-color;
+      border-radius: .4rem;
+      padding: 1.2rem 2.6rem 1.0rem 2.4rem;
     }
 
     #upload {
@@ -417,8 +339,8 @@
 
     .category {
       .description {
-        margin-bottom: 3rem;
         margin-top: 4rem;
+        margin-bottom: 3rem;
       }
 
       .description-what {
@@ -433,13 +355,24 @@
 
   #location-container {
     h3 {
-      margin-bottom: 2rem;
       margin-top: 4.5rem;
+      margin-bottom: 2rem;
       padding: 0 1rem;
     }
 
     p {
       padding: 0 1rem;
+    }
+
+    mat-form-field {
+      padding: 0;
+      margin: 1rem $h5-fontsize;
+
+      .mat-form-field-label {
+        position: absolute !important;
+        top: 1.28125em !important;
+        transform: translateY(-1.34375em);
+      }
     }
 
     .location-container {
@@ -450,6 +383,7 @@
         width: 100%;
 
         .mat-form-field-wrapper {
+
           .mat-horizontal-stepper-content .category .mat-form-field-flex {
             width: 100% !important;
           }
@@ -457,10 +391,10 @@
       }
 
       div {
-        mat-form-field,
-        .inner-container {
-          margin: 0.8rem 0;
-          padding: 0;
+
+        mat-form-field, .inner-container {
+          margin: 3rem 1rem;
+          padding: 1rem;
         }
 
         .inner-container {
@@ -471,24 +405,29 @@
         }
       }
 
-      label,
-      mat-label {
-        color: $dark-text-color;
-        font-size: $h6-fontsize;
+      //
+      label, mat-label {
         font-weight: 500;
+        font-size: $h6-fontsize;
         line-height: 120%;
+        color: $dark-text-color;
       }
 
-      input,
-      mat-select {
+      input, mat-select {
         background: none;
-        border-color: $input-border;
-        border-radius: 0.4rem;
-        border-style: solid;
-        border-width: 0.1rem;
-        height: 4.2rem;
-        line-height: 3rem;
         padding: 0 $h6-fontsize;
+        border-width: .1rem;
+        border-radius: .4rem;
+        border-style: solid;
+        line-height: 3rem;
+        height: 4.2rem;
+        border-color: $input-border;
+
+        .mat-form-field-label {
+          position: absolute !important;
+          top: 1.28125em !important;
+          transform: translateY(-1.34375em);
+        }
       }
     }
   }
@@ -503,11 +442,15 @@
     }
 
     .customised {
-      align-items: baseline;
-      display: flex;
-      justify-content: space-between;
       margin-top: 3rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
       width: 45rem;
+      @include if-smaller-than(xs) {
+        width: 100%;
+      }
+
 
       mat-slide-toggle {
         margin-right: 1rem;
@@ -516,33 +459,103 @@
     }
 
     .pricing-container {
-      margin-top: 3rem;
       width: 47.8rem;
-
-      label,
-      mat-label {
-        color: $dark-text-color;
-        font-size: $h6-fontsize;
-        font-weight: 500;
-        line-height: 120%;
+      margin-top: 3rem;
+      @include if-smaller-than(xs) {
+        width: 100%;
       }
 
-      input,
-      mat-select {
+      label, mat-label {
+        font-weight: 500;
+        font-size: $h6-fontsize;
+        line-height: 120%;
+        color: $dark-text-color;
+      }
+
+      input, mat-select {
         background: none;
-        border-color: $input-border;
-        border-radius: 0.4rem;
+        border-width: .1rem;
+        border-radius: .4rem;
         border-style: solid;
-        border-width: 0.1rem;
-        height: 4.2rem;
         line-height: 4rem;
+        height: 4.2rem;
+        border-color: $input-border;
         padding: 0 1rem;
       }
 
       mat-form-field {
-        margin: 1rem $h5-fontsize;
         padding: 0;
+        margin: 1rem $h5-fontsize;
+
+        .mat-form-field-label {
+          position: absolute !important;
+          top: 1.28125em !important;
+          transform: translateY(-1.34375em);
+        }
       }
+    }
+  }
+
+
+  @include if-smaller-than(xs) {
+    .preview-container {
+      grid-template-columns: 100%;
+
+      .imgCheckboxContainer {
+        input {
+          width: 3.4rem !important;
+        }
+      }
+    }
+  }
+
+
+  @include if-smaller-than(xs) {
+    .mat-stepper-horizontal {
+      padding: 0 5%;
+      width: 100%;
+    }
+    .header {
+      width: 100%;
+      padding: 0 10%;
+    }
+
+    .mat-horizontal-stepper-header-container {
+      left: 20%;
+      display: flex;
+      justify-content: space-around;
+
+      .mat-horizontal-stepper-header {
+        padding: 0 !important;
+      }
+    }
+
+    #location-container {
+      .location-container {
+        display: grid;
+        grid-template-columns: 100%;
+      }
+    }
+
+    #pricing-container {
+      .pricing-container, .customised {
+        //display: grid;
+        //grid-template-columns: 100%;
+        width: 100%;
+
+        mat-form-field {
+          display: flex;
+          max-width: 100%;
+
+          .mat-form-field-wrapper {
+            width: 90%;
+          }
+        }
+      }
+    }
+
+    .stepper-container.preview-container.bikePhotoContainer.bikeCheckedContainer.imgCheckboxContainer.custom-checkbox {
+      width: 3.4rem;
     }
   }
 
@@ -557,15 +570,15 @@
 }
 
 .message {
-  align-items: center;
-  display: flex;
-  height: 60vh;
-  justify-content: center;
   width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 :host::ng-deep .mat-select-panel {
-  max-height: 350px !important;
+  max-height: 35rem !important;
 }
 
 input.ng-invalid.ng-touched {
@@ -574,13 +587,29 @@ input.ng-invalid.ng-touched {
 }
 
 :host::ng-deep a {
-  color: $main-green !important;
   cursor: pointer;
+  color: $main-green !important;
 }
 
 
-@include if-smaller-than(sm) {
-  ::ng-deep div.mat-select-panel {
-    margin-top: 50%;
-  }
+//@include if-smaller-than(sm) {
+//  ::ng-deep div.mat-select-panel {
+//    margin-top: 50%;
+//  }
+//}
+
+input.ng-invalid.ng-touched {
+  border-color: $error-color;
+
 }
+
+:host::ng-deep a {
+  cursor: pointer;
+  color: $main-green !important;
+}
+
+//@media (max-width: $device-sm) {
+//  ::ng-deep div.mat-select-panel {
+//    margin-top: 50%;
+//  }
+//}

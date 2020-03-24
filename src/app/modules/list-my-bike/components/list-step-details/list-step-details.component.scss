@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'utils/utils';
+@import "variables";
+@import "utils/utils";
 
 :host::ng-deep .details {
 
@@ -11,59 +11,67 @@
     margin-top: 4.2rem;
   }
 
-  #details_container,
-  #details_brand_container {
+  #details_container, #details_brand_container {
     display: flex;
     margin-top: 3.5rem;
     padding: 0 !important;
     width: 100%;
 
     mat-form-field {
-      margin: 1rem;
+      margin: 2.5rem 1rem;
 
       div {
         padding: 0;
       }
 
       mat-icon {
+        padding-left: 1rem;
         cursor: pointer;
         display: table;
-        padding-left: 1rem;
+      }
+
+      .mat-form-field-label {
+        position: absolute !important;
+        top: 1.28125em !important;
+        transform: translateY(-1.34375em);
       }
     }
 
-    label,
-    mat-label {
-      font-size: $h6-fontsize;
+    label, mat-label {
       font-weight: 500;
+      font-size: $h6-fontsize;
       line-height: 120%;
     }
 
-    input,
-    mat-select,
-    textarea {
+    input, mat-select, textarea {
       background: none;
-      border-color: $input-border;
-      border-radius: 0.4rem;
-      border-style: solid;
-      border-width: 0.1rem;
-      height: 4.2rem;
-      line-height: 4rem;
       padding: 0 1rem;
+      border-width: .1rem;
+      border-radius: .4rem;
+      border-style: solid;
+      line-height: 4rem;
+      height: 4.2rem;
+      border-color: $input-border;
+      margin-top: 1rem;
+    }
+
+    #rider-height {
+      .mat-select {
+        margin-top: 1rem;
+      }
     }
 
     input.quantity {
-      border: 0.1rem solid $input-border;
-      box-sizing: border-box;
-      font-size: $h6-fontsize;
       height: 4.2rem;
-      line-height: 150%;
+      border: .1rem solid $input-border;
+      box-sizing: border-box;
       padding: 0 0 0 2rem;
+      font-size: $h6-fontsize;
+      line-height: 150%;
     }
 
-    label.quantity,
-    mat-form-field.quantity {
-      margin-right: 0.5rem;
+    label.quantity, mat-form-field.quantity {
+      margin-right: .5rem;
       padding: 0;
     }
   }
@@ -82,7 +90,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
 
-    @include if-smaller-than(sm) {
+    @include if-smaller-than(md) {
       display: grid;
       grid-template-columns: 100%;
 
@@ -105,35 +113,35 @@
 
           textarea.description {
             height: 14rem;
-            line-height: 2.56rem;
-            min-height: 4rem;
             padding: $h6-fontsize;
             width: 95%;
+            line-height: 2.56rem;
+            min-height: 4rem;
 
             @include if-smaller-than(md) {
-              width: 100%;
+              width: 100%
             }
           }
         }
       }
 
       mat-hint {
-        margin-right: 3.5rem;
         margin-top: 1.5rem;
+        margin-right: 3.5rem;
       }
     }
   }
 }
 
 .addVariants {
-  color: $submit-button-color;
   display: flex;
-  font-size: $h6-fontsize;
+  justify-content: flex-end;
+  margin-right: 7%;
+  color: $submit-button-color;
   font-style: normal;
   font-weight: normal;
-  justify-content: flex-end;
+  font-size: $h6-fontsize;
   line-height: 120%;
-  margin-right: 7%;
 
   a {
     cursor: pointer;

@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'utils/utils';
+@import "variables";
+@import "utils/utils";
 
 :host::ng-deep .category {
   .selected-category {
@@ -7,16 +7,13 @@
 
     .mat-select-trigger .mat-select-value {
       padding-left: 3rem;
-      padding-top: 0.6rem;
     }
   }
 
   mat-form-field {
     width: 26.3rem;
 
-    @include if-smaller-than(xs) {
-      border: 1px solid $input-border;
-      border-radius: 0.4rem;
+    @include if-smaller-than(md) {
       width: 100%;
     }
 
@@ -34,36 +31,35 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 35rem;
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(md) {
       width: 100%;
 
     }
 
     .select-category-accessories {
-      align-items: center;
-      border-radius: 0.5rem;
-      color: rgba(85, 85, 85, 1);
+      width: 30%;
+      color: $light-text-color;
+      margin: 0 .8rem 1rem 0;
       cursor: pointer;
       display: flex;
-      margin: 0 0.8rem 1rem 0;
+      align-items: center;
       padding: 0.5rem;
-      width: 30%;
+      border-radius: .5rem;
 
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(md) {
         width: 45%;
-
       }
 
       &.activeSelect {
-        background: $main-blue;
         color: $white;
+        background: $main-blue;
 
         ::ng-deep svg {
           fill: $white !important;
 
           .mat-icon {
-            height: 24px !important;
-            width: 24px !important;
+            height: 2.4rem !important;
+            width: 2.4rem !important;
           }
 
           g {

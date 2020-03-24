@@ -4,73 +4,69 @@
     Don’t worry, the exact location of your bike will ONLY be forwarded when you
     have confirmed a rental request.
   </p>
-
-  <div class="location-container test">
+  <div class="location-container">
     <div class="spiner" *ngIf="loading"></div>
     <div>
       <mat-form-field class="col-12">
-        <div class="col-12">
-          <label>Street and number*</label>
-          <input
-            matInput
-            #address
-            formControlName="street"
-            type="search"
-            [ngClass]="{
-              'ng-touched': isInvalidForm('street'),
-              'ng-invalid': isInvalidForm('street')
-            }"
-          />
-        </div>
+        <mat-label for="street">Street and number</mat-label>
+        <input
+          matInput
+          required
+          #address
+          id="street"
+          formControlName="street"
+          type="search"
+          [ngClass]="{
+            'ng-touched': isInvalidForm('street'),
+            'ng-invalid': isInvalidForm('street')
+          }"
+        />
       </mat-form-field>
       <mat-form-field class="col-12">
-        <div class="col-12">
-          <label>Zip Code*</label>
-          <input
-            matInput
-            #regionsZip
-            formControlName="zip"
-            type="search"
-            [ngClass]="{
-              'ng-touched': isInvalidForm('zip'),
-              'ng-invalid': isInvalidForm('zip')
-            }"
-          />
-        </div>
+        <mat-label>Zip Code</mat-label>
+        <input
+          matInput
+          required
+          #regionsZip
+          formControlName="zip"
+          type="search"
+          [ngClass]="{
+            'ng-touched': isInvalidForm('zip'),
+            'ng-invalid': isInvalidForm('zip')
+          }"
+        />
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field class="col-12">
-        <div class="col-12">
-          <label>City*</label>
-          <input
-            matInput
-            #cities
-            formControlName="city"
-            type="search"
-            [ngClass]="{
-              'ng-touched': isInvalidForm('city'),
-              'ng-invalid': isInvalidForm('city')
-            }"
-          />
-        </div>
+        <mat-label>City</mat-label>
+        <input
+          matInput
+          required
+          #cities
+          formControlName="city"
+          type="search"
+          [ngClass]="{
+            'ng-touched': isInvalidForm('city'),
+            'ng-invalid': isInvalidForm('city')
+          }"
+        />
       </mat-form-field>
       <mat-form-field class="col-12">
-        <div class="col-12">
-          <label>Country*</label>
-          <input
-            matInput
-            type="search"
-            autocomplete="off"
-            #regionsCountry
-            formControlName="country"
-            [ngClass]="{
-              'ng-touched': isInvalidForm('country'),
-              'ng-invalid': isInvalidForm('country')
-            }"
-          />
-        </div>
+        <mat-label>Country</mat-label>
+        <input
+          matInput
+          required
+          type="search"
+          autocomplete="off"
+          #regionsCountry
+          formControlName="country"
+          [ngClass]="{
+            'ng-touched': isInvalidForm('country'),
+            'ng-invalid': isInvalidForm('country')
+          }"
+        />
       </mat-form-field>
     </div>
 
@@ -87,14 +83,14 @@
           Please note that your have to provide proof of your bike's value in
           case of any claim
         </p>
-        <p><a>Learn more about insurance.</a></p>
+        <p><a href="#">Learn more about insurance.</a></p>
       </div>
     </div>
 
     <div *ngIf="isCoverage">
       <div class="inner-container category">
         <h3>What is the value of your bike?</h3>
-        <div class="mat col-12">
+        <div class="mat col-12 p-0">
           <mat-form-field
             appearance="fill"
             class="bikeValue w-p-100"

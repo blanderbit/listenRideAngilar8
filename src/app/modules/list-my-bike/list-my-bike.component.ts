@@ -1,4 +1,3 @@
-// TODO @Smirnoff: Fix all the esLint errors
 /* eslint-disable */
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -11,6 +10,12 @@ import {
 import { typeList } from '@core/constants/filters.const';
 import { DOCUMENT } from '@angular/common';
 import * as fromAuth from '@auth/store/reducers';
+import {
+  AccessoriesInterface,
+  CategoryInterface,
+  LoadedImageInterface,
+  SubCategoryInterface,
+} from './model/models';
 import { ApiRidesService } from '@api/api-rides/api-rides.service';
 import { BIKE } from '@models/bike/bike.model';
 import { Subject } from 'rxjs';
@@ -18,7 +23,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { formsControlsName, arrCountriesCode } from './consts/consts';
-import { priceCount } from '../../shared/helpers/price-helper';
+import { priceCount } from '@shared/helpers/price-helper';
 import {
   getName,
   SetRound,
@@ -29,13 +34,7 @@ import {
 import {} from 'google-maps';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { log } from 'util';
-import {
-  AccessoriesInterface,
-  CategoryInterface,
-  LoadedImageInterface,
-  SubCategoryInterface,
-} from './model/models';
+import { UserVerificationActions } from '@user-verification/store/actions';
 
 @Component({
   selector: 'lnr-list-my-bike',
@@ -50,69 +49,39 @@ import {
 })
 export class ListMyBikeComponent implements OnInit {
   isLinear = false;
-
   categoryFormGroup: FormGroup;
-
   detailsFormGroup: FormGroup;
-
   picturesFormGroup: FormGroup;
-
   locationFormGroup: FormGroup;
-
   pricingFormGroup: FormGroup;
-
   bikeCategoryList: Array<CategoryInterface> = typeList;
-
   loadedPhoto: Array<LoadedImageInterface> = [];
-
   subCategoriesValue: Array<SubCategoryInterface> | null = [];
-
   userId: Store<fromAuth.State> | any;
-
+  user: Store<fromAuth.State> | any;
   accessories: AccessoriesInterface | any = new AccessoriesInterface();
-
   accessoriesArrList: Array<string> = Object.keys(this.accessories) || [];
-
   customisedPricing = false;
-
   bikeQuantity: any = [{}];
-
   priceCount: Array<any | object> = priceCount;
-
   deleted: Array<number> = [];
-
   IsValidVariable: object = formsControlsName;
-
   data: BIKE | any;
-
   editData: any;
-
   street: string;
-
   zip: string | number;
-
   city: string;
-
   country: string;
-
   @Input() _hasCoverage = false;
-
   arrCountriesName: Array<string> = arrCountriesCode;
-
   isDesktop = true;
-
   isTablet = false;
-
   isMobile = false;
 
   getName = getName;
-
   SetRound = SetRound;
-
   templateMessage = templateMessage;
-
   numberValidate = numberValidate;
-
   reformatNumberDTC = reformatNumberDTC;
 
   private destroyed$ = new Subject();
@@ -133,6 +102,7 @@ export class ListMyBikeComponent implements OnInit {
       .pipe(
         map(({ user, edit }) => {
           if (user) {
+            this.user = user;
             this.userId = user.id;
             this.street = user.street;
             this.zip = user.zip;
@@ -155,7 +125,6 @@ export class ListMyBikeComponent implements OnInit {
     this.isTablet = this.deviceDetectorService.isTablet();
     this.isMobile = this.deviceDetectorService.isMobile();
     this.isDesktop = this.deviceDetectorService.isDesktop();
-    console.log(this.isTablet, this.isMobile, this.isDesktop);
   }
 
   setDataToPage(): void {
@@ -258,6 +227,12 @@ export class ListMyBikeComponent implements OnInit {
     !this.editData
       ? this.setCustomizeReCount()
       : this.setCustomizeBasePrice(this.data.prices);
+
+    if (!this.user.confirmedEmail || !this.user.confirmedPhone) {
+      this.store.dispatch(
+        UserVerificationActions.openUserVerificationDialogFromListBike(),
+      );
+    }
   }
 
   checkCountry(str: string): void {
@@ -292,11 +267,11 @@ export class ListMyBikeComponent implements OnInit {
       if (!this[name] && this[name].controls) {
         return false;
       }
-      const { controls } = this[name];
+      const controls = this[name].controls;
       const variable =
         typeof controls === 'object' ? Object.keys(controls) : [];
       variable.forEach(nameControl => {
-        const { value } = controls[nameControl];
+        const value = controls[nameControl].value;
         if (!(value || typeof value === 'number')) {
           return;
         }
@@ -341,17 +316,17 @@ export class ListMyBikeComponent implements OnInit {
     const price = this.pricingFormGroup.controls.price.value;
 
     data.append(
-      'ride[prices][0][price]',
+      `ride[prices][0][price]`,
       this.reformatNumberDTC(price.toString(), ','),
     );
-    data.append('ride[prices][0][start_at]', '0');
+    data.append(`ride[prices][0][start_at]`, `0`);
 
     if (this.editData) {
-      data.append('ride[prices][0][id]', this.data.prices[0].id);
+      data.append(`ride[prices][0][id]`, this.data.prices[0].id);
     }
 
-    const { prices } = virtualData;
-    debugger;
+    const prices = virtualData.prices;
+
     if (Array.isArray(prices)) {
       prices.forEach((i, index) => {
         const mainIndex = index + 1;
@@ -508,13 +483,6 @@ export class ListMyBikeComponent implements OnInit {
         this.locationFormGroup.removeControl('coverage_total');
     }
   }
-
-  // changeCountry = (e: any): void => this.checkCountry(e.target.value);
-  //
-  //     checkCountry(str: string) {
-  //       const find = this.arrCountriesName.includes(str);
-  //       this.isCoverage = !!find;
-  //     }
 
   snackBar = (val: string, isGood = false): any =>
     this.SnackBar.open(val, 'Undo', {

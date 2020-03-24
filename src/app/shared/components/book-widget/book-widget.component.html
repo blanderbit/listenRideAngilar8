@@ -1,16 +1,12 @@
 <div id="right-side-request-flow">
   Dates
-  <div class="d-flex dates">
-  </div>
-  <br>
+  <div class="d-flex dates"></div>
+  <br />
   Size
 
-  <mat-select placeholder="Rider height"
-  >
-    <mat-option *ngFor="let size of sizeList"
-                [value]="size.value"
-    >
-      {{size.text}}
+  <mat-select placeholder="Rider height">
+    <mat-option *ngFor="let size of sizeList" [value]="size.value">
+      {{ size.text }}
     </mat-option>
   </mat-select>
 
@@ -19,56 +15,49 @@
   <div>
     <div class="d-flex justify-content-between">
       <div>
-        {{result.real_day}} day(s) x {{result.count | number : '1.2-2'}} &euro;
+        {{ result.real_day }} day(s) x
+        {{ result.count | number: '1.2-2' }} &euro;
       </div>
-      <div>
-        {{result.subtotal | number : '1.2-2'}} &euro;
-      </div>
+      <div>{{ result.subtotal | number: '1.2-2' }} &euro;</div>
     </div>
-    <div class="d-flex justify-content-between" >
-      <div>
-        Discount {{result.real_day}} day(s) x 2,00 €
-      </div>
-      <div>
-        {{result.subtotalDiscounted | number : '1.2-2'}} &euro;
-      </div>
+    <div class="d-flex justify-content-between">
+      <div>Discount {{ result.real_day }} day(s) x 2,00 €</div>
+      <div>{{ result.subtotalDiscounted | number: '1.2-2' }} &euro;</div>
     </div>
-    <div class="d-flex justify-content-between" >
+    <div class="d-flex justify-content-between">
       <div>
         Service Fee
       </div>
-      <div>
-        {{result.serviceFee | number : '1.2-2'}} &euro;
-      </div>
+      <div>{{ result.serviceFee | number: '1.2-2' }} &euro;</div>
     </div>
-    <div class="d-flex justify-content-between" >
+    <div class="d-flex justify-content-between">
       <div>
         Basic Insurance
       </div>
-      <div>
-        {{result.basicCoverage | number : '1.2-2'}} &euro;
-      </div>
+      <div>{{ result.basicCoverage | number: '1.2-2' }} &euro;</div>
     </div>
-    <div class="d-flex justify-content-between" >
+    <div class="d-flex justify-content-between">
       <div>
         Total
       </div>
-      <div>
-        {{result.total | number : '1.2-2'}} &euro;
-      </div>
+      <div>{{ result.total | number: '1.2-2' }} &euro;</div>
     </div>
   </div>
 
-  <input type="text" placeholder="Include a message to the Lister here">
+  <input type="text" placeholder="Include a message to the Lister here" />
 
-  <button class="next mat-button-stepper d-flex align-items-center justify-content-center"
-          [ngClass]="{active: !form?.invalid}"
-          [disabled]="form?.invalid"
-          mat-button
-          type="button"
-          (click)="clickToNext.emit(result)"
+  <button
+    class="next mat-button-stepper d-flex align-items-center justify-content-center"
+    [ngClass]="{ active: !form?.invalid }"
+    [disabled]="form?.invalid"
+    mat-button
+    type="button"
+    (click)="clickToNext.emit(result)"
   >
-    {{isLastStep ? 'Book now' : 'Next'}}
+    {{ isLastStep ? 'Book now' : 'Next' }}
   </button>
-  <div>With “Request the bike” you agree to the listnride Terms and our data protection regulations.</div>
+  <div>
+    With “Request the bike” you agree to the listnride Terms and our data
+    protection regulations.
+  </div>
 </div>
