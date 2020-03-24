@@ -23,7 +23,7 @@ export class BikeResolver implements Resolve<any> {
   resolve({ queryParams }: ActivatedRouteSnapshot) {
     const { id } = queryParams;
     if (!id) {
-      return this.router.navigate(['/**']);
+      return this.router.navigate(['/404']);
     }
     return this.apiRidesService.getById(id, false).pipe(
       map((data: any) => {
@@ -33,7 +33,7 @@ export class BikeResolver implements Resolve<any> {
         }
         return data.current;
       }),
-      catchError(() => this.router.navigate(['/**'])),
+      catchError(() => this.router.navigate(['/404'])),
     );
   }
 }

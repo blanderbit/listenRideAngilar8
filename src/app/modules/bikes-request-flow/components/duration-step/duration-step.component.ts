@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { sizeList } from '@core/constants/filters.const';
-import { SizeListInterface } from '../../../list-my-bike/model/models';
 
 @Component({
   selector: 'lnr-step-duration',
@@ -10,8 +8,10 @@ import { SizeListInterface } from '../../../list-my-bike/model/models';
 })
 export class DurationStepComponent {
   @Input() durationFormGroup: FormGroup;
-
-  sizeList: Array<SizeListInterface> = sizeList;
-
-  @Input() hasInsurance: any;
+  @Input() hasInsurance: boolean;
+  @Input('image_file') image_file;
+  @Input('brand') brand;
+  @Input('name') name;
+  @Input('type') type;
+  @Input('city') city;
 }

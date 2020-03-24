@@ -1,0 +1,13 @@
+<lnr-loader-spinner-small *ngIf="spinner"></lnr-loader-spinner-small>
+
+
+<div id="paypaldata" class="mb-4 mt-4" [ngClass]="spinner && 'opacity'"></div>
+<div class="col-sm-12 col-md-3">
+    <button *ngIf="!isPaymentRequestFlow"
+            mat-stroked-button
+            class="lnr-w-100"
+            (click)="onCancel.emit({});">
+        Cancel
+    </button>
+</div>
+

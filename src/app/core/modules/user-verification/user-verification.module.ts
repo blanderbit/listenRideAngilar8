@@ -56,7 +56,6 @@ const dialogs = [UserVerificationDialogComponent];
     HttpErrorMessageModule,
     ButtonsModule,
     LoadersModule,
-
     DeviceDetectorModule.forRoot(),
     ViewTemplateModule,
     AddressModule,
@@ -72,8 +71,7 @@ const dialogs = [UserVerificationDialogComponent];
     ),
     EffectsModule.forFeature([UserVerificationEffects]),
   ],
-  exports: [UserVerificationPhoneComponent],
-
+  exports: [UserVerificationPhoneComponent, UserVerificationAddressComponent],
   entryComponents: [...dialogs],
 })
 export class UserVerificationModule {}

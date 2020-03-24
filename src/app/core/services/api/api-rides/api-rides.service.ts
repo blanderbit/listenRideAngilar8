@@ -53,10 +53,11 @@ export class ApiRidesService {
     return this.httpClient.delete(`/rides/${bikeId}`);
   }
 
-  clusterizeBikes(bikeIds: number[]): Observable<any> {
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  clusterizeBikes(ride_ids: number[]): Observable<any> {
     return this.httpClient.post('/clusters', {
       // eslint-disable-next-line @typescript-eslint/camelcase
-      cluster: { ride_ids: bikeIds },
+      cluster: { ride_ids },
     });
   }
 

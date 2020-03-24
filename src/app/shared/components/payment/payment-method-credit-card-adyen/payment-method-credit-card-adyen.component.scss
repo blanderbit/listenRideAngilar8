@@ -1,0 +1,42 @@
+@import 'variables.scss';
+.field-size {
+  font-size: $small-fontsize;
+}
+.lnr-adyen-input-holder {
+  border: .1rem solid $input-border;
+  border-radius: $border-radius;
+  height: 4rem;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+#holder-name {
+  border: .1rem solid $input-border;
+  border-radius: $border-radius;
+  height: 4rem;
+  width: 100%;
+  padding-left: 2rem;
+  outline: none;
+}
+
+#holder-name::placeholder {
+  opacity: .3;
+}
+
+#holder-name:not(:focus):valid {
+  color: $main-green;
+}
+
+#holder-name:not(:focus):invalid {
+  color: $lnr-dang;
+}
+
+.mat-hint{
+  color: $lnr-dang;
+}
+
+#adien {
+  .not-shown {
+    display: none;
+  }
+}

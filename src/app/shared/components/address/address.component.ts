@@ -1,5 +1,3 @@
-// TODO Fix all the esLint errors and warnings
-/* eslint-disable */
 import {
   Component,
   EventEmitter,
@@ -34,6 +32,20 @@ export class AddressComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
+  address: string;
+
+  rawAddress = {
+    country: null,
+    route: null,
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    street_number: null,
+    locality: null,
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    postal_code: null,
+  };
+
+  segments;
+
   constructor(private fb: FormBuilder, private store: Store<fromAuth.State>) {}
 
   ngOnInit(): void {
@@ -52,6 +64,7 @@ export class AddressComponent implements OnInit, OnDestroy {
       .subscribe(({ country, city, street, zip }) => {
         const streetWithoutNumber = this.getStreetWithoutNumber(street);
         const streetNumber = this.getNumberFromStreet(street);
+        this.address = `${street}, ${city}, ${country}`;
         this.form.patchValue({
           country,
           city,
@@ -81,24 +94,16 @@ export class AddressComponent implements OnInit, OnDestroy {
   private parseLocation(
     addressComponents: GeocoderAddressComponent[],
   ): BusinessLocation {
-    const rawAddress = {
-      country: null,
-      route: null,
-      street_number: null,
-      locality: null,
-      postal_code: null,
-    };
-
     addressComponents.forEach(address => {
-      rawAddress[address.types[0]] = address.long_name;
+      this.rawAddress[address.types[0]] = address.long_name;
     });
 
     return {
-      country: rawAddress.country,
-      city: rawAddress.locality,
-      street: rawAddress.route,
-      number: rawAddress.street_number,
-      zip: rawAddress.postal_code,
+      country: this.rawAddress.country,
+      city: this.rawAddress.locality,
+      street: this.rawAddress.route,
+      number: this.rawAddress.street_number,
+      zip: this.rawAddress.postal_code,
     };
   }
 
@@ -122,12 +127,13 @@ export class AddressComponent implements OnInit, OnDestroy {
       return null;
     }
 
-    const segments = street.split(' ');
+    this.segments = street.split(' ');
 
-    if (segments.length) {
-      if (!isNaN(Number(segments[segments.length - 1]))) {
-        segments.splice(segments.length - 1, 1);
-        return segments.join(' ');
+    if (this.segments.length) {
+      // eslint-disable-next-line no-restricted-globals
+      if (!isNaN(Number(this.segments[this.segments.length - 1]))) {
+        this.segments.splice(this.segments.length - 1, 1);
+        return this.segments.join(' ');
       }
       return street;
     }
@@ -139,11 +145,12 @@ export class AddressComponent implements OnInit, OnDestroy {
       return null;
     }
 
-    const segments = street.split(' ');
+    this.segments = street.split(' ');
 
-    if (segments.length) {
-      return !isNaN(Number(segments[segments.length - 1]))
-        ? Number(segments[segments.length - 1])
+    if (this.segments.length) {
+      // eslint-disable-next-line no-restricted-globals
+      return !isNaN(Number(this.segments[this.segments.length - 1]))
+        ? Number(this.segments[this.segments.length - 1])
         : null;
     }
     return null;

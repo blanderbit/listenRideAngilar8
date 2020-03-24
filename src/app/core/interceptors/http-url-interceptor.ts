@@ -10,22 +10,22 @@ import { environment } from '@environment/environment';
 
 @Injectable()
 export class HttpUrlInterceptor implements HttpInterceptor {
-  // eslint-disable-next-line class-methods-use-this
+  API_URL = environment.LNR_API_ENDPOINT;
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const API_URL = environment.LNR_API_ENDPOINT;
     const include =
       request.url.includes('http') ||
       request.url.includes('https') ||
       request.url.includes('assets');
-    const url = include ? request.url : `${API_URL}${request.url}`;
+    const url = include ? request.url : `${this.API_URL}${request.url}`;
 
-    const newRequest = request.clone({
+    const cloneRequest = request.clone({
       url,
     });
 
-    return next.handle(newRequest);
+    return next.handle(cloneRequest);
   }
 }

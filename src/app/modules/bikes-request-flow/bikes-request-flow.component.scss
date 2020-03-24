@@ -1,39 +1,60 @@
 @import 'variables';
+@import "utils/utils";
 
 
-#right > div:last-child {
+#right-side-request-flow > div:last-child {
   margin-top: -2rem;
 }
 
-@media (max-width: $device-xs) {
-  #right {
-    margin: 4rem 0;
+@include if-smaller-than(xs) {
+
+  #right-side-request-flow {
     min-width: 100%;
+    margin: 4rem 0;
+
+  }
+}
+
+@include if-smaller-than(lg) {
+  #request-flow {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    margin: 0;
+    padding: 0;
 
   }
 }
 
 .header {
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 120%;
   color: $dark-text-color;
   display: flex;
-  font-size: 3rem;
-  font-weight: bold;
   justify-content: flex-start;
-  line-height: 120%;
-  margin: 4rem auto;
   padding: 0 10%;
+  margin: 4rem auto;
 }
+
+::ng-deep mat-step-header[aria-label="disabledStep"] {
+  pointer-events: none !important;
+
+  .mat-step-icon {
+    opacity: .5;
+  }
+}
+
 
 :host::ng-deep {
   .mat-select {
-    font-size: $h5-fontsize;
     font-weight: normal;
+    font-size: $h5-fontsize;
     line-height: 150%;
 
     .mat-select-trigger {
-      border: 0.1rem solid $input-border;
-      border-radius: 0.4rem;
       padding: 0.5em 1em;
+      border: .1rem solid $input-border;
+      border-radius: $border-radius;
 
       .mat-select-arrow {
         color: $input-border;
@@ -43,19 +64,19 @@
   }
 
   .mbsc-material {
-    font-size: $h5-fontsize;
-    font-weight: normal;
-    line-height: 150%;
     position: relative;
+    font-weight: normal;
+    font-size: $h5-fontsize;
+    line-height: 150%;
 
     .arrow-right {
-      background-image: url("./../../../assets/images/icons/shared/long-arrow-right.svg");
-      background-position: center;
-      background-repeat: no-repeat;
+      background-image: url("./../../../assets/img/arrow-right.svg");
       background-size: contain;
-      height: 100%;
-      margin-right: 0.5rem;
       width: 5.5rem;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-right: .5rem;
     }
 
     &.mbsc-control-w {
@@ -64,7 +85,7 @@
 
     &.mbsc-input {
       .mbsc-control {
-        border: none;
+        border: none
       }
     }
   }
@@ -74,161 +95,194 @@
   width: 100%;
 
   h4 {
-    color: $dark-text-color;
-    font-size: $h4-fontsize;
     font-weight: normal;
+    font-size: $h4-fontsize;
     line-height: 120%;
+    color: $dark-text-color;
   }
 
   h5 {
-    color: $dark-text-color;
-    font-size: $h5-fontsize;
     font-style: normal;
     font-weight: normal;
+    font-size: $h5-fontsize;
     line-height: 150%;
+    color: $dark-text-color;
   }
 
   lnr-phone-verification {
     div.dropdown-menu {
-      div.search{}
+      div.search {
+      }
     }
   }
 
-  ::ng-deep #requestFlow-stepper {
-    font-size: $h5-fontsize;
-    left: 20%;
-    margin-top: 9rem;
+  ::ng-deep {
+    #requestFlow-stepper, #requestFlow-stepper-hor {
+      left: 20%;
+      margin-top: 9rem;
+      font-size: $h5-fontsize;
 
-    .mat-horizontal-stepper-header {
-      border-bottom: 0.2rem solid white;
-      box-sizing: border-box;
+      .mat-horizontal-stepper-header {
 
-      cursor: pointer;
-      padding: 2rem 0 0;
-      transition: 0.5s all;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-bottom: .2rem solid white;
+        transition: .5s all;
+        padding: 2rem 0 0;
 
-      div {
-        &.mat-step-icon {
-          height: 2.8rem;
-          width: 2.8rem;
-        }
-
-        &.mat-step-icon-state-done.mat-step-icon {
-          background: $main-green;
-        }
-      }
-
-      .mat-step-label-active.mat-step-label-selected {
-        opacity: 1;
-      }
-
-      .mat-step-label {
-        font-size: $base-font_size;
-        width: 14.4rem;
-      }
-    }
-
-    .mat-horizontal-stepper-content {
-      .mat-form-field-wrapper,
-      .mat-form-field-infix,
-      .mat-form-field-infix .mat-select {
-        margin-top: 0;
-        padding: 0;
-
-        .mat-select-trigger {
-          padding: 0 1.4rem;
-        }
-      }
-    }
-
-    .mat-horizontal-content-container {
-      padding-top: 4rem;
-
-      [aria-labelledby='cdk-step-label-0-1'] {
-        h4 {
-          margin-bottom: 3rem;
-        }
-      }
-
-      lnr-auth-login-dialog {
-        .lnr-dialog-header {
-          display: none;
-        }
-
-        mat-dialog-content > mat-form-field {
-          margin-bottom: 2rem;
-        }
-      }
-
-      lnr-address {
-        div.row {
-          margin: 3rem -1.5rem;
-        }
-      }
-
-    }
-  }
-
-  ::ng-deep mat-vertical-stepper#requestFlow-stepper {
-    margin: 0 auto;
-    width: 100%;
-
-    lnr-step-duration {
-      .main_container {
-        height: 100%;
-        width: 100%;
-
-        .leftContainer {
-          grid-template-columns: 100%;
-
-          .container {
-            grid-template-columns: 40% 70%;
-            margin: 2rem 0;
-
+        div {
+          &.mat-step-icon {
+            width: 2.8rem;
+            height: 2.8rem;
           }
-        }
-      }
 
-      .insurance_container {
-        grid-template-columns: 100%;
-
-        .premium_insurance {
-          border: none;
-          border-bottom: 0.1rem solid $input-border;
-          padding-bottom: 2rem;
-
-          button {
-            margin: 1.7rem 1rem 1rem 2rem;
-
+          &.mat-step-icon-state-done.mat-step-icon {
+            background: $main-green;
           }
         }
 
-        .voucher {
-          margin: 2rem 0;
+        .mat-step-label-active.mat-step-label-selected {
+          opacity: 1;
+        }
+
+        .mat-step-label {
+          font-size: $base-font_size;
+          width: 14.4rem;
+        }
+      }
+
+      .mat-horizontal-stepper-content {
+
+        .mat-form-field-wrapper, .mat-form-field-infix, .mat-form-field-infix .mat-select {
           padding: 0;
+          margin-top: 0;
 
-          .input_voucher {
-            input {
-              width: 14rem;
+          .mat-select-trigger {
+            padding: 0 1.4rem;
+          }
+        }
+      }
+
+      .mat-horizontal-content-container {
+        padding-top: 4rem;
+
+        [aria-labelledby="cdk-step-label-0-1"] {
+          h4 {
+            margin-bottom: 3rem;
+          }
+        }
+
+        lnr-auth-login-dialog {
+
+          .lnr-dialog-header {
+            display: none;
+          }
+
+          mat-dialog-content > mat-form-field {
+            margin-bottom: 2rem;
+          }
+
+          .mat-error {
+            margin-top: 2.5rem;
+          }
+        }
+
+        lnr-user-verification-phone, lnr-user-verification-address {
+          .step-actions {
+            .left-side {
+              visibility: hidden;
             }
           }
         }
+
+        lnr-user-verification-address {
+
+          .mat-error {
+            margin-top: 2.5rem;
+          }
+        }
+
+        lnr-auth-login-form {
+          .row {
+            .not-a-member {
+              margin-top: 2rem;
+            }
+          }
+        }
+
+        lnr-address {
+          div.row {
+            margin: 3rem -1.5rem;
+          }
+        }
+
+      }
+    }
+  }
+
+  ::ng-deep {
+    mat-vertical-stepper#requestFlow-stepper,  mat-vertical-stepper#requestFlow-stepper-hor  {
+
+      width: 100%;
+      margin: 0 auto;
+
+      lnr-step-duration {
+        .main_container {
+          width: 100%;
+          height: 100%;
+
+          .leftContainer {
+            grid-template-columns: 100%;
+
+            .container {
+              margin: 2rem 0;
+              grid-template-columns: 40% 70%;
+
+            }
+          }
+        }
+
+        .insurance_container {
+          grid-template-columns: 100%;
+
+          .premium_insurance {
+            border: none;
+            border-bottom: .1rem solid $input-border;
+            padding-bottom: 2rem;
+
+            button {
+              margin: 1.7rem 1rem 1rem 2rem;
+
+            }
+          }
+
+          .voucher {
+            padding: 0;
+            margin: 2rem 0;
+
+            .input_voucher {
+              input {
+                width: 14rem;
+              }
+            }
+          }
+        }
+
       }
 
-    }
+      lnr-auth-login-dialog {
 
-    lnr-auth-login-dialog {
-      .lnr-dialog-header {
-        display: none;
+        .lnr-dialog-header {
+          display: none;
+        }
+      }
+
+      lnr-step-payment {
+        div.pay {
+          padding: 2rem 0;
+        }
       }
     }
-
-    lnr-step-payment {
-      div.pay {
-        padding: 2rem 0;
-      }
-    }
-
   }
 
 
@@ -238,6 +292,7 @@
   }
 
   .mat-horizontal-stepper-content {
+
     .duration {
       display: flex;
       flex-direction: column;
@@ -245,7 +300,7 @@
       div.container {
         display: flex;
 
-        #left {
+        #left-side-duration-step {
           width: 70%;
 
           .leftContainer {
@@ -268,9 +323,9 @@
 
   ::ng-deep {
     .mat-button-stepper {
+      width: 16.6rem;
       height: 4.2rem;
       margin: 4rem 4% 4rem 0;
-      width: 16.6rem;
 
       &[disabled] {
         background: $submit-button-color-disabled;
@@ -285,7 +340,7 @@
   }
 
 
-  @media(max-width: $device-md) {
+  @include if-smaller-than(md) {
     .preview-container {
       grid-template-columns: 100%;
 
@@ -298,21 +353,21 @@
   }
 
 
-  @media (max-width: $device-sm) {
+  @include if-smaller-than(sm) {
+
     .mat-stepper-horizontal {
       padding: 0 5%;
       width: 100%;
     }
-
     .header {
-      padding: 0 10%;
       width: 100%;
+      padding: 0 10%;
     }
 
     .mat-horizontal-stepper-header-container {
+      left: 20%;
       display: flex;
       justify-content: space-around;
-      left: 20%;
 
       .mat-horizontal-stepper-header {
         padding: 0 !important;
@@ -327,8 +382,7 @@
     }
 
     #pricing-container {
-      .pricing-container,
-      .customised {
+      .pricing-container, .customised {
         display: grid;
         grid-template-columns: 100%;
         width: 100%;
@@ -360,11 +414,11 @@
 }
 
 .message {
-  align-items: center;
-  display: flex;
-  height: 60vh;
-  justify-content: center;
   width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 :host::ng-deep .mat-select-panel {

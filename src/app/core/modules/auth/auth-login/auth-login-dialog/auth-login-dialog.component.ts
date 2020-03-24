@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class AuthLoginDialogComponent {
 
   pending = false;
 
-  @Output('login') isLogin = new EventEmitter();
+  @Input('isRequestFlow') isRequestFlow: boolean;
 
   constructor(public dialogRef: MatDialogRef<AuthLoginDialogComponent>) {}
 
@@ -38,8 +38,6 @@ export class AuthLoginDialogComponent {
 
   onLoginSuccess() {
     this.pending = false;
-    this.isLogin.emit(true);
-
     this.close();
   }
 
@@ -53,6 +51,7 @@ export class AuthLoginDialogComponent {
   }
 
   close() {
-    this.dialogRef.close();
+    // eslint-disable-next-line no-unused-expressions
+    typeof this.dialogRef.close === 'function' && this.dialogRef.close();
   }
 }

@@ -1,25 +1,40 @@
-// TODO @Smirnoff: Fix all the esLint errors
 /* eslint-disable */
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { FormBuilder, FormGroup } from '@angular/forms';
+
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import * as fromAuth from '@auth/store/reducers';
 import { ApiRidesService } from '@api/api-rides/api-rides.service';
 import { BIKE } from '@models/bike/bike.model';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { User } from '@models/user/user';
-// import { BookWidgetComponent } from '../../shared/components/book-widget/book-widget.component';
+import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
 import { MatDialogRef } from '@angular/material/dialog';
-import * as moment from 'moment';
+import {
+  CategoryInterface,
+  SubCategoryInterface,
+} from '../list-my-bike/model/models';
+import { typeList } from '@core/constants/filters.const';
+import { STATIC } from './consts/consts';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const moment = require('moment');
 const now = new Date();
 
 @Component({
@@ -40,7 +55,38 @@ const now = new Date();
     },
   ],
 })
-export class BikesRequestFlowComponent implements OnInit {
+export class BikesRequestFlowComponent
+  implements OnInit, AfterViewInit, DoCheck {
+  @ViewChild('stepper', STATIC) private stepper: MatStepper;
+  @ViewChild('widget', STATIC) private widget: BookWidgetComponent;
+
+  isLinear = false;
+  durationFormGroup: FormGroup;
+  signInFormGroup: FormGroup;
+  phoneFormGroup: FormGroup;
+  personalDetailsFormGroup: FormGroup;
+  paymentMethodFormGroup: FormGroup;
+  rentalOverviewFormGroup: FormGroup;
+  data: BIKE | any;
+  datesRange = [now, now];
+  userSubscriber$;
+  bikeCategoryList: Array<CategoryInterface> = typeList;
+  type: string;
+  isDesktop: boolean;
+  isTablet: boolean;
+  isMobile: boolean;
+  user: User | any;
+  bike: BIKE | any = new BIKE();
+  private destroyed$ = new Subject();
+  dialogRef: ElementRef;
+  hasInsurance: boolean = true;
+  isBikeQueryParams: { [key: string]: any };
+  durationStep: boolean = false;
+  signInStep: boolean = false;
+  allOtherSteps: boolean = false;
+  isRequestFlow: boolean = true;
+  isLastStep: boolean = false;
+
   constructor(
     private store: Store<fromAuth.State>,
     private formBuilder: FormBuilder,
@@ -52,113 +98,35 @@ export class BikesRequestFlowComponent implements OnInit {
     private deviceDetectorService: DeviceDetectorService,
   ) {}
 
-  isLinear = false;
-
-  durationFormGroup: FormGroup;
-
-  signInFormGroup: FormGroup;
-
-  phoneFormGroup: FormGroup;
-
-  personalDetailsFormGroup: FormGroup;
-
-  paymentMethodFormGroup: FormGroup;
-
-  rentalOverviewFormGroup: FormGroup;
-
-  userId: Store<fromAuth.State> | any;
-
-  data: BIKE | any;
-
-  editData: any;
-
-  public datesRange = [now, now];
-
-  duration = 0;
-
-  @ViewChild('stepper', { static: false }) private stepper: MatStepper;
-
-  @ViewChild('stepper1', { static: false }) private stepper1: MatStepper;
-  // @ViewChild('widget', { static: false }) private widget: BookWidgetComponent;
-
-  isDesktop = true;
-
-  isTablet = false;
-
-  isMobile = false;
-
-  user: User | any;
-
-  bike: BIKE | any;
-
-  private destroyed$ = new Subject();
-
-  ok: any;
-
-  hasInsurance = true;
-
   ngOnInit(): void {
+    this.getDevices();
+    this.setRouterEvents();
+    this.getDataUseRout();
+  }
+
+  getType(category: string): void {
+    let editSubcategory: SubCategoryInterface;
+    const getSubCategory = ({ value }: SubCategoryInterface) =>
+      Number(value) === Number(category);
+    this.bikeCategoryList.find(i => {
+      const findCategory: SubCategoryInterface = i.categories.find(
+        getSubCategory,
+      );
+      if (findCategory) {
+        editSubcategory = findCategory;
+      }
+      return findCategory;
+    });
+    this.type = (editSubcategory && editSubcategory.text) || '';
+  }
+
+  getDataUseRout() {
     this.activateRoute.data
       .pipe(
         map(({ user, bike }) => {
-          const isBike =
-            bike && bike.queryParams && bike.queryParams.start_date;
-          if (isBike) {
-            const arr = [];
-            const start = bike.queryParams.start_date || now;
-            const { duration } = bike.queryParams;
-
-            if (start) {
-              arr.push(new Date(start));
-            }
-
-            if (duration) {
-              arr.push(
-                new Date(
-                  moment
-                    .unix(moment(new Date(start)).unix() + Number(duration))
-                    .toISOString(),
-                ),
-              );
-            } else {
-              arr.push(new Date(start));
-            }
-            this.stepper && (this.stepper.selectedIndex = 1);
-            this.stepper1 && (this.stepper1.selectedIndex = 1);
-            this.datesRange = arr;
-            this.duration = duration;
-          }
-          if (user) {
-            this.userId = user.id;
-            this.user = user;
-          }
-
-          if (user && isBike) {
-            this.stepper && (this.stepper.selectedIndex = 2);
-            this.stepper1 && (this.stepper1.selectedIndex = 2);
-
-            if (user.confirmed_phone) {
-              this.stepper && (this.stepper.selectedIndex = 3);
-              this.stepper1 && (this.stepper1.selectedIndex = 3);
-            }
-
-            if (
-              user.street &&
-              user.zip &&
-              user.city &&
-              user.country &&
-              user.pretty_phone_number
-            ) {
-              this.stepper && (this.stepper.selectedIndex = 4);
-              this.stepper1 && (this.stepper1.selectedIndex = 4);
-            }
-
-            if (user.payment_method) {
-              this.stepper && (this.stepper.selectedIndex = 5);
-              this.stepper1 && (this.stepper1.selectedIndex = 5);
-            }
-          }
-          this.editData = !!bike;
+          this.user = user;
+          this.userSubscriber$ = this.userStore();
+          this.isBikeQueryParams = bike && bike.queryParams;
           return bike;
         }),
         takeUntil(this.destroyed$),
@@ -166,83 +134,167 @@ export class BikesRequestFlowComponent implements OnInit {
       .subscribe(
         next => {
           this.data = next || new BIKE();
-          this.setDataToPage();
+          this.getType(this.data.category);
         },
-        e => {
-          console.log(e);
-          this.snackBar('we have some error');
-        },
+        () => this.snackBar('we have some error'),
       );
+  }
+
+  setRouterEvents(): void {
+    this.router.events.pipe(takeUntil(this.destroyed$)).subscribe(data => {
+      if (data instanceof NavigationEnd) {
+        const query = this.router.getCurrentNavigation().finalUrl.queryParams;
+        this.isBikeQueryParams = {
+          ...query,
+        };
+        this.setStep();
+        this.getDevices();
+      }
+    });
+  }
+
+  userStore() {
+    return this.store
+      .pipe(select(fromAuth.selectUser), takeUntil(this.destroyed$))
+      .subscribe(next => {
+        this.user = next;
+        this.setStep();
+      });
+  }
+
+  getDevices() {
     this.isTablet = this.deviceDetectorService.isTablet();
     this.isMobile = this.deviceDetectorService.isMobile();
     this.isDesktop = this.deviceDetectorService.isDesktop();
   }
 
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  get start_date() {
+    return this.isBikeQueryParams && this.isBikeQueryParams.start_date;
+  }
+
+  get dateDuration() {
+    return this.isBikeQueryParams && this.isBikeQueryParams.duration;
+  }
+
+  get importantQuery() {
+    return this.start_date && this.dateDuration;
+  }
+
+  get insuranceEnabled() {
+    return this.user && this.user.has_business && this.user.business
+      ? this.user.business.insurance_enabled
+      : true;
+  }
+
+  get priceForOne() {
+    return this.data && this.data.prices[0] && this.data.prices[0].price;
+  }
+
+  get weekly() {
+    return (
+      (this.data && this.data.discounts && this.data.discounts.weekly) || ''
+    );
+  }
+
+  get daily() {
+    return (
+      (this.data && this.data.discounts && this.data.discounts.daily) || ''
+    );
+  }
+
+  setStep() {
+    if (this.importantQuery) {
+      this.reformatAndSetDate(this.start_date, this.dateDuration);
+      if (this.user) {
+        let index = 0;
+        let results = [];
+        const { paymentMethod, hasPhoneNumber, hasAddress } = this.user;
+        const variableArray = [
+          this.importantQuery,
+          this.user,
+          hasPhoneNumber,
+          hasAddress,
+          paymentMethod,
+        ];
+
+        variableArray.forEach((item, inx) => {
+          results.push(item);
+          if (results.every(i => !!i)) {
+            index = inx + 1;
+            this.stepper.selectedIndex = index;
+          }
+        });
+      } else {
+        this.stepper.selectedIndex = 1;
+      }
+    }
+    this.setDataToPage();
+  }
+
   setDataToPage(): void {
-    //
-    const duration = {
-      // size: ['', Validators.required],
-      //
-      // duration: ['', Validators.required],
-      //     subCategory: [SubcategoryValue, Validators.required]
-    };
+    const isUser = this.user || '';
+    const hasPhone = (this.user && this.user.hasPhoneNumber) || '';
+    const hasAddress = (this.user && this.user.hasAddress) || '';
+
+    const duration = {};
 
     const signIn = {
-      // available: [true],
-      // frame_size: [frameSizeValue],
-      // bicycle_number: [bicycleNumberValue],
-      // frame_number: [frameNumberValue],
-      // brand: [brandValue, Validators.required],
-      // name: [nameValue, Validators.required],
-      // description: [descriptionValue, [Validators.minLength(100), Validators.required]],
+      sigIn: [isUser, Validators.required],
     };
 
-    const phone = {};
-    const personalDetails = {
-      // picturesCtrl_0: ['', Validators.required]
+    const phone = {
+      phoneControl: [hasPhone, Validators.required],
+    };
+    const address = {
+      addressControl: [hasAddress, Validators.required],
     };
 
-    const paymentMethod: any = {
-      // street: [streetValue, Validators.required],
-      // zip: [zipValue, Validators.required],
-      // city: [cityValue, Validators.required],
-      // country: [countryValue, Validators.required],
+    const paymentMethod = {
+      payment: [''],
     };
 
-    // this.checkCountry(this.data.country_code);
-    // this.hasCoverage && (locationCtrl.coverage_total = [coverageTotalValue, Validators.required]);
-
-    const bookingOverview = {
-      // daily: [dailyValue, Validators.required],
-      // weekly: [weeklyValue, Validators.required],
-      // price: [dailyPriceValue, Validators.required],
-    };
+    const bookingOverview = {};
 
     this.durationFormGroup = this.formBuilder.group(duration);
     this.signInFormGroup = this.formBuilder.group(signIn);
     this.phoneFormGroup = this.formBuilder.group(phone);
-    this.personalDetailsFormGroup = this.formBuilder.group(personalDetails);
+    this.personalDetailsFormGroup = this.formBuilder.group(address);
     this.paymentMethodFormGroup = this.formBuilder.group(paymentMethod);
     this.rentalOverviewFormGroup = this.formBuilder.group(bookingOverview);
   }
+  // eslint-disable-next-line no-unused-expressions
+  next = (e: any): void =>
+    this.stepper && this.stepper.selected.completed && this.stepper.next();
 
-  next(e: any) {
-    this.stepper && this.stepper.next();
-    this.stepper1 && this.stepper1.next();
+  test({ date, duration }: any): void {
+    const queryParams = {
+      id: this.data.id,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      start_date: date,
+      duration: duration,
+    };
+    this.router.navigate(['booking'], { queryParams });
+    this.reformatAndSetDate(date, duration);
+    this.stepper && (this.stepper.selectedIndex = 1);
+    this.widget.refresh();
+  }
+  /*eslint no-unused-expressions: 2*/
+  reformatAndSetDate(start: Date | string = new Date(), duration?): void {
+    const arr = [];
+    const newDate = new Date(start);
+    arr.push(newDate);
+    if (duration) {
+      const unix = moment.unix(moment(newDate).unix() + Number(duration));
+      const dateWithDuration = new Date(unix.toISOString());
+      arr.push(dateWithDuration);
+    } else {
+      arr.push(newDate);
+    }
+    this.datesRange = arr;
   }
 
-  test({ date, duration }: any) {
-    this.router.navigate(['booking'], {
-      queryParams: {
-        id: this.data.id,
-        start_date: date,
-        duration,
-      },
-    });
-    this.duration = duration;
-  }
-
-  snackBar = (val: string, isGood = false): any =>
+  snackBar = (val: string, isGood = false): object =>
     this.SnackBar.open(val, 'Undo', {
       duration: 2000,
       verticalPosition: 'top',
@@ -250,9 +302,18 @@ export class BikesRequestFlowComponent implements OnInit {
       panelClass: [!isGood ? 'red-snackbar' : 'green-snackbar'],
     });
 
-  // ngAfterViewInit(): void {
-  // this.widget.setCalendarCounts(this.duration);
-  // }
+  ngAfterViewInit(): void {
+    // eslint-disable-next-line no-unused-expressions
+    this.setStep();
+    if(this.dateDuration){
+      this.widget.setCalendarCounts(this.dateDuration);
+    }
+  }
 
-  testLogin($event: any) {}
+  ngDoCheck(): void {
+    this.isLastStep = this.stepper && this.stepper.selectedIndex === 5;
+    this.durationStep = !!this.importantQuery;
+    this.signInStep = !!this.user || !this.durationStep;
+    this.allOtherSteps = !this.durationStep || !this.signInStep;
+  }
 }

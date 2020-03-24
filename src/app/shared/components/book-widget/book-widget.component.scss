@@ -1,28 +1,37 @@
 @import 'src/assets/scss/variables';
+@import "utils/utils";
 
-#right {
-  border: 0.2rem solid $input-border;
-  border-radius: 0.4rem;
-  box-sizing: border-box;
-  margin-left: 4rem;
-  margin-top: 9rem;
+
+#right-side-request-flow {
   min-width: 36rem;
+  margin-top: 9rem;
+  border: .2rem solid $input-border;
+  border-radius: .4rem;
+  box-sizing: border-box;
   padding: 1rem;
+  margin-left: 4rem;
 
-  > div:last-child {
+  @include if-smaller-than(lg) {
+    max-width: 36rem;
+    min-width: 20rem;
+    margin-left: 1rem;
+
+  }
+
+    > div:last-child {
     margin-top: -2rem;
   }
 
   div.d-flex {
-    border-bottom: 0.1rem solid $input-border;
+    border-bottom: .1rem solid $input-border;
     box-sizing: border-box;
     font-size: $small-fontsize;
     line-height: 2.4rem;
   }
 
   div.dates {
-    border: 0.1rem solid $input-border;
-    border-radius: 0.4rem;
+    border: .1rem solid $input-border;
+    border-radius: .4rem;
   }
 
   div.d-flex:last-child {
@@ -33,44 +42,45 @@
   }
 
   span {
-    font-size: $base-font_size;
     font-weight: 500;
+    font-size: $base-font_size;
     line-height: 250%;
-    padding: 0.1rem 0;
+    padding: .1rem 0;
 
   }
 
   button {
     background: $main-green;
-    border: none;
-    border-radius: 0.4rem;
-    color: $white;
-    font-size: $base-font_size;
+    border-radius: .4rem;
     font-weight: bold;
+    font-size: $base-font_size;
     line-height: 1.9rem;
-    margin: 1rem 0 3rem;
+    color: $white;
+    border: none;
     width: 100%;
+        margin: 1rem 0 3rem 0;
 
   }
 
   input {
-    border: 0.1rem solid $input-border;
-    border-radius: 0.4rem;
-    height: 5rem;
-    padding-left: 2rem;
     width: 100%;
+    height: 5rem;
+    border-radius: .4rem;
+    border: .1rem solid $input-border;
+    padding-left: 2rem;
 
   }
 
   textarea::placeholder {
-    color: black;
+    color: black
   }
 }
 
-@media (max-width: $device-xs) {
-  #right {
-    margin: 4rem 0;
+  @include if-smaller-than(tablet) {
+
+    #right {
     min-width: 100%;
+    margin: 4rem 0;
 
   }
 }

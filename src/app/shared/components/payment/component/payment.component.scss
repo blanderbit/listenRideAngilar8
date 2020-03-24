@@ -1,0 +1,129 @@
+@import 'variables';
+
+h3 {
+  font-size: $h3-fontsize;
+  font-weight: normal;
+  margin-bottom: 1.4rem;
+  color: $social-media-bg-hover;
+}
+
+.paymentMethod {
+  .pay:first-child {
+    border-bottom: 0.1rem solid $input-border;
+    border-top: 0.1rem solid $input-border;
+    padding: 2rem;
+  }
+
+  .pay {
+    border-bottom: 0.1rem solid $input-border;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    &.current {
+      border: none;
+    }
+  }
+
+  .pay > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    .payment-change {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  img {
+    height: 3rem;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  label.custom-checkbox {
+    border: .1rem solid $input-border;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span {
+    margin-left: 1rem;
+  }
+
+  input:checked ~ label:before {
+    content: "\2714";
+  }
+
+  ::ng-deep lnr-payment-method-card {
+
+    .lnr-adyen-input-holder {
+      opacity: 1;
+      border: .1rem solid $input-border;
+      border-radius: $border-radius;
+      height: 4rem;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    #holder-name {
+      border: .1rem solid $input-border;
+      border-radius: $border-radius;
+      height: 4rem;
+      width: 100%;
+      padding-left: 2rem;
+      outline: none;
+    }
+
+    #holder-name::placeholder {
+      opacity: .3;
+    }
+
+    #holder-name:not(:focus):valid {
+      color: $main-green;
+    }
+
+    #holder-name:not(:focus):invalid {
+      color: $lnr-dang;
+    }
+
+    #adien {
+      font-size: $small-fontsize;
+    }
+
+
+  }
+
+  lnr-payment-method-pay-pal {
+    width: 100%;
+    //margin-left: 7rem;
+  }
+
+}
+
+.current-paymentMethod {
+  margin: 3rem 0;
+}
+
+lnr-settings-payment-method {
+  ::ng-deep .payment-method-card-button {
+    justify-content: flex-end;
+  }
+}
+
+.pictureLoader {
+  margin-bottom: 2.4rem;
+}
+

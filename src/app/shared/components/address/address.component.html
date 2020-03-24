@@ -6,6 +6,7 @@
   <div class="row">
     <div class="col-sm-12">
       <mat-google-maps-autocomplete
+        [address]="address"
         [appearance]="'outline'"
         (onAutocompleteSelected)="onAutocompleteSelected($event)"
         [requiredErrorText]="'You can define address by this autocomplete'"

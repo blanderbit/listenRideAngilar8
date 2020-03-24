@@ -67,6 +67,7 @@ export class AuthLoginFormComponent implements OnInit, OnDestroy {
   @Output() valueValid = new EventEmitter<string>();
 
   @Output() valueInvalid = new EventEmitter<boolean>();
+  @Input() isRequestFlow: boolean;
 
   get forgotPasswordTooltip(): string {
     return this.form.get('email').invalid ? 'Enter valid email' : null;
