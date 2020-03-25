@@ -32,7 +32,7 @@
           <a mat-list-item routerLink="/list-bike">List a bike</a>
           <a mat-list-item routerLink="/settings">Settings</a>
           <a mat-list-item routerLink=".">Invite Friends</a>
-          <a mat-list-item routerLink=".">Invoices</a>
+          <a mat-list-item routerLink="/invoices">Invoices</a>
           <a mat-list-item (click)="logOut()">Log out</a>
         </mat-nav-list>
       </mat-sidenav>
@@ -103,7 +103,7 @@
           <mat-divider></mat-divider>
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item>Invite Friends</button>
-          <button mat-menu-item>Invoices</button>
+          <button mat-menu-item routerLink="/invoices">Invoices</button>
           <mat-divider></mat-divider>
           <button mat-menu-item (click)="logOut()">Log out</button>
         </mat-menu>

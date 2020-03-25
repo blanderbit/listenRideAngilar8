@@ -1,0 +1,73 @@
+<table *ngIf="!isMobile" class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">{{ 'invoices.date' | translate }}</th>
+      <th scope="col">{{ 'invoices.batch' | translate }}</th>
+      <th scope="col" class="lnr-text-align-r">
+        {{ 'invoices.payout' | translate }}
+      </th>
+      <th scope="col" class="lnr-text-align-r">
+        {{ 'shared.download' | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let report of reports | keyvalue: keyDescOrder">
+    <tr>
+      <td colspan="8">
+        <h3>{{ report.key }}</h3>
+      </td>
+    </tr>
+    <tr *ngFor="let invoice of report.value">
+      <td>{{ invoice.paidOutAt | date: 'dd.MM.yyyy' }}</td>
+      <td>{{ invoice.batchId }}</td>
+      <td class="lnr-text-align-r">
+        {{ invoice.amount | lnr_currency: 'EUR':'symbol':'1.2-2' }}
+      </td>
+      <td class="lnr-text-align-r">
+        <a (click)="getSettlementCsv(invoice.batchId)">
+          {{ 'shared.download' | translate }}
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2">{{ 'shared.total' | translate }}</th>
+      <th class="lnr-text-align-r">
+        {{ getTotal(report.value) | lnr_currency: 'EUR':'symbol':'1.2-2' }}
+      </th>
+      <th></th>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="isMobile" class="d-flex flex-column">
+  <div *ngFor="let report of reports | keyvalue: keyDescOrder">
+    <h4>{{ report.key }}</h4>
+    <div class="m-t-1 m-b-1">
+      <mat-divider></mat-divider>
+    </div>
+    <div *ngFor="let invoice of report.value" class="d-flex flex-column">
+      <div class="d-flex flex-row justify-content-between">
+        <div>{{ 'invoices.batch' | translate }} #{{ invoice.batchId }}</div>
+        <a (click)="getSettlementCsv(invoice.batchId)">
+          {{ 'shared.download' | translate }}
+        </a>
+      </div>
+      <div class="d-flex flex-row justify-content-between">
+        <div>{{ invoice.paidOutAt | date: 'dd.MM.yyyy' }}</div>
+        <b>{{ invoice.amount | lnr_currency: 'EUR':'symbol':'1.2-2' }}</b>
+      </div>
+      <div class="m-t-1 m-b-1">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="d-flex flex-row justify-content-between">
+        <b>{{ 'shared.total' | translate }}</b>
+        <b>
+          {{ getTotal(report.value) | lnr_currency: 'EUR':'symbol':'1.2-2' }}
+        </b>
+      </div>
+      <div class="m-t-1 m-b-1">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="text-center m-t-2">
+        {{ 'invoices.billing' | translate }}
+      </h3>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="d-flex justify-content-center m-6 p-6">
+      <lnr-loader-spinner-small></lnr-loader-spinner-small>
+    </div>
+  </ng-template>
+
+  <div *ngIf="reports$ | async as reports; else loading">
+    <div class="row m-2">
+      <div class="col-sm-12">
+        <div class="tabs m-b-2">
+          <div class="d-flex flex-row content-center" [ngClass]="tabType">
+            <button
+              mat-button
+              class="tab-toggler p-1 m-2"
+              (click)="toggleTab('asLister')"
+              [ngClass]="{ active: tabType === 'asLister' }"
+            >
+              {{ 'invoices.as_lister' | translate }}
+            </button>
+            <button
+              mat-button
+              class="tab-toggler p-1 m-2"
+              (click)="toggleTab('asRider')"
+              [ngClass]="{ active: tabType === 'asRider' }"
+            >
+              {{ 'invoices.as_rider' | translate }}
+            </button>
+            <button
+              mat-button
+              class="tab-toggler p-1 m-2"
+              (click)="toggleTab('settlementHistory')"
+              [ngClass]="{ active: tabType === 'settlementHistory' }"
+              [hidden]="isEmpty(reports?.settlement)"
+            >
+              {{ 'invoices.settlement_history' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <lnr-invoices-as-lister
+          [hidden]="tabType !== 'asLister'"
+          [reports]="reports?.asLister"
+          [userId]="userId"
+          [isMobile]="isMobile"
+        >
+        </lnr-invoices-as-lister>
+        <lnr-invoices-as-rider
+          [hidden]="tabType !== 'asRider'"
+          [reports]="reports?.asRider"
+          [userId]="userId"
+          [isMobile]="isMobile"
+        >
+        </lnr-invoices-as-rider>
+        <lnr-invoices-settlement-history
+          [hidden]="tabType !== 'settlementHistory'"
+          [reports]="reports?.settlement"
+          [userId]="userId"
+          [isMobile]="isMobile"
+        >
+        </lnr-invoices-settlement-history>
+      </div>
+    </div>
+  </div>
+</div>

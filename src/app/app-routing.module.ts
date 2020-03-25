@@ -84,6 +84,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/impint/impint.module').then(m => m.ImpintModule),
   },
+  {
+    path: 'invoices',
+    loadChildren: () =>
+      import('./modules/invoices').then(m => m.InvoicesModule),
+  },
   { path: '**', redirectTo: '404' },
 ];
 

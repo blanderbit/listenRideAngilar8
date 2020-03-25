@@ -1,0 +1,19 @@
+@import 'variables';
+
+.lnr-no-invoices {
+  text-align: center;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.table td, .table th {
+  padding: 1rem;
+}
+
+.download-csv {
+  margin: 4rem 1rem 4rem 1rem;
+
+  @media (max-width: $device-sm) {
+    margin: 1rem 1rem 2rem 0;
+  }
+}

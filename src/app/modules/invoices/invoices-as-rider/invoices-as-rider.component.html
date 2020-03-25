@@ -1,0 +1,86 @@
+<table *ngIf="!isMobile" class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">{{ 'invoices.request_id' | translate }}</th>
+      <th scope="col">{{ 'invoices.invoice_number' | translate }}</th>
+      <th scope="col">{{ 'invoices.bike' | translate }}</th>
+      <th scope="col">{{ 'invoices.start_date' | translate }}</th>
+      <th scope="col">{{ 'invoices.end_date' | translate }}</th>
+      <th scope="col">{{ 'shared.lister' | translate }}</th>
+      <th scope="col" class="lnr-text-align-r">
+        {{ 'invoices.you_paid' | translate }}
+      </th>
+      <th scope="col">{{ 'invoices.invoice' | translate }}</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let report of reports | keyvalue: keyDescOrder">
+    <tr>
+      <td colspan="8">
+        <h3>{{ report.key }}</h3>
+      </td>
+    </tr>
+    <tr *ngFor="let invoice of report.value">
+      <td>
+        <a [routerLink]="['/requests/' + invoice.requestId]">
+          {{ invoice.requestId }}
+        </a>
+      </td>
+      <td>{{ invoice.id }}</td>
+      <td>
+        <a [routerLink]="['/bikes/' + invoice.bikeId]">{{ invoice.bike }}</a>
+      </td>
+      <td>{{ invoice.startDate | date: 'dd.MM.yyyy' }}</td>
+      <td>{{ invoice.endDate | date: 'dd.MM.yyyy' }}</td>
+      <td>{{ invoice.lister }}</td>
+      <td class="lnr-text-align-r">
+        {{ invoice.total | lnr_currency: 'EUR':'symbol':'1.2-2' }}
+      </td>
+      <td>
+        <a (click)="getPdf(invoice.id)">
+          {{ 'shared.download' | translate }}
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="isMobile" class="d-flex flex-column">
+  <div *ngFor="let report of reports | keyvalue: keyDescOrder">
+    <h4>{{ report.key }}</h4>
+    <div class="m-t-1 m-b-1">
+      <mat-divider></mat-divider>
+    </div>
+    <div *ngFor="let invoice of report.value" class="d-flex flex-column">
+      <div class="d-flex flex-row justify-content-between">
+        <a [routerLink]="['/requests/' + invoice.requestId]">
+          #{{ invoice.requestId }}
+        </a>
+        <a (click)="getPdf(invoice.id)">
+          {{ 'invoices.download_pdf' | translate }}
+        </a>
+      </div>
+      <div>{{ 'invoices.invoice_number' | translate }}: {{ invoice.id }}</div>
+      <div>
+        {{ invoice.startDate | date: 'dd.MM.yyyy' }} -
+        {{ invoice.endDate | date: 'dd.MM.yyyy' }}
+      </div>
+      <div class="d-flex flex-row justify-content-between">
+        <a [routerLink]="['/bikes/' + invoice.bikeId]">{{ invoice.bike }}</a>
+        <b>{{ invoice.total | lnr_currency: 'EUR':'symbol':'1.2-2' }}</b>
+      </div>
+      <div class="m-t-1 m-b-1">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [hidden]="isEmpty(reports)" class="download-csv">
+  <a (click)="getCsv()">
+    {{ 'invoices.download_csv' | translate }}
+  </a>
+</div>
+
+<div [hidden]="!isEmpty(reports)" class="lnr-no-invoices">
+  <h3>{{ 'invoices.no_rides' | translate }}</h3>
+</div>
