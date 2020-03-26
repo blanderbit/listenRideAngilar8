@@ -23,6 +23,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { AuthLoginFormComponent } from '@auth/auth-login/auth-login-form/auth-login-form.component';
 import { DialogsModule } from '@shared/dialogs/dialogs.module';
 import * as fromAuth from './store/reducers';
+import { TranslateModule } from '@ngx-translate/core';
 
 const dialogs = [AuthSignUpDialogComponent, AuthLoginDialogComponent];
 
@@ -49,6 +50,7 @@ const dialogs = [AuthSignUpDialogComponent, AuthLoginDialogComponent];
     NgxCaptchaModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects, UserApiEffects]),
+    TranslateModule,
   ],
   exports: [AuthLoginFormComponent, ...dialogs],
   entryComponents: [...dialogs],

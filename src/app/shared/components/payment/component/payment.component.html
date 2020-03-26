@@ -1,7 +1,7 @@
 <form class="pictureLoader" [formGroup]="paymentMethodFormGroup">
   <div class="row" *ngIf="!isPaymentRequestFlow">
     <div class="col-sm-12 col-md-2 offset-md-1" *ngIf="!isPaymentRequestFlow">
-      <h6>Payment method</h6>
+      <h6 [innerHTML]="'booking.payment.tab' | translate"></h6>
     </div>
 
     <ng-container *ngIf="mode === 'view' && !isPaymentRequestFlow">
@@ -16,7 +16,12 @@
 
               <tr>
                 <td>
-                  {{ getType === 'credit-card' ? 'Card number:' : 'Paypal:' }}
+                  {{
+                    (getType === 'credit-card'
+                      ? 'booking.payment.card_number'
+                      : 'shared.payment_type.pay-pal_account'
+                    ) | translate
+                  }}
                 </td>
                 <td>{{ currentPayment }}</td>
               </tr>
@@ -25,7 +30,7 @@
           <div class="col-sm-2 lnr-text-align-r">
             <button mat-button class="lnr-btn-edit" (click)="openUpdate()">
               <mat-icon>edit</mat-icon>
-              Edit
+              {{ 'listingCard.edit_bike' | translate }}
             </button>
           </div>
         </div>
@@ -33,11 +38,11 @@
     </ng-container>
 
     <div class="col-sm-12 col-md-8" *ngIf="mode === 'update'">
-      <p>
-        Your payment method is used to pay for your rentals. It can be a credit
-        card or paypal account
-      </p>
-      <p><b>Please pick a payment method</b></p>
+      <p [innerHTML]="'settings.payment_method_description' | translate"></p>
+      <p
+        [innerHTML]="'settings.pick_payment_method' | translate"
+        class="font-weight-bold"
+      ></p>
       <div class="row col-sm-12 col-md-8">
         <div class="row col-sm-6 col-md-6 align-items-center">
           <input
@@ -48,7 +53,11 @@
             value="credit_card"
             [(ngModel)]="payment"
           />
-          <label class="ml-4" for="credit_card_set">Credit Card</label>
+          <label
+            class="ml-4"
+            for="credit_card_set"
+            [innerHTML]="'shared.payment_type.credit_card' | translate"
+          ></label>
         </div>
         <div class="row col-sm-6 col-md-6 align-items-center">
           <input
@@ -59,7 +68,11 @@
             value="paypal"
             [(ngModel)]="payment"
           />
-          <label class="ml-4" for="paypal_set">Paypal</label>
+          <label
+            class="ml-4"
+            for="paypal_set"
+            [innerHTML]="'shared.payment_type.pay-pal_account' | translate"
+          ></label>
         </div>
       </div>
 
@@ -72,7 +85,6 @@
         class="lnr-mrg-btm"
         [user]="user"
       >
-        <!--        (onError)=""-->
       </lnr-payment-method-credit-card>
       <lnr-payment-method-pay-pal
         (onAuthorize)="goToNext()"
@@ -83,18 +95,20 @@
       </lnr-payment-method-pay-pal>
     </div>
     <div class="col-sm-12 col-md-6 offset-md-3 mt-4">
-      <small>The <a>Privacy Policy</a> of listnride applies.</small>
+      <small [innerHTML]="'forms.privacy_policy' | translate"></small>
     </div>
   </div>
 
   <div *ngIf="isPaymentRequestFlow">
-    <h3 class="bold" *ngIf="mode === 'update' && isPaymentRequestFlow">
-      Select your Payment Method
-    </h3>
-    <p *ngIf="mode === 'update'">
-      Please select your favourite payment method. We only charge you after
-      lister accepted your request.
-    </p>
+    <h3
+      class="bold"
+      *ngIf="mode === 'update' && isPaymentRequestFlow"
+      [innerHTML]="'booking.payment.select_method' | translate"
+    ></h3>
+    <p
+      *ngIf="mode === 'update'"
+      [innerHTML]="'booking.payment.subtitle' | translate"
+    ></p>
     <div
       class="paymentMethod"
       *ngIf="mode === 'update' && isPaymentRequestFlow"
@@ -112,7 +126,10 @@
               />
               <label for="credit_card" class="custom-checkbox"></label>
             </div>
-            <span class="bold">Credit Card</span>
+            <span
+              class="bold"
+              [innerHTML]="'shared.payment_type.credit_card' | translate"
+            ></span>
           </div>
           <div>
             <img [src]="mastercard" alt="mastercard" />
@@ -127,7 +144,6 @@
           class="lnr-mrg-btm"
           [user]="user"
         >
-          <!--        (onError)=""-->
         </lnr-payment-method-credit-card>
       </div>
 
@@ -144,7 +160,10 @@
               />
               <label for="paypal" class="custom-checkbox"></label>
             </div>
-            <span class="bold">Paypal</span>
+            <span
+              class="bold"
+              [innerHTML]="'shared.payment_type.pay_pal_account' | translate"
+            ></span>
           </div>
           <img [src]="paypal" alt="" />
         </div>
@@ -161,7 +180,10 @@
       *ngIf="user.paymentMethod && mode === 'update' && isPaymentRequestFlow"
       class="current-paymentMethod"
     >
-      <h3 class="bold">Current payment method</h3>
+      <h3
+        class="bold"
+        [innerHTML]="'booking.payment.current_method' | translate"
+      ></h3>
       <div class="paymentMethod" *ngIf="getType">
         <div class="pay current">
           <div>
@@ -200,7 +222,7 @@
       </div>
     </div>
     <div class="col-sm-12 col-md-6 mt-4">
-      <small>The <a>Privacy Policy</a> of listnride applies.</small>
+      <small [innerHTML]="'forms.privacy_policy' | translate"></small>
     </div>
   </div>
 </form>

@@ -14,7 +14,9 @@
         [stepControl]="durationFormGroup"
         [aria-label]="durationStep && 'disabledStep'"
       >
-        <ng-template matStepLabel>Duration</ng-template>
+        <ng-template matStepLabel>
+          {{ 'shared.duration' | translate }}
+        </ng-template>
 
         <lnr-step-duration
           [durationFormGroup]="durationFormGroup"
@@ -32,18 +34,22 @@
         [stepControl]="signInFormGroup"
         [aria-label]="signInStep && 'disabledStep'"
       >
-        <ng-template matStepLabel>Sign In</ng-template>
-        <h3 class="bold">Log in to listnride</h3>
-        <lnr-auth-login-dialog
-          [isRequestFlow]="isRequestFlow"
-        ></lnr-auth-login-dialog>
+        <ng-template matStepLabel>
+          {{ 'booking.sign_in.tab' | translate }}
+        </ng-template>
+
+        <h3 class="bold" [innerHTML]="'booking.sign_in.login' | translate"></h3>
+        <lnr-auth-login-dialog [isRequestFlow]="isRequestFlow">
+        </lnr-auth-login-dialog>
       </mat-step>
 
       <mat-step
         [stepControl]="phoneFormGroup"
         [aria-label]="allOtherSteps && 'disabledStep'"
       >
-        <ng-template matStepLabel>Phone</ng-template>
+        <ng-template matStepLabel>
+          {{ 'shared.phone_number' | translate }}
+        </ng-template>
         <lnr-user-verification-phone
           *ngIf="user"
           [stepper]="stepper"
@@ -60,7 +66,9 @@
         [stepControl]="personalDetailsFormGroup"
         [aria-label]="allOtherSteps && 'disabledStep'"
       >
-        <ng-template matStepLabel>Address</ng-template>
+        <ng-template matStepLabel>
+          {{ 'forms.address' | translate }}
+        </ng-template>
         <lnr-user-verification-address
           *ngIf="user"
           [stepper]="stepper"
@@ -77,7 +85,9 @@
         [stepControl]="paymentMethodFormGroup"
         [aria-label]="allOtherSteps && 'disabledStep'"
       >
-        <ng-template matStepLabel>Payment method</ng-template>
+        <ng-template matStepLabel>
+          {{ 'booking.payment.tab' | translate }}
+        </ng-template>
         <lnr-payment
           *ngIf="user"
           [flowType]="'request-flow'"
@@ -94,7 +104,9 @@
         [stepControl]="rentalOverviewFormGroup"
         [aria-label]="allOtherSteps && 'disabledStep'"
       >
-        <ng-template matStepLabel>Rental overview</ng-template>
+        <ng-template matStepLabel>
+          {{ 'booking.overview.tab' | translate }}
+        </ng-template>
 
         <lnr-step-duration
           [durationFormGroup]="durationFormGroup"
@@ -120,7 +132,9 @@
         [stepControl]="durationFormGroup"
         [aria-label]="durationStep && 'disabledStep'"
       >
-        <ng-template matStepLabel>Duration</ng-template>
+        <ng-template matStepLabel>
+          {{ 'shared.duration' | translate }}
+        </ng-template>
         <lnr-step-duration
           [durationFormGroup]="durationFormGroup"
           [hasInsurance]="false"
@@ -137,8 +151,10 @@
         [stepControl]="signInFormGroup"
         [aria-label]="signInStep && 'disabledStep'"
       >
-        <ng-template matStepLabel>Sign In</ng-template>
-        <h4 class="bold">Log in to listnride</h4>
+        <ng-template matStepLabel>
+          {{ 'booking.sign_in.tab' | translate }}
+        </ng-template>
+        <h4 class="bold" [innerHTML]="'booking.sign_in.login' | translate"></h4>
         <lnr-auth-login-dialog> </lnr-auth-login-dialog>
       </mat-step>
 
@@ -146,7 +162,9 @@
         [stepControl]="phoneFormGroup"
         [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
       >
-        <ng-template matStepLabel>Phone</ng-template>
+        <ng-template matStepLabel>
+          {{ 'shared.phone_number' | translate }}
+        </ng-template>
         <lnr-user-verification-phone
           [stepper]="stepper"
           [dialogRef]="dialogRef"
@@ -162,7 +180,9 @@
         [stepControl]="personalDetailsFormGroup"
         [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
       >
-        <ng-template matStepLabel>Address</ng-template>
+        <ng-template matStepLabel>
+          {{ 'forms.address' | translate }}
+        </ng-template>
         <lnr-user-verification-address
           [stepper]="stepper"
           [dialogRef]="dialogRef"
@@ -178,7 +198,9 @@
         [stepControl]="paymentMethodFormGroup"
         [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
       >
-        <ng-template matStepLabel>Payment method</ng-template>
+        <ng-template matStepLabel>
+          {{ 'booking.payment.tab' | translate }}
+        </ng-template>
         <lnr-payment
           [flowType]="'request-flow'"
           [mode]="'update'"
@@ -192,7 +214,9 @@
         [stepControl]="rentalOverviewFormGroup"
         [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
       >
-        <ng-template matStepLabel>Rental overview</ng-template>
+        <ng-template matStepLabel>
+          {{ 'booking.overview.tab' | translate }}
+        </ng-template>
 
         <lnr-step-duration
           [durationFormGroup]="durationFormGroup"

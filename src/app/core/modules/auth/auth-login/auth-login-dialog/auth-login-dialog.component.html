@@ -1,5 +1,9 @@
 <div class="lnr-dialog-header">
-  <h2 mat-dialog-title class="lnr-text-align-ctr">Log in</h2>
+  <h2
+    mat-dialog-title
+    class="lnr-text-align-ctr"
+    [innerHTML]="'forms.log_in' | translate"
+  ></h2>
 
   <mat-error>
     <lnr-http-error-message [error]="error"></lnr-http-error-message>
@@ -29,8 +33,8 @@
     type="submit"
     (click)="login()"
     [disabled]="invalid"
+    [innerHTML]="'forms.log_in' | translate"
   >
-    Log in
     <lnr-loader-spinner-small [hidden]="!pending"></lnr-loader-spinner-small>
   </button>
 </mat-dialog-actions>

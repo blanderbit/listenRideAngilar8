@@ -29,6 +29,7 @@ import { OtpVerificationModule } from '@shared/components/otp-verification/otp-v
 import { PipesModule } from '@shared/pipes/pipes.module';
 import { PhoneVerificationModule } from '@shared/components/phone-verification/phone-verification.module';
 import * as fromUserVerification from './store/reducers';
+import { TranslateModule } from '@ngx-translate/core';
 
 const components = [
   UserVerificationAddressComponent,
@@ -70,6 +71,7 @@ const dialogs = [UserVerificationDialogComponent];
       fromUserVerification.reducers,
     ),
     EffectsModule.forFeature([UserVerificationEffects]),
+    TranslateModule,
   ],
   exports: [UserVerificationPhoneComponent, UserVerificationAddressComponent],
   entryComponents: [...dialogs],

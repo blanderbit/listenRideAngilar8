@@ -7,7 +7,6 @@
     mat-stroked-button
     class="lnr-w-100"
     (click)="onCancel.emit({})"
-  >
-    Cancel
-  </button>
+    [innerHTML]="'shared.cancel' | translate"
+  ></button>
 </div>

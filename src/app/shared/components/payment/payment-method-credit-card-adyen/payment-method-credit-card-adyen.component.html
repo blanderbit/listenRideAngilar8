@@ -5,7 +5,10 @@
     [ngClass]="onLoad && 'not-shown'"
   >
     <div class="col-md-6 col-xl-4">
-      <label class="bold field-size small">Name on Card</label>
+      <label
+        class="bold field-size small"
+        [innerHTML]="'booking.payment.card_name' | translate"
+      ></label>
       <input
         placeholder="Holder name"
         [(ngModel)]="holderName"
@@ -17,15 +20,21 @@
     </div>
 
     <div class="col-md-6 col-xl-4">
-      <label class="bold field-size">Card Number *</label>
+      <label class="bold field-size"
+        >{{ 'booking.payment.card_number' | translate }}*</label
+      >
       <div class="lnr-adyen-input-holder" data-cse="encryptedCardNumber"></div>
     </div>
     <div class="col-sm-6 col-xl-2">
-      <label class="bold field-size">Exp. date *</label>
+      <label class="bold field-size"
+        >{{ 'booking.payment.exp_date' | translate }}*</label
+      >
       <div class="lnr-adyen-input-holder" data-cse="encryptedExpiryDate"></div>
     </div>
     <div class="col-sm-6 col-xl-2">
-      <label class="bold field-size">CVC Number*</label>
+      <label class="bold field-size"
+        >{{ 'booking.payment.cvc' | translate }}*</label
+      >
       <div
         class="lnr-adyen-input-holder"
         data-cse="encryptedSecurityCode"

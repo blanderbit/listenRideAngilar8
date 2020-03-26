@@ -1,15 +1,10 @@
 <div class="step-content">
   <div class="step-content-header">
-    <h3 class="step-title" *ngIf="isMobile">
-      Verify your phone<sup>
-        <lnr-view-template-status
-          [value]="'private'"
-        ></lnr-view-template-status>
-      </sup>
-    </h3>
-
-    <h3 class="step-title" *ngIf="!isMobile">
-      Verify your phone number
+    <h3
+      class="step-title"
+      *ngIf="isMobile"
+      [innerHTML]="'verification.5.verify_phone_number' | translate"
+    >
       <sup>
         <lnr-view-template-status
           [value]="'private'"
@@ -17,9 +12,22 @@
       </sup>
     </h3>
 
-    <p class="lnr-mrg-btm">
-      You can receive SMS notifications for future requests.
-    </p>
+    <h3
+      class="step-title"
+      *ngIf="!isMobile"
+      [innerHTML]="'verification.5.verify_phone_number' | translate"
+    >
+      <sup>
+        <lnr-view-template-status
+          [value]="'private'"
+        ></lnr-view-template-status>
+      </sup>
+    </h3>
+
+    <p
+      class="lnr-mrg-btm"
+      [innerHTML]="'verification.5.verify_phone_subtitle' | translate"
+    ></p>
   </div>
 
   <div class="small-form">
@@ -43,8 +51,10 @@
       ></lnr-otp-verification>
 
       <p class="lnr-d-flex-center" [hidden]="stepCompleted">
-        <span [hidden]="isMobile"
-          >Didn't receive a code to
+        <span
+          [hidden]="isMobile"
+          [innerHTML]="'verification.5.did_not_receive_code' | translate"
+        >
           <b>{{ phoneControlOutput?.internationalNumber }}</b
           >?</span
         >
@@ -56,7 +66,8 @@
           class="lnr-d-flex"
           [class.disabled]="resendOtpPending"
           (click)="resendOtp()"
-          >Resend SMS
+          [innerHTML]="'verification.5.resend_confirmation_sms' | translate"
+        >
           <lnr-loader-spinner-small
             [hidden]="!resendOtpPending"
           ></lnr-loader-spinner-small>
@@ -65,7 +76,11 @@
 
         <span>&nbsp; or &nbsp;</span>
 
-        <a [class.disabled]="false" (click)="changeNumber()">Change number </a>
+        <a
+          [class.disabled]="false"
+          (click)="changeNumber()"
+          [innerHTML]="'forms.update_contact' | translate"
+        ></a>
       </p>
     </ng-container>
 
@@ -73,7 +88,10 @@
       <h5>
         Your phone number is: <b>{{ user.phoneNumber | phone }}</b>
       </h5>
-      <a (click)="changeNumber()">Change number</a>
+      <a
+        (click)="changeNumber()"
+        [innerHTML]="'forms.update_contact' | translate"
+      ></a>
     </ng-container>
   </div>
 </div>
@@ -87,7 +105,7 @@
       [hidden]="isItFirstStep"
     >
       <mat-icon svgIcon="arrow-left"></mat-icon>
-      Back
+      {{ 'list.back' | translate }}
     </button>
   </div>
 
@@ -97,7 +115,7 @@
       color="primary"
       (click)="nextOrCloseIfLastStep()"
     >
-      {{ stepCompleted ? 'Next' : 'Skip' }}
+      {{ (stepCompleted ? 'shared.next' : 'shared.skip') | translate }}
     </button>
 
     <button
@@ -107,8 +125,8 @@
       [hidden]="phoneConfirmed || stepCompleted"
       [disabled]="!phoneControlOutput"
       (click)="requestOtp()"
+      [innerHTML]="'verification.5.send_confirmation_sms' | translate"
     >
-      Send confirmation
       <lnr-loader-spinner-small
         [hidden]="!phonePending"
       ></lnr-loader-spinner-small>
@@ -122,7 +140,8 @@
       [disabled]="!otp"
       (click)="confirmOtp()"
     >
-      Confirm & {{ isItLastStep ? 'complete' : 'proceed' }}
+      {{ 'shared.confirm' | translate }} &
+      {{ (isItLastStep ? 'shared.complete' : 'shared.proceed') | translate }}
       <lnr-loader-spinner-small
         [hidden]="!otpPending"
       ></lnr-loader-spinner-small>

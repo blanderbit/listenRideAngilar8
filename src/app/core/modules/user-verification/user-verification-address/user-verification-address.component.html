@@ -1,7 +1,6 @@
 <div class="step-content">
   <div class="step-content-header">
-    <h3 class="step-title">
-      What is your address
+    <h3 class="step-title" [innerHTML]="'verification.6.title' | translate">
       <sup>
         <lnr-view-template-status
           [value]="'private'"
@@ -9,7 +8,7 @@
       </sup>
     </h3>
 
-    <p>By providing your address you will have some another description</p>
+    <p [innerHTML]="'booking.details.subtitle' | translate"></p>
   </div>
 
   <mat-error class="lnr-text-align-l">
@@ -31,7 +30,7 @@
       [hidden]="isItFirstStep"
     >
       <mat-icon svgIcon="arrow-left"></mat-icon>
-      Back
+      {{ 'list.back' | translate }}
     </button>
   </div>
 
@@ -41,7 +40,7 @@
       color="primary"
       (click)="nextOrCloseIfLastStep()"
     >
-      {{ stepCompleted ? 'Next' : 'Skip' }}
+      {{ (stepCompleted ? 'shared.next' : 'shared.skip') | translate }}
     </button>
 
     <button
@@ -52,7 +51,8 @@
       [disabled]="!address"
       (click)="submit()"
     >
-      Save & {{ isItLastStep ? 'complete' : 'proceed' }}
+      Save &
+      {{ (isItLastStep ? 'shared.complete' : 'shared.proceed') | translate }}
       <lnr-loader-spinner-small
         [hidden]="!addressPending"
       ></lnr-loader-spinner-small>
