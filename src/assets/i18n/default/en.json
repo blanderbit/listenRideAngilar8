@@ -1,6 +1,12 @@
 {
   "shared": {
     "learn-more": "Learn More",
+    "start_search": "Start searching",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "skip": "Skip",
+    "complete": "complete",
+    "proceed": "Proceed",
     "size": "Size",
     "img-alt": "{{bikeBrand}} {{bikeName}} bike rental in {{bikeCity}}",
     "bike_location": "Bike location",
@@ -220,6 +226,11 @@
       "header": "Rent your bike",
       "subheader": "Meet like-minded and make some pocket money"
     }
+  },
+  "brands": {
+    "join_program_link": "<a target=\"_self\" href=\"mailto:contact@listnride.com?subject=Tell me more about that\">Join our brand program now​</a>",
+    "choose_from_brands": "Choose a brand",
+    "description": "listnride helps people discover, try, and learn about new brands and bikes before buying online. With listnride you have the opportunity to test ride various types of bikes and brands before making the final purchase decision. Most of the brands are direct-to-customer bike brands and are available to test ride across cities in Europe. Test rides can be booked online at the desired time and location. Discover and test ride the best bikes!"
   },
   "bike_page": {
     "location": {
@@ -783,6 +794,7 @@
   },
   "booking": {
     "shopping": "Secure Payments",
+    "select_both": "Select both for booking the entire day",
     "rent-bike-terms": "With 'Book now' you agree to the",
     "and-agree-privacy": "and our data protection regulations",
     "pay-secure": "Pay securely with",
@@ -801,8 +813,10 @@
       "register-facebook": "Register with Facebook",
       "login-facebook": "Log in with Facebook",
       "already-member": "Already a member?",
-      "register": "Register",
-      "not-member": "Not a member yet?"
+      "register": "Register"
+    },
+    "sign_in": {
+      "not_member": "Not a member yet?"
     },
     "details": {
       "tab": "Personal Details",
@@ -1051,20 +1065,22 @@
     },
     "5": {
       "title": "What is your phone number",
+      "did_not_receive_code": "Didn't receive a confirmation code?",
       "description": "Verify your phone number, so that you can receive SMS notifications for future requests. Simply enter your number and click 'Send Confirmation'. You'll receive a code via SMS that you can then enter below.",
-      "enter-valid-phone-nr": "Enter a valid phone number",
-      "send-confirmation-sms": "Send Confirmation",
-      "send-confirmation-sms-mobile": "Send SMS Code",
-      "resend-confirmation-sms": "Resend confirmation",
-      "resend-confirmation-sms-mobile": "Resend",
-      "sms-verification-code": "SMS Verification Code",
-      "sms-verification-code-mobile": "Verification Code",
-      "confirm-code": "Confirm code",
-      "confirm-code-mobile": "Confirm",
+      "enter_valid_phone_nr": "Enter a valid phone number",
+      "send_confirmation_sms": "Send Confirmation",
+      "send_confirmation_sms_mobile": "Send SMS Code",
+      "resend_confirmation_sms": "Resend confirmation",
+      "resend_confirmation_sms_mobile": "Resend",
+      "sms_verification_code": "SMS Verification Code",
+      "sms_verification_code_mobile": "Verification Code",
+      "confirm_code": "Confirm code",
+      "confirm_code_mobile": "Confirm",
       "phone-nr-verified": "Your number was successfully verified!"
     },
     "6": {
-      "title": "What is your address"
+      "title": "What is your address?",
+      "subtitle": "to be created"
     },
     "7": {
       "title": "Company information"
@@ -1230,17 +1246,21 @@
     "city": "City",
     "country": "Country",
     "company-name": "Company name",
-    "update-contact": "Change Phone number",
-    "update-contact-mobile": "Phone number",
+    "update_contact": "Change Phone number",
+    "update_contact_mobile": "Phone number",
     "company-contact-info": "Please fill form with company contact person information.",
     "signing-up-accept-tac": "I hereby agree to the <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Terms and Conditions</a> and agree to the collection, processing and use of my personal data as further described in the <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy</a>.",
     "signing-up-accept-newsletter": "I would like to receive the listnride e-mail newsletter with interesting content on cycling, community updates and exclusive benefits. The <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy</a>  of listnride applies. I can revoke my consent at any time.",
     "privacy-policy": "The <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy </a> of listnride applies.",
     "errors": {
-      "password-length": "Password should be 6-30 characters",
-      "password-length-xs": "6-30 characters",
-      "password-missing": "Please provide a password",
-      "password-missing-xs": "Password required",
+      "password_length": "Password should be 6-30 characters",
+      "email_wrong": "The email is incorrect",
+      "email_wrong_format": "The email format is incorrect",
+      "email_wrong_domain": "The email domain is incorrect",
+      "email_containment": "The email address has to contain an \"@\"",
+      "password_length_xs": "6-30 characters",
+      "password_missing": "Please provide a password",
+      "password_missing_xs": "Password required",
       "valid-email": "Please enter a valid email address",
       "valid-email-xs": "Invalid email",
       "empty-email": "Please enter your email address",
@@ -1425,6 +1445,7 @@
     },
     "pricing": {
       "info": "Your daily price is your base price for 1 day.",
+      "daily_price_tooltip": "For decimals, please use a dot (.) instead of comma (,)",
       "info-description": "Information about the rental price",
       "header": "Daily Price",
       "description": "Your daily price is your base price for 1 day.",
@@ -1637,11 +1658,11 @@
   },
   "invoices": {
     "request_id": "Booking ID",
-    "invoice_number": "Invoice No",
+    "invoice_number": "Invoice no",
     "payout_date": "Payout date",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement History",
+    "settlement_history": "Settlement history",
     "credit_notes": "Credit notes",
     "bike": "Bike",
     "start_date": "Start date",

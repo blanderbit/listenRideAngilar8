@@ -13,6 +13,9 @@
       "you_wont_be_charged": "No te cobramos ahora.",
       "may_require_deposit": "Algunas solicutudes de alquiler necesitan de una garantía."
     },
+    "button_see_all_events": "Ver todos los eventos",
+    "day_average": "día promedio",
+    "search_any_bike": "Cualquier tipo de bicicleta",
     "request": "Request",
     "non-availability-type": "Tipo de indisponibilidad",
     "event": "Event",
@@ -215,6 +218,11 @@
       "header": "Alquila tu bicicleta",
       "subheader": "Conoce a personas con tus mismas pasiones y gana dinero extra"
     }
+  },
+  "brands": {
+    "join_program_link": "<a target=\"_self\" href=\"changeme\">Únete a nuestro programa con tu marca</a>",
+    "choose_from_brands": "Elige una marca",
+    "description": "listnride ayuda a las personas a descubrir, probar y conocer nuevas marcas de bicicletas antes de realizar la compra. Con listnride tienes la oportunidad de probar varios tipos de bicicletas y marcas antes de tomar la decisión final. La mayoría de las marcas son marcas de bicicletas directas al consumidor y están disponibles para testar en todas las ciudades de Europa. Las pruebas de manejo se pueden reservar en línea, en la fecha y lugar deseados. ¡Descubre y prueba las mejores bicicletas!"
   },
   "bike_page": {
     "location": {
@@ -791,8 +799,10 @@
       "register-facebook": "Registrar con Facebook",
       "login-facebook": "Iniciar sesión con Facebook",
       "already-member": "¿Ya estás registrado?",
-      "register": "Registrar",
-      "not-member": "¿Nuevo a listnride?"
+      "register": "Registrar"
+    },
+    "sign_in": {
+      "not_member": "¿Nuevo a listnride?"
     },
     "details": {
       "tab": "Datos personales",
@@ -1041,15 +1051,15 @@
     "5": {
       "title": "¿Cuál es tu número de teléfono?",
       "description": "Verifica tu número de teléfono, que te permite recibir notificaciones de tus  solicitudes por SMS. Sólo tienes que escribir el  número y hacer clic en \"Enviar confirmación\". Recibirás un código a través de SMS que tendrás que introducir a continuación.",
-      "enter-valid-phone-nr": "Introduce un número de teléfono válido",
-      "send-confirmation-sms": "Enviar confirmación",
-      "send-confirmation-sms-mobile": "Enviar código SMS",
-      "resend-confirmation-sms": "Reenviar confirmación",
-      "resend-confirmation-sms-mobile": "Reenviar",
-      "sms-verification-code": "Código de verificación de SMS",
-      "sms-verification-code-mobile": "Código de verificación",
-      "confirm-code": "Confirmar código",
-      "confirm-code-mobile": "Confirmar",
+      "enter_valid_phone_nr": "Introduce un número de teléfono válido",
+      "send_confirmation_sms": "Enviar confirmación",
+      "send_confirmation_sms_mobile": "Enviar código SMS",
+      "resend_confirmation_sms": "Reenviar confirmación",
+      "resend_confirmation_sms_mobile": "Reenviar",
+      "sms_verification_code": "Código de verificación de SMS",
+      "sms_verification_code_mobile": "Código de verificación",
+      "confirm_code": "Confirmar código",
+      "confirm_code_mobile": "Confirmar",
       "phone-nr-verified": "Tu nombre se ha verificado correctamente"
     },
     "6": {
@@ -1219,17 +1229,17 @@
     "city": "Ciudad",
     "country": "País",
     "company-name": "Nombre de la empresa",
-    "update-contact": "Cambiar número de teléfono",
-    "update-contact-mobile": "Número de teléfono",
+    "update_contact": "Cambiar número de teléfono",
+    "update_contact_mobile": "Número de teléfono",
     "company-contact-info": "Completa el formulario con la información de contacto de la empresa.",
     "signing-up-accept-tac": "He leído y acepto los <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Términos y Condiciones</a> y acepto la recolección, tratamiento y uso de mis datos personales establecidos por la <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Política de Privacidad</a>.",
     "signing-up-accept-newsletter": "Deseo recibir información sobre nuevas bicicletas, tours y cupones de descuento. Acepto las condiciones establecidas en la <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Política de Privacidad</a> de listnride. Puedo revocar mi consentimiento en cualquier momento.",
     "privacy-policy": "Se aplica la <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Política de Privacidad</a> de listnride.",
     "errors": {
-      "password-length": "La contraseña debe tener entre 6 y 30 caracteres",
-      "password-length-xs": "6-30 caracteres",
-      "password-missing": "Introduce una contraseña",
-      "password-missing-xs": "Requiere contraseña",
+      "password_length": "La contraseña debe tener entre 6 y 30 caracteres",
+      "password_length_xs": "6-30 caracteres",
+      "password_missing": "Introduce una contraseña",
+      "password_missing_xs": "Requiere contraseña",
       "valid-email": "Introduce una dirección de correo electrónico válida",
       "valid-email-xs": "Correo electrónico inválido",
       "empty-email": "Introduce una dirección de correo electrónico",
@@ -1250,6 +1260,15 @@
   },
   "home": {
     "landing-section-header": "La bici perfecta. Simplemente alquílala.",
+    "events_block": {
+      "title": "¡Alquila grandes bicicletas para eventos emocionantes!",
+      "subtitle": "Estamos apoyando fantásticos eventos en toda Europa para que puedas disfrutar del paseo, sin preocuparte de transportar tu bicicleta a la línea de salida!"
+    },
+    "button_see_location": "Ver todos los lugares",
+    "popular_destination": {
+      "header": "Los lugares más populares de alquiler de bicicletas en",
+      "header_helper": "el mundo"
+    },
     "see-all-brands-and-bikes": "Conoce todas nuestras marcas ",
     "insurance": {
       "description": "No importa si se trata de una bicicleta urbana o ebike de alta gama: ¡todos los alquileres de listnride en Alemania o Austria están asegurados! ",
@@ -1403,6 +1422,7 @@
     },
     "pricing": {
       "info": "Tu precio diario es el precio base para 1 día.",
+      "daily_price_tooltip": "Para los decimales utiliza el punto (.) en vez de la coma (,)",
       "info-description": "Información sobre el precio del alquiler",
       "header": "Precio por día",
       "description": "Tu precio diario es el precio base por 1 día.",
@@ -1615,11 +1635,11 @@
   },
   "invoices": {
     "request_id": "Solicitar identificación",
-    "invoice_number": "n.º Factura ",
+    "invoice_number": "n.º factura ",
     "payout_date": "Fecha de pago",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement History",
+    "settlement_history": "Settlement history",
     "credit_notes": "Notas de credito",
     "bike": "Bici",
     "start_date": "Fecha de inicio",

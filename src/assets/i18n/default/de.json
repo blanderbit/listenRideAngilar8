@@ -13,6 +13,9 @@
       "you_wont_be_charged": "Dir wird noch nichts kostenpflichtig berechnet.",
       "may_require_deposit": "Für bestimmte Buchungen kann auch eine Kaution erforderlich sein."
     },
+    "button_see_all_events": "Alle Veranstaltungen anzeigen",
+    "day_average": "Tag durchschnittlich",
+    "search_any_bike": "Jeder Fahrradtyp",
     "request": "Anfrage",
     "non-availability-type": "Art der Verfügbarkeit",
     "event": "Veranstaltung",
@@ -217,6 +220,11 @@
       "header": "Liste dein Rad",
       "subheader": "Triff Gleichgesinnte und verdiene dir etwas dazu."
     }
+  },
+  "brands": {
+    "join_program_link": "<a target=\"_self\" href=\"changeme\">Werde Teil unseres Markenprogramms</a>",
+    "choose_from_brands": "Wähle eine Marke",
+    "description": "listnride bietet dir die Möglichkeit, Marken und Fahrräder zu entdecken, kennenzulernen und vor deiner Kaufentscheidung ausführlich zu testen. Die meisten unserer Marken sind Online-Direktanbieter und stehen nur über listnride für Testfahrten in ganz Europa zur Verfügung. Testfahrten können online zur gewünschten Zeit und am gewünschten Ort gebucht werden. Entdecke und teste die besten Fahrräder!"
   },
   "bike_page": {
     "location": {
@@ -797,8 +805,10 @@
       "register-facebook": "Mit Facebook registrieren",
       "login-facebook": "Mit Facebook anmelden",
       "already-member": "Bereits registriert?",
-      "register": "Registrieren",
-      "not-member": "Noch kein Mitglied?"
+      "register": "Registrieren"
+    },
+    "sign_in": {
+      "not_member": "Noch kein Mitglied?"
     },
     "details": {
       "tab": "Persönliche Daten",
@@ -1048,19 +1058,19 @@
     "5": {
       "title": "Was ist deine Telefonnummer",
       "description": "Bestätige deine Telefonnummer, damit du per SMS über Deine Anfragen benachrichtigt werden kannst. Gib einfach deine Telefonnummer ein und klicke auf „Bestätigung schicken“. Du erhältst dann eine SMS mit einem Code, den du unten eingeben kannst.",
-      "enter-valid-phone-nr": "Gib eine gültige Telefonnr. an",
-      "send-confirmation-sms": "Bestätigung senden",
-      "send-confirmation-sms-mobile": "SMS-Code senden",
-      "resend-confirmation-sms": "Erneut senden",
-      "resend-confirmation-sms-mobile": "Erneut senden",
-      "sms-verification-code": "SMS-Verifizierungs-Code",
-      "sms-verification-code-mobile": "Verifizierungs-Code",
-      "confirm-code": "Code bestätigen",
-      "confirm-code-mobile": "Bestätigen",
+      "enter_valid_phone_nr": "Gib eine gültige Telefonnr. an",
+      "send_confirmation_sms": "Bestätigung senden",
+      "send_confirmation_sms_mobile": "SMS-Code senden",
+      "resend_confirmation_sms": "Erneut senden",
+      "resend_confirmation_sms_mobile": "Erneut senden",
+      "sms_verification_code": "SMS-Verifizierungs-Code",
+      "sms_verification_code_mobile": "Verifizierungs-Code",
+      "confirm_code": "Code bestätigen",
+      "confirm_code_mobile": "Bestätigen",
       "phone-nr-verified": "Deine Nummer wurde erfolgreich verifiziert!"
     },
     "6": {
-      "title": "Deine Adresse"
+      "title": "Deine Adresse?"
     },
     "7": {
       "title": "Unternehmensinformationen"
@@ -1226,17 +1236,17 @@
     "city": "Stadt",
     "country": "Land",
     "company-name": "Unternehmensname",
-    "update-contact": "Telefonnummer ändern",
-    "update-contact-mobile": "Telefonnummer",
+    "update_contact": "Telefonnummer ändern",
+    "update_contact_mobile": "Telefonnummer",
     "company-contact-info": "Bitte trage die Daten der Kontaktperson des Unternehmens ein.",
     "signing-up-accept-tac": "Ich stimme hiermit den <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Nutzungsbedingungen</a> zu und willige in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten ein, wie in der <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> näher beschrieben.",
     "signing-up-accept-newsletter": "Ich möchte den E-Mail-Newsletter von listnride mit handverlesenen Themen über neue Räder, Touren und Gutscheine erhalten. Es gilt die <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> von listnride. Ich kann meine Einwilligung jederzeit widerrufen.",
     "privacy-policy": "Es gilt die <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> von listnride.",
     "errors": {
-      "password-length": "Das Passwort sollte zw. 6-30 Zeichen lang sein",
-      "password-length-xs": "6-30 Zeichen",
-      "password-missing": "Bitte gib ein Passwort an",
-      "password-missing-xs": "Passwort erforderlich",
+      "password_length": "Das Passwort sollte zw. 6-30 Zeichen lang sein",
+      "password_length_xs": "6-30 Zeichen",
+      "password_missing": "Bitte gib ein Passwort an",
+      "password_missing_xs": "Passwort erforderlich",
       "valid-email": "Bitte gib eine gültige E-Mail-Adresse an",
       "valid-email-xs": "Ungültige E-Mail",
       "empty-email": "Bitte gib deine E-Mail-Adresse an",
@@ -1257,6 +1267,15 @@
   },
   "home": {
     "landing-section-header": "Das perfekte Rad. Einfach mieten.",
+    "events_block": {
+      "title": "Miete dir tolle Fahrräder für spannende Veranstaltungen!",
+      "subtitle": "Wir unterstützen fantastische Veranstaltungen in ganz Europa, damit du die Fahrt genießen kannst, ohne sich um den Transport deines Rades zur Startlinie kümmern zu müssen!"
+    },
+    "button_see_location": "Alle Standorte anzeigen",
+    "popular_destination": {
+      "header": "Beliebte Fahrradverleihstellen in",
+      "header_helper": "die Welt"
+    },
     "see-all-brands-and-bikes": "Alle Marken und Fahrräder",
     "insurance": {
       "description": "Egal ob minimalistisches Fixie oder High-End Triathlonrad: Jede listnride-Vermietung in Deutschland oder Österreich ist versichert! Einfach. Unbürokratisch. Jederzeit.",
@@ -1411,6 +1430,7 @@
     },
     "pricing": {
       "info": "Dein Tagespreis ist dein Basispreis bei einer Tagesmiete.",
+      "daily_price_tooltip": "Für Dezimalstellen verwende bitte einen Punkt (.) anstelle von einem Komma (,)",
       "info-description": "Informationen zum Mietpreis",
       "header": "Tagespreis",
       "description": "Dein Tagespreis ist dein Basispreis bei einer Tagesmiete.",
@@ -1627,7 +1647,7 @@
     "payout_date": "Auszahlungsdatum",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement History",
+    "settlement_history": "Settlement history",
     "credit_notes": "Gutschriften",
     "bike": "Rad",
     "start_date": "Startdatum",

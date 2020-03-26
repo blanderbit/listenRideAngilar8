@@ -13,6 +13,9 @@
       "you_wont_be_charged": "I costi non ti verranno addebitati adesso.",
       "may_require_deposit": "Per alcuni noleggi può anche essere necessaria una cauzione."
     },
+    "button_see_all_events": "Vedi tutti gli eventi",
+    "day_average": "giorno in media",
+    "search_any_bike": "Qualsiasi tipo di bicicletta",
     "request": "Richiesta",
     "non-availability-type": "Tipo di indisponibilità ",
     "event": "Event",
@@ -217,6 +220,11 @@
       "header": "Noleggia la tua bici",
       "subheader": "Incontra persone che condividono la tua stessa passione e guadagna qualcosa in più"
     }
+  },
+  "brands": {
+    "join_program_link": "<a target=\"_self\" href=\"mailto:contact@listnride.com?subject=Tell me more about that\">Unisciti al nostro programma per i brand ora</a>",
+    "choose_from_brands": "Scegli tra i nostri marchi",
+    "description": "listnride aiuta le persone a scoprire, provare e conoscere nuovi brand e bici prima di procedere con l´acquisto online. Con listnride hai l'opportunità di testare vari tipi di bici e marchi diversi prima di procedere con l'acquisto. Molti marchi permettono di provare le biciclette in varie cittá europee e seguono una politica di contatto diretto con il cliente. Puoi prenotare la tua prova online e scegliere la data e il luogo che preferisci. Scopri e prova le migliori biciclette!"
   },
   "bike_page": {
     "location": {
@@ -793,8 +801,10 @@
       "register-facebook": "Registrati con Facebook",
       "login-facebook": "Registrati con Facebook",
       "already-member": "Già registrato?",
-      "register": "Registrati",
-      "not-member": "Nuovo su listnride?"
+      "register": "Registrati"
+    },
+    "sign_in": {
+      "not_member": "Nuovo su listnride?"
     },
     "details": {
       "tab": "Dati personali",
@@ -1042,19 +1052,19 @@
     "5": {
       "title": "Qual è il tuo numero di telefono",
       "description": "Verifica il tuo numero di telefono, questo consente le notifiche via SMS per le tue richieste. Inserisci semplicemente il tuo numero e fai clic su \"Invia conferma\". Riceverai un codice via SMS che potrai inserire qui sotto.",
-      "enter-valid-phone-nr": "Si prega di inserire un numero di telefono valido",
-      "send-confirmation-sms": "Invia conferma",
-      "send-confirmation-sms-mobile": "Invia il codice SMS",
-      "resend-confirmation-sms": "Rinvia conferma",
-      "resend-confirmation-sms-mobile": "Inviare di nuovo",
-      "sms-verification-code": "Codice di verifica SMS",
-      "sms-verification-code-mobile": "Codice di verifica",
-      "confirm-code": "Conferma codice",
-      "confirm-code-mobile": "Conferma",
+      "enter_valid_phone_nr": "Si prega di inserire un numero di telefono valido",
+      "send_confirmation_sms": "Invia conferma",
+      "send_confirmation_sms_mobile": "Invia il codice SMS",
+      "resend_confirmation_sms": "Rinvia conferma",
+      "resend_confirmation_sms_mobile": "Inviare di nuovo",
+      "sms_verification_code": "Codice di verifica SMS",
+      "sms_verification_code_mobile": "Codice di verifica",
+      "confirm_code": "Conferma codice",
+      "confirm_code_mobile": "Conferma",
       "phone-nr-verified": "Il tuo numero è stato verificato con successo!"
     },
     "6": {
-      "title": "Qual è il tuo indirizzo"
+      "title": "Qual è il tuo indirizzo?"
     },
     "7": {
       "title": "Informazioni aziendali"
@@ -1220,17 +1230,17 @@
     "city": "Città",
     "country": "Nazione",
     "company-name": "Nome dell'azienda",
-    "update-contact": "Aggiorna contatto",
-    "update-contact-mobile": "Contatto",
+    "update_contact": "Aggiorna contatto",
+    "update_contact_mobile": "Contatto",
     "company-contact-info": "Si prega di compilare il modulo con le informazioni relative alla persona di contatto dell'azienda.",
     "signing-up-accept-tac": "Accetto i <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Termini e Condizioni </a>e acconsento alla raccolta, all'elaborazione e all'utilizzo dei miei dati personali come ulteriormente descritto nell´ <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\"> Informativa sulla Privacy </a>.",
     "signing-up-accept-newsletter": "Desidero ricevere la newsletter via e-mail di listnride con contenuti interessanti su nuove bici, tour e sconti esclusivi. Ad essa si applica l' <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\"> Informativa sulla Privacy </a>di listnride. Potrai revocare il tuo consenso in qualsiasi momento.",
     "privacy-policy": "Si applica <a style=\"pointer-events: auto;\" href=\"/#/privacy\">l'Informativa sulla Privacy</a> di listnride.",
     "errors": {
-      "password-length": "La password deve essere tra i 6-30 caratteri",
-      "password-length-xs": "6-30 caratteri",
-      "password-missing": "Fornire una password",
-      "password-missing-xs": "Password richiesta",
+      "password_length": "La password deve essere tra i 6-30 caratteri",
+      "password_length_xs": "6-30 caratteri",
+      "password_missing": "Fornire una password",
+      "password_missing_xs": "Password richiesta",
       "valid-email": "Si prega di inserire un indirizzo email valido",
       "valid-email-xs": "Indirizzo email non valido",
       "empty-email": "Inserisci il tuo indirizzo email",
@@ -1251,6 +1261,15 @@
   },
   "home": {
     "landing-section-header": "La bicicletta perfetta. Noleggiala subito.",
+    "events_block": {
+      "title": "Noleggia ottime biciclette per eventi emozionanti!",
+      "subtitle": "Sosteniamo fantastici eventi in tutta Europa, in modo che possiate godervi la corsa, senza preoccuparvi di trasportare la vostra bici fino alla linea di partenza!"
+    },
+    "button_see_location": "Vedi tutte le località",
+    "popular_destination": {
+      "header": "Sedi di noleggio bici più popolari a",
+      "header_helper": "il mondo"
+    },
     "see-all-brands-and-bikes": "Scopri tutti i brand e bici",
     "insurance": {
       "description": "Non importa che sia una poco costosa city bike o una bici da triathlon di alta gamma: ogni noleggio in Germania o in Austria è assicurato! ",
@@ -1405,6 +1424,7 @@
     },
     "pricing": {
       "info": "Il tuo prezzo giornaliero è il prezzo base per 1 giorno.",
+      "daily_price_tooltip": "Per i decimali, usa il punto (.) invece della virgola (,)",
       "info-description": "Informazioni sul prezzo del noleggio",
       "header": "Prezzo giornaliero",
       "description": "Il tuo prezzo giornaliero è il prezzo base per 1 giorno.",
@@ -1621,7 +1641,7 @@
     "payout_date": "Data del rimborso",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement History",
+    "settlement_history": "Settlement history",
     "credit_notes": "Note di credito",
     "bike": "Bicicletta",
     "start_date": "Data d'inizio",
