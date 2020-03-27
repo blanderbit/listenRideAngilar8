@@ -1,6 +1,12 @@
 {
   "shared": {
     "learn-more": "Erfahre mehr",
+    "start_search": "Starte die Suche",
+    "morning": "Vormittags",
+    "afternoon": "Nachmittags",
+    "skip": "Überspringen",
+    "complete": "Fertigstellen",
+    "proceed": "Fortfahren",
     "size": "Größe",
     "img-alt": "{{bikeBrand}} {{bikeName}} Verleih in {{bikeCity}}",
     "bike_location": "Standort des Rads",
@@ -43,16 +49,18 @@
     "firstly-pick-dates": "Wähle zuerst die Miettage aus",
     "remove": "Löschen",
     "basic-insurance-fee": "Versicherungsgebühr",
+    "payment_type": {
+      "pay_pal_account": "Paypal",
+      "credit_card": "Kreditkarte"
+    },
     "payment-type": {
-      "pay-pal-account": "Paypal",
-      "credit-card": "Kreditkarte",
       "paypal-account": "Paypal-Konto"
     },
     "change": "Ändern",
     "local-business": "Lokaler Anbieter",
     "list": "Liste",
     "map": "Karte",
-    "bike-type": "Fahrradtyp",
+    "bike_type": "Fahrradtyp",
     "filter-by": "Filtern nach",
     "search-placeholder": "Suche z.B. nach Berlin, München,....",
     "info": "Info",
@@ -65,7 +73,7 @@
     "tuscany": "Toskana",
     "please-select": "Bitte auswählen",
     "errors": {
-      "email-required": "Bitte gib Deine E-Mail-Adresse ein, die E-Mailadresse ist erforderlich",
+      "email_required": "Bitte gib Deine E-Mail-Adresse ein, die E-Mailadresse ist erforderlich",
       "three-d-secure-failed": "Die 3D-secure Authentifizierung ist fehlgeschlagen",
       "payment-cancelled": "Zahlung storniert",
       "payment-paypal-error": "Es tut uns Leid, deine PayPal Zahlung hat nicht funktioniert",
@@ -148,7 +156,7 @@
     "contact": "Hilfe & Support",
     "show-more": "zeig mehr",
     "show-less": "zeige weniger",
-    "phone-number": "Telefonnummer",
+    "phone_number": "Telefonnummer",
     "wait": "Lädt hoch, dies kann einen Moment dauern...",
     "lister": "Vermieter",
     "rider": "Mieter",
@@ -258,12 +266,14 @@
       "content_munich_showroom": "Zentral in der Münchner Maxvorstadt gelegen, bietet unser <a href=\"users/6511\" target=\"_blank\">Münchner Experience Center</a> Fahrräder von Marken wie Bonvelo, Rossignol, Urwahn und Yuba. Wir haben außerdem die neuesten Felt Rennräder im Angebot und urbane E-Bikes von Cowboy und Vello. Klicke <a href=\"brands\">hier</a> um mehr über unsere Testräder und Marken in München zu erfahren.",
       "content_berlin_showroom": "Im Herzen von Berlin Mitte, gegenüber dem Hackeschen Markt, bietet unser <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">Belin Experience Center</a> Testfahrten mit Rädern von Marken wie Argon18, Bonvelo, Brompton und Cowboy, sowie Aktiv Bekleidung von Biehler. Wir organisieren regelmäßig Veranstaltungen wie den freitäglichen <a href=\"users/7351\" target=\"_blank\">Coffee Spin</a>. Klicke <a href=\"brands\" target=\"_blank\">hier</a> um mehr über verfügbare Testräder und Marken in Berlin zu erfahren."
     },
+    "header": "Über listnride",
     "future": {
       "title": "Listnride heute",
       "content": "Listnride ist stetig am wachsen. Aktuell sind unsere Fahrräder nicht nur in Metropolen wie Amsterdam, Berlin und Wien verfügbar, sondern auch in beliebten Urlaubsregionen wie den Kanaren und der Toskana. Die Anzahl und Vielfalt unserer Fahrräder ist riesig. Das macht es einfach jede Art von Rad zu mieten die du gerade willst: egal ob es ein E-Bike, Lastenrad oder Stadtrad ist."
     },
     "showroom": {
       "subtitle": "Triff uns in Berlin oder München und erlebe die neuesten angesagten Fahrräder und mehr!",
+      "header": "Unsere Standorte",
       "berlin_address": "Oranienburger Straße 1-3, 10178 Berlin, Deutschland",
       "munich_address": "Nymphenburger Str. 86, 80335 München, Deutschland"
     },
@@ -579,10 +589,6 @@
         "meta-title": "Black Friday Fahrradverleih Rabatt | listnride",
         "meta-description": "Black Friday Rabatt bei listnride! Riesiger Nachlass auf deine nächste Fahrradmiete, nur dieses Wochenende."
       },
-      "eroica-gaiole": {
-        "meta-title": "Miete dein Vintage-Rennrad für die L'Eroica Gaiole, nur auf listnride",
-        "meta-description": "Mit listnride kannst du ganz einfach ein vintage Rennrad für L'Eroica Gaiole online mieten. Wähle das perfekte Fahrrad für dieses unglaubliche Rennen im Herzen der Toskana!"
-      },
       "toros-de-gravel": {
         "meta-title": "Miet das perfekte Fahrrad für den Toros de Gravel",
         "meta-description": "Auf listnride findest du Gravel- und Mountainbikes, die du für dieses spezielle Gravel-Event in Sineu auf Mallorca ausleihen kannst."
@@ -787,6 +793,7 @@
   },
   "booking": {
     "shopping": "Sicher bezahlen",
+    "select_both": "Wähle beides für die Buchung des gesamten Tages",
     "rent-bike-terms": "Mit \"Kostenpflichtig Buchen\" stimmst du Folgendem zu:",
     "and-agree-privacy": "und unseren Datenschutzbestimmungen",
     "pay-secure": "Sicher bezahlen mit",
@@ -798,17 +805,17 @@
       "email-us": "Oder schreib uns eine E-Mail",
       "support": "listnride Support"
     },
-    "sign-in": {
+    "sign_in": {
       "tab": "Anmelden",
+      "login_facebook": "Mit Facebook anmelden",
+      "not_member": "Noch kein Mitglied?"
+    },
+    "sign-in": {
       "new": "Neu bei listnride?",
       "login": "Bei listnride einloggen ",
       "register-facebook": "Mit Facebook registrieren",
-      "login-facebook": "Mit Facebook anmelden",
       "already-member": "Bereits registriert?",
       "register": "Registrieren"
-    },
-    "sign_in": {
-      "not_member": "Noch kein Mitglied?"
     },
     "details": {
       "tab": "Persönliche Daten",
@@ -829,12 +836,12 @@
       "tab": "Zahlungsmethode",
       "current-method": "Aktuelle Zahlungsart",
       "getting-saved": "Zahlungsmethode wird gespeichert",
-      "select-method": "Wähle deine Zahlungsart aus",
+      "select_method": "Wähle deine Zahlungsart aus",
       "subtitle": "Wähle deine bevorzugte Zahlungsmethode. Wir buchen erst Geld ab, wenn deine Anfrage vom Vermieter bestätigt wurde.",
       "credit-card": "Kreditkarte",
-      "card-name": "Karteninhaber",
+      "card_name": "Karteninhaber",
       "invalid-name": "Bitte Namen einfügen",
-      "card-number": "Kreditkartennummer",
+      "card_number": "Kreditkartennummer",
       "invalid-card": "Bitte gib eine gültige Kartennummer an",
       "invalid-card-number": "Kartennummer ungültig",
       "exp-month": "Gültig bis (Monat):",
@@ -842,7 +849,7 @@
       "invalid-year": "Jahr nicht gültig",
       "invalid-date": "Ungültiges Datum",
       "exp-year": "Gültig bis (Jahr):",
-      "exp-date": "Gültig bis",
+      "exp_date": "Gültig bis",
       "invalid-cvc": "Prüfnummer nicht gültig",
       "cvc": "Prüfnummer",
       "pay-paypal": "Paypal"
@@ -856,28 +863,28 @@
       "bike-rental": "Deine Fahrradmiete",
       "location": "Ort",
       "invoice-address": "Rechnungsadresse",
-      "premium-insurance": "Premium-Versicherung",
-      "premium-insurance-title": "Abdeckung der Premium-Versicherung",
+      "premium_insurance": "Premium-Versicherung",
+      "premium_insurance_title": "Abdeckung der Premium-Versicherung",
       "premium-insurance-subtitle": "Wähle unsere Premium-Versicherung und fahre vollkommen sorgenfrei",
-      "thats-included": "Zusätzlich zur Basis-Versicherung ist dies enthalten:",
-      "premium-feature-1": "Diebstahlschutz",
+      "thats_included": "Zusätzlich zur Basis-Versicherung ist dies enthalten:",
+      "premium_feature_1": "Diebstahlschutz",
       "premium-feature-2": "Ersatzrad nach Diebstahl oder Beschädigung",
       "premium-feature-3": "Rücktransport nach Diebstahl oder Beschädigung",
       "premium-feature-4": "Keine Selbstbeteiligung",
       "premium-feature-5": "24/7 Notfallnummer bei Diebstahl oder Beschädigung",
       "payment": "Zahlung",
-      "redeem-voucher": "Rabattcode einlösen",
+      "redeem_voucher": "Rabattcode einlösen",
       "add": "Hinzufügen",
       "success-header": "Glückwunsch, du hast gerade ein Rad angefragt!",
       "success-subheader": "Wir haben dir eine Bestätigungsmail geschickt. Fühl dich frei, weitere Fahrräder zu buchen."
     },
     "calendar": {
       "tab": "Dauer",
-      "bike-rental": "Deine Buchung",
+      "bike_rental": "Deine Buchung",
       "choose-duration": "Wähle deine Buchungsdauer",
       "pickup-time": "Abholzeit",
       "return-time": "Rückgabezeit",
-      "intro-description": "Deine Buchung wird von listnride, Europas größter Fahrrad Verleih Plattform, sicher bearbeitet."
+      "intro_description": "Deine Buchung wird von listnride, Europas größter Fahrrad Verleih Plattform, sicher bearbeitet."
     }
   },
   "toasts": {
@@ -970,7 +977,7 @@
       "required-vat": "Bitte geben Sie Ihre Umsatzsteuer-Identifikationsnummer ein.",
       "minlength-vat": "Die Umsatzsteuer-Identifikationsnummer sollte länger als 2 Zeichen sein"
     },
-    "pick-payment-method": "Bitte wählt eine Zahlungsmethode aus",
+    "pick_payment_method": "Bitte wählt eine Zahlungsmethode aus",
     "change-payment-method": "Bezahlungsmethode ändern",
     "your-payment-method": "Deine Zahlungsart:",
     "pay-pal-account": "PayPal",
@@ -998,7 +1005,7 @@
     "payment-method": "Zahlungsart",
     "payout-method": "Auszahlungsmethode",
     "add-payout-method": "Füge eine Auszahlungsmethode hinzu",
-    "payment-method-description": "Deine Zahlungsart wird benutzt um Räder, die du auf listnride ausleihst, zu bezahlen.",
+    "payment_method_description": "Deine Zahlungsart wird benutzt um Räder, die du auf listnride ausleihst, zu bezahlen.",
     "payout-method-description": "Auf deine Auszahlungsmethode überweisen wir dir deine Mieteinnahmen. Du musst sie daher spätestens hinzufügen, wenn du eine Miet-Anfrage als Vermieter akzeptierst.",
     "add-payment-method": "Zahlungsmittel hinzufügen",
     "vouchers": "Gutscheine",
@@ -1057,6 +1064,8 @@
     },
     "5": {
       "title": "Was ist deine Telefonnummer",
+      "did_not_receive_code": "Hast du kein Bestätigungscode erhalten?",
+      "verify_phone_number": "Bestätige deine Telefonnummer",
       "description": "Bestätige deine Telefonnummer, damit du per SMS über Deine Anfragen benachrichtigt werden kannst. Gib einfach deine Telefonnummer ein und klicke auf „Bestätigung schicken“. Du erhältst dann eine SMS mit einem Code, den du unten eingeben kannst.",
       "enter_valid_phone_nr": "Gib eine gültige Telefonnr. an",
       "send_confirmation_sms": "Bestätigung senden",
@@ -1209,9 +1218,9 @@
     "old-password": "Altes Passwort",
     "new-password": "Neues Passwort",
     "password": "Passwort",
-    "forgot-password": "Passwort vergessen?",
+    "forgot_password": "Passwort vergessen?",
     "or": "oder",
-    "log-in": "Anmelden",
+    "log_in": "Anmelden",
     "log-out": "Abmelden",
     "sign-up": "Registrieren",
     "sign-up-to-book": "Registriere dich um das Rad zu leihen",
@@ -1241,9 +1250,13 @@
     "company-contact-info": "Bitte trage die Daten der Kontaktperson des Unternehmens ein.",
     "signing-up-accept-tac": "Ich stimme hiermit den <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Nutzungsbedingungen</a> zu und willige in die Erhebung, Verarbeitung und Nutzung meiner personenbezogenen Daten ein, wie in der <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> näher beschrieben.",
     "signing-up-accept-newsletter": "Ich möchte den E-Mail-Newsletter von listnride mit handverlesenen Themen über neue Räder, Touren und Gutscheine erhalten. Es gilt die <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> von listnride. Ich kann meine Einwilligung jederzeit widerrufen.",
-    "privacy-policy": "Es gilt die <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> von listnride.",
+    "privacy_policy": "Es gilt die <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Datenschutzerklärung</a> von listnride.",
     "errors": {
       "password_length": "Das Passwort sollte zw. 6-30 Zeichen lang sein",
+      "email_wrong": "Die E-Mail ist falsch",
+      "email_wrong_format": "Das E-Mail Format ist falsch",
+      "email_wrong_domain": "Die E-Mail Domain ist falsch",
+      "email_containment": "Die E-Mail Adresse mus ein \"@\" enthalten",
       "password_length_xs": "6-30 Zeichen",
       "password_missing": "Bitte gib ein Passwort an",
       "password_missing_xs": "Passwort erforderlich",
@@ -1574,7 +1587,7 @@
     "deactivate": "Deaktivieren",
     "activate": "Aktivieren",
     "deactivate-bike": "Deaktivieren",
-    "edit-bike": "Bearbeiten",
+    "edit_bike": "Bearbeiten",
     "delete-bike": "Löschen",
     "cancel": "Abbrechen",
     "delete": "Löschen",
@@ -1647,7 +1660,7 @@
     "payout_date": "Auszahlungsdatum",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement history",
+    "settlement_history": "Rechnungsübersicht",
     "credit_notes": "Gutschriften",
     "bike": "Rad",
     "start_date": "Startdatum",

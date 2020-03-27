@@ -5,7 +5,7 @@
     "morning": "Morning",
     "afternoon": "Afternoon",
     "skip": "Skip",
-    "complete": "complete",
+    "complete": "Complete",
     "proceed": "Proceed",
     "size": "Size",
     "img-alt": "{{bikeBrand}} {{bikeName}} bike rental in {{bikeCity}}",
@@ -49,16 +49,18 @@
     "firstly-pick-dates": "Please, select your rental dates first.",
     "remove": "Remove",
     "basic-insurance-fee": "Insurance Fee",
+    "payment_type": {
+      "pay_pal_account": "Paypal",
+      "credit_card": "Credit card"
+    },
     "payment-type": {
-      "pay-pal-account": "Paypal",
-      "credit-card": "Credit card",
       "paypal-account": "Paypal account"
     },
     "change": "Change",
     "local-business": "Local Business",
     "list": "List",
     "map": "Map",
-    "bike-type": "Bike type",
+    "bike_type": "Bike type",
     "filter-by": "Filter by",
     "search-placeholder": "Search for e.g. Berlin, Munich",
     "info": "Info",
@@ -71,7 +73,7 @@
     "tuscany": "Tuscany",
     "please-select": "Please select",
     "errors": {
-      "email-required": "Please enter your email address, email is required",
+      "email_required": "Please enter your email address, email is required",
       "three-d-secure-failed": "3D secure authentication failed",
       "payment-cancelled": "Payment cancelled",
       "payment-paypal-error": "Sorry, your PayPal payment failed",
@@ -154,7 +156,7 @@
     "contact": "Help & Support",
     "show-more": "show more",
     "show-less": "show less",
-    "phone-number": "Phone Number",
+    "phone_number": "Phone Number",
     "wait": "Uploading, this may take a moment...",
     "lister": "Lister",
     "rider": "Rider",
@@ -232,6 +234,7 @@
     "choose_from_brands": "Choose a brand",
     "description": "listnride helps people discover, try, and learn about new brands and bikes before buying online. With listnride you have the opportunity to test ride various types of bikes and brands before making the final purchase decision. Most of the brands are direct-to-customer bike brands and are available to test ride across cities in Europe. Test rides can be booked online at the desired time and location. Discover and test ride the best bikes!"
   },
+  "me": "Rent a vintage road bike for L'Eroica Gaiole, only on listnride!",
   "bike_page": {
     "location": {
       "disclaimer": "Exact location information is provided after a booking is confirmed."
@@ -264,12 +267,14 @@
       "content_munich_showroom": "Centrally located in Maxvorstadt, our <a href=\"users/6511\" target=\"_blank\">Munich Experience Center</a> presents bicycles from brands such as Bonvelo, Rossignol, Urwahn, and Yuba. We also offer the latest Felt road bikes and urban e-bikes from Cowboy, Leaos, and Vello. Click <a href=\"brands\">here</a> to find out more about our test bikes and brands in Munich.",
       "content_berlin_showroom": "In the heart of Berlin-Mitte, opposite the Hackescher Markt, our <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a> offers test rides with bikes from brands such as Argon18, Bonvelo, Brompton and Cowboy.. We regularly organise events, such as <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> every Friday morning. Click <a href=\"brands\" target=\"_blank\">here</a> to find out more about our available test bikes and brands in Berlin."
     },
+    "header": "About listnride",
     "future": {
       "title": "Listnride today",
       "content": "Listnride is continuously growing. Currently, our bikes are available not only in major cities like Amsterdam, Berlin or Vienna, but also in popular holiday destinations like the Canaries and Tuscany. The number and variety of bikes is expansive, making it easy to rent any kind of bike you want: whether it’s an e-bike, road bike, or city bike."
     },
     "showroom": {
       "subtitle": "Get to know us in Berlin or Munich, and experience the latest fashionable bikes and more!",
+      "header": "Our showrooms",
       "berlin_address": "Oranienburger Strasse 1-3, 10178 Berlin, Germany",
       "munich_address": "Nymphenburger Str. 86, 80335 Munich, Germany"
     },
@@ -586,10 +591,6 @@
         "meta-title": "Black Friday bike rental discount | listnride",
         "meta-description": "Black Friday discount on listnride! Huge discount on your next bike rental, only this weekend!"
       },
-      "eroica-gaiole": {
-        "meta-title": "Rent a vintage road bike for L'Eroica Gaiole, only on listnride!",
-        "meta-description": "With listnride you can easily rent a vintage road bike online for L'Eroica Gaiole. Choose the perfect bike for this incredible race in the heart of Tuscany!"
-      },
       "toros-de-gravel": {
         "meta-title": "Rent a bike for Toros de Gravel",
         "meta-description": "On listnride you'll find a selection of gravel and mountainbikes for you to rent for this special gravel event in Sineu on Mallorca. "
@@ -806,17 +807,17 @@
       "email-us": "Or write us an email",
       "support": "listnride Support"
     },
-    "sign-in": {
+    "sign_in": {
       "tab": "Sign in",
+      "login_facebook": "Log in with Facebook",
+      "not_member": "Not a member yet?"
+    },
+    "sign-in": {
       "new": "New at listnride?",
       "login": "Log in to listnride",
       "register-facebook": "Register with Facebook",
-      "login-facebook": "Log in with Facebook",
       "already-member": "Already a member?",
       "register": "Register"
-    },
-    "sign_in": {
-      "not_member": "Not a member yet?"
     },
     "details": {
       "tab": "Personal Details",
@@ -837,12 +838,12 @@
       "tab": "Payment Method",
       "current-method": "Current payment method",
       "getting-saved": "Your payment details are being saved",
-      "select-method": "Select your Payment Method",
+      "select_method": "Select your Payment Method",
       "subtitle": "Please select your preferred payment method. We only charge you after the lister accepted your request.",
       "credit-card": "Credit Card",
-      "card-name": "Name on Card",
+      "card_name": "Name on Card",
       "invalid-name": "Please provide valid name",
-      "card-number": "Card Number",
+      "card_number": "Card Number",
       "invalid-card": "Please provide a valid Card Number",
       "invalid-card-number": "Card Number not valid",
       "exp-month": "Exp. month",
@@ -850,7 +851,7 @@
       "invalid-year": "Year not valid",
       "invalid-date": "Date not valid",
       "exp-year": "Exp. year",
-      "exp-date": "Exp. date",
+      "exp_date": "Exp. date",
       "invalid-cvc": "CVC not valid",
       "cvc": "CVC Number",
       "pay-paypal": "Pay with Paypal"
@@ -864,28 +865,28 @@
       "bike-rental": "Your bike rental",
       "location": "Location",
       "invoice-address": "Invoice Address",
-      "premium-insurance": "Premium insurance",
-      "premium-insurance-title": "Premium Insurance Protection",
+      "premium_insurance": "Premium insurance",
+      "premium_insurance_title": "Premium Insurance Protection",
       "premium-insurance-subtitle": "Pick our premium insurance to be on the safe side",
-      "thats-included": "On top of basic insurance, these features are additionally included",
-      "premium-feature-1": "Theft protection",
+      "thats_included": "On top of basic insurance, these features are additionally included",
+      "premium_feature_1": "Theft protection",
       "premium-feature-2": "Replacement bike after accident or damage",
       "premium-feature-3": "Return transport of the bike after accident or damage",
       "premium-feature-4": "No Retention fee",
       "premium-feature-5": "24/7 emergency phone number",
       "payment": "Payment",
-      "redeem-voucher": "Redeem Voucher",
+      "redeem_voucher": "Redeem Voucher",
       "add": "Add",
       "success-header": "Congratulations, you have just requested a bike!",
       "success-subheader": "We've sent you a confirmation email. Feel free to book more bikes, afterwards."
     },
     "calendar": {
       "tab": "Duration",
-      "bike-rental": "Your bike rental",
+      "bike_rental": "Your bike rental",
       "choose-duration": "Choose your rental duration",
       "pickup-time": "Pickup time",
       "return-time": "Return at",
-      "intro-description": "Your booking gets safely processed by listnride, Europe's biggest bike rental platform."
+      "intro_description": "Your booking gets safely processed by listnride, Europe's biggest bike rental platform."
     }
   },
   "toasts": {
@@ -978,7 +979,7 @@
       "required-vat": "Please enter your VAT number.",
       "minlength-vat": "The VAT number should be longer than 2 characters"
     },
-    "pick-payment-method": "Please pick a payment method",
+    "pick_payment_method": "Please pick a payment method",
     "change-payment-method": "Change payment method",
     "your-payment-method": "Your payment method:",
     "pay-pal-account": "PayPal",
@@ -1006,7 +1007,7 @@
     "payment-method": "Payment Method",
     "payout-method": "Payout Method",
     "add-payout-method": "Add a Payout Method",
-    "payment-method-description": "Your payment method is used to pay for your rentals. It can be a credit card or paypal account.",
+    "payment_method_description": "Your payment method is used to pay for your rentals. It can be a credit card or paypal account.",
     "payout-method-description": "Your payout method is where we send you your rental income. Therefore you have to add it latest when accepting a request as a lister.",
     "add-payment-method": "Add Payment Method",
     "vouchers": "Vouchers",
@@ -1066,6 +1067,8 @@
     "5": {
       "title": "What is your phone number",
       "did_not_receive_code": "Didn't receive a confirmation code?",
+      "verify_phone_number": "Verify your phone number",
+      "verify_phone_subtitle": "You can receive SMS notifications for future requests",
       "description": "Verify your phone number, so that you can receive SMS notifications for future requests. Simply enter your number and click 'Send Confirmation'. You'll receive a code via SMS that you can then enter below.",
       "enter_valid_phone_nr": "Enter a valid phone number",
       "send_confirmation_sms": "Send Confirmation",
@@ -1219,9 +1222,9 @@
     "old-password": "Current password",
     "new-password": "New password",
     "password": "Password",
-    "forgot-password": "Forgot password?",
+    "forgot_password": "Forgot password?",
     "or": "or",
-    "log-in": "Log in",
+    "log_in": "Log in",
     "log-out": "Log out",
     "sign-up": "Sign up",
     "sign-up-to-book": "Sign up to book the bike",
@@ -1251,7 +1254,7 @@
     "company-contact-info": "Please fill form with company contact person information.",
     "signing-up-accept-tac": "I hereby agree to the <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Terms and Conditions</a> and agree to the collection, processing and use of my personal data as further described in the <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy</a>.",
     "signing-up-accept-newsletter": "I would like to receive the listnride e-mail newsletter with interesting content on cycling, community updates and exclusive benefits. The <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy</a>  of listnride applies. I can revoke my consent at any time.",
-    "privacy-policy": "The <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy </a> of listnride applies.",
+    "privacy_policy": "The <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacy Policy </a> of listnride applies.",
     "errors": {
       "password_length": "Password should be 6-30 characters",
       "email_wrong": "The email is incorrect",
@@ -1589,7 +1592,7 @@
     "deactivate": "Deactivate",
     "activate": "Activate",
     "deactivate-bike": "Deactivate",
-    "edit-bike": "Edit",
+    "edit_bike": "Edit",
     "delete-bike": "Delete",
     "cancel": "Cancel",
     "delete": "Delete",

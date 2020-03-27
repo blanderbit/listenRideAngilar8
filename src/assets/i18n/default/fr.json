@@ -1,6 +1,12 @@
 {
   "shared": {
     "learn-more": "En savoir plus",
+    "start_search": "Commencer la recherche",
+    "morning": "Matin",
+    "afternoon": "Après-midi",
+    "skip": "Passer",
+    "complete": "Compléter",
+    "proceed": "Poursuivre",
     "size": "Taille",
     "img-alt": "Location vélo {{bikeBrand}} {{bikeName}} à {{bikeCity}}",
     "bike_location": "Localisation des vélos",
@@ -43,16 +49,18 @@
     "firstly-pick-dates": "S'il vous plaît, sélectionnez vos dates de location en premier.",
     "remove": "Supprimer",
     "basic-insurance-fee": "Prime d'assurance",
+    "payment_type": {
+      "pay_pal_account": "Paypal",
+      "credit_card": "Carte de crédit"
+    },
     "payment-type": {
-      "pay-pal-account": "Paypal",
-      "credit-card": "Carte de crédit",
       "paypal-account": "Compte Paypal"
     },
     "change": "Changer",
     "local-business": "Magasin de vélo",
     "list": "Liste",
     "map": "Carte",
-    "bike-type": "Type de vélo",
+    "bike_type": "Type de vélo",
     "filter-by": "Filtrer par",
     "search-placeholder": "Cherchez par exemple Berlin, Munich",
     "info": "Infos",
@@ -65,7 +73,7 @@
     "tuscany": "Toscane",
     "please-select": "Veuillez choisir",
     "errors": {
-      "email-required": "Veuillez entrer votre adresse email",
+      "email_required": "Veuillez entrer votre adresse email",
       "three-d-secure-failed": "Échec de l'authentification sécurisée 3D",
       "payment-cancelled": "Paiement annulé",
       "payment-paypal-error": "Désolé, votre paiement PayPal a échoué",
@@ -148,7 +156,7 @@
     "contact": "Aide",
     "show-more": "montrer plus",
     "show-less": "montrer moins",
-    "phone-number": "Numéro de téléphone",
+    "phone_number": "Numéro de téléphone",
     "wait": "Chargement, cela peut prendre un moment ...",
     "lister": "Lister",
     "rider": "Rider",
@@ -256,12 +264,14 @@
       "content_munich_showroom": "Situé centralement, à Maxvorstadt, notre <a href=\"users/6511\" target=\"_blank\">Munich Experience Center </a> propose des vélos de marques telles que 8bar, Bonvelo, Rossignol, Urwahn et Yuba. Nous proposons également les derniers vélos de route Felt et les vélos électriques urbains de BZEN, Cowboy, Leaos et Vello. Cliquez <a href=\"brands\">ici </a> pour en savoir plus sur nos vélos de démo et marques à Munich.",
       "content_berlin_showroom": "Au cœur de Berlin-Mitte, en face du Hackescher Markt, notre <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center </a>propose des vélos de démo de marques telles que Argon18, Brompton, BZEN et Cowboy. Nous organisons régulièrement des événements, tels que <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">des sorties sociales </a> tous les vendredis matin. Cliquez <a href=\"brands\" target=\"_blank\">ici </a> pour en savoir plus sur nos vélos et marques de démo disponibles à Berlin."
     },
+    "header": "À propos de listnride",
     "future": {
       "title": "Listnride aujourd'hui",
       "content": "Le listnride est en croissance constante. Actuellement, nos vélos sont disponibles non seulement dans les grandes villes comme Amsterdam, Berlin ou Vienne, mais aussi dans les destinations de vacances populaires comme les Canaries et la Toscane. Le nombre et la variété de vélos sont vastes, ce qui facilite la location de tout type de vélo: du vélo électrique, du vélo de route ou du vélo de ville."
     },
     "showroom": {
       "subtitle": "Faites notre connaissance à Berlin ou à Munich et découvrez les derniers vélos à la mode et plus !",
+      "header": "Nos salles d'exposition",
       "berlin_address": "Oranienburger Strasse 1-3 , 10178 Berlin , Allemagne",
       "munich_address": "Nymphenburger Str. 86, 80335 Munich, Allemagne"
     },
@@ -574,10 +584,6 @@
         "meta-title": "Black Friday réduction de location de vélo | listnride",
         "meta-description": "Réductions Black Friday sur listnride! Grande remise sur votre prochaine location de vélo, uniquement ce week-end!"
       },
-      "eroica-gaiole": {
-        "meta-title": "Louez un vélo de route vintage pour L'Eroica Gaiole, seulement sur listnride !",
-        "meta-description": "Louez votre vélo de route vintage pour Eroica sur listnride"
-      },
       "toros-de-gravel": {
         "meta-title": "Louer un vélo pour Toros de Gravel",
         "meta-description": "Sur listnride, vous trouverez une sélection de gravel bikes et de VTT que vous pourrez louer pour cet événement spécial dédié au gravier à Sineu, à Majorque."
@@ -782,6 +788,7 @@
   },
   "booking": {
     "shopping": "Payment sécurisé",
+    "select_both": "Sélectionnez les deux pour réserver la journée entière",
     "rent-bike-terms": "En cliquant 'Réservez maintenant' vous acceptez les",
     "and-agree-privacy": "et nos règles de protection des données",
     "pay-secure": "Payer en toute sécurité avec",
@@ -793,17 +800,17 @@
       "email-us": "Ou écrivez-nous un email",
       "support": "Support | listnride"
     },
-    "sign-in": {
+    "sign_in": {
       "tab": "Se connecter",
+      "login_facebook": "Se connecter avec Facebook",
+      "not_member": "Pas encore membre?"
+    },
+    "sign-in": {
       "new": "Nouveau chez listnride?",
       "login": "Connectez-vous à listnride",
       "register-facebook": "Enregistrez vous avec Facebook",
-      "login-facebook": "Se connecter avec Facebook",
       "already-member": "Déjà membre?",
       "register": "S'enregistrer"
-    },
-    "sign_in": {
-      "not_member": "Pas encore membre?"
     },
     "details": {
       "tab": "Détails personnels",
@@ -824,12 +831,12 @@
       "tab": "Mode de paiement",
       "current-method": "Mode de paiement actuel",
       "getting-saved": "Vos détails de paiement sont sauvegardés",
-      "select-method": "Sélectionnez votre mode de paiement",
+      "select_method": "Sélectionnez votre mode de paiement",
       "subtitle": "Veuillez sélectionner votre mode de paiement préféré. Nous ne vous facturerons que lorsque le Lister aura accepté votre demande.",
       "credit-card": "Carte de crédit",
-      "card-name": "Nom sur carte",
+      "card_name": "Nom sur carte",
       "invalid-name": "Veuillez fournir un nom valide",
-      "card-number": "Numéro de la carte",
+      "card_number": "Numéro de la carte",
       "invalid-card": "Veuillez fournir un numéro de carte valide",
       "invalid-card-number": "Numéro de carte non valide",
       "exp-month": "Exp. mois",
@@ -837,7 +844,7 @@
       "invalid-year": "Année non valide",
       "invalid-date": "Date non valide",
       "exp-year": "Exp. année",
-      "exp-date": "Exp. date",
+      "exp_date": "Exp. date",
       "invalid-cvc": "CVC non valide",
       "cvc": "Numéro CVC",
       "pay-paypal": "Payer avec Paypal"
@@ -851,28 +858,28 @@
       "bike-rental": "Votre location de vélo",
       "location": "Emplacement",
       "invoice-address": "Adresse de facturation",
-      "premium-insurance": "Assurance Premium",
-      "premium-insurance-title": "Protection Assurance Premium",
+      "premium_insurance": "Assurance Premium",
+      "premium_insurance_title": "Protection Assurance Premium",
       "premium-insurance-subtitle": "Choisissez notre assurance premium pour être sûr",
-      "thats-included": "En plus de l'assurance de base, ces fonctionnalités sont incluses en plus",
-      "premium-feature-1": "Protection anti-vol",
+      "thats_included": "En plus de l'assurance de base, ces fonctionnalités sont incluses en plus",
+      "premium_feature_1": "Protection anti-vol",
       "premium-feature-2": "Vélo de remplacement après accident ou dommage",
       "premium-feature-3": "Transport de retour du vélo après accident ou dommage",
       "premium-feature-4": "Pas de frais de rétention",
       "premium-feature-5": "Numéro de téléphone d'urgence 24/7",
       "payment": "Paiement",
-      "redeem-voucher": "Échanger le bon",
+      "redeem_voucher": "Échanger le bon",
       "add": "Ajouter",
       "success-header": "Félicitations, vous venez de demander un vélo!",
       "success-subheader": "Nous vous avons envoyé un email de confirmation! N'hésitez pas à réserver plus de vélos."
     },
     "calendar": {
       "tab": "Durée",
-      "bike-rental": "Votre location de vélo",
+      "bike_rental": "Votre location de vélo",
       "choose-duration": "Choisissez votre durée de location",
       "pickup-time": "Heure de ramassage",
       "return-time": "Heure de retour",
-      "intro-description": "Votre réservation est traitée de manière sécurisée par listnride, la plus grande plateforme de location de vélos d'Europe."
+      "intro_description": "Votre réservation est traitée de manière sécurisée par listnride, la plus grande plateforme de location de vélos d'Europe."
     }
   },
   "toasts": {
@@ -965,7 +972,7 @@
       "required-vat": "S'il vous plaît, entrez votre numéro de TVA.",
       "minlength-vat": "Le numéro de TVA doit être plus long que 2 caractères"
     },
-    "pick-payment-method": "Veuillez choisir un mode de paiement",
+    "pick_payment_method": "Veuillez choisir un mode de paiement",
     "change-payment-method": "Changer la méthode de paiement",
     "your-payment-method": "Votre mode de paiement:",
     "pay-pal-account": "PayPal",
@@ -993,7 +1000,7 @@
     "payment-method": "Mode de paiement",
     "payout-method": "Mode de versement",
     "add-payout-method": "Ajouter un mode de versement",
-    "payment-method-description": "Votre mode de paiement est utilisée pour payer vos locations. Cela peut être une carte de crédit ou un compte paypal.",
+    "payment_method_description": "Votre mode de paiement est utilisée pour payer vos locations. Cela peut être une carte de crédit ou un compte paypal.",
     "payout-method-description": "Votre mode de versement est l'endroit où nous vous envoyons vos revenus pour la location. Par conséquent, vous devez l'ajouter en dernier lorsque vous acceptez une demande en tant que Lister.",
     "add-payment-method": "Ajouter un mode de paiement",
     "vouchers": "Bons",
@@ -1052,6 +1059,8 @@
     },
     "5": {
       "title": "Quel est votre numéro de téléphone",
+      "did_not_receive_code": "Vous n'avez pas reçu de code de confirmation ?",
+      "verify_phone_number": "Vérifiez votre numéro de téléphone",
       "description": "Vérifiez votre numéro de téléphone afin de pouvoir recevoir des notifications par SMS pour vos futures demandes. Entrez simplement votre numéro et cliquez sur 'Envoyer la confirmation'. Vous recevrez un code par SMS que vous pourrez saisir ci-dessous.",
       "enter_valid_phone_nr": "Entrez un numéro de téléphone valide",
       "send_confirmation_sms": "Envoyer une confirmation",
@@ -1204,9 +1213,9 @@
     "old-password": "Mot de passe actuel",
     "new-password": "Nouveau mot de passe",
     "password": "Mot de passe",
-    "forgot-password": "Mot de passe oublié?",
+    "forgot_password": "Mot de passe oublié?",
     "or": "ou",
-    "log-in": "Se connecter",
+    "log_in": "Se connecter",
     "log-out": "Se déconnecter",
     "sign-up": "S'inscrire",
     "sign-up-to-book": "Inscrivez-vous pour réserver le vélo",
@@ -1236,9 +1245,13 @@
     "company-contact-info": "Veuillez remplir le formulaire avec les coordonnées de la société.",
     "signing-up-accept-tac": "Par la présente, j'accepte les  <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Termes et conditions</a>>et je consens à la collecte, au traitement et à l'utilisation de mes données personnelles comme décrit plus en détail dans la section <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Politique de confidentialité</a>.",
     "signing-up-accept-newsletter": "J'aimerais recevoir le bulletin d'information électronique Listnride avec un contenu intéressant sur le cyclisme, des mises à jour pour la communauté et des avantages exclusifs. La <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">politique de confidentialité </a>de listnride s'applique. Je peux révoquer mon consentement à tout moment.",
-    "privacy-policy": "La <a style=\"pointer-events: auto;\" href=\"/#/privacy\">politique de confidentialité </a>de listnride s'applique.",
+    "privacy_policy": "La <a style=\"pointer-events: auto;\" href=\"/#/privacy\">politique de confidentialité </a>de listnride s'applique.",
     "errors": {
       "password_length": "Le mot de passe doit comporter entre 6 et 30 caractères.",
+      "email_wrong": "Adresse mail incorrecte",
+      "email_wrong_format": "Format d'email incorrect",
+      "email_wrong_domain": "Domaine d'email incorrect",
+      "email_containment": "L'adresse mail doit contenir un \"@\"",
       "password_length_xs": "6-30 caractères",
       "password_missing": "Veuillez fournir un mot de passe",
       "password_missing_xs": "Mot de passe requis",
@@ -1569,7 +1582,7 @@
     "deactivate": "Désactiver",
     "activate": "Activer",
     "deactivate-bike": "Désactiver",
-    "edit-bike": "Éditer",
+    "edit_bike": "Éditer",
     "delete-bike": "Supprimer",
     "cancel": "Annuler",
     "delete": "Supprimer",
@@ -1642,7 +1655,7 @@
     "payout_date": "Date de remboursement",
     "date": "Date",
     "batch": "Batch",
-    "settlement_history": "Settlement history",
+    "settlement_history": "Historique de vos factures",
     "credit_notes": "Notes de crédit",
     "bike": "Vélo",
     "start_date": "Date de début",

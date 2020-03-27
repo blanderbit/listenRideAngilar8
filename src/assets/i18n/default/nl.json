@@ -1,6 +1,12 @@
 {
   "shared": {
     "learn-more": "Meer info",
+    "start_search": "Begin met zoeken",
+    "morning": "Ochtend",
+    "afternoon": "Namiddag",
+    "skip": "Sla  over",
+    "complete": "Vul aan",
+    "proceed": "Ga verder met",
     "size": "Grootte",
     "img-alt": "{{bikeBrand}} {{bikeName}} fietsverhuur {{bikeCity}}",
     "bike_location": "Locatie van de fiets",
@@ -43,16 +49,18 @@
     "firstly-pick-dates": "Selecteer eerst een dag",
     "remove": "verwijderen",
     "basic-insurance-fee": "Verzekeringstoeslag",
+    "payment_type": {
+      "pay_pal_account": "Paypal",
+      "credit_card": "Kredietkaart"
+    },
     "payment-type": {
-      "pay-pal-account": "Paypal",
-      "credit-card": "Kredietkaart",
       "paypal-account": "Paypal rekening"
     },
     "change": "Aanpassen",
     "local-business": "Zakelijke aanbieder",
     "list": "List",
     "map": "Kaart",
-    "bike-type": "Fietstype",
+    "bike_type": "Fietstype",
     "filter-by": "Filteren op",
     "search-placeholder": "Zoek naar bijvoorbeeld Berlijn, München",
     "info": "Info",
@@ -65,7 +73,7 @@
     "tuscany": "Toscane",
     "please-select": "Ajb. selecteren",
     "errors": {
-      "email-required": "Vul een geldig emailadres in",
+      "email_required": "Vul een geldig emailadres in",
       "three-d-secure-failed": "3D-secure authenticatie mislukt",
       "payment-cancelled": "Betaling geannuleerd",
       "payment-paypal-error": "Sorry, your PayPal method is failed",
@@ -147,7 +155,7 @@
     "contact": "Help & Support",
     "show-more": "Toon meer",
     "show-less": "Toon minder",
-    "phone-number": "Telefoonnummer",
+    "phone_number": "Telefoonnummer",
     "wait": "Je fiets wordt nu online geplaatst, dit kan een moment duren..",
     "lister": "Aanbieder",
     "rider": "Huurder",
@@ -251,12 +259,14 @@
       "content_munich_showroom": "Centraal gelegen in Maxvorstadt, presenteren wij in ons <a href=\"users/6511\" target=\"_blank\">München Experience Center</a> fietsen van merken als 8bar, Bonvelo, Rossignol, Urwahn en Yuba. We bieden ook de nieuwste Felt racefietsen en urban e-bikes van BZEN, Cowboy, Leaos en Vello aan. Klik <a href=\"brands\">hier</a> om meer te weten te komen over onze testfietsen en merken in München.",
       "content_berlin_showroom": "In het hart van Berlin-Mitte, tegenover de Hackescher Markt, bieden wij in ons <a href=\"users/7351\" target=\"_blank\">Berlin Experience Center</a>testritten aan voor fietsen van merken als Argon18, Bonvelo, Brompton, BZEN en Cowboy. Wij organiseren regelmatig evenementen, zoals <a href=\"http://www.facebook.com/pg/listnride/events/?ref=page_internal\" target=\"_blank\">social rides</a> elke vrijdagochtend. Klik <a href=\"brands\" target=\"_blank\">hier</a> om meer te weten te komen over onze beschikbare testfietsen en merken in Berlijn."
     },
+    "header": "Over listnride",
     "future": {
       "title": "Listnride vandaag",
       "content": "Listnride groeit continu verder. Op dit moment zijn onze fietsen niet alleen beschikbaar in grote steden als Amsterdam, Berlijn of Wenen, maar ook in populaire vakantiebestemmingen als de Canarische Eilanden en Toscane. Het aantal en de verscheidenheid aan fietsen is groot, waardoor het gemakkelijk is om elke gewenste fiets te huren: of het nu gaat om een e-bike, racefiets of stadsfiets."
     },
     "showroom": {
       "subtitle": "Leer ons kennen in Berlijn of München en ervaar de nieuwste modieuze fietsen en meer!",
+      "header": "Onze showrooms",
       "berlin_address": "Oranienburger Strasse 1-3 , 10178 Berlijn, Duitsland",
       "munich_address": "Nymphenburger Str. 86, 80335 München, Duitsland"
     },
@@ -569,10 +579,6 @@
         "meta-title": "Black Friday 2018 fietshuur korting | listnride",
         "meta-description": "Black Friday-korting bij listnride! Enorme korting op  je volgende fietshuur, alleen dit weekend."
       },
-      "eroica-gaiole": {
-        "meta-title": "Huur een vintage racefiets voor L'Eroica Montalcino, exclusief verkrijgbaar op listnride!",
-        "meta-description": "Met listnride kunt u eenvoudig online een vintage racefiets huren voor L'Eroica Gaiole. Kies de perfecte fiets voor deze ongelooflijke race in het hart van Toscane!"
-      },
       "toros-de-gravel": {
         "meta-title": "Huur de perfecte fiets voor Toros de Gravel",
         "meta-description": "Op listnride vind je een selectie van gravel- en mountainbikes te huur voor dit speciale gravel evenement in Sineu, Mallorca."
@@ -777,6 +783,7 @@
   },
   "booking": {
     "shopping": "Secure Shopping",
+    "select_both": "Selecteer beide voor het boeken van de hele dag",
     "rent-bike-terms": "Met 'Nu boeken' gaat u akkoord met de",
     "and-agree-privacy": "en ons privacy beleid",
     "pay-secure": "Veilig betalen met",
@@ -788,17 +795,17 @@
       "email-us": "Of stuur ons een email",
       "support": "listnride Support"
     },
-    "sign-in": {
+    "sign_in": {
       "tab": "Aanmelden",
+      "login_facebook": "Login met Facebook",
+      "not_member": "Nog niet aangemeld?"
+    },
+    "sign-in": {
       "new": "Nieuw bij listnride?",
       "login": "Login bij listnride",
       "register-facebook": "Aanmelden met Facebook",
-      "login-facebook": "Login met Facebook",
       "already-member": "Al geregistreerd?",
       "register": "Aanmelden"
-    },
-    "sign_in": {
-      "not_member": "Nog niet aangemeld?"
     },
     "details": {
       "tab": "Persoonlijke gegevens",
@@ -819,12 +826,12 @@
       "tab": "Betaalgegevens",
       "current-method": "Huidige betaalmethode",
       "getting-saved": "Betaalmethode wordt opgeslagen",
-      "select-method": "Selecteer je betaalmethode",
+      "select_method": "Selecteer je betaalmethode",
       "subtitle": "We incasseren de huur nadat de verhuurder je aanvraag accepteerd",
       "credit-card": "Kredietkaart",
-      "card-name": "Kaarthouder",
+      "card_name": "Kaarthouder",
       "invalid-name": "Geef een geldige naam op",
-      "card-number": "Nummer Kredietkaart",
+      "card_number": "Nummer Kredietkaart",
       "invalid-card": "Geef een geldig kaartnummer op",
       "invalid-card-number": "kaartnummer niet geldig",
       "exp-month": "Vervaldatum",
@@ -832,7 +839,7 @@
       "invalid-year": "Jaar niet geldig",
       "invalid-date": "Datum niet geldig",
       "exp-year": "Vervaljaar",
-      "exp-date": "Vervaldatum",
+      "exp_date": "Vervaldatum",
       "invalid-cvc": "CVV niet geldig",
       "cvc": "CVV-nummer",
       "pay-paypal": "Betaal met PayPal"
@@ -846,28 +853,28 @@
       "bike-rental": "Je gekozen fiets",
       "location": "Locatie",
       "invoice-address": "Factuuradres",
-      "premium-insurance": "Premium insurance",
-      "premium-insurance-title": "Premium verzekering ",
+      "premium_insurance": "Premium insurance",
+      "premium_insurance_title": "Premium verzekering ",
       "premium-insurance-subtitle": "Pick our premium insurance for your ride to be on the safe side",
-      "thats-included": "Naast de basisverzekering is het onderstaande mede inbegrepen",
-      "premium-feature-1": "Diefstal bescherming",
+      "thats_included": "Naast de basisverzekering is het onderstaande mede inbegrepen",
+      "premium_feature_1": "Diefstal bescherming",
       "premium-feature-2": "Vervangende fiets na schade, ongeval of diefstal",
       "premium-feature-3": "Retourtransport van de huurfiets na een ongeval of schade",
       "premium-feature-4": "Geen eigen risiko",
       "premium-feature-5": "24/7 noodnummer",
       "payment": "Betaling",
-      "redeem-voucher": "Voucher verzilveren",
+      "redeem_voucher": "Voucher verzilveren",
       "add": "Voeg toe",
       "success-header": "Gefeliciteerd, de boekingsaanvraag is verstuurd!",
       "success-subheader": "We've sent you a confirmation email. Feel free to book more other bikes, too."
     },
     "calendar": {
       "tab": "Periode",
-      "bike-rental": "Je fietshuur",
+      "bike_rental": "Je fietshuur",
       "choose-duration": "Kies de huurperiode",
       "pickup-time": "Ophaal tijd",
       "return-time": "Tijd van terruggave",
-      "intro-description": "Uw boeking wordt veilig verwerkt door listnride, de grootste community voor het delen van fietsen in Europa."
+      "intro_description": "Uw boeking wordt veilig verwerkt door listnride, de grootste community voor het delen van fietsen in Europa."
     }
   },
   "toasts": {
@@ -960,7 +967,7 @@
       "required-vat": "Voer hier je btw-nummer in.",
       "minlength-vat": "Het btw-nummer moet langer zijn dan 2 tekens"
     },
-    "pick-payment-method": "Kies een betaalmethode",
+    "pick_payment_method": "Kies een betaalmethode",
     "change-payment-method": "Betaalmethode wijzigen",
     "your-payment-method": "Je betaalmethode:",
     "pay-pal-account": "PayPal",
@@ -987,7 +994,7 @@
     "payment-method": "Betaalmethoden",
     "payout-method": "uitbetaalmethoden",
     "add-payout-method": "Uitbetaalmethode toevoegen",
-    "payment-method-description": "Je betaalmethode wordt gebruikt om de kosten van de fietshuur af te boeken.",
+    "payment_method_description": "Je betaalmethode wordt gebruikt om de kosten van de fietshuur af te boeken.",
     "payout-method-description": "Op de aangegeven uitbetaalmethode wordt de huuropbrengst aan je overgemaakt. Therefore you have to add it latest when accepting a request as a lister.",
     "add-payment-method": "Betaalmiddel toevoegen",
     "vouchers": "Vouchers",
@@ -1046,6 +1053,8 @@
     },
     "5": {
       "title": "Wat is je telefoonnummer",
+      "did_not_receive_code": "Heb je geen bevestigingscode ontvangen?",
+      "verify_phone_number": "Bevestig je telefoonnummer",
       "description": "Bevestig je telefoonnummer, zodat we je per SMS kunnen informeren als er een nieuwe aanvraag voor je is. Voer uw telefoonnummer in en klik op \"Bevestiging versturen\". Je ontvangt dan een sms met een code die je hieronder kunt invoeren.",
       "enter_valid_phone_nr": "Voer een geldig telefoonnummer in",
       "send_confirmation_sms": "Bevestigings versturen",
@@ -1196,9 +1205,9 @@
     "old-password": "Huidig Wachtwoord",
     "new-password": "Nieuw Wachtwoord",
     "password": "Wachtwoord",
-    "forgot-password": "Wachtwoord vergeten?",
+    "forgot_password": "Wachtwoord vergeten?",
     "or": "of",
-    "log-in": "Inloggen",
+    "log_in": "Inloggen",
     "log-out": "Uitloggen",
     "sign-up": "Aanmelden",
     "sign-up-to-book": "Meld je aan om de fiets te huren.",
@@ -1227,9 +1236,13 @@
     "company-contact-info": "Vul uw Bedrijfsnaam en naam van de contact persoon in",
     "signing-up-accept-tac": "Ik ga hierbij akkoord met de <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/terms\">Gebruiksvoorwaarden</a> en ga akkoord met het verzamelen, verwerken en gebruiken van mijn persoonsgegevens zoals verder beschreven in het <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacybeleid</a>.",
     "signing-up-accept-newsletter": "Ik wil graag de listnride e-mailnieuwsbrief ontvangen met interessante informatie over fietsen, community updates en exclusieve aanbiedingen. Het <a target=\"_blank\" style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacybeleid</a> van listnride is van toepassing. Ik kan mijn toestemming te allen tijde intrekken.",
-    "privacy-policy": "Het <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacybeleid</a> van listnride is van toepassing.",
+    "privacy_policy": "Het <a style=\"pointer-events: auto;\" href=\"/#/privacy\">Privacybeleid</a> van listnride is van toepassing.",
     "errors": {
       "password_length": "Wachtwoord dient 6-30 karakters lang te zijn",
+      "email_wrong": "De e-mail is onjuist",
+      "email_wrong_format": "Het e-mail formaat is onjuist",
+      "email_wrong_domain": "Het e-maildomein is onjuist",
+      "email_containment": "Het e-mailadres moet een \"@\" bevatten",
       "password_length_xs": "6-30 tekens",
       "password_missing": "Wachtwoord aanmaken",
       "password_missing_xs": "Wachtwoord aanmaken",
@@ -1559,7 +1572,7 @@
     "deactivate": "deactiveren",
     "activate": "Activeren",
     "deactivate-bike": "deactiveren",
-    "edit-bike": "bewerken",
+    "edit_bike": "bewerken",
     "delete-bike": "verwijderen",
     "cancel": "annuleren",
     "delete": "verwijderen",
@@ -1632,7 +1645,7 @@
     "payout_date": "Uitbetaald op",
     "date": "Datum",
     "batch": "Partij",
-    "settlement_history": "Geschiedenis van nederzetting ",
+    "settlement_history": "Geschiedenis van facturen ",
     "credit_notes": "Creditnota's",
     "bike": "Fiets",
     "start_date": "Start datum",
