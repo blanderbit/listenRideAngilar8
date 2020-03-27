@@ -19,6 +19,7 @@ import { ErrorHttpEnum } from '@enums/error-http.enum';
 import { AuthActions } from '@auth/store/actions';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
+import { environment } from '@environment/environment';
 
 @Injectable()
 export class HttpAuthInterceptor implements HttpInterceptor {
@@ -104,10 +105,19 @@ export class HttpAuthInterceptor implements HttpInterceptor {
       // comes back from the refreshToken call.
       this.tokenSubject.next(null);
 
-      const oauthRefreshRequest: OauthRefreshRequest = {
-        accessToken: localStorage.getItem(TokensEnum.ACCESS_TOKEN),
-        refreshToken: localStorage.getItem(TokensEnum.REFRESH_TOKEN),
+      // TODO Fix to be camelCase
+      const oauthRefreshRequest: OauthRefreshRequest | any = {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        grant_type: 'refresh_token',
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        client_id: environment.LNR_DOORKEEPER_CLIENT_ID,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        refresh_token: localStorage.getItem(TokensEnum.REFRESH_TOKEN),
       };
+
+      if (!oauthRefreshRequest.refresh_token) {
+        return observableThrowError(ErrorHttpEnum.HAVEN_T__TOKENS);
+      }
 
       return this.apiOauthService.refresh(oauthRefreshRequest).pipe(
         // TODO Fix to avoid eslint-ignore
@@ -127,7 +137,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
       );
     }
     return this.tokenSubject.pipe(
-      filter(token => token != null),
+      filter(token => !!token),
       take(1),
       switchMap(token => {
         return next.handle(this.addTokens(req));

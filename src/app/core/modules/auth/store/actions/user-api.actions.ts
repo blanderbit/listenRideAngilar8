@@ -19,3 +19,8 @@ export const getUserByIdFailure = createAction(
   '[User/API] Get User By Id Failure',
   props<{ error: HttpErrorResponse }>(),
 );
+
+export const UserDataInitialize = createAction(
+  '[User/API] User Initialize',
+  props<{ me: Partial<User>; user: User }>(),
+);

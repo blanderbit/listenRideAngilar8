@@ -31,6 +31,7 @@ import { UserVerificationModule } from '@user-verification/user-verification.mod
 import { metaReducers } from './reducers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
 
 export function provideAuthServiceConfig(): AuthServiceConfig {
   return new AuthServiceConfig([
@@ -75,6 +76,7 @@ export const APP_PROVIDERS = [
     SocialLoginModule,
     BrowserAnimationsModule,
     AuthModule,
+    CommonModule,
     LayoutModule,
     UserVerificationModule,
     TranslateModule.forRoot({

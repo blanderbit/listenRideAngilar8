@@ -43,6 +43,6 @@ export class LayoutHeaderMenuComponent {
   }
 
   logOut() {
-    this.storeAuth.dispatch(AuthActions.logout());
+    this.storeAuth.dispatch(AuthActions.logout({ withoutReload: false }));
   }
 }

@@ -27,6 +27,7 @@ const envConfigFile = `export const environment = {
     LNR_ADYEN_ORIGIN_KEY_ES: '${process.env.LNR_ADYEN_ORIGIN_KEY_ES}',
     LNR_ADYEN_ORIGIN_KEY_IT: '${process.env.LNR_ADYEN_ORIGIN_KEY_IT}',
     LNR_ADYEN_ORIGIN_KEY_FR: '${process.env.LNR_ADYEN_ORIGIN_KEY_FR}',
+    LNR_DOORKEEPER_CLIENT_ID: '${process.env.LNR_DOORKEEPER_CLIENT_ID}'
 };`;
 
 console.log(colors.magenta('The file `environment.ts` will be written with the following content: \n'));

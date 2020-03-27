@@ -33,7 +33,7 @@ export class ApiOauthService {
     oauthRefreshRequest: OauthRefreshRequest,
   ): Observable<OauthTokenResponse> {
     return this.httpClient
-      .post<OauthTokenResponse>('/oauth/refresh', oauthRefreshRequest)
+      .post<OauthTokenResponse>('/oauth/token', oauthRefreshRequest)
       .pipe(
         share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
         map(res => {

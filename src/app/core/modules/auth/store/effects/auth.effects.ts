@@ -36,6 +36,15 @@ export class AuthEffects {
     },
     { dispatch: false },
   );
+  loginDialogClose$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.closeLoginDialog),
+        map(() => this.dialog.closeAll()),
+      );
+    },
+    { dispatch: false },
+  );
 
   signUpDialogOpen$ = createEffect(
     () => {
@@ -73,16 +82,18 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.logout),
-        map(action => {
+        map(({ withoutReload }) => {
           localStorage.removeItem(TokensEnum.ACCESS_TOKEN);
           localStorage.removeItem(TokensEnum.REFRESH_TOKEN);
           localStorage.removeItem(TokensEnum.TOKEN_TYPE);
           localStorage.removeItem(LocalStorageKeysEnum.ME);
           localStorage.removeItem(LocalStorageKeysEnum.USER);
-          this.router.navigateByUrl('/').then(() => {
-            // eslint-disable-next-line no-restricted-globals
-            location.reload();
-          });
+          if (!withoutReload) {
+            this.router.navigateByUrl('/').then(() => {
+              // eslint-disable-next-line no-restricted-globals
+              location.reload();
+            });
+          }
         }),
       );
     },

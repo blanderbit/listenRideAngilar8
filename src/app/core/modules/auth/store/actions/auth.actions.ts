@@ -20,6 +20,7 @@ export const saveUserError = createAction(
 );
 
 export const openLoginDialog = createAction('[Auth] Open Login Dialog');
+export const closeLoginDialog = createAction('[Auth] Close Login Dialog');
 export const openSignUpDialog = createAction('[Auth] Open Sign Up Dialog');
 
 export const updateUser = createAction(
@@ -28,4 +29,7 @@ export const updateUser = createAction(
 );
 export const updateUserByApi = createAction('[Auth] Update User By Api');
 
-export const logout = createAction('[Auth] Log Out');
+export const logout = createAction(
+  '[Auth] Log Out',
+  props<{ withoutReload?: boolean }>(),
+);
