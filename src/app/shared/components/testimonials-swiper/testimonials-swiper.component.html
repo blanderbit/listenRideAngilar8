@@ -17,13 +17,14 @@
         </h3>
         <img
           class="testimonials-list_small-img m-b-1"
-          alt=""
+          alt="testimonial image"
           src="{{ response.picture }}"
         />
         <p
-          class="d-block d-lg-none testimonials-list_username light-font main-blue-font-color hyphens-auto"
+          class="d-block d-lg-none testimonials-list_username
+           light-font main-blue-font-color hyphens-auto"
         >
-          <span>Author:</span>
+          <span> {{ 'shared.author' | translate }}: </span>
           {{ response.fullname }}
         </p>
         <p class="dark-font-color hyphens-auto">
@@ -32,7 +33,7 @@
         <p
           class=" light-font d-none d-lg-block testimonials-list_username hyphens-auto"
         >
-          <span class="light-font">Author:</span>
+          <span class="light-font"> {{ 'shared.author' | translate }}: </span>
           {{ response.fullname }}
         </p>
       </div>

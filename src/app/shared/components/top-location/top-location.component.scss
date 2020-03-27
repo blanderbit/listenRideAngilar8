@@ -24,20 +24,17 @@
 @media (max-width: $device-sm) {
   .top-location-list {
     max-height: 36rem;
-    text-align: center;
   }
 }
 
 @media (max-width: $device-tablet) {
   .top-location-list {
     max-height: 30rem;
-    text-align: center;
   }
 }
 
 @media (max-width: $device-xs) {
   .top-location-list {
     max-height: 40rem;
-    text-align: center;
   }
 }

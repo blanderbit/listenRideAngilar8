@@ -23,11 +23,11 @@
     border-radius: $border-radius;
     box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
     height: auto;
-    padding: 4rem 2rem 8rem;
+    padding: 4rem 5rem 8rem 2rem;
     position: absolute;
-    right: 4rem;
+    right: 1rem;
     text-align: left;
-    width: 44rem;
+    width: 46rem;
   }
 
   &_small-img {
@@ -40,7 +40,7 @@
   }
 }
 
-@include if-smaller-than(md) {
+@include if-smaller-than(tablet) {
   :host .swiper-container {
     height: auto;
     padding-bottom: 1rem;
@@ -85,18 +85,6 @@
     }
   }
 }
-//
-//::ng-deep .swiper-pagination-bullet {
-//  width: 1.6rem;
-//  height: 1.6rem;
-//  border-radius: 15%;
-//  background: $light-grey;
-//  opacity: 1;
-//}
-//
-//::ng-deep .swiper-pagination-bullet-active {
-//  background: $main-blue;
-//}
 
 .swiper-pagination {
   bottom: 1rem;

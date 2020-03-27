@@ -1,12 +1,8 @@
-<div class="container">
-  <div>
-    <p class="mat-subheader px-0">{{ 'brands.description' | translate }}</p>
-  </div>
-  <div class="m-0">
-    <h2 class="mat-headline">{{ 'brands.choose-from-brands' | translate }}</h2>
-  </div>
-  <div class="p-2">
-    <div class="pt-0">
+<div class="container m-large">
+  <h1 class="heading-3">{{ 'brands.choose-from-brands' | translate }}</h1>
+  <p>{{ 'brands.description' | translate }}</p>
+  <div class="">
+    <div class="">
       <mat-grid-list [cols]="columnsNum" gutterSize="16px" rowHeight="1:0.65">
         <mat-grid-tile
           class="rounded"
@@ -20,6 +16,11 @@
       </mat-grid-list>
     </div>
   </div>
-  <p class="my-5" [innerHtml]="'brands.join-program-link' | translate"></p>
-  <lnr-need-help></lnr-need-help>
+  <p
+    class="m-t-1 m-b-1"
+    [innerHtml]="'brands.join-program-link' | translate"
+  ></p>
+  <section class="m-large">
+    <lnr-need-help></lnr-need-help>
+  </section>
 </div>

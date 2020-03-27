@@ -23,26 +23,22 @@
   &_subtitles {
     color: $dark-text-color;
     font-size: 2.6rem;
-    margin-bottom: 1rem;
-  }
-
-  &_button {
-    @include if-smaller-than(xs) {
-      text-align: center;
-    }
   }
 }
 
-@media (max-width: $device-xs) {
+@include if-smaller-than(xs) {
   .home-page {
     &_subtitles {
       font-size: 2.3rem;
-      text-align: center;
     }
   }
 
   .wrap-searching-form {
-    margin-bottom: -8rem;
+    margin-bottom: -10rem;
+  }
+
+  .wrap-events-block {
+    margin-top: 4rem;
   }
 }
 
@@ -64,12 +60,4 @@
 .wrap-searching-form {
   padding: 2rem;
   width: 100%;
-}
-
-.large-m-t {
-  margin-top: 6rem;
-}
-
-.large-m-b {
-  margin-bottom: 6rem;
 }

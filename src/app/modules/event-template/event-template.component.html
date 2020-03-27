@@ -1,53 +1,56 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
-      <h3>Rent a road bike for the {{ event.name | titlecase }}</h3>
-      <p class="heading-5">
-        On listnride you find the best rental bikes
-      </p>
+  <div class="m-large">
+    <div class="row">
+      <div class="col-md-10 dark-font-color">
+        <h3
+          [innerHTML]="
+            'event_template.header' | translate: { eventName: event.name }
+          "
+        ></h3>
+        <p class="heading-5">
+          {{ 'event_template.subheader' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <lnr-event-welcome-screen [event]="event"></lnr-event-welcome-screen>
+      </div>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-md-12 m-t-2 m-b-2">
-      <lnr-event-welcome-screen [event]="event"></lnr-event-welcome-screen>
-    </div>
-  </div>
-  <div class="row m-t-2 m-b-2">
-    <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
+    <div class="col-md-10 dark-font-color">
       <h4>{{ event.bikes_title }}</h4>
       <p class="heading-5">
         {{ event.bikes_description }}
       </p>
     </div>
   </div>
-  <div class="m-b-2 m-t-2" [ngClass]="{ 'd-none': !event.rides.length }">
-    <lnr-events-bikes [bikes]="event.rides"> </lnr-events-bikes>
+  <div [ngClass]="{ 'd-none': !event.rides.length }">
+    <lnr-events-bikes [bikes]="event.rides"></lnr-events-bikes>
   </div>
-  <div class="row" [ngClass]="{ 'd-none': !event.testimonials.length }">
-    <div class="col-md-12 m-t-2 m-b-2">
-      <div>
-        <lnr-testimonials-swiper [responses]="event.testimonials">
-        </lnr-testimonials-swiper>
-      </div>
+
+  <div class="row m-large" [ngClass]="{ 'd-none': !event.testimonials.length }">
+    <div class="col-md-12">
+      <lnr-testimonials-swiper [responses]="event.testimonials">
+      </lnr-testimonials-swiper>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1 m-t-2 dark-font-color">
+
+  <div class="row" [ngClass]="!event.testimonials.length ? 'm-large' : 'm-b-6'">
+    <div class="col-md-10 dark-font-color">
       <h4>
-        Other events you might be interested in
+        {{ 'events_template.swiper_title' | translate }}
       </h4>
       <p class="heading-5">
-        We are partnering with numerous events across Europe to offer bike
-        rental at the starting line, making it easier for you to take part in
-        awesome races without the need of bringing your own bike!
+        {{ 'events_template.swiper_subtitle' | translate }}
       </p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 m-t-2 m-b-2">
+    <div class="col-md-12">
       <lnr-events-small-swiper></lnr-events-small-swiper>
     </div>
-    <div class="event-page_button col-md-11 offset-md-1 m-t-2 m-b-6">
+    <div class="event-page_button col-md-11 m-t-1">
       <button
         mat-flat-button
         class="m-t-2 m-b-2"
@@ -55,7 +58,7 @@
         color="accent"
       >
         <span class="white regular heading-6">
-          See all events
+          {{ 'shared.button_see_all_events' | translate }}
         </span>
       </button>
     </div>

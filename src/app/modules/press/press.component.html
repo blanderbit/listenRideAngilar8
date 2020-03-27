@@ -1,29 +1,34 @@
-<article class="container">
-  <section class="row">
-    <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
-      <h1 class="heading-3" [innerHTML]="'press.header' | translate"></h1>
-      <p [innerHTML]="'press.subheader' | translate"></p>
-    </div>
-  </section>
-
-  <section class="m-t-2 m-b-4">
-    <lnr-image-text [imageUrl]="MAIN_IMAGE_URL" [imageAlign]="'left'">
-      <div>
-        <div class="m-t-2 m-b-2">
-          <h4
-            class="main-blue-font-color"
-            [innerHTML]="'press.contact.title' | translate"
-          ></h4>
-          <p [innerHTML]="'press.contact_content' | translate"></p>
-        </div>
-        <div>
-          <h4
-            class="main-blue-font-color"
-            [innerHTML]="'press.kit.title' | translate"
-          ></h4>
-          <p [innerHTML]="'press.kit_content' | translate"></p>
+<article class="lnr-static-page container">
+  <div class="m-large">
+    <section>
+      <div class="row">
+        <div class="col-md-8">
+          <h1 class="heading-3" [innerHTML]="'press.header' | translate"></h1>
+          <p [innerHTML]="'press.subheader' | translate"></p>
         </div>
       </div>
-    </lnr-image-text>
-  </section>
+    </section>
+    <section>
+      <div class="row">
+        <lnr-image-text [imageUrl]="MAIN_IMAGE_URL" [imageAlign]="'left'">
+          <div>
+            <div class="m-t-2 m-b-2">
+              <h4
+                class="main-blue-font-color"
+                [innerHTML]="'press.contact.title' | translate"
+              ></h4>
+              <p [innerHTML]="'press.contact_content' | translate"></p>
+            </div>
+            <div>
+              <h4
+                class="main-blue-font-color"
+                [innerHTML]="'press.kit.title' | translate"
+              ></h4>
+              <p [innerHTML]="'press.kit_content' | translate"></p>
+            </div>
+          </div>
+        </lnr-image-text>
+      </div>
+    </section>
+  </div>
 </article>

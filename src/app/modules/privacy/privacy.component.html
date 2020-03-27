@@ -1,30 +1,32 @@
 <article class="lnr-static-page container">
-  <section class="row">
-    <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
-      <h1 class="heading-3">
-        {{ 'privacy.title' | translate }}
-      </h1>
-      <p>{{ 'privacy.subtitle' | translate }}</p>
-    </div>
-  </section>
-
-  <section class="m-t-2 m-b-4">
-    <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
-      <div class="m-t-2 m-b-2">
-        <p>
-          {{ 'privacy.description' | translate }}
-        </p>
-        <p>
-          <!--TODO add function javascript:gaOptout()-->
-          <a
-            href="#"
-            onclick="alert('Google Analytics successfully deactivated')"
-            class="lnr-center"
-          >
-            {{ 'privacy.ga-opt-out' | translate }}
-          </a>
-        </p>
+  <div class="m-large">
+    <section class="row">
+      <div class="col-md-8">
+        <h1 class="heading-3">
+          {{ 'privacy.title' | translate }}
+        </h1>
+        <p>{{ 'privacy.subtitle' | translate }}</p>
       </div>
-    </lnr-image-text>
-  </section>
+    </section>
+
+    <section class="row">
+      <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
+        <div class="m-t-2 m-b-2">
+          <p>
+            {{ 'privacy.description' | translate }}
+          </p>
+          <p>
+            <!--TODO add function javascript:gaOptout()-->
+            <a
+              href="#"
+              onclick="alert('Google Analytics successfully deactivated')"
+              class="lnr-center"
+            >
+              {{ 'privacy.ga-opt-out' | translate }}
+            </a>
+          </p>
+        </div>
+      </lnr-image-text>
+    </section>
+  </div>
 </article>

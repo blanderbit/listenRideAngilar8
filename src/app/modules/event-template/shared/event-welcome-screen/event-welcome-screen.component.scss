@@ -1,5 +1,5 @@
-@import '../../../../../assets/scss/variables';
-@import '../../../../../assets/scss/utils/mixins';
+@import 'variables';
+@import 'utils/utils';
 
 .welcome-screen {
   align-items: center;
@@ -13,10 +13,15 @@
     background-size: cover;
     border-radius: $border-radius;
     display: flex;
-    height: 42rem;
+    height: 46rem;
     justify-content: center;
     width: 60%;
     z-index: 0;
+
+    @include if-smaller-than(xs) {
+      height: 22rem;
+      width: 100%;
+    }
   }
 
   &_content {
@@ -31,23 +36,31 @@
       border-radius: $border-radius;
       box-shadow: 0 0.4rem 3rem rgba(65, 83, 105, 0.16);
       height: auto;
-      padding: 4rem 2rem 8rem;
+      padding: 4rem 2rem;
     }
 
     &_date {
       padding-bottom: 2rem;
       padding-left: 6rem;
+
+      &_desktop {
+        display: block;
+      }
+
+      &_mobile {
+        display: none;
+      }
     }
   }
 }
 
-@include if-smaller-than(md) {
+@include if-smaller-than(tablet) {
   .welcome-screen {
     flex-direction: column;
 
     &_image {
-      height: 22rem;
       width: 100%;
+      height: 42rem;
     }
 
     &_content {
@@ -57,12 +70,20 @@
 
       &_block {
         box-shadow: none;
-        padding: 4rem 0 8rem;
+        padding: 1rem 0 0;
       }
 
       &_date {
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
         padding-left: 0;
+
+        &_mobile {
+          display: block;
+        }
+
+        &_desktop {
+          display: none;
+        }
       }
     }
   }

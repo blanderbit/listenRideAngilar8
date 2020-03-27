@@ -25,7 +25,7 @@ export class BikeCardSwiperComponent
   swiperConfig() {
     this.bikeSwiper = new Swiper('.swiper-bikes', {
       speed: 400,
-      spaceBetween: 10,
+      spaceBetween: 5,
       slidesPerView: 3,
       initialSlide: 0,
       navigation: {

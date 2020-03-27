@@ -24,11 +24,15 @@ export class SmallSwiperComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       },
       breakpoints: {
-        960: {
+        990: {
           slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
           spaceBetween: 10,
         },
-        740: {
+        360: {
           slidesPerView: 2,
           spaceBetween: 10,
         },

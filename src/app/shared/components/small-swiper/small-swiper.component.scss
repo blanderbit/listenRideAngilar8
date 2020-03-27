@@ -6,15 +6,10 @@
     img {
       border-radius: $border-radius;
       height: 21rem;
-      margin-left: 1rem;
       object-fit: cover;
       width: 100%;
-
-      @include if-bigger-than(lg) {
-        width: 32rem;
-      }
       @include if-smaller-than(md) {
-        height: 10rem;
+        height: 11rem;
         width: 100%;
       }
 

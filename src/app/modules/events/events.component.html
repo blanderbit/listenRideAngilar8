@@ -1,45 +1,45 @@
 <div class="wrap-event-page">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-11 offset-md-1 m-t-2 m-b-2">
-        <h3 class="heading-3">
-          Rent great bikes for exciting events!
-        </h3>
+    <div class="row m-large">
+      <div class="col-md-8 col-sm-12">
+        <h1 class="heading-3">
+          {{ 'home.events_block.title' | translate }}
+        </h1>
         <p class="heading-4">
-          We are supporting these events by providing high-quality bike rental
+          {{ 'home.events_block.subtitle' | translate }}
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3 offset-md-1 m-b-2 m-t-2 col-sm-12">
+      <div class="col-md-3 col-sm-12">
         <h3 class="dark-font-color">
-          Upcoming events
+          {{ 'events.upcoming_events' | translate }}
         </h3>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12" *ngIf="events$ | async as futureEvents">
         <div *ngFor="let event of futureEvents['future_events']">
-          <lnr-timeline-block [seoEvent]="event"> </lnr-timeline-block>
+          <lnr-timeline-block [seoEvent]="event"></lnr-timeline-block>
         </div>
       </div>
     </div>
-    <div class="row m-t-4 m-b-4">
+    <div class="row m-large">
       <div class="col-sm-12">
         <mat-divider></mat-divider>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3 offset-md-1 m-b-2 col-sm-12">
+      <div class="col-md-3 col-sm-12">
         <h3 class="dark-font-color">
-          Past events
+          {{ 'events.past_events' | translate }}
         </h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row m-b-2">
       <div class="col-md-12" *ngIf="events$ | async as pastEvents">
         <div *ngFor="let event of pastEvents['past_events']">
-          <lnr-timeline-block [seoEvent]="event"> </lnr-timeline-block>
+          <lnr-timeline-block [seoEvent]="event"></lnr-timeline-block>
         </div>
       </div>
     </div>

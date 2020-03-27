@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-md-11 col-sm-12 offset-md-1 m-b-2">
-    <h3 class="subtitles m-b-2" *ngIf="cities">
+<div class="">
+  <div class="col-md-10 col-sm-12 m-b-1">
+    <h3 class="subtitles dark-font-color" *ngIf="cities">
       {{ 'home.popular_destination.header' | translate }}
       <span *ngIf="this.apiSeoService.getCountryDomain() === 'com'">
         {{ 'home.popular_destination.header_helper' | translate }} :
@@ -14,7 +14,7 @@
     </h3>
   </div>
 </div>
-<div class="row popular-destination-list text-center">
+<div class="flex flex-wrap popular-destination-list">
   <div
     *ngFor="let city of cities"
     class="wrap-destination col-lg-2 col-md-4 col-sm-6"
@@ -29,10 +29,10 @@
           {{ city.name[this.apiSeoService.retrieveLocale()] }}
         </h5>
       </a>
-      <p>
+      <span>
         €{{ city?.average_price | number: '1.0-0' }} /
         {{ 'shared.day_average' | translate }}
-      </p>
+      </span>
     </div>
   </div>
 </div>

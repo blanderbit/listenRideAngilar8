@@ -36,13 +36,18 @@
     </div>
     <div class="row justify-content-md-center">
       <div class="col-md-6 text-center m-t-1 m-b-1">
-        <h5 class="light-font">Choose a {{ brand.title }} location</h5>
+        <h5
+          class="light-font"
+          [innerHTML]="
+            'brand.choose_location' | translate: { brandName: brand.title }
+          "
+        ></h5>
       </div>
     </div>
     <lnr-brand-template-bike-list [response]="brand.bikes">
     </lnr-brand-template-bike-list>
     <div class="row d-none d-md-block">
-      <div class="col-sm-12 p-t-2 p-b-4">
+      <div class="col-sm-12 p-t-4 p-b-4">
         <mat-divider></mat-divider>
       </div>
     </div>

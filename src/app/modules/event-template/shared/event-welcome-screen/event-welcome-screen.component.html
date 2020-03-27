@@ -6,32 +6,28 @@
     <img src="{{ event.logo }}" />
   </div>
   <div class="welcome-screen_content">
-    <div class="welcome-screen_content_date d-none d-sm-block">
+    <div
+      class="welcome-screen_content_date welcome-screen_content_date_desktop"
+    >
       <h5>
-        <span class="thin">
-          When:
-        </span>
+        <span class="thin"> {{ 'shared.when' | translate }}: </span>
         {{ event.pretty_date }}
       </h5>
       <h5>
-        <span class="thin">
-          Where:
-        </span>
+        <span class="thin"> {{ 'shared.where' | translate }}: </span>
         {{ event.location }}
       </h5>
     </div>
     <div class="welcome-screen_content_block">
-      <div class="welcome-screen_content_date d-block d-sm-none">
+      <div
+        class="welcome-screen_content_date welcome-screen_content_date_mobile"
+      >
         <h6>
-          <span class="thin">
-            When:
-          </span>
+          <span class="thin"> {{ 'shared.when' | translate }}: </span>
           {{ event.pretty_date }}
         </h6>
         <h6>
-          <span class="thin">
-            Where:
-          </span>
+          <span class="thin"> {{ 'shared.where' | translate }}: </span>
           {{ event.location }}
         </h6>
       </div>

@@ -1,22 +1,24 @@
 <article class="lnr-static-page container">
-  <section class="row">
-    <div class="col-md-8 offset-md-1 m-t-2 m-b-4">
-      <h1
-        [innerHTML]="'terms_and_conditions.title' | translate"
-        class="heading-3"
-      ></h1>
-      <p [innerHTML]="'terms_and_conditions.subheader' | translate"></p>
-    </div>
-  </section>
-  <section class="m-t-2 m-b-4">
-    <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
-      <div class="m-t-2 m-b-2">
-        <h4
-          class="main-blue-font-color"
-          [innerHTML]="'terms_and_conditions.header' | translate"
-        ></h4>
-        <p [innerHTML]="'terms_and_conditions.subtitle' | translate"></p>
+  <div class="m-large">
+    <section class="row">
+      <div class="col-md-8 ">
+        <h1
+          [innerHTML]="'terms_and_conditions.title' | translate"
+          class="heading-3"
+        ></h1>
+        <p [innerHTML]="'terms_and_conditions.subheader' | translate"></p>
       </div>
-    </lnr-image-text>
-  </section>
+    </section>
+    <section class="row">
+      <lnr-image-text [imageAlign]="'left'" [imageUrl]="MAIN_IMAGE_URL">
+        <div class="m-t-2 m-b-2">
+          <h4
+            class="main-blue-font-color"
+            [innerHTML]="'terms_and_conditions.header' | translate"
+          ></h4>
+          <p [innerHTML]="'terms_and_conditions.subtitle' | translate"></p>
+        </div>
+      </lnr-image-text>
+    </section>
+  </div>
 </article>

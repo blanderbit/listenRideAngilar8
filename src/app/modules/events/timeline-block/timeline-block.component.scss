@@ -1,5 +1,5 @@
-@import '../../../../assets/scss/variables';
-@import '../../../../assets/scss/utils/mixins';
+@import 'variables';
+@import 'utils/utils';
 
 .timeline {
   margin: 0 auto;
@@ -14,81 +14,87 @@
     position: absolute;
     top: 0;
     width: 0.4rem;
+
+    @include if-smaller-than(md) {
+      border: 0.2rem solid $black;
+      left: 5%;
+      width: 0.2rem;
+      font-size: $small-fontsize;
+    }
   }
 
   .time-line-block {
     &_left {
       left: 0;
       width: 30%;
-    }
-
-    &_content {
-      position: relative;
-
-      &::after {
-        background: $white;
-        border: 0.4rem solid $black;
-        border-radius: 50%;
-        content: '';
-        height: 1.8rem;
-        margin-left: -0.7rem;
-        position: absolute;
-        width: 1.8rem;
-        z-index: 1;
+      padding-right: 4rem;
+      @include if-smaller-than(md) {
+        padding-right: 0;
+        font-size: $small-fontsize;
       }
     }
 
-    &_right {
-      align-items: flex-start;
-      flex-direction: row;
-      justify-content: space-between;
-      left: 50%;
-      width: 70%;
+    &_date-desktop {
+      display: block;
+      @include if-smaller-than(md) {
+        display: none;
+      }
+    }
 
-      img {
-        height: 20rem;
-        min-width: 36rem;
-        object-fit: cover;
-        object-position: center;
+    &_date-mobile {
+      display: none;
+      @include if-smaller-than(md) {
+        display: block;
+      }
+    }
+
+  &_content {
+    position: relative;
+
+    &::after {
+      background: $white;
+      border: 0.4rem solid $black;
+      border-radius: 50%;
+      content: '';
+      height: 1.8rem;
+      margin-left: -0.7rem;
+      position: absolute;
+      width: 1.8rem;
+      z-index: 1;
+    }
+  }
+
+  &_right {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 50%;
+    width: 70%;
+    @include if-smaller-than(tablet) {
+      flex-direction: column;
+
+    }
+    @include if-smaller-than(md) {
+      align-items: center;
+      padding-left: 3rem;
+      width: 100%;
+      font-size: $h5-fontsize;
+    }
+
+    img {
+      height: 20rem;
+      min-width: 36rem;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      @include if-smaller-than(md) {
+        height: 16rem;
+        max-width: 28rem;
+        min-width: 24rem;
         width: 100%;
       }
     }
   }
 }
 
-@include if-smaller-than(md) {
-  .timeline {
-    .time-line-block {
-      &_right {
-        display: flex;
-        flex-direction: column;
-        font-size: $h5-fontsize;
-      }
-    }
-  }
-}
-
-@include if-smaller-than(xs) {
-  .timeline {
-    ::after {
-      border: 0.2rem solid $black;
-      left: 5%;
-      width: 0.2rem;
-    }
-
-    .time-line-block {
-      &_right {
-        align-items: center;
-        padding-left: 3rem;
-        width: 100%;
-
-        img {
-          height: 16rem;
-          max-width: 28rem;
-          min-width: 24rem;
-          width: 100%;
-        }
-      }
-    }
-  }
 }

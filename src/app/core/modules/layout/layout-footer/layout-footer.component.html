@@ -22,7 +22,7 @@
             <a
               *ngFor="let country of countries"
               class="lnr-white-link regular white text-decoration-none"
-              routerLink="./{{ country.name.en | lowercase }}"
+              routerLink="./countries/{{ country.name.en | lowercase }}"
             >
               {{ country.name[this.apiSeoService.retrieveLocale()] }}
             </a>
@@ -75,7 +75,7 @@
     <div class="lnr-footer_bottom-block flex direction-row content-between">
       <div class="flex align-items-center direction-row">
         <img
-          src="../../../../../assets/images/icons/shared//mini-logo.svg"
+          src="../../../../../assets/images/icons/shared/mini-logo.svg"
           alt="listnride"
           class="m-r-1"
         />

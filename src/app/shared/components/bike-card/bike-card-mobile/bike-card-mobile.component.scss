@@ -1,7 +1,7 @@
-@import '../../../../../assets/scss/variables';
+@import 'variables';
 
 .bike-tile-map-view {
-  background-color: white;
+  background-color: $white;
   border: 0.1rem solid $light-grey;
   border-radius: 0.4rem;
   cursor: pointer;
@@ -65,7 +65,7 @@
 
     &_content {
       line-height: 2rem;
-      max-width: 70%;
+      max-width: 61%;
     }
 
     &_price-day {

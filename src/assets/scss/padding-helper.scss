@@ -1,3 +1,5 @@
+@import 'utils/utils';
+
 $sizes: (0, 1, 2, 4, 6);
 
 @each $size in $sizes {
@@ -48,4 +50,14 @@ $sizes: (0, 1, 2, 4, 6);
 
 .m-auto {
   margin: 0 auto;
+}
+
+// margin between sections
+.m-large {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  @include if-smaller-than(md) {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
 }

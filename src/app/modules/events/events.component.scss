@@ -1,0 +1,13 @@
+@import 'variables';
+@import 'utils/utils';
+
+.wrap-event-page {
+  @include if-smaller-than(xs) {
+    h1, h3 {
+      font-size: $h4-fontsize;
+    }
+    p {
+      font-size: $h6-fontsize;
+    }
+  }
+}

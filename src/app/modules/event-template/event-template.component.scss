@@ -1,9 +1,0 @@
-@import 'utils/utils';
-
-.event-page {
-  &_button {
-    @include if-smaller-than(xs) {
-      text-align: center;
-    }
-  }
-}

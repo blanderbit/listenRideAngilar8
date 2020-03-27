@@ -3,7 +3,11 @@
 .editable {
   ::ng-deep {
     a {
-      color: $main-green;
+      color: $link-color;
+
+      &:hover {
+        color: $main-green;
+      }
     }
   }
 }
