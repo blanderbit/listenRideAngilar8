@@ -227,6 +227,34 @@
     "choose_from_brands": "Kies een merk",
     "description": "listnride biedt mensen de mogelijkheid om nieuwe merken en fietsen te ontdekken, te uitproberen en te leren kennen alvorens een aankoop online te doen. Met listnride heb je de mogelijkheid om verschillende soorten fietsen en merken te testen voordat je de uiteindelijke aankoopbeslissing neemt. De meeste merken zijn direct-to-consumer fietsmerken en kunnen worden getest in verschillende steden in Europa. De testritten kunnen online geboekt worden op de gewenste tijd en locatie. Ontdek en test de beste fietsen!"
   },
+  "jobs": {
+    "header": "Werken bij List and Ride",
+    "subheader": "We zetten de nieuwe standaard voor het boeken van fietshuur en fietstochten.",
+    "contact": {
+      "content": "Wij zijn op zoek naar getalenteerde collega's die binnen een inspirerend en gemotiveerd team willen werken binnen een start-up business, die een nieuwe standaard wil zetten voor de manier waarop mensen fietsen en fietstochten boeken. List and Ride is op zoek naar mensen met een doener mentaliteit die bereid zijn om verantwoordelijkheid te nemen in een dynamische omgeving.Als je geïnteresseerd bent om bij ons te komen werken, bekijk dan onze actuele vacatures hieronder. We horen graag van je."
+    },
+    "open": "Vacatures",
+    "go_back": "Terug",
+    "apply": "Soliciteer nu! "
+  },
+  "press": {
+    "header": "Perskamer",
+    "subheader": "Informatie ter download. listnride klaar voor een gesprek.",
+    "contact": {
+      "title": "Perscontact"
+    },
+    "kit": {
+      "title": "Persmap"
+    },
+    "contact_content": "U heeft vragen omtrent listnride of u zoekt een contactpersoon voor gespreksonderwerpen als fietsverhuursystemen, huurfietsen en mobiliteitsconcepten? Dan kunt u ons gaarne direkt contacteren:\nCommunications and PR\n<a href=\"mailto:contact@listnride.com\" target=\"_top\">contact@listnride.com</a>",
+    "kit_content": "Kom meer te weten over onze startup en hoe het allemaal begon in onze press kit, <a target=\"_blank\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdnp7SsmiDySLB_BApBqe5-V8r497ynZWHcTgGKATaIuvrKDg/viewform?usp=pp_url\">die u hier kunt bekijken</a>"
+  },
+  "terms_and_conditions": {
+    "title": "Terms and conditions",
+    "subheader": "Laatst bijgewerkt: 9 september 2019",
+    "subtitle": "Lees deze voorwaarden zorgvuldig door, want deze bevatten belangrijke informatie over uw wettelijke rechten, rechtsmiddelen en verplichtingen. Door het listnride platform te gebruiken, gaat u ermee akkoord om te voldoen aan deze voorwaarden.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Hier kunt u </a1>downloaden en onze algemene voorwaarden lezen.<br>Bedankt voor het gebruik van listnride!"
+  },
+  "terms_and_conditions.header": "Algemene voorwaarden van het Online-Platform listnride",
   "bike_page": {
     "location": {
       "disclaimer": "Exacte locatie-informatie wordt verstrekt nadat een boeking is bevestigd."
@@ -1055,6 +1083,7 @@
       "title": "Wat is je telefoonnummer",
       "did_not_receive_code": "Heb je geen bevestigingscode ontvangen?",
       "verify_phone_number": "Bevestig je telefoonnummer",
+      "verify_phone_subtitle": "Je ontvangt sms-berichten ten aanzien van je boeking",
       "description": "Bevestig je telefoonnummer, zodat we je per SMS kunnen informeren als er een nieuwe aanvraag voor je is. Voer uw telefoonnummer in en klik op \"Bevestiging versturen\". Je ontvangt dan een sms met een code die je hieronder kunt invoeren.",
       "enter_valid_phone_nr": "Voer een geldig telefoonnummer in",
       "send_confirmation_sms": "Bevestigings versturen",

@@ -234,6 +234,34 @@
     "choose_from_brands": "Wähle eine Marke",
     "description": "listnride bietet dir die Möglichkeit, Marken und Fahrräder zu entdecken, kennenzulernen und vor deiner Kaufentscheidung ausführlich zu testen. Die meisten unserer Marken sind Online-Direktanbieter und stehen nur über listnride für Testfahrten in ganz Europa zur Verfügung. Testfahrten können online zur gewünschten Zeit und am gewünschten Ort gebucht werden. Entdecke und teste die besten Fahrräder!"
   },
+  "jobs": {
+    "header": "Stellenangebote bei List and Ride",
+    "subheader": "Wir setzen neue Standards für die Buchung von Fahrrädern und Rad-Erlebnissen",
+    "contact": {
+      "content": "Wir suchen Menschen mit Talent und Erfahrung, die in einem Start-up etwas bewegen möchten. Arbeite in einem aufregenden und dynamischen Umfeld, eigenverantwortlich und als Teil eines coolen Teams. Gemeinsam setzen wir neue Standards für die Buchung von Bikes und Bike-Erlebnissen. Wenn du interessiert bist dabei zu sein, schau bitte die unten aufgelisteten freien Stellen durch. Wir freuen uns darauf, von dir zu hören."
+    },
+    "open": "Stellenangebote",
+    "go_back": "Zurück",
+    "apply": "Jetzt bewerben"
+  },
+  "press": {
+    "header": "Pressebereich",
+    "subheader": "Infos bereit zum Download. ",
+    "contact": {
+      "title": "Pressekontakt"
+    },
+    "kit": {
+      "title": "Pressemappe"
+    },
+    "contact_content": "Sie haben weitere Fragen zu listnride oder brauchen einen Ansprechpartner für Themen rund um Fahrradverleihsystem, Mieträder und Mobilitätskonzepte? Dann kontaktieren Sie uns direkt:\nKommunikation und PR\n<a href=\"mailto:contact@listnride.com\" target=\"_top\">contact@listnride.com</a>",
+    "kit_content": "List and Ride: das aufstrebende Start-Up für Online Fahrradverleih. Erfahre mehr in unserer Pressemappe, <a target=\"_blank\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdnp7SsmiDySLB_BApBqe5-V8r497ynZWHcTgGKATaIuvrKDg/viewform?usp=pp_url\">die wir Ihnen hier bereitgestellt haben</a>"
+  },
+  "terms_and_conditions": {
+    "title": "Nutzungsbedingungen",
+    "subheader": "Letzte Aktualisierung: 9. September 2019",
+    "subtitle": "Bitte lies die Allgemeinen Geschäftsbedingungen sorgfältig durch, da sie wichtige Informationen zu deinen vertraglichen Rechten und Pflichten enthalten. Durch die Nutzung der listnride-Plattform stimmst du diesen Bedingungen zu.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Hier kannst du die Allgemeinen Geschäftsbedingungen</a1> zur Einsicht herunter laden.<br>Vielen Dank, dass du listnride nutzt!"
+  },
+  "terms_and_conditions.header": "List and Ride Allgemeine Geschäftsbedingungen",
   "bike_page": {
     "location": {
       "disclaimer": "Genaue Standortinformationen werden bereitgestellt, nachdem die Buchung bestätigt wurde."
@@ -1066,6 +1094,7 @@
       "title": "Was ist deine Telefonnummer",
       "did_not_receive_code": "Hast du kein Bestätigungscode erhalten?",
       "verify_phone_number": "Bestätige deine Telefonnummer",
+      "verify_phone_subtitle": "Du erhälst SMS-Benachrichtigungen bezüglich deiner Buchung",
       "description": "Bestätige deine Telefonnummer, damit du per SMS über Deine Anfragen benachrichtigt werden kannst. Gib einfach deine Telefonnummer ein und klicke auf „Bestätigung schicken“. Du erhältst dann eine SMS mit einem Code, den du unten eingeben kannst.",
       "enter_valid_phone_nr": "Gib eine gültige Telefonnr. an",
       "send_confirmation_sms": "Bestätigung senden",

@@ -7,6 +7,9 @@
     "skip": "Skip",
     "complete": "Complete",
     "proceed": "Proceed",
+    "where": "Where",
+    "when": "When",
+    "author": "Author",
     "size": "Size",
     "img-alt": "{{bikeBrand}} {{bikeName}} bike rental in {{bikeCity}}",
     "bike_location": "Bike location",
@@ -235,6 +238,45 @@
     "description": "listnride helps people discover, try, and learn about new brands and bikes before buying online. With listnride you have the opportunity to test ride various types of bikes and brands before making the final purchase decision. Most of the brands are direct-to-customer bike brands and are available to test ride across cities in Europe. Test rides can be booked online at the desired time and location. Discover and test ride the best bikes!"
   },
   "me": "Rent a vintage road bike for L'Eroica Gaiole, only on listnride!",
+  "brand": {
+    "choose_location": "Choose a {{ brandName }} location\n"
+  },
+  "event_template": {
+    "header": " Rent a road bike for the {{ eventName}}",
+    "subheader": "On listnride you find the best rental bikes\n"
+  },
+  "events_template": {
+    "swiper_title": " Other events you might be interested in",
+    "swiper_subtitle": "We are partnering with numerous events across Europe to offer bike rental at the starting line, making it easier for you to take part in awesome races without the need of bringing your own bike!"
+  },
+  "jobs": {
+    "header": "Work at List and Ride",
+    "subheader": "We set a new standard on how people book their bike hire and cycling experiences",
+    "contact": {
+      "content": "We look for talented people who want to join an inspiring and motivated team in a start-up business that wants to set a new standard on how people book bikes and bike experiences. List and Ride is seeking people with a doer mindset who are willing to take on responsibility in a fast-paced environment.If you are interested in joining us please search our current vacancy listings below. We would love to hear from you."
+    },
+    "open": "Open Positions",
+    "go_back": "Back",
+    "apply": "Apply Now"
+  },
+  "press": {
+    "header": "Press section",
+    "subheader": "Information is ready to be downloaded.",
+    "contact": {
+      "title": "Press contact"
+    },
+    "kit": {
+      "title": "Press kit"
+    },
+    "contact_content": "Do you have further questions about listnride or need more information about bike rental systems and mobility concepts? Contact us directly:\nCommunications and PR\n<a href=\"mailto:contact@listnride.com\" target=\"_top\">contact@listnride.com</a>",
+    "kit_content": "Find out more about our startup and how it all began in our press kit, which can be <a target=\"_blank\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdnp7SsmiDySLB_BApBqe5-V8r497ynZWHcTgGKATaIuvrKDg/viewform?usp=pp_url\">found here</a>"
+  },
+  "terms_and_conditions": {
+    "title": "Terms and Conditions",
+    "subheader": "Last updated: September 9th, 2019",
+    "subtitle": "Please read these Terms carefully as they contain important information about your legal rights, remedies and obligations. By using the listnride platform, you agree to comply with these Terms.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Here you can download</a1> and read our General Terms and Conditions of Business.<br>Thank you for using listnride!"
+  },
+  "terms_and_conditions.header": "List and Ride General Terms and Conditions of Business",
   "bike_page": {
     "location": {
       "disclaimer": "Exact location information is provided after a booking is confirmed."
@@ -336,6 +378,8 @@
       "meta-title": "Rent a road bike for the Berlin Triathlon 2020 | listnride",
       "meta-description": "Rent a road bike with listnride for the Berlin Triathlon 2020. Choose a high-quality racing bike that fits you best!"
     },
+    "upcoming_events": "Upcoming events",
+    "past_events": "Past events",
     "la-chouffe": {
       "title": "Rent a road bike for La Chouffe Classic!",
       "description": "What: <b>La Chouffe Classic</b> | Where: <b>Houffalize, Belgium</b> | When: <b>May 16th, 2020</b>",
@@ -1068,7 +1112,7 @@
       "title": "What is your phone number",
       "did_not_receive_code": "Didn't receive a confirmation code?",
       "verify_phone_number": "Verify your phone number",
-      "verify_phone_subtitle": "You can receive SMS notifications for future requests",
+      "verify_phone_subtitle": "You will receive SMS notifications regarding your booking",
       "description": "Verify your phone number, so that you can receive SMS notifications for future requests. Simply enter your number and click 'Send Confirmation'. You'll receive a code via SMS that you can then enter below.",
       "enter_valid_phone_nr": "Enter a valid phone number",
       "send_confirmation_sms": "Send Confirmation",

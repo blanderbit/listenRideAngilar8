@@ -232,6 +232,34 @@
     "choose_from_brands": "Choisissez une marque",
     "description": "listnride aide les utilisateurs à découvrir et essayer de nouvelles marques et de nouveaux vélos avant d’acheter en ligne. Avec listnride, vous avez la possibilité de tester différents types de vélos et de marques avant de prendre la décision finale. La plupart des marques sont des entreprises de vélos vendus directement aux clients. Ils sont désormais disponibles pour être testé dans plusieures villes européennes. Les essais peuvent être réservés en ligne à l’heure et au lieu souhaités. Découvrez et testez les meilleurs vélos!"
   },
+  "jobs": {
+    "header": "Travailler chez List and Ride",
+    "subheader": "Nous établissons une nouvelle norme sur la façon dont les gens réservent leur location de vélo et leurs expériences à vélo",
+    "contact": {
+      "content": "Vous êtes intéressés pour : rejoindre une équipe motivée ; une jeune entreprise voulant établir une nouvelle norme en matière de réservation de vélos et d'expériences à vélo. List and Ride recherche des entrepreneurs dans l'âme prêts à prendre des responsabilités dans un environnement en constante évolution. L'aventure vous tente ? N'hésitez pas à consulter nos offres d'emploi en dessous. Dans l'attente de vos candidatures. "
+    },
+    "open": "Positions libres",
+    "go_back": "Retour",
+    "apply": "Postuler Maintenant"
+  },
+  "press": {
+    "header": "Section presse",
+    "subheader": "L'information est prête à être téléchargée.",
+    "contact": {
+      "title": "Contact presse"
+    },
+    "kit": {
+      "title": "Dossier de presse"
+    },
+    "contact_content": "Avez-vous d'autres questions à propos de listnride, ou avez-vous besoin de plus d'informations sur les systèmes de location de vélos et les concepts de mobilité? Contactez nous directement:\nCommunications et relations publiques\n<a href=\"mailto:contact@listnride.com\" target=\"_top\">contact@listnride.com</a>",
+    "kit_content": "Pour en savoir plus sur notre start-up et comment tout cela a commencé, accedez à notre dossier de presse, qui peut être <a target=\"_blank\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSdnp7SsmiDySLB_BApBqe5-V8r497ynZWHcTgGKATaIuvrKDg/viewform?usp=pp_url\">trouvé ici</a>"
+  },
+  "terms_and_conditions": {
+    "title": "Termes et conditions",
+    "subheader": "Dernière mise à jour: le 9 septembre 2019",
+    "subtitle": "Veuillez lire attentivement les présentes conditions, car elles contiennent des informations importantes sur vos droits, recours et obligations juridiques. En utilisant la plate-forme listnride, vous acceptez de vous conformer à ces conditions.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Ici, vous pouvez télécharger </a1>et consulter nos conditions générales de vente.<br>Merci d'utiliser listnride!"
+  },
+  "terms_and_conditions.header": "Conditions générales List and Ride",
   "bike_page": {
     "location": {
       "disclaimer": "Les informations sur le lieu exact sont fournies après confirmation de la réservation."
@@ -1061,6 +1089,7 @@
       "title": "Quel est votre numéro de téléphone",
       "did_not_receive_code": "Vous n'avez pas reçu de code de confirmation ?",
       "verify_phone_number": "Vérifiez votre numéro de téléphone",
+      "verify_phone_subtitle": "Vous recevrez des notifications par SMS concernant votre réservation",
       "description": "Vérifiez votre numéro de téléphone afin de pouvoir recevoir des notifications par SMS pour vos futures demandes. Entrez simplement votre numéro et cliquez sur 'Envoyer la confirmation'. Vous recevrez un code par SMS que vous pourrez saisir ci-dessous.",
       "enter_valid_phone_nr": "Entrez un numéro de téléphone valide",
       "send_confirmation_sms": "Envoyer une confirmation",
