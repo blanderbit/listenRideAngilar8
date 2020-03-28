@@ -11,14 +11,14 @@ mat-progress-bar {
   display: flex;
   flex-direction: row;
 
-  @include if-smaller-than(xs) {
+  @include if-smaller-than(sm) {
     flex-direction: column;
   }
 
   .map-container {
     flex: 0 0 30%;
 
-    @include if-smaller-than(tablet) {
+    @include if-smaller-than(xl) {
       flex: 1;
     }
 
@@ -27,7 +27,7 @@ mat-progress-bar {
       height: calc(100vh + 20rem);
       width: 30vw;
 
-      @include if-smaller-than(tablet) {
+      @include if-smaller-than(xl) {
         flex: 1;
         width: 100vw;
       }
@@ -41,7 +41,7 @@ mat-progress-bar {
     margin: 0 auto;
     overflow: scroll;
 
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(sm) {
       flex: 0 0 100%;
       height: auto;
     }
@@ -53,7 +53,7 @@ mat-progress-bar {
       max-width: 1200px;
       width: 100%;
 
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(sm) {
         border-top: 0.1rem solid $light-grey;
         display: flex;
       }
@@ -67,7 +67,7 @@ mat-progress-bar {
         justify-content: space-between;
         margin: 1rem 0;
 
-        @include if-smaller-than(xs) {
+        @include if-smaller-than(sm) {
           border: none;
         }
       }
@@ -78,7 +78,7 @@ mat-progress-bar {
         font-weight: 400;
         padding: 1rem;
 
-        @include if-smaller-than(xs) {
+        @include if-smaller-than(sm) {
           font-size: $small-fontsize !important;
         }
       }
@@ -105,7 +105,7 @@ mat-progress-bar {
       transition: all ease-out 0.7s;
       width: 100vw;
 
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(sm) {
         display: flex;
       }
 
@@ -184,14 +184,14 @@ mat-progress-bar {
   }
 }
 
-@include if-bigger-than($device-lg) {
+@include if-bigger-than(xl) {
   .bike-tile-grid {
     padding-left: 0.8rem;
     padding-right: 0.8rem;
   }
 }
 
-@include if-smaller-than(tablet) {
+@include if-smaller-than(xl) {
   .wrap-search-page-layout {
     display: flex;
     flex-direction: column;

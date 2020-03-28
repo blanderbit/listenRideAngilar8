@@ -2,7 +2,7 @@
 @import 'utils/utils';
 
 .wrap-event-page {
-  @include if-smaller-than(xs) {
+  @include if-smaller-than(sm) {
     h1, h3 {
       font-size: $h4-fontsize;
     }

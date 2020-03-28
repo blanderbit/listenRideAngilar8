@@ -6,22 +6,20 @@
   margin-top: -2rem;
 }
 
-@include if-smaller-than(xs) {
+@include if-smaller-than(sm) {
 
   #right-side-request-flow {
     min-width: 100%;
     margin: 4rem 0;
-
   }
 }
 
-@include if-smaller-than(lg) {
+@include if-smaller-than(xl) {
   #request-flow {
     display: grid;
     grid-template-columns: 55% 45%;
     margin: 0;
     padding: 0;
-
   }
 }
 
@@ -70,7 +68,7 @@
     line-height: 150%;
 
     .arrow-right {
-      background-image: url("./../../../assets/img/arrow-right.svg");
+      background-image: url("./../../../assets/images/icons/shared/long-arrow-right.svg");
       background-size: contain;
       width: 5.5rem;
       height: 100%;

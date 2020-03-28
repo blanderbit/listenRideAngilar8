@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
-import { getImagesFromFolder } from './shared/helpers/mat-icons-helper';
-import * as fromAuth from './core/modules/auth/store/reducers';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { AuthActions, UserApiActions } from '@auth/store/actions';
-import { Subject } from 'rxjs';
 import { ApiUserService } from '@api/api-user/api-user.service';
 import { User } from '@models/user/user';
+import { Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { getImagesFromFolder } from './shared/helpers/mat-icons-helper';
+import * as fromAuth from './core/modules/auth/store/reducers';
 
 @Component({
   selector: 'lnr-root',
@@ -18,8 +18,11 @@ import { User } from '@models/user/user';
 })
 export class AppComponent implements OnInit {
   title = 'listnride-frontend-new';
+
+  loading = true;
+
   private destroyed$ = new Subject();
-  private loading = true;
+
   constructor(
     private store: Store<fromAuth.State>,
     private matIconRegistry: MatIconRegistry,
@@ -86,7 +89,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  checkUser() {
+  checkUser(): void {
     this.apiUserService
       .me()
       .pipe(
@@ -103,7 +106,7 @@ export class AppComponent implements OnInit {
           this.loading = false;
           this.destroyed();
         },
-        e => {
+        () => {
           this.store.dispatch(AuthActions.logout({ withoutReload: true }));
           this.store.dispatch(AuthActions.closeLoginDialog());
           this.loading = false;

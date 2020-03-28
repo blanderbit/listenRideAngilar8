@@ -1,16 +1,14 @@
 @import 'variables';
+@import "utils/utils";
 
 .bike-tile-map-view {
   background-color: $white;
   border: 0.1rem solid $light-grey;
   border-radius: 0.4rem;
-  cursor: pointer;
-  font-family: 'Roboto', sans-serif;
   height: auto;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  position: relative;
-  width: 100%;
+  cursor: pointer;
 
   .bike-available {
     background-color: rgba($grey-background, 0.8);
@@ -33,7 +31,20 @@
 
     &_brand {
       color: $dark-text-color;
+    }
+
+    &_price-day {
+      color: $main-blue;
+      white-space: nowrap;
+    }
+
+    &_brand,
+    &_price-day {
       font-size: $h5-fontsize;
+
+      @include if-bigger-than(xxl) {
+        font-size: $h4-fontsize;
+      }
     }
 
     &_name,
@@ -68,18 +79,21 @@
       max-width: 61%;
     }
 
-    &_price-day {
-      color: $main-blue;
-      font-size: $h5-fontsize;
-      white-space: nowrap;
-    }
-
     &_price-week {
       white-space: nowrap;
     }
 
     &_price-xs {
       display: none;
+    }
+
+    &_name,
+    &_price-week,
+    &_size,
+    &_rating {
+      @include if-smaller-than(sm) {
+        font-size: $small-fontsize - 0.2rem;
+      }
     }
   }
 
@@ -93,46 +107,10 @@
       border-top-right-radius: 0.4rem;
       height: 100%;
       width: 100%;
-    }
-  }
-}
 
-
-@media (max-width: $device-xs) {
-  .bike-tile-map-view {
-    img {
-      max-width: 20rem;
-    }
-
-    .bike-info {
-      &_brand,
-      &_price-day {
-        font-size: $h5-fontsize;
+      @include if-smaller-than(sm) {
+        max-width: 20rem;
       }
-
-      &_price-day {
-        font-size: $h5-fontsize;
-      }
-
-      &_name,
-      &_price-week,
-      &_size,
-      &_rating {
-        font-size: $small-fontsize - 0.2rem;
-      }
-    }
-  }
-}
-
-@media (min-width: $device-xl) {
-  .bike-info {
-    &_brand,
-    &_price-day {
-      font-size: $h4-fontsize;
-    }
-
-    &_price-day {
-      font-size: $h4-fontsize;
     }
   }
 }

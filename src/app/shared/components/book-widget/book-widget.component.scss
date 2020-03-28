@@ -15,10 +15,9 @@
     max-width: 36rem;
     min-width: 20rem;
     margin-left: 1rem;
-
   }
 
-    > div:last-child {
+  & > div:last-child {
     margin-top: -2rem;
   }
 
@@ -38,7 +37,6 @@
     border: none;
     font-weight: 500;
     line-height: 250%;
-
   }
 
   span {
@@ -46,7 +44,6 @@
     font-size: $base-font_size;
     line-height: 250%;
     padding: .1rem 0;
-
   }
 
   button {
@@ -76,11 +73,10 @@
   }
 }
 
-  @include if-smaller-than(tablet) {
+  @include if-smaller-than(xl) {
 
     #right {
-    min-width: 100%;
-    margin: 4rem 0;
-
+      min-width: 100%;
+      margin: 4rem 0;
   }
 }

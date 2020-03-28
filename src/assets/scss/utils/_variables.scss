@@ -4,11 +4,11 @@ $duration_long: 0.75s;
 $easing: cubic-bezier(0.3, 0.1, 0.3, 1);
 
 // breakpoints
+// https://getbootstrap.com/docs/4.0/layout/grid/#grid-options
 $responsive-breakpoints: (
-  xxs:  420px,
-  xs:   540px,
+  sm:   576px,
   md:   768px,
-  tablet: 1100px,
-  lg:   1200px,
-  xl:   1600px
+  lg:   992px,
+  xl:   1200px,
+  xxl:  1600px
 );

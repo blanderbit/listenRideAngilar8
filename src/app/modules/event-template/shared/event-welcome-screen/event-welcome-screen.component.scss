@@ -18,7 +18,7 @@
     width: 60%;
     z-index: 0;
 
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(sm) {
       height: 22rem;
       width: 100%;
     }
@@ -54,7 +54,7 @@
   }
 }
 
-@include if-smaller-than(tablet) {
+@include if-smaller-than(xl) {
   .welcome-screen {
     flex-direction: column;
 

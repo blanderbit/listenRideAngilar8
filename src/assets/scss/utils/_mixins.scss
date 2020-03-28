@@ -15,18 +15,56 @@
   transition: $value;
 }
 
+@function breakpoint-min($name, $breakpoints: $responsive-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @if not $n {
+    @error "breakpoint `#{$name}` not found";
+  }
+
+  @return map-get($breakpoints, $name);
+}
+
+@function breakpoint-max($name, $breakpoints: $responsive-breakpoints) {
+  @return breakpoint-min($name, $breakpoints) - .02;
+}
+
+// The maximum value is calculated as the minimum of the next one less 0.02px
+// to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+// See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+// See https://bugs.webkit.org/show_bug.cgi?id=178261
+//
+//  >> if-smaller-than(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//  @media (max-width: 575.98px) { @content }
 @mixin if-smaller-than($breakpoint-name) {
-  @if map-has-key($responsive-breakpoints, $breakpoint-name) {
-    @media (max-width: map-get($responsive-breakpoints, $breakpoint-name) - 1) {
-      @content;
-    }
+  $max: breakpoint-max($breakpoint-name);
+
+  @media (max-width: $max) {
+    @content;
   }
 }
-  
+
+//  >> if-bigger-than(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//  @media (min-width: 576px) { @content }
 @mixin if-bigger-than($breakpoint-name) {
-  @if map-has-key($responsive-breakpoints, $breakpoint-name) {
-    @media (min-width: map-get($responsive-breakpoints, $breakpoint-name)) {
-      @content;
-    }
+  $min: breakpoint-min($breakpoint-name);
+
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+// inspired by bootstrap solution https://github.com/twbs/bootstrap/blob/master/scss/mixins/_breakpoints.scss
+
+//  >> if-between(sm, md (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//  @media (min-width: 576px) and (max-width: 767.98px) { @content }
+@mixin if-between($name_min, $name_max, $breakpoints: $responsive-breakpoints) {
+  $min: breakpoint-min($name_min, $breakpoints);
+  $max: breakpoint-max($name_max, $breakpoints);
+
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
   }
 }

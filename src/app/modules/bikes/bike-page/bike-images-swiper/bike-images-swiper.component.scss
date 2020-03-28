@@ -3,7 +3,7 @@
 @import 'utils/utils';
 
 .swiper-container {
-  @include if-smaller-than(lg) {
+  @include if-smaller-than(xl) {
     margin: 0 -1.5rem;
   }
 }

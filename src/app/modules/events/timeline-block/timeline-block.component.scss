@@ -70,7 +70,7 @@
     justify-content: space-between;
     left: 50%;
     width: 70%;
-    @include if-smaller-than(tablet) {
+    @include if-smaller-than(xl) {
       flex-direction: column;
 
     }

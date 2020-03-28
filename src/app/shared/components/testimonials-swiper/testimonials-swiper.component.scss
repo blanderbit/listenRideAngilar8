@@ -40,7 +40,7 @@
   }
 }
 
-@include if-smaller-than(tablet) {
+@include if-smaller-than(xl) {
   :host .swiper-container {
     height: auto;
     padding-bottom: 1rem;

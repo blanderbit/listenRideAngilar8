@@ -9,7 +9,7 @@
     object-position: center;
     position: relative;
     width: 100%;
-    @include if-smaller-than(tablet) {
+    @include if-smaller-than(xl) {
       height: auto;
     }
   }
@@ -18,7 +18,7 @@
     align-items: flex-start;
     display: flex;
     flex-direction: row;
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(sm) {
       flex-direction: column;
     }
   }
@@ -36,7 +36,7 @@
   }
 
   .right, .top, .bottom {
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(sm) {
       flex-direction: column;
     }
   }

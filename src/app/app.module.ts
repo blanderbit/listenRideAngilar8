@@ -2,6 +2,7 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '@environment/environment';
 
+import { CommonModule } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
@@ -31,7 +32,6 @@ import { UserVerificationModule } from '@user-verification/user-verification.mod
 import { metaReducers } from './reducers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CommonModule } from '@angular/common';
 
 export function provideAuthServiceConfig(): AuthServiceConfig {
   return new AuthServiceConfig([

@@ -9,7 +9,7 @@
 
     display: flex;
     margin-bottom: 2rem;
-    @include if-smaller-than(xs) {
+    @include if-smaller-than(sm) {
       flex-direction: column;
     }
 
@@ -19,7 +19,7 @@
       justify-content: center;
 
 
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(sm) {
         grid-template-columns: 30% 77%;
 
       }

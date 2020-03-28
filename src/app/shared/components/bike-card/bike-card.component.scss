@@ -1,4 +1,5 @@
-@import '../../../../assets/scss/variables';
+@import 'src/assets/scss/variables';
+@import "utils/utils";
 
 .bike-tile {
   background-color: white;
@@ -118,6 +119,8 @@
   }
 }
 
+// TODO: @MARIA move to bike-card-mobile component
+// TODO: @MARIA use mixin for breakpoints
 @media (max-width: $device-sm) {
   .bike-tile_mobile-view {
     .bike-tile {
@@ -140,7 +143,7 @@
 
       .bike-info {
         padding: 0.6rem;
-        width: 55%;
+        flex: 1;
 
         &_content {
           width: 100%;
@@ -188,14 +191,15 @@
       .bike-tile {
         &_wrap-img {
           border-right: 1px solid $light-grey;
+          flex: 0 0 45%;
           width: 45%;
+          max-width: 19rem;
 
           img {
             border-bottom-left-radius: 0.4rem;
             border-top-left-radius: 0.4rem;
             border-top-right-radius: 0;
             height: 100%;
-            max-width: 19rem;
             object-fit: cover;
             width: 100%;
           }
@@ -206,27 +210,29 @@
 
 }
 
-@media (min-width: $device-tablet) and (max-width: $device-lg) {
-  .bike-tile {
-    .bike-info {
-      &_brand,
-      &_price-day {
-        font-size: $h5-fontsize;
-      }
+// @Maria let's test this, do we really need to have styles only for 100px ?
+// @media (min-width: $device-tablet) and (max-width: $device-lg) {
+//   .bike-tile {
 
-      &_price-day {
-        font-size: $h5-fontsize;
-      }
+//     .bike-info {
+//       &_brand,
+//       &_price-day {
+//         font-size: $h5-fontsize;
+//       }
 
-      &_name,
-      &_price-week,
-      &_size,
-      &_rating {
-        font-size: $small-fontsize - 0.2rem;
-      }
-    }
-  }
-}
+//       &_price-day {
+//         font-size: $h5-fontsize;
+//       }
+
+//       &_name,
+//       &_price-week,
+//       &_size,
+//       &_rating {
+//         font-size: $small-fontsize - 0.2rem;
+//       }
+//     }
+//   }
+// }
 
 //Styles for bike tiles on map
 
@@ -269,7 +275,8 @@
   }
 }
 
-a {
-  height: 100%;
-  width: 100%;
-}
+// TODO: @MARIA please check what is this
+// a {
+//   height: 100%;
+//   width: 100%;
+// }

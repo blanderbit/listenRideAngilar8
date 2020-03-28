@@ -447,7 +447,7 @@
       align-items: baseline;
       justify-content: space-between;
       width: 45rem;
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(sm) {
         width: 100%;
       }
 
@@ -461,7 +461,7 @@
     .pricing-container {
       width: 47.8rem;
       margin-top: 3rem;
-      @include if-smaller-than(xs) {
+      @include if-smaller-than(sm) {
         width: 100%;
       }
 
@@ -497,7 +497,7 @@
   }
 
 
-  @include if-smaller-than(xs) {
+  @include if-smaller-than(sm) {
     .preview-container {
       grid-template-columns: 100%;
 
@@ -510,7 +510,7 @@
   }
 
 
-  @include if-smaller-than(xs) {
+  @include if-smaller-than(sm) {
     .mat-stepper-horizontal {
       padding: 0 5%;
       width: 100%;
