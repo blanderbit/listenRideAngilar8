@@ -29,6 +29,9 @@
       ],
       "@shared/*": [
         "app/shared/*"
+      ],
+      "@google/maps": [
+        "googlemaps"
       ]
     },
     "outDir": "./dist/out-tsc",
@@ -40,7 +43,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "types" : [
+    "types": [
       "node",
       "googlemaps"
     ],

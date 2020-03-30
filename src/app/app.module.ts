@@ -10,7 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconRegistry } from '@angular/material';
 import {
   HTTP_INTERCEPTORS,
@@ -75,6 +75,7 @@ export const APP_PROVIDERS = [
     AppRoutingModule,
     SocialLoginModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     AuthModule,
     CommonModule,
     LayoutModule,

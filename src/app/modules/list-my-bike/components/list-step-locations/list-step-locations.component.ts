@@ -13,6 +13,9 @@ import { FormGroup } from '@angular/forms';
 import { arrCountriesCode, arrCountriesNames } from '../../consts/consts';
 import { listPrices } from '@shared/helpers/insurance-helper';
 import { objTypeControl, staticField } from './consts';
+declare let google: any;
+declare let window: any;
+import {} from 'google-maps';
 
 @Component({
   selector: 'lnr-list-step-locations',
@@ -25,7 +28,6 @@ export class ListStepLocationsComponent implements AfterViewInit {
   listPrices: Array<number> = listPrices;
   arrCountriesCode: Array<string> = arrCountriesCode;
   arrCountriesNames: Array<string> = arrCountriesNames;
-  service = new google.maps.places.AutocompleteService();
   loading = false;
   obj = objTypeControl;
 

@@ -1,14 +1,13 @@
-<div class="stepper-container flex direction-column align-items-center">
-  <div
-    class="flex justify-content-center container"
-    [ngClass]="isMobile ? 'direction-column' : 'direction-row'"
-  >
+<div
+  class="stepper-container flex container direction-column align-items-center"
+>
+  <div class="justify-content-center p-0 m-0" id="request-flow-stepper">
     <mat-horizontal-stepper
       [linear]="isLinear"
       id="requestFlow-stepper-hor"
       labelPosition="bottom"
       #stepper
-      *ngIf="isDesktop || isTablet"
+      *ngIf="!mobileQuery.matches"
     >
       <mat-step
         [stepControl]="durationFormGroup"
@@ -126,7 +125,7 @@
       id="requestFlow-stepper"
       labelPosition="bottom"
       #stepper
-      *ngIf="isMobile"
+      *ngIf="mobileQuery.matches"
     >
       <mat-step
         [stepControl]="durationFormGroup"
@@ -160,12 +159,13 @@
 
       <mat-step
         [stepControl]="phoneFormGroup"
-        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+        [aria-label]="allOtherSteps && 'disabledStep'"
       >
         <ng-template matStepLabel>
           {{ 'shared.phone_number' | translate }}
         </ng-template>
         <lnr-user-verification-phone
+          *ngIf="user"
           [stepper]="stepper"
           [dialogRef]="dialogRef"
           [user]="user"
@@ -178,12 +178,13 @@
 
       <mat-step
         [stepControl]="personalDetailsFormGroup"
-        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+        [aria-label]="allOtherSteps && 'disabledStep'"
       >
         <ng-template matStepLabel>
           {{ 'forms.address' | translate }}
         </ng-template>
         <lnr-user-verification-address
+          *ngIf="user"
           [stepper]="stepper"
           [dialogRef]="dialogRef"
           [user]="user"
@@ -196,15 +197,17 @@
 
       <mat-step
         [stepControl]="paymentMethodFormGroup"
-        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+        [aria-label]="allOtherSteps && 'disabledStep'"
       >
         <ng-template matStepLabel>
           {{ 'booking.payment.tab' | translate }}
         </ng-template>
         <lnr-payment
+          *ngIf="user"
           [flowType]="'request-flow'"
           [mode]="'update'"
           (next)="stepper.next()"
+          [user]="user"
           [paymentMethodFormGroup]="paymentMethodFormGroup"
         >
         </lnr-payment>
@@ -212,7 +215,7 @@
 
       <mat-step
         [stepControl]="rentalOverviewFormGroup"
-        [aria-label]="!durationStep || (!signInStep && 'disabledStep')"
+        [aria-label]="allOtherSteps && 'disabledStep'"
       >
         <ng-template matStepLabel>
           {{ 'booking.overview.tab' | translate }}
@@ -231,20 +234,20 @@
       </mat-step>
     </mat-vertical-stepper>
 
-    <lnr-book-widget
-      [insuranceEnable]="insuranceEnabled"
-      [priceForOne]="priceForOne"
-      [weekly]="weekly"
-      [coverage_total]="data.coverage_total"
-      [daily]="daily"
-      [form]="durationFormGroup"
-      [datesRange]="datesRange"
-      (setData)="test($event)"
-      (clickToNext)="next($event)"
-      [isLastStep]="isLastStep"
-      #widget
-    >
-    </lnr-book-widget>
+    <!--    <lnr-book-widget-->
+    <!--      [insuranceEnable]="insuranceEnabled"-->
+    <!--      [priceForOne]="priceForOne"-->
+    <!--      [weekly]="weekly"-->
+    <!--      [coverage_total]="data.coverage_total"-->
+    <!--      [daily]="daily"-->
+    <!--      [form]="durationFormGroup"-->
+    <!--      [datesRange]="datesRange"-->
+    <!--      (setData)="test($event)"-->
+    <!--      (clickToNext)="next($event)"-->
+    <!--      [isLastStep]="isLastStep"-->
+    <!--      #widget-->
+    <!--    >-->
+    <!--    </lnr-book-widget>-->
   </div>
-  <lnr-need-help></lnr-need-help>
+  <lnr-need-help class="mt-5"></lnr-need-help>
 </div>

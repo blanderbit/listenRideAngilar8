@@ -1,4 +1,4 @@
-<div class="wrap-page" *ngIf="!loading">
+<div class="wrap-page">
   <div class="header">
     <lnr-layout-header></lnr-layout-header>
   </div>
@@ -9,6 +9,9 @@
     <lnr-layout-footer></lnr-layout-footer>
   </div>
 </div>
-<div *ngIf="loading">
+<div
+  *ngIf="loading"
+  class="loader flex justify-content-center align-items-center"
+>
   Loading...
 </div>

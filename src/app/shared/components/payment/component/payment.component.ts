@@ -23,14 +23,18 @@ export class PaymentComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   get currentPayment() {
-    switch (this.getType) {
-      case 'credit-card':
-        return `**** **** **** ${this.user.paymentMethod.lastFour}`;
-      case 'paypal-account':
-        return this.user.paymentMethod.email;
-      default:
-        return '';
-    }
+    if (this.isCreditCard)
+      return `**** **** **** ${this.user.paymentMethod.lastFour}`;
+    if (this.isPayPal) return this.user.paymentMethod.email;
+    return '';
+  }
+
+  get isCreditCard() {
+    return this.getType === 'credit-card';
+  }
+
+  get isPayPal() {
+    return this.getType === 'paypal-account';
   }
 
   get isPaymentRequestFlow() {

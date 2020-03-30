@@ -80,7 +80,7 @@
         *ngIf="payment === 'credit_card'"
         [isPaymentRequestFlow]="isPaymentRequestFlow"
         [mode]="mode"
-        (onAuthorize)="goToNext()"
+        (onAuthorize)="!isPaymentRequestFlow && goToNext()"
         (onClose)="mode = 'view'; payment = ''"
         class="lnr-mrg-btm"
         [user]="user"
@@ -140,7 +140,7 @@
           *ngIf="payment === 'credit_card'"
           [isPaymentRequestFlow]="isPaymentRequestFlow"
           [mode]="mode"
-          (onAuthorize)="goToNext()"
+          (onAuthorize)="!isPaymentRequestFlow && goToNext()"
           class="lnr-mrg-btm"
           [user]="user"
         >
@@ -165,7 +165,7 @@
               [innerHTML]="'shared.payment_type.pay_pal_account' | translate"
             ></span>
           </div>
-          <img [src]="paypal" alt="" />
+          <img [src]="paypal" alt="paypal" />
         </div>
         <lnr-payment-method-pay-pal
           (onAuthorize)="goToNext()"
@@ -177,7 +177,12 @@
       </div>
     </div>
     <div
-      *ngIf="user.paymentMethod && mode === 'update' && isPaymentRequestFlow"
+      *ngIf="
+        user.paymentMethod &&
+        mode === 'update' &&
+        isPaymentRequestFlow &&
+        getType
+      "
       class="current-paymentMethod"
     >
       <h3
@@ -195,14 +200,20 @@
                   id="credit_card_current"
                   value="credit_card_current"
                   [(ngModel)]="payment"
+                  checked="checked"
                 />
                 <label
                   for="credit_card_current"
                   class="custom-checkbox"
-                  checked="true"
+                  checked="checked"
                 ></label>
               </div>
-              <span class="bold">Credit Card {{ currentPayment }}</span>
+              <span class="bold" *ngIf="isCreditCard"
+                >Credit Card {{ currentPayment }}</span
+              >
+              <span class="bold" *ngIf="isPayPal"
+                >PayPal {{ currentPayment }}</span
+              >
             </div>
             <div>
               <img

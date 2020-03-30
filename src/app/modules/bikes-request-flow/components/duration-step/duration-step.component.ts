@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { BikesRequestFlowComponent } from '../../bikes-request-flow.component';
 
 @Component({
   selector: 'lnr-step-duration',
@@ -14,4 +15,9 @@ export class DurationStepComponent {
   @Input('name') name;
   @Input('type') type;
   @Input('city') city;
+  constructor(private bikesRequestFlowComponent: BikesRequestFlowComponent) {}
+
+  request() {
+    this.bikesRequestFlowComponent.requestFlow();
+  }
 }

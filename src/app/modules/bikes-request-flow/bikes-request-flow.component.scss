@@ -1,6 +1,16 @@
 @import 'variables';
 @import "utils/utils";
 
+#request-flow-stepper {
+  display: grid;
+  grid-template-columns: 75% 30%;
+  max-width: 100%;
+
+  @include if-smaller-than(md) {
+    display: flex;
+    max-width: 100%;
+  }
+}
 
 #right-side-request-flow > div:last-child {
   margin-top: -2rem;
@@ -219,7 +229,7 @@
   }
 
   ::ng-deep {
-    mat-vertical-stepper#requestFlow-stepper,  mat-vertical-stepper#requestFlow-stepper-hor  {
+    mat-vertical-stepper#requestFlow-stepper, mat-vertical-stepper#requestFlow-stepper-hor {
 
       width: 100%;
       margin: 0 auto;
@@ -422,3 +432,4 @@
 :host::ng-deep .mat-select-panel {
   max-height: 35rem !important;
 }
+

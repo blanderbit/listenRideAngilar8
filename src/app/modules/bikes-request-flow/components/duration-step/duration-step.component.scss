@@ -1,4 +1,5 @@
 @import "../../../../../assets/scss/variables";
+@import "utils/utils";
 
 .main_container {
   padding: 0;
@@ -85,6 +86,10 @@
         border: 0.15rem solid $input-border;
         border-radius: .5rem;
         padding-left: 2rem;
+
+        @include if-smaller-than(tablet) {
+          padding-left: .5rem;
+        }
       }
       input::-webkit-input-placeholder {font-size: $small-fontsize}
       input::-moz-placeholder          {font-size: $small-fontsize}

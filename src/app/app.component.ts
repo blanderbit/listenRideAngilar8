@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { AuthActions, UserApiActions } from '@auth/store/actions';
+import { Subject, throwError } from 'rxjs';
 import { ApiUserService } from '@api/api-user/api-user.service';
 import { User } from '@models/user/user';
 import { Subject } from 'rxjs';
@@ -88,11 +89,14 @@ export class AppComponent implements OnInit {
       );
     });
   }
-
-  checkUser(): void {
-    this.apiUserService
-      .me()
+  
+  checkUser() {
+    this.store
+      .select(fromAuth.isLoggedIn)
       .pipe(
+        switchMap((status: boolean) => {
+          return status ? this.apiUserService.me() : throwError('Not login');
+        }),
         switchMap((me: Partial<User>) => {
           return this.apiUserService.read(me.id);
         }),

@@ -24,14 +24,14 @@ export abstract class UserVerificationStep {
     this._stepCompleted = complete;
   }
 
-  get isItFirstStep(): boolean {
+  isItFirstStep(): boolean {
     if (this.stepper && this.stepper.steps) {
       return this.stepper.steps.first === this.stepper.selected;
     }
     return false;
   }
 
-  get isItLastStep(): boolean {
+  isItLastStep(): boolean {
     if (this.stepper && this.stepper.steps) {
       return this.stepper.steps.last === this.stepper.selected;
     }

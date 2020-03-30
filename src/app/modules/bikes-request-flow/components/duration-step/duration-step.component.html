@@ -34,7 +34,7 @@
   <div class="insurance_container" *ngIf="hasInsurance">
     <div class="premium_insurance">
       <h4
-        class="mb-3"
+        class="font-weight-bold"
         [innerHTML]="'booking.overview.premium_insurance_title' | translate"
       ></h4>
       <p [innerHTML]="'booking.overview.thats_included' | translate"></p>
@@ -59,11 +59,17 @@
     </div>
 
     <div class="voucher">
-      <h4 [innerHTML]="'booking.overview.redeem_voucher' | translate"></h4>
+      <h4
+        class="font-weight-bold"
+        [innerHTML]="'booking.overview.redeem_voucher' | translate"
+      ></h4>
 
       <div class="input_voucher">
         <input matInput placeholder="Enter voucher code" />
-        <button [innerHTML]="'booking.overview.add' | translate"></button>
+        <button
+          [innerHTML]="'booking.overview.add' | translate"
+          (click)="request()"
+        ></button>
       </div>
     </div>
   </div>

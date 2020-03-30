@@ -1,0 +1,8 @@
+@import "utils/utils";
+@import 'variables';
+
+@include if-smaller-than(xs) {
+  .mat-input-element, mat-google-maps-autocomplete {
+    font-size: $small-fontsize !important;
+  }
+}

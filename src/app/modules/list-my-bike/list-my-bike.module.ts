@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { ListMyBikeComponent } from './list-my-bike.component';
 import { ListMyBikeRoutingModule } from './list-my-bike-routing.module';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { UserResolver } from './service/resolver';
 import { UserEditDataResolver } from './service/resolverEdit';
 import { ListStepCategoryComponent } from './components/list-step-category/list-step-category.component';

@@ -19,32 +19,52 @@ export const sizeList = [
     value: 0,
   },
   {
-    text: '155-165',
+    text: '155 cm - 165 cm',
     value: 155,
   },
   {
-    text: '165-175',
+    text: '165 cm - 175 cm',
     value: 165,
   },
   {
-    text: '165-175',
-    value: 165,
-  },
-  {
-    text: '175-185',
+    text: '175 cm - 185 cm',
     value: 175,
   },
   {
-    text: '185-195',
+    text: '185 cm - 195cm',
     value: 185,
   },
   {
-    text: '195-205',
+    text: '195 cm - 205 cm',
     value: 195,
   },
   {
-    text: '85-95',
+    text: '85 cm - 95 cm',
     value: 85,
+  },
+  {
+    text: '95 cm - 105 cm',
+    value: 95,
+  },
+  {
+    text: '105 cm - 115 cm',
+    value: 105,
+  },
+  {
+    text: '115 cm - 125 cm',
+    value: 115,
+  },
+  {
+    text: '125 cm - 135 cm',
+    value: 125,
+  },
+  {
+    text: '135 cm - 145 cm',
+    value: 135,
+  },
+  {
+    text: '145 cm - 155 cm',
+    value: 145,
   },
 ];
 export const typeList = [

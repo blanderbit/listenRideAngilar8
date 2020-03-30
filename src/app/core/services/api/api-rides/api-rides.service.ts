@@ -61,6 +61,10 @@ export class ApiRidesService {
     });
   }
 
+  bookingBike(data) {
+    return this.httpClient.post('/requests', data);
+  }
+
   declusterizeBikes(clusterId: number): Observable<any> {
     return this.httpClient.put(`/clusters/${clusterId}/unmerge`, {});
   }

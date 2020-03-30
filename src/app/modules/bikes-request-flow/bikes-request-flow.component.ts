@@ -2,10 +2,12 @@
 
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   DoCheck,
   ElementRef,
   Inject,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -32,6 +34,7 @@ import {
 } from '../list-my-bike/model/models';
 import { typeList } from '@core/constants/filters.const';
 import { STATIC } from './consts/consts';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const moment = require('moment');
@@ -56,7 +59,7 @@ const now = new Date();
   ],
 })
 export class BikesRequestFlowComponent
-  implements OnInit, AfterViewInit, DoCheck {
+  implements OnInit, AfterViewInit, DoCheck, OnDestroy {
   @ViewChild('stepper', STATIC) private stepper: MatStepper;
   @ViewChild('widget', STATIC) private widget: BookWidgetComponent;
 
@@ -86,6 +89,7 @@ export class BikesRequestFlowComponent
   allOtherSteps: boolean = false;
   isRequestFlow: boolean = true;
   isLastStep: boolean = false;
+  mobileQuery: MediaQueryList;
 
   constructor(
     private store: Store<fromAuth.State>,
@@ -96,7 +100,16 @@ export class BikesRequestFlowComponent
     private SnackBar: MatSnackBar,
     private activateRoute: ActivatedRoute,
     private deviceDetectorService: DeviceDetectorService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+    private media: MediaMatcher,
+  ) {
+    this.mobileQuery = this.media.matchMedia('(max-width: 60rem)');
+    this.mobileQuery.onchange = () => {
+      this.setStep();
+    };
+  }
+
+  private _mobileQueryListener: () => void;
 
   ngOnInit(): void {
     this.getDevices();
@@ -263,6 +276,7 @@ export class BikesRequestFlowComponent
     this.paymentMethodFormGroup = this.formBuilder.group(paymentMethod);
     this.rentalOverviewFormGroup = this.formBuilder.group(bookingOverview);
   }
+
   // eslint-disable-next-line no-unused-expressions
   next = (e: any): void =>
     this.stepper && this.stepper.selected.completed && this.stepper.next();
@@ -279,6 +293,7 @@ export class BikesRequestFlowComponent
     this.stepper && (this.stepper.selectedIndex = 1);
     this.widget.refresh();
   }
+
   /*eslint no-unused-expressions: 2*/
   reformatAndSetDate(start: Date | string = new Date(), duration?): void {
     const arr = [];
@@ -306,8 +321,33 @@ export class BikesRequestFlowComponent
     // eslint-disable-next-line no-unused-expressions
     this.setStep();
     if (this.dateDuration) {
-      this.widget.setCalendarCounts(this.dateDuration);
+      this.widget && this.widget.setCalendarCounts(this.dateDuration);
     }
+    this.cdr.detectChanges();
+  }
+
+  requestFlow() {
+    const request = new FormData();
+    const user_id = JSON.stringify(this.user.id);
+
+    request.append('request[ride_id]', this.isBikeQueryParams.id);
+    request.append('request[user_id]', user_id);
+    request.append('request[start_date]', this.isBikeQueryParams.start_date);
+    request.append('request[duration]', this.isBikeQueryParams.duration);
+    request.append('request[instant]', 'false');
+    request.append('insurance[premium]', 'false');
+
+    this.apiRidesService.bookingBike(request).subscribe(
+      () => {
+        this.snackBar('Booked successfully', true);
+      },
+      ({ error }) => {
+        const errorFirst = error.errors[0];
+        if (errorFirst) {
+          this.snackBar(errorFirst.detail, false);
+        }
+      },
+    );
   }
 
   ngDoCheck(): void {
@@ -316,4 +356,6 @@ export class BikesRequestFlowComponent
     this.signInStep = !!this.user || !this.durationStep;
     this.allOtherSteps = !this.durationStep || !this.signInStep;
   }
+
+  ngOnDestroy(): void {}
 }
