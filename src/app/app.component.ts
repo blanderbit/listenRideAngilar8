@@ -7,7 +7,6 @@ import { AuthActions, UserApiActions } from '@auth/store/actions';
 import { Subject, throwError } from 'rxjs';
 import { ApiUserService } from '@api/api-user/api-user.service';
 import { User } from '@models/user/user';
-import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { getImagesFromFolder } from './shared/helpers/mat-icons-helper';
 import * as fromAuth from './core/modules/auth/store/reducers';
@@ -89,7 +88,7 @@ export class AppComponent implements OnInit {
       );
     });
   }
-  
+
   checkUser() {
     this.store
       .select(fromAuth.isLoggedIn)
