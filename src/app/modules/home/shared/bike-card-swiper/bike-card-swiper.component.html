@@ -2,7 +2,7 @@
   <div class="swiper-wrapper" *ngIf="bikes as topBikes">
     <div
       *ngFor="let bike of topBikes | async"
-      class="swiper-slide cursor-pointer col-md-4 col-sm-6"
+      class="swiper-slide cursor-pointer"
     >
       <div class="w-p-100">
         <lnr-bike-card [bike]="bike" [isMobileView]="false"> </lnr-bike-card>

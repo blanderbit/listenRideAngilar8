@@ -8,11 +8,6 @@
       height: 21rem;
       object-fit: cover;
       width: 100%;
-
-      @include if-bigger-than(xl) {
-        width: 32rem;
-      }
-
       @include if-smaller-than(md) {
         height: 11rem;
         width: 100%;

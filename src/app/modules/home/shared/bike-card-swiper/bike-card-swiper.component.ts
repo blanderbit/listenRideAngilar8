@@ -25,12 +25,26 @@ export class BikeCardSwiperComponent
   swiperConfig() {
     this.bikeSwiper = new Swiper('.swiper-bikes', {
       speed: 400,
-      spaceBetween: 5,
+      spaceBetween: 20,
       slidesPerView: 3,
       initialSlide: 0,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        990: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        360: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
       },
       observer: true,
       watchOverflow: true,
