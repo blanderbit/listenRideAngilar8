@@ -1,0 +1,44 @@
+@import "variables";
+@import 'utils/utils';
+
+.jobs-page {
+  p, li {
+    line-height: 3.4rem;
+  }
+
+  @include if-smaller-than(md) {
+    ul {
+      padding-left: 2rem;
+    }
+  }
+
+  .aplly-btn-container {
+    a {
+      text-decoration: none;
+    }
+
+    @include if-bigger-than(lg) {
+      justify-content: flex-end;
+    }
+
+    @include if-smaller-than(lg) {
+      justify-content: center;
+    }
+  }
+
+  .mat-expansion-panel {
+    color: $text-color;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 1rem 0;
+  }
+
+  .mat-expansion-panel-spacing {
+    margin: 0;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0;
+  }
+}

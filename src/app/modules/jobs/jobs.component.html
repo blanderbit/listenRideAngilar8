@@ -1,0 +1,88 @@
+<article class="container jobs-page">
+  <section class="m-large">
+    <div class="row">
+      <div class="col-md-8">
+        <h1 class="heading-3">{{ 'jobs.header' | translate }}</h1>
+        <p>{{ 'jobs.subheader' | translate }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <lnr-image-text
+        class="w-p-100"
+        [imageAlign]="'left'"
+        [imageUrl]="MAIN_IMAGE_URL"
+      >
+        <p>{{ 'jobs.contact.content' | translate }}</p>
+      </lnr-image-text>
+    </div>
+  </section>
+
+  <section class="m-large">
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="heading-4">{{ 'jobs.open' | translate }}:</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9 col-md-12">
+        <mat-accordion>
+          <mat-expansion-panel
+            class="mat-elevation-z0"
+            [expanded]="job.id === expanedJobId"
+            [hideToggle]="true"
+            (afterExpand)="addParam(job.id)"
+            (closed)="removeParam()"
+            *ngFor="let job of jobs$ | async"
+          >
+            <mat-expansion-panel-header
+              [collapsedHeight]="'auto'"
+              [expandedHeight]="'auto'"
+            >
+              <mat-panel-title>
+                <a>{{ job.title }}</a>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+              <b>{{ job.roleHeadline }}</b>
+            </p>
+            <ul>
+              <li *ngFor="let role of job.role">{{ role }}</li>
+            </ul>
+            <p>
+              <b>{{ job.requirementHeadline }}</b>
+            </p>
+            <ul>
+              <li *ngFor="let requirement of job.required">
+                {{ requirement }}
+              </li>
+            </ul>
+            <p>
+              <b>{{ job.offerHeadline }}</b>
+            </p>
+            <ul>
+              <li *ngFor="let offer of job.offer">{{ offer }}</li>
+            </ul>
+            <div class="flex aplly-btn-container">
+              <a
+                mat-flat-button
+                color="accent"
+                href="mailto:contact@listnride.com?Subject=Application%20for%20{{
+                  job.title
+                }}"
+                target="_top"
+              >
+                <span class="white regular">
+                  {{ 'jobs.apply' | translate }}
+                </span>
+              </a>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-large">
+    <lnr-need-help></lnr-need-help>
+  </section>
+</article>
