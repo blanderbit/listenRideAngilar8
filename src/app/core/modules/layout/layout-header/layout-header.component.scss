@@ -5,6 +5,15 @@
   color: $white-font-color;
   max-height: 6rem;
   width: 100%;
+
+  .wrap-search {
+    position: absolute;
+    z-index: 3;
+
+    mat-icon {
+      margin: 1rem 0 0 -3rem;
+    }
+  }
 }
 
 .logo {
@@ -19,12 +28,6 @@
 
 ::ng-deep .mat-form-field-infix {
   width: 100%;
-}
-
-::ng-deep .mat-form-field {
-  .mat-form-field-wrapper {
-    //padding-bottom: 0;
-  }
 }
 
 .search-autocomplete {

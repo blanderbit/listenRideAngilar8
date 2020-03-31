@@ -64,6 +64,11 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
     this.activeSearch = false;
   }
 
+  isHomeView() {
+    // return true if the current page is home
+    return this.router.url.match('^/$');
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.unsubscribe();

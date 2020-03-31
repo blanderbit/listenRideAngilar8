@@ -1,4 +1,4 @@
-@import '../../../../../../assets/scss/variables';
+@import 'variables';
 
 .wrap-top-menu {
   ul {
@@ -43,7 +43,6 @@
       transform-origin: right;
       transition: all 0.25s ease-out;
       width: 100%;
-      z-index: 4;
     }
   }
 }
@@ -58,4 +57,19 @@
 .sidenav-user-avatar {
   border-radius: 50%;
   max-width: 7rem;
+}
+
+.wrap-sidenav {
+  position: initial;
+  text-align: right;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.content {
+  mat-icon {
+    margin-top: 1rem;
+  }
 }

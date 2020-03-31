@@ -10,7 +10,11 @@
             alt="logo"
           />
         </a>
-        <div class="d-none d-sm-block" [ngClass]="{ 'd-block': activeSearch }">
+        <div
+          *ngIf="!isHomeView()"
+          class="d-none d-sm-block"
+          [ngClass]="{ 'd-block': activeSearch }"
+        >
           <div class="flex direction-row search-autocomplete">
             <mat-icon class="m-r-1">search</mat-icon>
             <input
@@ -24,23 +28,21 @@
         </div>
       </div>
       <div class="flex">
-        <div class="d-sm-none">
-          <a
-            class="m-r-2 search-btn"
+        <div class="d-sm-none wrap-search">
+          <mat-icon
+            *ngIf="!isHomeView()"
+            class="m-r-2 search-btn white"
             [ngClass]="{ 'd-none': activeSearch }"
             (click)="showSearch($event)"
-          >
-            <mat-icon class="white">search</mat-icon>
-          </a>
-          <a
-            class="m-r-2 d-none close-btn"
+            >search
+          </mat-icon>
+          <mat-icon
+            class="m-r-2 d-none white close-btn"
             (click)="close('toggle button')"
             [ngClass]="{ 'd-block': activeSearch }"
           >
-            <mat-icon class="white">
-              close
-            </mat-icon>
-          </a>
+            close
+          </mat-icon>
         </div>
         <div>
           <lnr-menu [isLoggedIn]="isLoggedIn$ | async"></lnr-menu>
