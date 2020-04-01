@@ -32,6 +32,8 @@ import { UserVerificationModule } from '@user-verification/user-verification.mod
 import { metaReducers } from './reducers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchReducer } from './modules/search/store/search.reducers';
+import { SearchEffects } from './modules/search/store/search.effects';
 
 export function provideAuthServiceConfig(): AuthServiceConfig {
   return new AuthServiceConfig([
@@ -79,6 +81,8 @@ export const APP_PROVIDERS = [
     AuthModule,
     CommonModule,
     LayoutModule,
+    StoreModule.forFeature('search', SearchReducer),
+    EffectsModule.forFeature([SearchEffects]),
     UserVerificationModule,
     TranslateModule.forRoot({
       loader: {

@@ -41,4 +41,8 @@ export const SetSearchMetaData = createAction(
   '[Search] Set metadata',
   props<{ metaData: SearchMetaData }>(),
 );
+
+export const SetMiddleSearchMetaData = createAction(
+  '[Search] Set middle metadata',
+);
 export const ResetSearchMetaData = createAction('[Search] Reset metadata');

@@ -1,18 +1,19 @@
+@import 'variables';
 // TODO: add color from variable
 
 a {
-  color: #5fc693;
+  color: $link-color;
 
   &:hover {
-    color: #5fc693;
+    color: $main-green;
   }
 
   &:not([href]) {
-    color: #5fc693;
+    color: $link-color;
     cursor: pointer;
 
     &:hover {
-      color: #5fc693;
+      color: $main-green;
       text-decoration: underline;
     }
   }

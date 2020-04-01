@@ -20,7 +20,7 @@
             <input
               matInput
               matGoogleMapsAutocomplete
-              placeholder="Search"
+              placeholder="{{ 'shared.search-placeholder' | translate }}"
               [(ngModel)]="location"
               (onAutocompleteSelected)="onAutocompleteSelected($event)"
             />
@@ -33,7 +33,7 @@
             *ngIf="!isHomeView()"
             class="m-r-2 search-btn white"
             [ngClass]="{ 'd-none': activeSearch }"
-            (click)="showSearch($event)"
+            (click)="showSearch()"
             >search
           </mat-icon>
           <mat-icon

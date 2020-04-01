@@ -17,8 +17,6 @@ import { SearchReducer } from './store/search.reducers';
   imports: [
     SharedModule,
     SearchRoutingModule,
-    StoreModule.forFeature('search', SearchReducer),
-    EffectsModule.forFeature([SearchEffects]),
     AgmCoreModule,
     MatGoogleMapsAutocompleteModule,
     AgmJsMarkerClustererModule,

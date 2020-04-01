@@ -1,5 +1,5 @@
-@import "variables";
-@import "utils/utils";
+@import 'variables';
+@import 'utils/utils';
 
 
 .header {
@@ -91,9 +91,9 @@
         opacity: 1;
       }
 
-      .mat-step-icon-state-done {
-        background: $submit-button-color;
-      }
+     .mat-step-icon-state-done {
+      background: $submit-button-color;
+     }
     }
 
     .mat-horizontal-stepper-content, .mat-vertical-stepper-content {
@@ -149,14 +149,14 @@
       background: $white;
       padding: 0;
 
-      .mat-select-placeholder, .mat-select-value-text {
+      .mat-select-placeholder,
+      .mat-select-value-text {
         font-size: 1.4rem;
         line-height: 150%;
       }
 
       .mat-select {
-
-        border: .1rem solid $input-border !important;
+        border: 0.1rem solid $input-border !important;
         border-radius: $border-radius;
         height: 4.2rem;
         align-items: center;
@@ -586,30 +586,7 @@ input.ng-invalid.ng-touched {
 
 }
 
-:host::ng-deep a {
-  cursor: pointer;
-  color: $main-green !important;
-}
-
-
-//@include if-smaller-than(sm) {
-//  ::ng-deep div.mat-select-panel {
-//    margin-top: 50%;
-//  }
-//}
-
 input.ng-invalid.ng-touched {
   border-color: $error-color;
 
 }
-
-:host::ng-deep a {
-  cursor: pointer;
-  color: $main-green !important;
-}
-
-//@media (max-width: $device-sm) {
-//  ::ng-deep div.mat-select-panel {
-//    margin-top: 50%;
-//  }
-//}

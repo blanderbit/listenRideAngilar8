@@ -55,7 +55,7 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  showSearch($event) {
+  showSearch() {
     this.activeSearch = true;
   }
 

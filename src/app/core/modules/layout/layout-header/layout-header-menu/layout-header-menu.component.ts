@@ -36,10 +36,12 @@ export class LayoutHeaderMenuComponent {
 
   login() {
     this.storeAuth.dispatch(AuthActions.openLoginDialog());
+    this.sidenav.close();
   }
 
   signUp() {
     this.storeAuth.dispatch(AuthActions.openSignUpDialog());
+    this.sidenav.close();
   }
 
   logOut() {

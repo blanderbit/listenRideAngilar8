@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/variables';
+@import 'variables';
 
 mat-header-row {
   background-color: $table-header-color;
@@ -7,6 +7,7 @@ mat-header-row {
 
   @media (max-width: $device-xs) {
     top: 10rem !important;
+    z-index: 2 !important;
   }
 }
 
@@ -22,7 +23,21 @@ mat-header-row {
   background: $table-header-color;
 }
 
-
 .element-row.disabled {
   opacity: 0.3;
+}
+
+:host {
+  ::ng-deep.mat-paginator-page-size-select {
+    line-height: 3rem;
+    margin-top: 0;
+  }
+
+  ::ng-deep.mat-paginator-container {
+    align-items: baseline;
+  }
+
+  mat-header-row {
+    z-index: 2 !important;
+  }
 }

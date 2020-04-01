@@ -10,8 +10,12 @@ body {
 }
 
 a {
-  color: $main-green;
+  color: $link-color;
   font-weight: 500;
+
+  :hover {
+    color: $main-green;
+  }
 }
 
 h1,

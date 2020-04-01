@@ -12,7 +12,7 @@
     padding-bottom: 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1;
 
     @media (max-width: $device-xs) {
       height: 10rem;
@@ -31,5 +31,4 @@
   mat-form-field {
     margin: 0.5rem;
   }
-
 }

@@ -2,6 +2,7 @@
   <div class="d-block d-lg-none">
     <mat-sidenav-container class="wrap-sidenav">
       <mat-sidenav
+        position="end"
         #sidenav
         (keydown.escape)="close('escape')"
         disableClose
@@ -18,13 +19,13 @@
           <a mat-list-item (click)="login()">{{
             'forms.log_in' | translate
           }}</a>
-          <a mat-list-item routerLink="/list-bike">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink="/list-bike">{{
             'shared.list-a-bike' | translate
           }}</a>
-          <a mat-list-item routerLink=".">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink=".">{{
             'shared.how-it-works' | translate
           }}</a>
-          <a mat-list-item routerLink=".">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink=".">{{
             'shared.trust-and-safety' | translate
           }}</a>
         </mat-nav-list>
@@ -38,23 +39,23 @@
             alt="user-avatar"
           />
 
-          <a mat-list-item routerLink="/my-bikes">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink="/my-bikes">{{
             'listings.my-bikes' | translate
           }}</a>
-          <a mat-list-item routerLink="/list-bike">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink="/list-bike">{{
             'shared.list-a-bike' | translate
           }}</a>
-          <a mat-list-item routerLink="/settings">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink="/settings">{{
             'settings.settings' | translate
           }}</a>
-          <a mat-list-item routerLink=".">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink=".">{{
             'settings.invite' | translate
           }}</a>
-          <a mat-list-item routerLink="/invoices">{{
+          <a (click)="sidenav.toggle()" mat-list-item routerLink="/invoices">{{
             'invoices.billing' | translate
           }}</a>
           <a mat-list-item (click)="logOut()">{{
-            'forms.log_out' | translate
+            'forms.log-out' | translate
           }}</a>
         </mat-nav-list>
       </mat-sidenav>
@@ -142,7 +143,7 @@
           </button>
           <mat-divider></mat-divider>
           <button mat-menu-item (click)="logOut()">
-            {{ 'forms.log_out' | translate }}
+            {{ 'forms.log-out' | translate }}
           </button>
         </mat-menu>
       </li>
