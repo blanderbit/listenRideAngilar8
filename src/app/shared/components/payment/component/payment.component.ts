@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 declare const require;
 
@@ -7,20 +7,25 @@ declare const require;
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss'],
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit {
+  payment: any;
+
   @Input() paymentMethodFormGroup: FormGroup = this.formBuilder.group({
-    payment: new FormControl(['']),
+    payment: new FormControl([this.payment]),
   });
   @Input('flowType') flowType: string; // request-flow settings
   @Input('mode') mode: 'view' | 'update';
   @Input('user') user;
   @Output('next') next = new EventEmitter();
-  payment: any;
   paypal = require('../../../../../assets/images/payments/paypal.png');
   visa = require('../../../../../assets/images/payments/visa.png');
   mastercard = require('../../../../../assets/images/payments/mastercard.png');
 
   constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.payment = this.currentPayment && 'credit_card_current';
+  }
 
   get currentPayment() {
     if (this.isCreditCard)

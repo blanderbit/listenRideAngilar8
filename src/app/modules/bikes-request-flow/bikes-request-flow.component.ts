@@ -35,6 +35,7 @@ import {
 import { typeList } from '@core/constants/filters.const';
 import { STATIC } from './consts/consts';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.component';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const moment = require('moment');
@@ -62,6 +63,8 @@ export class BikesRequestFlowComponent
   implements OnInit, AfterViewInit, DoCheck, OnDestroy {
   @ViewChild('stepper', STATIC) private stepper: MatStepper;
   @ViewChild('widget', STATIC) private widget: BookWidgetComponent;
+  @ViewChild('threeDSecure', STATIC)
+  private threeDSecure: ThreeDSecureComponent;
 
   isLinear = false;
   durationFormGroup: FormGroup;
@@ -327,6 +330,8 @@ export class BikesRequestFlowComponent
   }
 
   requestFlow() {
+    // checkoutshopper-test.adyen.com/checkoutshopper/threeDS2.shtml
+
     const request = new FormData();
     const user_id = JSON.stringify(this.user.id);
 
@@ -338,8 +343,10 @@ export class BikesRequestFlowComponent
     request.append('insurance[premium]', 'false');
 
     this.apiRidesService.bookingBike(request).subscribe(
-      () => {
+      req => {
         this.snackBar('Booked successfully', true);
+
+        this.threeDSecure.showThreeDSecureAuthentication(req);
       },
       ({ error }) => {
         const errorFirst = error.errors[0];

@@ -16,12 +16,14 @@ import { UserVerificationModule } from '@user-verification/user-verification.mod
 import { SharedModule } from '@shared/shared.module';
 import { AuthModule } from '@auth/auth.module';
 import { SettingsAccountModule } from '../settings/settings-account';
+import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.component';
 
 @NgModule({
   declarations: [
     BikesRequestFlowComponent,
     DurationStepComponent,
     PersonalDetailStepComponent,
+    ThreeDSecureComponent,
   ],
   imports: [
     BikesRequestFlowRoutingModule,
