@@ -1,5 +1,5 @@
 <div class="wrap-top-menu">
-  <div class="d-block d-lg-none">
+  <div class="wrap-top-menu_mobile">
     <mat-sidenav-container class="wrap-sidenav">
       <mat-sidenav
         position="end"
@@ -66,7 +66,7 @@
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
-  <nav class="flex align-items-center direction-row d-none d-lg-block">
+  <nav class="flex align-items-center direction-row wrap-top-menu_desktop">
     <ul class="flex direction-row content-end align-items-center header-list">
       <li class="header-list-item">
         <button
@@ -92,9 +92,7 @@
           <button mat-menu-item>{{ 'shared.contact' | translate }}</button>
         </mat-menu>
       </li>
-      <!--      <li class="header-list-item">-->
-      <!--        <lnr-list-my-bike-button></lnr-list-my-bike-button>-->
-      <!--      </li>-->
+
       <li *ngIf="!isLoggedIn" class="header-list-item lnr-d-flex">
         <button mat-button color="white" routerLink="/list-bike">
           {{ 'shared.list-a-bike' | translate }}
