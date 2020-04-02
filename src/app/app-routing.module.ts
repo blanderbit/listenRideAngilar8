@@ -93,6 +93,14 @@ const routes: Routes = [
     path: 'jobs',
     loadChildren: () => import('./modules/jobs').then(m => m.JobsModule),
   },
+  {
+    path: 'help',
+    loadChildren: () => import('./modules/help').then(m => m.HelpModule),
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./modules/faq').then(m => m.FaqModule),
+  },
   { path: '**', redirectTo: '404' },
 ];
 

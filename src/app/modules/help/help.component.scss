@@ -1,0 +1,28 @@
+@import "variables";
+@import 'utils/utils';
+
+.help-page {
+  .groups-block {
+    button {
+      border: 0.1rem solid $light-grey;
+      width: inherit;
+      white-space: normal;
+    }
+
+    .group-logo {
+      height: 6rem;
+      width: auto;
+      filter: invert(73%) sepia(35%) saturate(522%) hue-rotate(98deg) brightness(89%) contrast(86%);
+    }
+  }
+
+  .faqs-block {
+    @include if-smaller-than(lg) {
+      flex-direction: column;
+    }
+
+    @include if-bigger-than(lg) {
+      flex-direction: row;
+    }
+  }
+}

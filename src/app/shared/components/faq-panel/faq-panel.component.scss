@@ -1,0 +1,14 @@
+@import "variables";
+
+.mat-expansion-panel, .mat-expansion-panel-header-title {
+  color: $text-color;
+  font-size: $small-fontsize;
+}
+
+.mat-expansion-panel-header {
+  padding: 1rem 1rem 0 1rem;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 1rem 3rem 1rem 2rem;
+}

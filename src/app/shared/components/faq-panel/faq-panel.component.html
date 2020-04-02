@@ -1,0 +1,20 @@
+<mat-expansion-panel
+  class="mat-elevation-z0"
+  [hideToggle]="true"
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header
+    [collapsedHeight]="'auto'"
+    [expandedHeight]="'auto'"
+  >
+    <mat-panel-title>
+      <p class="flex align-items-center">
+        <mat-icon *ngIf="!panelOpenState">keyboard_arrow_right</mat-icon>
+        <mat-icon *ngIf="panelOpenState">keyboard_arrow_down</mat-icon>
+        {{ faq.question }}
+      </p>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p [innerHTML]="faq.answer"></p>
+</mat-expansion-panel>

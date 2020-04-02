@@ -1,0 +1,52 @@
+@import "variables";
+@import 'utils/utils';
+
+.faq-page {
+  .btn-group-selector-mobile {
+    padding: 0 1rem;
+  }
+
+  .group-selector {
+    img {
+      width: 3rem;
+    }
+
+    &.active {
+      a {
+        color: $main-blue;
+        .group-logo {
+          // $main-blue
+          filter: invert(81%) sepia(36%) saturate(5909%) hue-rotate(187deg) brightness(104%) contrast(94%);
+        }
+      }
+    }
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      .group-logo {
+        // $text-color
+        filter: invert(26%) sepia(0%) saturate(871%) hue-rotate(135deg) brightness(104%) contrast(71%);
+      }
+    }
+
+    a:hover {
+      color: $main-blue;
+      .group-logo {
+        // $main-blue
+        filter: invert(81%) sepia(36%) saturate(5909%) hue-rotate(187deg) brightness(104%) contrast(94%);
+      }
+    }
+  }
+
+  .back-link {
+    text-decoration: none;
+  }
+
+  .icon-flipped {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+  }
+}

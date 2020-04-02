@@ -1,0 +1,65 @@
+<article class="container faq-page">
+  <section class="m-large groups-block">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="heading-3">{{ 'faq_page.header' | translate }}</h1>
+      </div>
+    </div>
+    <div class="row d-none d-lg-block">
+      <div class="col-md-3">
+        <a routerLink="/help" class="flex align-items-center m-3 back-link">
+          <mat-icon class="icon-flipped">arrow_right_alt</mat-icon>
+          {{ 'jobs.go_back' | translate }}
+        </a>
+      </div>
+    </div>
+    <div class="row" *ngIf="faqsData$ | async as faqsData">
+      <div class="col-lg-3 d-none d-lg-block">
+        <div
+          class="group-selector m-3"
+          [ngClass]="{ active: group.id === chosenGroupId }"
+          *ngFor="let group of faqsData['faqGroups']"
+        >
+          <a (click)="selectGroup(group.id)" class="flex align-items-center">
+            <img src="{{ group.logo }}" class="group-logo m-r-1" />
+            {{ group.title }}
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 d-block d-lg-none">
+        <button
+          mat-button
+          [matMenuTriggerFor]="groupMenu"
+          class="btn-group-selector-mobile"
+        >
+          {{ find(faqsData['faqGroups'], { id: chosenGroupId })?.title }}
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #groupMenu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let group of faqsData['faqGroups']"
+            (click)="selectGroup(group.id)"
+          >
+            {{ group.title }}
+          </button>
+        </mat-menu>
+      </div>
+      <div class="col-lg-9 col-md-12">
+        <div *ngFor="let group of faqsData['faqGroups']">
+          <div *ngIf="group.id === chosenGroupId">
+            <p class="p-l-1 p-t-1" [innerHTML]="group.description"></p>
+            <lnr-faq-panel
+              *ngFor="let faq of group.faqs"
+              [faq]="faq"
+            ></lnr-faq-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-large">
+    <lnr-need-help></lnr-need-help>
+  </section>
+</article>
