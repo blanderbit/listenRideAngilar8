@@ -66,8 +66,9 @@ export class ListStepPicturesComponent {
         Array.isArray(this[item]) &&
         this[item].length > -1
       ) {
-        const data = this[item].splice(i, 1);
-        this.deleted.push(data.id);
+        const data = this[item].splice(i, 1).forEach(delItem => {
+          this.deleted.push(delItem.id);
+        });
       }
       if (item === 'loadedPhoto') {
         this[item].splice(i, 1);

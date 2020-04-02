@@ -34,6 +34,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchReducer } from './modules/search/store/search.reducers';
 import { SearchEffects } from './modules/search/store/search.effects';
+import { BIKE_FEATURE } from './modules/bike/store';
+import { BikeReducer } from './modules/bike/store/reducer';
+import { BikeEffects } from './modules/bike/store/effects';
 
 export function provideAuthServiceConfig(): AuthServiceConfig {
   return new AuthServiceConfig([
@@ -83,6 +86,8 @@ export const APP_PROVIDERS = [
     LayoutModule,
     StoreModule.forFeature('search', SearchReducer),
     EffectsModule.forFeature([SearchEffects]),
+    StoreModule.forFeature(BIKE_FEATURE, BikeReducer),
+    EffectsModule.forFeature([BikeEffects]),
     UserVerificationModule,
     TranslateModule.forRoot({
       loader: {

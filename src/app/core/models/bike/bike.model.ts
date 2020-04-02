@@ -66,5 +66,5 @@ export class Variations {
   frame_size: string = '';
   bicycle_number: string = '';
   frame_number: string = '';
-  available: boolean = true;
+  available: boolean = false;
 }

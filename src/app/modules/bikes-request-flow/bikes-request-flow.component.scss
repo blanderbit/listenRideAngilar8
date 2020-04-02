@@ -11,6 +11,11 @@
     max-width: 100%;
   }
 }
+.booking-widget-container {
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 1rem;
+}
 
 #right-side-request-flow > div:last-child {
   margin-top: -2rem;

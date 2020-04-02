@@ -16,6 +16,7 @@ import { objTypeControl, staticField } from './consts';
 declare let google: any;
 declare let window: any;
 import {} from 'google-maps';
+import { Debounce } from '@shared/decorators/debounce';
 
 @Component({
   selector: 'lnr-list-step-locations',
@@ -44,6 +45,7 @@ export class ListStepLocationsComponent implements AfterViewInit {
     this.getPlaceAutocomplete();
   }
 
+  @Debounce(300)
   private getPlaceAutocomplete(): void {
     if (
       !this.address ||

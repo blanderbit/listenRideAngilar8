@@ -17,6 +17,7 @@ import { SharedModule } from '@shared/shared.module';
 import { AuthModule } from '@auth/auth.module';
 import { SettingsAccountModule } from '../settings/settings-account';
 import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.component';
+import { BikeModule } from '../bike';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.co
     SharedModule,
     AuthModule,
     SettingsAccountModule,
+    BikeModule,
   ],
   entryComponents: [BikesRequestFlowComponent],
   providers: [UserResolver, BikeResolver],

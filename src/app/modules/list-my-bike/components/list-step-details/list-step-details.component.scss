@@ -8,17 +8,20 @@
   }
 
   h3 {
-    margin-top: 4.2rem;
+    margin-top: 2rem;
   }
 
   #details_container, #details_brand_container {
     display: flex;
-    margin-top: 3.5rem;
     padding: 0 !important;
     width: 100%;
 
     mat-form-field {
-      margin: 2.5rem 1rem;
+      margin: 0 1rem;
+
+      &.brand, &.model, &.description {
+        margin: 2.5rem 0;
+      }
 
       div {
         padding: 0;

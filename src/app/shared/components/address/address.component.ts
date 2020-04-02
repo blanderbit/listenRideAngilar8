@@ -131,7 +131,7 @@ export class AddressComponent implements OnInit, OnDestroy {
 
     if (this.segments.length) {
       // eslint-disable-next-line no-restricted-globals
-      if (!isNaN(Number(this.segments[this.segments.length - 1]))) {
+      if (this.segments[this.segments.length - 1]) {
         this.segments.splice(this.segments.length - 1, 1);
         return this.segments.join(' ');
       }
@@ -140,7 +140,7 @@ export class AddressComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  private getNumberFromStreet(street: string): number {
+  private getNumberFromStreet(street: string): any {
     if (!street) {
       return null;
     }
@@ -149,8 +149,8 @@ export class AddressComponent implements OnInit, OnDestroy {
 
     if (this.segments.length) {
       // eslint-disable-next-line no-restricted-globals
-      return !isNaN(Number(this.segments[this.segments.length - 1]))
-        ? Number(this.segments[this.segments.length - 1])
+      return this.segments[this.segments.length - 1]
+        ? this.segments[this.segments.length - 1]
         : null;
     }
     return null;

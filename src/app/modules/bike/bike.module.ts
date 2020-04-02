@@ -12,9 +12,7 @@ import { BookingSnackbarComponent } from './bike-page/booking-snackbar/booking-s
 import { BikeDescriptionBlockComponent } from './bike-page/bike-description-block/bike-description-block.component';
 import { BikeBookingWidgetComponent } from './bike-booking-widget/bike-booking-widget.component';
 import { PricesSectionComponent } from './bike-booking-widget/components/prices-section/prices-section.component';
-import { BikeEffects } from './store/effects';
-import { BikeReducer } from './store/reducer';
-import { BIKE_FEATURE } from './store';
+
 import { BookingOverviewComponent } from './bike-booking-widget/components/booking-overview/booking-overview.component';
 
 @NgModule({
@@ -33,9 +31,8 @@ import { BookingOverviewComponent } from './bike-booking-widget/components/booki
     SharedModule,
     BikeRoutingModule,
     SettingsProfileModule,
-    StoreModule.forFeature(BIKE_FEATURE, BikeReducer),
-    EffectsModule.forFeature([BikeEffects]),
   ],
   entryComponents: [BookingModalComponent],
+  exports: [BikeBookingWidgetComponent],
 })
 export class BikeModule {}

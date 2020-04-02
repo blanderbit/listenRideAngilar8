@@ -19,7 +19,7 @@
   <div class="row">
     <div class="col-sm-8">
       <mat-form-field appearance="outline" class="lnr-w-100">
-        <mat-label>Street</mat-label>
+        <mat-label [innerHTML]="'forms.street' | translate"></mat-label>
         <input
           formControlName="street"
           type="text"
@@ -38,10 +38,10 @@
 
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
-        <mat-label>Number</mat-label>
+        <mat-label [innerHTML]="'forms.streetnumber' | translate"></mat-label>
         <input
           formControlName="number"
-          type="number"
+          type="text"
           matInput
           placeholder="Enter number"
         />
@@ -59,7 +59,7 @@
   <div class="row">
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
-        <mat-label>Zip Code</mat-label>
+        <mat-label [innerHTML]="'forms.zip' | translate"></mat-label>
         <input
           formControlName="zip"
           type="number"
@@ -76,7 +76,7 @@
 
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
-        <mat-label>City</mat-label>
+        <mat-label [innerHTML]="'forms.city' | translate"></mat-label>
         <input
           formControlName="city"
           type="text"
@@ -93,7 +93,7 @@
 
     <div class="col-sm-4">
       <mat-form-field appearance="outline" class="lnr-w-100">
-        <mat-label>Country</mat-label>
+        <mat-label [innerHTML]="'forms.country' | translate"></mat-label>
         <input
           formControlName="country"
           type="text"

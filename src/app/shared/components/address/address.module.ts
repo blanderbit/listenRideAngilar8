@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { HttpErrorMessageModule } from '@shared/components/http-error-message/http-error-message.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AddressComponent],
@@ -19,6 +20,7 @@ import { HttpErrorMessageModule } from '@shared/components/http-error-message/ht
     AgmCoreModule,
     MatGoogleMapsAutocompleteModule,
     HttpErrorMessageModule,
+    TranslateModule,
   ],
   exports: [AddressComponent],
 })

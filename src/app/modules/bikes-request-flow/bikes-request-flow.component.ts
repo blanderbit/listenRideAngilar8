@@ -18,7 +18,7 @@ import * as fromAuth from '@auth/store/reducers';
 import { ApiRidesService } from '@api/api-rides/api-rides.service';
 import { BIKE } from '@models/bike/bike.model';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -36,6 +36,7 @@ import { typeList } from '@core/constants/filters.const';
 import { STATIC } from './consts/consts';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.component';
+import { loadBike } from '../bike/store/actions';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const moment = require('moment');
@@ -145,6 +146,9 @@ export class BikesRequestFlowComponent
           this.isBikeQueryParams = bike && bike.queryParams;
           return bike;
         }),
+        tap(({ id }) => {
+          this.store.dispatch(loadBike({ bikeId: id }));
+        }),
         takeUntil(this.destroyed$),
       )
       .subscribe(
@@ -252,6 +256,8 @@ export class BikesRequestFlowComponent
     const isUser = this.user || '';
     const hasPhone = (this.user && this.user.hasPhoneNumber) || '';
     const hasAddress = (this.user && this.user.hasAddress) || '';
+    const paymentInput =
+      this.user && this.user.paymentMethod && 'credit_card_current';
 
     const duration = {};
 
@@ -267,7 +273,7 @@ export class BikesRequestFlowComponent
     };
 
     const paymentMethod = {
-      payment: [''],
+      payment: [paymentInput],
     };
 
     const bookingOverview = {};
