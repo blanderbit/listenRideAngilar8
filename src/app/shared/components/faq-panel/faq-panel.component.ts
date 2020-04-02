@@ -8,4 +8,5 @@ import { Faq } from '@api/api-faqs';
 })
 export class FaqPanelComponent {
   @Input() faq: Faq;
+  panelOpenState: boolean = false;
 }
