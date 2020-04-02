@@ -1,0 +1,47 @@
+<div class="booking-overview-container" *ngIf="bookingOverview">
+  <div class="justify-content-between d-flex">
+    <span>
+      {{ bookingOverview.daysAmount }}
+      {{ bookingOverview.periodLabel | translate }} x
+      {{ bookingOverview.price | lnr_currency }}
+    </span>
+    <span>
+      {{ bookingOverview.subtotal | lnr_currency }}
+    </span>
+  </div>
+  <div class="justify-content-between d-flex" *ngIf="bookingOverview.discount">
+    <span>
+      {{ 'list.pricing.discount' | translate }}
+      {{ bookingOverview.daysAmount }}
+      {{ bookingOverview.periodLabel | translate }} x
+      {{ bookingOverview.averageDiscount | lnr_currency }}
+    </span>
+    <span> −{{ bookingOverview.discount | lnr_currency }} </span>
+  </div>
+  <div
+    class="justify-content-between d-flex"
+    *ngIf="bookingOverview.serviceFee"
+  >
+    <span>
+      {{
+        (isInsuranceEnabled ? 'shared.basic-fee' : 'shared.lnr-fee') | translate
+      }}
+    </span>
+    <span> {{ bookingOverview.serviceFee | lnr_currency }} </span>
+  </div>
+  <div class="justify-content-between d-flex" *ngIf="isPremiumInsuranceEnabled">
+    <span>
+      {{ 'booking.overview.premium_insurance' | translate }}
+      {{ bookingOverview.daysAmount }}
+      {{ bookingOverview.periodLabel | translate }} x
+      {{ bookingOverview.premiumInsurancePrice | lnr_currency }}
+    </span>
+    <span> {{ bookingOverview.premiumInsuranceTotal | lnr_currency }} </span>
+  </div>
+  <div class="justify-content-between d-flex" *ngIf="bookingOverview.total">
+    <span>
+      {{ 'shared.total' | translate }}
+    </span>
+    <span> {{ bookingOverview.total | lnr_currency }} </span>
+  </div>
+</div>

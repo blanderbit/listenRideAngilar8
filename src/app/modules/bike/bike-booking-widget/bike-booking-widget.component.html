@@ -1,0 +1,174 @@
+<div class="booking-widget-wrapper" *ngIf="currentBike$ | async as bikeData">
+  <lnr-prices-section
+    *ngIf="isPricesSectionShown"
+    [prices]="bikeData.pricesByDay"
+  >
+  </lnr-prices-section>
+  <div>
+    <p class="pt-3">{{ 'shared.dates' | translate }}</p>
+    <lnr-date-range-picker
+      *ngIf="unavailableDates; else loading"
+      [datesRange]="selectedDays$ | async"
+      [engagedDays]="unavailableDates"
+      [engagedHours]="unavailableHours"
+      [isHalfDay]="bikeData.isHalfDay"
+      [timeSlots]="bikeData.timeSlots"
+      (datesRangeSet)="onDatesRangeSet($event)"
+      [onNextMonthRequest]="onNextMonthRequest"
+      [className]="['date-range-picker']"
+    >
+    </lnr-date-range-picker>
+
+    <div *ngIf="!isTimePickerShown && (dayHalvesData | keyvalue).length">
+      <div class="d-flex justify-content-between">
+        <button
+          mat-flat-button
+          *ngFor="let half of dayHalvesData | keyvalue; let i = index"
+          class="m-t-2 m-b-2 half-day-option"
+          color="accent"
+          [disabled]="!half.value.isAvailable"
+        >
+          <mat-checkbox
+            [(ngModel)]="half.value.isChecked"
+            (change)="onHalfDayChange()"
+            [checked]="half.value.isChecked"
+            [disabled]="!half.value.isAvailable"
+          >
+            <div class="d-flex flex-column">
+              <div class="half-day-name">
+                {{
+                  (i === 0 ? 'shared.morning' : 'shared.afternoon') | translate
+                }}
+              </div>
+              <div class="div">
+                {{ half.key }}
+              </div>
+            </div>
+          </mat-checkbox>
+        </button>
+      </div>
+      <div
+        class="d-flex direction-column align-items-center t-align-center pt-1"
+      >
+        <span>{{ 'booking.select_both' | translate }}</span>
+      </div>
+    </div>
+
+    <ng-template #loading>
+      <div class="loader-spinner-dates">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+
+  <div *ngIf="isTimePickerShown" class="pb-3">
+    <p class="pt-3">
+      {{ 'shared.rental-time' | translate }}
+    </p>
+    <div
+      class="d-flex time-pickers"
+      *ngIf="bookingData$ | async as bookingData"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>
+          {{ 'shared.from' | translate }}
+          {{ bookingData.startDay | date: 'd MMM y' }}
+        </mat-label>
+        <mat-select
+          (openedChange)="onSelectOpen($event, hourTypes.PickUp)"
+          [value]="bookingData.pickUpHour"
+          (selectionChange)="onHourSelectChange($event, hourTypes.PickUp)"
+        >
+          <mat-option
+            *ngFor="let hour of hourPickerOptions"
+            [disabled]="hour.isDisabled"
+            [value]="hour.value"
+          >
+            {{ hour.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>
+          {{ 'shared.to' | translate }}
+          {{ bookingData.endDay | date: 'd MMM y' }}
+        </mat-label>
+        <mat-select
+          (openedChange)="onSelectOpen($event, hourTypes.Return)"
+          [placeholder]="'booking.calendar.return-time' | translate"
+          [value]="bookingData.returnHour"
+          (selectionChange)="onHourSelectChange($event, hourTypes.Return)"
+        >
+          <mat-option
+            *ngFor="let hour of hourPickerOptions"
+            [disabled]="hour.isDisabled"
+            [value]="hour.value"
+          >
+            {{ hour.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="size-picker pb-3" *ngIf="bikeData.variations">
+    <p class="pt-3">
+      {{ 'shared.size' | translate }}
+    </p>
+    <mat-select
+      placeholder="Select size"
+      (selectionChange)="onSizeSelectionChange($event)"
+      [value]="bikeData.prettySize"
+    >
+      <mat-option
+        *ngFor="let variation of bikeData?.variations | keyvalue: preserveOrder"
+        [value]="variation.key"
+      >
+        <span> {{ variation.key }} </span>
+        <span class="amount-available">
+          ({{ variation.value.amount }} {{ 'shared.available' | translate }})
+        </span>
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="booking-overview">
+    <p class="pt-3 medium">
+      {{ 'requests.booking-overview' | translate }}
+    </p>
+    <lnr-booking-overview
+      [halfDaysData]="dayHalvesData"
+      [pricesByDay]="bikeData.pricesByDay"
+      [selectedDays]="selectedDays$ | async"
+      [insurancePrice]="bikeData.coverageTotal"
+      [isPremiumInsuranceEnabled]="
+        (bookingData$ | async).isPremiumInsuranceEnabled
+      "
+      [isInsuranceEnabled]="bikeData.isInsuranceEnabled"
+    >
+    </lnr-booking-overview>
+  </div>
+
+  <div class="booking-errors-wrapper" *ngIf="shownErrors.length">
+    <span *ngFor="let error of shownErrors">
+      {{ error | translate }}
+    </span>
+  </div>
+  <button
+    mat-flat-button
+    class="m-t-2 m-b-2 submit-button"
+    color="accent"
+    [disabled]="isSubmitButtonDisabled"
+    (click)="onSubmitButtonClick()"
+  >
+    {{ buttonText || 'Submit' }}
+  </button>
+  <div class="d-flex direction-column align-items-center t-align-center">
+    <span>
+      {{ 'shared.bookings.you_wont_be_charged' | translate }}
+    </span>
+    <span>
+      {{ 'shared.bookings.may_require_deposit' | translate }}
+    </span>
+  </div>
+</div>

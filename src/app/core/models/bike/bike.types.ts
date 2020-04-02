@@ -1,7 +1,7 @@
-/* eslint-disable */
 import { User } from '@models/user/user';
 import { PeriodStartDate } from '@core/constants/time';
-
+import { PricesByDay } from '@shared/helpers/price-helper';
+import { TimeSlots } from '@models/business/business';
 import {
   CategoryInterface,
   SubCategoryInterface,
@@ -26,6 +26,7 @@ export interface ExpandedBikeData {
   frameSize: string;
   accessories: Accessories;
   coverageTotal: number;
+  isInsuranceEnabled: boolean;
   // Formatted bike size. Frame size if present or formatted rider height
   prettySize: string;
   dailyPrice: number;
@@ -45,8 +46,11 @@ export interface ExpandedBikeData {
   ridesCount: number;
   isCluster: boolean;
   user: User;
-  cluster: BikesCluster;
-  prices: Array<BikePrice>;
+  variations?: BikeVariations;
+  clusterId?: number;
+  pricesByDay: PricesByDay;
+  timeSlots?: TimeSlots;
+  isHalfDay: boolean;
 }
 
 export interface BikePrice {
@@ -75,6 +79,7 @@ export interface Accessories {
 export interface BikesCluster {
   id: number;
   sizes: Array<ClusterBikeSize>;
+  variations: Array<{ id: number; size: number; prettySize: string }>;
 }
 
 export interface ClusterBikeSize {
@@ -97,6 +102,15 @@ export interface Bike {
   distance: number;
   rides_count: number;
   is_cluster: boolean;
-  // TODO: add type
-  cluster: any;
+}
+
+export interface BikeVariation {
+  isAvailable: boolean;
+  bikeIds: Array<number>;
+  size: number;
+  amount: number;
+}
+
+export interface BikeVariations {
+  [key: string]: BikeVariation;
 }

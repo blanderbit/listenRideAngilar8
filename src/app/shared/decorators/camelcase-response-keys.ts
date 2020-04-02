@@ -4,6 +4,8 @@ import * as camelcaseKeys from 'camelcase-keys';
 const STOP_PATHS: string[] = [
   // Engaged time response
   'hours',
+  // Bike data processing result
+  'variations',
 ];
 
 /**

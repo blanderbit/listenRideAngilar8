@@ -19,6 +19,13 @@ Run `ng serve` or `npm run start1` for a dev server. Navigate to `http://localho
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Check and fix linting errors
+
+Run `npm run github-checks` to check if your code is ready to be pushed. 
+To auto fix some of errors try `npm run prettier-fix` and/or `npm run lint-fix`
+
+Our linter rules are mainly inspired by [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
 ## Tips
 
 

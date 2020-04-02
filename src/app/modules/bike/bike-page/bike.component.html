@@ -1,0 +1,156 @@
+<div class="container-lg mt-lg-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg-8">
+      <lnr-bike-images-swiper
+        [images]="bikeData?.images"
+      ></lnr-bike-images-swiper>
+      <div *ngIf="bikeData">
+        <div class="row py-4">
+          <div class="col-sm-12 col-md-8">
+            <div class="bike-meta d-flex align-items-start">
+              <img
+                [src]="bikeData.category.src"
+                alt="{{ bikeData.category.type }}"
+                class="mr-4"
+              />
+              <div>
+                <h4>{{ bikeData.brand }} • {{ bikeData.name }}</h4>
+                <p class="heading-5">
+                  {{ bikeData.subcategory.text }} •
+                  <span *ngIf="bikeData.isCluster">
+                    {{ 'shared.multiple_sizes' | translate }}
+                  </span>
+                  <span *ngIf="!bikeData.isCluster">
+                    {{
+                      bikeData.prettySize === 'Unisize'
+                        ? bikeData.prettySize
+                        : ('shared.size' | translate) +
+                          ': ' +
+                          bikeData.prettySize
+                    }}
+                  </span>
+                </p>
+                <p class="regular-text">
+                  {{ bikeData.city }}
+                  - {{ bikeData.street ? bikeData.street + ',' : '' }}
+                  {{ bikeData.country }}
+                </p>
+              </div>
+            </div>
+            <hr class="d-md-none" />
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div
+              class="bike-user-meta d-flex align-items-start"
+              *ngIf="bikeData"
+            >
+              <img
+                [src]="bikeData.user.profilePicture.profilePicture.url"
+                alt="{{ bikeData.user.firstName }}"
+                class="mr-3"
+              />
+              <div class="user-name-rating-container">
+                <p>
+                  {{ bikeData.user.firstName }} {{ bikeData.user.lastName }}
+                </p>
+                <div class="bike-rating d-flex" *ngIf="bikeData.ratingsTotal">
+                  <mat-icon class="rating-icon">star</mat-icon>
+                  {{ bikeData.ratingAverage | number: '1.1-1' }} ({{
+                    bikeData.ratingsTotal
+                  }})
+                </div>
+              </div>
+            </div>
+            <hr class="d-md-none" />
+          </div>
+        </div>
+        <div class="row py-md-4">
+          <div class="col-sm-12 col-md-8">
+            <lnr-bike-description-block
+              [bikeDescription]="bikeData?.description"
+            >
+            </lnr-bike-description-block>
+          </div>
+          <div class="col-sm-12 col-md-4 ">
+            <div
+              class="bike-accessories mb-3"
+              *ngIf="accessoriesImages?.length"
+            >
+              <p class="medium">
+                {{ 'list.accessories.label' | translate }}
+              </p>
+              <img
+                [src]="item.src"
+                [alt]="item.name"
+                *ngFor="let item of accessoriesImages"
+                [matTooltip]="item.name"
+              />
+            </div>
+            <div
+              class="d-flex insurance-info"
+              *ngIf="bikeData.isInsuranceEnabled"
+            >
+              <img [src]="SECURE_IMAGE" alt="insurance-included" />
+              <div>
+                <p>
+                  {{ 'calendar.basic-insurance-included' | translate }}
+                </p>
+                <!-- TODO: Add href -->
+                <a href="#">{{ 'shared.learn-more' | translate }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row py-4">
+          <div class="col-12">
+            <p class="medium">
+              {{ 'shared.bike_location' | translate }}
+            </p>
+            <p>
+              {{ 'bike_page.location.disclaimer' | translate }}
+            </p>
+            <div class="static-map mt-2">
+              <img [src]="staticMapSrc" alt="Google Map" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-none d-lg-block">
+      <mat-card class="booking-widget-container">
+        <mat-card-content>
+          <lnr-bike-booking-widget
+            [isPricesSectionShown]="true"
+            (submitEvent)="navigateToRequestFlow($event)"
+          ></lnr-bike-booking-widget>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <mat-divider class="d-none d-lg-block"></mat-divider>
+  <div class="row py-4">
+    <div class="col-sm-12 col-md-8">
+      <p class="medium">
+        {{ 'shared.cancellations' | translate }}
+      </p>
+      <p>
+        {{ 'bike_page.cancellations.disclaimer' | translate }}
+      </p>
+      <a href="/faq?group=6">
+        {{ 'bike_page.cancellations.read_more' | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-sm-12 col-md-8">
+      <p class="medium">
+        {{ 'seo.top_locations' | translate }}
+      </p>
+      <lnr-top-location class="test"></lnr-top-location>
+    </div>
+  </div>
+  <lnr-booking-snackbar
+    [bikeData]="bikeData"
+    (handleClick)="openBookingModal()"
+  ></lnr-booking-snackbar>
+</div>

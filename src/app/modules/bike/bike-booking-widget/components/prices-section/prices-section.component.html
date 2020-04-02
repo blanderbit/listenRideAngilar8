@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between prices-section">
+  <div *ngIf="prices['1/2']">
+    <p class="heading-4">{{ prices['1/2'] | lnr_currency: '1.0-0' }}</p>
+    <p>1/2 {{ 'shared.day' | translate }}</p>
+  </div>
+  <div>
+    <p class="heading-4">{{ prices['1'] | lnr_currency: '1.0-0' }}</p>
+    <p>{{ 'shared.per-day' | translate }}</p>
+  </div>
+  <div *ngIf="!prices['1/2']">
+    <p class="heading-4">{{ prices['2'] | lnr_currency: '1.0-0' }}</p>
+    <p>
+      {{ ('shared.per' | translate) + ' 2 ' + ('shared.days' | translate) }}
+    </p>
+  </div>
+  <div>
+    <p class="heading-4">{{ prices['7'] * 7 | lnr_currency: '1.0-0' }}</p>
+    <p>
+      {{ ('shared.per' | translate) + ' ' + ('shared.week' | translate) }}
+    </p>
+  </div>
+</div>

@@ -5,7 +5,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Bike, ExpandedBikeData } from '@models/bike/bike.types';
 import { CamelCaseResponseKeys } from '@shared/decorators/camelcase-response-keys';
-import { RideResponse, EngagedTimeResponse } from '@api/api-rides/types';
+import {
+  RideResponse,
+  EngagedTimeResponse,
+  ClusterResponse,
+} from '@api/api-rides/types';
 import { processRideResponse } from '@api/api-rides/helpers/process-ride-response';
 import * as snakeCaseKeys from 'snakecase-keys';
 @Injectable({ providedIn: 'root' })
@@ -91,5 +95,19 @@ export class ApiRidesService {
       `/rides/${bikeId}/engaged_time`,
       { params },
     );
+  }
+
+  @CamelCaseResponseKeys()
+  getAvailableSizesByCluster(
+    clusterId: number,
+    startDate: string,
+    duration: number,
+  ): Observable<ClusterResponse> {
+    const params = snakeCaseKeys({ startDate, duration }) as {
+      [key: string]: string;
+    };
+    return this.httpClient.get<ClusterResponse>(`/clusters/${clusterId}`, {
+      params,
+    });
   }
 }

@@ -55,7 +55,7 @@ const routes: Routes = [
   },
   {
     path: 'bikes',
-    loadChildren: () => import('./modules/bikes').then(m => m.BikesModule),
+    loadChildren: () => import('./modules/bike').then(m => m.BikeModule),
   },
   {
     path: '404',

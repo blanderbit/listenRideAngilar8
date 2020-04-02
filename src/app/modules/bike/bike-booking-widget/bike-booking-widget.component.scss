@@ -1,0 +1,61 @@
+@import 'variables';
+
+.booking-widget-wrapper {
+  margin: auto;
+  max-width: 37.5rem;
+}
+
+::ng-deep.loader-spinner-dates {
+  height: 3rem;
+  margin: auto auto 1rem;
+  width: 3rem;
+}
+
+::ng-deep.fully-unavailable-day {
+  color: $lnr-dang;
+}
+
+::ng-deep.half-day-option {
+  padding: 0.5rem 0.7rem;
+  width: 50%;
+
+  .mat-checkbox-frame {
+    border-color: $white;
+  }
+
+  .mat-checkbox-layout .mat-checkbox-label {
+    color: $white;
+    line-height: 2rem;
+  }
+
+  &:first-child {
+    margin-right: 0.25rem;
+  }
+
+  &:nth-child(2) {
+    margin-left: 0.25rem;
+  }
+}
+
+.time-pickers {
+  justify-content: space-between;
+  > mat-form-field {
+    width: calc(50% - 0.5rem);
+  }
+}
+
+.submit-button {
+  color: $white;
+  font-weight: bold;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.booking-errors-wrapper {
+  align-items: center;
+  color: $error-color;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  text-align: center;
+}

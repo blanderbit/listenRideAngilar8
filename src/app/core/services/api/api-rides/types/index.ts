@@ -1,8 +1,16 @@
-import { BikesCluster, ExpandedBikeData } from '@models/bike/bike.types';
+import {
+  BikePrice,
+  BikesCluster,
+  ExpandedBikeData,
+} from '@models/bike/bike.types';
 
 export interface RideResponse {
-  current: Omit<ExpandedBikeData, 'cluster' | 'category' | 'subcategory'> & {
+  current: Omit<
+    ExpandedBikeData,
+    'variations' & 'category' & 'subcategory' & 'clusterId' & 'pricesByDay'
+  > & {
     category: number;
+    prices: Array<BikePrice>;
   };
   cluster: BikesCluster;
 }
@@ -23,7 +31,18 @@ export interface EngagedDays {
   closed: Array<string>;
   [index: string]: Array<string>;
 }
+
 export interface EngagedTimeResponse {
   days: EngagedDays;
   hours: EngagedHoursByDay;
+}
+
+export interface ClusterBikeSizeData {
+  size: number;
+  amount: number;
+}
+
+export interface ClusterResponse {
+  sizes: Array<ClusterBikeSizeData>;
+  rideIds: Array<number>;
 }

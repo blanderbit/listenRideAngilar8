@@ -1,0 +1,11 @@
+@import '~assets/scss/colors';
+
+.button-read-more {
+  color: $main-green;
+  cursor: pointer;
+}
+
+.bike-description-text {
+  overflow: hidden;
+  overflow-wrap: break-word;
+}

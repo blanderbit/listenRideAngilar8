@@ -1,8 +1,12 @@
-// TODO Fix all the esLint errors
-/* eslint-disable */
 import { BikePrice } from '@models/bike/bike.types';
 import { PeriodStartDate } from '@core/constants/time';
 
+export const FEE_COEFFICIENT = 0.125;
+export const TAX_COEFFICIENT = 0.19;
+export const PREMIUM_INSURANCE_PRICE = 3;
+
+// TODO Please, do not use this and fix the place where it is used to avoid snake_case
+/* eslint-disable @typescript-eslint/camelcase */
 export const priceCount = [
   { count: 1, start_at: 86400 },
   { count: 2, start_at: 172800 },
@@ -26,7 +30,7 @@ export interface PricesByDay {
   '28': number;
 }
 
-const PRICES_BY_DAYS = new Map<PeriodStartDate, string>([
+export const PRICES_BY_DAYS = new Map<PeriodStartDate, string>([
   [PeriodStartDate.HALF_DAY, '1/2'],
   [PeriodStartDate.ONE_DAY, '1'],
   [PeriodStartDate.TWO_DAYS, '2'],
@@ -35,7 +39,7 @@ const PRICES_BY_DAYS = new Map<PeriodStartDate, string>([
   [PeriodStartDate.FIVE_DAYS, '5'],
   [PeriodStartDate.SIX_DAYS, '6'],
   [PeriodStartDate.SEVEN_DAYS, '7'],
-  [PeriodStartDate.EIGHT_DAYS, '8'],
+  [PeriodStartDate.EIGHT_AND_MORE_DAYS, '8'],
   [PeriodStartDate.MONTH, '28'],
 ]);
 
@@ -47,3 +51,48 @@ export const getPricesByDay = (originalPrices: BikePrice[]): PricesByDay =>
     }),
     {},
   ) as PricesByDay;
+
+export const getDiscountedSubtotal = (
+  daysAmount: number,
+  pricesByDay: PricesByDay,
+): number => {
+  if (daysAmount >= 1 && daysAmount <= 7) {
+    return pricesByDay[daysAmount] * daysAmount;
+  }
+  if (daysAmount > 7 && daysAmount < 28) {
+    const key = PRICES_BY_DAYS.get(PeriodStartDate.EIGHT_AND_MORE_DAYS);
+    const subtotalForFirstWeek = pricesByDay[daysAmount] * 7;
+    const subtotalForRest = pricesByDay[key] * (daysAmount - 7);
+    return subtotalForFirstWeek + subtotalForRest;
+  }
+  return pricesByDay[28] * daysAmount;
+};
+
+export const getServiceFee = (subtotal: number): number => {
+  const priceWithFee = subtotal * FEE_COEFFICIENT;
+
+  return priceWithFee * TAX_COEFFICIENT + priceWithFee;
+};
+
+export const getInsurancePrice = (
+  isPremiumInsuranceEnabled: boolean,
+): number => {
+  return 0;
+};
+/**
+ fee_rider = subtotal * 0.125
+ tax_rider = fee_rider * 0.19
+ insurance_price = basic_insurance_price + premium_insurance_extra_price
+ basic_insurance_price = Insurance::PRICES[@ride.coverage_total] * @price_calculation_strategy.total_calendar_days
+ premium_insurance_extra_price = Insurance::PREMIUM_EXTRA_PRICE * @price_calculation_strategy.total_calendar_days
+ Insurance::VALID_COUNTRIES = %w[AT DE]
+ Insurance::PRICES = {
+    0 => 0,
+    1000 => 1,
+    2000 => 2,
+    3000 => 3,
+    4000 => 4,
+    5000 => 5
+  }
+ Insurance::PREMIUM_EXTRA_PRICE = 3
+ */

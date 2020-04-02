@@ -19,12 +19,12 @@ export interface AccessoryImage {
   src: string;
 }
 
-export const getCategoryDataBySubcategoryId = (
-  id: number,
+export const getCategoryData = (
+  subcategoryId: number,
 ): CategoryData | undefined =>
   typeList.reduce((accumulator: CategoryData | undefined, category) => {
     const subcategory = category.categories.find(
-      ({ value }) => Number(value) === id,
+      ({ value }) => Number(value) === subcategoryId,
     );
 
     if (subcategory !== undefined) {
