@@ -149,9 +149,7 @@ export class AddressComponent implements OnInit, OnDestroy {
 
     if (this.segments.length) {
       // eslint-disable-next-line no-restricted-globals
-      return this.segments[this.segments.length - 1]
-        ? this.segments[this.segments.length - 1]
-        : null;
+      return this.segments[this.segments.length - 1];
     }
     return null;
   }

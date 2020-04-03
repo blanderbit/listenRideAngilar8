@@ -43,7 +43,10 @@ import { BikeCardComponent } from './components/bike-card/bike-card.component';
 import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorting.component';
 import { MaterialModule } from './material/material.module';
 import { FiltersComponent } from './filters/filters.component';
-import { DateRangePickerComponent } from '../modules/bike/bike-booking-widget/components/date-range-picker/date-range-picker.component';
+import { DateRangePickerComponent } from './components/bike-booking-widget/components/date-range-picker/date-range-picker.component';
+import { BikeBookingWidgetComponent } from '@shared/components/bike-booking-widget/bike-booking-widget.component';
+import { PricesSectionComponent } from '@shared/components/bike-booking-widget/components/prices-section/prices-section.component';
+import { BookingOverviewComponent } from '@shared/components/bike-booking-widget/components/booking-overview/booking-overview.component';
 
 const components = [
   FiltersComponent,
@@ -65,6 +68,9 @@ const components = [
   BookWidgetComponent,
   PaymentComponent,
   FaqPanelComponent,
+  BikeBookingWidgetComponent,
+  PricesSectionComponent,
+  BookingOverviewComponent,
 ];
 
 const modules = [

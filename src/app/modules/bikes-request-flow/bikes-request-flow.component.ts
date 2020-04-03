@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -19,7 +18,7 @@ import { ApiRidesService } from '@api/api-rides/api-rides.service';
 import { BIKE } from '@models/bike/bike.model';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -27,7 +26,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { User } from '@models/user/user';
 import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   CategoryInterface,
   SubCategoryInterface,
@@ -37,7 +36,8 @@ import { STATIC } from './consts/consts';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ThreeDSecureComponent } from './components/threeDSecure/threeDSecure.component';
 import { loadBike } from '../bike/store/actions';
-
+import { BookingModalComponent } from '../bike/bike-page/booking-modal/booking-modal.component';
+import { Location } from '@angular/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const moment = require('moment');
 const now = new Date();
@@ -106,19 +106,36 @@ export class BikesRequestFlowComponent
     private deviceDetectorService: DeviceDetectorService,
     private cdr: ChangeDetectorRef,
     private media: MediaMatcher,
+    public dialog: MatDialog,
+    public Location: Location,
   ) {
-    this.mobileQuery = this.media.matchMedia('(max-width: 60rem)');
+    this.mobileQuery = this.media.matchMedia('(max-width: 450px)');
     this.mobileQuery.onchange = () => {
-      this.setStep();
+      setTimeout(() => this.setStep(), 0);
     };
   }
-
-  private _mobileQueryListener: () => void;
 
   ngOnInit(): void {
     this.getDevices();
     this.setRouterEvents();
     this.getDataUseRout();
+  }
+
+  openBookingModal(): void {
+    this.dialog.open(BookingModalComponent, {
+      width: '100vw',
+      maxWidth: '100vw',
+      height: '100vh',
+      maxHeight: '100vh',
+      data: this.data,
+    });
+  }
+
+  get forSnackData() {
+    return {
+      dailyPrice: this.data.daily_price,
+      weeklyPrice: this.data.weekly_price,
+    };
   }
 
   getType(category: string): void {
@@ -146,9 +163,7 @@ export class BikesRequestFlowComponent
           this.isBikeQueryParams = bike && bike.queryParams;
           return bike;
         }),
-        tap(({ id }) => {
-          this.store.dispatch(loadBike({ bikeId: id }));
-        }),
+        tap(({ id }) => this.store.dispatch(loadBike({ bikeId: id }))),
         takeUntil(this.destroyed$),
       )
       .subscribe(
@@ -161,15 +176,15 @@ export class BikesRequestFlowComponent
   }
 
   setRouterEvents(): void {
-    this.router.events.pipe(takeUntil(this.destroyed$)).subscribe(data => {
-      if (data instanceof NavigationEnd) {
-        const query = this.router.getCurrentNavigation().finalUrl.queryParams;
-        this.isBikeQueryParams = {
-          ...query,
-        };
-        this.setStep();
-        this.getDevices();
-      }
+    this.Location.onUrlChange(data => {
+      const search = new URLSearchParams(data);
+      const query = {
+        duration: search.get('duration'),
+        start_date: search.get('start_date'),
+      };
+      this.isBikeQueryParams = { ...query };
+      this.setStep();
+      this.getDevices();
     });
   }
 
@@ -336,8 +351,9 @@ export class BikesRequestFlowComponent
   }
 
   requestFlow() {
-    // checkoutshopper-test.adyen.com/checkoutshopper/threeDS2.shtml
-
+    if (!this.isLastStep) {
+      return this.setStep();
+    }
     const request = new FormData();
     const user_id = JSON.stringify(this.user.id);
 

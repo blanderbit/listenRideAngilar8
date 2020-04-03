@@ -65,12 +65,11 @@
               <span *ngIf="businessForm.get('company_name').errors?.required">
                 {{ 'settings.errors.required-company-name' | translate }}
               </span>
-              <span
-                *ngIf="businessForm.get('company_name').errors?.minlength">
-                {{'settings.errors.minlength-company-name' | translate}}
+              <span *ngIf="businessForm.get('company_name').errors?.minlength">
+                {{ 'settings.errors.minlength-company-name' | translate }}
               </span>
               <span *ngIf="businessForm.get('company_name').errors?.maxlength">
-                {{'settings.errors.maxlenght_company_name' | translate}}
+                {{ 'settings.errors.maxlengh_company_name' | translate }}
               </span>
             </mat-error>
           </mat-form-field>
@@ -98,7 +97,7 @@
             >
               <span *ngIf="userForm.get('first_name').errors?.required">{{
                 'forms.errors.empty-first-name-xs' | translate
-                }}</span>
+              }}</span>
               <span *ngIf="userForm.get('first_name').errors?.minlength">
                 {{ 'forms.errors.min_size_first_name' | translate }}
               </span>
@@ -155,13 +154,13 @@
             >
               <span *ngIf="userForm.get('email').errors?.required">{{
                 'forms.errors.empty-email-xs' | translate
-                }}</span>
+              }}</span>
               <span
                 *ngIf="
                   !userForm.get('email').errors?.required &&
                   userForm.get('email').errors?.wrongMail
                 "
-              >{{ 'forms.errors.valid-email' | translate }}</span
+                >{{ 'forms.errors.valid-email' | translate }}</span
               >
               <span
                 *ngIf="
@@ -201,7 +200,7 @@
                 formControlName="password"
                 [type]="passwordVisible ? 'text' : 'password'"
                 matInput
-                placeholder="{{'forms.password' | translate}}"
+                placeholder="{{ 'forms.password' | translate }}"
               />
               <div
                 class="toggle-visibility light-font cursor-pointer"

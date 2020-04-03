@@ -234,12 +234,14 @@
       </mat-step>
     </mat-vertical-stepper>
 
-    <div class="mt-5">
+    <div class="mt-9 d-none d-lg-block">
       <mat-card class="booking-widget-container">
         <mat-card-content>
           <lnr-bike-booking-widget
             [isPricesSectionShown]="false"
-            [isButtonDisabled]="true"
+            [isButtonDisabled]="false"
+            (submitEvent)="requestFlow()"
+            [buttonText]="!isLastStep && 'Next'"
           >
           </lnr-bike-booking-widget>
         </mat-card-content>
@@ -249,3 +251,7 @@
   <lnr-need-help class="mt-5"></lnr-need-help>
   <lnr-3d-secure #threeDSecure></lnr-3d-secure>
 </div>
+<lnr-booking-snackbar
+  [bikeData]="forSnackData"
+  (handleClick)="openBookingModal()"
+></lnr-booking-snackbar>

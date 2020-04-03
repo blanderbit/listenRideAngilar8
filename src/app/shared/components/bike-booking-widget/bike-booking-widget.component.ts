@@ -38,13 +38,13 @@ import {
   getDayHalvesData,
   getInitialHourPickerOptions,
 } from './helpers';
-import * as fromBike from '../store';
-import { BikeState, BookingData, HourTypes } from '../types';
+import * as fromBike from '../../../modules/bike/store';
+import { BikeState, BookingData, HourTypes } from '../../../modules/bike/types';
 import {
   setBikeFromVariations,
   setSelectedDates,
   setSelectedHours,
-} from '../store/actions';
+} from '../../../modules/bike/store/actions';
 
 @Component({
   selector: 'lnr-bike-booking-widget',

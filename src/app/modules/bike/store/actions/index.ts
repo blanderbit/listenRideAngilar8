@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { ExpandedBikeData } from '@models/bike/bike.types';
-import { DatesRange } from '../../bike-booking-widget/types';
+import { DatesRange } from '../../../../shared/components/bike-booking-widget/types';
 
 export const enum BikeActionTypes {
   SET_BIKE = '[BIKE] - Set Bike',

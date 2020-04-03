@@ -1,13 +1,17 @@
 @import 'variables';
 @import "utils/utils";
 
+.mt-9 {
+  margin-top: 9rem;
+}
+
 #request-flow-stepper {
   display: grid;
   grid-template-columns: 75% 30%;
   max-width: 100%;
 
-  @include if-smaller-than(md) {
-    display: flex;
+  @include if-smaller-than(lg) {
+    display: block;
     max-width: 100%;
   }
 }
@@ -54,53 +58,6 @@
 
   .mat-step-icon {
     opacity: .5;
-  }
-}
-
-
-:host::ng-deep {
-  .mat-select {
-    font-weight: normal;
-    font-size: $h5-fontsize;
-    line-height: 150%;
-
-    .mat-select-trigger {
-      padding: 0.5em 1em;
-      border: .1rem solid $input-border;
-      border-radius: $border-radius;
-
-      .mat-select-arrow {
-        color: $input-border;
-      }
-    }
-
-  }
-
-  .mbsc-material {
-    position: relative;
-    font-weight: normal;
-    font-size: $h5-fontsize;
-    line-height: 150%;
-
-    .arrow-right {
-      background-image: url("./../../../assets/images/icons/shared/long-arrow-right.svg");
-      background-size: contain;
-      width: 5.5rem;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-      margin-right: .5rem;
-    }
-
-    &.mbsc-control-w {
-      margin: 0.2em 1em;
-    }
-
-    &.mbsc-input {
-      .mbsc-control {
-        border: none
-      }
-    }
   }
 }
 
@@ -438,3 +395,13 @@
   max-height: 35rem !important;
 }
 
+lnr-booking-snackbar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  ::ng-deep.bike-booking-snackbar{
+    width: 100%;
+    margin: 0;
+  }
+}

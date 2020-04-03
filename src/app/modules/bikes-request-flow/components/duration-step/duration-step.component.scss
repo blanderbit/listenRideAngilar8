@@ -4,15 +4,23 @@
 .main_container {
   padding: 0;
   box-sizing: border-box;
-  width: 76rem;
-  height: 30rem;
   margin: 0;
   border-bottom: .1rem solid $input-border;
 
+  @include if-bigger-than(md) {
+    height: 30rem;
+
+  }
+
   .leftContainer {
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 40% 60%;
     margin-top: 2rem;
+
+    @include if-smaller-than(md) {
+      grid-template-columns: 100%;
+      margin-bottom: 2rem;
+    }
 
     img {
       width: 26rem;
@@ -23,6 +31,7 @@
       display: grid;
       grid-template-columns: 30% 70%;
       font-size: $h5-fontsize;
+      margin-top: 1rem;
     }
   }
 }
@@ -32,6 +41,11 @@
   display: grid;
   grid-template-columns: 60% 40%;
 
+  @include if-smaller-than(md) {
+    grid-template-columns: 100%;
+  }
+
+
   h4 {
     font-weight: bold;
     display: flex;
@@ -40,6 +54,13 @@
 
   .premium_insurance {
     border-right: .1rem solid $input-border;
+
+    @include if-smaller-than(md) {
+      border-right: none;
+      border-bottom: .1rem solid $input-border;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
 
     div {
       margin-top: 2rem;
@@ -80,6 +101,8 @@
 
     .input_voucher {
       margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: 60% 30%;
       input {
         width: 16.7rem;
         height: 4.2rem;

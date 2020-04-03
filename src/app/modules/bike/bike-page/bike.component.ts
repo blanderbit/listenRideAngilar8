@@ -21,7 +21,7 @@ import { MetaData } from './types';
 import { BikeState } from '../types';
 import { selectCurrentBikeData } from '../store';
 import { loadBike } from '../store/actions';
-import { BookingSubmit } from '../bike-booking-widget/types';
+import { BookingSubmit } from '../../../shared/components/bike-booking-widget/types';
 
 @Component({
   selector: 'lnr-bike',

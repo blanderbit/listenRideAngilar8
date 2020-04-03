@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryMultiSelectComponent } from '@shared/filters/category-multiselect/category-multi-select.component';
 import { SearchModel, SearchQueryParams } from '../../../search/search.types';
-import { DatesRange } from '../../../bike/bike-booking-widget/types';
+import { DatesRange } from '../../../../shared/components/bike-booking-widget/types';
 
 @Component({
   selector: 'lnr-searching-form',
