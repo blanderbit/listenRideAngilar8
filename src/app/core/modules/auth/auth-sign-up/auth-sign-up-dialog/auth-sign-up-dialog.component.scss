@@ -1,4 +1,4 @@
-@import '../../../../../../assets/scss/variables';
+@import 'variables';
 
 ::ng-deep .tabs {
   background: $white;
@@ -13,7 +13,7 @@
       bottom: 0;
       content: '';
       display: block;
-      height: 3px;
+      height: 0.3rem;
       left: 0;
       position: absolute;
       transition: left 0.1s;
@@ -51,4 +51,10 @@
 
 :host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {
   line-height: 2rem;
+}
+
+.wrap-password-field {
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+    padding: 0.3rem 0 0.2rem !important;
+  }
 }

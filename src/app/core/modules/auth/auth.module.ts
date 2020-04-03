@@ -22,8 +22,9 @@ import { DirectivesModule } from '@shared/directives/directives.module';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { AuthLoginFormComponent } from '@auth/auth-login/auth-login-form/auth-login-form.component';
 import { DialogsModule } from '@shared/dialogs/dialogs.module';
-import * as fromAuth from './store/reducers';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import * as fromAuth from './store/reducers';
 
 const dialogs = [AuthSignUpDialogComponent, AuthLoginDialogComponent];
 
@@ -51,6 +52,7 @@ const dialogs = [AuthSignUpDialogComponent, AuthLoginDialogComponent];
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects, UserApiEffects]),
     TranslateModule,
+    MatIconModule,
   ],
   exports: [AuthLoginFormComponent, ...dialogs],
   entryComponents: [...dialogs],

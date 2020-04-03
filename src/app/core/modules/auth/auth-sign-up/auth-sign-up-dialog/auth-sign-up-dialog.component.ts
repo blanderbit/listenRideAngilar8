@@ -47,6 +47,8 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
 
   signUpFacebookError: HttpErrorResponse;
 
+  passwordVisible = false;
+
   get submitBtnTooltip(): string {
     return this.userForm.get('terms').invalid
       ? 'Agree our Terms and Conditions and Privacy policy'
@@ -168,6 +170,10 @@ export class AuthSignUpDialogComponent implements OnInit, OnDestroy {
           this.socialUserError = error;
         },
       );
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   toggleTab(tab: TabType) {
