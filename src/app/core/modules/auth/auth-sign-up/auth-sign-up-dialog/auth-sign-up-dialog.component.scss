@@ -36,7 +36,7 @@
   button {
     border-radius: 0;
     box-sizing: content-box;
-    height: 41px;
+    height: 4rem;
     position: relative;
 
     &.active {
@@ -47,4 +47,8 @@
       }
     }
   }
+}
+
+:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  line-height: 2rem;
 }

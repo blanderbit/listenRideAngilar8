@@ -1,5 +1,7 @@
 <div class="lnr-dialog-header">
-  <h2 mat-dialog-title class="lnr-text-align-ctr">Sign up</h2>
+  <h2 mat-dialog-title class="text-center">
+    {{'forms.sign-up' | translate}}
+  </h2>
 
   <mat-error>
     <lnr-http-error-message
@@ -12,7 +14,7 @@
 </div>
 
 <mat-dialog-content>
-  <div class="row lnr-mrg-btm">
+  <div class="row m-b-1">
     <div class="col-sm-12">
       <div class="tabs">
         <div class="buttons-wrap" [ngClass]="tabType">
@@ -21,14 +23,14 @@
             (click)="toggleTab('private')"
             [ngClass]="{ active: showPrivate }"
           >
-            Private
+            {{'verification.private' | translate}}
           </button>
           <button
             mat-button
             (click)="toggleTab('business')"
             [ngClass]="{ active: showBusiness }"
           >
-            Business
+            {{'settings.business' | translate}}
           </button>
         </div>
       </div>
@@ -44,13 +46,15 @@
     <div formGroupName="business" [hidden]="!(tabType === 'business')">
       <div class="row">
         <div class="col-sm-12">
-          <mat-form-field appearance="outline" class="lnr-w-100">
-            <mat-label>Company name</mat-label>
+          <mat-form-field appearance="outline" class="w-p-100">
+            <mat-label>
+              {{'settings.company-name' | translate}}
+            </mat-label>
             <input
               formControlName="company_name"
               type="text"
               matInput
-              placeholder="Enter your company name"
+              placeholder="{{'forms.company_name_placeholder' | translate}}"
             />
             <mat-error
               *ngIf="
@@ -58,14 +62,14 @@
                 businessForm.get('company_name').errors
               "
             >
-              <span *ngIf="businessForm.get('company_name').errors?.required"
-                >Company name is required</span
-              >
+              <span *ngIf="businessForm.get('company_name').errors?.required">
+                {{'settings.errors.required-company-name' | translate}}
+              </span>
               <span *ngIf="businessForm.get('company_name').errors?.minlength"
-                >Min length is 2</span
+              >{{'settings.errors.minlength-company-name' | translate}}</span
               >
               <span *ngIf="businessForm.get('company_name').errors?.maxlength"
-                >Max length is 50</span
+              >Max length is 50</span
               >
             </mat-error>
           </mat-form-field>
@@ -76,13 +80,13 @@
     <div formGroupName="user">
       <div class="row">
         <div class="col-sm-6">
-          <mat-form-field appearance="outline" class="lnr-w-100">
-            <mat-label>First Name</mat-label>
+          <mat-form-field appearance="outline" class="w-p-100">
+            <mat-label>{{'forms.first-name' | translate}}</mat-label>
             <input
               formControlName="first_name"
               type="text"
               matInput
-              placeholder="Enter your first name"
+              placeholder="{{'forms.errors.empty-first-name' | translate}}"
               lnrAutofocus
             />
             <mat-error
@@ -92,26 +96,28 @@
               "
             >
               <span *ngIf="userForm.get('first_name').errors?.required"
-                >First name is required</span
+              >{{'forms.errors.empty-first-name-xs' | translate}}</span
               >
               <span *ngIf="userForm.get('first_name').errors?.minlength"
-                >Min length is 2</span
               >
-              <span *ngIf="userForm.get('first_name').errors?.maxlength"
-                >Max length is 50</span
+                {{'forms.errors.min_size_first_name' | translate}}
+              </span
               >
+              <span *ngIf="userForm.get('first_name').errors?.maxlength">
+                {{'forms.errors.max-size-first-name' | translate}}
+              </span>
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-sm-6">
           <mat-form-field appearance="outline" class="lnr-w-100">
-            <mat-label>Last Name</mat-label>
+            <mat-label>{{'forms.last-name' | translate}}</mat-label>
             <input
               formControlName="last_name"
               type="text"
               matInput
-              placeholder="Enter your last name"
+              placeholder="{{'forms.errors.empty-last-name' | translate}}"
             />
             <mat-error
               *ngIf="
@@ -119,15 +125,15 @@
                 userForm.get('last_name').errors
               "
             >
-              <span *ngIf="userForm.get('last_name').errors?.required"
-                >Last name is required</span
-              >
-              <span *ngIf="userForm.get('last_name').errors?.minlength"
-                >Min length is 2</span
-              >
-              <span *ngIf="userForm.get('last_name').errors?.maxlength"
-                >Max length is 50</span
-              >
+              <span *ngIf="userForm.get('last_name').errors?.required">
+                {{'forms.errors.empty-last-name-xs' | translate}}
+              </span>
+              <span *ngIf="userForm.get('last_name').errors?.minlength">
+                {{'forms.errors.min_size_last_name' | translate }}
+              </span>
+              <span *ngIf="userForm.get('last_name').errors?.maxlength">
+                {{'forms.errors.max-size-last-name'}}
+              </span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -136,106 +142,87 @@
       <div class="row">
         <div class="col-sm-6">
           <mat-form-field appearance="outline" class="lnr-w-100">
-            <mat-label>Email</mat-label>
+            <mat-label>{{'forms.email-address' | translate}}</mat-label>
             <input
               formControlName="email"
               type="email"
               matInput
-              placeholder="Enter your email"
+              placeholder="{{'shared.your-email' | translate}}"
             />
             <mat-error
-              *ngIf="
-                userForm.get('email').touched && userForm.get('email').errors
-              "
+              *ngIf="userForm.get('email').touched && userForm.get('email').errors"
             >
               <span *ngIf="userForm.get('email').errors?.required"
-                >Email is required</span
+              >{{'forms.errors.empty-email-xs' | translate}}</span
               >
               <span
                 *ngIf="
                   !userForm.get('email').errors?.required &&
                   userForm.get('email').errors?.wrongMail
                 "
-                >Email is wrong</span
+              >{{'forms.errors.valid-email' | translate}}</span
               >
               <span
-                *ngIf="
-                  !userForm.get('email').errors?.required &&
-                  userForm.get('email').errors?.noAt
-                "
-                >Email need contain "@"</span
-              >
+                *ngIf="!userForm.get('email').errors?.required &&
+                  userForm.get('email').errors?.noAt">
+                {{'forms.errors.email_containment' | translate}}
+              </span>
               <span
-                *ngIf="
-                  !userForm.get('email').errors?.required &&
-                  userForm.get('email').errors?.noName
-                "
-                >Wrong email format</span
-              >
+                *ngIf="!userForm.get('email').errors?.required &&
+                  userForm.get('email').errors?.noName">
+                {{'forms.errors.email_wrong_format' | translate}}
+              </span>
               <span
-                *ngIf="
-                  !userForm.get('email').errors?.required &&
-                  userForm.get('email').errors?.wrongDomain
-                "
-                >Wrong domain</span
-              >
+                *ngIf="!userForm.get('email').errors?.required &&
+                  userForm.get('email').errors?.wrongDomain">
+                {{'forms.errors.email_wrong_domain' | translate}}
+              </span>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-sm-6">
           <mat-form-field appearance="outline" class="lnr-w-100">
-            <mat-label>Password</mat-label>
+            <mat-label>{{'forms.password' | translate}}</mat-label>
             <input
               formControlName="password"
               type="password"
               matInput
-              placeholder="Password"
+              placeholder="{{'forms.password' | translate}}"
             />
-            <mat-error
-              *ngIf="
-                userForm.get('password').touched &&
-                userForm.get('password').errors
-              "
-            >
-              <span *ngIf="userForm.get('password').errors.required"
-                >Password is required</span
-              >
-              <span *ngIf="userForm.get('password').errors?.minlength"
-                >Min length is 6</span
-              >
-              <span *ngIf="userForm.get('password').errors?.maxlength"
-                >Max length is 50</span
-              >
+            <mat-error *ngIf="userForm.get('password').touched &&
+                       userForm.get('password').errors">
+              <span *ngIf="userForm.get('password').errors.required">
+                {{'forms.errors.password_missing_xs' | translate}}
+              </span>
+              <span *ngIf="userForm.get('password').errors?.minlength">
+                {{'forms.errors.password_length_xs' | translate}}
+              </span>
+              <span *ngIf="userForm.get('password').errors?.maxlength">
+                {{'forms.errors.password_length_xs' | translate}}
+              </span>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
     </div>
 
-    <!--    <lnr-divider class="lnr-mrg-btm-sm" text="Accept our Terms and Conditions" [required]="true"></lnr-divider>-->
-
     <div class="lnr-checkbox" formGroupName="user">
       <mat-checkbox formControlName="terms">
-        I hereby agree to the
-        <a target="_blank" rel="noopener noreferrer" [routerLink]="'/terms'">
-          Terms and Conditions
-        </a>
-        and agree to the
-        <a target="_blank" rel="noopener noreferrer" [routerLink]="'/privacy'">
-          Privacy Policy
-        </a>
-        .
+        <span
+          class="small"
+          [innerHtml]="'forms.signing-up-accept-tac' | translate">
+        </span>
       </mat-checkbox>
     </div>
 
-    <!--    <lnr-divider class="lnr-mrg-btm-sm" text="Subscribe to newsletter"></lnr-divider>-->
-
     <div
-      class="lnr-checkbox lnr-mrg-btm"
-      formGroupName="notification_preference"
-    >
+      class="lnr-checkbox m-b-2"
+      formGroupName="notification_preference">
       <mat-checkbox formControlName="newsletter">
-        I would like to receive the listnride e-mail newsletter
+        <span
+          class="small"
+          [innerHtml]="'forms.signing-up-accept-newsletter' | translate">
+        </span>
       </mat-checkbox>
     </div>
 
@@ -243,7 +230,7 @@
       <button
         mat-raised-button
         color="primary"
-        class="lnr-w-100 lnr-mrg-btm-sm"
+        class="w-p-100 m-b-1"
         type="submit"
         [disabled]="
           (showPrivate && userForm.invalid) ||
@@ -253,31 +240,30 @@
         "
         [matTooltip]="submitBtnTooltip"
       >
-        Sign up
+        {{'forms.sign-up' | translate}}
         <lnr-loader-spinner-small [hidden]="!signUpPending">
         </lnr-loader-spinner-small>
       </button>
     </div>
 
-    <lnr-divider class="lnr-mrg-btm-sm" text="or"></lnr-divider>
+    <lnr-divider class="m-b-1"
+                 text="{{'forms.or' | translate}}">
+    </lnr-divider>
 
     <div>
       <button
         mat-raised-button
         type="button"
-        class="lnr-w-100 lnr-mrg-btm lnr-fb-button"
+        class="w-p-100 m-b-2 lnr-fb-button"
         color="primary"
         (click)="signUpFB()"
         [disabled]="
           signUpPending ||
           signUpFacebookPending ||
-          (showBusiness && businessForm.invalid)
-        "
-      >
-        Sign up with Facebook
+          (showBusiness && businessForm.invalid)">
+        {{'forms.sign-up-with-facebook' | translate}}
         <lnr-loader-spinner-small
-          [hidden]="!socialUserPending && !signUpFacebookPending"
-        >
+          [hidden]="!socialUserPending && !signUpFacebookPending">
         </lnr-loader-spinner-small>
       </button>
     </div>
@@ -285,5 +271,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="lnr-d-flex lnr-space-btw">
-  <a (click)="openLoginDialog()">Already signed up?</a>
+  <a (click)="openLoginDialog()">{{'forms.member-already' | translate}}</a>
 </mat-dialog-actions>

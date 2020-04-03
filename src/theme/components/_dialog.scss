@@ -1,27 +1,20 @@
+@import 'utils/utils';
+@import 'variables';
+
 .lnr {
   .lnr-dialog-header {
-    min-height: 5rem;
     position: relative;
   }
 }
 
-@media (max-width: 768px) {
+@include if-smaller-than(md) {
   .cdk-overlay-pane {
     mat-dialog-container {
-      border-radius: 0;
-      padding: 1.5rem;
+      border-radius: $border-radius;
 
       .mat-dialog-title {
-        margin-bottom: 0.8rem;
-      }
-
-      .mat-dialog-content {
-        max-height: 75vh;
+        margin-bottom: 1rem;
       }
     }
-  }
-
-  p {
-    font-size: 13px;
   }
 }
