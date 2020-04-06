@@ -1,6 +1,7 @@
-<div mat-dialog-content>
+<div mat-dialog-content class="booking-modal-wrapper">
   <mat-icon class="close-modal-icon" (click)="onCloseClick()">close</mat-icon>
   <lnr-bike-booking-widget
     [isPricesSectionShown]="true"
+    (submitEvent)="data.submitAction($event)"
   ></lnr-bike-booking-widget>
 </div>

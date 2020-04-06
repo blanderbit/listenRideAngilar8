@@ -4,6 +4,7 @@ import { ProfilePicturePipe } from '@shared/pipes/profile-picture.pipe';
 import { ReplaceSpaceToDashPipe } from '@shared/pipes/replace-space-to-dash.pipe';
 import { StringPipe } from '@shared/pipes/string.pipe';
 import { PhonePipe } from '@shared/pipes/phone.pipe';
+import { StripHtmlPipe } from '@shared/pipes/strip-html.pipe';
 
 const pipes = [
   CurrencyCustomPipe,
@@ -11,6 +12,7 @@ const pipes = [
   ProfilePicturePipe,
   ReplaceSpaceToDashPipe,
   StringPipe,
+  StripHtmlPipe,
 ];
 
 @NgModule({

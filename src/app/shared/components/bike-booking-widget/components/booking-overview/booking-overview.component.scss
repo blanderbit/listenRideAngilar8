@@ -6,3 +6,17 @@
     padding: 0.5rem 0;
   }
 }
+
+.overview-line {
+  align-items: center;
+  display: flex;
+  max-width: 70%;
+
+  mat-icon {
+    color: $light-text-color;
+    font-size: $small-fontsize;
+    height: $small-fontsize;
+    margin-left: 0.5rem;
+    width: $small-fontsize;
+  }
+}

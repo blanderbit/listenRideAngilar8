@@ -1,20 +1,34 @@
 <div class="booking-overview-container" *ngIf="bookingOverview">
   <div class="justify-content-between d-flex">
-    <span>
-      {{ bookingOverview.daysAmount }}
-      {{ bookingOverview.periodLabel | translate }} x
-      {{ bookingOverview.price | lnr_currency }}
+    <span class="overview-line">
+      <span>
+        {{ bookingOverview.daysAmount }}
+        {{ bookingOverview.periodLabel | translate }} x
+        {{ bookingOverview.price | lnr_currency }}
+      </span>
+      <mat-icon
+        matTooltip="{{ 'calendar.info-subtotal' | translate | strip_html }}"
+      >
+        info_outline
+      </mat-icon>
     </span>
     <span>
       {{ bookingOverview.subtotal | lnr_currency }}
     </span>
   </div>
   <div class="justify-content-between d-flex" *ngIf="bookingOverview.discount">
-    <span>
-      {{ 'list.pricing.discount' | translate }}
-      {{ bookingOverview.daysAmount }}
-      {{ bookingOverview.periodLabel | translate }} x
-      {{ bookingOverview.averageDiscount | lnr_currency }}
+    <span class="overview-line">
+      <span>
+        {{ 'list.pricing.discount' | translate }}
+        {{ bookingOverview.daysAmount }}
+        {{ bookingOverview.periodLabel | translate }} x
+        {{ bookingOverview.averageDiscount | lnr_currency }}
+      </span>
+      <mat-icon
+        matTooltip="{{ 'calendar.info-discount' | translate | strip_html }}"
+      >
+        info_outline
+      </mat-icon>
     </span>
     <span> −{{ bookingOverview.discount | lnr_currency }} </span>
   </div>
@@ -22,10 +36,18 @@
     class="justify-content-between d-flex"
     *ngIf="bookingOverview.serviceFee"
   >
-    <span>
-      {{
-        (isInsuranceEnabled ? 'shared.basic-fee' : 'shared.lnr-fee') | translate
-      }}
+    <span class="overview-line">
+      <span>
+        {{
+          (isInsuranceEnabled ? 'shared.basic-fee' : 'shared.lnr-fee')
+            | translate
+        }}
+      </span>
+      <mat-icon
+        matTooltip="{{ 'calendar.info-service-fee' | translate | strip_html }}"
+      >
+        info_outline
+      </mat-icon>
     </span>
     <span> {{ bookingOverview.serviceFee | lnr_currency }} </span>
   </div>

@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { ExpandedBikeData } from '@models/bike/bike.types';
-import { DatesRange } from '../../../../shared/components/bike-booking-widget/types';
+import { EngagedTimeResponse } from '@api/api-rides/types';
+import { DatesRange } from '@shared/components/bike-booking-widget/types';
 
 export const enum BikeActionTypes {
   SET_BIKE = '[BIKE] - Set Bike',
@@ -11,6 +12,9 @@ export const enum BikeActionTypes {
   SET_AVAILABLE_VARIATIONS = '[BIKE] - Set Available Variations',
   SET_BIKE_FROM_VARIATIONS = '[BIKE] - Set Bike From Variations',
   SET_IS_PREMIUM_INSURANCE_ENABLED = '[BIKE] - Set Is Premium Insurance Enabled',
+  SET_ENGAGED_TIME = '[BIKE] - Set Engaged Time',
+  SET_LOADING_DATA = '[BIKE] - Set Loading Data',
+  LOAD_ENGAGED_TIME = '[BIKE] - Load Engaged Time',
 }
 
 export const loadBike = createAction(
@@ -51,4 +55,19 @@ export const setBikeFromVariations = createAction(
 export const setPremiumInsuranceEnabled = createAction(
   BikeActionTypes.SET_IS_PREMIUM_INSURANCE_ENABLED,
   props<{ enabled: boolean }>(),
+);
+
+export const setEngagedTime = createAction(
+  BikeActionTypes.SET_ENGAGED_TIME,
+  props<{ engagedTime?: EngagedTimeResponse }>(),
+);
+
+export const loadEngagedTime = createAction(
+  BikeActionTypes.LOAD_ENGAGED_TIME,
+  props<{ startDate: string; endDate?: string }>(),
+);
+
+export const setLoadingData = createAction(
+  BikeActionTypes.SET_LOADING_DATA,
+  props<{ data: string }>(),
 );

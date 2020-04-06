@@ -25,7 +25,20 @@ export const selectBookingDays = createSelector(
   }),
 );
 
-export const selectBookingHours = createSelector(
-  selectBookingData,
-  ({ pickUpHour, returnHour }: BookingData) => ({ pickUpHour, returnHour }),
+export const selectEngagedTime = createSelector(
+  selectBikeState,
+  ({ engagedHoursByDay, engagedDays }: BikeState) => ({
+    engagedHoursByDay,
+    engagedDays,
+  }),
+);
+
+export const selectLoadingData = createSelector(
+  selectBikeState,
+  state => state.loadingData,
+);
+
+export const selectIsLoading = createSelector(
+  selectLoadingData,
+  loadingData => !!loadingData.length,
 );

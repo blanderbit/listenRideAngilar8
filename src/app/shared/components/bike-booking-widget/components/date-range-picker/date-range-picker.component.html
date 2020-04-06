@@ -4,13 +4,19 @@
 >
   <div class="ngx-daterangepicker-action d-flex">
     <mat-icon>calendar_today</mat-icon>
-    {{ (datesRange?.startDate | date: 'd MMM y') || 'Pick up' }}
+    {{
+      (datesRange?.startDate?.toDate() | date: 'd MMM y') || 'settings.from'
+        | translate
+    }}
   </div>
   <div class="divider ngx-daterangepicker-action">
     →
   </div>
   <div class="ngx-daterangepicker-action">
-    {{ (datesRange?.endDate | date: 'd MMM y') || 'Return' }}
+    {{
+      (datesRange?.endDate?.toDate() | date: 'd MMM y') || 'settings.to'
+        | translate
+    }}
   </div>
 </div>
 <div
@@ -23,7 +29,7 @@
       class="date-range-picker"
       ngxDaterangepickerMd
       [linkedCalendars]="false"
-      [(ngModel)]="datesRange"
+      [ngModel]="datesRange"
       [autoApply]="true"
       [closeOnAutoApply]="true"
       (startDateChanged)="onStartDateChange($event)"

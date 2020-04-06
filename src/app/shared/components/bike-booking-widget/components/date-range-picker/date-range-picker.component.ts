@@ -11,20 +11,16 @@ import {
   DoCheck,
 } from '@angular/core';
 import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
-import {
-  EngagedDays,
-  EngagedHours,
-  EngagedHoursByDay,
-} from '@api/api-rides/types';
+import { EngagedDays, EngagedHoursByDay } from '@api/api-rides/types';
 import * as moment from 'moment';
 import { TimeSlots } from '@models/business/business';
 import { Debounce } from '@shared/decorators/debounce';
-import range from 'lodash-es/range';
 import { DATE_FORMAT, YEAR_MONTH_FORMAT } from '@core/constants/time';
 import {
   getAvailableHalfDays,
   getAvailableHalfDayPrefix,
-  getAbsentNumbers,
+  isDayCanBeEndDate,
+  isDayFullyAvailable,
 } from '../../helpers';
 import { CalendarValues, DatesRange, StartDateChangedEvent } from '../../types';
 
@@ -46,7 +42,7 @@ export class DateRangePickerComponent
 
   @Input() engagedDays: EngagedDays;
 
-  @Input() engagedHours: EngagedHoursByDay;
+  @Input() engagedHoursByDay: EngagedHoursByDay;
 
   @Input() isHalfDay: boolean;
 
@@ -71,88 +67,84 @@ export class DateRangePickerComponent
 
   public isCalendarDataLoading: boolean;
 
+  private unavailableToRangeDates: Array<string> = [];
+
   public isInvalidDate = (date): boolean => this.checkIsInvalidDate(date);
 
   public isCustomDate = (date): Array<string> | string =>
     this.applyCustomClassName(date);
 
+  private startDateDiffer: KeyValueDiffer<string, any>;
+
+  public selectedDays: DatesRange;
+
   ngOnInit(): void {
     this.minDate = moment();
-    if (this.engagedDays) {
-      const { unavailable, booked, closed } = this.engagedDays;
-      const flatInvalidDates = [...unavailable, ...booked, ...closed];
-      const minDate = moment();
-
-      while (flatInvalidDates.includes(minDate.format(DATE_FORMAT))) {
-        minDate.add(1, 'day');
-      }
-      this.minDate = minDate;
-      this.flatInvalidDates = flatInvalidDates;
-
-      this.engagedDaysDiffer = this.kvDiffers.find(this.engagedDays).create();
-    }
+    this.engagedDaysDiffer = this.kvDiffers.find({}).create();
+    this.startDateDiffer = this.kvDiffers.find({}).create();
   }
 
   ngDoCheck(): void {
-    if (this.engagedDaysDiffer) {
-      const changes = this.engagedDaysDiffer.diff(this.engagedDays);
-      if (changes) {
-        const { unavailable, booked, closed } = this.engagedDays;
+    const changes =
+      this.engagedDaysDiffer && this.engagedDaysDiffer.diff(this.engagedDays);
+    if (changes) {
+      const {
+        unavailable,
+        booked,
+        closed,
+        partlyUnavailable,
+      } = this.engagedDays;
+      const flatInvalidDates = [...unavailable, ...booked, ...closed];
 
-        this.flatInvalidDates = [...unavailable, ...booked, ...closed];
-        if (this.pickerDirective) {
-          this.pickerDirective.picker.updateCalendars();
-        }
+      this.unavailableToRangeDates = [
+        ...new Set([...booked, ...partlyUnavailable, ...unavailable]),
+      ].sort();
+      while (flatInvalidDates.includes(this.minDate.format(DATE_FORMAT))) {
+        this.minDate.add(1, 'day');
       }
+      this.flatInvalidDates = flatInvalidDates;
+      if (this.pickerDirective) {
+        this.pickerDirective.picker.updateCalendars();
+      }
+    }
+    const dateChanges = this.startDateDiffer.diff(this.datesRange);
+    if (dateChanges && this.datesRange && this.datesRange.startDate.toDate) {
+      const { startDate, endDate } = this.datesRange;
+
+      this.selectedDays = {
+        startDate: startDate.clone(),
+        endDate: endDate.clone(),
+      };
     }
   }
 
   onStartDateChange(event): void {
-    if (this.engagedDays) {
+    if (this.engagedDays && this.pickerDirective.picker.isShown) {
+      const { unavailableToRangeDates, engagedDays, engagedHoursByDay } = this;
       const { startDate } = event as StartDateChangedEvent;
-      const { unavailable, booked, partlyUnavailable } = this.engagedDays;
+      const { partlyUnavailable: partlyUnavailableDays } = engagedDays;
       const startDayString = startDate.format(DATE_FORMAT);
 
-      if (this.pickerDirective.picker.isShown) {
-        this.maxDate = [...booked, ...partlyUnavailable, ...unavailable]
-          .sort()
-          .reduce((result: moment.Moment | undefined, current) => {
-            if (result) {
-              return result;
-            }
-            if (current >= startDayString) {
-              if (partlyUnavailable.includes(current)) {
-                const engagedHours = this.engagedHours[current];
-                const { unavailable: unavailableHours, closed } = engagedHours;
+      if (
+        partlyUnavailableDays.includes(startDayString) &&
+        !isDayFullyAvailable(startDayString, engagedHoursByDay[startDayString])
+      ) {
+        this.maxDate = moment(startDayString);
+      } else {
+        const dates = unavailableToRangeDates.filter(d => d > startDayString);
+        const [firstUnavailableToRangeDate] = dates;
 
-                if (current === startDayString) {
-                  const reversedClosedHours = closed.sort((a, b) => b - a);
-                  const closingHour = reversedClosedHours.reduce(
-                    (res, curr) => {
-                      return res - curr === 1 ? curr : res;
-                    },
-                  );
-                  const lastUnavailableHour = Math.max(...unavailableHours);
-
-                  if (range(lastUnavailableHour + 1, closingHour).length) {
-                    return undefined; // Continue looping because this day is OK to start with
-                  }
-                }
-                const firstUnavailableToRange = Math.min(...unavailableHours);
-                const availableHours = getAbsentNumbers(closed).filter(
-                  n => n < firstUnavailableToRange,
-                );
-
-                if (availableHours.length) {
-                  return moment(current);
-                }
-              }
-              return current > startDayString
-                ? moment(current).subtract(1, 'day')
-                : moment(current);
-            }
-            return undefined;
-          }, undefined);
+        if (firstUnavailableToRangeDate) {
+          this.maxDate = isDayCanBeEndDate(
+            firstUnavailableToRangeDate,
+            partlyUnavailableDays,
+            engagedHoursByDay,
+          )
+            ? moment(firstUnavailableToRangeDate)
+            : moment(firstUnavailableToRangeDate).subtract(1, 'day');
+        } else {
+          this.maxDate = NEXT_YEAR;
+        }
       }
     }
   }
@@ -184,7 +176,7 @@ export class DateRangePickerComponent
       }
       if (this.isHalfDay && partlyUnavailable.includes(dateString)) {
         const [availableHalfDay] = getAvailableHalfDays(
-          this.engagedHours[dateString],
+          this.engagedHoursByDay[dateString],
           this.timeSlots,
         );
         const prefix = getAvailableHalfDayPrefix(availableHalfDay);

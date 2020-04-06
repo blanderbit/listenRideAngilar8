@@ -16,28 +16,12 @@
     <div class="col-12">
       <form [formGroup]="filtersForm">
         <div class="row">
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              class="filter-input"
-              placeholder="Choose a date"
-              formControlName="date"
-              [max]="maxDate"
-              [satDatepicker]="resultPicker"
-              (dateInput)="onDateInput($event)"
-              (dateChange)="onDateChange($event)"
-            />
-            <sat-datepicker
-              panelClass="hdd-datepicker"
-              #resultPicker
-              [rangeMode]="true"
-            >
-            </sat-datepicker>
-            <sat-datepicker-toggle
-              matSuffix
-              [for]="resultPicker"
-            ></sat-datepicker-toggle>
-          </mat-form-field>
+          <lnr-date-range-picker
+            [datesRange]="selectedDates"
+            (datesRangeSet)="onDatesRangeSet($event)"
+            class="py-3 date-range-picker"
+          >
+          </lnr-date-range-picker>
 
           <mat-form-field appearance="outline">
             <mat-label>Size</mat-label>

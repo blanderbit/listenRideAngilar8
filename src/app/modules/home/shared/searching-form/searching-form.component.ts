@@ -61,7 +61,7 @@ export class SearchingFormComponent implements OnInit, AfterViewInit {
   };
 
   onDatesRangeSet({ startDate, endDate }: DatesRange): void {
-    this.selectedDates = { startDate: startDate, endDate: endDate };
+    this.selectedDates = { startDate, endDate };
   }
 
   onSubmit(): void {

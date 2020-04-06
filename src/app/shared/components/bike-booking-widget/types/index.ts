@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import { HourTypes } from '@modules/bike/types';
 
 export interface DatesRange {
   startDate: moment.Moment | null;
@@ -49,4 +50,9 @@ export interface BookingOverview {
 export interface BookingSubmit {
   startDate: Date;
   endDate: Date;
+}
+
+export interface HourPickerEventParams {
+  isOpen: boolean;
+  hourType: HourTypes;
 }

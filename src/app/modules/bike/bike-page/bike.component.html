@@ -43,6 +43,7 @@
             <div
               class="bike-user-meta d-flex align-items-start"
               *ngIf="bikeData"
+              [routerLink]="['/users/', bikeData.user.id]"
             >
               <img
                 [src]="bikeData.user.profilePicture.profilePicture.url"
@@ -81,9 +82,13 @@
               </p>
               <img
                 [src]="item.src"
-                [alt]="item.name"
+                [alt]="item.title | translate"
                 *ngFor="let item of accessoriesImages"
-                [matTooltip]="item.name"
+                [matTooltip]="
+                  item.name === 'gps'
+                    ? (item.title | translate | uppercase)
+                    : (item.title | translate | titlecase)
+                "
               />
             </div>
             <div

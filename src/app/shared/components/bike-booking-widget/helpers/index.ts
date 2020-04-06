@@ -1,14 +1,17 @@
 import range from 'lodash-es/range';
-import difference from 'lodash-es/difference';
 import { EngagedHours } from '@api/api-rides/types';
 import { ExpandedBikeData } from '@models/bike/bike.types';
-// import get from 'lodash-es/get';
 import { TimeSlots } from '@models/business/business';
 import { HOURS_IN_DAY, MIN_OPENING_HOUR } from '@core/constants/time';
 import { HalfDaysData, HourPickerOption } from '../types';
+import { getAvailableHours } from './check-availabilities';
 
-export const getAbsentNumbers = (a: number[]): number[] =>
-  difference(range(HOURS_IN_DAY), a);
+export {
+  isDayCanBeEndDate,
+  isDayFullyAvailable,
+  isValidDate,
+  getAvailableHours,
+} from './check-availabilities';
 
 export const getAvailableToReturnHours = (
   unavailableHours: Array<number>,
@@ -19,7 +22,8 @@ export const getAvailableToReturnHours = (
     h => !closedHours.includes(h),
   );
   const lastAvailableHour = Math.min(...unavailableOnly);
-  return getAbsentNumbers(closedHours).filter(
+
+  return getAvailableHours(closedHours).filter(
     n => n < lastAvailableHour && n > firstAvailableHour,
   );
 };
@@ -50,16 +54,6 @@ export const getAvailableHalfDayPrefix = (availableHalfDay: number): string => {
     return 'second';
   }
   return '';
-};
-
-export const customizer = (
-  objValue: unknown,
-  srcValue: unknown,
-): Array<unknown> | undefined => {
-  if (Array.isArray(objValue)) {
-    return objValue.concat(srcValue);
-  }
-  return undefined;
 };
 
 export const getDayHalvesData = (

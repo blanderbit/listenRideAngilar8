@@ -7,15 +7,14 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { ExpandedBikeData } from '@models/bike/bike.types';
-import { EngagedDays, EngagedHoursByDay } from '@api/api-rides/types';
 import { ApiRidesService } from '@api/api-rides/api-rides.service';
-import mergeWith from 'lodash-es/mergeWith';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
 import { Observable, combineLatest, Subject } from 'rxjs';
 import { MatSelectChange } from '@angular/material';
 import { DATE_FORMAT, YEAR_MONTH_FORMAT } from '@core/constants/time';
 import {
+  filter,
   first,
   pairwise,
   startWith,
@@ -23,28 +22,31 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import { User } from '@models/user/user';
+import { Actions, ofType } from '@ngrx/effects';
 import * as moment from 'moment';
+import * as BikeActions from '@modules/bike/store/actions';
+import {
+  BikeState,
+  BookingData,
+  EngagedTime,
+  HourTypes,
+} from '@modules/bike/types';
+import * as fromBike from '@modules/bike/store';
 import {
   BookingSubmit,
   DatesRange,
   HalfDaysData,
   HourPickerOption,
+  HourPickerEventParams,
 } from './types';
 import {
   checkIsBikeLoaded,
-  customizer,
+  isValidDate,
   getAvailableHalfDays,
   getAvailableToReturnHours,
   getDayHalvesData,
   getInitialHourPickerOptions,
 } from './helpers';
-import * as fromBike from '../../../modules/bike/store';
-import { BikeState, BookingData, HourTypes } from '../../../modules/bike/types';
-import {
-  setBikeFromVariations,
-  setSelectedDates,
-  setSelectedHours,
-} from '../../../modules/bike/store/actions';
 
 @Component({
   selector: 'lnr-bike-booking-widget',
@@ -62,9 +64,7 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
 
   public currentBike$: Observable<ExpandedBikeData>;
 
-  public unavailableDates: EngagedDays;
-
-  public unavailableHours: EngagedHoursByDay = {};
+  public engagedTime$: Observable<EngagedTime>;
 
   public selectedDays$: Observable<DatesRange>;
 
@@ -85,41 +85,60 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
   // The simplest way to preserve original key-value order in ng-template
   public preserveOrder = (): 1 => 1;
 
-  private user$: Observable<Partial<User>>;
-
   public hourTypes = HourTypes;
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  private availableMonths: Array<string>;
+  private availableMonths: Array<string> = [];
+
+  public isDataLoading$: Observable<boolean>;
+
+  public hourSelectOpen = new EventEmitter<HourPickerEventParams>();
+
+  private user$: Observable<Partial<User>>;
 
   constructor(
     private apiRidesService: ApiRidesService,
     private authStore: Store<fromAuth.State>,
     private bikeStore: Store<BikeState>,
+    private actions$: Actions,
   ) {
     this.hourPickerOptions = getInitialHourPickerOptions();
     this.currentBike$ = bikeStore.select(fromBike.selectCurrentBikeData);
     this.selectedDays$ = bikeStore.select(fromBike.selectBookingDays);
     this.bookingData$ = bikeStore.select(fromBike.selectBookingData);
     this.bikeData$ = bikeStore.select(fromBike.selectBikeState);
+    this.engagedTime$ = bikeStore.select(fromBike.selectEngagedTime);
+    this.isDataLoading$ = bikeStore.select(fromBike.selectIsLoading);
     this.user$ = authStore.select(fromAuth.selectUser);
   }
 
   ngOnInit(): void {
-    combineLatest(this.bookingData$, this.user$)
-      .pipe(withLatestFrom(this.currentBike$), takeUntil(this.destroy$))
-      .subscribe(([[bookingData, user], bikeData]) => {
-        this.processSelectedDaysChange(bookingData, bikeData);
-        this.processBookingDataChange(bookingData, bikeData);
-        this.checkIsBookingAvailable(bookingData, bikeData, user);
-      });
+    const { bookingData$, user$, selectedDays$, engagedTime$, destroy$ } = this;
 
+    combineLatest(bookingData$, user$, engagedTime$, selectedDays$)
+      .pipe(
+        withLatestFrom(this.currentBike$, this.isDataLoading$),
+        takeUntil(destroy$),
+      )
+      .subscribe(([[bookingData, user, engagedTime], bikeData, isLoading]) => {
+        this.processSelectedDaysChange(bookingData, bikeData, engagedTime);
+        this.processBookingDataChange(bookingData, bikeData);
+        this.checkIsBookingAvailable(
+          bookingData,
+          bikeData,
+          user,
+          engagedTime,
+          isLoading,
+        );
+      });
     this.currentBike$
-      .pipe(startWith(null), pairwise(), takeUntil(this.destroy$))
+      .pipe(startWith(null), pairwise(), takeUntil(destroy$))
       .subscribe(async ([prevBikeData, bikeData]) => {
         this.processBikeDataChange(bikeData, prevBikeData);
       });
+    this.subscribeToHourPickerOpening();
+    this.subscribeToEngagedTimeChanges();
   }
 
   async processBikeDataChange(
@@ -132,32 +151,30 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
         .add(1, 'month')
         .endOf('month');
 
-      this.availableMonths = [];
-      this.unavailableDates = undefined;
-      this.unavailableHours = {};
-      await this.getUnavailableTimeData(today, nextMonthEnd);
-      const bookingData = await this.bookingData$.pipe(first()).toPromise();
-      const userData = await this.user$.pipe(first()).toPromise();
-      this.processSelectedDaysChange(bookingData, bikeData);
-      this.processBookingDataChange(bookingData, bikeData);
-      this.checkIsBookingAvailable(bookingData, bikeData, userData);
+      this.bikeStore.dispatch(
+        BikeActions.loadEngagedTime({
+          startDate: today.format(DATE_FORMAT),
+          endDate: nextMonthEnd.format(DATE_FORMAT),
+        }),
+      );
     }
   }
 
   processSelectedDaysChange(
     { startDay, endDay }: BookingData,
-    bikeData?: ExpandedBikeData,
+    bikeData: ExpandedBikeData | undefined,
+    engagedTime: EngagedTime | undefined,
   ): void {
-    if (!startDay || !endDay) {
-      return;
-    }
-    this.isTimePickerShown = true;
+    this.isTimePickerShown = !!startDay;
     this.hourPickerOptions = getInitialHourPickerOptions();
 
+    if (!bikeData || !startDay || !endDay || !engagedTime.engagedHoursByDay) {
+      return;
+    }
     if (bikeData && bikeData.isHalfDay && startDay.isSame(endDay, 'day')) {
       const dateString = startDay.format(DATE_FORMAT);
       const dayHalves = getAvailableHalfDays(
-        this.unavailableHours[dateString],
+        engagedTime.engagedHoursByDay[dateString],
         bikeData.timeSlots,
       );
 
@@ -173,7 +190,7 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
 
     if (bike && bike.isHalfDay && startDay.isSame(endDay, 'day')) {
       Object.entries(this.dayHalvesData).forEach(([key, value]) => {
-        if (value.startHour >= pickUpHour && value.endHour <= returnHour) {
+        if (value.startHour >= pickUpHour && value.startHour <= returnHour) {
           this.isTimePickerShown = false;
           this.dayHalvesData[key].isChecked = true;
         }
@@ -184,77 +201,65 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
   }
 
   onDatesRangeSet(range: DatesRange): void {
-    this.bikeStore.dispatch(setSelectedDates(range));
+    this.bikeStore.dispatch(BikeActions.setSelectedDates(range));
   }
 
   public onNextMonthRequest = async (monthWithYear: string): Promise<void> => {
+    const currentMonth = moment(monthWithYear, YEAR_MONTH_FORMAT);
+
     if (!this.availableMonths.includes(monthWithYear)) {
-      const currentMonth = moment(monthWithYear, YEAR_MONTH_FORMAT);
-      await this.getUnavailableTimeData(currentMonth.startOf('month'));
+      this.bikeStore.dispatch(
+        BikeActions.loadEngagedTime({
+          startDate: currentMonth.startOf('month').format(DATE_FORMAT),
+        }),
+      );
+      await this.actions$
+        .pipe(ofType(BikeActions.setEngagedTime), first())
+        .toPromise();
     }
 
-    const nextMonth = moment(monthWithYear, YEAR_MONTH_FORMAT).add(1, 'months');
+    const nextMonth = moment(currentMonth)
+      .add(1, 'months')
+      .startOf('month');
     const nextMonthString = nextMonth.format(YEAR_MONTH_FORMAT);
     if (!this.availableMonths.includes(nextMonthString)) {
-      this.getUnavailableTimeData(nextMonth.startOf('month'));
+      this.bikeStore.dispatch(
+        BikeActions.loadEngagedTime({
+          startDate: nextMonth.format(DATE_FORMAT),
+        }),
+      );
     }
   };
 
-  async getUnavailableTimeData(
-    startDate: moment.Moment,
-    endDate?: moment.Moment,
-  ): Promise<void> {
-    const { id } = await this.currentBike$.pipe(first()).toPromise();
-    const end = endDate || moment(startDate).endOf('month');
-    const { days, hours } = await this.apiRidesService
-      .getEngagedTimeData(
-        id,
-        startDate.format(DATE_FORMAT),
-        end.format(DATE_FORMAT),
-      )
-      .toPromise();
+  onHourSelectOpen(
+    hourType: HourTypes,
+    { startDay, endDay, pickUpHour }: BookingData,
+    { engagedHoursByDay }: EngagedTime,
+  ): void {
+    const key = (hourType === HourTypes.PickUp ? startDay : endDay).format(
+      DATE_FORMAT,
+    );
+    const { unavailable, closed } = engagedHoursByDay[key];
+    if (hourType === HourTypes.PickUp) {
+      const unavailableHoursToStart = [...unavailable, ...closed];
 
-    this.unavailableDates = mergeWith(this.unavailableDates, days, customizer);
-    this.unavailableHours = mergeWith(this.unavailableHours, hours, customizer);
-    [startDate, endDate].filter(Boolean).forEach(date => {
-      const dateString = date.format(YEAR_MONTH_FORMAT);
-      if (!this.availableMonths.includes(dateString)) {
-        this.availableMonths.push(dateString);
-      }
-    });
-  }
-
-  async onSelectOpen(isOpened: boolean, hourType: HourTypes): Promise<void> {
-    if (isOpened) {
-      const { startDay, endDay, pickUpHour } = await this.bookingData$
-        .pipe(first())
-        .toPromise();
-      const key = (hourType === HourTypes.PickUp ? startDay : endDay).format(
-        DATE_FORMAT,
+      this.hourPickerOptions = this.hourPickerOptions.map(option => ({
+        ...option,
+        isDisabled: unavailableHoursToStart.includes(option.value),
+      }));
+    } else {
+      const firstAvailableHour =
+        startDay.isSame(endDay, 'day') && pickUpHour ? pickUpHour : 0;
+      const availableHours = getAvailableToReturnHours(
+        unavailable,
+        closed,
+        firstAvailableHour,
       );
-      const { unavailable, closed } = this.unavailableHours[key];
-      if (hourType === HourTypes.PickUp) {
-        const unavailableHoursToStart = [...unavailable, ...closed];
 
-        this.hourPickerOptions = this.hourPickerOptions.map(option => ({
-          ...option,
-          isDisabled: unavailableHoursToStart.includes(option.value),
-        }));
-      } else {
-        const firstAvailableHour = startDay.isSame(endDay, 'day')
-          ? pickUpHour
-          : 0;
-        const availableHours = getAvailableToReturnHours(
-          unavailable,
-          closed,
-          firstAvailableHour,
-        );
-
-        this.hourPickerOptions = this.hourPickerOptions.map(option => ({
-          ...option,
-          isDisabled: !availableHours.includes(option.value),
-        }));
-      }
+      this.hourPickerOptions = this.hourPickerOptions.map(option => ({
+        ...option,
+        isDisabled: !availableHours.includes(option.value),
+      }));
     }
   }
 
@@ -280,12 +285,12 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
   }
 
   onSizeSelectionChange({ value: prettySize }: MatSelectChange): void {
-    this.bikeStore.dispatch(setBikeFromVariations({ prettySize }));
+    this.bikeStore.dispatch(BikeActions.setBikeFromVariations({ prettySize }));
   }
 
   onHourSelectChange({ value }: MatSelectChange, type: HourTypes): void {
     this.bikeStore.dispatch(
-      setSelectedHours({
+      BikeActions.setSelectedHours({
         ...(type === HourTypes.PickUp
           ? { pickUpHour: value }
           : { returnHour: value }),
@@ -304,61 +309,69 @@ export class BikeBookingWidgetComponent implements OnInit, OnDestroy {
       null;
 
     this.bikeStore.dispatch(
-      setSelectedHours({
+      BikeActions.setSelectedHours({
         pickUpHour,
         returnHour,
       }),
     );
   }
 
-  // TODO: Improve validations
   checkIsBookingAvailable(
     bookingData: BookingData,
-    bikeData?: ExpandedBikeData,
-    user?: Partial<User>,
+    bikeData: ExpandedBikeData | undefined,
+    user: Partial<User> | undefined,
+    engagedTime: EngagedTime,
+    isLoading: boolean,
   ): void {
-    const { pickUpHour, returnHour, startDay, endDay } = bookingData;
+    const { pickUpHour, returnHour } = bookingData;
     this.shownErrors = [];
 
     if (user && bikeData && bikeData.user.id === user.id) {
       this.shownErrors.push('calendar.own-bike');
-    }
-    if (startDay && pickUpHour && returnHour) {
-      const start = startDay.hour(pickUpHour);
-      const end = endDay.hour(returnHour);
-      const startString = start.format(DATE_FORMAT);
-      const endString = end.format(DATE_FORMAT);
-
-      if (start.isBefore(moment(), 'd') || end.isBefore(start)) {
+    } else if (pickUpHour && returnHour && engagedTime.engagedDays) {
+      if (!isValidDate(bookingData, engagedTime)) {
         this.shownErrors.push('calendar.invalid-date');
-      } else if (this.unavailableDates) {
-        const { closed, booked, unavailable } = this.unavailableDates;
-
-        if (
-          Object.values({ closed, booked, unavailable }).some(
-            d => d.includes(startString) || d.includes(endString),
-          )
-        ) {
-          this.shownErrors.push('calendar.invalid-date');
-        }
-      } else if (this.unavailableHours) {
-        if (
-          Object.values(this.unavailableHours[startString] || {}).some(d =>
-            d.includes(pickUpHour),
-          ) ||
-          Object.values(this.unavailableHours[endString] || {}).some(d =>
-            d.includes(returnHour),
-          )
-        ) {
-          this.shownErrors.push('calendar.invalid-date');
-        }
       }
     }
+
     this.isSubmitButtonDisabled =
       this.isButtonDisabled ||
+      isLoading ||
       pickUpHour === undefined ||
       returnHour === undefined ||
       !!this.shownErrors.length;
+  }
+
+  subscribeToEngagedTimeChanges(): void {
+    this.actions$
+      .pipe(
+        ofType(BikeActions.setEngagedTime),
+        withLatestFrom(this.actions$.pipe(ofType(BikeActions.loadEngagedTime))),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(([{ engagedTime }, { startDate, endDate }]) => {
+        if (!engagedTime) {
+          this.availableMonths = [];
+        } else {
+          [startDate, endDate].filter(Boolean).forEach(dateString => {
+            this.availableMonths.push(
+              moment(dateString).format(YEAR_MONTH_FORMAT),
+            );
+          });
+        }
+      });
+  }
+
+  subscribeToHourPickerOpening(): void {
+    this.hourSelectOpen
+      .pipe(
+        filter(({ isOpen }) => isOpen),
+        withLatestFrom(this.bookingData$, this.engagedTime$),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(([{ hourType }, bookingData, engagedTime]) =>
+        this.onHourSelectOpen(hourType, bookingData, engagedTime),
+      );
   }
 
   ngOnDestroy(): void {

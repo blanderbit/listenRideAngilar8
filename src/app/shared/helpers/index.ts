@@ -5,7 +5,9 @@ import { Accessories } from '@models/bike/bike.types';
 import {
   CategoryInterface,
   SubCategoryInterface,
-} from '../../modules/list-my-bike/model/models';
+} from '@modules/list-my-bike/model/models';
+
+export { mergeObjects } from './merge-objects';
 
 const ACCESSORIES_IMG_PATH = 'assets/images/icons/accessories/';
 
@@ -16,6 +18,7 @@ interface CategoryData {
 
 export interface AccessoryImage {
   name: keyof Accessories;
+  title: string;
   src: string;
 }
 
@@ -49,5 +52,6 @@ export const getStaticMapSrc = (latitude: number, longitude: number) => {
 
 export const getAccessoryImage = (name: keyof Accessories): AccessoryImage => ({
   name,
+  title: `list.accessories.${name}`,
   src: `${ACCESSORIES_IMG_PATH}${name}.svg`,
 });

@@ -1,5 +1,9 @@
 import { BikePrice } from '@models/bike/bike.types';
-import { PeriodStartDate } from '@core/constants/time';
+import {
+  DAYS_IN_MONTH,
+  DAYS_IN_WEEK,
+  PeriodStartDate,
+} from '@core/constants/time';
 
 export const FEE_COEFFICIENT = 0.125;
 export const TAX_COEFFICIENT = 0.19;
@@ -56,16 +60,16 @@ export const getDiscountedSubtotal = (
   daysAmount: number,
   pricesByDay: PricesByDay,
 ): number => {
-  if (daysAmount >= 1 && daysAmount <= 7) {
+  if (daysAmount >= 1 && daysAmount <= DAYS_IN_WEEK) {
     return pricesByDay[daysAmount] * daysAmount;
   }
-  if (daysAmount > 7 && daysAmount < 28) {
+  if (daysAmount > DAYS_IN_WEEK && daysAmount < DAYS_IN_MONTH) {
     const key = PRICES_BY_DAYS.get(PeriodStartDate.EIGHT_AND_MORE_DAYS);
-    const subtotalForFirstWeek = pricesByDay[daysAmount] * 7;
-    const subtotalForRest = pricesByDay[key] * (daysAmount - 7);
+    const subtotalForFirstWeek = pricesByDay[DAYS_IN_WEEK] * DAYS_IN_WEEK;
+    const subtotalForRest = pricesByDay[key] * (daysAmount - DAYS_IN_WEEK);
     return subtotalForFirstWeek + subtotalForRest;
   }
-  return pricesByDay[28] * daysAmount;
+  return pricesByDay[DAYS_IN_MONTH] * daysAmount;
 };
 
 export const getServiceFee = (subtotal: number): number => {

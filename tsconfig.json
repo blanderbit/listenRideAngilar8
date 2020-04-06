@@ -30,6 +30,9 @@
       "@shared/*": [
         "app/shared/*"
       ],
+      "@modules/*": [
+        "app/modules/*"
+      ],
       "@google/maps": [
         "googlemaps"
       ]

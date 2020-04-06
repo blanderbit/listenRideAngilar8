@@ -1,18 +1,16 @@
 // TODO Fix all the esLint errors
 /* eslint-disable */
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
 import { select, Store } from '@ngrx/store';
-import {
-  SatDatepickerInputEvent,
-  SatDatepickerRangeValue,
-} from 'saturn-datepicker';
 import { brandList, sizeList, sortList } from '@core/constants/filters.const';
 import { take } from 'rxjs/operators';
+import { CategoryMultiSelectComponent } from '@shared/filters/category-multiselect/category-multi-select.component';
 import * as SearchActions from '../../modules/search/store/search.actions';
-import { SearchModel, SearchPayload } from '../../modules/search/search.types';
+import { SearchModel, SearchPayload } from '@modules/search/search.types';
 import { getFilterPayload, getFilterToggle } from '../../modules/search/store';
+import { DatesRange } from '@shared/components/bike-booking-widget/types';
+import * as moment from 'moment';
 
 @Component({
   selector: 'lnr-filters',
@@ -32,29 +30,17 @@ export class FiltersComponent implements OnInit {
 
   sortList = sortList;
 
-  // TODO Add generic type to ref to avoid this dumb typing
-  @ViewChild('categorySelect', { static: true })
-  public categorySelect: TemplateRef<any> & { multiSelectUpdate: any };
+  @ViewChild(CategoryMultiSelectComponent, { static: false })
+  categorySelect: CategoryMultiSelectComponent;
 
-  date: SatDatepickerRangeValue<Date>;
+  public selectedDates: DatesRange;
 
-  lastDateInput: SatDatepickerRangeValue<Date> | null;
-
-  lastDateChange: SatDatepickerRangeValue<Date> | null;
-
-  maxDate = new Date('20-12-2024');
-
-  onDateInput = (e: SatDatepickerInputEvent<Date>): void => {
-    this.lastDateInput = e.value as SatDatepickerRangeValue<Date>;
-  };
-
-  onDateChange = (e: SatDatepickerInputEvent<Date>): void => {
-    this.lastDateChange = e.value as SatDatepickerRangeValue<Date>;
-  };
+  onDatesRangeSet({ startDate, endDate }: DatesRange): void {
+    this.selectedDates = { startDate, endDate };
+  }
 
   ngOnInit() {
     this.filtersForm = this.fb.group({
-      date: [this.date],
       size: [],
       type: [],
       brand: [],
@@ -66,16 +52,13 @@ export class FiltersComponent implements OnInit {
     });
 
     this.store.pipe(select(getFilterPayload), take(1)).subscribe(filters => {
+      if (filters.start_date && filters.duration) {
+        const startDate = moment(filters.start_date);
+        const endDate = moment(startDate).add(filters.duration, 'seconds');
+
+        this.selectedDates = { startDate, endDate };
+      }
       this.filtersForm.patchValue({
-        date: filters.start_date
-          ? {
-              begin: filters.start_date,
-              end: new Date(
-                new Date(filters.start_date).getTime() +
-                  filters.duration * 1000,
-              ),
-            }
-          : null,
         size: filters.height || null,
         type: filters.category ? filters.category.split(',') : null,
         brand: filters.brand ? filters.brand.split(',') : null,
@@ -86,6 +69,7 @@ export class FiltersComponent implements OnInit {
       });
     });
 
+    // TODO: Move this to ng after view init, refactor the component and styles
     this.categorySelect.multiSelectUpdate.subscribe(categories => {
       this.filtersForm.get('type').setValue(categories);
     });
@@ -102,14 +86,11 @@ export class FiltersComponent implements OnInit {
 
   formatPayload(formData) {
     const filterPayload: SearchPayload = {};
+    const { startDate, endDate } = this.selectedDates;
 
-    if (formData.date && formData.date.begin) {
-      filterPayload.start_date = formData.date.begin.toISOString();
-      filterPayload.duration = Math.round(
-        (new Date(formData.date.end).getTime() -
-          new Date(formData.date.begin).getTime()) /
-          1000,
-      );
+    if (startDate) {
+      filterPayload.start_date = startDate.toISOString();
+      filterPayload.duration = endDate.diff(startDate, 'seconds');
     }
     if (formData.size) {
       filterPayload.height = formData.size;

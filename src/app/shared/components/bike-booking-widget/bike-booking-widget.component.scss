@@ -39,6 +39,7 @@
 
 .time-pickers {
   justify-content: space-between;
+
   > mat-form-field {
     width: calc(50% - 0.5rem);
   }
@@ -58,4 +59,8 @@
   flex-direction: column;
   padding: 1rem 0;
   text-align: center;
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 0;
 }

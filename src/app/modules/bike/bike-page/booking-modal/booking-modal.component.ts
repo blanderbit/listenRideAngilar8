@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ExpandedBikeData } from '@models/bike/bike.types';
 
 @Component({
   selector: 'lnr-booking-modal',
@@ -10,10 +9,13 @@ import { ExpandedBikeData } from '@models/bike/bike.types';
 export class BookingModalComponent {
   constructor(
     public dialogRef: MatDialogRef<BookingModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ExpandedBikeData,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      submitAction: (arg: unknown) => void;
+    },
   ) {}
 
-  onCloseClick() {
+  onCloseClick(): void {
     this.dialogRef.close();
   }
 }

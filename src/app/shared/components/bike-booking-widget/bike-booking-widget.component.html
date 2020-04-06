@@ -7,10 +7,10 @@
   <div>
     <p class="pt-3">{{ 'shared.dates' | translate }}</p>
     <lnr-date-range-picker
-      *ngIf="unavailableDates; else loading"
+      *ngIf="(engagedTime$ | async)?.engagedDays; else loading"
       [datesRange]="selectedDays$ | async"
-      [engagedDays]="unavailableDates"
-      [engagedHours]="unavailableHours"
+      [engagedDays]="(engagedTime$ | async)?.engagedDays"
+      [engagedHoursByDay]="(engagedTime$ | async)?.engagedHoursByDay"
       [isHalfDay]="bikeData.isHalfDay"
       [timeSlots]="bikeData.timeSlots"
       (datesRangeSet)="onDatesRangeSet($event)"
@@ -72,10 +72,13 @@
       <mat-form-field appearance="outline">
         <mat-label>
           {{ 'shared.from' | translate }}
-          {{ bookingData.startDay | date: 'd MMM y' }}
+          {{ (selectedDays$ | async)?.startDate.toDate() | date: 'd MMM y' }}
         </mat-label>
         <mat-select
-          (openedChange)="onSelectOpen($event, hourTypes.PickUp)"
+          [disabled]="isDataLoading$ | async"
+          (openedChange)="
+            hourSelectOpen.emit({ isOpen: $event, hourType: hourTypes.PickUp })
+          "
           [value]="bookingData.pickUpHour"
           (selectionChange)="onHourSelectChange($event, hourTypes.PickUp)"
         >
@@ -91,10 +94,13 @@
       <mat-form-field appearance="outline">
         <mat-label>
           {{ 'shared.to' | translate }}
-          {{ bookingData.endDay | date: 'd MMM y' }}
+          {{ (selectedDays$ | async)?.endDate.toDate() | date: 'd MMM y' }}
         </mat-label>
         <mat-select
-          (openedChange)="onSelectOpen($event, hourTypes.Return)"
+          [disabled]="isDataLoading$ | async"
+          (openedChange)="
+            hourSelectOpen.emit({ isOpen: $event, hourType: hourTypes.Return })
+          "
           [placeholder]="'booking.calendar.return-time' | translate"
           [value]="bookingData.returnHour"
           (selectionChange)="onHourSelectChange($event, hourTypes.Return)"
@@ -142,7 +148,7 @@
       [selectedDays]="selectedDays$ | async"
       [insurancePrice]="bikeData.coverageTotal"
       [isPremiumInsuranceEnabled]="
-        (bookingData$ | async).isPremiumInsuranceEnabled
+        (bookingData$ | async)?.isPremiumInsuranceEnabled
       "
       [isInsuranceEnabled]="bikeData.isInsuranceEnabled"
     >

@@ -13,9 +13,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { URL_DATE_FORMAT } from '@core/constants/time';
-import { User } from '@models/user/user';
 import * as fromAuth from '@auth/store/reducers';
-import { UserVerificationActions } from '@user-verification/store/actions';
 import { BookingModalComponent } from './booking-modal/booking-modal.component';
 import { MetaData } from './types';
 import { BikeState } from '../types';
@@ -32,8 +30,6 @@ export class BikeComponent implements OnInit {
   public bikeData$: Observable<ExpandedBikeData>;
 
   public bikeData: ExpandedBikeData;
-
-  private user$: Observable<Partial<User>>;
 
   public staticMapSrc: string;
 
@@ -52,7 +48,6 @@ export class BikeComponent implements OnInit {
     private authStore: Store<fromAuth.State>,
     private router: Router,
   ) {
-    this.user$ = authStore.select(fromAuth.selectUser);
     this.bikeData$ = this.store.select(selectCurrentBikeData);
   }
 
@@ -62,7 +57,12 @@ export class BikeComponent implements OnInit {
       maxWidth: '100vw',
       height: '100vh',
       maxHeight: '100vh',
-      data: this.bikeData,
+      data: {
+        submitAction: (arg: BookingSubmit) => {
+          this.navigateToRequestFlow(arg);
+          this.dialog.closeAll();
+        },
+      },
     });
   }
 
@@ -82,13 +82,6 @@ export class BikeComponent implements OnInit {
         );
         this.setMetaTags();
       }
-    });
-    this.user$.subscribe(user => {
-      // if (user && (!user.confirmedEmail || !user.confirmedPhone)) {
-      //   this.store.dispatch(
-      //     UserVerificationActions.openUserVerificationDialogFromListBike(),
-      //   );
-      // }
     });
   }
 
