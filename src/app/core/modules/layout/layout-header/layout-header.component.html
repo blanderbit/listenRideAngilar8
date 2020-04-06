@@ -11,7 +11,7 @@
           />
         </a>
         <div
-          *ngIf="!isHomeView()"
+          *ngIf="!hideSearch()"
           class="d-none d-sm-block"
           [ngClass]="{ 'd-block': activeSearch }"
         >
@@ -30,7 +30,7 @@
       <div class="flex">
         <div class="d-sm-none wrap-search">
           <mat-icon
-            *ngIf="!isHomeView()"
+            *ngIf="!hideSearch()"
             class="m-r-2 search-btn white"
             [ngClass]="{ 'd-none': activeSearch }"
             (click)="showSearch()"

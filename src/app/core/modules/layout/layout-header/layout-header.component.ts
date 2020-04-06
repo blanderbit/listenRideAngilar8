@@ -25,6 +25,23 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
 
   user$ = this.storeAuth.pipe(select(fromAuth.selectUser));
 
+  // TODO add seo pages when we`ll created them, and check requests page
+  pagesWithoutSearchBar = [
+    '/$',
+    'settings',
+    'invoices',
+    'renting-a-bike',
+    'listing-a-bike',
+    'trust-and-safety',
+    'help',
+    'all-of-them',
+    'terms',
+    'privacy',
+    'insurance',
+    'users/',
+    'requests/',
+  ];
+
   constructor(
     private store: Store<SearchModel>,
     private storeAuth: Store<fromAuth.State>,
@@ -64,9 +81,14 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy {
     this.activeSearch = false;
   }
 
-  isHomeView() {
-    // return true if the current page is home
-    return this.router.url.match('^/$');
+  hideSearch(): boolean {
+    let hideSearchBar = false;
+    this.pagesWithoutSearchBar.forEach(path => {
+      if (this.router.url.match(path) != null) {
+        hideSearchBar = true;
+      }
+    });
+    return hideSearchBar;
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '@models/user/user';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromAuth from '@auth/store/reducers';
 
