@@ -13,10 +13,13 @@ import { FormGroup } from '@angular/forms';
 import { arrCountriesCode, arrCountriesNames } from '../../consts/consts';
 import { listPrices } from '@shared/helpers/insurance-helper';
 import { objTypeControl, staticField } from './consts';
+
 declare let google: any;
 declare let window: any;
 import {} from 'google-maps';
 import { Debounce } from '@shared/decorators/debounce';
+import { interval, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'lnr-list-step-locations',
@@ -38,14 +41,25 @@ export class ListStepLocationsComponent implements AfterViewInit {
   @ViewChild('cities', staticField) cities: ElementRef;
   @ViewChild('regionsZip', staticField) regionsZip: ElementRef;
   @ViewChild('regionsCountry', staticField) regionsCountry: ElementRef;
+  private destroyed$ = new Subject();
 
   constructor(private changeDetection: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
-    this.getPlaceAutocomplete();
+    const numbers = interval(500);
+    numbers.pipe(takeUntil(this.destroyed$)).subscribe(() => {
+      try {
+        if (google) {
+          this.getPlaceAutocomplete();
+          this.destroyed$.next(true);
+          this.destroyed$.complete();
+        }
+      } catch (e) {
+        console.error('GoogleTestError!!!!!!!!!!!!!!!!!!!!!!!!', e);
+      }
+    });
   }
 
-  @Debounce(300)
   private getPlaceAutocomplete(): void {
     if (
       !this.address ||
