@@ -7,6 +7,9 @@
     "skip": "Sla  over",
     "complete": "Vul aan",
     "proceed": "Ga verder met",
+    "where": "Waar",
+    "when": "Wanneer",
+    "author": "Auteur",
     "size": "Grootte",
     "img-alt": "{{bikeBrand}} {{bikeName}} fietsverhuur {{bikeCity}}",
     "bike_location": "Locatie van de fiets",
@@ -227,6 +230,17 @@
     "choose_from_brands": "Kies een merk",
     "description": "listnride biedt mensen de mogelijkheid om nieuwe merken en fietsen te ontdekken, te uitproberen en te leren kennen alvorens een aankoop online te doen. Met listnride heb je de mogelijkheid om verschillende soorten fietsen en merken te testen voordat je de uiteindelijke aankoopbeslissing neemt. De meeste merken zijn direct-to-consumer fietsmerken en kunnen worden getest in verschillende steden in Europa. De testritten kunnen online geboekt worden op de gewenste tijd en locatie. Ontdek en test de beste fietsen!"
   },
+  "brand": {
+    "choose_location": "Kies een {{ brandName }} locatie\n"
+  },
+  "event_template": {
+    "header": "Huur een racefiets voor de {{ eventName}}",
+    "subheader": "Op listnride vindt je de beste huurfietsen\n"
+  },
+  "events_template": {
+    "swiper_title": " Andere evenementen waarin je misschien geïnteresseerd bent",
+    "swiper_subtitle": "We werken samen met tal van evenementen in heel Europa om fietsverhuur aan de startlijn aan te bieden, zodat jij gemakkelijker kunt deelnemen aan geweldige wedstrijden zonder dat je jouw eigen fiets hoeft mee te nemen!"
+  },
   "jobs": {
     "header": "Werken bij List and Ride",
     "subheader": "We zetten de nieuwe standaard voor het boeken van fietshuur en fietstochten.",
@@ -255,6 +269,13 @@
     "subtitle": "Lees deze voorwaarden zorgvuldig door, want deze bevatten belangrijke informatie over uw wettelijke rechten, rechtsmiddelen en verplichtingen. Door het listnride platform te gebruiken, gaat u ermee akkoord om te voldoen aan deze voorwaarden.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Hier kunt u </a1>downloaden en onze algemene voorwaarden lezen.<br>Bedankt voor het gebruik van listnride!"
   },
   "terms_and_conditions.header": "Algemene voorwaarden van het Online-Platform listnride",
+  "help_and_service": {
+    "header": "Hoe kunnen we jeh helpen?",
+    "faq_header": "De 10 meest gestelde vraag op één plek"
+  },
+  "faq_page": {
+    "header": "Veel gestelde vragen"
+  },
   "bike_page": {
     "location": {
       "disclaimer": "Exacte locatie-informatie wordt verstrekt nadat een boeking is bevestigd."
@@ -352,6 +373,8 @@
       "meta-title": "Huur een racefiets voor de Berlin Triathlon 2020 | listnride",
       "meta-description": "Huur een racefiets online gemakkelijk en veilig met listnride voor de Berlin Triathlon 2020. Kies de perfecte fiets die bij je past!"
     },
+    "upcoming_events": "Komende evenementen",
+    "past_events": "Afgelopen evenementen ",
     "la-chouffe": {
       "title": "Huur een racefiets voor La Chouffe Classic!",
       "description": "Wat: <b>La Chouffe Classic</b>| Waar: <b>Houffalize, België</b> | Wanneer: <b>16 mei 2020</b>",
@@ -367,7 +390,7 @@
       "meta-description": "Huur een high-end racefiets voor de Gent-Wevelgem Cyclo met listnride! De uitstekend gespecificeerde fietsen staan voor je klaar aan de startlijn. Verken de Belgische heuvels met onze fantastische selectie huurfietsen!"
     },
     "giro-sicilia": {
-      "description": "Wat: <b0>Giro della Sicilia</b0> | Waar:<b1>Noto, Sicilië</b1> | Wanneer: <b2>25 april - 1 mei 2020</b2>",
+      "description": "Wat? <b0>Giro della Sicilia? </b0>Waar: <b1>Noto, Sicilië</b1>Wanneer: <b2>31 oktober - 6 november 2020 </b2>",
       "text": "<p><a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">De Giro della Sicilia</a> is de perfecte bestemming om de historische en natuurlijke schatten van Sicilië te ontdekken! Laat u verrassen door de kleuren en smaken tijdens deze 5-fasenwedstrijd. De Proloog wordt een 3 km lange race op de Noto Velodrome, terwijl de 5 etappes meer landinwaarts gaan, over ongelofelijke bergen!</p>\n\nProloog: 2,96 km op de Noto Velodrome<br>\nFase 1: 137km<br>\nFase 2: 131km<br>\nFase 3: 131km<br>\nFase 4: 133km<br>\nFase 5: 34 km individuele tijdrit\n\n<p>Bespaar jezelf tijd, moeite en geld door simpelweg de perfecte fiets te huren. Ze zullen klaar zijn bij de startlijn in Noto. Het enige wat je hoeft mee te nemen is je setje lichten, helm, pedalen, en natuurlijk: jij en je gretigheid!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Groepsreserveringen zijn hier beschikbaar!</a>",
       "meta-title": "Huur een racefiets voor de Giro Sardegna | listnride",
       "meta-description": "Huur online een racefiets voor de Giro della Sicilia. Kies de fiets die bij u past!",
@@ -1019,7 +1042,7 @@
     "to": "To",
     "mark-as-closed": "Marked all days as closed",
     "change-address-info": "Bij het updaten van uw adres wordt het adres van uw fietsen niet bijgewerkt.",
-    "payment-method": "Betaalmethoden",
+    "payment_method": "Betaalmethoden",
     "payout-method": "uitbetaalmethoden",
     "add-payout-method": "Uitbetaalmethode toevoegen",
     "payment_method_description": "Je betaalmethode wordt gebruikt om de kosten van de fietshuur af te boeken.",
@@ -1115,16 +1138,16 @@
     "from-week": "van een week"
   },
   "user": {
-    "verified-through": "geverifieerd door",
+    "verified_through": "geverifieerd door",
     "become-this-user": "Become this user",
-    "own-bikes": "Huurfietsen",
+    "own_bikes": "Huurfietsen",
     "ratings": "Recensies",
     "meta-title": "{{name}}'s profiel",
     "meta-description": "Fiets huren op listnride van {{name}}.",
     "company-meta-title": "{{company}}",
     "company-meta-description": "Fiets huren op listnride van {{company}}.",
     "availability": "Openingstijden",
-    "not-available": "Niet Beschikbaar",
+    "not_available": "Niet Beschikbaar",
     "verified": "geverifieerd"
   },
   "requests": {
@@ -1229,7 +1252,7 @@
     "your-phone-number": "Mobiele nummer",
     "comments": "Opmerkingen",
     "last-name": "Achternaam",
-    "email-address": "Emailadres",
+    "email_address": "Emailadres",
     "update-password": "Wachtwoord updaten",
     "old-password": "Huidig Wachtwoord",
     "new-password": "Nieuw Wachtwoord",
@@ -1348,6 +1371,8 @@
   },
   "calendar": {
     "invalid-date": "Ingevulde Datums zijn niet correct",
+    "info_subtotal": "Dit zijn de normale dagelijkse prijslijsten, het aantal dagen dat u de fiets wilt huren.",
+    "info_service_fee": "Dit helpt om ons platform te laten draaien en een uitstekende klantenservice aan te bieden. Inclusief btw. Niet te restitueren.",
     "rent-bike": "Nu boeken",
     "ability-to-pick-half-day": "Je kunt deze fiets een 1/2 dag boeken. <br>\nSelecteer het tijdvak :",
     "status-closed": "Gesloten",

@@ -10,6 +10,7 @@
     "where": "Where",
     "when": "When",
     "author": "Author",
+    "edit": "Edit",
     "size": "Size",
     "img-alt": "{{bikeBrand}} {{bikeName}} bike rental in {{bikeCity}}",
     "bike_location": "Bike location",
@@ -277,6 +278,13 @@
     "subtitle": "Please read these Terms carefully as they contain important information about your legal rights, remedies and obligations. By using the listnride platform, you agree to comply with these Terms.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Here you can download</a1> and read our General Terms and Conditions of Business.<br>Thank you for using listnride!"
   },
   "terms_and_conditions.header": "List and Ride General Terms and Conditions of Business",
+  "help_and_service": {
+    "header": "How can we help you?",
+    "faq_header": "The 10 most frequently asked questions in one place"
+  },
+  "faq_page": {
+    "header": "Frequently Asked Questions"
+  },
   "bike_page": {
     "location": {
       "disclaimer": "Exact location information is provided after a booking is confirmed."
@@ -395,7 +403,7 @@
       "meta-description": "Rent a high-end racing bike for the Gent-Wevelgem sportive with listnride! The well-specced bikes will be in ready for you at the starting line. Explore the Belgian hills with our fantastic selection of rental bikes!"
     },
     "giro-sicilia": {
-      "description": "What: <b0>Giro della Sicilia</b0> | Where: <b1>Noto, Sicily</b1> | When: <b2>April 25 - May 1 2020</b2>",
+      "description": "What: <b0>Giro della Sicilia</b0> | Where: <b1>Noto, Sicily</b1> | When: <b2>October 31 - November 6 2020</b2>",
       "text": "<p><a href=\"https://www.girodellasicilia.com/en/\" target=\"_blank\">The Giro della Sicilia</a> is the perfect destination to discover the historical and natural treasures of Sicily! Let yourself be surprised by the the colours and tastes during this 5-stage race. The Prologue will be a 3km race on the Noto Velodrome, while the 5 stages will be more inland, over incredible mountains!</p>\n\nPrologue: 2,96km on the Noto Velodrome<br>\nStage 1: 137km<br>\nStage 2: 131km<br>\nStage 3: 131km<br>\nStage 4: 133km<br>\nStage 5: 34km individual time trial\n\n<p>Save yourself time, trouble, and money by simply renting a high-end bike. They will be ready-to-go near the starting line in Noto. All you need to bring is your set of lights, helmet, pedals, and of course: you and your eagerness!</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Group bookings available here!</a>",
       "meta-title": "Rent a high-end road bike for Giro della Sicilia | listnride",
       "meta-description": "Rent a road bike online for Giro della Sicilia. Choose the bike that fits your needs!",
@@ -1019,6 +1027,7 @@
     "newsletter": "Newsletter",
     "errors": {
       "required-company-name": "Please enter your company name.",
+      "maxlenght_company_name": "Max length 50 characters",
       "minlength-company-name": "Company name should be longer than 2 characters",
       "required-vat": "Please enter your VAT number.",
       "minlength-vat": "The VAT number should be longer than 2 characters"
@@ -1048,7 +1057,7 @@
     "to": "To",
     "mark-as-closed": "Mark all days as closed",
     "change-address-info": "Updating your home address doesn't update the address of your bikes.",
-    "payment-method": "Payment Method",
+    "payment_method": "Payment Method",
     "payout-method": "Payout Method",
     "add-payout-method": "Add a Payout Method",
     "payment_method_description": "Your payment method is used to pay for your rentals. It can be a credit card or paypal account.",
@@ -1146,16 +1155,16 @@
     "from-week": "from 1 week"
   },
   "user": {
-    "verified-through": "Verified through",
+    "verified_through": "Verified through",
     "become-this-user": "Become this user",
-    "own-bikes": "Rental Bikes",
+    "own_bikes": "Rental Bikes",
     "ratings": "Ratings",
     "meta-title": "{{name}}'s profile",
     "meta-description": "Rent bikes on listnride from {{name}}.",
     "company-meta-title": "{{company}}",
     "company-meta-description": "Rent bikes on listnride from {{company}}.",
     "availability": "Availability",
-    "not-available": "Not available",
+    "not_available": "Not available",
     "verified": "verified"
   },
   "requests": {
@@ -1238,6 +1247,7 @@
   },
   "forms": {
     "first-name": "First Name",
+    "company_name_placeholder": "Your company name",
     "account_holder_name": "Account holder name",
     "bank_country": "Country",
     "dob": "Date of birth",
@@ -1261,7 +1271,7 @@
     "your-phone-number": "Your phone number",
     "comments": "Comments",
     "last-name": "Last Name",
-    "email-address": "Email Address",
+    "email_address": "Email Address",
     "update-password": "Update password",
     "old-password": "Current password",
     "new-password": "New password",
@@ -1305,6 +1315,8 @@
       "email_wrong_format": "The email format is incorrect",
       "email_wrong_domain": "The email domain is incorrect",
       "email_containment": "The email address has to contain an \"@\"",
+      "min_size_first_name": " First name should contain more than 2 characters ",
+      "min_size_last_name": "Last name should be more than 2 characters",
       "password_length_xs": "6-30 characters",
       "password_missing": "Please provide a password",
       "password_missing_xs": "Password required",
@@ -1381,6 +1393,8 @@
   },
   "calendar": {
     "invalid-date": "The dates are invalid",
+    "info_subtotal": "This is the regular daily price multiplied by the amount of rental days.",
+    "info_service_fee": "Helps us run our platform and allows us to offer first-class customer service. VAT included. Non-refundable.",
     "rent-bike": "Book now",
     "unavailable": "This bike is booked ",
     "ability-to-pick-half-day": "You can book this bike for a half-day. <br>\nPlease select your time slot: ",

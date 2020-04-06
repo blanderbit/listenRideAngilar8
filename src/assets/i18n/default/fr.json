@@ -260,6 +260,13 @@
     "subtitle": "Veuillez lire attentivement les présentes conditions, car elles contiennent des informations importantes sur vos droits, recours et obligations juridiques. En utilisant la plate-forme listnride, vous acceptez de vous conformer à ces conditions.<br><a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Ici, vous pouvez télécharger </a1>et consulter nos conditions générales de vente.<br>Merci d'utiliser listnride!"
   },
   "terms_and_conditions.header": "Conditions générales List and Ride",
+  "help_and_service": {
+    "header": "Comment pouvons-nous vous aider?",
+    "faq_header": "Les 10 questions les plus fréquemment posées"
+  },
+  "faq_page": {
+    "header": "Questions fréquentes"
+  },
   "bike_page": {
     "location": {
       "disclaimer": "Les informations sur le lieu exact sont fournies après confirmation de la réservation."
@@ -372,7 +379,7 @@
       "meta-description": "Louez un vélo de course haut de gamme pour le Gent-Wevelgem sportive avec listnride! Les vélos bien spécifiés seront prêts pour vous sur la ligne de départ. Explorez les collines belges avec notre fantastique sélection de vélos de location!"
     },
     "giro-sicilia": {
-      "description": "Quoi : <b0>Giro della Sicillia</b0> | Où : <b1>Noto, Sicily</b1> | Quand : <b2>25 Avril - 1er Mai 2020</b2>",
+      "description": "Quoi : <b0>Giro della Sicillia</b0> | Où : <b1>Noto, Sicily</b1> | Quand : <b2>31 Octobre- 6 Novembre 2020</b2>",
       "text": "<p><a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Le Giro della Sicilia</a> est la destination idéale pour découvrir les trésors historiques et naturels de la Sicile ! Laissez-vous surprendre par les couleurs et les goûts de cette course en 5 étapes. Le prologue sera une course de 3 km sur le vélodrome de Noto, tandis que les 5 étapes seront plus à l'intérieur des terres, dans des  paysages de montagnes à couper le souffle !</p>\n\nPrologue : 2,96km sur le vélodrome de Noto<br>\nÉtape 1 : 137km<br>\nÉtape 2 : 131 km<br>\nÉtape 3 : 131 km<br>\nÉtape 4 : 133km<br>\nÉtape 5 : Contre-la-montre individuel de 34 km\n\n<p>Économisez du temps, des ennuis et de l'argent en louant simplement le vélo qu'il vous faut. Ils seront prêts à partir près de la ligne de départ à Noto. Vous n'avez plus qu'à apporter votre jeu de lumières, votre casque, vos pédales, et bien sûr votre rage de vaincre !</p>\n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Réservations de groupe disponibles ici</a>",
       "meta-title": "Louez le vélo de route qu'il vous faut pour le Giro della Sicilia | listnride",
       "meta-description": "Louez un vélo de route en ligne pour le Giro della Sicilia. Choisissez le vélo qui correspond à vos besoins !",
@@ -1025,7 +1032,7 @@
     "to": "À",
     "mark-as-closed": "Marquer tous les jours comme fermés",
     "change-address-info": "La modification de votre adresse de domicile ne changera pas l'adresse de vos vélos.",
-    "payment-method": "Mode de paiement",
+    "payment_method": "Mode de paiement",
     "payout-method": "Mode de versement",
     "add-payout-method": "Ajouter un mode de versement",
     "payment_method_description": "Votre mode de paiement est utilisée pour payer vos locations. Cela peut être une carte de crédit ou un compte paypal.",
@@ -1122,16 +1129,16 @@
     "from-week": "à partir d'une semaine"
   },
   "user": {
-    "verified-through": "Vérifié par",
+    "verified_through": "Vérifié par",
     "become-this-user": "Devenir cet utilisateur",
-    "own-bikes": "Location de vélos",
+    "own_bikes": "Location de vélos",
     "ratings": "Évaluations",
     "meta-title": "Profil de {{name}}",
     "meta-description": "Louer un vélo de {{name}} avec listnride",
     "company-meta-title": "{{company}}",
     "company-meta-description": "Louez des vélos sur listnride depuis {{company}}.",
     "availability": "Disponibilité",
-    "not-available": "Indisponible",
+    "not_available": "Indisponible",
     "verified": "vérifié"
   },
   "requests": {
@@ -1237,7 +1244,7 @@
     "your-phone-number": "Votre numéro de téléphone",
     "comments": "Commentaires",
     "last-name": "Nom",
-    "email-address": "Adresse e-mail",
+    "email_address": "Adresse e-mail",
     "update-password": "Changer le mot de passe",
     "old-password": "Mot de passe actuel",
     "new-password": "Nouveau mot de passe",
@@ -1357,6 +1364,8 @@
   },
   "calendar": {
     "invalid-date": "Les dates sont invalides",
+    "info_subtotal": "Il s'agit du prix quotidien normal multiplié par le nombre de jours de location.",
+    "info_service_fee": "Helps us run our platform and allows us to offer first-class customer service. VAT included. Non-refundable.",
     "rent-bike": "Réservez maintenant",
     "ability-to-pick-half-day": "Vous pouvez réserver ce vélo pour une demi-journée. <br>\nVeuillez sélectionner votre créneau horaire:",
     "status-closed": "fermé",

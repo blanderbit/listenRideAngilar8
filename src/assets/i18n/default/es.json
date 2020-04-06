@@ -7,6 +7,10 @@
     "skip": "Omitir",
     "complete": "Rellenar ",
     "proceed": "Seguir",
+    "where": "Dónde",
+    "when": "Cuándo",
+    "author": "Quien",
+    "edit": "Editar",
     "size": "Tamaño",
     "img-alt": "Alquiler de bicicletas {{bikeBrand}} {{bikeName}} en {{bikeCity}}",
     "bike_location": "Localización de la bicicleta",
@@ -232,6 +236,17 @@
     "choose_from_brands": "Elige una marca",
     "description": "listnride ayuda a las personas a descubrir, probar y conocer nuevas marcas de bicicletas antes de realizar la compra. Con listnride tienes la oportunidad de probar varios tipos de bicicletas y marcas antes de tomar la decisión final. La mayoría de las marcas son marcas de bicicletas directas al consumidor y están disponibles para testar en todas las ciudades de Europa. Las pruebas de manejo se pueden reservar en línea, en la fecha y lugar deseados. ¡Descubre y prueba las mejores bicicletas!"
   },
+  "brand": {
+    "choose_location": "Elije una ciudad para probar una bicicleta {{ brandName }}"
+  },
+  "event_template": {
+    "header": "Alquila una bicicleta de carretera para el evento {{ eventName}}",
+    "subheader": "Con listnride puedes alquilar las mejores bicicletas"
+  },
+  "events_template": {
+    "swiper_title": "También podrían interesarte estos eventos",
+    "swiper_subtitle": "Colaboramos con muchos eventos en toda Europa y te traemos la bicicleta a la linea de salida, para que puedas fácilmente participar en estas fantasticas carreras sin tener que traer tu propia bicicleta!"
+  },
   "jobs": {
     "header": "Trabaja en List and Ride",
     "subheader": "Creamos un nuevo estándar sobre cómo las personas reservan una bicicleta de alquiler",
@@ -260,6 +275,13 @@
     "subtitle": "Por favor lea con atención los Términos y Condiciones dado que contienen información importante sobre tus derechos legales, recursos y obligaciones. Al acceder o utilizar listnride platform reconoces haber leído, comprendido y aceptado dichas Condiciones.<br>Puedes descargar y leer el documento completo de nuestros <a href=\"https://s3.eu-central-1.amazonaws.com/cdn.listnride.com/en/listnride_terms_2019.pdf\" target=\"_blank\">Términos y Condiciones</a1><br>¡Muchas gracias por utilizar listnride!"
   },
   "terms_and_conditions.header": "List and Ride Términos y Condiciones generales de negocio",
+  "help_and_service": {
+    "header": "¿En qué podemos ayudarte?",
+    "faq_header": "Preguntas frecuentes de nuestros usuarios"
+  },
+  "faq_page": {
+    "header": "Preguntas frecuentes"
+  },
   "bike_page": {
     "location": {
       "disclaimer": "La información de la ubicación se proporcionará al confirmar la reserva. "
@@ -357,6 +379,8 @@
       "meta-title": "Alquila una bicicleta de carretera para el Triatlón de Berlin 2020 | lisntride ",
       "meta-description": "Alquila una bicicleta de carretera para el Triatlón de Berlin 2020. ¡Elije una bicicleta de carreteras de alta calidad que te quede mejor!"
     },
+    "upcoming_events": "Próximos eventos",
+    "past_events": "Eventos pasados",
     "la-chouffe": {
       "title": "Alquila una bicicleta de carretera para \"La Chouffe Classic\"!",
       "description": "Qué: <b>La Chouffe Classic</b> | Dónde: <b>Houffalize, Bélgica</b> | Cuándo: <b>16 de Mayo 2020</b>",
@@ -372,7 +396,7 @@
       "meta-description": "¡Alquila la mejor bicicleta de carretera para el \"Gent-Wevelgem Sportive\" con listnride! Las bicicletas estarán listas para comenzar en la linea de subida. ¡Explora las colinas belgas con nuestras mejores bicicletas!"
     },
     "giro-sicilia": {
-      "description": "Qué: <b0>Giro della Sicilia</b0> | <b1>Dónde: Noto, Sicilia</b1> | Cuándo: <b2>25 de Abril - 1 de Mayo</b2>",
+      "description": "Qué: <b0>Giro della Sicilia</b0> | <b1>Dónde: Noto, Sicilia</b1> | Cuándo: <b2>31 de Octubre - 6 de Noviembre 2020 </b2>",
       "text": "<p>¡El <a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">Giro della Sicilia</a> es el destino perfecto para descubrir los tesoros históricos y naturales de Sicilia! Déjete sorprender por los colores y los gustos durante las 5 etapas de la carrera. El Prólogo,una carrera de 3 km, tendrá lugar en el Velódromo de Noto, mientras que las 5 etapas se desarrolarán en el interior, donde podrás descubrir montañas increíbles!</p>\n\nPrólogo: 2,96km en el Velódromo de Noto<br>\nEtapa 1: 137km<br>\nEtapa 2: 131km<br>\nEtapa 3: 131km<br>\nEtapa 4: 133km<br>\nEtapa 5: prueba de contrarreloj individual de 34 km\n\n<p>Ahorra tiempo, problemas y dinero alquilando una bicicleta de alta gama. Las bicicletas estrán listas para comnzar en línea de salida en Noto. Todo lo que necesitas es traer tu juego de luces, casco, pedales, y por supuesto: ¡tú mismo y tu entusiasmo!</p> \n\n<a href=\"https://www.listnride.com/multi-booking?location=GirodellaSicilia\" target=\"_blank\">¡Reservas para grupos disponibles aquí!</a>",
       "meta-title": "Alquila una bicicleta de carretera de alta gama para el Giro della Sicilia | listnride ",
       "meta-description": "Alquila una bicicleta de carretera para el Giro della Sicilia. Elije la bicicleta perfecta para tus necesidades. ",
@@ -995,6 +1019,7 @@
     "newsletter": "Newsletter ",
     "errors": {
       "required-company-name": "Introduce el nombre de tu empresa",
+      "maxlenght_company_name": "Máximo 50 carácteres ",
       "minlength-company-name": "El nombre de la empresa no debe exceder los 20 caracteres",
       "required-vat": "Por favor, especifica tu número de IVA.",
       "minlength-vat": "El IVA debe ser superior a 2 caracteres."
@@ -1023,7 +1048,7 @@
     "to": "Hasta",
     "mark-as-closed": "Marcados todos los días como cerrados",
     "change-address-info": "La actualización de tu dirección no actualiza la dirección de tus bicicletas.",
-    "payment-method": "Método de pago",
+    "payment_method": "Método de pago",
     "payout-method": "Método de cobro",
     "add-payout-method": "Añadir un método de cobro",
     "payment_method_description": "Tu método de pago se usa para pagar los alquileres. Puede ser una tarjeta de crédito o una cuenta de PayPal.",
@@ -1120,16 +1145,16 @@
     "from-week": "desde 1 semana"
   },
   "user": {
-    "verified-through": "Verificado",
+    "verified_through": "Verificado",
     "become-this-user": "Conviértete en este usuario",
-    "own-bikes": "Bicicletas de alquiler",
+    "own_bikes": "Bicicletas de alquiler",
     "ratings": "Puntuaciones",
     "meta-title": "Perfil de {{name}}",
     "meta-description": "Alquilar bicis de {{name}} en listnride.",
     "company-meta-title": "{{company}}",
     "company-meta-description": "Alquilar bicis de {{company}} en listnride.",
     "availability": "Disponibilidad",
-    "not-available": "No disponible",
+    "not_available": "No disponible",
     "verified": "verificado"
   },
   "requests": {
@@ -1212,6 +1237,7 @@
   },
   "forms": {
     "first-name": "Nombre",
+    "company_name_placeholder": "Rellena con el nombre de tu empresa ",
     "account_holder_name": "Nombre del titular de la cuenta ",
     "bank_country": "País",
     "dob": "Fecha de nacimiento",
@@ -1235,7 +1261,7 @@
     "your-phone-number": "Número de teléfono",
     "comments": "Comentarios",
     "last-name": "Apellido",
-    "email-address": "Correo electrónico",
+    "email_address": "Correo electrónico",
     "update-password": "Actualizar contraseña",
     "old-password": "Contraseña actual",
     "new-password": "Nueva contraseña",
@@ -1278,6 +1304,8 @@
       "email_wrong": "Dirección de correo no válida",
       "email_wrong_format": "Formato de dirección de correo no válido ",
       "email_wrong_domain": "Dominio de dirección de correo no válido",
+      "min_size_first_name": "El nombre tiene que tener más de 2 carácteres",
+      "min_size_last_name": "El apellido tiene que tener más de dos carácteres ",
       "password_length_xs": "6-30 caracteres",
       "password_missing": "Introduce una contraseña",
       "password_missing_xs": "Requiere contraseña",
@@ -1354,6 +1382,8 @@
   },
   "calendar": {
     "invalid-date": "Las fechas no son válidas",
+    "info_subtotal": "Este es el precio habitual diario veces la cantidad de días que quieras alquilar la bici.",
+    "info_service_fee": "Esto permite que nuestra plataforma crezca y u pueda ofrecer un servicio de atención al cliente de primera. IVA incluido. No reembolsable.",
     "rent-bike": "Reserva ahora",
     "ability-to-pick-half-day": "Puedes reservar esta bicicleta por medio día. <br>\nPor favor seleccione su horario:",
     "status-closed": "closed",
