@@ -54,21 +54,18 @@
           [hidden]="tabType !== 'asLister'"
           [reports]="reports?.asLister"
           [userId]="userId"
-          [isMobile]="isMobile"
         >
         </lnr-invoices-as-lister>
         <lnr-invoices-as-rider
           [hidden]="tabType !== 'asRider'"
           [reports]="reports?.asRider"
           [userId]="userId"
-          [isMobile]="isMobile"
         >
         </lnr-invoices-as-rider>
         <lnr-invoices-settlement-history
           [hidden]="tabType !== 'settlementHistory'"
           [reports]="reports?.settlement"
           [userId]="userId"
-          [isMobile]="isMobile"
         >
         </lnr-invoices-settlement-history>
       </div>

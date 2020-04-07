@@ -15,7 +15,6 @@ import isEmpty from 'lodash-es/isEmpty';
 export class InvoicesAsListerComponent implements OnInit {
   @Input() reports: { [key: string]: Array<Invoice> };
   @Input() userId: number;
-  @Input() isMobile: boolean;
 
   keyDescOrder = keyDescOrder;
   isEmpty = isEmpty;

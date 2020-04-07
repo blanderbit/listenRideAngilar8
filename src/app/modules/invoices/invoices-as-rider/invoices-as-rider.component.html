@@ -1,16 +1,18 @@
-<table *ngIf="!isMobile" class="table">
+<table class="table d-none d-sm-table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">{{ 'invoices.request_id' | translate }}</th>
-      <th scope="col">{{ 'invoices.invoice_number' | translate }}</th>
-      <th scope="col">{{ 'invoices.bike' | translate }}</th>
-      <th scope="col">{{ 'invoices.start_date' | translate }}</th>
-      <th scope="col">{{ 'invoices.end_date' | translate }}</th>
-      <th scope="col">{{ 'shared.lister' | translate }}</th>
-      <th scope="col" class="lnr-text-align-r">
+      <th scope="col" class="w-p-8">{{ 'invoices.request_id' | translate }}</th>
+      <th scope="col" class="w-p-8">
+        {{ 'invoices.invoice_number' | translate }}
+      </th>
+      <th scope="col" class="w-p-16">{{ 'invoices.bike' | translate }}</th>
+      <th scope="col" class="w-p-8">{{ 'invoices.start_date' | translate }}</th>
+      <th scope="col" class="w-p-8">{{ 'invoices.end_date' | translate }}</th>
+      <th scope="col" class="w-p-16">{{ 'shared.lister' | translate }}</th>
+      <th scope="col" class="lnr-text-align-r w-p-4">
         {{ 'invoices.you_paid' | translate }}
       </th>
-      <th scope="col">{{ 'invoices.invoice' | translate }}</th>
+      <th scope="col" class="w-p-8">{{ 'invoices.invoice' | translate }}</th>
     </tr>
   </thead>
   <tbody *ngFor="let report of reports | keyvalue: keyDescOrder">
@@ -33,7 +35,7 @@
       <td>{{ invoice.endDate | date: 'dd.MM.yyyy' }}</td>
       <td>{{ invoice.lister }}</td>
       <td class="lnr-text-align-r">
-        {{ invoice.total | lnr_currency: 'EUR':'symbol':'1.2-2' }}
+        {{ invoice.total | lnr_currency }}
       </td>
       <td>
         <a (click)="getPdf(invoice.id)">
@@ -44,7 +46,7 @@
   </tbody>
 </table>
 
-<div *ngIf="isMobile" class="d-flex flex-column">
+<div class="d-flex flex-column d-sm-none">
   <div *ngFor="let report of reports | keyvalue: keyDescOrder">
     <h4>{{ report.key }}</h4>
     <div class="m-t-1 m-b-1">
@@ -66,7 +68,7 @@
       </div>
       <div class="d-flex flex-row justify-content-between">
         <a [routerLink]="['/bikes/' + invoice.bikeId]">{{ invoice.bike }}</a>
-        <b>{{ invoice.total | lnr_currency: 'EUR':'symbol':'1.2-2' }}</b>
+        <b>{{ invoice.total | lnr_currency }}</b>
       </div>
       <div class="m-t-1 m-b-1">
         <mat-divider></mat-divider>

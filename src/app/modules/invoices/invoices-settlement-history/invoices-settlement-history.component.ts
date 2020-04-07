@@ -13,7 +13,6 @@ import { Settlement } from '@models/invoices/invoices';
 export class InvoicesSettlementHistoryComponent implements OnInit {
   @Input() reports: { [key: string]: Array<Settlement> };
   @Input() userId: number;
-  @Input() isMobile: boolean;
 
   keyDescOrder = keyDescOrder;
   getTotal = getTotal;
