@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { BikeState, BookingData } from '../types';
+import * as moment from 'moment';
+import { BikeState } from '../types';
 
 export const BIKE_FEATURE = 'Bike';
 
@@ -17,11 +18,22 @@ export const selectBookingData = createSelector(
   (state: BikeState) => state.bookingData,
 );
 
-export const selectBookingDays = createSelector(
+export const selectStartDay = createSelector(
   selectBookingData,
-  ({ startDay, endDay }: BookingData) => ({
-    startDate: startDay,
-    endDate: endDay,
+  bookingData => bookingData.startDay,
+);
+
+export const selectEndDay = createSelector(
+  selectBookingData,
+  bookingData => bookingData.endDay,
+);
+
+export const selectBookingDays = createSelector(
+  selectStartDay,
+  selectEndDay,
+  (startDay, endDay) => ({
+    startDate: startDay ? moment(startDay) : undefined,
+    endDate: startDay ? moment(endDay) : undefined,
   }),
 );
 

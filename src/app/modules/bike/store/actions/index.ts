@@ -1,13 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { ExpandedBikeData } from '@models/bike/bike.types';
 import { EngagedTimeResponse } from '@api/api-rides/types';
-import { DatesRange } from '@shared/components/bike-booking-widget/types';
 
 export const enum BikeActionTypes {
   SET_BIKE = '[BIKE] - Set Bike',
   LOAD_BIKE = '[BIKE] - Load Bike',
   SET_ERROR = '[BIKE] - Set Error',
-  SET_SELECTED_DATES = '[BIKE] - Set Selected Dates',
+  SET_SELECTED_DAYS = '[BIKE] - Set Selected Days',
   SET_SELECTED_HOURS = '[BIKE] - Set Selected Hours',
   SET_AVAILABLE_VARIATIONS = '[BIKE] - Set Available Variations',
   SET_BIKE_FROM_VARIATIONS = '[BIKE] - Set Bike From Variations',
@@ -32,9 +31,9 @@ export const setErrorGetBike = createAction(
   props<Error>(),
 );
 
-export const setSelectedDates = createAction(
-  BikeActionTypes.SET_SELECTED_DATES,
-  props<DatesRange>(),
+export const setSelectedDays = createAction(
+  BikeActionTypes.SET_SELECTED_DAYS,
+  props<{ startDay: string; endDay: string }>(),
 );
 
 export const setSelectedHours = createAction(
@@ -64,7 +63,7 @@ export const setEngagedTime = createAction(
 
 export const loadEngagedTime = createAction(
   BikeActionTypes.LOAD_ENGAGED_TIME,
-  props<{ startDate: string; endDate?: string }>(),
+  props<{ startDate?: string; endDate?: string }>(),
 );
 
 export const setLoadingData = createAction(

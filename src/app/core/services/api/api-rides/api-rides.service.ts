@@ -86,9 +86,13 @@ export class ApiRidesService {
   getEngagedTimeData(
     bikeId: number,
     startDate: string,
-    endDate: string,
+    endDate?: string,
   ): Observable<EngagedTimeResponse> {
-    const params = snakeCaseKeys({ startDate, endDate }) as {
+    const response = {
+      startDate,
+      ...(endDate && { endDate }),
+    };
+    const params = snakeCaseKeys(response) as {
       [key: string]: string;
     };
     return this.httpClient.get<EngagedTimeResponse>(

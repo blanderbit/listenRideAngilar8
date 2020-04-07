@@ -74,14 +74,9 @@ export class DateRangePickerComponent
   public isCustomDate = (date): Array<string> | string =>
     this.applyCustomClassName(date);
 
-  private startDateDiffer: KeyValueDiffer<string, any>;
-
-  public selectedDays: DatesRange;
-
   ngOnInit(): void {
     this.minDate = moment();
     this.engagedDaysDiffer = this.kvDiffers.find({}).create();
-    this.startDateDiffer = this.kvDiffers.find({}).create();
   }
 
   ngDoCheck(): void {
@@ -102,19 +97,10 @@ export class DateRangePickerComponent
       while (flatInvalidDates.includes(this.minDate.format(DATE_FORMAT))) {
         this.minDate.add(1, 'day');
       }
-      this.flatInvalidDates = flatInvalidDates;
+      this.flatInvalidDates = flatInvalidDates.filter(d => !closed.includes(d));
       if (this.pickerDirective) {
         this.pickerDirective.picker.updateCalendars();
       }
-    }
-    const dateChanges = this.startDateDiffer.diff(this.datesRange);
-    if (dateChanges && this.datesRange && this.datesRange.startDate.toDate) {
-      const { startDate, endDate } = this.datesRange;
-
-      this.selectedDays = {
-        startDate: startDate.clone(),
-        endDate: endDate.clone(),
-      };
     }
   }
 
@@ -165,13 +151,12 @@ export class DateRangePickerComponent
   applyCustomClassName(date: moment.Moment): Array<string> | string {
     if (this.engagedDays) {
       const dateString = date.format(DATE_FORMAT);
-      const { partlyUnavailable, unavailable, booked } = this.engagedDays;
-      const fullyUnavailable = [...unavailable, ...booked];
+      const { partlyUnavailable, closed } = this.engagedDays;
 
-      if (fullyUnavailable.includes(dateString)) {
+      if (this.flatInvalidDates.includes(dateString)) {
         return ['fully-unavailable-day', 'off', 'disabled', 'invalid'];
       }
-      if (this.flatInvalidDates.includes(dateString)) {
+      if (closed.includes(dateString)) {
         return ['off', 'disabled', 'invalid'];
       }
       if (this.isHalfDay && partlyUnavailable.includes(dateString)) {

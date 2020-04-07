@@ -17,8 +17,8 @@ export const isValidDate = (
   engagedTime: EngagedTime,
 ): boolean => {
   const { pickUpHour, returnHour, startDay, endDay } = bookingData;
-  const start = startDay.hour(pickUpHour);
-  const end = endDay.hour(returnHour);
+  const start = moment(startDay).hour(pickUpHour);
+  const end = moment(endDay).hour(returnHour);
   const { engagedDays, engagedHoursByDay } = engagedTime;
 
   if (start.isBefore(moment(), 'd') || end.isSameOrBefore(start)) {

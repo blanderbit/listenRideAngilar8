@@ -72,7 +72,7 @@
       <mat-form-field appearance="outline">
         <mat-label>
           {{ 'shared.from' | translate }}
-          {{ (selectedDays$ | async)?.startDate.toDate() | date: 'd MMM y' }}
+          {{ (selectedDays$ | async)?.startDate?.toDate() | date: 'd MMM y' }}
         </mat-label>
         <mat-select
           [disabled]="isDataLoading$ | async"
@@ -94,7 +94,7 @@
       <mat-form-field appearance="outline">
         <mat-label>
           {{ 'shared.to' | translate }}
-          {{ (selectedDays$ | async)?.endDate.toDate() | date: 'd MMM y' }}
+          {{ (selectedDays$ | async)?.endDate?.toDate() | date: 'd MMM y' }}
         </mat-label>
         <mat-select
           [disabled]="isDataLoading$ | async"
@@ -167,7 +167,7 @@
     [disabled]="isSubmitButtonDisabled"
     (click)="onSubmitButtonClick()"
   >
-    {{ buttonText || 'Submit' }}
+    {{ buttonText || ('calendar.request-bike' | translate) }}
   </button>
   <div class="d-flex direction-column align-items-center t-align-center">
     <span>

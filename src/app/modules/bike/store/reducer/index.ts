@@ -18,12 +18,12 @@ const reducer = createReducer(
     loadingData: state.loadingData.filter(data => data !== BIKE_DATA),
   })),
 
-  on(BikeActions.setSelectedDates, (state, { startDate, endDate }) => ({
+  on(BikeActions.setSelectedDays, (state, { startDay, endDay }) => ({
     ...state,
     bookingData: {
       ...state.bookingData,
-      startDay: startDate.clone(),
-      endDay: endDate.clone(),
+      startDay,
+      endDay,
       pickUpHour: undefined,
       returnHour: undefined,
     },

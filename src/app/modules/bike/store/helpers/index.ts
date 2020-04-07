@@ -1,11 +1,12 @@
 import { ExpandedBikeData } from '@models/bike/bike.types';
 
 export const checkIsBikeLoaded = (
-  bikeId: number,
-  bikeData?: ExpandedBikeData,
+  bikeData: ExpandedBikeData,
+  prevBikeData?: ExpandedBikeData,
 ): boolean =>
   bikeData &&
-  (bikeId === bikeData.id ||
+  prevBikeData &&
+  (bikeData.id === prevBikeData.id ||
     Object.values(bikeData.variations || {}).some(value =>
-      value.bikeIds.includes(bikeId),
+      value.bikeIds.includes(bikeData.id),
     ));

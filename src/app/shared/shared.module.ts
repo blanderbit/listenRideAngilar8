@@ -29,9 +29,12 @@ import { PaymentMethodCreditCardAdyenComponent } from '@shared/components/paymen
 import { PaymentMethodCreditCardComponent } from '@shared/components/payment/payment-method-credit-cart/payment-method-credit-card.component';
 import { BookWidgetComponent } from '@shared/components/book-widget/book-widget.component';
 import { FaqPanelComponent } from '@shared/components/faq-panel/faq-panel.component';
-import { ContentLayoutsModule } from './components/content-layouts/content-layouts.module';
 import { MatInputModule } from '@angular/material/input';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { BikeBookingWidgetComponent } from '@shared/components/bike-booking-widget/bike-booking-widget.component';
+import { PricesSectionComponent } from '@shared/components/bike-booking-widget/components/prices-section/prices-section.component';
+import { BookingOverviewComponent } from '@shared/components/bike-booking-widget/components/booking-overview/booking-overview.component';
+import { ContentLayoutsModule } from './components/content-layouts/content-layouts.module';
 import { SmallSwiperComponent } from './components/small-swiper/small-swiper.component';
 import { TestimonialsSwiperComponent } from './components/testimonials-swiper/testimonials-swiper.component';
 import { TopLocationComponent } from './components/top-location/top-location.component';
@@ -44,9 +47,6 @@ import { MobileSortingComponent } from './components/mobile-sorting/mobile-sorti
 import { MaterialModule } from './material/material.module';
 import { FiltersComponent } from './filters/filters.component';
 import { DateRangePickerComponent } from './components/bike-booking-widget/components/date-range-picker/date-range-picker.component';
-import { BikeBookingWidgetComponent } from '@shared/components/bike-booking-widget/bike-booking-widget.component';
-import { PricesSectionComponent } from '@shared/components/bike-booking-widget/components/prices-section/prices-section.component';
-import { BookingOverviewComponent } from '@shared/components/bike-booking-widget/components/booking-overview/booking-overview.component';
 
 const components = [
   FiltersComponent,

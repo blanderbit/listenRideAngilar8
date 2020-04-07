@@ -1,6 +1,5 @@
 import range from 'lodash-es/range';
 import { EngagedHours } from '@api/api-rides/types';
-import { ExpandedBikeData } from '@models/bike/bike.types';
 import { TimeSlots } from '@models/business/business';
 import { HOURS_IN_DAY, MIN_OPENING_HOUR } from '@core/constants/time';
 import { HalfDaysData, HourPickerOption } from '../types';
@@ -84,13 +83,3 @@ export const getInitialHourPickerOptions = (): Array<HourPickerOption> =>
     label: `${String(item).padStart(2, '0')}:00`,
     isDisabled: false,
   }));
-
-export const checkIsBikeLoaded = (
-  bikeId: number,
-  bikeData?: ExpandedBikeData,
-): boolean =>
-  bikeData &&
-  (bikeId === bikeData.id ||
-    Object.values(bikeData.variations || {}).some(value =>
-      value.bikeIds.includes(bikeId),
-    ));

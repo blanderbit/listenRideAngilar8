@@ -15,7 +15,7 @@ import {
 } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { URL_DATE_FORMAT, HOUR } from '@core/constants/time';
+import { URL_DATE_FORMAT, HOUR, DATE_FORMAT } from '@core/constants/time';
 import get from 'lodash-es/get';
 import * as moment from 'moment';
 import { ExpandedBikeData } from '@models/bike/bike.types';
@@ -26,6 +26,8 @@ import { checkIsBikeLoaded } from '../helpers';
 
 @Injectable()
 export class BikeEffects implements OnInitEffects {
+  private loadedBikeEngagedTimeData: ExpandedBikeData;
+
   $loadBike = createEffect(() =>
     this.actions$.pipe(
       ofType(BikeActions.loadBike),
@@ -93,26 +95,18 @@ export class BikeEffects implements OnInitEffects {
   $loadEngagedTime = createEffect(() =>
     this.actions$.pipe(
       ofType(BikeActions.loadEngagedTime),
-      withLatestFrom(
-        this.store$.select(selectCurrentBikeData).pipe(
-          startWith(null),
-          pairwise(),
-          tap(([prevBikeData, bikeData]) => {
-            if (bikeData && !checkIsBikeLoaded(bikeData.id, prevBikeData)) {
-              this.store$.dispatch(BikeActions.setEngagedTime({}));
-            }
-          }),
-        ),
-      ),
-      tap(() =>
-        this.store$.dispatch(
-          BikeActions.setLoadingData({ data: ENGAGED_TIME }),
-        ),
-      ),
-      filter(([, [, bikeData]]) => !!bikeData),
-      mergeMap(([{ startDate, endDate = moment(startDate)
-            .endOf('month')
-            .toISOString() }, [, { id }]]) =>
+      withLatestFrom(this.store$.select(selectCurrentBikeData)),
+      filter(([{ startDate }, bikeData]) => {
+        if (
+          !startDate &&
+          !checkIsBikeLoaded(bikeData, this.loadedBikeEngagedTimeData)
+        ) {
+          this.loadInitialEngagedTimeData();
+          this.loadedBikeEngagedTimeData = bikeData;
+        }
+        return startDate && !!bikeData;
+      }),
+      mergeMap(([{ startDate, endDate }, { id }]) =>
         this.apiRidesService
           .getEngagedTimeData(id, startDate, endDate)
           .pipe(
@@ -139,14 +133,21 @@ export class BikeEffects implements OnInitEffects {
 
       if (isValidDate && duration >= HOUR) {
         const startDate = moment(paramsStart);
-        const endDate = moment(startDate).add(parseInt(duration, 10), 's');
+        const endDate = moment(startDate).add(
+          parseInt(duration, 10),
+          'seconds',
+        );
+
         this.store$.dispatch(
-          BikeActions.setSelectedDates({ startDate, endDate }),
+          BikeActions.setSelectedDays({
+            startDay: startDate.format(DATE_FORMAT),
+            endDay: endDate.format(DATE_FORMAT),
+          }),
         );
         this.store$.dispatch(
           BikeActions.setSelectedHours({
-            pickUpHour: startDate.get('h'),
-            returnHour: endDate.get('h'),
+            pickUpHour: startDate.hours(),
+            returnHour: endDate.hours(),
           }),
         );
       }
@@ -159,15 +160,18 @@ export class BikeEffects implements OnInitEffects {
     bikeData: ExpandedBikeData,
   ): void {
     const { pickUpHour, returnHour, startDay, endDay } = bookingData;
-    const startDate = startDay.hour(pickUpHour).format(URL_DATE_FORMAT);
-    const endDate = endDay.hour(returnHour).startOf('hour');
-    const duration = endDate.diff(startDay, 'seconds');
+    const startDate = moment(startDay).hour(pickUpHour);
+    const startDateStr = startDate.format(URL_DATE_FORMAT);
+    const endDate = moment(endDay)
+      .hour(returnHour)
+      .startOf('hour');
+    const duration = endDate.diff(startDate, 'seconds');
 
     if (duration >= HOUR) {
       const { location } = window;
       const searchParams = new URLSearchParams(location.search);
 
-      searchParams.set('start_date', startDate);
+      searchParams.set('start_date', startDateStr);
       searchParams.set('duration', String(duration));
       this.location.replaceState(
         `${location.pathname}?${searchParams.toString()}`,
@@ -175,11 +179,25 @@ export class BikeEffects implements OnInitEffects {
     }
     if (bikeData && bikeData.clusterId) {
       this.apiRidesService
-        .getAvailableSizesByCluster(bikeData.clusterId, startDate, duration)
+        .getAvailableSizesByCluster(bikeData.clusterId, startDateStr, duration)
         .pipe(first())
         .subscribe(({ rideIds }) => {
           this.store$.dispatch(BikeActions.setAvailableVariations({ rideIds }));
         });
     }
+  }
+
+  loadInitialEngagedTimeData(): void {
+    const today = moment().format(DATE_FORMAT);
+    const endDate = moment()
+      .add(1, 'month')
+      .endOf('month')
+      .format(DATE_FORMAT);
+
+    this.store$.dispatch(BikeActions.setEngagedTime({}));
+    this.store$.dispatch(BikeActions.setLoadingData({ data: ENGAGED_TIME }));
+    this.store$.dispatch(
+      BikeActions.loadEngagedTime({ startDate: today, endDate }),
+    );
   }
 }
