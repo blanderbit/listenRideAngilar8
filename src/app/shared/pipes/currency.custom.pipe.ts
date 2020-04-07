@@ -4,33 +4,27 @@ import {
   getCurrencySymbol,
   registerLocaleData,
 } from '@angular/common';
-import { ApiSeoService } from '@api/api-seo/api-seo.service';
+
 import localeDe from '@angular/common/locales/de';
 
-registerLocaleData(localeDe);
+registerLocaleData(localeDe, 'de');
 
 @Pipe({
   name: 'lnr_currency',
 })
 export class CurrencyCustomPipe implements PipeTransform {
-  private locale: string;
-
-  constructor(private apiSeoService: ApiSeoService) {
-    this.locale = this.apiSeoService.retrieveLocale();
-  }
-
   // eslint-disable-next-line class-methods-use-this
   transform(
-    value: number,
+    value: number | string,
     digitsInfo = '1.2-2',
     currencyCode = 'EUR',
-    display = 'symbol',
-    locale = this.locale,
+    // Locale is hard-coded to show currency symbol on the right side in any locale
+    locale = 'de',
   ): string | null {
     return formatCurrency(
-      value,
+      typeof value === 'number' ? value : parseInt(value, 10),
       locale,
-      getCurrencySymbol(currencyCode, 'wide'),
+      getCurrencySymbol(currencyCode, 'narrow'),
       currencyCode,
       digitsInfo,
     );
