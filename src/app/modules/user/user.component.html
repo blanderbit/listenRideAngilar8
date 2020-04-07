@@ -1,0 +1,78 @@
+<ng-template #loading>
+  <div class="d-flex justify-content-center m-6 p-6">
+    <lnr-loader-spinner-small></lnr-loader-spinner-small>
+  </div>
+</ng-template>
+
+<div class="container" *ngIf="user$ | async as user; else loading">
+  <div class="row">
+    <div class="col-md-7 flex align-items-center p-b-2 p-t-2">
+      <img
+        [src]="pictureUrl(user)"
+        alt="{{ displayableName(user) }}"
+        class="profile-picture m-r-2"
+      />
+      <div class="flex direction-column">
+        <div class="flex direction-row">
+          <h3 class="heading-3">{{ displayableName(user) }}</h3>
+          <button
+            mat-flat-button
+            class="ml-3"
+            color="accent"
+            (click)="stealSession(user.id)"
+            *ngIf="isAdmin && user.id !== currentUserId"
+          >
+            <span class="white regular">
+              {{ 'user.become-this-user' | translate }}
+            </span>
+          </button>
+        </div>
+        <div class="flex direction-row ratings">
+          <mat-icon
+            *ngFor="let item of ratingArray(user)"
+            class="heading-4"
+            aria-hidden="false"
+            aria-label=""
+          >
+            grade
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+    <mat-divider class="col-md-1" [vertical]="true"></mat-divider>
+    <div class="col-md-3 offset-md-1 p-b-2 p-t-2 m-l-1">
+      <lnr-user-verified-through [user]="user"></lnr-user-verified-through>
+    </div>
+  </div>
+
+  <div class="row p-t-1 p-b-1">
+    <div class="col-md-12">
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+
+  <div class="row p-t-1 p-b-1">
+    <div class="col-md-2 p-b-1">
+      <b>{{ 'forms.description' | translate }}</b>
+    </div>
+    <div class="col-md-8">
+      <p>{{ user.description }}</p>
+    </div>
+  </div>
+
+  <div class="p-t-1 p-b-1" *ngIf="user.openingHours">
+    <lnr-user-availability [user]="user"></lnr-user-availability>
+  </div>
+
+  <div class="row p-t-1 p-b-1" *ngIf="!isEmpty(user.rides)">
+    <div class="col-md-12">
+      <lnr-user-rental-bikes [user]="user"></lnr-user-rental-bikes>
+    </div>
+  </div>
+
+  <div class="row p-t-1 p-b-1" *ngIf="!isEmpty(user.ratings)">
+    <div class="col-md-12">
+      <lnr-user-ratings [user]="user"></lnr-user-ratings>
+    </div>
+  </div>
+</div>

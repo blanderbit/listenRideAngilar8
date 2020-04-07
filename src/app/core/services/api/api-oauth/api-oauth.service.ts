@@ -100,4 +100,11 @@ export class ApiOauthService {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     return this.authService.authState;
   }
+
+  getAccessTokenFor(userId: number | string): Observable<OauthTokenResponse> {
+    return this.httpClient.post<OauthTokenResponse>('/oauth/token_for', {
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      user_id: userId,
+    });
+  }
 }

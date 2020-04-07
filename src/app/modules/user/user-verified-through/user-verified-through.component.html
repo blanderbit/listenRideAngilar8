@@ -1,0 +1,24 @@
+<h4>{{ 'user.verified_through' | translate }}</h4>
+<ul>
+  <li class="flex align-items-center">
+    <mat-icon
+      svgIcon="check-circle-outline"
+      [class.active]="user.confirmedPhone"
+    ></mat-icon>
+    <span>{{ 'shared.phone_number' | translate }}</span>
+  </li>
+  <li class="flex align-items-center">
+    <mat-icon
+      svgIcon="check-circle-outline"
+      [class.active]="user.confirmedEmail"
+    ></mat-icon>
+    <span>{{ 'forms.email_address' | translate }}</span>
+  </li>
+  <li class="flex align-items-center">
+    <mat-icon
+      svgIcon="check-circle-outline"
+      [class.active]="user.confirmedPayment"
+    ></mat-icon>
+    <span>{{ 'settings.payment_method' | translate }}</span>
+  </li>
+</ul>

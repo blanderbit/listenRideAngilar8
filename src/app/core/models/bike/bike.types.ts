@@ -87,21 +87,30 @@ export interface ClusterBikeSize {
   amount: number;
 }
 
+// TODO: use camel case names only
 export interface Bike {
   id: string;
   brand: string;
   name: string;
-  image_file: string;
+  image_file?: string;
+  imageFile?: string;
   category: string;
   size: number;
-  pretty_size: string;
-  daily_price: number;
-  weekly_price: number;
-  rating_average: number;
-  ratings_total: number;
+  pretty_size?: string;
+  prettySize?: string;
+  daily_price?: number;
+  dailyPrice?: number;
+  weekly_price?: number;
+  weeklyPrice?: number;
+  rating_average?: number;
+  ratingAverage?: number;
+  ratings_total?: number;
+  ratingsTotal?: number;
   distance: number;
-  rides_count: number;
-  is_cluster: boolean;
+  rides_count?: number;
+  ridesCount?: number;
+  is_cluster?: boolean;
+  isCluster?: boolean;
 }
 
 export interface BikeVariation {

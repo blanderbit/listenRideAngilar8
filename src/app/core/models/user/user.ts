@@ -20,6 +20,7 @@ export interface User {
     profilePicture: { url: string };
   };
   confirmedPhone: boolean;
+  confirmedPayment: boolean;
 
   locations?: any;
 
@@ -43,8 +44,22 @@ export interface User {
   balance?: number;
   notificationPreference?: any;
   rides?: any[];
-  ratings?: any[];
+  ratings?: Array<Rating>;
   business: Business;
   me?: { admin?: boolean };
   directBookingScheme?: boolean;
+  openingHours?: {
+    hours: {
+      [key: number]: Array<{ duration: number; startAt: number }>;
+    };
+  };
+}
+
+export interface Rating {
+  authorId: number;
+  authorName: string;
+  authorPicture: string;
+  score: number;
+  message?: string;
+  createdAt?: string;
 }

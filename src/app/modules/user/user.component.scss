@@ -1,0 +1,12 @@
+@import "variables";
+
+.profile-picture {
+  width: 14rem;
+  border-radius: 100%;
+}
+
+.ratings {
+  mat-icon {
+    color: $missing-information-color;
+  }
+}

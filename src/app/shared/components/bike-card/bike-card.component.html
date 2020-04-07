@@ -1,3 +1,5 @@
+<!-- TODO: remove all OR when all responces camel cased -->
+
 <div
   [routerLink]="['/bikes/' + bike.id]"
   [ngClass]="{ 'bike-tile_mobile-view': isMobileView }"
@@ -8,11 +10,14 @@
     *ngIf="!isMobileMap; else mobileBikeTemplate"
   >
     <div class="bike-tile_wrap-img">
-      <img src="{{ bike?.image_file }}" alt="" />
+      <img src="{{ bike?.image_file || bike?.imageFile }}" alt="" />
     </div>
     <div class="bike-info">
-      <div *ngIf="bike?.is_cluster" class="bike-available regular">
-        {{ bike?.is_cluster ? bike?.rides_count : null }}
+      <div
+        *ngIf="bike?.is_cluster || bike?.isCluster"
+        class="bike-available regular"
+      >
+        {{ bike?.rides_count || bike?.ridesCount }}
         Variants available
       </div>
       <div class="flex justify-content-between">
@@ -34,10 +39,14 @@
             class="flex direction-column align-items-end"
           >
             <span class="bike-info_price-day medium">
-              {{ bike?.daily_price | number: '1.0-0' }} €/day
+              {{ bike?.daily_price || bike?.dailyPrice | number: '1.0-0' }}
+              €/day
             </span>
             <span class="bike-info_price-week">
-              {{ bike?.weekly_price * 7 | number: '1.0-0' }} €/week
+              {{
+                (bike?.weekly_price || bike?.weeklyPrice) * 7 | number: '1.0-0'
+              }}
+              €/week
             </span>
           </div>
         </div>
@@ -45,7 +54,9 @@
       <div class="flex justify-content-between bike-tile_desktop">
         <div class="bike-info_content flex direction-column">
           <div class="bike-info_size flex direction-row align-items-center">
-            <span class="text-ellipsis">Size: {{ bike?.pretty_size }}</span>
+            <span class="text-ellipsis">
+              Size: {{ bike?.pretty_size || bike?.prettySize }}
+            </span>
             <div
               *ngIf="bike?.distance"
               class="flex direction-row align-items-center"
@@ -63,14 +74,15 @@
             class="bike-info_rating flex direction-row align-items-center content-end"
             *ngIf="bike?.ratings_total"
           >
-            <mat-icon class="heading-6" aria-hidden="false" aria-label="">
+            <mat-icon class="heading-5" aria-hidden="false" aria-label="">
               grade
             </mat-icon>
-            <span
-              >{{ bike?.rating_average | number: '1.2-2' }} ({{
-                bike?.ratings_total
-              }})</span
-            >
+            <span>
+              {{
+                bike?.rating_average || bike?.ratingAverage | number: '1.2-2'
+              }}
+              ({{ bike?.ratings_total || bike?.ratingsTotal }})
+            </span>
           </div>
         </div>
       </div>
@@ -87,14 +99,17 @@
               <mat-icon class="heading-6" aria-hidden="false" aria-label="">
                 grade
               </mat-icon>
-              <span
-                >{{ bike?.rating_average | number: '1.2-2' }} ({{
-                  bike?.ratings_total
-                }})</span
-              >
+              <span>
+                {{
+                  bike?.rating_average || bike?.ratingAverage | number: '1.2-2'
+                }}
+                ({{ bike?.ratings_total || bike?.ratingsTotal }})
+              </span>
             </div>
             <div class="bike-info_size flex direction-row align-items-center">
-              <span class="text-ellipsis">Size: {{ bike?.pretty_size }}</span>
+              <span class="text-ellipsis">
+                Size: {{ bike?.pretty_size || bike?.prettySize }}
+              </span>
               <div
                 *ngIf="bike?.distance"
                 class="flex direction-row align-items-center"
@@ -115,11 +130,16 @@
               Free
             </span>
             <div *ngIf="bike?.daily_price > 0" class="flex direction-column">
-              <span class="bike-info_price-day medium"
-                >{{ bike?.daily_price | number: '1.0-0' }} €/day
+              <span class="bike-info_price-day medium">
+                {{ bike?.daily_price || bike?.dailyPrice | number: '1.0-0' }}
+                €/day
               </span>
-              <span class="bike-info_price-week"
-                >{{ bike?.weekly_price * 7 | number: '1.0-0' }} €/week
+              <span class="bike-info_price-week">
+                {{
+                  (bike?.weekly_price || bike?.weeklyPrice) * 7
+                    | number: '1.0-0'
+                }}
+                €/week
               </span>
             </div>
           </div>

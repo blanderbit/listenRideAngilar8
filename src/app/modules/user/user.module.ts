@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { RatingModule } from 'ngx-bootstrap';
-import { UsersComponent } from './users.component';
-import { UsersRoutingModule } from './users-routing.module';
-import { UsersResolver } from './users.resolver';
+import { UserComponent } from './user.component';
+import { UserRoutingModule } from './user-routing.module';
 import { UserVerifiedThroughComponent } from './user-verified-through/user-verified-through.component';
 import { UserAvailabilityComponent } from './user-availability/user-availability.component';
-import { UserDescriptionComponent } from './user-description/user-description.component';
 import { UserRentalBikesComponent } from './user-rental-bikes/user-rental-bikes.component';
+import { UserRatingsComponent } from './user-ratings/user-ratings.component';
 
 @NgModule({
   declarations: [
-    UsersComponent,
+    UserComponent,
     UserVerifiedThroughComponent,
     UserAvailabilityComponent,
-    UserDescriptionComponent,
     UserRentalBikesComponent,
+    UserRatingsComponent,
   ],
-  imports: [SharedModule, UsersRoutingModule, RatingModule],
-  providers: [UsersResolver],
+  imports: [SharedModule, UserRoutingModule, RatingModule],
 })
-export class UsersModule {}
+export class UserModule {}

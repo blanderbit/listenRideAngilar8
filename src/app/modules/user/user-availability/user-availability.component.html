@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2 p-b-1">
+    <b>{{ 'user.availability' | translate }}</b>
+  </div>
+  <div class="col-md-8">
+    <div *ngFor="let day of weekDays">
+      <div class="row">
+        <p class="col-lg-2 col-4">{{ day }}</p>
+        <div class="col-lg-8 col-8 flex direction-row">
+          <div *ngFor="let range of hours[day]; let last = last">
+            <p *ngIf="!range.closed">
+              {{ hoursRange(range.startAt, range.endAt)
+              }}{{ last ? '' : ',&nbsp;' }}
+            </p>
+            <p *ngIf="range.closed">
+              {{ 'user.not_available' | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

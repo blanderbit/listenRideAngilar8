@@ -1,0 +1,16 @@
+<b class="p-b-1">{{ 'user.own_bikes' | translate }}</b>
+
+<div class="row">
+  <div class="col-md-3" *ngFor="let bike of displayableBikes()">
+    <lnr-bike-card [bike]="bike" [isMobileView]="false"></lnr-bike-card>
+  </div>
+</div>
+
+<div class="flex direction-row-reverse" *ngIf="user.rides.length > 8">
+  <a (click)="showMore()" *ngIf="!showAll">
+    {{ 'shared.show-more' | translate }}
+  </a>
+  <a (click)="showLess()" *ngIf="showAll">
+    {{ 'shared.show-less' | translate }}
+  </a>
+</div>

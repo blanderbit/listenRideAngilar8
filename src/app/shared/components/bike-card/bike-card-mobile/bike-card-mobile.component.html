@@ -19,10 +19,13 @@
         </span>
         <div *ngIf="bike?.daily_price > 0" class="flex direction-column">
           <span class="bike-info_price-day medium">
-            {{ bike?.daily_price | number: '1.0-0' }} €/day
+            {{ bike?.daily_price || bike?.dailyPrice | number: '1.0-0' }} €/day
           </span>
           <span class="bike-info_price-week">
-            {{ bike?.weekly_price * 7 | number: '1.0-0' }} €/week
+            {{
+              (bike?.weekly_price || bike?.weeklyPrice) * 7 | number: '1.0-0'
+            }}
+            €/week
           </span>
         </div>
       </div>
@@ -30,7 +33,9 @@
     <div class="flex justify-content-between">
       <div class="bike-info_content flex direction-column">
         <div class="bike-info_size flex direction-row align-items-center">
-          <span class="text-ellipsis">Size: {{ bike?.pretty_size }}</span>
+          <span class="text-ellipsis">
+            Size: {{ bike?.pretty_size || bike?.prettySize }}
+          </span>
           <div
             *ngIf="bike?.distance"
             class="flex direction-row align-items-center"
@@ -51,11 +56,10 @@
           <mat-icon class="heading-6" aria-hidden="false" aria-label="">
             grade
           </mat-icon>
-          <span
-            >{{ bike?.rating_average | number: '1.0-0' }} ({{
-              bike?.ratings_total
-            }})</span
-          >
+          <span>
+            {{ bike?.rating_average || bike?.ratingAverage | number: '1.0-0' }}
+            ({{ bike?.ratings_total || bike?.ratingsTotal }})
+          </span>
         </div>
       </div>
     </div>
@@ -64,10 +68,13 @@
         Free
       </span>
       <div *ngIf="bike?.daily_price > 0" class="flex direction-column">
-        <span class="bike-info_price-day p-b-1 medium"
-          >{{ bike?.daily_price | number: '1.0-0' }} €/day
+        <span class="bike-info_price-day p-b-1 medium">
+          {{ bike?.daily_price || bike?.dailyPrice | number: '1.0-0' }} €/day
         </span>
-        <span>{{ bike?.weekly_price * 7 | number: '1.0-0' }} €/week </span>
+        <span>
+          {{ (bike?.weekly_price || bike?.weeklyPrice) * 7 | number: '1.0-0' }}
+          €/week
+        </span>
       </div>
     </div>
   </div>
