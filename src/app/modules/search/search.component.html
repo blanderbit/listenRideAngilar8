@@ -1,3 +1,4 @@
+<!--TODO remove all isMobile, isTablet or Desktop-->
 <div class="wrap-search-page-layout">
   <div
     class="content search-page-layout"
@@ -9,7 +10,7 @@
   >
     <div
       *ngIf="isTablet || isMobile"
-      class="mobile-toolbar"
+      class="mobile-toolbar d-none d-md-block"
       [class.scrolled]="scrolled"
     >
       <div class="toggle toggle-filters" (click)="toggleFilters()">
@@ -18,7 +19,7 @@
           svgIcon="lnr-filter"
           aria-label="toggle icon"
         ></mat-icon>
-        <span>Filters</span>
+        <span>{{ 'search.filter' | translate }}</span>
       </div>
       <div class="toggle toggle-sorting" (click)="toggleSorting()">
         <mat-icon

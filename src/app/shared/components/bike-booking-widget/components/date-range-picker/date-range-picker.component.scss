@@ -1,10 +1,10 @@
-@import 'src/assets/scss/variables';
+@import 'variables';
 
 .dates-range {
-  border: 1px solid $light-grey;
-  border-radius: 0.5rem;
+  border: 0.1rem solid $input-border;
+  border-radius: $border-radius;
   cursor: pointer;
-  padding: 1rem 1.5rem;
+  padding: 0.9rem 1.5rem;
 
   mat-icon {
     font-size: $base-font_size;
@@ -21,6 +21,7 @@
     label,
     input {
       width: 100%;
+      margin-bottom: 0;
     }
 
     &.is-loading {
@@ -56,7 +57,7 @@
     }
 
     .md-drppicker {
-      border: 1px solid $light-grey;
+      border: 0.1rem solid $input-border;
       box-shadow: none;
 
       td.active,

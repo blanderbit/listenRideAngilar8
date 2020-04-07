@@ -1,23 +1,23 @@
 // TODO Fix all the esLint errors
 /* eslint-disable */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { brandList, sizeList, sortList } from '@core/constants/filters.const';
 import { take } from 'rxjs/operators';
 import { CategoryMultiSelectComponent } from '@shared/filters/category-multiselect/category-multi-select.component';
-import * as SearchActions from '../../modules/search/store/search.actions';
-import { SearchModel, SearchPayload } from '@modules/search/search.types';
-import { getFilterPayload, getFilterToggle } from '../../modules/search/store';
 import { DatesRange } from '@shared/components/bike-booking-widget/types';
 import * as moment from 'moment';
+import { SearchModel, SearchPayload } from '@modules/search/search.types';
+import * as SearchActions from '../../modules/search/store/search.actions';
+import { getFilterPayload, getFilterToggle } from '../../modules/search/store';
 
 @Component({
   selector: 'lnr-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private store: Store<SearchModel>) {}
 
   filtersForm: FormGroup;
@@ -33,7 +33,7 @@ export class FiltersComponent implements OnInit {
   @ViewChild(CategoryMultiSelectComponent, { static: false })
   categorySelect: CategoryMultiSelectComponent;
 
-  public selectedDates: DatesRange;
+  public selectedDates: { endDate: moment.Moment; startDate: moment.Moment };
 
   onDatesRangeSet({ startDate, endDate }: DatesRange): void {
     this.selectedDates = { startDate, endDate };
@@ -67,11 +67,6 @@ export class FiltersComponent implements OnInit {
             ? `${filters.sort_by}-${filters.sort_direction}`
             : null,
       });
-    });
-
-    // TODO: Move this to ng after view init, refactor the component and styles
-    this.categorySelect.multiSelectUpdate.subscribe(categories => {
-      this.filtersForm.get('type').setValue(categories);
     });
 
     this.filtersForm.valueChanges.subscribe(val => {
@@ -115,6 +110,7 @@ export class FiltersComponent implements OnInit {
     this.filtersForm.markAsUntouched();
     this.filtersForm.reset();
     this.store.dispatch(SearchActions.ResetSearchPayload());
+    this.selectedDates = null;
   }
 
   close() {
@@ -125,5 +121,11 @@ export class FiltersComponent implements OnInit {
 
   applyFilters() {
     this.close();
+  }
+
+  ngAfterViewInit() {
+    this.categorySelect.multiSelectUpdate.subscribe(categories => {
+      this.filtersForm.get('type').setValue(categories);
+    });
   }
 }
