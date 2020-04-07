@@ -1,0 +1,28 @@
+@import 'variables';
+@import "utils/utils";
+
+* {
+  margin: 2.5rem 1.5rem ;
+}
+h3 {
+  margin-top: 0;
+  &.wrong {
+    color: $lnr-dang;
+  }
+}
+a {
+  margin: .6rem 1.6rem;
+  padding: 0 .6rem;
+  background: $main-green;
+  color: $white;
+  border-radius: .4rem;
+  border: none;
+  font-size: $h6-fontsize;
+  line-height: $h4-fontsize;
+  text-align: center;
+  height: 4rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+

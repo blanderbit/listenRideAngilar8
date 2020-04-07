@@ -64,14 +64,16 @@ export class AddressComponent implements OnInit, OnDestroy {
       .subscribe(({ country, city, street, zip }) => {
         const streetWithoutNumber = this.getStreetWithoutNumber(street);
         const streetNumber = this.getNumberFromStreet(street);
-        this.address = `${street}, ${city}, ${country}`;
-        this.form.patchValue({
-          country,
-          city,
-          street: streetWithoutNumber,
-          number: streetNumber,
-          zip,
-        });
+        if (street && city && country) {
+          this.address = `${street}, ${city}, ${country}`;
+          this.form.patchValue({
+            country,
+            city,
+            street: streetWithoutNumber,
+            number: streetNumber,
+            zip,
+          });
+        }
       });
   }
 

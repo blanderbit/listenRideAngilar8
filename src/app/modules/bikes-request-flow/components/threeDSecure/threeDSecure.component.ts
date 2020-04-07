@@ -13,16 +13,25 @@ export class ThreeDSecureComponent {
   issuerUrl = '';
   paRequest = '';
   md = '';
+  originHref = document.location.origin;
 
   constructor(private cdr: ChangeDetectorRef) {}
-  showThreeDSecureAuthentication(requestData) {
-    const { issuerUrl, paRequest, md } = requestData.redirect_params;
-    this.issuerUrl = issuerUrl;
-    this.paRequest = paRequest;
-    this.md = md;
-    this.successPageRedirect = `${environment.LNR_API_ENDPOINT}/requests/${requestData.id}/authorise3d?site=${document.location.origin}/my-bikes`;
-    this.cdr.detectChanges();
 
-    this.threeDSecureForm.nativeElement.submit();
+  redirectToRequests(id) {
+    return `${environment.LNR_API_ENDPOINT}/requests/${id}/authorise3d?site=${this.originHref}`;
+  }
+
+  showThreeDSecureAuthentication(requestData) {
+    if (requestData.redirect_params) {
+      const { issuerUrl, paRequest, md } = requestData.redirect_params;
+      if (issuerUrl && paRequest && md) {
+        this.issuerUrl = issuerUrl;
+        this.paRequest = paRequest;
+        this.md = md;
+        this.successPageRedirect = this.redirectToRequests(requestData.id);
+        this.cdr.detectChanges();
+        this.threeDSecureForm.nativeElement.submit();
+      }
+    }
   }
 }

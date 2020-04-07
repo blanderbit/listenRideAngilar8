@@ -177,10 +177,11 @@ export class BikesRequestFlowComponent
 
   setRouterEvents(): void {
     this.Location.onUrlChange(data => {
-      const search = new URLSearchParams(data);
+      const search = this.router.parseUrl(data);
       const query = {
-        duration: search.get('duration'),
-        start_date: search.get('start_date'),
+        id: search.queryParams.id,
+        duration: search.queryParams.duration,
+        start_date: search.queryParams.start_date,
       };
       this.isBikeQueryParams = { ...query };
       this.setStep();
@@ -272,7 +273,7 @@ export class BikesRequestFlowComponent
     const hasPhone = (this.user && this.user.hasPhoneNumber) || '';
     const hasAddress = (this.user && this.user.hasAddress) || '';
     const paymentInput =
-      this.user && this.user.paymentMethod && 'credit_card_current';
+      (this.user && this.user.paymentMethod && 'credit_card_current') || '';
 
     const duration = {};
 
@@ -288,7 +289,7 @@ export class BikesRequestFlowComponent
     };
 
     const paymentMethod = {
-      payment: [paymentInput],
+      payment: [paymentInput, Validators.required],
     };
 
     const bookingOverview = {};
@@ -366,9 +367,15 @@ export class BikesRequestFlowComponent
 
     this.apiRidesService.bookingBike(request).subscribe(
       req => {
-        this.snackBar('Booked successfully', true);
+        // @ts-ignore
+        if (req.redirect_params) {
+          this.threeDSecure.showThreeDSecureAuthentication(req);
+        } else {
+          // @ts-ignore
+          this.router.navigate([`requests/${req.id}`]);
+        }
 
-        this.threeDSecure.showThreeDSecureAuthentication(req);
+        this.snackBar('Booked successfully', true);
       },
       ({ error }) => {
         const errorFirst = error.errors[0];

@@ -8,6 +8,15 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home').then(m => m.HomeModule),
   },
   {
+    path: 'authorise3d/:id',
+    loadChildren: () => import('./modules/home').then(m => m.HomeModule),
+  },
+  {
+    path: 'requests',
+    loadChildren: () =>
+      import('./modules/requests').then(m => m.RequestsModule),
+  },
+  {
     path: 'list-bike',
     loadChildren: () =>
       import('./modules/list-my-bike').then(m => m.ListMyBikeModule),

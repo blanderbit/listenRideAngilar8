@@ -1,0 +1,15 @@
+<h3 class="{{ !succeed && 'wrong' }}">
+  {{
+    (succeed ? 'toasts.request-created' : 'toasts.request-failed') | translate
+  }}
+</h3>
+<p>
+  {{
+    (succeed ? 'toasts.request-create-rider' : 'toasts.request-failed-rider')
+      | translate
+  }}
+</p>
+
+<a routerLink="/requests/{{ requestId }}" (click)="onCloseClick()">{{
+  'toasts.btns.go-to-request' | translate
+}}</a>

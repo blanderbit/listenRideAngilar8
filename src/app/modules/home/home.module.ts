@@ -11,6 +11,7 @@ import { SearchingFormComponent } from './shared/searching-form/searching-form.c
 import { TestimonialsSwiperComponent } from './shared/testimonials-swiper/testimonials-swiper.component';
 import { RecommendedDestinationsComponent } from './shared/recommended-destinations/recommended-destinations.component';
 import { EventsSwiperComponent } from './shared/events-swiper/events-swiper.component';
+import { RequestsThreeDSecureComponent } from './components/requests-three-dsecure/requests-three-dsecure.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,10 @@ import { EventsSwiperComponent } from './shared/events-swiper/events-swiper.comp
     TestimonialsSwiperComponent,
     RecommendedDestinationsComponent,
     EventsSwiperComponent,
+    RequestsThreeDSecureComponent,
   ],
   exports: [TestimonialsSwiperComponent, EventsSwiperComponent],
   imports: [SharedModule, MatGoogleMapsAutocompleteModule, HomeRoutingModule],
+  entryComponents: [RequestsThreeDSecureComponent],
 })
 export class HomeModule {}

@@ -12,6 +12,13 @@
 
   }
 
+  h3 {
+    font-size: $h3-fontsize;
+    font-weight: normal;
+    margin-bottom: 1.4rem;
+    color: $social-media-bg-hover;
+  }
+
   .leftContainer {
     display: grid;
     grid-template-columns: 40% 60%;
